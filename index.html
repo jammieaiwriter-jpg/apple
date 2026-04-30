@@ -1,999 +1,1656 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>🍎 Apple 智慧數學冒險</title>
-    <script>
-    /**
-     * Minified by jsDelivr using Terser v5.37.0.
-     * Original file: /npm/canvas-confetti@1.6.0/dist/confetti.browser.js
-     */
-    !function(t,e){!function t(e,n,a,i){var o=!!(e.Worker&&e.Blob&&e.Promise&&e.OffscreenCanvas&&e.OffscreenCanvasRenderingContext2D&&e.HTMLCanvasElement&&e.HTMLCanvasElement.prototype.transferControlToOffscreen&&e.URL&&e.URL.createObjectURL);function r(){}function l(t){var a=n.exports.Promise,i=void 0!==a?a:e.Promise;return"function"==typeof i?new i(t):(t(r,r),null)}var c,s,u,h,f,d,m,g,b,v=(u=Math.floor(1e3/60),h={},f=0,"function"==typeof requestAnimationFrame&&"function"==typeof cancelAnimationFrame?(c=function(t){var e=Math.random();return h[e]=requestAnimationFrame((function n(a){f===a||f+u-1<a?(f=a,delete h[e],t()):h[e]=requestAnimationFrame(n)})),e},s=function(t){h[t]&&cancelAnimationFrame(h[t])}):(c=function(t){return setTimeout(t,u)},s=function(t){return clearTimeout(t)}),{frame:c,cancel:s}),M=(g={},function(){if(d)return d;if(!a&&o){var e=["var CONFETTI, SIZE = {}, module = {};","("+t.toString()+")(this, module, true, SIZE);","onmessage = function(msg) {","  if (msg.data.options) {","    CONFETTI(msg.data.options).then(function () {","      if (msg.data.callback) {","        postMessage({ callback: msg.data.callback });","      }","    });","  } else if (msg.data.reset) {","    CONFETTI && CONFETTI.reset();","  } else if (msg.data.resize) {","    SIZE.width = msg.data.resize.width;","    SIZE.height = msg.data.resize.height;","  } else if (msg.data.canvas) {","    SIZE.width = msg.data.canvas.width;","    SIZE.height = msg.data.canvas.height;","    CONFETTI = module.exports.create(msg.data.canvas);","  }","}"].join("\n");try{d=new Worker(URL.createObjectURL(new Blob([e])))}catch(t){return void 0!==typeof console&&"function"==typeof console.warn&&console.warn("🎊 Could not load worker",t),null}!function(t){function e(e,n){t.postMessage({options:e||{},callback:n})}t.init=function(e){var n=e.transferControlToOffscreen();t.postMessage({canvas:n},[n])},t.fire=function(n,a,i){if(m)return e(n,null),m;var o=Math.random().toString(36).slice(2);return m=l((function(a){function r(e){e.data.callback===o&&(delete g[o],t.removeEventListener("message",r),m=null,i(),a())}t.addEventListener("message",r),e(n,o),g[o]=r.bind(null,{data:{callback:o}})}))},t.reset=function(){for(var e in t.postMessage({reset:!0}),g)g[e](),delete g[e]}}(d)}return d}),p={particleCount:50,angle:90,spread:45,startVelocity:45,decay:.9,gravity:1,drift:0,ticks:200,x:.5,y:.5,shapes:["square","circle"],zIndex:100,colors:["#26ccff","#a25afd","#ff5e7e","#88ff5a","#fcff42","#ffa62d","#ff36ff"],disableForReducedMotion:!1,scalar:1};function y(t,e,n){return function(t,e){return e?e(t):t}(t&&null!=t[e]?t[e]:p[e],n)}function w(t){return t<0?0:Math.floor(t)}function x(t){return parseInt(t,16)}function C(t){return t.map(T)}function T(t){var e=String(t).replace(/[^0-9a-f]/gi,"");return e.length<6&&(e=e[0]+e[0]+e[1]+e[1]+e[2]+e[2]),{r:x(e.substring(0,2)),g:x(e.substring(2,4)),b:x(e.substring(4,6))}}function I(t){t.width=document.documentElement.clientWidth,t.height=document.documentElement.clientHeight}function k(t){var e=t.getBoundingClientRect();t.width=e.width,t.height=e.height}function E(t,e,n,o,r){var c,s,u=e.slice(),h=t.getContext("2d"),f=l((function(e){function l(){c=s=null,h.clearRect(0,0,o.width,o.height),r(),e()}c=v.frame((function e(){!a||o.width===i.width&&o.height===i.height||(o.width=t.width=i.width,o.height=t.height=i.height),o.width||o.height||(n(t),o.width=t.width,o.height=t.height),h.clearRect(0,0,o.width,o.height),u=u.filter((function(t){return function(t,e){e.x+=Math.cos(e.angle2D)*e.velocity+e.drift,e.y+=Math.sin(e.angle2D)*e.velocity+e.gravity,e.wobble+=e.wobbleSpeed,e.velocity*=e.decay,e.tiltAngle+=.1,e.tiltSin=Math.sin(e.tiltAngle),e.tiltCos=Math.cos(e.tiltAngle),e.random=Math.random()+2,e.wobbleX=e.x+10*e.scalar*Math.cos(e.wobble),e.wobbleY=e.y+10*e.scalar*Math.sin(e.wobble);var n=e.tick++/e.totalTicks,a=e.x+e.random*e.tiltCos,i=e.y+e.random*e.tiltSin,o=e.wobbleX+e.random*e.tiltCos,r=e.wobbleY+e.random*e.tiltSin;if(t.fillStyle="rgba("+e.color.r+", "+e.color.g+", "+e.color.b+", "+(1-n)+")",t.beginPath(),"circle"===e.shape)t.ellipse?t.ellipse(e.x,e.y,Math.abs(o-a)*e.ovalScalar,Math.abs(r-i)*e.ovalScalar,Math.PI/10*e.wobble,0,2*Math.PI):function(t,e,n,a,i,o,r,l,c){t.save(),t.translate(e,n),t.rotate(o),t.scale(a,i),t.arc(0,0,1,r,l,c),t.restore()}(t,e.x,e.y,Math.abs(o-a)*e.ovalScalar,Math.abs(r-i)*e.ovalScalar,Math.PI/10*e.wobble,0,2*Math.PI);else if("star"===e.shape)for(var l=Math.PI/2*3,c=4*e.scalar,s=8*e.scalar,u=e.x,h=e.y,f=5,d=Math.PI/f;f--;)u=e.x+Math.cos(l)*s,h=e.y+Math.sin(l)*s,t.lineTo(u,h),l+=d,u=e.x+Math.cos(l)*c,h=e.y+Math.sin(l)*c,t.lineTo(u,h),l+=d;else t.moveTo(Math.floor(e.x),Math.floor(e.y)),t.lineTo(Math.floor(e.wobbleX),Math.floor(i)),t.lineTo(Math.floor(o),Math.floor(r)),t.lineTo(Math.floor(a),Math.floor(e.wobbleY));return t.closePath(),t.fill(),e.tick<e.totalTicks}(h,t)})),u.length?c=v.frame(e):l()})),s=l}));return{addFettis:function(t){return u=u.concat(t),f},canvas:t,promise:f,reset:function(){c&&v.cancel(c),s&&s()}}}function S(t,n){var a,i=!t,r=!!y(n||{},"resize"),c=y(n,"disableForReducedMotion",Boolean),s=o&&!!y(n||{},"useWorker")?M():null,u=i?I:k,h=!(!t||!s)&&!!t.__confetti_initialized,f="function"==typeof matchMedia&&matchMedia("(prefers-reduced-motion)").matches;function d(e,n,i){for(var o,r,l,c,s,h=y(e,"particleCount",w),f=y(e,"angle",Number),d=y(e,"spread",Number),m=y(e,"startVelocity",Number),g=y(e,"decay",Number),b=y(e,"gravity",Number),v=y(e,"drift",Number),M=y(e,"colors",C),p=y(e,"ticks",Number),x=y(e,"shapes"),T=y(e,"scalar"),I=function(t){var e=y(t,"origin",Object);return e.x=y(e,"x",Number),e.y=y(e,"y",Number),e}(e),k=h,S=[],F=t.width*I.x,N=t.height*I.y;k--;)S.push((o={x:F,y:N,angle:f,spread:d,startVelocity:m,color:M[k%M.length],shape:x[(c=0,s=x.length,Math.floor(Math.random()*(s-c))+c)],ticks:p,decay:g,gravity:b,drift:v,scalar:T},r=void 0,l=void 0,r=o.angle*(Math.PI/180),l=o.spread*(Math.PI/180),{x:o.x,y:o.y,wobble:10*Math.random(),wobbleSpeed:Math.min(.11,.1*Math.random()+.05),velocity:.5*o.startVelocity+Math.random()*o.startVelocity,angle2D:-r+(.5*l-Math.random()*l),tiltAngle:(.5*Math.random()+.25)*Math.PI,color:o.color,shape:o.shape,tick:0,totalTicks:o.ticks,decay:o.decay,drift:o.drift,random:Math.random()+2,tiltSin:0,tiltCos:0,wobbleX:0,wobbleY:0,gravity:3*o.gravity,ovalScalar:.6,scalar:o.scalar}));return a?a.addFettis(S):(a=E(t,S,u,n,i)).promise}function m(n){var o=c||y(n,"disableForReducedMotion",Boolean),m=y(n,"zIndex",Number);if(o&&f)return l((function(t){t()}));i&&a?t=a.canvas:i&&!t&&(t=function(t){var e=document.createElement("canvas");return e.style.position="fixed",e.style.top="0px",e.style.left="0px",e.style.pointerEvents="none",e.style.zIndex=t,e}(m),document.body.appendChild(t)),r&&!h&&u(t);var g={width:t.width,height:t.height};function b(){if(s){var e={getBoundingClientRect:function(){if(!i)return t.getBoundingClientRect()}};return u(e),void s.postMessage({resize:{width:e.width,height:e.height}})}g.width=g.height=null}function v(){a=null,r&&e.removeEventListener("resize",b),i&&t&&(document.body.removeChild(t),t=null,h=!1)}return s&&!h&&s.init(t),h=!0,s&&(t.__confetti_initialized=!0),r&&e.addEventListener("resize",b,!1),s?s.fire(n,g,v):d(n,g,v)}return m.reset=function(){s&&s.reset(),a&&a.reset()},m}function F(){return b||(b=S(null,{useWorker:!0,resize:!0})),b}n.exports=function(){return F().apply(this,arguments)},n.exports.reset=function(){F().reset()},n.exports.create=S}(function(){return void 0!==t?t:"undefined"!=typeof self?self:this||{}}(),e,!1),t.confetti=e.exports}(window,{});
-    </script>
-    <style>
-        :root { --primary: #FF6B6B; --secondary: #4ECDC4; --accent: #FFE66D; --bg: #F0F4F8; --text: #2F3E46; --success: #6BCB77; }
-        body { font-family: 'Chalkboard SE', 'Microsoft JhengHei', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; touch-action: manipulation; }
-        #game-container { width: 100%; max-width: 500px; padding: 15px; box-sizing: border-box; text-align: center; }
-        
-        .zy-word { display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; margin: 0 2px; line-height: 1.1; }
-        .zy-top { font-size: 0.75rem; color: #888; height: 0.9rem; font-weight: normal; font-family: sans-serif; }
-        .zy-bottom { font-size: 1.6rem; font-weight: bold; }
-        
-        .mission-panel { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; }
-        .mission-item { background: white; border-radius: 20px; padding: 15px; border: 3px solid var(--secondary); display: flex; align-items: center; justify-content: space-between; text-align: left; cursor: pointer; box-shadow: 0 4px 0 var(--secondary); }
-        .mission-item:active { transform: translateY(2px); box-shadow: none; }
-        .mission-item.mastered { border-color: var(--success); opacity: 0.8; box-shadow: 0 4px 0 var(--success); }
-        .check-box { width: 35px; height: 35px; border: 2px solid var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .mission-item.mastered .check-box { background: var(--success); color: white; border-color: var(--success); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>工地會勘紀錄</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root {
+  --cream: #f5f0e8;
+  --cream2: #ede7d9;
+  --ink: #1c1a16;
+  --ink2: #4a4640;
+  --ink3: #8a8278;
+  --red: #c0392b;
+  --green: #2e7d52;
+  --blue: #1a4a7a;
+  --gold: #b8860b;
+  --border: #c8bfaf;
+  --surface: #faf7f2;
+  --shadow: rgba(28,26,22,0.12);
+  --r: 8px;
+}
 
-        .game-screen { display: none; }
-        .game-screen.active { display: block; }
-        
-        .question-box { background: white; border-radius: 30px; padding: 25px; margin: 15px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.05); min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px; }
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .opt-btn { background: var(--secondary); color: white; border: none; border-radius: 18px; padding: 18px; font-size: 1.6rem; cursor: pointer; box-shadow: 0 5px 0 #369a93; min-height: 60px; }
-        .opt-btn:active { transform: translateY(4px); box-shadow: none; }
-        /* SVG 題型按鈕：圖形＋文字排列，背景較淺 */
-        .opt-btn svg { border-radius: 6px; display: block; }
-        .opt-btn.svg-btn { background: white; color: var(--text); box-shadow: 0 5px 0 #ccc; border: 2px solid var(--secondary); padding: 8px; font-size: 1rem; }
-        
-        #reward-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--accent); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; }
-        #reward-screen.active { display: flex; animation: bounceIn 0.8s; }
-        
-        .medal-bar { font-size: 0.8rem; margin-top: 3px; color: #aaa; }
-        .voice-btn { background: white; border: 2px solid var(--secondary); border-radius: 20px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer; margin-top: 10px; }
-        
-        /* 強化版時鐘樣式：包含數字 */
-        .clock { width: 160px; height: 160px; border: 8px solid #333; border-radius: 50%; position: relative; background: white; margin: 10px auto; }
-        .clock-num { position: absolute; font-size: 1.1rem; font-weight: bold; width: 20px; height: 20px; text-align: center; line-height: 20px; }
-        .hand { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; border-radius: 10px; }
-        .hour-hand { width: 8px; height: 40px; background: #333; margin-left: -4px; z-index: 2; }
-        .min-hand { width: 5px; height: 60px; background: var(--primary); margin-left: -2.5px; z-index: 1; }
-        .clock-center { position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; background: #333; border-radius: 50%; transform: translate(-50%, -50%); z-index: 3; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-        .coin-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
-        .coin { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 3px solid; }
-        .coin-10 { background: #FFD700; border-color: #DAA520; }
-        .coin-5 { background: #C0C0C0; border-color: #808080; }
-        .coin-1 { background: #CD7F32; border-color: #8B4513; color: white; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-        /* 新增教學畫面樣式 */
-        #teaching-screen { display: none; background: white; border-radius: 30px; padding: 30px; margin: 15px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center; }
-        #teaching-screen.active { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .teaching-content { font-size: 1.4rem; line-height: 1.6; color: var(--text); }
-        .start-btn { background: var(--success); color: white; border: none; border-radius: 20px; padding: 15px 40px; font-size: 1.5rem; cursor: pointer; box-shadow: 0 5px 0 #4a9d53; margin-top: 20px; }
-        .start-btn:active { transform: translateY(4px); box-shadow: none; }
-        .mastered-tag { background: #FFD700; color: #8B4513; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-left: 5px; }
-    </style>
+/* ══ Header ══ */
+header {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-badge {
+  background: var(--red);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.header-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+#headerClock {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* ══ Tab bar ══ */
+.tabbar {
+  background: var(--ink);
+  border-top: 1px solid #2a2820;
+  display: flex;
+  position: sticky;
+  top: 52px;
+  z-index: 190;
+}
+.tab {
+  flex: 1;
+  padding: 8px 4px 7px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.tab.active { color: var(--cream); border-bottom-color: var(--red); }
+.tab .tab-num {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 5px;
+  font-size: 10px;
+  margin-left: 4px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* ══ Pages ══ */
+.page { display: none; flex-direction: column; flex: 1; overflow-y: auto; }
+.page.active { display: flex; }
+
+/* ══ SETUP PAGE ══ */
+#pageSetup {
+  padding: 0;
+  gap: 0;
+}
+
+.setup-section {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 4px;
+}
+.section-heading .icon { font-size: 16px; }
+
+.form-row { display: flex; gap: 10px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.form-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.form-input {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 10px 12px;
+  color: var(--ink);
+  font-size: 14px;
+  font-family: 'Noto Sans TC', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.form-input:focus { border-color: var(--blue); }
+
+/* Agenda import */
+.agenda-box {
+  background: var(--surface);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--r);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.agenda-box textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: var(--ink);
+  resize: none;
+  min-height: 120px;
+  line-height: 1.8;
+  width: 100%;
+}
+.agenda-hint {
+  font-size: 11px;
+  color: var(--ink3);
+  line-height: 1.6;
+  background: var(--cream2);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.agenda-hint strong { color: var(--blue); }
+.agenda-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.agenda-preview-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  padding: 5px 8px;
+  background: var(--cream);
+  border-radius: 4px;
+  border-left: 3px solid var(--blue);
+}
+.agenda-preview-item .num { font-weight: 700; color: var(--blue); font-size: 11px; min-width: 16px; }
+
+.btn-parse {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-parse:active { opacity: 0.85; }
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 4px 0;
+}
+
+.btn-start {
+  margin: 0 16px 20px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Noto Serif TC', serif;
+  cursor: pointer;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(192,57,43,0.3);
+  transition: all 0.15s;
+}
+.btn-start:active { transform: scale(0.97); }
+
+/* ══ AGENDA PAGE ══ */
+#pageAgenda {
+  padding: 12px 14px 80px;
+  gap: 10px;
+}
+
+.agenda-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+.agenda-card.done { border-color: var(--green); }
+.agenda-card.done .agenda-card-header { background: #f0faf4; }
+
+.agenda-card-header {
+  padding: 11px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--cream2);
+  border-bottom: 1px solid var(--border);
+}
+.agenda-card-num {
+  min-width: 28px; height: 28px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 900;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.agenda-card.done .agenda-card-num { background: var(--green); }
+.agenda-card-topic { font-size: 14px; font-weight: 600; line-height: 1.5; flex: 1; }
+.agenda-card-status {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.status-pending { background: #fff3e0; color: #c67c00; }
+.status-done { background: #e8f5e9; color: var(--green); }
+
+.agenda-card-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+
+.field-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.conclusion-area {
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: var(--ink);
+  resize: none;
+  outline: none;
+  min-height: 80px;
+  line-height: 1.6;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.conclusion-area:focus { border-color: var(--blue); background: #fff; }
+
+/* Photo row */
+.photo-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.photo-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  background: var(--cream);
+  color: var(--ink2);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.photo-btn:active { background: var(--cream2); }
+.photo-thumbs { display: flex; gap: 6px; flex-wrap: wrap; }
+.photo-thumb-wrap {
+  position: relative;
+  display: inline-block;
+}
+.photo-thumb {
+  width: 60px; height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: block;
+}
+.photo-del {
+  position: absolute;
+  top: -5px; right: -5px;
+  width: 18px; height: 18px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+
+/* card actions */
+.card-actions { display: flex; gap: 8px; }
+.btn-card-done {
+  flex: 1;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-card-done:active { opacity: 0.85; }
+.btn-card-del {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 4px;
+  opacity: 0.4;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+}
+.btn-card-del:hover { opacity: 1; }
+.btn-card-undo {
+  background: var(--cream2);
+  color: var(--ink2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Add extra item */
+.btn-add-extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink3);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s;
+}
+.btn-add-extra:hover { border-color: var(--blue); color: var(--blue); }
+
+/* floating finish */
+.float-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--ink);
+  border-top: 1px solid #333;
+  padding: 10px 14px 14px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 180;
+}
+.float-progress {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.float-progress-label { font-size: 11px; color: #888; font-weight: 600; }
+.float-progress-bar {
+  height: 5px;
+  background: #333;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.float-progress-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.btn-float-finish {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  padding: 11px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(192,57,43,0.4);
+  transition: all 0.15s;
+}
+.btn-float-finish:active { transform: scale(0.96); }
+
+/* ══ REPORT PAGE ══ */
+#pageReport { padding: 0; }
+
+.report-toolbar {
+  background: var(--ink);
+  padding: 10px 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #333;
+}
+.btn-rtool {
+  padding: 8px 14px;
+  border-radius: var(--r);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s;
+  border: none;
+}
+.btn-rtool.primary { background: var(--red); color: #fff; }
+.btn-rtool.secondary { background: #2a2820; color: #ccc; border: 1px solid #444; }
+.btn-rtool:active { opacity: 0.8; }
+
+.report-scroll { flex: 1; overflow-y: auto; padding: 14px; }
+
+/* ── Report Document ── */
+.rdoc {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  font-family: 'Noto Sans TC', sans-serif;
+  color: #1c1a16;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.rdoc-cover {
+  background: var(--ink);
+  color: #f5f0e8;
+  padding: 28px 28px 24px;
+  border-bottom: 4px solid var(--red);
+}
+.rdoc-cover-badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+.rdoc-cover-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.rdoc-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 24px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+.rdoc-meta-grid dt { color: #aaa; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1px; }
+.rdoc-meta-grid dd { font-weight: 600; color: #f5f0e8; }
+
+.rdoc-body { padding: 0; }
+
+.rdoc-item {
+  border-bottom: 1px solid #e8e2d8;
+  padding: 18px 24px;
+}
+.rdoc-item:last-child { border-bottom: none; }
+.rdoc-item-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.rdoc-item-num {
+  width: 30px; height: 30px;
+  background: #1c1a16;
+  color: #f5f0e8;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 900;
+  flex-shrink: 0;
+}
+.rdoc-item-topic {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  padding-top: 4px;
+}
+.rdoc-item-extra { font-size: 10px; letter-spacing: 1px; color: #999; margin-top: 2px; }
+.rdoc-status-badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-done { background: #e8f5e9; color: #2e7d52; }
+.badge-pending { background: #fff3e0; color: #c67c00; }
+.badge-extra { background: #e8eaf6; color: #3f51b5; }
+
+.rdoc-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rdoc-section-label::after { content:''; flex: 1; height: 1px; background: #e8e2d8; }
+
+.rdoc-conclusion-box {
+  background: #f8f6f0;
+  border-left: 3px solid #1c1a16;
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #1c1a16;
+  white-space: pre-wrap;
+  margin-bottom: 12px;
+}
+.rdoc-conclusion-box.empty { color: #bbb; font-style: italic; }
+
+.rdoc-photos {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.rdoc-photo {
+  width: 110px; height: 85px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.rdoc-footer {
+  background: #f8f6f0;
+  border-top: 2px solid #ddd;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.rdoc-sig {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.rdoc-sig-line { width: 110px; border-top: 1.5px solid #1c1a16; padding-top: 6px; font-size: 11px; color: #555; }
+.rdoc-footer-note { font-size: 11px; color: #999; }
+
+/* ══ Modals ══ */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.overlay.open { display: flex; }
+.overlay img { max-width: 100%; max-height: 85vh; border-radius: 8px; object-fit: contain; }
+
+/* Add item modal */
+.modal-box {
+  background: var(--surface);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.modal-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 16px;
+  font-weight: 700;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 10px;
+}
+.modal-actions { display: flex; gap: 8px; }
+.btn-modal-ok {
+  flex: 1;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  padding: 11px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+.btn-modal-cancel {
+  background: var(--cream2);
+  color: var(--ink2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--ink);
+  border: 1px solid #444;
+  border-radius: 24px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cream);
+  z-index: 600;
+  opacity: 0;
+  transition: all 0.3s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+input[type="file"] { display: none; }
+.print-ios-hint {
+  background: #1a3a1a;
+  border: 1px solid #2e7d52;
+  border-radius: 0;
+  padding: 10px 16px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.hint-step {
+  font-size: 12px;
+  color: #a8e6b8;
+  background: rgba(46,125,82,0.25);
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.hint-step strong { color: #7fff7f; }
+@media print {
+  .tabbar, .report-toolbar, .print-ios-hint, .float-bar, .overlay, .toast,
+  #pageSetup, #pageAgenda { display: none !important; }
+  #pageReport { display: block !important; overflow: visible !important; }
+  .report-scroll { overflow: visible !important; padding: 0 !important; }
+  .rdoc { box-shadow: none !important; border-radius: 0 !important; }
+  body { background: white !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+
+@media print {
+  .tabbar, .report-toolbar, .float-bar, .overlay, .toast { display: none !important; }
+  #pageSetup, #pageAgenda { display: none !important; }
+  #pageReport { display: block !important; }
+  .report-scroll { overflow: visible !important; }
+  body { background: white !important; }
+}
+
+</style>
 </head>
 <body>
 
-<div id="game-container">
-    <div id="menu" class="game-screen active">
-        <h1 id="title-area"></h1>
-        <p id="sub-area"></p>
-        <div id="mastery-info" style="font-size: 0.9rem; color: #666;"></div>
-        <div class="mission-panel" id="mission-list"></div>
-        <div style="display:flex; justify-content:center; gap:10px; margin-top:20px; flex-wrap:wrap;">
-            <button onclick="downloadReport()" style="border:1px solid #ccc; background:white; color:#666; padding:5px 10px; border-radius:10px; font-size:0.8rem;">📥 下載學習報表</button>
-            <button onclick="exportGameMistakes()" style="border:1px solid #FF6B6B; background:white; color:#FF6B6B; padding:5px 10px; border-radius:10px; font-size:0.8rem;">📤 匯出遊戲錯題</button>
-        </div>
-        <div style="display:flex; justify-content:center; gap:10px; margin-top:8px; flex-wrap:wrap;">
-            <button onclick="previewUnit('space')" style="border:1px solid #4ECDC4; background:white; color:#4ECDC4; padding:5px 10px; border-radius:10px; font-size:0.75rem;">🔍 預覽空間題</button>
-            <button onclick="previewUnit('coin')" style="border:1px solid #4ECDC4; background:white; color:#4ECDC4; padding:5px 10px; border-radius:10px; font-size:0.75rem;">🔍 預覽錢幣題</button>
-            <button onclick="previewUnit('jump')" style="border:1px solid #4ECDC4; background:white; color:#4ECDC4; padding:5px 10px; border-radius:10px; font-size:0.75rem;">🔍 預覽跳數題</button>
-            <button onclick="resetData()" style="border:none; background:none; color:#ccc; font-size:0.7rem;">清除紀錄</button>
-        </div>
-    </div>
+<header>
+  <div class="header-brand">
+    <div class="header-badge">會勘</div>
+    <div class="header-title">工地巡視紀錄</div>
+  </div>
+  <div id="headerClock"></div>
+</header>
 
-    <div id="teaching-screen" class="game-screen">
-        <h2 id="teaching-title" style="color: var(--secondary);"></h2>
-        <div id="teaching-body" class="teaching-content"></div>
-        <button onclick="startChallenge()" class="start-btn" id="start-challenge-btn"></button>
-    </div>
-
-    <div id="game" class="game-screen">
-        <div id="stars" style="font-size: 1.5rem; margin-bottom: 5px;"></div>
-        <h2 id="mode-title" style="color: var(--primary); margin: 0;"></h2>
-        <div id="question" class="question-box"></div>
-        <div id="options" class="options-grid"></div>
-        <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
-            <button onclick="speakCurrentQuestion()" class="voice-btn">🔊 <span id="speak-btn-text"></span></button>
-            <button onclick="showHint()" class="voice-btn" id="hint-btn">💡 <span id="hint-btn-text">提示</span></button>
-            <button onclick="skipQuestion()" class="voice-btn" id="skip-btn" style="color:#aaa; border-color:#ddd;">⏭ 換題</button>
-        </div>
-        <button onclick="goHome()" id="stop-btn" style="margin-top:15px; border:none; background:none; color:#bbb;"></button>
-    </div>
+<div class="tabbar">
+  <div class="tab active" id="tab-setup" onclick="switchTab('setup')">① 設定 / 匯入</div>
+  <div class="tab" id="tab-agenda" onclick="switchTab('agenda')">② 現場紀錄 <span class="tab-num" id="doneCount">0</span></div>
+  <div class="tab" id="tab-report" onclick="switchTab('report')">③ 產出報表</div>
 </div>
 
-<div id="reward-screen">
-    <h1 style="font-size: 5rem;">📺</h1>
-    <h2 id="reward-title"></h2>
-    <div style="background:white; padding:25px; border-radius:25px; text-align:center;">
-        <p id="reward-text" style="font-size: 1.5rem; margin:0;"></p>
+<!-- ══ PAGE: SETUP ══ -->
+<div class="page active" id="pageSetup">
+  <div class="setup-section">
+    <div class="section-heading"><span class="icon">📋</span>基本資訊</div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-label">巡視單位 / 工地</div>
+        <input class="form-input" id="iUnit" type="text" placeholder="例：北區工地 A 標" />
+      </div>
     </div>
-    <button class="opt-btn" style="margin-top:30px; background:white; color:var(--text); padding: 15px 40px;" onclick="resetRoundAndReload()" id="next-day-btn"></button>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-label">主持長官</div>
+        <input class="form-input" id="iOfficer" type="text" placeholder="職稱 姓名" />
+      </div>
+      <div class="form-group">
+        <div class="form-label">陪同人員</div>
+        <input class="form-input" id="iEscort" type="text" placeholder="（選填）" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-label">會勘日期</div>
+        <input class="form-input" id="iDate" type="date" />
+      </div>
+      <div class="form-group">
+        <div class="form-label">主辦單位</div>
+        <input class="form-input" id="iOrg" type="text" placeholder="（選填）" />
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="setup-section">
+    <div class="section-heading"><span class="icon">📝</span>預定討論事項</div>
+    <div class="agenda-box">
+      <div class="agenda-hint">
+        <strong>貼上或輸入討論清單</strong>，每行一項。<br>
+        支援格式：<br>
+        <strong>1. 事項內容</strong>（有編號）<br>
+        <strong>事項內容</strong>（無編號直接貼）
+      </div>
+      <textarea id="agendaInput" placeholder="例：&#10;1. 主體結構鋼筋綁紮進度確認&#10;2. B2 地下室防水施工現況&#10;3. 施工動線安全措施&#10;4. 廠商進場時間協調&#10;…"></textarea>
+      <div id="agendaPreview" class="agenda-preview"></div>
+      <button class="btn-parse" onclick="parseAgenda()">✔ 解析並預覽（共 <span id="parseCount">0</span> 項）</button>
+    </div>
+  </div>
+
+  <button class="btn-start" onclick="startSession()">▶ 進入現場紀錄</button>
 </div>
+
+<!-- ══ PAGE: AGENDA ══ -->
+<div class="page" id="pageAgenda">
+  <div id="agendaCards" style="padding:12px 14px 90px;display:flex;flex-direction:column;gap:10px;"></div>
+</div>
+
+<!-- Float bar -->
+<div class="float-bar" id="floatBar" style="display:none;">
+  <div class="float-progress">
+    <div class="float-progress-label" id="floatLabel">0 / 0 項完成</div>
+    <div class="float-progress-bar">
+      <div class="float-progress-fill" id="floatFill" style="width:0%"></div>
+    </div>
+  </div>
+  <button class="btn-float-finish" onclick="goReport()">產出報表 →</button>
+</div>
+
+<!-- ══ PAGE: REPORT ══ -->
+<div class="page" id="pageReport">
+  <div class="report-toolbar">
+    <button class="btn-rtool secondary" onclick="switchTab('agenda')">← 返回補充</button>
+    <button class="btn-rtool primary" onclick="doPrint()">🖨 存成 PDF</button>
+    <button class="btn-rtool secondary" onclick="copyReportText()">📋 複製文字</button>
+  </div>
+  <div class="print-ios-hint" id="printHint" style="display:none;">
+    <div class="hint-step">①  點右下角 <strong>列印預覽圖</strong></div>
+    <div class="hint-step">②  用<strong>兩指捏合放大</strong>預覽圖</div>
+    <div class="hint-step">③  點左上角<strong>分享鍵 □↑</strong></div>
+    <div class="hint-step">④  選「<strong>儲存到檔案</strong>」完成 ✅</div>
+  </div>
+  <div class="report-scroll">
+    <div id="reportDoc"></div>
+  </div>
+</div>
+
+<!-- Image modal -->
+<div class="overlay" id="imgOverlay" onclick="this.classList.remove('open')">
+  <img id="overlayImg" src="" />
+</div>
+
+<!-- Add item modal -->
+<div class="overlay" id="addModal">
+  <div class="modal-box">
+    <div class="modal-title">＋ 新增臨時討論事項</div>
+    <div class="form-group">
+      <div class="form-label">事項說明</div>
+      <textarea class="form-input conclusion-area" id="newItemText" placeholder="輸入現場新增的討論事項…" style="min-height:80px;"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-modal-cancel" onclick="closeAddModal()">取消</button>
+      <button class="btn-modal-ok" onclick="confirmAddItem()">新增</button>
+    </div>
+  </div>
+</div>
+
+
+    <a id="pdfDownloadLink" download="" style="background:#c0392b;color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:8px;text-decoration:none;">⬇ 下載</a>
+    <button onclick="document.getElementById('pdfModal').classList.remove('open')" style="background:none;border:none;color:#aaa;font-size:22px;cursor:pointer;padding:0 4px;">✕</button>
+  </div>
+  <div style="font-size:11px;color:#aaa;background:#2a2820;padding:6px 16px;text-align:center;flex-shrink:0;">
+    iPhone 用戶：點「⬇ 下載」→ 長按 → 「儲存到檔案」或「分享」
+  </div>
+  <iframe id="pdfFrame" style="flex:1;border:none;background:#fff;"></iframe>
+</div>
+<div class="toast" id="toast"></div>
 
 <script>
-    function zy(zi, py) {
-        return `<span class="zy-word"><span class="zy-top">${py||''}</span><span class="zy-bottom">${zi}</span></span>`;
-    }
+// ══ State ══
+let session = {
+  unit: '', officer: '', escort: '', date: '', org: '',
+  startTime: null, endTime: null,
+  items: []   // { id, topic, isExtra, conclusion, photos:[], done }
+};
 
-    // teaching 改為陣列，才能用 Math.random()*length 正確隨機取值
-    // hints 是「每題生成時綁定」的提示，跟題目內容相關，由 generateQuestion() 設定
-    let currentHints = ["再想想看喔！", "仔細看一下題目！", "快要對了，加油！"];
+let itemPhotoInputs = {};
+const AGENDA_SAVE_KEY = 'agenda_autosave_v1';
 
-    const ALL_UNITS = [
-        {
-            id: 'coin',
-            title: '💰 '+zy('金','ㄐㄧㄣ')+zy('幣','ㄅㄧˋ')+zy('小','ㄒㄧㄠˇ')+zy('管','ㄍㄨㄢˇ')+zy('家','ㄐㄧㄚ'),
-            text: '總共有幾元呢？',
-            teaching: [
-                "Apple看這裡！錢幣有大有小，顏色也不一樣喔！金色大的是 10 元，銀色的是 5 元，小小的是 1 元。",
-                "數錢的祕訣：先把 10 元全部數完，再接著數 5 元和 1 元，這樣最快喔！",
-                "偷偷告訴妳，10 元有幾個就是幾十，例如兩個 10 元就是 20，再加上後面的錢就是答案囉！"
-            ]
-        },
-        {
-            id: 'jump',
-            title: '🐸 '+zy('高','ㄍㄠ')+zy('階','ㄐㄧㄝ')+zy('跳','ㄊㄧㄠˋ')+zy('跳','ㄊㄧㄠˋ')+zy('蛙','ㄨㄚ'),
-            text: '問號裡面要填什麼數字呢？',
-            teaching: [
-                "Apple，小青蛙每次跳的步數都一樣長喔！妳先看看，數字是越來越大還是越來越小？",
-                "試著算算看，把旁邊兩個數字相減，就能找出每次跳了幾步！",
-                "神祕規律：把問號前面的數字，加上（或減掉）跳躍的步數，就是答案囉！"
-            ]
-        },
-        {
-            id: 'reverse',
-            title: '🧠 '+zy('逆','ㄋㄧˋ')+zy('向','ㄒㄧㄤˋ')+zy('大','ㄉㄚˋ')+zy('偵','ㄓㄣ')+zy('探','ㄊㄢˋ'),
-            text: '問號是什麼數字呢？',
-            teaching: [
-                "這是一個數字迷宮！Apple，妳先看等號右邊的數字是多少，把它記起來。",
-                "想像一下：有一個大數字，拿走了一部分，剩下的就是左邊的小數字。所以問號一定比左邊大喔！",
-                "反過來算就對了！如果是「a = ? - b」，那答案就是 a 加上 b！"
-            ]
-        },
-        {
-            id: 'clock',
-            title: '⏰ '+zy('時','ㄕˊ')+zy('間','ㄐㄧㄢ')+zy('小','ㄒㄧㄠˇ')+zy('偵','ㄓㄣ')+zy('探','ㄊㄢˋ'),
-            text: '現在是幾點鐘？',
-            teaching: [
-                "Apple，看時鐘要先看長長的指針在哪裡！長針在 12 就是整點，長針在 6 就是半點（30分）。",
-                "長針決定分鐘，短針決定小時。長針指著 6，就是「點半」！這時候短針停在兩個數字中間，要看比較小的那個喔！",
-                "如果短針在 3 和 4 之間，代表是 3 點多，還沒到 4 點！整點時短針會剛好指著某個數字。"
-            ]
-        },
-        {
-            id: 'even',
-            title: '🔢 '+zy('雙','ㄕㄨㄤ')+zy('數','ㄕㄨˋ')+zy('小','ㄒㄧㄠˇ')+zy('捕','ㄅㄨˇ')+zy('手','ㄕㄡˇ'),
-            text: '哪一個是雙數呢？',
-            teaching: [
-                "雙數就是兩個兩個都有伴，不會落單的數字！Apple，我們一起找找看有沒有孤單的數字？",
-                "記住這個魔法暗號：尾巴（個位數）是 0、2、4、6、8 的，就是雙數！",
-                "只要看最後一個數字就好！是 1、3、5、7、9 的是單數，是 0、2、4、6、8 的是雙數。"
-            ]
-        },
-        {
-            id: 'space',
-            title: '📦 '+zy('空','ㄎㄨㄥ')+zy('間','ㄐㄧㄢ')+zy('小','ㄒㄧㄠˇ')+zy('超','ㄔㄠ')+zy('人','ㄖㄣˊ'),
-            text: '仔細看清楚喔！',
-            teaching: [
-                "Apple，空間題要仔細看形狀的每一個角落！我們先把缺掉的形狀描出來，再去找一樣的選項。",
-                "判斷左右的小技巧：伸出右手比讚，拇指朝右的就是右邊 👍→，換左手就是左邊！",
-                "疊疊樂題目：最上面的東西，我們看得到它的完整形狀；被蓋住的只能看到邊邊。"
-            ]
+// ══ localStorage helpers ══
+function saveSession() {
+  try {
+    const data = JSON.stringify({
+      ...session,
+      startTime: session.startTime ? session.startTime.toISOString() : null,
+      endTime: session.endTime ? session.endTime.toISOString() : null,
+    });
+    localStorage.setItem(AGENDA_SAVE_KEY, data);
+  } catch(e) { /* storage full, skip */ }
+}
+
+function loadSession() {
+  try {
+    const raw = localStorage.getItem(AGENDA_SAVE_KEY);
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    if (!d.unit) return null;
+    d.startTime = d.startTime ? new Date(d.startTime) : null;
+    d.endTime = d.endTime ? new Date(d.endTime) : null;
+    return d;
+  } catch(e) { return null; }
+}
+
+function clearSession() { localStorage.removeItem(AGENDA_SAVE_KEY); }
+
+// ══ Clock ══
+setInterval(() => {
+  const n = new Date();
+  document.getElementById('headerClock').textContent =
+    `${pad(n.getHours())}:${pad(n.getMinutes())}:${pad(n.getSeconds())}`;
+}, 1000);
+function pad(n){ return String(n).padStart(2,'0'); }
+
+// ══ Tab ══
+function switchTab(t) {
+  ['setup','agenda','report'].forEach(id => {
+    document.getElementById('page'+cap(id)).classList.toggle('active', id===t);
+    document.getElementById('tab-'+id).classList.toggle('active', id===t);
+  });
+  document.getElementById('floatBar').style.display = t==='agenda' ? 'flex' : 'none';
+}
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+// ══ Parse agenda ══
+function parseAgenda() {
+  const raw = document.getElementById('agendaInput').value.trim();
+  if (!raw) { showToast('請輸入討論事項'); return; }
+  const lines = raw.split('\n')
+    .map(l => l.replace(/^[\d一二三四五六七八九十]+[.、．\)）\s]+/, '').trim())
+    .filter(l => l.length > 0);
+  document.getElementById('parseCount').textContent = lines.length;
+  const preview = document.getElementById('agendaPreview');
+  preview.innerHTML = lines.map((l,i) => `
+    <div class="agenda-preview-item">
+      <span class="num">${i+1}</span>
+      <span>${escHtml(l)}</span>
+    </div>`).join('');
+  showToast(`✅ 解析完成，共 ${lines.length} 項`);
+  // Store parsed
+  preview._lines = lines;
+}
+
+// ══ Start ══
+function startSession() {
+  const unit = document.getElementById('iUnit').value.trim();
+  const officer = document.getElementById('iOfficer').value.trim();
+  if (!unit || !officer) { showToast('請填寫巡視單位及長官'); return; }
+
+  const preview = document.getElementById('agendaPreview');
+  const lines = (preview._lines || []);
+
+  session = {
+    unit, officer,
+    escort: document.getElementById('iEscort').value.trim(),
+    date: document.getElementById('iDate').value || fmtDate(new Date()),
+    org: document.getElementById('iOrg').value.trim(),
+    startTime: new Date(),
+    endTime: null,
+    items: lines.map((t,i) => ({
+      id: i+1, topic: t, isExtra: false,
+      conclusion: '', photos: [], done: false
+    }))
+  };
+
+  if (session.items.length === 0) {
+    // Allow empty agenda - start with blank
+    session.items = [];
+  }
+
+  renderAgenda();
+  updateProgress();
+  document.getElementById('doneCount').textContent = session.items.length;
+  saveSession();
+  switchTab('agenda');
+}
+
+// ══ Render Agenda ══
+function renderAgenda() {
+  const container = document.getElementById('agendaCards');
+  container.innerHTML = '';
+  itemPhotoInputs = {};
+  session.items.forEach(item => appendCard(item, container));
+  // Add extra button
+  const addBtn = document.createElement('button');
+  addBtn.className = 'btn-add-extra';
+  addBtn.id = 'btnAddExtra';
+  addBtn.innerHTML = '＋ 新增現場臨時事項';
+  addBtn.onclick = openAddModal;
+  container.appendChild(addBtn);
+}
+
+function appendCard(item, container) {
+  const card = document.createElement('div');
+  card.className = 'agenda-card' + (item.done ? ' done' : '');
+  card.id = `card-${item.id}`;
+
+  const statusLabel = item.done ? '已完成' : '待紀錄';
+  const statusClass = item.done ? 'status-done' : 'status-pending';
+  const extraBadge = item.isExtra ? ' <span style="font-size:10px;color:#888;">（臨時新增）</span>' : '';
+
+  card.innerHTML = `
+    <div class="agenda-card-header">
+      <div class="agenda-card-num">${item.id}</div>
+      <div class="agenda-card-topic">${escHtml(item.topic)}${extraBadge}</div>
+      <div class="agenda-card-status ${statusClass}">${statusLabel}</div>
+      <button class="btn-card-del" onclick="deleteItem(${item.id})" title="刪除此項">🗑</button>
+    </div>
+    <div class="agenda-card-body">
+      <div>
+        <div class="field-label">現場結論 / 指示事項</div>
+        <textarea class="conclusion-area" id="conc-${item.id}" placeholder="輸入現場結論、指示或備注…">${escHtml(item.conclusion)}</textarea>
+      </div>
+      <div>
+        <div class="field-label">現場照片</div>
+        <div class="photo-row">
+          <label class="photo-btn">
+            📷 拍照
+            <input type="file" id="cam-${item.id}" accept="image/*" capture="environment" onchange="handlePhotoInput(event, ${item.id})">
+          </label>
+          <label class="photo-btn">
+            🖼 相簿
+            <input type="file" id="gal-${item.id}" accept="image/*" onchange="handlePhotoInput(event, ${item.id})">
+          </label>
+        </div>
+        <div class="photo-thumbs" id="thumbs-${item.id}"></div>
+      </div>
+      <div class="card-actions">
+        ${item.done
+          ? `<button class="btn-card-undo" onclick="undoneItem(${item.id})">↺ 重新開啟</button>`
+          : `<button class="btn-card-done" onclick="doneItem(${item.id})">✔ 完成此項</button>`
         }
-    ];
+      </div>
+    </div>
+  `;
+  // Insert before add button
+  const addBtn = document.getElementById('btnAddExtra');
+  if (addBtn) container.insertBefore(card, addBtn);
+  else container.appendChild(card);
 
-    let roundState;
-    try {
-        roundState = JSON.parse(localStorage.getItem('apple_math_round')) || null;
-    } catch (e) {
-        console.error("LocalStorage blocked:", e);
-        roundState = null;
-    }
-    
-    if (!roundState) {
-        roundState = { 
-            roundUnits: [], 
-            completedUnits: [], 
-            unitQueue: ALL_UNITS.map(u => u.id),
-            streaks: {},
-            retiredUnits: [],
-            mistakes: [],
-            needsPractice: null 
-        };
-    }
+  // Restore photos
+  item.photos.forEach((src, pi) => addThumb(item.id, src, pi));
 
-    let currentUnit = null, currentStep = 0, correctAnswer = null, isFirstAttempt = true;
-    let usedHintInCurrentUnit = false, usedHintInCurrentQuestion = false, errorsInCurrentUnit = 0, perfectAnswersInUnit = 0;
-    let hintCountInQuestion = 0; 
+  // Bind textarea autosave
+  document.getElementById(`conc-${item.id}`).addEventListener('input', e => {
+    item.conclusion = e.target.value;
+    saveSession();
+  });
+}
 
-    function safeSaveState() {
-        try {
-            localStorage.setItem('apple_math_round', JSON.stringify(roundState));
-        } catch (e) {
-            console.warn("Could not save state to localStorage:", e);
-        }
-    }
+// ══ Photo ══
+function handlePhotoInput(e, itemId) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const item = session.items.find(i => i.id === itemId);
+    if (!item) return;
+    item.photos.push(ev.target.result);
+    addThumb(itemId, ev.target.result, item.photos.length - 1);
+    e.target.value = '';
+    saveSession();
+  };
+  reader.readAsDataURL(file);
+}
 
-    function initPage() {
-        // iPad 提示：如果是在檔案模式打開，提示使用瀏覽器或特定 App
-        if (window.location.protocol === 'file:' && /iPad|iPhone|iPod/.test(navigator.userAgent)) {
-            const tip = document.createElement('div');
-            tip.style.cssText = "background:#fff3cd; color:#856404; padding:10px; font-size:0.8rem; border-bottom:1px solid #ffeeba;";
-            tip.innerHTML = "💡 <b>iPad 使用小撇步</b>：如果網頁無法運作，請點擊分享圖示並選擇「在 Safari 中打開」，或使用「Documents」App 開啟此檔案。";
-            document.body.prepend(tip);
-        }
+function addThumb(itemId, src, photoIdx) {
+  const container = document.getElementById(`thumbs-${itemId}`);
+  if (!container) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'photo-thumb-wrap';
+  wrap.id = `thumb-${itemId}-${photoIdx}`;
+  wrap.innerHTML = `
+    <img class="photo-thumb" src="${src}" onclick="openImg('${itemId}','${photoIdx}')" />
+    <button class="photo-del" onclick="delPhoto(${itemId},${photoIdx})">✕</button>
+  `;
+  container.appendChild(wrap);
+}
 
-        document.getElementById('title-area').innerHTML = zy('每','ㄇㄟˇ')+zy('日','ㄖˋ')+zy('數','ㄕㄨˋ')+zy('學','ㄒㄩㄝˊ')+zy('冒','ㄇㄠˋ')+zy('險','ㄒㄧㄢˇ');
-        document.getElementById('sub-area').innerHTML = zy('完','ㄨㄢˊ')+zy('成','ㄔㄥˊ')+' 3 '+zy('個','ㄍㄜ˙')+zy('任','ㄖˋ')+zy('務','ㄨˋ')+zy('，')+zy('拿','ㄋㄚˊ')+zy('獎','ㄐㄧㄤˇ')+zy('勵','ㄌㄧˋ');
-        document.getElementById('speak-btn-text').innerHTML = zy('唸','ㄋㄧㄢˋ')+zy('題目','ㄊㄧˊㄇㄨˋ');
-        document.getElementById('hint-btn-text').innerHTML = zy('小','ㄒㄧㄠˇ')+zy('提示','ㄊㄧˊㄕˋ');
+function delPhoto(itemId, photoIdx) {
+  if (!confirm('確定要刪除這張照片？')) return;
+  const item = session.items.find(i => i.id === itemId);
+  if (!item) return;
+  item.photos.splice(photoIdx, 1);
+  const container = document.getElementById(`thumbs-${itemId}`);
+  container.innerHTML = '';
+  item.photos.forEach((src, pi) => addThumb(itemId, src, pi));
+  saveSession();
+}
 
-        document.getElementById('stop-btn').innerHTML = zy('不','ㄅㄨˋ')+zy('玩','ㄨㄢˊ')+zy('了','ㄌㄜ˙');
-        document.getElementById('reward-title').innerHTML = zy('大','ㄉㄚˋ')+zy('成','ㄔㄥˊ')+zy('功','ㄍㄨㄥ')+'！';
-        document.getElementById('reward-text').innerHTML = zy('獲','ㄏㄨㄛˋ')+zy('得','ㄉㄜˊ')+zy('了','ㄌㄜ˙')+' 15 '+zy('分','ㄈㄣ')+zy('鐘','ㄓㄨㄥ')+zy('平','ㄆㄧㄥˊ')+zy('板','ㄅㄢˇ')+zy('時','ㄕˊ')+zy('間','ㄐㄧㄢ');
+function openImg(itemId, photoIdx) {
+  const item = session.items.find(i => i.id == itemId);
+  if (!item) return;
+  document.getElementById('overlayImg').src = item.photos[photoIdx];
+  document.getElementById('imgOverlay').classList.add('open');
+}
 
-        document.getElementById('next-day-btn').innerHTML = zy('下','ㄒㄧㄚˋ')+zy('一','ㄧ')+zy('輪','ㄌㄨㄣˊ')+zy('挑戰','ㄊㄧㄠˇㄓㄢˋ');
-        document.getElementById('start-challenge-btn').innerHTML = zy('開','ㄎㄞ')+zy('始','ㄕˇ')+zy('挑','ㄊㄧㄠˇ')+zy('戰','ㄓㄢˋ');
+// ══ Done / Undo ══
+function doneItem(id) {
+  const item = session.items.find(i => i.id === id);
+  if (!item) return;
+  item.conclusion = document.getElementById(`conc-${id}`)?.value || item.conclusion;
+  item.done = true;
+  refreshCard(item);
+  updateProgress();
+  saveSession();
+}
+function undoneItem(id) {
+  const item = session.items.find(i => i.id === id);
+  if (!item) return;
+  item.done = false;
+  refreshCard(item);
+  updateProgress();
+  saveSession();
+}
+function refreshCard(item) {
+  const old = document.getElementById(`card-${item.id}`);
+  if (!old) return;
+  const container = document.getElementById('agendaCards');
+  const next = old.nextSibling;
+  old.remove();
+  // Re-append at same position
+  const tmp = document.createElement('div');
+  container.insertBefore(tmp, next);
+  appendCard(item, container);
+  tmp.remove();
+}
 
-        // 如果這輪所有單元都已完成（或第一次進來），才開新一輪
-        const allDone = roundState.roundUnits.length > 0 &&
-            roundState.roundUnits.every(id => roundState.completedUnits.includes(id));
-        if (roundState.roundUnits.length === 0 || allDone) {
-            startNewRound();
-        }
-        renderMissions();
-    }
+// ══ Delete item ══
+function deleteItem(id) {
+  const item = session.items.find(i => i.id === id);
+  if (!item) return;
+  const label = item.topic.length > 20 ? item.topic.slice(0,20)+'…' : item.topic;
+  if (!confirm(`確定要刪除事項：\n「${label}」？\n\n此項將不會出現在報表中。`)) return;
+  session.items = session.items.filter(i => i.id !== id);
+  document.getElementById(`card-${id}`)?.remove();
+  updateProgress();
+  saveSession();
+  showToast('已刪除，可新增臨時事項補充');
+}
 
-    function startNewRound() {
-        // 過濾掉已精通的單元
-        const availableInQueue = roundState.unitQueue.filter(id => !roundState.retiredUnits.includes(id));
-        
-        let nextRound = [];
-        
-        // 1. 優先位：如果有需要加強的單元，放第一個
-        if (roundState.needsPractice && !roundState.retiredUnits.includes(roundState.needsPractice)) {
-            nextRound.push(roundState.needsPractice);
-            roundState.needsPractice = null; // 取出後清空
-        }
-        
-        // 2. 輪播位：從隊列中找接下來該輪到的單元，補滿 3 個
-        for (let id of availableInQueue) {
-            if (nextRound.length >= 3) break;
-            if (!nextRound.includes(id)) {
-                nextRound.push(id);
-            }
-        }
-        
-        roundState.roundUnits = nextRound;
-        roundState.completedUnits = [];
-        
-        // 3. 達成輪播：將本輪選中的單元移到 Queue 的最後面
-        roundState.unitQueue = roundState.unitQueue.filter(id => !nextRound.includes(id)).concat(nextRound);
-        
-        safeSaveState();
-    }
+// ══ Progress ══
+function updateProgress() {
+  const total = session.items.length;
+  const done = session.items.filter(i => i.done).length;
+  document.getElementById('floatLabel').textContent = `${done} / ${total} 項完成`;
+  document.getElementById('floatFill').style.width = total ? `${(done/total*100).toFixed(0)}%` : '0%';
+  document.getElementById('doneCount').textContent = total;
+}
 
-    function renderMissions() {
-        const list = document.getElementById('mission-list');
-        const unitsToShow = ALL_UNITS.filter(u => roundState.roundUnits.includes(u.id));
-        
-        list.innerHTML = unitsToShow.map(u => {
-            const isMastered = roundState.completedUnits.includes(u.id);
-            const isRetired = roundState.retiredUnits.includes(u.id);
-            const streak = roundState.streaks[u.id] || 0;
-            return `
-            <div class="mission-item ${isMastered?'mastered':''}" onclick="${isMastered?'':'startUnit(\''+u.id+'\')'}">
-                <div>
-                    <div style="font-size:1.3rem">${u.title}${isRetired?'<span class="mastered-tag">已精通</span>':''}</div>
-                    <div class="medal-bar">
-                        ${isMastered ? '🎖️🎖️🎖️' : '⚪⚪⚪'} 
-                        <span style="font-size:0.7rem; color:#999; margin-left:10px;">完美連勝: ${streak}/10</span>
-                    </div>
-                </div>
-                <div class="check-box">${isMastered?'✓':''}</div>
-            </div>`;
-        }).join('');
-    }
+// ══ Add extra item ══
+function openAddModal() { document.getElementById('addModal').classList.add('open'); }
+function closeAddModal() {
+  document.getElementById('addModal').classList.remove('open');
+  document.getElementById('newItemText').value = '';
+}
+function confirmAddItem() {
+  const text = document.getElementById('newItemText').value.trim();
+  if (!text) { showToast('請輸入事項說明'); return; }
+  const newId = session.items.length > 0 ? Math.max(...session.items.map(i=>i.id)) + 1 : 1;
+  const item = { id: newId, topic: text, isExtra: true, conclusion: '', photos: [], done: false };
+  session.items.push(item);
+  const container = document.getElementById('agendaCards');
+  appendCard(item, container);
+  updateProgress();
+  saveSession();
+  closeAddModal();
+  setTimeout(() => document.getElementById(`card-${newId}`)?.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+}
 
-    function startUnit(unitId) {
-        currentUnit = ALL_UNITS.find(u => u.id === unitId);
-        errorsInCurrentUnit = 0;
-        perfectAnswersInUnit = 0;
-        usedHintInCurrentUnit = false;
-        
-        document.getElementById('menu').classList.remove('active');
-        document.getElementById('teaching-screen').classList.add('active');
-        
-        document.getElementById('teaching-title').innerHTML = currentUnit.title;
-        // teaching 現在是陣列，可以正確隨機取值
-        const randomTeaching = currentUnit.teaching[Math.floor(Math.random() * currentUnit.teaching.length)];
-        document.getElementById('teaching-body').innerText = randomTeaching;
-        speak("Apple妳好，" + randomTeaching);
-    }
+// ══ Go Report ══
+function goReport() {
+  session.endTime = new Date();
+  // Flush all textarea values
+  session.items.forEach(item => {
+    const el = document.getElementById(`conc-${item.id}`);
+    if (el) item.conclusion = el.value;
+  });
+  generateReport();
+  switchTab('report');
+}
 
-    function startChallenge() {
-        currentStep = 0;
-        document.getElementById('teaching-screen').classList.remove('active');
-        document.getElementById('game').classList.add('active');
-        document.getElementById('mode-title').innerHTML = currentUnit.title;
-        updateStars(); 
-        generateQuestion();
-    }
+// ══ Generate Report ══
+function generateReport() {
+  const start = fmtDateTime(session.startTime);
+  const end = fmtDateTime(session.endTime || new Date());
+  const dur = getDuration(session.startTime, session.endTime || new Date());
+  const doneCount = session.items.filter(i=>i.done).length;
 
-    function generateQuestion() {
-        isFirstAttempt = true;
-        usedHintInCurrentQuestion = false;
-        hintCountInQuestion = 0;
-        currentHints = ["再想想看喔！", "仔細看一下題目！", "快要對了，加油！"]; // 預設值，各 mode 會覆蓋
-        document.getElementById('hint-btn').disabled = false;
-        const qEl = document.getElementById('question'); const oEl = document.getElementById('options');
-        qEl.innerHTML = '';
-        oEl.innerHTML = '';
-        oEl.style.gridTemplateColumns = '1fr 1fr'; // 每題重置回預設兩欄
-        const mode = currentUnit.id;
+  const itemsHtml = session.items.map((item, i) => {
+    const statusClass = item.isExtra ? 'badge-extra' : (item.done ? 'badge-done' : 'badge-pending');
+    const statusLabel = item.isExtra ? '現場新增' : (item.done ? '已確認' : '未結案');
+    const photosHtml = item.photos.length
+      ? `<div class="rdoc-photos">${item.photos.map((src,pi)=>`<img class="rdoc-photo" src="${src}" onclick="openImgSrc('${src}')" />`).join('')}</div>`
+      : '';
+    return `
+      <div class="rdoc-item">
+        <div class="rdoc-item-header">
+          <div class="rdoc-item-num">${i+1}</div>
+          <div style="flex:1;">
+            <div class="rdoc-item-topic">${escHtml(item.topic)}</div>
+            ${item.isExtra ? '<div class="rdoc-item-extra">▸ 現場臨時新增</div>' : ''}
+          </div>
+          <div class="rdoc-status-badge ${statusClass}">${statusLabel}</div>
+        </div>
+        <div class="rdoc-section-label">結論 / 指示事項</div>
+        <div class="rdoc-conclusion-box ${item.conclusion ? '' : 'empty'}">${item.conclusion ? escHtml(item.conclusion) : '（未填寫）'}</div>
+        ${item.photos.length ? `<div class="rdoc-section-label">現場照片（${item.photos.length} 張）</div>${photosHtml}` : ''}
+      </div>`;
+  }).join('');
 
-        if (mode === 'clock') {
-            let h = Math.floor(Math.random()*12)+1, isH = Math.random()>0.5;
-            correctAnswer = h + (isH ? "點半" : "點");
-            currentHints = [
-                `先看長針！長針現在指著 ${isH ? '6，所以是「點半」' : '12，所以是「整點」'}。`,
-                `再看短針，短針停在哪個數字附近？${isH ? '兩個數字中間要看比較小的那個。' : '短針指著哪個數字，就是幾點。'}`,
-                `答案是 ${correctAnswer}，${isH ? '長針指6是半點，短針在' + h + '和' + (h%12+1) + '中間，所以是' + h + '點半！' : '整點的長針一定指12！'}`
-            ];
-            qEl.innerHTML = `<div class="clock" id="clock-face"></div>`;
-            const face = document.getElementById('clock-face');
-            for(let i=1; i<=12; i++) {
-                let angle = (i * 30) - 90;
-                let x = 70 + 60 * Math.cos(angle * Math.PI / 180);
-                let y = 70 + 60 * Math.sin(angle * Math.PI / 180);
-                face.innerHTML += `<div class="clock-num" style="left:${x}px; top:${y}px">${i}</div>`;
-            }
-            face.innerHTML += `<div class="clock-center"></div><div class="hand hour-hand" style="transform:rotate(${h*30+(isH?15:0)}deg)"></div><div class="hand min-hand" style="transform:rotate(${isH?180:0}deg)"></div>`;
-            [correctAnswer, (h%12+1)+"點", "2點半", "6點"].sort(()=>0.5-Math.random()).forEach(c => createOpt(c,c));
-        } else if (mode === 'coin') {
-            let n10 = Math.floor(Math.random()*3), n5=Math.floor(Math.random()*3)+1, n1=Math.floor(Math.random()*5);
-            correctAnswer = n10*10 + n5*5 + n1;
-            currentHints = [
-                `先數數看有幾個 10 元？有 ${n10} 個，所以是 ${n10}×10 = ${n10*10} 元。`,
-                `再數 5 元硬幣，有 ${n5} 個，${n5}×5 = ${n5*5} 元。加上前面 ${n10*10} 元，合計 ${n10*10+n5*5} 元。`,
-                `最後加 1 元，有 ${n1} 個，就再加 ${n1}！總共是 ${n10*10} + ${n5*5} + ${n1} = ${correctAnswer} 元！`
-            ];
-            let html = `<div class="coin-container">` + Array(n10).fill('<div class="coin coin-10">10</div>').join('') + Array(n5).fill('<div class="coin coin-5">5</div>').join('') + Array(n1).fill('<div class="coin coin-1">1</div>').join('') + `</div>`;
-            qEl.innerHTML = html + `<div>${zy('總','ㄗㄨㄥˇ')}${zy('共','ㄍㄨㄥˋ')}${zy('幾','ㄐㄧˇ')}${zy('元','ㄩㄢˊ')}？</div>`;
-            generateOptions(correctAnswer);
-        } else if (mode === 'even') {
-            let nums = [0,1,2,3].map(() => Math.floor(Math.random()*40)+1);
-            let evens = nums.filter(n => n%2==0); if(evens.length!=1) return generateQuestion();
-            correctAnswer = evens[0];
-            currentHints = [
-                `看每個數字的最後一位，是不是 0、2、4、6、8 其中一個？`,
-                `${nums.map(n => `${n} 的個位是 ${n%10}，${n%2===0?'是雙數！':'是單數。'}`).join('　')}`,
-                `尾巴是偶數（0/2/4/6/8）就是雙數！答案是 ${correctAnswer}。`
-            ];
-            qEl.innerHTML = `<div>${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}${zy('是','ㄕˋ')}${zy('雙','ㄕㄨㄤ')}${zy('數','ㄕㄨˋ')}？</div>`;
-            nums.forEach(n => createOpt(n,n));
-        } else if (mode === 'space') {
-            // ═══════════════════════════════════════════════════
-            // 空間題資料庫：從 PDF 提取，全部在這裡管理
-            // 新增題型：積木補合x10 | 重量比較 | 容量比較 | 格子移動
-            // ═══════════════════════════════════════════════════
+  document.getElementById('reportDoc').innerHTML = `
+    <div class="rdoc" id="printArea">
+      <div class="rdoc-cover">
+        <div class="rdoc-cover-badge">SITE INSPECTION RECORD</div>
+        <div class="rdoc-cover-title">工地巡視會勘紀錄表</div>
+        <dl class="rdoc-meta-grid">
+          <dt>巡視單位</dt><dd>${escHtml(session.unit)}</dd>
+          <dt>主持長官</dt><dd>${escHtml(session.officer)}</dd>
+          ${session.escort ? `<dt>陪同人員</dt><dd>${escHtml(session.escort)}</dd>` : ''}
+          ${session.org ? `<dt>主辦單位</dt><dd>${escHtml(session.org)}</dd>` : ''}
+          <dt>會勘日期</dt><dd>${escHtml(session.date)}</dd>
+          <dt>開始時間</dt><dd>${start}</dd>
+          <dt>結束時間</dt><dd>${end}</dd>
+          <dt>共歷時</dt><dd>${dur}</dd>
+          <dt>討論事項</dt><dd>共 ${session.items.length} 項（${doneCount} 項已確認）</dd>
+        </dl>
+      </div>
+      <div class="rdoc-body">${itemsHtml}</div>
+      <div class="rdoc-footer">
+        <div class="rdoc-footer-note">製表時間：${end}</div>
+        <div style="display:flex;gap:24px;">
+          <div class="rdoc-sig"><div class="rdoc-sig-line">主持長官簽名</div></div>
+          <div class="rdoc-sig"><div class="rdoc-sig-line">紀錄人員簽名</div></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
 
-            // ── 工具函式：畫一個方格積木 SVG ──
-            const C = '#4ECDC4', R = '#FF6B6B', Y = '#FFE66D', G = '#6BCB77', P = '#C77DFF';
-            const cell = (c, r, col, s=28) => `<rect x="${c*30+1}" y="${r*30+1}" width="${s}" height="${s}" fill="${col}" stroke="#fff" stroke-width="2"/>`;
-            const gap  = (c, r) => `<rect x="${c*30+1}" y="${r*30+1}" width="28" height="28" fill="#f0f0f0" stroke="#ccc" stroke-width="1" stroke-dasharray="3"/>`;
-            const mkSVG = (w,h,body) => `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}</svg>`;
+function openImgSrc(src) {
+  document.getElementById('overlayImg').src = src;
+  document.getElementById('imgOverlay').classList.add('open');
+}
 
-            // ══════════════════════════════
-            // 【題庫A】積木補合（10種，資料驅動）
-            // ══════════════════════════════
-            const PUZZLES = [
-                // A1: 3×3 缺右下角 → 1格正方形
-                { q: mkSVG(90,90, [0,1,2].flatMap(r=>[0,1,2].map(c=>(r===2&&c===2)?gap(2,2):cell(c,r,C))).join('')),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${C}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${C}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${C}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<ellipse cx="16" cy="16" rx="15" ry="15" fill="${C}"/>`)],
-                  h:['右下角缺了一格，是正方形的缺口！','缺口是1×1的小正方形。','選一個剛好的小正方形補上去！'] },
-                // A2: 3×3 缺左上角 → 1格正方形
-                { q: mkSVG(90,90, [[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]].map(([r,c])=>cell(c,r,Y)).join('')+gap(0,0)),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${Y}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${Y}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${Y}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<polygon points="16,1 1,31 31,31" fill="${Y}"/>`)],
-                  h:['左上角缺了！缺口是什麼形狀？','1個正方形格子的缺口。','選小正方形補上左上角！'] },
-                // A3: L形 缺右邊長條 → 2格長方形（高）
-                { q: mkSVG(90,90, [cell(0,0,R),cell(1,0,R),cell(0,1,R),cell(0,2,R),gap(1,1),gap(1,2)].join('')),
-                  ans: mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${R}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${R}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${R}" stroke="#fff" stroke-width="2"/>`), mkSVG(62,62,`<rect x="1" y="1" width="60" height="60" fill="${R}" stroke="#fff" stroke-width="2"/>`)],
-                  h:['右邊缺了一直條，是高的還是寬的？','缺口是2格高、1格寬的長方形。','選又高又窄的長方形！'] },
-                // A4: T形 缺底部中間 → 1格
-                { q: mkSVG(90,90, [cell(0,0,G),cell(1,0,G),cell(2,0,G),cell(1,1,G),cell(1,2,G),gap(0,1),gap(0,2),gap(2,1),gap(2,2)].join('')),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${G}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${G}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${G}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<ellipse cx="16" cy="16" rx="15" ry="15" fill="${G}"/>`)],
-                  h:['十字形缺了一個角？仔細數數哪裡有缺口！','只有一個正方形缺口。','選正方形補上缺口！'] },
-                // A5: 2×3 缺右中 → 1格
-                { q: mkSVG(90,90, [[0,0],[0,1],[0,2],[1,0],[1,2],[2,0],[2,1],[2,2]].map(([r,c])=>cell(c,r,P)).join('')+gap(1,1)),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${P}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${P}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<ellipse cx="16" cy="16" rx="15" ry="15" fill="${P}"/>`), mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${P}" stroke="#fff" stroke-width="2"/>`)],
-                  h:['正中間有一個缺口！','缺口是正中間1格正方形。','選正方形填進中間！'] },
-                // A6: 橫條 3×1 缺右格 → 1格
-                { q: mkSVG(90,32, [cell(0,0,C),cell(1,0,C),gap(2,0)].join('')),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${C}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${C}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${C}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<polygon points="16,1 1,31 31,31" fill="${C}"/>`)],
-                  h:['橫條的最右邊缺了一格！','缺的是1個正方形。','選正方形補右邊！'] },
-                // A7: 直條 1×3 缺中間 → 1格
-                { q: mkSVG(32,90, [cell(0,0,R),gap(0,1),cell(0,2,R)].join('')),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${R}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${R}" stroke="#fff" stroke-width="2"/>`), mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${R}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<ellipse cx="16" cy="16" rx="15" ry="15" fill="${R}"/>`)],
-                  h:['直條中間有缺口！','缺的是中間1個正方形。','選1格正方形填進去！'] },
-                // A8: 2×2 缺右上 → 1格
-                { q: mkSVG(62,62, [cell(0,0,Y),gap(1,0),cell(0,1,Y),cell(1,1,Y)].join('')),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${Y}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${Y}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<polygon points="16,1 31,31 1,31" fill="${Y}"/>`), mkSVG(62,62,`<rect x="1" y="1" width="60" height="60" fill="${Y}" stroke="#fff" stroke-width="2"/>`)],
-                  h:['右上角缺了一格！','是1個正方形。','選正方形補右上！'] },
-                // A9: 3×2 缺左下 → 1格
-                { q: mkSVG(90,62, [[0,0],[1,0],[2,0],[1,1],[2,1]].map(([r,c])=>cell(c,r,G)).join('')+gap(0,1)),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${G}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${G}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${G}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<ellipse cx="16" cy="16" rx="15" ry="15" fill="${G}"/>`)],
-                  h:['左下角缺了一格！','是1個正方形。','選正方形補左下！'] },
-                // A10: 階梯形 缺右上格 → 1格
-                { q: mkSVG(90,90, [cell(0,2,P),cell(1,2,P),cell(2,2,P),cell(1,1,P),cell(2,1,P),cell(2,0,P),gap(0,0),gap(0,1),gap(1,0)].join('')),
-                  ans: mkSVG(32,32,`<rect x="1" y="1" width="30" height="30" fill="${P}" stroke="#fff" stroke-width="2"/>`),
-                  wrong: [mkSVG(62,32,`<rect x="1" y="1" width="60" height="30" fill="${P}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,62,`<rect x="1" y="1" width="30" height="60" fill="${P}" stroke="#fff" stroke-width="2"/>`), mkSVG(32,32,`<polygon points="16,1 1,31 31,31" fill="${P}"/>`)],
-                  h:['階梯形狀，缺的是哪一格？','只有一個正方形缺口。','選正方形補上！'] },
-            ];
+// ══ Print / Save PDF ══
+function doPrint() {
+  // Show the iOS instruction hint
+  const hint = document.getElementById('printHint');
+  hint.style.display = 'flex';
+  showToast('請看上方步驟說明');
+  setTimeout(() => window.print(), 600);
+}
 
-            // ══════════════════════════════
-            // 【題庫B】格子圖形移動（PDF填充題，方向+格子位移）
-            // ══════════════════════════════
-            const GRID_MOVES = (() => {
-                // 產生格子圖案：一個圖案（2×2有色格）在5×5網格中移動
-                const gridSVG = (filledCells, color, size=110) => {
-                    const cs = size/5;
-                    let bg = `<rect width="${size}" height="${size}" fill="white" stroke="#eee" stroke-width="1"/>`;
-                    for(let r=0;r<5;r++) for(let c=0;c<5;c++)
-                        bg += `<rect x="${c*cs+0.5}" y="${r*cs+0.5}" width="${cs-1}" height="${cs-1}" fill="${filledCells.some(([fr,fc])=>fr===r&&fc===c)?color:'white'}" stroke="#ddd" stroke-width="0.5"/>`;
-                    return `<svg width="${size}" height="${size}" style="border:2px solid #eee;border-radius:8px">${bg}</svg>`;
-                };
-                // 圖案：在左上2×2
-                const patterns = [
-                    { cells:[[0,0],[0,1],[1,0],[1,1]], name:'左上2×2', color:C },
-                    { cells:[[0,1],[0,2],[1,1]], name:'L形上方', color:R },
-                    { cells:[[2,2],[2,3],[3,2],[3,3]], name:'中央2×2', color:Y },
-                ];
-                const dirs = [
-                    { name:'往右移一格', dx:0, dc:1, arrow:'→' },
-                    { name:'往左移一格', dx:0, dc:-1, arrow:'←' },
-                    { name:'往下移一格', dx:1, dc:0, arrow:'↓' },
-                    { name:'往上移一格', dx:-1, dc:0, arrow:'↑' },
-                ];
-                const items = [];
-                patterns.forEach(pat => dirs.forEach(dir => {
-                    const moved = pat.cells.map(([r,c])=>[r+dir.dx, c+dir.dc]);
-                    if(moved.every(([r,c])=>r>=0&&r<5&&c>=0&&c<5)) {
-                        // 3個錯誤：反向、90度、不動
-                        const w1 = pat.cells.map(([r,c])=>[r-dir.dx, c-dir.dc]).filter(([r,c])=>r>=0&&r<5&&c>=0&&c<5);
-                        const w2 = pat.cells.map(([r,c])=>[r+dir.dc, c+dir.dx]).filter(([r,c])=>r>=0&&r<5&&c>=0&&c<5);
-                        items.push({ orig:pat.cells, moved, w1:(w1.length===pat.cells.length?w1:moved.map(([r,c])=>[r,Math.min(4,c+1)])), w2:(w2.length===pat.cells.length?w2:pat.cells), color:pat.color, dir, name:pat.name });
-                    }
-                }));
-                return { items, gridSVG };
-            })();
+// ══ Export PDF ══
+async function exportPDF() {
+  const btn = document.getElementById('btnPdf');
+  btn.textContent = '⏳ 產生中…';
+  btn.disabled = true;
+  try {
+    const { jsPDF } = window.jspdf;
+    const el = document.getElementById('printArea');
+    const origW = el.style.width;
+    el.style.width = '860px';
 
-            // ══════════════════════════════
-            // 【題庫C】重量比較（PDF填充題天平）
-            // ══════════════════════════════
-            const WEIGHT_QS = [
-                { left:'🍉', right:'🍎', heavier:'🍉', hint1:'西瓜和蘋果放到天平上！', hint2:'西瓜比蘋果大很多，所以比較重！', hint3:'西瓜比較重，天平會往西瓜那邊下沉！' },
-                { left:'🐘', right:'🐱', heavier:'🐘', hint1:'大象和貓咪比重量！', hint2:'大象是很大的動物，貓咪很小！', hint3:'大象比較重！' },
-                { left:'📚', right:'✏️', heavier:'📚', hint1:'書和鉛筆比重量！', hint2:'一本書比一支鉛筆重很多！', hint3:'書比鉛筆重！' },
-                { left:'🎈', right:'🪨', heavier:'🪨', hint1:'氣球和石頭比重量！', hint2:'氣球裡面是空氣，石頭是實心的！', hint3:'石頭比較重，氣球很輕！' },
-                { left:'🚗', right:'🚲', heavier:'🚗', hint1:'汽車和腳踏車比重量！', hint2:'汽車是金屬做的，比腳踏車大很多！', hint3:'汽車比較重！' },
-                { left:'🍇', right:'🍓', heavier:'🍇', hint1:'一串葡萄和一顆草莓比！', hint2:'一整串葡萄有很多顆，比一顆草莓重！', hint3:'葡萄（一串）比較重！' },
-            ];
+    const canvas = await html2canvas(el, {
+      scale: 2, useCORS: true, allowTaint: true,
+      backgroundColor: '#ffffff', logging: false
+    });
+    el.style.width = origW;
 
-            // ══════════════════════════════
-            // 【題庫D】容量比較（PDF填充題容量）
-            // ══════════════════════════════
-            const CAPACITY_QS = [
-                { bigEmoji:'🪣', smallEmoji:'🥛', bigger:'🪣', bigName:'水桶', smallName:'牛奶盒', hint1:'水桶和牛奶盒，哪個裝得比較多？', hint2:'水桶又大又深，牛奶盒很小！', hint3:'水桶裝得多！' },
-                { bigEmoji:'🛁', smallEmoji:'🥤', bigger:'🛁', bigName:'浴缸', smallName:'杯子', hint1:'浴缸和杯子，哪個容量大？', hint2:'浴缸可以裝整個人泡澡！', hint3:'浴缸容量大很多！' },
-                { bigEmoji:'🍶', smallEmoji:'🍵', bigger:'🍶', bigName:'茶壺', smallName:'茶杯', hint1:'茶壺和茶杯，哪個裝得多？', hint2:'茶壺要倒好幾杯茶！', hint3:'茶壺容量比較大！' },
-            ];
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pw = pdf.internal.pageSize.getWidth();
+    const ph = pdf.internal.pageSize.getHeight();
+    const margin = 8;
+    const cw = pw - margin*2;
+    const imgH = cw * canvas.height / canvas.width;
+    const pageH = ph - margin*2;
+    let srcY = 0, remaining = imgH;
 
-            // ═══════════════════════════════════
-            // 決定本題類型（機率分配）
-            // 積木補合40% | 格子移動25% | 圖層疊加13% | 兩圖相加8% | 重量比較5% | 容量比較4% | 鏡像3% | 方位2%
-            // ═══════════════════════════════════
-            const spaceType = Math.random();
-
-            if (spaceType < 0.40) {
-                // 【題型1】積木補合（10種題目隨機選）
-                const pz = PUZZLES[Math.floor(Math.random()*PUZZLES.length)];
-                const opts = [
-                    { svg: pz.ans, label:'A', correct:true },
-                    { svg: pz.wrong[0], label:'B', correct:false },
-                    { svg: pz.wrong[1], label:'C', correct:false },
-                    { svg: pz.wrong[2], label:'D', correct:false },
-                ].sort(()=>0.5-Math.random());
-                correctAnswer = opts.find(o=>o.correct).label;
-                currentHints = pz.h;
-                qEl.innerHTML = `<div>${pz.q}</div><div style="font-size:1rem;margin-top:8px">${zy('哪','ㄋㄚˇ')}${zy('一','ㄧ')}${zy('塊','ㄎㄨㄞˋ')}${zy('可','ㄎㄜˇ')}${zy('以','ㄧˇ')}${zy('補','ㄅㄨˇ')}${zy('上','ㄕㄤˋ')}${zy('缺','ㄑㄩㄝ')}${zy('口','ㄎㄡˇ')}？</div>`;
-                oEl.style.gridTemplateColumns = '1fr 1fr';
-                opts.forEach(o => {
-                    const btn = document.createElement('button');
-                    btn.className = 'opt-btn svg-btn';
-                    btn.style.cssText = 'padding:8px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:0.9rem;min-height:70px;';
-                    btn.innerHTML = o.svg + `<span>${o.label}</span>`;
-                    btn.onclick = () => checkAnswer(o.label);
-                    oEl.appendChild(btn);
-                });
-
-            } else if (spaceType < 0.65) {
-                // 【題型2】格子圖形移動（PDF 填充題「移動後打✓」）
-                const { items, gridSVG } = GRID_MOVES;
-                const item = items[Math.floor(Math.random()*items.length)];
-                const allOpts = [
-                    { cells: item.moved,  label:'A', correct:true },
-                    { cells: item.w1,     label:'B', correct:false },
-                    { cells: item.w2,     label:'C', correct:false },
-                    { cells: item.orig,   label:'D', correct:false },
-                ].sort(()=>0.5-Math.random());
-                correctAnswer = allOpts.find(o=>o.correct).label;
-                currentHints = [
-                    `圖案要「${item.dir.name}」，往 ${item.dir.arrow} 方向滑！`,
-                    `每個格子都要往 ${item.dir.arrow} 移動一格，形狀不變！`,
-                    `原來的格子往 ${item.dir.arrow} 移一格，就是正確答案了！`
-                ];
-                qEl.innerHTML = `<div style="display:flex;align-items:center;gap:8px;justify-content:center">
-                    ${gridSVG(item.orig, item.color, 100)}
-                    <span style="font-size:2.5rem">${item.dir.arrow}</span>
-                </div>
-                <div style="font-size:1rem;margin-top:6px">${zy('移','ㄧˊ')}${zy('動','ㄉㄨㄥˋ')}${zy('後','ㄏㄡˋ')}${zy('變','ㄅㄧㄢˋ')}${zy('成','ㄔㄥˊ')}${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}？</div>`;
-                oEl.style.gridTemplateColumns = '1fr 1fr';
-                allOpts.forEach(o => {
-                    const btn = document.createElement('button');
-                    btn.className = 'opt-btn svg-btn';
-                    btn.style.cssText = 'padding:6px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:0.85rem;';
-                    btn.innerHTML = gridSVG(o.cells, item.color, 90) + `<span>${o.label}</span>`;
-                    btn.onclick = () => checkAnswer(o.label);
-                    oEl.appendChild(btn);
-                });
-
-            } else if (spaceType < 0.78) {
-                // 【題型3】圖層疊加（最上面是哪個形狀）13%
-                // ═══════════════════════════════════════
-                const shapeOpts = [
-                    { name:'三角形', color:'#FF6B6B', svg: (x,y,s)=>`<polygon points="${x+s/2},${y} ${x},${y+s} ${x+s},${y+s}" fill="${'#FF6B6B'}" stroke="white" stroke-width="2"/>` },
-                    { name:'圓形',   color:'#4ECDC4', svg: (x,y,s)=>`<ellipse cx="${x+s/2}" cy="${y+s/2}" rx="${s/2-1}" ry="${s/2-1}" fill="#4ECDC4" stroke="white" stroke-width="2"/>` },
-                    { name:'正方形', color:'#FFE66D', svg: (x,y,s)=>`<rect x="${x+2}" y="${y+2}" width="${s-4}" height="${s-4}" fill="#FFE66D" stroke="white" stroke-width="2"/>` },
-                    { name:'菱形',   color:'#6BCB77', svg: (x,y,s)=>`<polygon points="${x+s/2},${y+2} ${x+s-2},${y+s/2} ${x+s/2},${y+s-2} ${x+2},${y+s/2}" fill="#6BCB77" stroke="white" stroke-width="2"/>` },
-                ];
-                // 隨機選3個不同形狀疊在一起，問最上面（z-index最高=最後畫=最上面）
-                const picked3 = [...shapeOpts].sort(()=>0.5-Math.random()).slice(0,3);
-                const topShape = picked3[2]; // 最後畫的在最上面
-                correctAnswer = topShape.name;
-                currentHints = [
-                    `三個形狀疊在一起！最上面的形狀，你可以看到它最完整，沒有被別人擋住。`,
-                    `最下面的先畫，所以會被後來的形狀蓋住。最上面的形狀是最後畫上去的！`,
-                    `找找看哪個形狀完整露出來、沒有被遮住的？那就是答案「${topShape.name}」！`
-                ];
-                const svgContent = picked3.map((s,i)=>s.svg(20+i*15, 20+i*10, 60)).join('');
-                qEl.innerHTML = `<svg width="160" height="140" style="border:2px solid #eee; border-radius:12px; background:white">${svgContent}</svg>
-                    <div style="font-size:1rem;margin-top:8px">${zy('最','ㄗㄨㄟˋ')}${zy('上','ㄕㄤˋ')}${zy('面','ㄇㄧㄢˋ')}${zy('的','ㄉㄜ˙')}${zy('是','ㄕˋ')}${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}${zy('形','ㄒㄧㄥˊ')}${zy('狀','ㄓㄨㄤˋ')}？</div>`;
-                picked3.sort(()=>0.5-Math.random()).forEach(s => createOpt(s.name, s.name));
-
-            } else if (spaceType < 0.86) {
-                // ═══════════════════════════════════════
-                // 【題型4】兩圖形相加=新圖形（PDF資優填充題）8%
-                // 左邊兩個形狀，選出疊加後的結果
-                // ═══════════════════════════════════════
-                const combos = [
-                    {
-                        label: '大正方形+小正方形',
-                        partA: `<rect x="5" y="5" width="50" height="50" fill="#4ECDC4" stroke="#fff" stroke-width="2"/>`,
-                        partB: `<rect x="20" y="20" width="25" height="25" fill="#FF6B6B" stroke="#fff" stroke-width="2"/>`,
-                        result: `<svg width="60" height="60"><rect x="5" y="5" width="50" height="50" fill="#4ECDC4" stroke="#fff" stroke-width="2"/><rect x="20" y="20" width="25" height="25" fill="#FF6B6B" stroke="#fff" stroke-width="2"/></svg>`,
-                        wrongs: [
-                            `<svg width="60" height="60"><rect x="5" y="5" width="50" height="50" fill="#4ECDC4" stroke="#fff" stroke-width="2"/></svg>`,
-                            `<svg width="60" height="60"><ellipse cx="30" cy="30" rx="28" ry="28" fill="#4ECDC4"/><rect x="20" y="20" width="25" height="25" fill="#FF6B6B" stroke="#fff" stroke-width="2"/></svg>`,
-                            `<svg width="60" height="60"><rect x="20" y="20" width="25" height="25" fill="#FF6B6B" stroke="#fff" stroke-width="2"/></svg>`,
-                        ],
-                        hint1:'左邊兩個形狀合在一起，看誰在前面，誰在後面？',
-                        hint2:'大的形狀先放，小的形狀疊在上面！',
-                        hint3:'大藍正方形+小紅正方形疊在中間，就是答案！'
-                    },
-                    {
-                        label: '圓形+三角形',
-                        partA: `<ellipse cx="30" cy="30" rx="28" ry="28" fill="#FFE66D" stroke="#fff" stroke-width="2"/>`,
-                        partB: `<polygon points="30,5 5,55 55,55" fill="#6BCB77" stroke="#fff" stroke-width="2"/>`,
-                        result: `<svg width="60" height="60"><ellipse cx="30" cy="30" rx="28" ry="28" fill="#FFE66D" stroke="#fff" stroke-width="2"/><polygon points="30,5 5,55 55,55" fill="#6BCB77" stroke="#fff" stroke-width="2"/></svg>`,
-                        wrongs: [
-                            `<svg width="60" height="60"><ellipse cx="30" cy="30" rx="28" ry="28" fill="#FFE66D" stroke="#fff" stroke-width="2"/></svg>`,
-                            `<svg width="60" height="60"><polygon points="30,5 5,55 55,55" fill="#6BCB77" stroke="#fff" stroke-width="2"/><ellipse cx="30" cy="30" rx="28" ry="28" fill="#FFE66D" stroke="#fff" stroke-width="2"/></svg>`,
-                            `<svg width="60" height="60"><polygon points="30,5 5,55 55,55" fill="#6BCB77" stroke="#fff" stroke-width="2"/></svg>`,
-                        ],
-                        hint1:'黃色圓形和綠色三角形疊在一起，先放圓，再放三角！',
-                        hint2:'三角形疊在圓形上面，所以三角形會蓋住圓形的一部分！',
-                        hint3:'找到黃圓裡面有綠三角的那個！'
-                    }
-                ];
-                const combo = combos[Math.floor(Math.random()*combos.length)];
-                correctAnswer = 'A';
-                currentHints = [combo.hint1, combo.hint2, combo.hint3];
-                const allOpts = [
-                    { svg: combo.result, label:'A', correct:true },
-                    ...combo.wrongs.map((w,i)=>({ svg:w, label:String.fromCharCode(66+i), correct:false }))
-                ].sort(()=>0.5-Math.random());
-                correctAnswer = allOpts.find(o=>o.correct).label;
-                qEl.innerHTML = `<div style="display:flex;align-items:center;gap:8px;justify-content:center">
-                    <svg width="60" height="60" style="border:2px solid #eee;border-radius:8px;background:white">${combo.partA}</svg>
-                    <span style="font-size:2rem">＋</span>
-                    <svg width="60" height="60" style="border:2px solid #eee;border-radius:8px;background:white">${combo.partB}</svg>
-                    <span style="font-size:2rem">＝</span>
-                    <span style="font-size:2rem">？</span>
-                </div>
-                <div style="font-size:1rem;margin-top:8px">${zy('合','ㄏㄜˊ')}${zy('在','ㄗㄞˋ')}${zy('一','ㄧ')}${zy('起','ㄑㄧˇ')}${zy('會','ㄏㄨㄟˋ')}${zy('變','ㄅㄧㄢˋ')}${zy('成','ㄔㄥˊ')}${zy('什','ㄕˊ')}${zy('麼','ㄇㄜ˙')}？</div>`;
-                oEl.style.gridTemplateColumns = '1fr 1fr';
-                allOpts.forEach(o => {
-                    const btn = document.createElement('button');
-                    btn.className = 'opt-btn svg-btn';
-                    btn.style.cssText = 'padding:8px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:0.9rem;';
-                    btn.innerHTML = o.svg + `<span>${o.label}</span>`;
-                    btn.onclick = () => checkAnswer(o.label);
-                    oEl.appendChild(btn);
-                });
-
-            } else if (spaceType < 0.91) {
-                // ═══════════════════════════════════════
-                // 【題型5】重量比較（哪個比較重？）5%
-                // ═══════════════════════════════════════
-                const wq = WEIGHT_QS[Math.floor(Math.random()*WEIGHT_QS.length)];
-                correctAnswer = wq.heavier;
-                currentHints = [wq.hint1, wq.hint2, wq.hint3];
-                qEl.innerHTML = `<div style="display:flex;align-items:center;gap:16px;justify-content:center;font-size:3.5rem">
-                    <span>${wq.left}</span>
-                    <span style="font-size:1.5rem">⚖️</span>
-                    <span>${wq.right}</span>
-                </div>
-                <div style="font-size:1rem;margin-top:8px">${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}${zy('比','ㄅㄧˇ')}${zy('較','ㄐㄧㄠˋ')}${zy('重','ㄓㄨㄥˋ')}？</div>`;
-                [wq.left, wq.right].sort(()=>0.5-Math.random()).forEach(o => createOpt(o, o));
-
-            } else if (spaceType < 0.95) {
-                // ═══════════════════════════════════════
-                // 【題型6】容量比較（哪個裝得比較多？）4%
-                // ═══════════════════════════════════════
-                const cq = CAPACITY_QS[Math.floor(Math.random()*CAPACITY_QS.length)];
-                correctAnswer = cq.bigger;
-                currentHints = [cq.hint1, cq.hint2, cq.hint3];
-                qEl.innerHTML = `<div style="display:flex;align-items:center;gap:16px;justify-content:center;font-size:3.5rem">
-                    <span>${cq.bigEmoji}</span>
-                    <span style="font-size:1.5rem">vs</span>
-                    <span>${cq.smallEmoji}</span>
-                </div>
-                <div style="font-size:1rem;margin-top:8px">${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}${zy('裝','ㄓㄨㄤ')}${zy('得','ㄉㄜ˙')}${zy('比','ㄅㄧˇ')}${zy('較','ㄐㄧㄠˋ')}${zy('多','ㄉㄨㄛ')}？</div>`;
-                [cq.bigEmoji, cq.smallEmoji].sort(()=>0.5-Math.random()).forEach(o => createOpt(o, o));
-
-            } else if (spaceType < 0.98) {
-                // ═══════════════════════════════════════
-                // 【題型7】鏡像翻轉（PDF資優填充題「左轉後的圖形」）3%
-                // 左右鏡像：一個圖形，選出鏡中樣子
-                // ═══════════════════════════════════════
-                const mirrorItems = [
-                    { name:'箭頭向右', orig:'→', mirror:'←', wrongs:['↑','↓'] },
-                    { name:'箭頭向左', orig:'←', mirror:'→', wrongs:['↑','↓'] },
-                    { name:'大寫 b', orig:'b', mirror:'d', wrongs:['p','q'] },
-                    { name:'大寫 p', orig:'p', mirror:'q', wrongs:['b','d'] },
-                    { name:'拇指右', orig:'👍', mirror:'🤜', wrongs:['✊','✋'] },
-                ];
-                const mi = mirrorItems[Math.floor(Math.random()*mirrorItems.length)];
-                correctAnswer = mi.mirror;
-                currentHints = [
-                    `想像在${mi.orig}前面放一面鏡子，鏡子裡的樣子是左右相反的！`,
-                    `左邊變右邊，右邊變左邊。把「${mi.orig}」左右翻轉看看！`,
-                    `「${mi.orig}」的鏡像是「${mi.mirror}」！`
-                ];
-                qEl.innerHTML = `<div style="display:flex;align-items:center;gap:16px;justify-content:center;font-size:3rem">
-                    <span>${mi.orig}</span>
-                    <span style="font-size:1.5rem">🪞</span>
-                    <span style="font-size:2rem;color:#ccc">？</span>
-                </div>
-                <div style="font-size:1rem;margin-top:8px">${zy('鏡','ㄐㄧㄥˋ')}${zy('子','ㄗ˙')}${zy('裡','ㄌㄧˇ')}${zy('看','ㄎㄢˋ')}${zy('到','ㄉㄠˋ')}${zy('的','ㄉㄜ˙')}${zy('是','ㄕˋ')}${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}？</div>`;
-                [mi.mirror, ...mi.wrongs, mi.orig].sort(()=>0.5-Math.random()).forEach(o => createOpt(o, o));
-
-            } else {
-                // ═══════════════════════════════════════
-                // 【題型8】方位判斷（升級版：左右＋上下）2%
-                // ═══════════════════════════════════════
-                const posQ = Math.random();
-                if (posQ < 0.5) {
-                    const isRight = Math.random() > 0.5;
-                    correctAnswer = isRight ? '右邊' : '左邊';
-                    currentHints = [
-                        `伸出右手比讚 👍，拇指那邊就是右邊！`,
-                        `箭頭：${isRight?'→ 向右':'← 向左'}。`,
-                        `答案是「${correctAnswer}」！`
-                    ];
-                    qEl.innerHTML = `<div style="font-size:5rem">${isRight?'👉':'👈'}</div>
-                        <div style="font-size:1rem">${zy('這','ㄓㄜˋ')}${zy('是','ㄕˋ')}${zy('哪','ㄋㄚˇ')}${zy('一','ㄧ')}${zy('邊','ㄅㄧㄢ')}？</div>`;
-                    ['左邊','右邊','上面','下面'].sort(()=>0.5-Math.random()).forEach(o=>createOpt(o,o));
-                } else {
-                    const onTop = Math.random() > 0.5;
-                    correctAnswer = onTop ? '上面' : '下面';
-                    const animals = [['🐘','🐱'],['🐶','🐱'],['🦊','🐸'],['🐻','🐰']];
-                    const [a1,a2] = animals[Math.floor(Math.random()*animals.length)];
-                    currentHints = [
-                        `看哪隻動物的位置比較高？高的在「上面」！`,
-                        `${onTop?a1:a2} 在${onTop?'上':'下'}面，${onTop?a2:a1} 在${onTop?'下':'上'}面！`,
-                        `答案是「${correctAnswer}」，${a1} 在 ${a2} 的${correctAnswer}！`
-                    ];
-                    qEl.innerHTML = `<div style="font-size:3rem;line-height:1.6">${onTop?a1+'\n'+a2:a2+'\n'+a1}</div>
-                        <div style="font-size:1rem">${a1}${zy('在','ㄗㄞˋ')}${a2}${zy('的','ㄉㄜ˙')}${zy('哪','ㄋㄚˇ')}${zy('一','ㄧ')}${zy('邊','ㄅㄧㄢ')}？</div>`;
-                    ['上面','下面','左邊','右邊'].sort(()=>0.5-Math.random()).forEach(o=>createOpt(o,o));
-                }
-            }
-        } else if (mode === 'reverse') {
-            let a = Math.floor(Math.random()*10)+1, b = Math.floor(Math.random()*10)+1;
-            correctAnswer = a+b;
-            currentHints = [
-                `看等號左邊是 ${a}，右邊是「? - ${b}」。問號一定比 ${a} 還要大！`,
-                `反過來算：? = ${a} + ${b}，把兩個數字加起來！`,
-                `${a} + ${b} = ${correctAnswer}，所以問號是 ${correctAnswer}！`
-            ];
-            qEl.innerHTML = `<div style="font-size:2.5rem">${a} = ? - ${b}</div>`;
-            generateOptions(correctAnswer);
-        } else if (mode === 'jump') {
-            const steps = [2, 3, 5, -2, -5];
-            let s = steps[Math.floor(Math.random()*steps.length)];
-            let start = s > 0 ? Math.floor(Math.random()*10)+1 : 25;
-            let seq = [0,1,2,3].map(i => start + i*s);
-            let e = 1+Math.floor(Math.random()*2);
-            correctAnswer = seq[e];
-            const dir = s > 0 ? '大' : '小';
-            const known = seq.filter((_,i)=>i!==e);
-            currentHints = [
-                `數字越來越${dir}！每次跳的步數都一樣，先找出規律。`,
-                `相鄰兩個數字相差 ${Math.abs(s)}，每次${s>0?'加':'減'} ${Math.abs(s)}。`,
-                `問號前面的數字是 ${seq[e-1]}，${seq[e-1]} ${s>0?'+':'-'} ${Math.abs(s)} = ${correctAnswer}！`
-            ];
-            qEl.innerHTML = `<div style="font-size:1.8rem">${seq.map((n,i)=>i==e?'❓':n).join(' ➡ ')}</div>`;
-            generateOptions(correctAnswer);
-        }
+    while (remaining > 0) {
+      const sliceH = Math.min(remaining, pageH);
+      const sc = document.createElement('canvas');
+      sc.width = canvas.width;
+      sc.height = Math.round(sliceH * canvas.height / imgH);
+      sc.getContext('2d').drawImage(canvas, 0, Math.round(srcY * canvas.height / imgH), canvas.width, sc.height, 0, 0, canvas.width, sc.height);
+      pdf.addImage(sc.toDataURL('image/jpeg',0.92), 'JPEG', margin, margin, cw, sliceH);
+      remaining -= sliceH; srcY += sliceH;
+      if (remaining > 0) pdf.addPage();
     }
 
-    function createOpt(val, text) {
-        const btn = document.createElement('button'); btn.className = 'opt-btn'; btn.innerText = text;
-        btn.onclick = () => checkAnswer(val); document.getElementById('options').appendChild(btn);
+    // Safari/iOS: open in new tab then user uses Share → Save to Files
+    const pdfBlob = pdf.output('blob');
+    const blobUrl = URL.createObjectURL(pdfBlob);
+    const newTab = window.open(blobUrl, '_blank');
+    if (!newTab) {
+      // Fallback: trigger print dialog which iOS can save as PDF
+      showToast('請用分享鍵「□↑」→「列印」→ 捏合放大 → 存PDF');
+      setTimeout(() => window.print(), 300);
+    } else {
+      showToast('✅ 已開啟新頁面，點「□↑」分享鍵 → 儲存到檔案');
     }
+  } catch(e) {
+    console.error(e);
+    showToast('❌ 產生失敗，請截圖保存');
+  }
+  btn.textContent = '⬇ 下載 PDF';
+  btn.disabled = false;
+}
 
-    function generateOptions(correct) {
-        let choices = [correct, correct+5, correct-2, correct+10].filter(c => c>=0);
-        [...new Set(choices)].slice(0,4).sort(() => 0.5-Math.random()).forEach(c => createOpt(c,c));
-    }
+// ══ Export Word (.docx) — pure JS, no CDN ══
+// Minimal OOXML/docx builder
+function buildDocx(items, session) {
+  const endTime = session.endTime || new Date();
+  const doneN = items.filter(i=>i.done).length;
+  const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-    function showHint() {
-        usedHintInCurrentUnit = true;
-        usedHintInCurrentQuestion = true;
-        hintCountInQuestion++;
+  const statusText = item => item.isExtra ? '現場新增' : (item.done ? '已確認' : '未結案');
 
-        // 提示現在跟「這一題」綁定，每題有自己的三層提示
-        const hintText = currentHints[Math.min(hintCountInQuestion - 1, currentHints.length - 1)] || "再想想看！";
-        if (hintCountInQuestion >= currentHints.length) {
-            document.getElementById('hint-btn').disabled = true;
-        }
-        
-        const openings = ["偷偷告訴妳喔，", "Apple看這裡，", "悄悄跟妳說，", "這是一個小秘密："];
-        const randomOpening = openings[Math.floor(Math.random() * openings.length)];
-        
-        speak(randomOpening + hintText);
-        
-        const oldHint = document.getElementById('hint-text');
-        if (oldHint) oldHint.remove();
-        
-        const hintDiv = document.createElement('div');
-        hintDiv.id = 'hint-text';
-        hintDiv.style.color = 'var(--secondary)';
-        hintDiv.style.fontSize = '1rem';
-        hintDiv.style.marginTop = '10px';
-        hintDiv.innerHTML = `💡 <span style="font-size:0.8rem">(提示 ${hintCountInQuestion}/3)</span> ${hintText}`;
-        document.getElementById('question').appendChild(hintDiv);
-    }
+  // Build table rows for each item
+  let itemRows = '';
+  items.forEach((item, i) => {
+    const concl = item.conclusion || '（未填寫）';
+    const photoNote = item.photos.length ? `共 ${item.photos.length} 張（請參閱原始紀錄）` : '';
+    itemRows += `
+    <w:tr>
+      <w:tc><w:tcPr><w:tcW w:w="500" w:type="dxa"/><w:shd w:val="clear" w:fill="E8EAED"/></w:tcPr>
+        <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="20"/></w:rPr><w:t>${i+1}</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="6026" w:type="dxa"/><w:shd w:val="clear" w:fill="E8EAED"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:b/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">${esc(item.topic)}${item.isExtra?' ★臨時新增':''}</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="1800" w:type="dxa"/><w:shd w:val="clear" w:fill="${item.done?'D4EDDA':(item.isExtra?'D1D5F0':'FFF3CD')}"/></w:tcPr>
+        <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="18"/></w:rPr><w:t>${esc(statusText(item))}</w:t></w:r></w:p></w:tc>
+    </w:tr>
+    <w:tr>
+      <w:tc><w:tcPr><w:tcW w:w="500" w:type="dxa"/><w:shd w:val="clear" w:fill="F8F8F8"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="16"/><w:color w:val="888888"/></w:rPr><w:t>結論</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="7826" w:type="dxa"/><w:gridSpan w:val="2"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="20"/>${!item.conclusion?'<w:color w:val="AAAAAA"/>':''}</w:rPr><w:t xml:space="preserve">${esc(concl)}</w:t></w:r></w:p></w:tc>
+    </w:tr>
+    ${photoNote ? `<w:tr>
+      <w:tc><w:tcPr><w:tcW w:w="500" w:type="dxa"/><w:shd w:val="clear" w:fill="F8F8F8"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="16"/><w:color w:val="888888"/></w:rPr><w:t>照片</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="7826" w:type="dxa"/><w:gridSpan w:val="2"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="18"/><w:color w:val="555555"/></w:rPr><w:t>${esc(photoNote)}</w:t></w:r></w:p></w:tc>
+    </w:tr>` : ''}`;
+  });
 
-    function checkAnswer(val) {
-        if (val == correctAnswer) {
-            if (isFirstAttempt) {
-                currentStep++;
-                updateStars();
-                confetti({ particleCount: 50, spread: 40, origin: { y: 0.8 } });
-                
-                // 檢查是否為「無錯無提示」的一題
-                if (!usedHintInCurrentQuestion && errorsInCurrentUnit === 0) {
-                    perfectAnswersInUnit++;
-                }
-            }
-            
-            speak(["太棒了！", "好厲害喔！", "答對囉！"][Math.floor(Math.random()*3)]);
-            
-            if (currentStep >= 5) {
-                // 單元完成邏輯
-                roundState.completedUnits.push(currentUnit.id);
-                
-                // 檢查是否達成該單元的「完美通關」：5 題全部無錯且無提示
-                if (perfectAnswersInUnit === 5) {
-                    roundState.streaks[currentUnit.id] = (roundState.streaks[currentUnit.id] || 0) + 1;
-                    
-                    // 達成 10 次完美通關，正式撤下單元
-                    if (roundState.streaks[currentUnit.id] >= 10) {
-                        if (!roundState.retiredUnits.includes(currentUnit.id)) {
-                            roundState.retiredUnits.push(currentUnit.id);
-                        }
-                    }
-                    // 完美過關，不需要特別加強練習
-                    roundState.needsPractice = null;
-                } else {
-                    // 只要不完美，就標記為下一次需要優先練習的「插隊單元」
-                    roundState.streaks[currentUnit.id] = 0;
-                    roundState.needsPractice = currentUnit.id;
-                }
-                
-                safeSaveState();
-                if (roundState.completedUnits.length >= 3) {
-                    setTimeout(showReward, 1000);
-                } else {
-                    // 單元完成但還沒滿 3 個，回主選單（不重開新輪）
-                    setTimeout(goHome, 1000);
-                }
-            } else { 
-                document.getElementById('hint-btn').disabled = false;
-                setTimeout(generateQuestion, 1000); 
-            }
-        } else {
-            if (isFirstAttempt) {
-                errorsInCurrentUnit++;
-                roundState.streaks[currentUnit.id] = 0;
-                
-                // 紀錄錯誤 (無論有沒有看提示都會紀錄)
-                roundState.mistakes.push({
-                    unit: currentUnit.id,
-                    unitTitle: currentUnit.title.replace(/<[^>]*>/g, '').trim(),
-                    time: new Date().toLocaleString(),
-                    usedHint: usedHintInCurrentQuestion
-                });
-                safeSaveState();
-            }
-            isFirstAttempt = false;
-            currentStep = 0; 
-            updateStars(); 
-            speak(["沒關係，再試一次喔！", "沒關係，我們再想一下！", "沒關係，Apple加油！"][Math.floor(Math.random()*3)]);
-            document.getElementById('question').style.background = '#FFEBEB';
-            setTimeout(() => { document.getElementById('question').style.background = 'white'; }, 500);
-        }
-    }
+  const docXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+  xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+  xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<w:body>
+  <!-- Title -->
+  <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="120"/></w:pPr>
+    <w:r><w:rPr><w:b/><w:sz w:val="40"/><w:szCs w:val="40"/></w:rPr><w:t>工地巡視會勘紀錄表</w:t></w:r></w:p>
+  <!-- Meta table -->
+  <w:tbl>
+    <w:tblPr><w:tblW w:w="8326" w:type="dxa"/><w:tblBorders>
+      <w:top w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:left w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:bottom w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:right w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:insideH w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:insideV w:val="single" w:sz="4" w:color="CCCCCC"/>
+    </w:tblBorders></w:tblPr>
+    <w:tblGrid><w:gridCol w:w="2000"/><w:gridCol w:w="2163"/><w:gridCol w:w="2000"/><w:gridCol w:w="2163"/></w:tblGrid>
+    <w:tr>
+      <w:tc><w:tcPr><w:tcW w:w="2000" w:type="dxa"/><w:shd w:val="clear" w:fill="F0EDE6"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:b/><w:sz w:val="20"/></w:rPr><w:t>巡視單位</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2163" w:type="dxa"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="20"/></w:rPr><w:t>${esc(session.unit)}</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2000" w:type="dxa"/><w:shd w:val="clear" w:fill="F0EDE6"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:b/><w:sz w:val="20"/></w:rPr><w:t>主持長官</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2163" w:type="dxa"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="20"/></w:rPr><w:t>${esc(session.officer)}</w:t></w:r></w:p></w:tc>
+    </w:tr>
+    <w:tr>
+      <w:tc><w:tcPr><w:tcW w:w="2000" w:type="dxa"/><w:shd w:val="clear" w:fill="F0EDE6"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:b/><w:sz w:val="20"/></w:rPr><w:t>陪同人員</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2163" w:type="dxa"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="20"/></w:rPr><w:t>${esc(session.escort||'—')}</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2000" w:type="dxa"/><w:shd w:val="clear" w:fill="F0EDE6"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:b/><w:sz w:val="20"/></w:rPr><w:t>會勘日期</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2163" w:type="dxa"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="20"/></w:rPr><w:t>${esc(session.date)}</w:t></w:r></w:p></w:tc>
+    </w:tr>
+    <w:tr>
+      <w:tc><w:tcPr><w:tcW w:w="2000" w:type="dxa"/><w:shd w:val="clear" w:fill="F0EDE6"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:b/><w:sz w:val="20"/></w:rPr><w:t>主辦單位</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2163" w:type="dxa"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="20"/></w:rPr><w:t>${esc(session.org||'—')}</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2000" w:type="dxa"/><w:shd w:val="clear" w:fill="F0EDE6"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:b/><w:sz w:val="20"/></w:rPr><w:t>討論事項</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2163" w:type="dxa"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="20"/></w:rPr><w:t>${items.length} 項（${doneN} 已確認）</w:t></w:r></w:p></w:tc>
+    </w:tr>
+  </w:tbl>
+  <w:p><w:pPr><w:spacing w:before="160" w:after="0"/></w:pPr></w:p>
+  <!-- Items table -->
+  <w:tbl>
+    <w:tblPr><w:tblW w:w="8326" w:type="dxa"/><w:tblBorders>
+      <w:top w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:left w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:bottom w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:right w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:insideH w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:insideV w:val="single" w:sz="4" w:color="CCCCCC"/>
+    </w:tblBorders></w:tblPr>
+    <w:tblGrid><w:gridCol w:w="500"/><w:gridCol w:w="6026"/><w:gridCol w:w="1800"/></w:tblGrid>
+    <w:tr>
+      <w:tc><w:tcPr><w:tcW w:w="500" w:type="dxa"/><w:shd w:val="clear" w:fill="1C1A16"/></w:tcPr>
+        <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:color w:val="F5F0E8"/><w:sz w:val="20"/></w:rPr><w:t>#</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="6026" w:type="dxa"/><w:shd w:val="clear" w:fill="1C1A16"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:b/><w:color w:val="F5F0E8"/><w:sz w:val="20"/></w:rPr><w:t>討論事項</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="1800" w:type="dxa"/><w:shd w:val="clear" w:fill="1C1A16"/></w:tcPr>
+        <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:color w:val="F5F0E8"/><w:sz w:val="20"/></w:rPr><w:t>狀態</w:t></w:r></w:p></w:tc>
+    </w:tr>
+    ${itemRows}
+  </w:tbl>
+  <w:p><w:pPr><w:spacing w:before="240" w:after="0"/></w:pPr></w:p>
+  <!-- Signature line -->
+  <w:tbl>
+    <w:tblPr><w:tblW w:w="8326" w:type="dxa"/><w:tblBorders>
+      <w:top w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:left w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:bottom w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:right w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:insideH w:val="single" w:sz="4" w:color="CCCCCC"/>
+      <w:insideV w:val="single" w:sz="4" w:color="CCCCCC"/>
+    </w:tblBorders></w:tblPr>
+    <w:tblGrid><w:gridCol w:w="3326"/><w:gridCol w:w="2500"/><w:gridCol w:w="2500"/></w:tblGrid>
+    <w:tr>
+      <w:tc><w:tcPr><w:tcW w:w="3326" w:type="dxa"/></w:tcPr>
+        <w:p><w:r><w:rPr><w:sz w:val="18"/><w:color w:val="888888"/></w:rPr><w:t>製表：${esc(fmtDateTime(endTime))}</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2500" w:type="dxa"/></w:tcPr>
+        <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="480"/></w:pPr><w:r><w:rPr><w:sz w:val="18"/><w:color w:val="555555"/></w:rPr><w:t>主持長官簽名</w:t></w:r></w:p></w:tc>
+      <w:tc><w:tcPr><w:tcW w:w="2500" w:type="dxa"/></w:tcPr>
+        <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="480"/></w:pPr><w:r><w:rPr><w:sz w:val="18"/><w:color w:val="555555"/></w:rPr><w:t>紀錄人員簽名</w:t></w:r></w:p></w:tc>
+    </w:tr>
+  </w:tbl>
+  <w:sectPr>
+    <w:pgSz w:w="11906" w:h="16838"/>
+    <w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720"/>
+  </w:sectPr>
+</w:body></w:document>`;
 
-    function skipQuestion() {
-        // 換一題：不計分不算錯，直接換下一題
-        generateQuestion();
-    }
+  return docXml;
+}
 
-    function previewUnit(unitId) {
-        // 直接跳過教學、跳過計分，進入某個單元預覽題目
-        currentUnit = ALL_UNITS.find(u => u.id === unitId);
-        errorsInCurrentUnit = 0;
-        perfectAnswersInUnit = 0;
-        usedHintInCurrentUnit = false;
-        currentStep = 0;
-        document.getElementById('menu').classList.remove('active');
-        document.getElementById('teaching-screen').classList.remove('active');
-        document.getElementById('game').classList.add('active');
-        document.getElementById('mode-title').innerHTML = currentUnit.title + ' <span style="font-size:0.7rem;color:#aaa">預覽</span>';
-        updateStars();
-        generateQuestion();
-    }
+// Base64 encode for zip
+function strToUint8(str) {
+  return new TextEncoder().encode(str);
+}
 
-    function exportGameMistakes() {
-        // 將遊戲錯題記錄匯出為 game-mistakes.json 供 Claude 分析
-        if (!roundState.mistakes || roundState.mistakes.length === 0) return;
-        const json = JSON.stringify(roundState.mistakes, null, 2);
-        const blob = new Blob([json], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'game-mistakes.json';
-        a.click();
-        URL.revokeObjectURL(url);
-    }
+async function exportWord() {
+  const btn = document.getElementById('btnWord');
+  btn.textContent = '⏳ 產生中…';
+  btn.disabled = true;
+  try {
+    // Flush conclusions
+    session.items.forEach(item => {
+      const el = document.getElementById(`conc-${item.id}`);
+      if (el) item.conclusion = el.value;
+    });
 
-    function downloadReport() {
-        let md = "# 🍎 Apple 數學冒險學習報表\n\n";
-        md += `產生時間：${new Date().toLocaleString()}\n\n`;
-        
-        md += "## 🏆 目前學習進度\n";
-        ALL_UNITS.forEach(u => {
-            const isRetired = roundState.retiredUnits.includes(u.id);
-            const streak = roundState.streaks[u.id] || 0;
-            md += `* ${u.title.replace(/<[^>]*>/g, '').trim()}：${isRetired ? '✅ 已精通' : `進行中 (完美連勝: ${streak}/10)`}\n`;
-        });
-        
-        md += "\n## ❌ 錯誤紀錄回饋\n";
-        if (roundState.mistakes.length === 0) {
-            md += "目前沒有任何錯誤紀錄，表現得太棒了！\n";
-        } else {
-            md += "以下是 Apple 在挑戰過程中答錯的題目（包含「沒看提示」與「看了提示」）：\n\n";
-            const grouped = {};
-            roundState.mistakes.forEach(m => {
-                if (!grouped[m.unitTitle]) grouped[m.unitTitle] = [];
-                grouped[m.unitTitle].push(m);
-            });
-            
-            for (let unit in grouped) {
-                md += `### ${unit}\n`;
-                md += `* 累計答錯：${grouped[unit].length} 次\n`;
-                grouped[unit].forEach(m => {
-                    md += `  - [${m.time}] ${m.usedHint ? '⚠️ 看了提示還是答錯' : '❌ 沒看提示就答錯'}\n`;
-                });
-                md += "\n";
-            }
-        }
-        
-        const blob = new Blob([md], { type: 'text/markdown' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `Apple學習報表_${new Date().toLocaleDateString().replace(/\//g, '-')}.md`;
-        a.click();
-        URL.revokeObjectURL(url);
-    }
+    const docXml = buildDocx(session.items, session);
 
-    function speak(t) { 
-        if(window.speechSynthesis) { 
-            window.speechSynthesis.cancel(); 
-            const u = new SpeechSynthesisUtterance(t); 
-            u.lang='zh-TW'; 
-            u.rate=0.9;
-            u.pitch=1.2;
-            window.speechSynthesis.speak(u); 
-        } 
-    }
-    function speakCurrentQuestion() { 
-        speak(currentUnit.text); 
-    }
+    // Build minimal .docx (ZIP) using JSZip-free approach: 
+    // We'll use a data URI with the XML wrapped in a simple docx structure
+    // Since we can't use JSZip CDN, encode as base64 and offer download
+    // Use the fflate library bundled inline approach — actually let's just
+    // produce an HTML file the user can open and print, since docx needs ZIP
 
-    function updateStars() { document.getElementById('stars').innerText = '⭐'.repeat(currentStep) + '⚪'.repeat(5 - currentStep); }
-    function goHome() {
-        document.getElementById('game').classList.remove('active');
-        document.getElementById('teaching-screen').classList.remove('active');
-        document.getElementById('menu').classList.add('active');
-        // 每次回主選單都重新判斷：如果三個單元都完成，自動開新輪
-        const allDone = roundState.roundUnits.length > 0 &&
-            roundState.roundUnits.every(id => roundState.completedUnits.includes(id));
-        if (allDone) {
-            startNewRound();
-        }
-        renderMissions();
-    }
-    function showReward() { document.getElementById('reward-screen').classList.add('active'); confetti({ particleCount: 500, spread: 120 }); speak("大成功！你可以玩平板十五分鐘囉！"); }
-    function resetRoundAndReload() {
-        try {
-            localStorage.removeItem('apple_math_round');
-        } catch (e) {}
-        location.reload();
-    }
-    function resetData() { 
-        if(confirm("確定要清除 Apple 的紀錄嗎？")) { 
-            try {
-                localStorage.clear(); 
-            } catch (e) {}
-            location.reload(); 
-        } 
-    }
+    // Fallback: produce a well-formatted HTML that Word can open directly (.doc)
+    const endTime = session.endTime || new Date();
+    const doneN = session.items.filter(i=>i.done).length;
+    const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-    window.onload = initPage;
+    let rows = session.items.map((item,i) => {
+      const statusColor = item.isExtra ? '#e8eaf6' : (item.done ? '#d4edda' : '#fff3cd');
+      const statusText = item.isExtra ? '現場新增' : (item.done ? '已確認' : '未結案');
+      const concl = item.conclusion || '';
+      const photoNote = item.photos.length ? `📷 共 ${item.photos.length} 張（請參閱原始紀錄）` : '';
+      return `
+        <tr style="background:#e8eaed;">
+          <td style="width:36px;text-align:center;font-weight:bold;font-size:13px;padding:6px 4px;">${i+1}</td>
+          <td style="font-weight:bold;font-size:13px;padding:6px 8px;">${esc(item.topic)}${item.isExtra?' <span style="font-size:11px;color:#555">(臨時)</span>':''}</td>
+          <td style="text-align:center;background:${statusColor};font-weight:bold;font-size:12px;padding:6px 4px;width:70px;">${statusText}</td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888;padding:4px 4px 4px 8px;background:#fafafa;">結論</td>
+          <td colspan="2" style="padding:6px 8px;font-size:13px;min-height:32px;">${esc(concl)}${!concl?'<span style="color:#bbb;font-style:italic;">（未填寫）</span>':''}${photoNote?`<br><span style="font-size:11px;color:#777;">${esc(photoNote)}</span>`:''}</td>
+        </tr>`;
+    }).join('');
+
+    const html = `<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="UTF-8">
+<style>
+  body { font-family: "新細明體","PMingLiU",serif; margin:1.5cm; }
+  h1 { font-size:22pt; text-align:center; margin-bottom:12px; }
+  table { border-collapse:collapse; width:100%; margin-bottom:12px; }
+  td, th { border:1px solid #ccc; padding:5px 8px; vertical-align:top; }
+  .meta td { font-size:11pt; }
+  .meta .lbl { background:#f0ede6; font-weight:bold; width:80px; }
+  .items th { background:#1c1a16; color:#f5f0e8; font-size:11pt; }
+  .sig td { height:60px; text-align:center; font-size:10pt; color:#555; vertical-align:bottom; }
+</style></head>
+<body>
+<h1>工地巡視會勘紀錄表</h1>
+<table class="meta">
+  <tr><td class="lbl">巡視單位</td><td>${esc(session.unit)}</td><td class="lbl">主持長官</td><td>${esc(session.officer)}</td></tr>
+  <tr><td class="lbl">陪同人員</td><td>${esc(session.escort||'—')}</td><td class="lbl">會勘日期</td><td>${esc(session.date)}</td></tr>
+  <tr><td class="lbl">主辦單位</td><td>${esc(session.org||'—')}</td><td class="lbl">討論事項</td><td>${session.items.length} 項（${doneN} 已確認）</td></tr>
+</table>
+<table class="items">
+  <thead><tr><th style="width:36px;">#</th><th>討論事項</th><th style="width:70px;">狀態</th></tr></thead>
+  <tbody>${rows}</tbody>
+</table>
+<table class="sig">
+  <tr>
+    <td style="width:40%;text-align:left;color:#888;font-size:10pt;">製表：${esc(fmtDateTime(endTime))}</td>
+    <td style="width:30%;">主持長官簽名</td>
+    <td style="width:30%;">紀錄人員簽名</td>
+  </tr>
+</table>
+</body></html>`;
+
+    // Download as .doc (HTML-based Word format, opens in Word/Pages directly)
+    const b64 = btoa(unescape(encodeURIComponent(html)));
+    const dataUri = 'data:application/msword;base64,' + b64;
+    const fname = `會勘紀錄_${session.unit}_${session.date.replace(/\//g,'-')}.doc`;
+    const a = document.createElement('a');
+    a.href = dataUri;
+    a.download = fname;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('✅ Word 檔下載中，可用 Word/Pages 開啟編輯');
+  } catch(e) {
+    console.error(e);
+    showToast('❌ 產生失敗：' + e.message);
+  }
+  btn.textContent = '📝 匯出 Word';
+  btn.disabled = false;
+}
+
+
+// ══ Copy text ══
+function copyReportText() {
+  let t = `【工地巡視會勘紀錄表】\n`;
+  t += `巡視單位：${session.unit}\n`;
+  t += `主持長官：${session.officer}\n`;
+  if (session.escort) t += `陪同人員：${session.escort}\n`;
+  if (session.org) t += `主辦單位：${session.org}\n`;
+  t += `會勘日期：${session.date}\n`;
+  t += `${'─'.repeat(36)}\n\n`;
+  session.items.forEach((item,i) => {
+    t += `【${i+1}】${item.topic}${item.isExtra?' ★臨時新增':''}\n`;
+    t += `結論：${item.conclusion || '（未填寫）'}\n`;
+    if (item.photos.length) t += `照片：${item.photos.length} 張\n`;
+    t += '\n';
+  });
+  t += `${'─'.repeat(36)}\n製表：${fmtDateTime(new Date())}`;
+  navigator.clipboard.writeText(t).then(() => showToast('✅ 已複製到剪貼板'));
+}
+
+// ══ Helpers ══
+function fmtDate(d) {
+  return `${d.getFullYear()}/${pad(d.getMonth()+1)}/${pad(d.getDate())}`;
+}
+function fmtDateTime(d) {
+  if (!d) return '—';
+  return `${fmtDate(d)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+function getDuration(a, b) {
+  const s = Math.floor((b-a)/1000);
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60);
+  return h ? `${h} 小時 ${m} 分` : `${m} 分 ${s%60} 秒`;
+}
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+
+// ══ Resume on load ══
+(function() {
+  const saved = loadSession();
+  if (!saved) return;
+  const t = saved.startTime ? new Date(saved.startTime).toLocaleString('zh-TW') : '';
+  const doneN = (saved.items||[]).filter(i=>i.done).length;
+  if (!confirm(`偵測到上次未完成的會勘紀錄：\n\n📍 ${saved.unit}　👤 ${saved.officer}\n🕐 ${t}\n📋 共 ${(saved.items||[]).length} 項（${doneN} 項已完成）\n\n是否繼續上次的紀錄？\n（選「取消」將清除舊紀錄）`)) {
+    clearSession(); return;
+  }
+  session = saved;
+  document.getElementById('iUnit').value = saved.unit || '';
+  document.getElementById('iOfficer').value = saved.officer || '';
+  document.getElementById('iEscort').value = saved.escort || '';
+  document.getElementById('iDate').value = saved.date || '';
+  document.getElementById('iOrg').value = saved.org || '';
+  renderAgenda();
+  updateProgress();
+  switchTab('agenda');
+  showToast(`✅ 已還原 ${(saved.items||[]).length} 項議題紀錄`);
+})();
+
+// Init date
+document.getElementById('iDate').value = new Date().toISOString().split('T')[0];
 </script>
-
 </body>
 </html>

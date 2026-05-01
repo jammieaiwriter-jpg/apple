@@ -245,6 +245,7 @@
     let currentUnit = null, currentStep = 0, correctAnswer = null, isFirstAttempt = true;
     let usedHintInCurrentUnit = false, usedHintInCurrentQuestion = false, errorsInCurrentUnit = 0, perfectAnswersInUnit = 0;
     let hintCountInQuestion = 0; 
+    let isProcessingAnswer = false;
 
     function safeSaveState() {
         try {
@@ -264,7 +265,7 @@
         }
 
         document.getElementById('title-area').innerHTML = zy('每','ㄇㄟˇ')+zy('日','ㄖˋ')+zy('數','ㄕㄨˋ')+zy('學','ㄒㄩㄝˊ')+zy('冒','ㄇㄠˋ')+zy('險','ㄒㄧㄢˇ');
-        document.getElementById('sub-area').innerHTML = zy('完','ㄨㄢˊ')+zy('成','ㄔㄥˊ')+' 3 '+zy('個','ㄍㄜ˙')+zy('任','ㄖˋ')+zy('務','ㄨˋ')+zy('，')+zy('拿','ㄋㄚˊ')+zy('獎','ㄐㄧㄤˇ')+zy('勵','ㄌㄧˋ');
+        document.getElementById('sub-area').innerHTML = zy('任','ㄖˋ')+zy('選','ㄒㄩㄢˇ')+' 3 '+zy('個','ㄍㄜ˙')+zy('任','ㄖˋ')+zy('務','ㄨˋ')+zy('，')+zy('拿','ㄋㄚˊ')+zy('獎','ㄐㄧㄤˇ')+zy('勵','ㄌㄧˋ');
         document.getElementById('speak-btn-text').innerHTML = zy('唸','ㄋㄧㄢˋ')+zy('題目','ㄊㄧˊㄇㄨˋ');
         document.getElementById('hint-btn-text').innerHTML = zy('小','ㄒㄧㄠˇ')+zy('提示','ㄊㄧˊㄕˋ');
 
@@ -276,9 +277,8 @@
         document.getElementById('start-challenge-btn').innerHTML = zy('開','ㄎㄞ')+zy('始','ㄕˇ')+zy('挑','ㄊㄧㄠˇ')+zy('戰','ㄓㄢˋ');
 
         // 如果這輪所有單元都已完成（或第一次進來），才開新一輪
-        const allDone = roundState.roundUnits.length > 0 &&
-            roundState.roundUnits.every(id => roundState.completedUnits.includes(id));
-        if (roundState.roundUnits.length === 0 || allDone) {
+        const allDone = roundState.roundUnits.length === 0 || roundState.completedUnits.length >= 3;
+        if (allDone) {
             startNewRound();
         }
         renderMissions();
@@ -296,9 +296,8 @@
             roundState.needsPractice = null; // 取出後清空
         }
         
-        // 2. 輪播位：從隊列中找接下來該輪到的單元，補滿 3 個
+        // 2. 顯示所有可挑戰單元（不再限制 3 個）
         for (let id of availableInQueue) {
-            if (nextRound.length >= 3) break;
             if (!nextRound.includes(id)) {
                 nextRound.push(id);
             }
@@ -361,6 +360,7 @@
     }
 
     function generateQuestion() {
+        isProcessingAnswer = false;
         isFirstAttempt = true;
         usedHintInCurrentQuestion = false;
         hintCountInQuestion = 0;
@@ -978,6 +978,9 @@
     }
 
     function checkAnswer(val) {
+        if (isProcessingAnswer) return;
+        isProcessingAnswer = true;
+
         if (val == correctAnswer) {
             if (isFirstAttempt) {
                 currentStep++;
@@ -1046,7 +1049,10 @@
             updateStars(); 
             speak(["沒關係，再試一次喔！", "沒關係，我們再想一下！", "沒關係，Apple加油！"][Math.floor(Math.random()*3)]);
             document.getElementById('question').style.background = '#FFEBEB';
-            setTimeout(() => { document.getElementById('question').style.background = 'white'; }, 500);
+            setTimeout(() => { 
+                document.getElementById('question').style.background = 'white'; 
+                isProcessingAnswer = false;
+            }, 500);
         }
     }
 
@@ -1140,12 +1146,12 @@
 
     function updateStars() { document.getElementById('stars').innerText = '⭐'.repeat(currentStep) + '⚪'.repeat(10 - currentStep); }
     function goHome() {
+        isProcessingAnswer = false;
         document.getElementById('game').classList.remove('active');
         document.getElementById('teaching-screen').classList.remove('active');
         document.getElementById('menu').classList.add('active');
         // 每次回主選單都重新判斷：如果三個單元都完成，自動開新輪
-        const allDone = roundState.roundUnits.length > 0 &&
-            roundState.roundUnits.every(id => roundState.completedUnits.includes(id));
+        const allDone = roundState.completedUnits.length >= 3;
         if (allDone) {
             startNewRound();
         }
@@ -1153,9 +1159,7 @@
     }
     function showReward() { document.getElementById('reward-screen').classList.add('active'); confetti({ particleCount: 500, spread: 120 }); speak("大成功！你可以玩平板十五分鐘囉！"); }
     function resetRoundAndReload() {
-        try {
-            localStorage.removeItem('apple_math_round');
-        } catch (e) {}
+        startNewRound();
         location.reload();
     }
     function resetData() { 

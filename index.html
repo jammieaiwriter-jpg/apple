@@ -85,6 +85,7 @@
             <button onclick="previewUnit('space')" style="border:1px solid #4ECDC4; background:white; color:#4ECDC4; padding:5px 10px; border-radius:10px; font-size:0.75rem;">🔍 預覽空間題</button>
             <button onclick="previewUnit('coin')" style="border:1px solid #4ECDC4; background:white; color:#4ECDC4; padding:5px 10px; border-radius:10px; font-size:0.75rem;">🔍 預覽錢幣題</button>
             <button onclick="previewUnit('jump')" style="border:1px solid #4ECDC4; background:white; color:#4ECDC4; padding:5px 10px; border-radius:10px; font-size:0.75rem;">🔍 預覽跳數題</button>
+            <button onclick="previewUnit('story')" style="border:1px solid #4ECDC4; background:white; color:#4ECDC4; padding:5px 10px; border-radius:10px; font-size:0.75rem;">🔍 預覽故事題</button>
             <button onclick="resetData()" style="border:none; background:none; color:#ccc; font-size:0.7rem;">清除紀錄</button>
             <button onclick="location.reload()" style="border:1px solid #ccc; background:white; color:#666; padding:5px 10px; border-radius:10px; font-size:0.75rem;">↺ 重整頁面</button>
         </div>
@@ -124,6 +125,8 @@
         return `<span class="zy-word"><span class="zy-top">${py||''}</span><span class="zy-bottom">${zi}</span></span>`;
     }
 
+    const DAILY_MISSION_COUNT = 3;
+
     // teaching 改為陣列，才能用 Math.random()*length 正確隨機取值
     // hints 是「每題生成時綁定」的提示，跟題目內容相關，由 generateQuestion() 設定
     let currentHints = ["再想想看喔！", "仔細看一下題目！", "快要對了，加油！"];
@@ -160,6 +163,16 @@
             ]
         },
         {
+            id: 'story',
+            title: '🍬 '+zy('故','ㄍㄨˋ')+zy('事','ㄕˋ')+zy('算','ㄙㄨㄢˋ')+zy('式','ㄕˋ')+zy('小','ㄒㄧㄠˇ')+zy('編','ㄅㄧㄢ')+zy('劇','ㄐㄩˋ'),
+            text: '這個算式在說什麼故事呢？',
+            teaching: [
+                "Apple，算式不是只有數字，它其實在說一個小故事喔！加法常常是「又來了、又得到」，減法常常是「吃掉、送出、用掉」。",
+                "看到算式時，先想：本來有幾個？發生了什麼事？最後剩下或總共有幾個？",
+                "偷偷告訴妳，會自己編故事的小朋友，才是真的懂算式的小偵探！"
+            ]
+        },
+        {
             id: 'clock',
             title: '⏰ '+zy('時','ㄕˊ')+zy('間','ㄐㄧㄢ')+zy('小','ㄒㄧㄠˇ')+zy('偵','ㄓㄣ')+zy('探','ㄊㄢˋ'),
             text: '現在是幾點鐘？',
@@ -190,6 +203,7 @@
             ]
         }
     ];
+    const DEFAULT_UNIT_ORDER = ['coin', 'reverse', 'story', 'jump', 'clock', 'even', 'space'];
 
     let roundState;
     try {
@@ -203,7 +217,7 @@
         roundState = {
             roundUnits: [],
             completedUnits: [],
-            unitQueue: ALL_UNITS.map(u => u.id),
+            unitQueue: DEFAULT_UNIT_ORDER.filter(id => ALL_UNITS.some(u => u.id === id)),
             streaks: {},
             retiredUnits: [],
             mistakes: [],
@@ -215,6 +229,18 @@
     // 舊存檔補欄位
     if (!roundState.difficulty) roundState.difficulty = {};
     if (!roundState.recentResults) roundState.recentResults = {};
+    // 舊存檔補上新單元，避免已存在的 localStorage 永遠排不到故事算式
+    const allUnitIds = ALL_UNITS.map(u => u.id);
+    const queueOrder = DEFAULT_UNIT_ORDER.filter(id => allUnitIds.includes(id));
+    roundState.unitQueue = (roundState.unitQueue || []).filter(id => allUnitIds.includes(id));
+    queueOrder.forEach(id => {
+        if (!roundState.unitQueue.includes(id)) {
+            const desiredIndex = queueOrder.indexOf(id);
+            const insertAt = roundState.unitQueue.findIndex(existingId => queueOrder.indexOf(existingId) > desiredIndex);
+            if (insertAt === -1) roundState.unitQueue.push(id);
+            else roundState.unitQueue.splice(insertAt, 0, id);
+        }
+    });
 
     // 取得當前 unit 的難度（1/2/3）
     function getDiff() {
@@ -276,12 +302,21 @@
         document.getElementById('next-day-btn').innerHTML = zy('下','ㄒㄧㄚˋ')+zy('一','ㄧ')+zy('輪','ㄌㄨㄣˊ')+zy('挑戰','ㄊㄧㄠˇㄓㄢˋ');
         document.getElementById('start-challenge-btn').innerHTML = zy('開','ㄎㄞ')+zy('始','ㄕˇ')+zy('挑','ㄊㄧㄠˇ')+zy('戰','ㄓㄢˋ');
 
-        // 如果這輪所有單元都已完成（或第一次進來），才開新一輪
-        const allDone = roundState.roundUnits.length === 0 || roundState.completedUnits.length >= 3;
-        if (allDone) {
+        const availableInQueue = roundState.unitQueue.filter(id => !roundState.retiredUnits.includes(id));
+        const currentRoundStillAvailable = roundState.roundUnits.every(id => availableInQueue.includes(id));
+        const tooManyMissions = roundState.roundUnits.filter(id => !roundState.retiredUnits.includes(id)).length > DAILY_MISSION_COUNT;
+
+        // 如果這輪所有單元都已完成、第一次進來、或含有已精通單元，才開新一輪
+        const allDone = roundState.completedUnits.length >= getRoundGoal();
+        if (roundState.roundUnits.length === 0 || allDone || !currentRoundStillAvailable || tooManyMissions) {
             startNewRound();
         }
         renderMissions();
+    }
+
+    function getRoundGoal() {
+        const activeRoundUnits = roundState.roundUnits.filter(id => !roundState.retiredUnits.includes(id));
+        return Math.min(DAILY_MISSION_COUNT, activeRoundUnits.length || DAILY_MISSION_COUNT);
     }
 
     function startNewRound() {
@@ -296,9 +331,9 @@
             roundState.needsPractice = null; // 取出後清空
         }
         
-        // 2. 顯示所有可挑戰單元（不再限制 3 個）
+        // 2. 只排本輪 3 個任務，避免孩子一直挑自己最熟的單元
         for (let id of availableInQueue) {
-            if (!nextRound.includes(id)) {
+            if (!nextRound.includes(id) && nextRound.length < DAILY_MISSION_COUNT) {
                 nextRound.push(id);
             }
         }
@@ -314,16 +349,18 @@
 
     function renderMissions() {
         const list = document.getElementById('mission-list');
-        const unitsToShow = ALL_UNITS.filter(u => roundState.roundUnits.includes(u.id));
+        const unitsToShow = roundState.roundUnits
+            .filter(id => !roundState.retiredUnits.includes(id))
+            .map(id => ALL_UNITS.find(u => u.id === id))
+            .filter(Boolean);
         
         list.innerHTML = unitsToShow.map(u => {
             const isMastered = roundState.completedUnits.includes(u.id);
-            const isRetired = roundState.retiredUnits.includes(u.id);
             const streak = roundState.streaks[u.id] || 0;
             return `
             <div class="mission-item ${isMastered?'mastered':''}" onclick="${isMastered?'':'startUnit(\''+u.id+'\')'}">
                 <div>
-                    <div style="font-size:1.3rem">${u.title}${isRetired?'<span class="mastered-tag">已精通</span>':''}</div>
+                    <div style="font-size:1.3rem">${u.title}</div>
                     <div class="medal-bar">
                         ${isMastered ? '🎖️🎖️🎖️' : '⚪⚪⚪'} 
                         <span style="font-size:0.7rem; color:#999; margin-left:10px;">完美連勝: ${streak}/10</span>
@@ -335,6 +372,7 @@
     }
 
     function startUnit(unitId) {
+        if (roundState.retiredUnits.includes(unitId)) return;
         currentUnit = ALL_UNITS.find(u => u.id === unitId);
         errorsInCurrentUnit = 0;
         perfectAnswersInUnit = 0;
@@ -464,6 +502,40 @@
             const cell = (c, r, col, s=28) => `<rect x="${c*30+1}" y="${r*30+1}" width="${s}" height="${s}" fill="${col}" stroke="#fff" stroke-width="2"/>`;
             const gap  = (c, r) => `<rect x="${c*30+1}" y="${r*30+1}" width="28" height="28" fill="#f0f0f0" stroke="#ccc" stroke-width="1" stroke-dasharray="3"/>`;
             const mkSVG = (w,h,body) => `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}</svg>`;
+            const isoCube = (x, y, s=22, showHidden=false) => {
+                const top = `${x},${y} ${x+s},${y-10} ${x+s*2},${y} ${x+s},${y+10}`;
+                const left = `${x},${y} ${x+s},${y+10} ${x+s},${y+s+18} ${x},${y+s+8}`;
+                const right = `${x+s},${y+10} ${x+s*2},${y} ${x+s*2},${y+s+8} ${x+s},${y+s+18}`;
+                const hiddenStyle = showHidden ? 'stroke-dasharray="4 3" opacity="0.42"' : '';
+                const fillA = showHidden ? '#D8F3F0' : '#9FE3DD';
+                const fillB = showHidden ? '#BFEAE5' : '#4ECDC4';
+                const fillC = showHidden ? '#A8DDD8' : '#39AAA3';
+                return `<g ${hiddenStyle}>
+                    <polygon points="${top}" fill="${fillA}" stroke="#2F3E46" stroke-width="1.2"/>
+                    <polygon points="${left}" fill="${fillB}" stroke="#2F3E46" stroke-width="1.2"/>
+                    <polygon points="${right}" fill="${fillC}" stroke="#2F3E46" stroke-width="1.2"/>
+                </g>`;
+            };
+            const stackSvg = (stacks, showHidden=false, showLabels=false) => {
+                const cubeH = 24, baseX = 90, baseY = 128;
+                const ordered = [...stacks].sort((a,b)=>(a.r+a.c)-(b.r+b.c) || a.r-b.r);
+                const cubes = ordered.map(st => {
+                    let body = '';
+                    for (let level=0; level<st.h; level++) {
+                        const hidden = level < st.h - 1;
+                        const x = baseX + (st.c-st.r)*28;
+                        const y = baseY + (st.c+st.r)*14 - level*cubeH;
+                        body += isoCube(x, y, 22, showHidden && hidden);
+                    }
+                    if (showLabels) {
+                        const x = baseX + (st.c-st.r)*28 + 18;
+                        const y = baseY + (st.c+st.r)*14 + 48;
+                        body += `<text x="${x}" y="${y}" text-anchor="middle" font-size="13" fill="#2F3E46">${st.h}層</text>`;
+                    }
+                    return body;
+                }).join('');
+                return `<svg width="220" height="190" viewBox="0 0 220 190" style="border:2px solid #eee;border-radius:12px;background:white">${cubes}</svg>`;
+            };
 
             // ══════════════════════════════
             // 【題庫A】積木補合（10種，資料驅動）
@@ -612,16 +684,57 @@
                 { bigEmoji:'🛁', smallEmoji:'🥤', bigger:'🛁', bigName:'浴缸', smallName:'杯子', hint1:'浴缸和杯子，哪個容量大？', hint2:'浴缸可以裝整個人泡澡！', hint3:'浴缸容量大很多！' },
                 { bigEmoji:'🍶', smallEmoji:'🍵', bigger:'🍶', bigName:'茶壺', smallName:'茶杯', hint1:'茶壺和茶杯，哪個裝得多？', hint2:'茶壺要倒好幾杯茶！', hint3:'茶壺容量比較大！' },
             ];
+            const HIDDEN_BLOCK_QS = [
+                {
+                    stacks:[{r:0,c:0,h:3},{r:0,c:1,h:2},{r:1,c:0,h:2},{r:1,c:1,h:1}],
+                    hints:['不要只數看得到的正面，每一根柱子底下也有積木撐著。','一根一根數高度：3層、2層、2層、1層。','3 + 2 + 2 + 1 = 8，所以總共有8個。']
+                },
+                {
+                    stacks:[{r:0,c:0,h:2},{r:0,c:1,h:3},{r:0,c:2,h:1},{r:1,c:1,h:2}],
+                    hints:['先找底座有幾個位置：這題有4根柱子。','每根柱子從底下數到最上面：2層、3層、1層、2層。','2 + 3 + 1 + 2 = 8，所以總共有8個。']
+                },
+                {
+                    stacks:[{r:0,c:0,h:4},{r:1,c:0,h:2},{r:1,c:1,h:3}],
+                    hints:['高高的一根不只是上面那一塊，下面也有積木。','三根柱子的高度是4層、2層、3層。','4 + 2 + 3 = 9，所以總共有9個。']
+                },
+                {
+                    stacks:[{r:0,c:0,h:1},{r:0,c:1,h:2},{r:1,c:0,h:3},{r:1,c:1,h:2},{r:2,c:0,h:1}],
+                    hints:['可以先數地板上有幾根柱子，再數每根柱子的高度。','這5根柱子高度是1、2、3、2、1。','1 + 2 + 3 + 2 + 1 = 9，所以總共有9個。']
+                },
+                {
+                    stacks:[{r:0,c:0,h:3},{r:0,c:1,h:3},{r:1,c:0,h:1},{r:1,c:1,h:2},{r:1,c:2,h:1}],
+                    hints:['看到上面的方塊，要想到下面一定有方塊撐著。','高度分別是3、3、1、2、1。','3 + 3 + 1 + 2 + 1 = 10，所以總共有10個。']
+                },
+                {
+                    stacks:[{r:0,c:0,h:2},{r:0,c:1,h:1},{r:0,c:2,h:4},{r:1,c:1,h:2},{r:2,c:1,h:1}],
+                    hints:['最容易漏掉高塔底下被遮住的積木，先數每座塔幾層。','高度分別是2、1、4、2、1。','2 + 1 + 4 + 2 + 1 = 10，所以總共有10個。']
+                }
+            ];
 
             // ═══════════════════════════════════
             // 決定本題類型（機率分配）
-            // 積木補合40% | 格子移動25% | 圖層疊加13% | 兩圖相加8% | 重量比較5% | 容量比較4% | 鏡像3% | 方位2%
+            // 藏積木計數30% | 積木補合25% | 格子移動20% | 圖層疊加10% | 兩圖相加6% | 重量/容量/鏡像/方位9%
             // ═══════════════════════════════════
             const spaceType = Math.random();
             const spaceDiff = getDiff();
             const spaceLabel = ['','🌱簡單','⚡普通','🔥困難'][spaceDiff];
 
-            if (spaceType < 0.40) {
+            if (spaceType < 0.30) {
+                // 【題型0】藏起來的積木計數：訓練不要只數看得到的表面
+                const pool = spaceDiff === 1 ? HIDDEN_BLOCK_QS.slice(0,3)
+                           : spaceDiff === 3 ? HIDDEN_BLOCK_QS.slice(2)
+                           : HIDDEN_BLOCK_QS;
+                const item = pool[Math.floor(Math.random()*pool.length)];
+                correctAnswer = item.stacks.reduce((sum, st) => sum + st.h, 0);
+                currentHints = item.hints;
+                const teachingView = spaceDiff === 1 && Math.random() > 0.35;
+                qEl.innerHTML = `<div style="font-size:0.75rem;color:#888;margin-bottom:4px">${spaceLabel}</div>
+                    ${stackSvg(item.stacks, teachingView, teachingView)}
+                    <div style="font-size:1rem;margin-top:8px">${zy('總','ㄗㄨㄥˇ')}${zy('共','ㄍㄨㄥˋ')}${zy('有','ㄧㄡˇ')}${zy('幾','ㄐㄧˇ')}${zy('個','ㄍㄜ˙')}${zy('積','ㄐㄧ')}${zy('木','ㄇㄨˋ')}？</div>
+                    ${teachingView ? '<div style="font-size:0.85rem;color:#666;margin-top:4px">淺色虛線是被擋住、但其實存在的積木</div>' : ''}`;
+                generateOptions(correctAnswer);
+
+            } else if (spaceType < 0.55) {
                 // 【題型1】積木補合（難度1:前5題, 難度2:全部, 難度3:後5題難題）
                 const pool = spaceDiff === 1 ? PUZZLES.slice(0,5)
                            : spaceDiff === 3 ? PUZZLES.slice(5)
@@ -646,7 +759,7 @@
                     oEl.appendChild(btn);
                 });
 
-            } else if (spaceType < 0.65) {
+            } else if (spaceType < 0.75) {
                 // 【題型2】格子圖形移動（PDF 填充題「移動後打✓」）
                 const { items, gridSVG } = GRID_MOVES;
                 const item = items[Math.floor(Math.random()*items.length)];
@@ -677,7 +790,7 @@
                     oEl.appendChild(btn);
                 });
 
-            } else if (spaceType < 0.78) {
+            } else if (spaceType < 0.85) {
                 // 【題型3】圖層疊加（最上面是哪個形狀）13%
                 // ═══════════════════════════════════════
                 const shapeOpts = [
@@ -700,7 +813,7 @@
                     <div style="font-size:1rem;margin-top:8px">${zy('最','ㄗㄨㄟˋ')}${zy('上','ㄕㄤˋ')}${zy('面','ㄇㄧㄢˋ')}${zy('的','ㄉㄜ˙')}${zy('是','ㄕˋ')}${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}${zy('形','ㄒㄧㄥˊ')}${zy('狀','ㄓㄨㄤˋ')}？</div>`;
                 picked3.sort(()=>0.5-Math.random()).forEach(s => createOpt(s.name, s.name));
 
-            } else if (spaceType < 0.86) {
+            } else if (spaceType < 0.91) {
                 // ═══════════════════════════════════════
                 // 【題型4】兩圖形相加=新圖形（PDF資優填充題）8%
                 // 左邊兩個形狀，選出疊加後的結果
@@ -761,7 +874,7 @@
                     oEl.appendChild(btn);
                 });
 
-            } else if (spaceType < 0.91) {
+            } else if (spaceType < 0.94) {
                 // ═══════════════════════════════════════
                 // 【題型5】重量比較（哪個比較重？）5%
                 // ═══════════════════════════════════════
@@ -776,7 +889,7 @@
                 <div style="font-size:1rem;margin-top:8px">${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}${zy('比','ㄅㄧˇ')}${zy('較','ㄐㄧㄠˋ')}${zy('重','ㄓㄨㄥˋ')}？</div>`;
                 [wq.left, wq.right].sort(()=>0.5-Math.random()).forEach(o => createOpt(o, o));
 
-            } else if (spaceType < 0.95) {
+            } else if (spaceType < 0.97) {
                 // ═══════════════════════════════════════
                 // 【題型6】容量比較（哪個裝得比較多？）4%
                 // ═══════════════════════════════════════
@@ -791,7 +904,7 @@
                 <div style="font-size:1rem;margin-top:8px">${zy('哪','ㄋㄚˇ')}${zy('個','ㄍㄜ˙')}${zy('裝','ㄓㄨㄤ')}${zy('得','ㄉㄜ˙')}${zy('比','ㄅㄧˇ')}${zy('較','ㄐㄧㄠˋ')}${zy('多','ㄉㄨㄛ')}？</div>`;
                 [cq.bigEmoji, cq.smallEmoji].sort(()=>0.5-Math.random()).forEach(o => createOpt(o, o));
 
-            } else if (spaceType < 0.98) {
+            } else if (spaceType < 0.99) {
                 // ═══════════════════════════════════════
                 // 【題型7】鏡像翻轉（PDF資優填充題「左轉後的圖形」）3%
                 // 左右鏡像：一個圖形，選出鏡中樣子
@@ -857,28 +970,30 @@
             if (d === 1) {
                 const a = Math.floor(Math.random()*6)+1, b = Math.floor(Math.random()*6)+1;
                 correctAnswer = a + b;
-                qHtml = `<div style="font-size:2.5rem">${a} = ? − ${b}</div>`;
-                hintA = `等號左邊是 ${a}，右邊是「? 減 ${b}」。`;
-                hintB = `反過來：? = ${a} + ${b}`;
-                hintC = `${a} + ${b} = ${correctAnswer}，答案是 ${correctAnswer}！`;
+                qHtml = `<div style="font-size:2.5rem">${a} = ? − ${b}</div>
+                    <div style="font-size:1rem;color:#666;margin-top:8px">本來有一些糖，分給同學 ${b} 顆，剩下 ${a} 顆。本來有幾顆？</div>`;
+                hintA = `這個故事是：本來有問號顆，拿走 ${b} 顆，剩下 ${a} 顆。`;
+                hintB = `要找本來有多少，就把剩下的 ${a} 顆，加回分出去的 ${b} 顆。`;
+                hintC = `${a} + ${b} = ${correctAnswer}，所以本來有 ${correctAnswer} 顆！`;
             } else if (d === 2) {
                 const type = Math.random() > 0.5;
                 if (type) {
                     const a = Math.floor(Math.random()*8)+5, b = Math.floor(Math.random()*8)+3;
                     correctAnswer = a + b;
-                    qHtml = `<div style="font-size:2.5rem">${a} = ? − ${b}</div>`;
-                    hintA = `等號左邊是 ${a}，問號是 ${a} 加上 ${b}！`;
-                    hintB = `${a} + ${b} = ?`;
-                    hintC = `答案是 ${correctAnswer}！`;
+                    qHtml = `<div style="font-size:2.5rem">${a} = ? − ${b}</div>
+                        <div style="font-size:1rem;color:#666;margin-top:8px">原本有一些錢，花掉 ${b} 元，還剩 ${a} 元。原本有幾元？</div>`;
+                    hintA = `花掉的錢要加回來：剩下 ${a} 元，加上花掉 ${b} 元。`;
+                    hintB = `${a} 可以先想成錢幣，再加 ${b}：${a} + ${b} = ?`;
+                    hintC = `${a} + ${b} = ${correctAnswer}，所以原本有 ${correctAnswer} 元！`;
                 } else {
                     const ans = Math.floor(Math.random()*8)+5, b = Math.floor(Math.random()*5)+2;
                     const a = ans + b;
                     correctAnswer = ans;
-                    qHtml = `<div style="font-size:2.5rem">${a} − ? = ${ans - ans + b}</div><div style="font-size:1rem;color:#888">${a} − ? = ${b}</div>`;
                     qHtml = `<div style="font-size:2.5rem">${a} − ? = ${b}</div>`;
-                    hintA = `${a} 減掉問號等於 ${b}，問號比 ${a} 小！`;
-                    hintB = `反過來：? = ${a} − ${b}`;
-                    hintC = `${a} − ${b} = ${correctAnswer}，答案是 ${correctAnswer}！`;
+                    qHtml += `<div style="font-size:1rem;color:#666;margin-top:8px">有 ${a} 顆糖，吃掉一些，剩下 ${b} 顆。吃掉幾顆？</div>`;
+                    hintA = `這裡問「被吃掉的那一包」，所以是 ${a} 裡面拿走一些，剩 ${b}。`;
+                    hintB = `用總數 ${a} 減掉剩下的 ${b}，就是吃掉的數量。`;
+                    hintC = `${a} − ${b} = ${correctAnswer}，所以吃掉 ${correctAnswer} 顆！`;
                 }
             } else {
                 // 三步驟：a + b - c = ?，其中一個是問號
@@ -895,6 +1010,91 @@
             currentHints = [hintA, hintB, hintC];
             qEl.innerHTML = `<div style="font-size:0.75rem;color:#888;margin-bottom:4px">${diffLabel}</div>` + qHtml;
             generateOptions(correctAnswer);
+        } else if (mode === 'story') {
+            const d = getDiff();
+            const diffLabel = ['','🌱簡單','⚡普通','🔥困難'][d];
+            const things = ['糖果', '貼紙', '積木', '餅乾', '星星'];
+            const thing = things[Math.floor(Math.random()*things.length)];
+            const storyCard = (text) => `<div style="font-size:1.05rem;line-height:1.5;background:#fff7d6;border:2px solid #FFE66D;border-radius:16px;padding:12px;margin-top:10px">${text}</div>`;
+            let choices = [];
+
+            if (d === 1) {
+                const isMinus = Math.random() > 0.45;
+                const a = Math.floor(Math.random()*5)+5;
+                const b = Math.floor(Math.random()*4)+1;
+                if (isMinus) {
+                    correctAnswer = `${a - b}`;
+                    qEl.innerHTML = `<div style="font-size:2.4rem">${a} − ${b} = ?</div>` +
+                        storyCard(`小蘋果本來有 ${a} 個${thing}，分給同學 ${b} 個，還剩幾個？`);
+                    currentHints = [
+                        `看到減號，先想「拿走、送出、吃掉、用掉」。`,
+                        `本來有 ${a} 個，拿走 ${b} 個，所以是 ${a} − ${b}。`,
+                        `${a} − ${b} = ${correctAnswer}，還剩 ${correctAnswer} 個。`
+                    ];
+                } else {
+                    const b2 = Math.floor(Math.random()*4)+1;
+                    correctAnswer = `${a + b2}`;
+                    qEl.innerHTML = `<div style="font-size:2.4rem">${a} + ${b2} = ?</div>` +
+                        storyCard(`小蘋果本來有 ${a} 個${thing}，媽媽又給她 ${b2} 個，現在共有幾個？`);
+                    currentHints = [
+                        `看到加號，先想「又來了、又得到、合起來」。`,
+                        `本來有 ${a} 個，又多 ${b2} 個，所以是 ${a} + ${b2}。`,
+                        `${a} + ${b2} = ${correctAnswer}，共有 ${correctAnswer} 個。`
+                    ];
+                }
+                generateOptions(Number(correctAnswer));
+            } else if (d === 2) {
+                oEl.style.gridTemplateColumns = '1fr';
+                const a = Math.floor(Math.random()*6)+5;
+                const b = Math.floor(Math.random()*4)+1;
+                const isMinus = Math.random() > 0.5;
+                correctAnswer = isMinus
+                    ? `小蘋果本來有 ${a} 個${thing}，送給妹妹 ${b} 個，還剩幾個？`
+                    : `小蘋果本來有 ${a} 個${thing}，爸爸又給她 ${b} 個，現在共有幾個？`;
+                const formula = isMinus ? `${a} − ${b} = ?` : `${a} + ${b} = ?`;
+                choices = [
+                    correctAnswer,
+                    isMinus
+                        ? `小蘋果本來有 ${b} 個${thing}，又得到 ${a} 個，現在共有幾個？`
+                        : `小蘋果本來有 ${a} 個${thing}，吃掉 ${b} 個，還剩幾個？`,
+                    `小蘋果有 ${a} 個${thing}，每個同學分 ${b} 個，可以分給幾個人？`,
+                    `小蘋果看到 ${a} 個${thing}，又看到 ${a} 個${thing}，共有幾個？`
+                ];
+                qEl.innerHTML = `<div style="font-size:2.4rem">${formula}</div><div style="font-size:1rem;color:#666;margin-top:8px">哪一個故事和這個算式一樣？</div>`;
+                currentHints = [
+                    `先看符號：${isMinus ? '減號代表拿走、送出、吃掉。' : '加號代表又多了、合起來。'}`,
+                    `${formula} 的第一個數字 ${a} 是「本來有」。第二個數字 ${b} 是發生的變化。`,
+                    `正確故事是：${correctAnswer}`
+                ];
+                choices.sort(()=>0.5-Math.random()).forEach(c => createOpt(c, c));
+            } else {
+                oEl.style.gridTemplateColumns = '1fr';
+                const a = Math.floor(Math.random()*7)+8;
+                const b = Math.floor(Math.random()*5)+2;
+                const isUnknownStart = Math.random() > 0.5;
+                if (isUnknownStart) {
+                    correctAnswer = `? − ${b} = ${a}`;
+                    qEl.innerHTML = storyCard(`小蘋果本來有一些${thing}，送給同學 ${b} 個，最後還剩 ${a} 個。`) +
+                        `<div style="font-size:1rem;color:#666;margin-top:8px">哪一個算式最適合這個故事？</div>`;
+                    choices = [correctAnswer, `${a} − ${b} = ?`, `${a} + ${b} = ?`, `${b} − ? = ${a}`];
+                    currentHints = [
+                        `「本來有一些」就是不知道的數字，可以用問號表示。`,
+                        `送出去 ${b} 個，是減掉 ${b}。最後剩 ${a} 個。`,
+                        `所以故事是：? − ${b} = ${a}。`
+                    ];
+                } else {
+                    correctAnswer = `${a} − ? = ${b}`;
+                    qEl.innerHTML = storyCard(`小蘋果本來有 ${a} 個${thing}，吃掉一些，最後剩 ${b} 個。`) +
+                        `<div style="font-size:1rem;color:#666;margin-top:8px">哪一個算式最適合這個故事？</div>`;
+                    choices = [correctAnswer, `? − ${b} = ${a}`, `${a} + ? = ${b}`, `${b} − ? = ${a}`];
+                    currentHints = [
+                        `本來有 ${a} 個，所以 ${a} 要放在最前面。`,
+                        `吃掉一些是不知道的數量，用問號表示，最後剩 ${b} 個。`,
+                        `所以故事是：${a} − ? = ${b}。`
+                    ];
+                }
+                choices.sort(()=>0.5-Math.random()).forEach(c => createOpt(c, c));
+            }
         } else if (mode === 'jump') {
             const d = getDiff();
             const diffLabel = ['','🌱簡單','⚡普通','🔥困難'][d];
@@ -941,6 +1141,11 @@
 
     function createOpt(val, text) {
         const btn = document.createElement('button'); btn.className = 'opt-btn'; btn.innerText = text;
+        if (String(text).length > 12) {
+            btn.style.fontSize = '1rem';
+            btn.style.lineHeight = '1.35';
+            btn.style.textAlign = 'left';
+        }
         btn.onclick = () => checkAnswer(val); document.getElementById('options').appendChild(btn);
     }
 
@@ -1000,7 +1205,7 @@
                 // 單元完成邏輯
                 roundState.completedUnits.push(currentUnit.id);
                 
-                // 檢查是否達成該單元的「完美通關」：5 題全部無錯且無提示
+                // 檢查是否達成該單元的「完美通關」：10 題全部無錯且無提示
                 if (perfectAnswersInUnit === 10) {
                     roundState.streaks[currentUnit.id] = (roundState.streaks[currentUnit.id] || 0) + 1;
                     
@@ -1019,7 +1224,7 @@
                 }
                 
                 safeSaveState();
-                if (roundState.completedUnits.length >= 3) {
+                if (roundState.completedUnits.length >= getRoundGoal()) {
                     setTimeout(showReward, 1000);
                 } else {
                     // 單元完成但還沒滿 3 個，回主選單（不重開新輪）
@@ -1150,8 +1355,8 @@
         document.getElementById('game').classList.remove('active');
         document.getElementById('teaching-screen').classList.remove('active');
         document.getElementById('menu').classList.add('active');
-        // 每次回主選單都重新判斷：如果三個單元都完成，自動開新輪
-        const allDone = roundState.completedUnits.length >= 3;
+        // 每次回主選單都重新判斷：如果本輪任務都完成，自動開新輪
+        const allDone = roundState.completedUnits.length >= getRoundGoal();
         if (allDone) {
             startNewRound();
         }

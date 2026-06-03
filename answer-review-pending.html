@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple 待確認錯題核對</title>
+  <style>
+    :root { --primary:#ff6b6b; --secondary:#4ecdc4; --bg:#f4f7fb; --text:#2f3e46; --line:#dde5ee; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif; background: var(--bg); color: var(--text); }
+    header { position: sticky; top: 0; z-index: 5; background: rgba(244,247,251,.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: 12px; }
+    .bar { max-width: 980px; margin: 0 auto; display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    h1 { font-size: 1.25rem; margin: 0; }
+    .status { color: #64748b; font-size: .9rem; margin-top: 4px; }
+    main { max-width: 980px; margin: 0 auto; padding: 14px; display: grid; gap: 14px; }
+    .card { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: grid; grid-template-columns: minmax(260px, 1.2fr) minmax(260px, .8fr); gap: 14px; }
+    .meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .badge { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; border-radius: 999px; padding: 3px 8px; font-size: .78rem; font-weight: 700; }
+    .dup { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+    .file { color: #64748b; font-size: .82rem; word-break: break-all; }
+    img { width: 100%; max-height: 560px; object-fit: contain; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    .panel { display: flex; flex-direction: column; gap: 10px; }
+    label { font-size: .82rem; color: #64748b; }
+    input, textarea { width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; font-size: 1rem; font-family: inherit; }
+    textarea { min-height: 78px; resize: vertical; }
+    .quick { display: flex; gap: 8px; flex-wrap: wrap; }
+    button { border: 1px solid var(--line); background: white; color: var(--text); border-radius: 8px; padding: 9px 12px; cursor: pointer; font-weight: 650; }
+    button:hover { border-color: var(--secondary); }
+    .primary { background: var(--primary); border-color: var(--primary); color: white; }
+    .secondary { background: var(--secondary); border-color: var(--secondary); color: white; }
+    .hint { color: #64748b; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 8px; font-size: .9rem; }
+    dialog { width: min(840px, calc(100vw - 24px)); border: 0; border-radius: 8px; padding: 0; }
+    dialog::backdrop { background: rgba(15,23,42,.35); }
+    .dialog-body { padding: 14px; display: grid; gap: 10px; }
+    #exportText { min-height: 320px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85rem; }
+    @media (max-width: 760px) { .card { grid-template-columns: 1fr; } header { position: static; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div>
+        <h1>Apple 待確認錯題核對</h1>
+        <div class="status" id="statusText">只保留尚未定案的題目</div>
+      </div>
+      <div class="quick">
+        <button class="secondary" onclick="exportAnswers()">匯出答案</button>
+        <button onclick="copySummary()">複製簡短格式</button>
+        <button onclick="clearDraft()">清除草稿</button>
+      </div>
+    </div>
+  </header>
+  <main id="list"></main>
+  <dialog id="exportDialog">
+    <div class="dialog-body">
+      <strong>把下面這段貼回聊天給我，我就能更新剩下題目。</strong>
+      <textarea id="exportText"></textarea>
+      <div class="quick">
+        <button class="primary" onclick="copyExport()">複製</button>
+        <button onclick="document.getElementById('exportDialog').close()">關閉</button>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    const QUESTIONS = [
+      {
+            "id": 19,
+            "file": "截圖 2026-04-27 晚上9.32.39.png",
+            "current": "",
+            "hint": "這題答案還沒定案，請先看圖確認每一格答案。",
+            "note": ""
+      },
+      {
+            "id": 22,
+            "file": "截圖 2026-05-05 晚上10.08.58.png",
+            "current": "",
+            "hint": "這題答案還沒定案，請先看圖確認。",
+            "note": ""
+      },
+      {
+            "id": 23,
+            "file": "截圖 2026-05-05 晚上10.09.55.png",
+            "current": "",
+            "hint": "你標記這題可能和前面重複，請確認是否真的不用練。",
+            "note": "重複"
+      },
+      {
+            "id": 24,
+            "file": "截圖 2026-05-05 晚上10.11.52.png",
+            "current": "",
+            "hint": "這題答案還沒定案，請先看圖確認。",
+            "note": ""
+      }
+];
+    const STORAGE_KEY = 'apple_pending_answer_review_draft';
+    let answers = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    function render() {
+      document.getElementById('list').innerHTML = QUESTIONS.map(q => {
+        const value = answers[q.id]?.answer ?? q.current ?? '';
+        const note = answers[q.id]?.note ?? q.note ?? '';
+        const src = '錯題/' + encodeURIComponent(q.file);
+        return `
+          <section class="card" id="q${q.id}">
+            <div>
+              <div class="meta">
+                <span class="badge ${q.note === '重複' ? 'dup' : ''}">第 ${q.id} 題${q.note === '重複' ? '｜重複確認' : ''}</span>
+                <span class="file">${escapeHtml(q.file)}</span>
+              </div>
+              <img src="${src}" alt="第 ${q.id} 題">
+            </div>
+            <div class="panel">
+              <div class="hint">${escapeHtml(q.hint)}</div>
+              <div>
+                <label>確認答案</label>
+                <input value="${escapeAttr(value)}" oninput="setAnswer(${q.id}, this.value)" placeholder="例如：3 或 左 右 中">
+              </div>
+              <div class="quick">
+                ${[1,2,3,4].map(n => `<button onclick="setAnswer(${q.id}, '${n}')">${n}</button>`).join('')}
+                <button onclick="appendToken(${q.id}, '左')">左</button>
+                <button onclick="appendToken(${q.id}, '中')">中</button>
+                <button onclick="appendToken(${q.id}, '右')">右</button>
+                <button onclick="markDuplicate(${q.id})">重複</button>
+                <button onclick="clearOne(${q.id})">清空</button>
+              </div>
+              <div>
+                <label>備註</label>
+                <textarea oninput="setNote(${q.id}, this.value)" placeholder="例如：重複第幾題、看不清楚、需要再確認">${escapeHtml(note)}</textarea>
+              </div>
+            </div>
+          </section>`;
+      }).join('');
+      updateStatus();
+    }
+    function normalize(value) { return String(value || '').trim().replace(/[，,、]/g, ' ').replace(/\s+/g, ' '); }
+    function setAnswer(id, value) { answers[id] = { ...(answers[id] || {}), answer: value }; save(); updateStatus(); }
+    function appendToken(id, token) { const next = normalize((answers[id]?.answer || '') + ' ' + token); setAnswer(id, next); render(); }
+    function setNote(id, value) { answers[id] = { ...(answers[id] || {}), note: value }; save(); }
+    function markDuplicate(id) { answers[id] = { ...(answers[id] || {}), answer: '', note: '重複' }; save(); render(); }
+    function clearOne(id) { answers[id] = { answer: '', note: '' }; save(); render(); }
+    function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(answers)); }
+    function updateStatus() {
+      const filled = QUESTIONS.filter(q => normalize(answers[q.id]?.answer) || normalize(answers[q.id]?.note || q.note)).length;
+      document.getElementById('statusText').textContent = `待確認 ${QUESTIONS.length} 題，已填/標記 ${filled} 題`;
+    }
+    function buildPayload() {
+      return QUESTIONS.map(q => ({ id: q.id, file: q.file, oldAnswer: q.current || '', answer: normalize(answers[q.id]?.answer || ''), note: answers[q.id]?.note ?? q.note ?? '' }));
+    }
+    function exportAnswers() { document.getElementById('exportText').value = JSON.stringify(buildPayload(), null, 2); document.getElementById('exportDialog').showModal(); }
+    function copySummary() { navigator.clipboard.writeText(buildPayload().map(q => `${q.id}=${q.answer || ''}${q.note ? ' (' + q.note + ')' : ''}`).join('\n')); }
+    function copyExport() { const box = document.getElementById('exportText'); box.select(); navigator.clipboard.writeText(box.value); }
+    function clearDraft() { if (!confirm('確定清除草稿嗎？')) return; answers = {}; localStorage.removeItem(STORAGE_KEY); render(); }
+    function escapeHtml(value) { return String(value || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function escapeAttr(value) { return escapeHtml(value).replace(/"/g, '&quot;'); }
+    render();
+  </script>
+</body>
+</html>

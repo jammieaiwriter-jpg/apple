@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Apple 備考錯題練習</title>
+  <style>
+    :root { --primary:#ff6b6b; --secondary:#4ecdc4; --accent:#ffe66d; --bg:#f0f4f8; --text:#2f3e46; --ok:#6bcb77; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Chalkboard SE', 'Microsoft JhengHei', sans-serif; display: flex; justify-content: center; }
+    #app { width: 100%; max-width: 520px; padding: 14px; text-align: center; }
+    h1 { margin: 8px 0 4px; color: var(--primary); font-size: 1.5rem; }
+    .top { color:#667085; font-size:.9rem; margin-bottom: 8px; }
+    .card { background:white; border-radius: 18px; padding: 14px; box-shadow: 0 8px 18px rgba(15,23,42,.08); display: grid; gap: 12px; }
+    .meta { color:#667085; font-size:.85rem; word-break: break-word; }
+    .mistake-img { width:100%; max-height: 420px; object-fit: contain; border:2px solid #eef2f7; border-radius: 12px; background: white; }
+    .answer-area { display:grid; gap:10px; }
+    .choice-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
+    .btn { border:0; border-radius:16px; background: var(--secondary); color:white; font-size:1.5rem; padding:16px 10px; min-height:58px; box-shadow: 0 5px 0 #369a93; cursor:pointer; }
+    .btn:active { transform: translateY(3px); box-shadow:none; }
+    .btn.small { font-size:1rem; padding:10px; min-height:42px; border-radius:12px; }
+    .btn.light { background:white; color:var(--text); border:2px solid var(--secondary); box-shadow:0 4px 0 #cbd5e1; }
+    .step-row { background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:10px; display:grid; gap:8px; }
+    .step-title { font-weight:700; color:#475569; }
+    .step-options { display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; }
+    .step-options.number { grid-template-columns: repeat(5, 1fr); }
+    .picked { background: var(--primary) !important; color:white !important; border-color: var(--primary) !important; }
+    input.step-input { width:100%; border:2px solid var(--secondary); border-radius:12px; padding:12px; font-size:1.25rem; text-align:center; }
+    .hint { background:#fff9db; border:1px solid #fde68a; color:#7c5800; padding:10px; border-radius:12px; font-size:.95rem; display:none; }
+    .hint.show { display:block; }
+    .nav { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .result { font-weight:700; min-height: 28px; }
+    .ok { color: var(--ok); }
+    .bad { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Apple 備考錯題練習</h1>
+    <div class="top" id="progress"></div>
+    <div class="card">
+      <div class="meta" id="fileName"></div>
+      <img id="mistakeImg" class="mistake-img" alt="錯題截圖">
+      <div class="answer-area" id="answerArea"></div>
+      <div class="hint" id="hintBox"></div>
+      <div class="result" id="result"></div>
+      <div class="nav">
+        <button class="btn small light" onclick="showHintBox()">提示</button>
+        <button class="btn small light" onclick="skipQuestion()">下一題</button>
+        <button class="btn small light" onclick="goHome()">回第一題</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const EXAM_REVIEW_QUESTIONS = [
+      {
+            "id": 1,
+            "file": "截圖 2026-04-26 下午6.12.54.png",
+            "answer": "3",
+            "answerType": "choice",
+            "hint": "19變17是少了2，17變15又少了2，所以15少2會變成多少呢？答案是13喔！"
+      },
+      {
+            "id": 2,
+            "file": "截圖 2026-04-26 下午6.13.26.png",
+            "answer": "10 12 12 15 16",
+            "answerType": "text",
+            "hint": "一格一格看清楚，每個空格都要照順序填；填完後再從頭讀一次，檢查數字是不是接得合理。"
+      },
+      {
+            "id": 3,
+            "file": "截圖 2026-04-26 下午6.13.41.png",
+            "answer": "3",
+            "answerType": "choice",
+            "hint": "看看左邊積木缺了一個角，哪個積木轉過來剛好可以補滿呢？這題媽媽確認答案是第3個。"
+      },
+      {
+            "id": 4,
+            "file": "截圖 2026-04-26 下午6.14.08.png",
+            "answer": "右 左 中 右 中",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置：先分清楚左、右、中，再把答案照順序填上。"
+      },
+      {
+            "id": 5,
+            "file": "截圖 2026-04-26 下午6.14.37.png",
+            "answer": "左 右",
+            "answerType": "text",
+            "hint": "先看第一個位置，再看第二個位置；不要一起猜，照順序判斷左邊和右邊。"
+      },
+      {
+            "id": 6,
+            "file": "截圖 2026-04-26 下午6.15.09.png",
+            "answer": "3",
+            "answerType": "choice",
+            "hint": "左邊有7元，右邊有20元。20元比7元多了13元喔！"
+      },
+      {
+            "id": 7,
+            "file": "截圖 2026-04-26 下午6.15.19.png",
+            "answer": "2",
+            "answerType": "choice",
+            "hint": "4變8是多了4，8再多4就是12喔！"
+      },
+      {
+            "id": 8,
+            "file": "截圖 2026-04-26 下午6.15.35.png",
+            "answer": "中 右 左 左 中",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置，再把左、右、中依序填上。"
+      },
+      {
+            "id": 9,
+            "file": "截圖 2026-04-26 下午6.18.32.png",
+            "answer": "1",
+            "answerType": "choice",
+            "hint": "想一想，什麼數字減去4會變成6呢？反過來算，6+4等於多少呢？"
+      },
+      {
+            "id": 10,
+            "file": "截圖 2026-04-26 晚上9.39.04.png",
+            "answer": "4",
+            "answerType": "choice",
+            "hint": "中間有一個圓圓的洞，要找哪一個積木才能剛好塞進去呢？"
+      },
+      {
+            "id": 11,
+            "file": "截圖 2026-04-26 晚上9.39.28.png",
+            "answer": "3",
+            "answerType": "choice",
+            "hint": "我們一起慢慢數：10+10是20，再加上三個5元(15元)，最後加1元，總共是多少呢？"
+      },
+      {
+            "id": 12,
+            "file": "截圖 2026-04-26 晚上9.40.04.png",
+            "answer": "1",
+            "answerType": "choice",
+            "hint": "20變15是少了5，那15再少5會變成多少呢？"
+      },
+      {
+            "id": 13,
+            "file": "截圖 2026-04-26 晚上9.40.14.png",
+            "answer": "3",
+            "answerType": "choice",
+            "hint": "找找看，哪一個數字的尾巴是0、2、4、6、8呢？那樣就是雙數喔！"
+      },
+      {
+            "id": 14,
+            "file": "截圖 2026-04-26 晚上9.40.27.png",
+            "answer": "5 1 9 6/30 3/30",
+            "answerType": "text",
+            "hint": "看第4個鐘，短針在6和7中間，長針指著6，所以是6點『半』喔，也就是30分！"
+      },
+      {
+            "id": 15,
+            "file": "截圖 2026-04-27 晚上9.31.37.png",
+            "answer": "3",
+            "answerType": "choice",
+            "hint": "看看左邊的形狀，缺了哪些方格才能變成完整的正方形呢？選出可以補上去的那一塊！"
+      },
+      {
+            "id": 16,
+            "file": "截圖 2026-04-27 晚上9.31.52.png",
+            "answer": "2",
+            "answerType": "choice",
+            "hint": "一雙筷子有 2 支，那 6 雙筷子我們可以用 2, 4, 6... 這樣跳著數數看喔！"
+      },
+      {
+            "id": 17,
+            "file": "截圖 2026-04-27 晚上9.32.03.png",
+            "answer": "4",
+            "answerType": "choice",
+            "hint": "觀察數字的規律：17到20加了3，20到23也加了3。那11加3會是多少呢？"
+      },
+      {
+            "id": 18,
+            "file": "截圖 2026-04-27 晚上9.32.21.png",
+            "answer": "右 左 中 左 中",
+            "answerType": "text",
+            "hint": "伸出妳的右手比比看，哪一個手勢或鞋子的方向跟妳的右手邊是一樣的？"
+      },
+      {
+            "id": 20,
+            "file": "截圖 2026-04-28 晚上9.12.35.png",
+            "answer": "3",
+            "answerType": "choice",
+            "hint": "把左邊缺掉的那一塊形狀記在心裡，再去比對哪一個選項的形狀跟缺口剛好一樣！可以用手指描出缺口的形狀再找答案喔。"
+      },
+      {
+            "id": 21,
+            "file": "截圖 2026-04-28 晚上9.13.05.png",
+            "answer": "左",
+            "answerType": "text",
+            "hint": "注意每個圓被切成幾份？哪些部分是灰色的？找出跟左邊一模一樣的分法！可以先看灰色佔了幾格，再去比對選項喔。"
+      },
+      {
+            "id": 25,
+            "file": "截圖 2026-05-05 晚上10.12.30.png",
+            "answer": "左 右",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置，再把左、右、中依序填上。"
+      },
+      {
+            "id": 26,
+            "file": "截圖 2026-05-05 晚上10.12.59.png",
+            "answer": "右 中 左 中 右",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置，再把左、右、中依序填上。"
+      },
+      {
+            "id": 27,
+            "file": "截圖 2026-05-22 晚上8.20.55.png",
+            "answer": "5 20",
+            "answerType": "text",
+            "hint": "照題目順序把每一格答案填好；填完後從頭檢查一次。"
+      },
+      {
+            "id": 28,
+            "file": "截圖 2026-05-22 晚上8.21.22.png",
+            "answer": "1 3",
+            "answerType": "text",
+            "hint": "照題目順序把每一格答案填好；填完後從頭檢查一次。"
+      },
+      {
+            "id": 29,
+            "file": "截圖 2026-05-22 晚上8.21.40.png",
+            "answer": "左 右 中 左 中",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置，再把左、右、中依序填上。"
+      },
+      {
+            "id": 30,
+            "file": "截圖 2026-05-22 晚上8.21.53.png",
+            "answer": "中 左 右 右 中",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置，再把左、右、中依序填上。"
+      },
+      {
+            "id": 31,
+            "file": "截圖 2026-05-22 晚上8.23.18.png",
+            "answer": "右 左 左 中 右",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置，再把左、右、中依序填上。"
+      },
+      {
+            "id": 32,
+            "file": "截圖 2026-05-22 晚上8.23.39.png",
+            "answer": "右 中",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置，再把左、右、中依序填上。"
+      },
+      {
+            "id": 33,
+            "file": "截圖 2026-05-22 晚上8.23.55.png",
+            "answer": "左 右 中 左 中",
+            "answerType": "text",
+            "hint": "照題目的順序一個一個判斷位置，再把左、右、中依序填上。"
+      }
+];
+    let current = 0;
+    let stepAnswers = [];
+    function normalize(value) { return String(value || '').trim().replace(/[，,、]/g, ' ').replace(/\s+/g, ' '); }
+    function tokens(q) { return normalize(q.answer).split(' ').filter(Boolean); }
+    function isDirectionToken(t) { return ['左','中','右'].includes(t); }
+    function isDirectionQuestion(q) { const ts = tokens(q); return ts.length > 0 && ts.every(isDirectionToken); }
+    function isChoiceQuestion(q) { return q.answerType === 'choice' && /^[1-4]$/.test(normalize(q.answer)); }
+    function render() {
+      const q = EXAM_REVIEW_QUESTIONS[current];
+      stepAnswers = [];
+      document.getElementById('progress').textContent = '第 ' + (current + 1) + ' / ' + EXAM_REVIEW_QUESTIONS.length + ' 題';
+      document.getElementById('fileName').textContent = q.file;
+      document.getElementById('mistakeImg').src = '錯題/' + encodeURIComponent(q.file);
+      document.getElementById('hintBox').textContent = q.hint || '先看題目，再慢慢選。';
+      document.getElementById('hintBox').classList.remove('show');
+      document.getElementById('result').textContent = '';
+      document.getElementById('result').className = 'result';
+      if (isChoiceQuestion(q)) renderChoiceAnswer(q);
+      else renderStepAnswer(q);
+    }
+    function renderChoiceAnswer(q) {
+      document.getElementById('answerArea').innerHTML = '<div class="choice-grid">' + [1,2,3,4].map(n => '<button class="btn" onclick="checkAnswer(\'' + n + '\')">' + n + '</button>').join('') + '</div>';
+    }
+    function renderStepAnswer(q) {
+      const ts = tokens(q);
+      const direction = isDirectionQuestion(q);
+      stepAnswers = Array(ts.length).fill('');
+      document.getElementById('answerArea').innerHTML = ts.map((_, idx) => {
+        if (direction) {
+          return '<div class="step-row"><div class="step-title">第 ' + (idx + 1) + ' 格</div><div class="step-options">' + ['左','中','右'].map(v => '<button class="btn small light" data-step="' + idx + '" data-value="' + v + '" onclick="pickStep(' + idx + ',\'' + v + '\')">' + v + '</button>').join('') + '</div></div>';
+        }
+        return '<div class="step-row"><div class="step-title">第 ' + (idx + 1) + ' 格</div><input class="step-input" inputmode="numeric" data-step-input="' + idx + '" oninput="setStep(' + idx + ', this.value)" placeholder="填答案"></div>';
+      }).join('') + '<button class="btn" onclick="submitSteps()">送出</button>';
+    }
+    function pickStep(idx, value) {
+      stepAnswers[idx] = value;
+      document.querySelectorAll('[data-step="' + idx + '"]').forEach(btn => btn.classList.toggle('picked', btn.dataset.value === value));
+    }
+    function setStep(idx, value) { stepAnswers[idx] = value; }
+    function submitSteps() { checkAnswer(stepAnswers.map(normalize).join(' ')); }
+    function checkAnswer(value) {
+      const q = EXAM_REVIEW_QUESTIONS[current];
+      const ok = normalize(value) === normalize(q.answer);
+      const result = document.getElementById('result');
+      if (ok) {
+        result.textContent = '答對了，很好！';
+        result.className = 'result ok';
+        setTimeout(skipQuestion, 750);
+      } else {
+        result.textContent = '再試一次，慢慢看圖。';
+        result.className = 'result bad';
+      }
+    }
+    function showHintBox() { document.getElementById('hintBox').classList.add('show'); }
+    function skipQuestion() { current = (current + 1) % EXAM_REVIEW_QUESTIONS.length; render(); }
+    function goHome() { current = 0; render(); }
+    render();
+  </script>
+</body>
+</html>

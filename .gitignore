@@ -1,0 +1,7 @@
+.DS_Store
+*.log
+*.error.log
+node_modules/
+.env
+.venv/
+game-mistakes.json

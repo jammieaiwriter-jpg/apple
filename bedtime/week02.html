@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>月光果醬・草稿試聽</title>
+  <style>
+    :root { color-scheme:dark; --ink:#fff7dc; --soft:#cac5df; --gold:#ffd77a; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100svh; overflow:hidden; font-family:"PingFang TC","Noto Sans TC",sans-serif; color:var(--ink); background:#17162d; }
+    .night { min-height:100svh; display:grid; place-items:center; padding:calc(24px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom)); text-align:center; background:radial-gradient(circle at 50% 15%,#514a8a,#242142 55%,#17162d); transition:filter 8s ease,background 8s ease; }
+    .night::after { content:""; position:fixed; inset:0; pointer-events:none; background:#05050b; opacity:0; transition:opacity 8s ease; }
+    .night.dimmed::after { opacity:.88; }
+    .draft-banner { position:fixed; top:0; left:0; right:0; z-index:3; padding:8px 16px; color:#fff; background:#7c3aed; font-size:13px; line-height:1.5; }
+    .content { position:relative; z-index:1; width:min(560px,100%); transition:opacity 5s ease; }
+    .dimmed .content { opacity:.16; }
+    .eyebrow,.status { color:var(--soft); }
+    h1 { margin:10px 0 34px; font-size:clamp(30px,9vw,48px); }
+    .theme-word { display:flex; justify-content:center; gap:22px; margin:0 auto 48px; }
+    .theme-character { display:flex; align-items:center; gap:8px; }
+    .theme-hanzi { font-size:clamp(76px,24vw,120px); line-height:1; }
+    .theme-zhuyin { writing-mode:vertical-rl; text-orientation:upright; letter-spacing:2px; font-size:clamp(17px,5vw,25px); color:var(--gold); }
+    button { min-height:52px; border-radius:18px; padding:13px 20px; font:700 18px inherit; cursor:pointer; }
+    .primary { border:0; color:#24213e; background:var(--gold); }
+    .secondary { border:1px solid #ffffff44; color:var(--ink); background:#ffffff14; }
+    .controls { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:18px; transition:opacity .4s ease; }
+    .playing:not(.controls-visible) .controls { opacity:0; pointer-events:none; }
+    .status { min-height:48px; margin-top:22px; line-height:1.5; }
+    .tap-layer { position:fixed; inset:0; z-index:2; display:none; border:0; background:transparent; }
+    .dimmed .tap-layer { display:block; }
+    .controls-visible .tap-layer { display:none; }
+  </style>
+</head>
+<body>
+<div class="draft-banner" id="draftBanner">草稿試聽版・資料載入中</div>
+<main class="night controls-visible" id="night">
+  <button class="tap-layer" id="tapLayer" aria-label="顯示播放控制"></button>
+  <section class="content">
+    <div class="eyebrow">今晚的核心詞</div>
+    <h1 id="title">星光故事</h1>
+    <div class="theme-word" id="themeWord" aria-label="核心詞"></div>
+    <button class="primary" id="start" disabled>開始今晚的故事</button>
+    <div class="controls" id="controls">
+      <button class="secondary" id="pause">暫停</button>
+      <button class="secondary" id="resume">繼續</button>
+      <button class="secondary" id="restart">重新播放</button>
+    </div>
+    <p class="status" id="status" aria-live="polite">舒服地躺好，點一下就會自動聽完整篇故事。</p>
+  </section>
+</main>
+<script>
+const PROGRESS_KEY = 'apple-bedtime-progress-draft';
+const DIM_DELAY_MS = 20000;
+const night = document.getElementById('night');
+const statusText = document.getElementById('status');
+let story;
+let state = 'ready';
+let currentSection = 0;
+let completedSection = -1;
+let dimRemaining = DIM_DELAY_MS;
+let dimStartedAt = 0;
+let dimTimer;
+let controlsTimer;
+let speakTimer;
+let playbackId = 0;
+
+function setState(next) {
+  state = next;
+  night.classList.toggle('playing', next === 'playing');
+  night.classList.add('controls-visible');
+  document.getElementById('start').hidden = next !== 'ready';
+  document.getElementById('pause').hidden = next !== 'playing';
+  document.getElementById('resume').hidden = next !== 'paused' && next !== 'error';
+  document.getElementById('restart').hidden = next === 'ready';
+}
+
+function saveProgress() {
+  try {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify({ storyId:story.id, completedSection }));
+  } catch {}
+}
+
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PROGRESS_KEY));
+    if (saved && saved.storyId === story.id && Number.isInteger(saved.completedSection)) completedSection = saved.completedSection;
+  } catch {}
+  currentSection = completedSection >= 0 && completedSection < story.sections.length - 1
+    ? completedSection + 2
+    : 0;
+}
+
+function narration() {
+  return [
+    { id:'intro', text:story.intro },
+    ...story.sections,
+    { id:'wind-down-scene', text:story.wind_down.scene },
+    { id:'wind-down-breath', text:story.wind_down.breath },
+    { id:'wind-down-goodnight', text:story.wind_down.goodnight }
+  ];
+}
+
+function startDimTimer() {
+  clearTimeout(dimTimer);
+  dimStartedAt = Date.now();
+  dimTimer = setTimeout(() => {
+    night.classList.add('dimmed');
+    night.classList.remove('controls-visible');
+  }, dimRemaining);
+}
+
+function freezeDimTimer() {
+  clearTimeout(dimTimer);
+  if (!night.classList.contains('dimmed')) dimRemaining = Math.max(0, dimRemaining - (Date.now() - dimStartedAt));
+}
+
+function revealControls() {
+  night.classList.add('controls-visible');
+  clearTimeout(controlsTimer);
+  if (state === 'playing' && night.classList.contains('dimmed')) {
+    controlsTimer = setTimeout(() => night.classList.remove('controls-visible'), 5000);
+  }
+}
+
+function speakFrom(index, activePlaybackId) {
+  if (activePlaybackId !== playbackId || state !== 'playing') return;
+  const items = narration();
+  if (index >= items.length) {
+    completedSection = story.sections.length - 1;
+    saveProgress();
+    freezeDimTimer();
+    revealControls();
+    setState('ended');
+    statusText.textContent = '故事說完了。晚安。';
+    return;
+  }
+  currentSection = index;
+  const utterance = new SpeechSynthesisUtterance(items[index].text);
+  utterance.lang = 'zh-TW';
+  utterance.rate = 0.82;
+  utterance.pitch = 1.02;
+  utterance.onend = () => {
+    if (activePlaybackId !== playbackId || state !== 'playing') return;
+    if (index >= 1 && index <= story.sections.length) {
+      completedSection = index - 1;
+      saveProgress();
+    }
+    speakFrom(index + 1, activePlaybackId);
+  };
+  utterance.onerror = event => {
+    if (event.error === 'canceled' || activePlaybackId !== playbackId || state !== 'playing') return;
+    freezeDimTimer();
+    night.classList.remove('dimmed');
+    revealControls();
+    setState('error');
+    statusText.textContent = '故事停了一下。點「繼續」就能從這一段再聽。';
+  };
+  speechSynthesis.speak(utterance);
+}
+
+function begin(index) {
+  playbackId++;
+  clearTimeout(speakTimer);
+  speechSynthesis.cancel();
+  setState('playing');
+  statusText.textContent = '故事正在播放。';
+  startDimTimer();
+  const activePlaybackId = playbackId;
+  speakTimer = setTimeout(() => speakFrom(index, activePlaybackId), 80);
+}
+
+function pauseStory() {
+  playbackId++;
+  clearTimeout(speakTimer);
+  speechSynthesis.cancel();
+  freezeDimTimer();
+  revealControls();
+  setState('paused');
+  statusText.textContent = '故事暫停了。';
+}
+
+function resumeStory() {
+  begin(currentSection);
+}
+
+function restartStory() {
+  completedSection = -1;
+  currentSection = 0;
+  dimRemaining = DIM_DELAY_MS;
+  night.classList.remove('dimmed');
+  saveProgress();
+  begin(0);
+}
+
+fetch('stories/week02.json').then(response => {
+  if (!response.ok) throw new Error('story request failed');
+  return response.json();
+}).then(data => {
+  story = data;
+  document.getElementById('draftBanner').textContent =
+    `草稿試聽版・${story.review_status ?? '狀態未標示'}・${story.review_note ?? '尚未發布'}`;
+  document.getElementById('title').textContent = story.title;
+  const themeWord = document.getElementById('themeWord');
+  story.theme_word.forEach(item => {
+    const character = document.createElement('span');
+    const hanzi = document.createElement('span');
+    const zhuyin = document.createElement('span');
+    character.className = 'theme-character';
+    hanzi.className = 'theme-hanzi';
+    zhuyin.className = 'theme-zhuyin';
+    hanzi.textContent = item.char;
+    zhuyin.textContent = item.zhuyin;
+    character.append(hanzi, zhuyin);
+    themeWord.append(character);
+  });
+  loadProgress();
+  if (currentSection > 0) statusText.textContent = '上次聽到一半，點一下會從下一段繼續。';
+  document.getElementById('start').disabled = false;
+  setState('ready');
+}).catch(() => {
+  document.getElementById('draftBanner').textContent = '草稿試聽版・資料載入失敗';
+  statusText.textContent = '故事還沒準備好，請稍後重新整理。';
+  document.getElementById('start').disabled = true;
+  document.getElementById('controls').hidden = true;
+});
+
+document.getElementById('start').onclick = () => begin(currentSection);
+document.getElementById('pause').onclick = pauseStory;
+document.getElementById('resume').onclick = resumeStory;
+document.getElementById('restart').onclick = restartStory;
+document.getElementById('tapLayer').onclick = revealControls;
+document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'playing') pauseStory(); });
+window.addEventListener('beforeunload', () => {
+  clearTimeout(speakTimer);
+  speechSynthesis.cancel();
+});
+</script>
+</body>
+</html>

@@ -11,8 +11,34 @@
       "act": 1,
       "act_title": "河邊的新朋友",
       "lines": [
-        { "text": "小兔米米在河邊摺了一艘星光小船。", "zhuyin": "ㄒㄧㄠˇ ㄊㄨˋ ㄇㄧˇ ㄇㄧˇ ㄗㄞˋ ㄏㄜˊ ㄅㄧㄢ ㄓㄜˊ ㄌㄜ˙ ㄧˋ ㄙㄡ ㄒㄧㄥ ㄍㄨㄤ ㄒㄧㄠˇ ㄔㄨㄢˊ。" },
-        { "text": "小刺蝟阿栗遠遠看著，想靠近又有點害羞。", "zhuyin": "ㄒㄧㄠˇ ㄘˋ ㄨㄟˋ ㄚ ㄌㄧˋ ㄩㄢˇ ㄩㄢˇ ㄎㄢˋ ㄓㄜ˙，ㄒㄧㄤˇ ㄎㄠˋ ㄐㄧㄣˋ ㄧㄡˋ ㄧㄡˇ ㄉㄧㄢˇ ㄏㄞˋ ㄒㄧㄡ。" }
+        {
+          "text": "小兔米米在河邊摺了一艘星光小船。",
+          "segments": [
+            { "text": "小", "zhuyin": "ㄒㄧㄠˇ" }, { "text": "兔", "zhuyin": "ㄊㄨˋ" },
+            { "text": "米", "zhuyin": "ㄇㄧˇ" }, { "text": "米", "zhuyin": "ㄇㄧˇ" },
+            { "text": "在", "zhuyin": "ㄗㄞˋ" }, { "text": "河", "zhuyin": "ㄏㄜˊ" },
+            { "text": "邊", "zhuyin": "ㄅㄧㄢ" }, { "text": "摺", "zhuyin": "ㄓㄜˊ" },
+            { "text": "了", "zhuyin": "ㄌㄜ˙" }, { "text": "一", "zhuyin": "ㄧˋ" },
+            { "text": "艘", "zhuyin": "ㄙㄡ" }, { "text": "星", "zhuyin": "ㄒㄧㄥ" },
+            { "text": "光", "zhuyin": "ㄍㄨㄤ" }, { "text": "小", "zhuyin": "ㄒㄧㄠˇ" },
+            { "text": "船", "zhuyin": "ㄔㄨㄢˊ" }, { "text": "。", "zhuyin": "" }
+          ]
+        },
+        {
+          "text": "小刺蝟阿栗遠遠看著，想靠近又有點害羞。",
+          "segments": [
+            { "text": "小", "zhuyin": "ㄒㄧㄠˇ" }, { "text": "刺", "zhuyin": "ㄘˋ" },
+            { "text": "蝟", "zhuyin": "ㄨㄟˋ" }, { "text": "阿", "zhuyin": "ㄚ" },
+            { "text": "栗", "zhuyin": "ㄌㄧˋ" }, { "text": "遠", "zhuyin": "ㄩㄢˇ" },
+            { "text": "遠", "zhuyin": "ㄩㄢˇ" }, { "text": "看", "zhuyin": "ㄎㄢˋ" },
+            { "text": "著", "zhuyin": "ㄓㄜ˙" }, { "text": "，", "zhuyin": "" },
+            { "text": "想", "zhuyin": "ㄒㄧㄤˇ" }, { "text": "靠", "zhuyin": "ㄎㄠˋ" },
+            { "text": "近", "zhuyin": "ㄐㄧㄣˋ" }, { "text": "又", "zhuyin": "ㄧㄡˋ" },
+            { "text": "有", "zhuyin": "ㄧㄡˇ" }, { "text": "點", "zhuyin": "ㄉㄧㄢˇ" },
+            { "text": "害", "zhuyin": "ㄏㄞˋ" }, { "text": "羞", "zhuyin": "ㄒㄧㄡ" },
+            { "text": "。", "zhuyin": "" }
+          ]
+        }
       ],
       "target_word": "靠近",
       "word_connection": "靠近，是把距離變短，也可能是友情開始的第一步。",

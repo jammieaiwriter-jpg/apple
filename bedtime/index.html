@@ -24,8 +24,6 @@
     .bubble { margin:12px 0; padding:18px; border-radius:22px 22px 22px 7px; background:var(--card); box-shadow:0 8px 24px #0003; }
     .bubble.active { outline:2px solid var(--mint); }
     .text { font-size:clamp(22px,6vw,30px); line-height:1.65; }
-    .zhuyin { display:none; margin-top:8px; color:var(--soft); font-size:20px; line-height:1.8; letter-spacing:2px; }
-    body.show-zhuyin .zhuyin { display:block; }
     .actions,.choices { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
     .primary,.choice { border:0; border-radius:18px; padding:15px; color:#24213e; background:var(--gold); font-weight:700; }
     .secondary { border:1px solid #ffffff44; border-radius:18px; padding:14px; color:var(--ink); background:#ffffff12; }
@@ -47,7 +45,6 @@
   <div class="review-banner" id="reviewBanner">⚠️ 故事尚未通過成人審閱，請確認後將 review_status 改為 adult_verified</div>
   <header>
     <div><div class="eyebrow">今晚只聽一小幕</div><h1 id="title">星光故事</h1><div class="muted" id="subtitle"></div></div>
-    <button class="pill" id="zhuyinToggle">顯示注音</button>
   </header>
   <nav class="progress" id="progress" aria-label="故事進度"></nav>
   <section id="storyView">
@@ -82,6 +79,10 @@ function speak(text, element) {
   speechSynthesis.speak(utterance);
 }
 
+function renderLines(segments) {
+  return segments.map(segment => `<ruby>${segment.text}<rt>${segment.zhuyin}</rt></ruby>`).join('');
+}
+
 function rememberedHint(index) {
   if (index === 0) return '偷偷告訴妳：今晚由妳替主角決定故事方向。';
   const previous = story.acts[index - 1];
@@ -96,7 +97,7 @@ function renderAct(index) {
   document.getElementById('map').classList.remove('visible');
   document.getElementById('actTitle').textContent = `第 ${index + 1} 幕：${act.act_title}`;
   document.getElementById('memoryHint').textContent = rememberedHint(index);
-  document.getElementById('lines').innerHTML = act.lines.map(line => `<article class="bubble"><div class="text">${line.text}</div><div class="zhuyin">${line.zhuyin}</div></article>`).join('');
+  document.getElementById('lines').innerHTML = act.lines.map(line => `<article class="bubble"><div class="text">${line.segments ? renderLines(line.segments) : line.text}</div></article>`).join('');
   document.getElementById('word').textContent = act.target_word;
   document.getElementById('connection').textContent = act.word_connection;
   document.getElementById('question').textContent = act.prompt_question;
@@ -150,13 +151,9 @@ fetch(STORY_URL).then(response => {
   document.querySelector('main').innerHTML = '<p style="padding:24px">故事還沒準備好，請重新整理頁面。</p>';
 });
 
-document.getElementById('zhuyinToggle').onclick = event => {
-  document.body.classList.toggle('show-zhuyin');
-  event.target.textContent = document.body.classList.contains('show-zhuyin') ? '收起注音' : '顯示注音';
-};
 document.getElementById('listen').onclick = () => {
-  const bubbles = [...document.querySelectorAll('.bubble')]; let i = 0;
-  const next = () => { if (i >= bubbles.length) return; const bubble = bubbles[i++]; const utterance = new SpeechSynthesisUtterance(bubble.querySelector('.text').textContent); utterance.lang = 'zh-TW'; utterance.rate = 0.9; utterance.pitch = 1.2; utterance.onstart = () => bubble.classList.add('active'); utterance.onend = () => { bubble.classList.remove('active'); next(); }; speechSynthesis.speak(utterance); };
+  const bubbles = [...document.querySelectorAll('.bubble')]; const lines = story.acts[activeAct].lines; let i = 0;
+  const next = () => { if (i >= bubbles.length) return; const bubble = bubbles[i]; const utterance = new SpeechSynthesisUtterance(lines[i++].text); utterance.lang = 'zh-TW'; utterance.rate = 0.9; utterance.pitch = 1.2; utterance.onstart = () => bubble.classList.add('active'); utterance.onend = () => { bubble.classList.remove('active'); next(); }; speechSynthesis.speak(utterance); };
   speechSynthesis.cancel(); next();
 };
 document.getElementById('secret').onclick = () => {

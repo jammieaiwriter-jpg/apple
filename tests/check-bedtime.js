@@ -25,7 +25,15 @@ story.acts.forEach((act, index) => {
       throw new Error(`act ${index + 1} missing ${key}`);
     }
   });
-  if (!act.lines.every(line => line.text && line.zhuyin)) throw new Error(`act ${index + 1} lacks real zhuyin content`);
+  if (!act.lines.every(line => {
+    if (!line.text) return false;
+    if (!line.segments) return Boolean(line.zhuyin);
+    return line.segments.every(segment =>
+      [...segment.text].length === 1 &&
+      typeof segment.zhuyin === 'string' &&
+      (!/[，。！？、]/.test(segment.text) || segment.zhuyin === '')
+    );
+  })) throw new Error(`act ${index + 1} lacks real zhuyin content`);
   if (act.secret_hints.length !== 3) throw new Error(`act ${index + 1} needs three secret hints`);
   if (!['觀察', '方法', '關鍵'].every(label => act.secret_hints.some(hint => hint.startsWith(label)))) {
     throw new Error(`act ${index + 1} lacks observation-method-key hints`);
@@ -42,5 +50,11 @@ story.acts.forEach((act, index) => {
 });
 
 if (banned.test(html)) throw new Error('index.html contains test language');
+if (html.includes("bubble.querySelector('.text').textContent")) {
+  throw new Error('listen handler must not read ruby zhuyin from textContent');
+}
+if (!html.includes('const lines = story.acts[activeAct].lines;')) {
+  throw new Error('listen handler must read plain text from the active act');
+}
 
 console.log(JSON.stringify({ acts: story.acts.length, targetWords: story.acts.map(act => act.target_word) }, null, 2));

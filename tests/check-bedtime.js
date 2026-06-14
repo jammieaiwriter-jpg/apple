@@ -2,11 +2,17 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const story = JSON.parse(fs.readFileSync(path.join(root, 'bedtime/stories/week01.json'), 'utf8'));
+const storiesDir = path.join(root, 'bedtime/stories');
+const current = JSON.parse(fs.readFileSync(path.join(storiesDir, 'current.json'), 'utf8'));
+if (!current.story || !/^[a-z0-9-]+$/.test(current.story)) throw new Error('current story pointer invalid');
+const currentStoryPath = path.join(storiesDir, `${current.story}.json`);
+if (!fs.existsSync(currentStoryPath)) throw new Error(`current story ${current.story} does not exist`);
+const story = JSON.parse(fs.readFileSync(currentStoryPath, 'utf8'));
 const html = fs.readFileSync(path.join(root, 'bedtime/index.html'), 'utf8');
 const serialized = JSON.stringify(story);
 
-if (!['pending_adult_review', 'adult_verified'].includes(story.review_status)) throw new Error('invalid review status');
+if (story.id !== current.story) throw new Error('current story pointer must match story id');
+if (story.review_status !== 'adult_verified') throw new Error('current story must be adult_verified');
 if (!Array.isArray(story.theme_word) || !story.theme_word.length) throw new Error('theme_word missing');
 if (!story.theme_word.every(item => item.char && item.zhuyin)) throw new Error('each theme character needs zhuyin');
 if (!story.intro || !Array.isArray(story.sections) || story.sections.length < 5) throw new Error('story needs intro and at least five sections');
@@ -20,12 +26,23 @@ if (!story.wind_down || !['scene', 'breath', 'goodnight'].every(key => story.win
   .forEach(token => { if (html.includes(token)) throw new Error(`index.html contains legacy interaction ${token}`); });
 
 [
-  'speechSynthesis', 'zh-TW', 'localStorage', 'apple-bedtime-progress',
+  "stories/current.json", 'current.story',
+  'speechSynthesis', 'zh-TW', 'localStorage', 'apple-bedtime-progress-v1',
+  'apple-bedtime-last-played-v1', 'date: todayKey()', 'storyTitle: story.title',
+  '今晚已聽完：', '昨晚已聽：',
   'theme-character', 'theme-zhuyin', 'dimmed', 'DIM_DELAY_MS',
   '開始今晚的故事', '暫停', '繼續', '重新播放',
   "setState('playing')", "setState('paused')", "setState('ended')", "setState('error')",
   'completedSection', 'revealControls'
 ].forEach(token => { if (!html.includes(token)) throw new Error(`index.html missing ${token}`); });
+
+if (!html.includes('saved.date === todayKey()')) {
+  throw new Error('progress must only resume on the same local date');
+}
+if (!html.includes('completed.date === yesterdayKey()')) {
+  throw new Error('completion status must distinguish yesterday');
+}
+if (html.includes('重聽昨晚')) throw new Error('replay-yesterday control belongs to catalog phase');
 
 if (html.includes('<ruby>')) throw new Error('use flex-based right-side zhuyin, not ruby');
 if (html.includes('story.sections') && html.includes('textContent = section.text')) throw new Error('night screen must not display story body');

@@ -47,8 +47,9 @@
   </section>
 </main>
 <script>
-const STORY_URL = 'stories/week01.json';
-const PROGRESS_KEY = 'apple-bedtime-progress';
+const CURRENT_STORY_URL = 'stories/current.json';
+const PROGRESS_KEY = 'apple-bedtime-progress-v1';
+const LAST_PLAYED_KEY = 'apple-bedtime-last-played-v1';
 const DIM_DELAY_MS = 20000;
 const night = document.getElementById('night');
 const statusText = document.getElementById('status');
@@ -75,18 +76,57 @@ function setState(next) {
 
 function saveProgress() {
   try {
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify({ storyId:story.id, completedSection }));
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify({ date: todayKey(), storyId:story.id, completedSection }));
   } catch {}
 }
 
 function loadProgress() {
   try {
     const saved = JSON.parse(localStorage.getItem(PROGRESS_KEY));
-    if (saved && saved.storyId === story.id && Number.isInteger(saved.completedSection)) completedSection = saved.completedSection;
+    if (saved && saved.date === todayKey() && saved.storyId === story.id && Number.isInteger(saved.completedSection)) {
+      completedSection = saved.completedSection;
+    }
   } catch {}
   currentSection = completedSection >= 0 && completedSection < story.sections.length - 1
     ? completedSection + 2
     : 0;
+}
+
+function dateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function todayKey() {
+  return dateKey(new Date());
+}
+
+function yesterdayKey() {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  return dateKey(yesterday);
+}
+
+function saveCompletion() {
+  try {
+    localStorage.setItem(LAST_PLAYED_KEY, JSON.stringify({
+      date: todayKey(),
+      storyId: story.id,
+      storyTitle: story.title
+    }));
+  } catch {}
+}
+
+function completionStatus() {
+  try {
+    const completed = JSON.parse(localStorage.getItem(LAST_PLAYED_KEY));
+    if (!completed || completed.storyId !== story.id) return '';
+    if (completed.date === todayKey()) return `今晚已聽完：${completed.storyTitle} ✓`;
+    if (completed.date === yesterdayKey()) return `昨晚已聽：${completed.storyTitle} ✓`;
+  } catch {}
+  return '';
 }
 
 function narration() {
@@ -127,10 +167,11 @@ function speakFrom(index, activePlaybackId) {
   if (index >= items.length) {
     completedSection = story.sections.length - 1;
     saveProgress();
+    saveCompletion();
     freezeDimTimer();
     revealControls();
     setState('ended');
-    statusText.textContent = '故事說完了。晚安。';
+    statusText.textContent = `今晚已聽完：${story.title} ✓ 晚安。`;
     return;
   }
   currentSection = index;
@@ -191,7 +232,13 @@ function restartStory() {
   begin(0);
 }
 
-fetch(STORY_URL).then(response => {
+fetch(CURRENT_STORY_URL).then(response => {
+  if (!response.ok) throw new Error('current story request failed');
+  return response.json();
+}).then(current => {
+  if (!current.story || !/^[a-z0-9-]+$/.test(current.story)) throw new Error('current story pointer invalid');
+  return fetch(`stories/${current.story}.json`);
+}).then(response => {
   if (!response.ok) throw new Error('story request failed');
   return response.json();
 }).then(data => {
@@ -211,7 +258,9 @@ fetch(STORY_URL).then(response => {
     themeWord.append(character);
   });
   loadProgress();
-  if (currentSection > 0) statusText.textContent = '上次聽到一半，點一下會從下一段繼續。';
+  const completedStatus = completionStatus();
+  if (completedStatus) statusText.textContent = completedStatus;
+  else if (currentSection > 0) statusText.textContent = '今晚聽到一半，點一下會從下一段繼續。';
   setState('ready');
 }).catch(() => {
   statusText.textContent = '故事還沒準備好，請稍後重新整理。';

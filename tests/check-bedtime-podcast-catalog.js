@@ -48,7 +48,9 @@ catalog.episodes.forEach((episode, index) => {
   'begin(0)',
   'splitZhuyin',
   'episode-pronunciation',
-  'theme-tone'
+  'theme-tone',
+  'fetchJson',
+  "cache:'no-store'"
 ].forEach(token => {
   if (!html.includes(token)) throw new Error(`podcast homepage missing ${token}`);
 });

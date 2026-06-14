@@ -179,6 +179,13 @@ function episodeStatus(episode) {
   return '規劃中';
 }
 
+function fetchJson(url) {
+  return fetch(url, { cache:'no-store' }).then(response => {
+    if (!response.ok) throw new Error(`request failed: ${url}`);
+    return response.json();
+  });
+}
+
 function splitZhuyin(zhuyin) {
   const tone = zhuyin.match(/[ˊˇˋ˙]/)?.[0] || '';
   return { symbols: [...zhuyin.replace(/[ˊˇˋ˙]/g, '')], tone };
@@ -276,10 +283,7 @@ function selectEpisode(episode) {
 
 function preloadAvailableStories() {
   return Promise.all(catalog.episodes.filter(episode => episode.available).map(episode =>
-    fetch(`stories/${episode.id}.json`).then(response => {
-      if (!response.ok) throw new Error(`story request failed: ${episode.id}`);
-      return response.json();
-    }).then(data => {
+    fetchJson(`stories/${episode.id}.json`).then(data => {
       storyCache[episode.id] = data;
     })
   ));
@@ -402,10 +406,7 @@ function restartStory() {
   begin(0);
 }
 
-Promise.all([fetch(CURRENT_STORY_URL), fetch(CATALOG_URL)]).then(async responses => {
-  if (!responses.every(response => response.ok)) throw new Error('story index request failed');
-  return Promise.all(responses.map(response => response.json()));
-}).then(([current, loadedCatalog]) => {
+Promise.all([fetchJson(CURRENT_STORY_URL), fetchJson(CATALOG_URL)]).then(([current, loadedCatalog]) => {
   catalog = loadedCatalog;
   if (!current.story || !/^[a-z0-9-]+$/.test(current.story)) throw new Error('current story pointer invalid');
   currentStoryId = current.story;

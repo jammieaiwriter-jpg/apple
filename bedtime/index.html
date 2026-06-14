@@ -7,11 +7,11 @@
   <style>
     :root { color-scheme:dark; --ink:#fff7dc; --soft:#cac5df; --gold:#ffd77a; }
     * { box-sizing:border-box; }
-    body { margin:0; min-height:100svh; overflow:hidden; font-family:"PingFang TC","Noto Sans TC",sans-serif; color:var(--ink); background:#17162d; }
-    .night { min-height:100svh; display:grid; place-items:center; padding:calc(24px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom)); text-align:center; background:radial-gradient(circle at 50% 15%,#514a8a,#242142 55%,#17162d); transition:filter 8s ease,background 8s ease; }
+    body { margin:0; min-height:100svh; font-family:"PingFang TC","Noto Sans TC",sans-serif; color:var(--ink); background:#17162d; }
+    .night { min-height:100svh; display:grid; place-items:center; padding:calc(24px + env(safe-area-inset-top)) 20px calc(32px + env(safe-area-inset-bottom)); text-align:center; background:radial-gradient(circle at 50% 15%,#514a8a,#242142 55%,#17162d); transition:filter 8s ease,background 8s ease; }
     .night::after { content:""; position:fixed; inset:0; pointer-events:none; background:#05050b; opacity:0; transition:opacity 8s ease; }
     .night.dimmed::after { opacity:.88; }
-    .content { position:relative; z-index:1; width:min(560px,100%); transition:opacity 5s ease; }
+    .content { position:relative; z-index:1; width:min(620px,100%); transition:opacity 5s ease; }
     .dimmed .content { opacity:.16; }
     .eyebrow,.status { color:var(--soft); }
     h1 { margin:10px 0 34px; font-size:clamp(30px,9vw,48px); }
@@ -28,6 +28,19 @@
     .tap-layer { position:fixed; inset:0; z-index:2; display:none; border:0; background:transparent; }
     .dimmed .tap-layer { display:block; }
     .controls-visible .tap-layer { display:none; }
+    .podcast { margin-top:52px; padding-top:28px; border-top:1px solid #ffffff24; text-align:left; }
+    .podcast h2 { margin:0 0 6px; font-size:24px; }
+    .podcast-intro { margin:0 0 18px; color:var(--soft); line-height:1.5; }
+    .podcast-list { display:grid; gap:10px; }
+    .episode { width:100%; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px; min-height:72px; padding:12px 14px; border:1px solid #ffffff25; border-radius:18px; color:var(--ink); background:#ffffff0d; text-align:left; }
+    .episode:disabled { cursor:default; opacity:.5; }
+    .episode.active { border-color:var(--gold); background:#ffd77a18; }
+    .episode-week { color:var(--gold); font-size:13px; font-weight:700; }
+    .episode-title { display:block; margin-bottom:4px; font-size:17px; font-weight:700; }
+    .episode-theme { color:var(--soft); font-size:13px; }
+    .episode-status { padding:5px 8px; border-radius:999px; color:var(--soft); background:#ffffff12; font-size:12px; white-space:nowrap; }
+    .episode.active .episode-status { color:#24213e; background:var(--gold); }
+    .playing .podcast { display:none; }
   </style>
 </head>
 <body>
@@ -44,10 +57,16 @@
       <button class="secondary" id="restart">重新播放</button>
     </div>
     <p class="status" id="status" aria-live="polite">舒服地躺好，點一下就會自動聽完整篇故事。</p>
+    <section class="podcast" aria-labelledby="podcastTitle">
+      <h2 id="podcastTitle">第一季故事</h2>
+      <p class="podcast-intro">今晚主打與森林裡即將登場的十二道星光。</p>
+      <div class="podcast-list" id="podcastList"></div>
+    </section>
   </section>
 </main>
 <script>
 const CURRENT_STORY_URL = 'stories/current.json';
+const CATALOG_URL = 'stories/catalog.json';
 const PROGRESS_KEY = 'apple-bedtime-progress-v1';
 const LAST_PLAYED_KEY = 'apple-bedtime-last-played-v1';
 const DIM_DELAY_MS = 20000;
@@ -57,6 +76,8 @@ const WIND_DOWN_PAUSE_MS = 3000;
 const night = document.getElementById('night');
 const statusText = document.getElementById('status');
 let story;
+let currentStoryId;
+let catalog;
 let state = 'ready';
 let currentSection = 0;
 let completedSection = -1;
@@ -142,6 +163,88 @@ function narration() {
     { id:'wind-down-breath', text:story.wind_down.breath },
     { id:'wind-down-goodnight', text:story.wind_down.goodnight }
   ];
+}
+
+function episodeStatus(episode) {
+  if (episode.id === currentStoryId) return '今晚播放';
+  if (episode.status === 'pending_adult_review') return '草稿試聽';
+  if (episode.status === 'adult_verified') return '已審閱';
+  return '規劃中';
+}
+
+function renderPodcastList() {
+  const podcastList = document.getElementById('podcastList');
+  podcastList.replaceChildren();
+  catalog.episodes.forEach(episode => {
+    const button = document.createElement('button');
+    const label = document.createElement('span');
+    const details = document.createElement('span');
+    const title = document.createElement('span');
+    const theme = document.createElement('span');
+    const episodeState = document.createElement('span');
+    button.className = `episode${episode.id === story.id ? ' active' : ''}`;
+    button.disabled = !episode.available;
+    button.setAttribute('aria-label', `${episode.week} ${episode.title}，${episodeStatus(episode)}`);
+    label.className = 'episode-week';
+    details.className = 'episode-details';
+    title.className = 'episode-title';
+    theme.className = 'episode-theme';
+    episodeState.className = 'episode-status';
+    label.textContent = episode.week;
+    title.textContent = episode.title;
+    theme.textContent = `核心詞：${episode.theme}`;
+    episodeState.textContent = episodeStatus(episode);
+    details.append(title, theme);
+    button.append(label, details, episodeState);
+    if (episode.available) button.onclick = () => selectEpisode(episode);
+    podcastList.append(button);
+  });
+}
+
+function showStory(selectedStory, message, resetProgress = true) {
+  playbackId++;
+  clearTimeout(speakTimer);
+  clearTimeout(pauseTimer);
+  speechSynthesis.cancel();
+  story = selectedStory;
+  if (resetProgress) {
+    completedSection = -1;
+    currentSection = 0;
+  }
+  dimRemaining = DIM_DELAY_MS;
+  night.classList.remove('dimmed');
+  document.getElementById('title').textContent = story.title;
+  const themeWord = document.getElementById('themeWord');
+  themeWord.replaceChildren();
+  story.theme_word.forEach(item => {
+    const character = document.createElement('span');
+    const hanzi = document.createElement('span');
+    const zhuyin = document.createElement('span');
+    character.className = 'theme-character';
+    hanzi.className = 'theme-hanzi';
+    zhuyin.className = 'theme-zhuyin';
+    hanzi.textContent = item.char;
+    zhuyin.textContent = item.zhuyin;
+    character.append(hanzi, zhuyin);
+    themeWord.append(character);
+  });
+  statusText.textContent = message;
+  setState('ready');
+  renderPodcastList();
+}
+
+function selectEpisode(episode) {
+  fetch(`stories/${episode.id}.json`).then(response => {
+    if (!response.ok) throw new Error('episode request failed');
+    return response.json();
+  }).then(data => {
+    const message = episode.status === 'pending_adult_review'
+      ? `草稿試聽：${episode.title}。播放後歡迎回饋。`
+      : `已選擇：${episode.title}。`;
+    showStory(data, message);
+  }).catch(() => {
+    statusText.textContent = '這一集暫時無法載入，請稍後再試。';
+  });
 }
 
 function refreshPreferredVoice() {
@@ -261,36 +364,25 @@ function restartStory() {
   begin(0);
 }
 
-fetch(CURRENT_STORY_URL).then(response => {
-  if (!response.ok) throw new Error('current story request failed');
-  return response.json();
-}).then(current => {
+Promise.all([fetch(CURRENT_STORY_URL), fetch(CATALOG_URL)]).then(async responses => {
+  if (!responses.every(response => response.ok)) throw new Error('story index request failed');
+  return Promise.all(responses.map(response => response.json()));
+}).then(([current, loadedCatalog]) => {
+  catalog = loadedCatalog;
   if (!current.story || !/^[a-z0-9-]+$/.test(current.story)) throw new Error('current story pointer invalid');
+  currentStoryId = current.story;
   return fetch(`stories/${current.story}.json`);
 }).then(response => {
   if (!response.ok) throw new Error('story request failed');
   return response.json();
 }).then(data => {
   story = data;
-  document.getElementById('title').textContent = story.title;
-  const themeWord = document.getElementById('themeWord');
-  story.theme_word.forEach(item => {
-    const character = document.createElement('span');
-    const hanzi = document.createElement('span');
-    const zhuyin = document.createElement('span');
-    character.className = 'theme-character';
-    hanzi.className = 'theme-hanzi';
-    zhuyin.className = 'theme-zhuyin';
-    hanzi.textContent = item.char;
-    zhuyin.textContent = item.zhuyin;
-    character.append(hanzi, zhuyin);
-    themeWord.append(character);
-  });
   loadProgress();
   const completedStatus = completionStatus();
-  if (completedStatus) statusText.textContent = completedStatus;
-  else if (currentSection > 0) statusText.textContent = '今晚聽到一半，點一下會從下一段繼續。';
-  setState('ready');
+  const message = completedStatus || (currentSection > 0
+    ? '今晚聽到一半，點一下會從下一段繼續。'
+    : '舒服地躺好，點一下就會自動聽完整篇故事。');
+  showStory(data, message, false);
 }).catch(() => {
   statusText.textContent = '故事還沒準備好，請稍後重新整理。';
   document.getElementById('start').disabled = true;

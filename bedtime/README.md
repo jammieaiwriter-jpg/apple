@@ -5,15 +5,21 @@
 ## 夜間體驗
 
 - 開場只顯示故事標題與核心詞，每個國字右側以 flex 容器顯示直式注音。
+- 首頁下方提供 Podcast 式第一季故事選單；今晚故事、草稿試聽與規劃中集數有清楚狀態。
 - 播放約 20 秒後畫面逐漸變暗；點暗幕可短暫顯示控制。
 - 控制只包含開始、暫停、繼續與重新播放。
+- 朗讀優先選擇 `zh-TW` 系統語音，故事段落後留白 1.8 秒、進入收心前留白 2.5 秒、收心段之間留白 3 秒。
 - 暫停或語音錯誤時會取消當前朗讀；繼續後從該段開頭重播。
 - `localStorage` 保存最後完成段落，重新開頁可從下一段繼續。
 - 夜間不顯示故事全文，也沒有問題、選項、提示、跟讀或評量。
 
 ## 故事資料
 
-`stories/week01.json` 使用根層 `theme_word`、`intro`、`sections` 與 `wind_down`。故事本文是供 TTS 使用的純文字；僅核心詞保存字符級注音。每篇故事發布前須由成人審閱並標記 `adult_verified`。
+`stories/week01.json` 使用根層 `theme_word`、`intro`、`sections` 與 `wind_down`。故事本文是供 TTS 使用的純文字；僅核心詞保存字符級注音。六段正文合計至少 2,000 字，目標為 2,100–2,400 字。每篇故事發布前須由成人完整試聽並標記 `adult_verified`。
+
+`stories/catalog.json` 保存十二週 Podcast 選單與完成狀態；`stories/current.json` 只控制今晚正式故事。
+
+使用已安裝的 `$bedtime-story-publisher` Skill，可依同一流程完成故事創作、字數檢查、試聽、成人審閱、今晚切換與上線。
 
 ## 首版限制
 
@@ -23,3 +29,5 @@
 執行 `node tests/check-bedtime.js` 驗證資料契約與夜間頁面禁用舊互動。
 
 執行 `node tests/check-bedtime-season.js` 驗證 W08 壓力測試與第一季計畫：六段結構、單一核心詞、嵌入式人物故事、行動式週末問題及 12 週六欄完整性。角色是否以行動呈現核心詞仍須成人人工驗收。
+
+執行 `node tests/check-bedtime-podcast-catalog.js` 驗證十二週 Podcast 選單、可播放故事檔與狀態。

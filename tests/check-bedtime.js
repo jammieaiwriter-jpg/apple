@@ -17,6 +17,7 @@ if (!Array.isArray(story.theme_word) || !story.theme_word.length) throw new Erro
 if (!story.theme_word.every(item => item.char && item.zhuyin)) throw new Error('each theme character needs zhuyin');
 if (!story.intro || !Array.isArray(story.sections) || story.sections.length < 5) throw new Error('story needs intro and at least five sections');
 if (!story.sections.every(section => section.id && section.text && typeof section.text === 'string')) throw new Error('sections need id and plain text');
+if (story.sections.map(section => section.text).join('').length < 2000) throw new Error('current story正文 must be at least 2000 characters');
 if (!story.wind_down || !['scene', 'breath', 'goodnight'].every(key => story.wind_down[key])) throw new Error('wind_down incomplete');
 
 ['acts', 'choice_A', 'choice_B', 'prompt_question', 'secret_hints', 'word_connection', 'next_hint_A', 'next_hint_B', 'segments']

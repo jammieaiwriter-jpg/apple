@@ -5,13 +5,16 @@ const root = path.resolve(__dirname, '..');
 const storiesDir = path.join(root, 'bedtime/stories');
 const week08Path = path.join(storiesDir, 'week08.json');
 const planPath = path.join(storiesDir, 'season01-plan.md');
+const progressPath = path.join(storiesDir, 'season01-progress.md');
 
 if (!fs.existsSync(week08Path)) throw new Error('week08 story missing');
 if (!fs.existsSync(planPath)) throw new Error('season01 plan missing');
+if (!fs.existsSync(progressPath)) throw new Error('season01 progress missing');
 
 const story = JSON.parse(fs.readFileSync(week08Path, 'utf8'));
 const serialized = JSON.stringify(story);
 const plan = fs.readFileSync(planPath, 'utf8');
+const progress = fs.readFileSync(progressPath, 'utf8');
 
 if (story.schema_version !== 2 || story.id !== 'week08') throw new Error('week08 identity invalid');
 if (!Array.isArray(story.sections) || story.sections.length !== 6) throw new Error('week08 must keep six sections');
@@ -39,6 +42,10 @@ if (!story.weekend_prompts.every(prompt => !prompt.includes('什麼是道歉') &
 for (let week = 1; week <= 12; week += 1) {
   const label = `W${String(week).padStart(2, '0')}`;
   if (!plan.includes(label)) throw new Error(`season plan missing ${label}`);
+}
+
+if (!progress.includes('每批最多') || !progress.includes('W02〈月光果醬〉')) {
+  throw new Error('season progress must limit batch size and identify the next work unit');
 }
 
 console.log(JSON.stringify({ sections: story.sections.length, theme: '道歉', plannedWeeks: 12 }, null, 2));

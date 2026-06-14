@@ -70,6 +70,20 @@ const load = (key, fallback) => { try { return JSON.parse(localStorage.getItem(k
 const save = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 let story, activeAct = 0, hintLevel = 0;
 
+function speakSequence(texts) {
+  speechSynthesis.cancel();
+  let i = 0;
+  function next() {
+    if (i >= texts.length) return;
+    const u = new SpeechSynthesisUtterance(texts[i++]);
+    u.lang = 'zh-TW'; u.rate = 0.85; u.pitch = 1.1;
+    u.onend = next;
+    u.onerror = next;
+    speechSynthesis.speak(u);
+  }
+  next();
+}
+
 function speak(text, element) {
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
@@ -105,20 +119,35 @@ function renderAct(index) {
   document.getElementById('choiceA').textContent = act.choice_A;
   document.getElementById('choiceB').textContent = act.choice_B;
   document.getElementById('secretPanel').innerHTML = '';
-  document.getElementById('closing').textContent = load(KEYS.completed, []).includes(act.id) ? '故事記得妳的決定了。明晚會從新的一幕開始。' : '';
+  const isCompleted = load(KEYS.completed, []).includes(act.id);
+  document.getElementById('closing').textContent = isCompleted ? '故事記得妳的決定了。明晚會從新的一幕開始。' : '';
+  document.getElementById('choiceA').disabled = isCompleted;
+  document.getElementById('choiceB').disabled = isCompleted;
   renderProgress();
 }
 
 function choose(choice) {
   const act = story.acts[activeAct];
+  if (load(KEYS.completed, []).includes(act.id)) return;
   const choices = load(KEYS.choices, {}); choices[act.id] = choice; save(KEYS.choices, choices);
   const vocabulary = load(KEYS.vocabulary, {});
   vocabulary[act.target_word] = { story:story.title, act:act.act_title, connection:act.word_connection, lastSeen:new Date().toISOString() };
   save(KEYS.vocabulary, vocabulary);
   const completed = new Set(load(KEYS.completed, [])); completed.add(act.id); save(KEYS.completed, [...completed]);
   document.getElementById('closing').textContent = '故事記得妳的決定了。明晚會從新的一幕開始。';
-  speak('這個決定很有意思。故事記住了。', document.getElementById('closing'));
+  document.getElementById('choiceA').disabled = true;
+  document.getElementById('choiceB').disabled = true;
   renderProgress();
+  const wd = act.wind_down;
+  if (wd) {
+    speakSequence([
+      wd.warm_scene,
+      wd.breath, wd.breath, wd.breath,
+      wd.goodnight
+    ].filter(Boolean));
+  } else {
+    speak('這個決定很有意思。故事記住了。', document.getElementById('closing'));
+  }
 }
 
 function renderProgress() {

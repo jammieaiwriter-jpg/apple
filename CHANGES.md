@@ -1,3 +1,8 @@
+## [2026-06-14] 修正睡前故事 iPhone 顯示與審閱提醒
+- 為頁面底部加入 iOS safe area 間距，避免操作區被 Home Indicator 擋住。
+- 將注音字級由 17px 提升至 20px，改善手機閱讀性。
+- 當故事仍為 `pending_adult_review` 時，在頁面頂部顯示黃色開發審閱警示。
+
 依審查修正：釐清 bedtime README 路徑、補上故事載入失敗提示，並新增 retell localStorage 鍵契約測試。
 
 ## [2026-06-14] 完成 Apple 睡前故事第一版

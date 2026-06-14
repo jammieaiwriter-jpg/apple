@@ -9,7 +9,9 @@
     * { box-sizing:border-box; }
     body { margin:0; min-height:100vh; font-family:"PingFang TC","Noto Sans TC",sans-serif; color:var(--ink); background:radial-gradient(circle at top,#403b78,#17162d 65%); }
     button { font:inherit; }
-    main { width:min(680px,100%); margin:auto; padding:24px 18px 72px; }
+    main { width:min(680px,100%); margin:auto; padding:24px 18px calc(72px + env(safe-area-inset-bottom)); }
+    .review-banner { display:none; margin-bottom:16px; padding:12px 15px; border:1px solid #ffd24d; border-radius:14px; background:#fff3b0; color:#4d3b00; font-weight:700; line-height:1.5; }
+    .review-banner.visible { display:block; }
     header { display:flex; justify-content:space-between; align-items:start; gap:12px; }
     h1 { margin:0 0 4px; font-size:clamp(26px,7vw,38px); }
     .eyebrow,.muted { color:var(--soft); font-size:14px; }
@@ -22,7 +24,7 @@
     .bubble { margin:12px 0; padding:18px; border-radius:22px 22px 22px 7px; background:var(--card); box-shadow:0 8px 24px #0003; }
     .bubble.active { outline:2px solid var(--mint); }
     .text { font-size:clamp(22px,6vw,30px); line-height:1.65; }
-    .zhuyin { display:none; margin-top:8px; color:var(--soft); font-size:17px; line-height:1.8; letter-spacing:2px; }
+    .zhuyin { display:none; margin-top:8px; color:var(--soft); font-size:20px; line-height:1.8; letter-spacing:2px; }
     body.show-zhuyin .zhuyin { display:block; }
     .actions,.choices { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
     .primary,.choice { border:0; border-radius:18px; padding:15px; color:#24213e; background:var(--gold); font-weight:700; }
@@ -42,6 +44,7 @@
 </head>
 <body>
 <main>
+  <div class="review-banner" id="reviewBanner">⚠️ 故事尚未通過成人審閱，請確認後將 review_status 改為 adult_verified</div>
   <header>
     <div><div class="eyebrow">今晚只聽一小幕</div><h1 id="title">星光故事</h1><div class="muted" id="subtitle"></div></div>
     <button class="pill" id="zhuyinToggle">顯示注音</button>
@@ -135,6 +138,7 @@ fetch(STORY_URL).then(response => {
   return response.json();
 }).then(data => {
   story = data;
+  document.getElementById('reviewBanner').classList.toggle('visible', story.review_status === 'pending_adult_review');
   document.getElementById('title').textContent = story.title;
   document.getElementById('subtitle').textContent = `本週主題：${story.theme}`;
   const completed = load(KEYS.completed, []);

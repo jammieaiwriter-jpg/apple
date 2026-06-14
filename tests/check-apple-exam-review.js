@@ -5,6 +5,8 @@ const vm = require('vm');
 const root = path.resolve(__dirname, '..');
 const indexHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const reviewPath = path.join(root, 'exam-review.html');
+const answerReviewHtml = fs.readFileSync(path.join(root, 'answer-review.html'), 'utf8');
+const pendingReviewHtml = fs.readFileSync(path.join(root, 'answer-review-pending.html'), 'utf8');
 
 function extractArray(html, name) {
   const token = `const ${name} = [`;
@@ -49,6 +51,9 @@ if (!reviewHtml.includes('renderStepAnswer')) throw new Error('step answer UI mi
 if (!reviewHtml.includes('左') || !reviewHtml.includes('中') || !reviewHtml.includes('右')) throw new Error('direction controls missing');
 if (!/const DEFAULT_UNIT_ORDER = \['space', 'jump', 'clock'\]/.test(indexHtml)) throw new Error('focused 3-unit order missing');
 if (!indexHtml.includes('roundState.unitQueue = (roundState.unitQueue || []).filter(id => queueOrder.includes(id));')) throw new Error('old unit queue is not filtered to focused units');
+if (!answerReviewHtml.includes('function loadAnswers()') || !pendingReviewHtml.includes('function loadAnswers()')) {
+  throw new Error('answer review drafts need corrupt localStorage fallback');
+}
 
 console.log(JSON.stringify({
   verified: verified.length,

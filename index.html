@@ -1626,7 +1626,7 @@
     function resetData() { 
         if(confirm("確定要清除 Apple 的紀錄嗎？")) { 
             try {
-                localStorage.clear(); 
+                localStorage.removeItem('apple_math_round');
             } catch (e) {}
             location.reload(); 
         } 

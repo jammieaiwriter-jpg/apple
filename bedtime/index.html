@@ -5,191 +5,229 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Apple 的星光故事</title>
   <style>
-    :root { color-scheme: dark; --ink:#fff7dc; --soft:#c9c5de; --card:#29284a; --gold:#ffd77a; --mint:#9fe3ce; }
+    :root { color-scheme:dark; --ink:#fff7dc; --soft:#cac5df; --gold:#ffd77a; }
     * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; font-family:"PingFang TC","Noto Sans TC",sans-serif; color:var(--ink); background:radial-gradient(circle at top,#403b78,#17162d 65%); }
-    button { font:inherit; }
-    main { width:min(680px,100%); margin:auto; padding:24px 18px calc(72px + env(safe-area-inset-bottom)); }
-    .review-banner { display:none; margin-bottom:16px; padding:12px 15px; border:1px solid #ffd24d; border-radius:14px; background:#fff3b0; color:#4d3b00; font-weight:700; line-height:1.5; }
-    .review-banner.visible { display:block; }
-    header { display:flex; justify-content:space-between; align-items:start; gap:12px; }
-    h1 { margin:0 0 4px; font-size:clamp(26px,7vw,38px); }
-    .eyebrow,.muted { color:var(--soft); font-size:14px; }
-    .pill { border:1px solid #ffffff33; border-radius:999px; padding:8px 12px; background:#ffffff12; color:var(--ink); }
-    .progress { display:flex; gap:7px; margin:22px 0; }
-    .progress button { flex:1; min-height:40px; border:0; border-radius:14px; background:#ffffff18; color:var(--soft); }
-    .progress button.done { background:#426f68; color:white; }
-    .progress button.active { outline:2px solid var(--gold); color:white; }
-    .hint { padding:12px 15px; border-radius:16px; background:#fff1b71a; border:1px solid #ffd77a55; color:#ffe8ab; margin-bottom:14px; }
-    .bubble { margin:12px 0; padding:18px; border-radius:22px 22px 22px 7px; background:var(--card); box-shadow:0 8px 24px #0003; }
-    .bubble.active { outline:2px solid var(--mint); }
-    .text { font-size:clamp(22px,6vw,30px); line-height:1.65; }
-    .actions,.choices { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
-    .primary,.choice { border:0; border-radius:18px; padding:15px; color:#24213e; background:var(--gold); font-weight:700; }
-    .secondary { border:1px solid #ffffff44; border-radius:18px; padding:14px; color:var(--ink); background:#ffffff12; }
-    .word { margin-top:20px; padding:18px; border-radius:20px; background:#24544c; }
-    .word strong { color:#c9ffed; font-size:26px; }
-    .question { margin-top:20px; font-size:20px; line-height:1.5; }
-    .choice { text-align:left; background:#d8d1ff; min-height:68px; }
-    .secret-panel { margin-top:14px; }
-    .secret-panel p { padding:12px; border-left:3px solid var(--gold); background:#ffffff0d; }
-    .closing { margin-top:20px; text-align:center; color:#c9ffed; font-size:20px; }
-    .map { display:none; }
-    .map.visible { display:block; }
-    .map-card { padding:14px; margin:10px 0; border-radius:16px; background:var(--card); }
-    .map-card select { width:100%; margin-top:8px; padding:10px; border-radius:10px; font-size:16px; }
+    body { margin:0; min-height:100svh; overflow:hidden; font-family:"PingFang TC","Noto Sans TC",sans-serif; color:var(--ink); background:#17162d; }
+    .night { min-height:100svh; display:grid; place-items:center; padding:calc(24px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom)); text-align:center; background:radial-gradient(circle at 50% 15%,#514a8a,#242142 55%,#17162d); transition:filter 8s ease,background 8s ease; }
+    .night::after { content:""; position:fixed; inset:0; pointer-events:none; background:#05050b; opacity:0; transition:opacity 8s ease; }
+    .night.dimmed::after { opacity:.88; }
+    .content { position:relative; z-index:1; width:min(560px,100%); transition:opacity 5s ease; }
+    .dimmed .content { opacity:.16; }
+    .eyebrow,.status { color:var(--soft); }
+    h1 { margin:10px 0 34px; font-size:clamp(30px,9vw,48px); }
+    .theme-word { display:flex; justify-content:center; gap:22px; margin:0 auto 48px; }
+    .theme-character { display:flex; align-items:center; gap:8px; }
+    .theme-hanzi { font-size:clamp(76px,24vw,120px); line-height:1; }
+    .theme-zhuyin { writing-mode:vertical-rl; text-orientation:upright; letter-spacing:2px; font-size:clamp(17px,5vw,25px); color:var(--gold); }
+    button { min-height:52px; border-radius:18px; padding:13px 20px; font:700 18px inherit; cursor:pointer; }
+    .primary { border:0; color:#24213e; background:var(--gold); }
+    .secondary { border:1px solid #ffffff44; color:var(--ink); background:#ffffff14; }
+    .controls { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:18px; transition:opacity .4s ease; }
+    .playing:not(.controls-visible) .controls { opacity:0; pointer-events:none; }
+    .status { min-height:48px; margin-top:22px; line-height:1.5; }
+    .tap-layer { position:fixed; inset:0; z-index:2; display:none; border:0; background:transparent; }
+    .dimmed .tap-layer { display:block; }
+    .controls-visible .tap-layer { display:none; }
   </style>
 </head>
 <body>
-<main>
-  <div class="review-banner" id="reviewBanner">⚠️ 故事尚未通過成人審閱，請確認後將 review_status 改為 adult_verified</div>
-  <header>
-    <div><div class="eyebrow">今晚只聽一小幕</div><h1 id="title">星光故事</h1><div class="muted" id="subtitle"></div></div>
-  </header>
-  <nav class="progress" id="progress" aria-label="故事進度"></nav>
-  <section id="storyView">
-    <div class="hint" id="memoryHint"></div>
-    <h2 id="actTitle"></h2>
-    <div id="lines"></div>
-    <div class="actions">
-      <button class="primary" id="listen">聽故事</button>
-      <button class="secondary" id="secret">只給我秘密情報</button>
+<main class="night controls-visible" id="night">
+  <button class="tap-layer" id="tapLayer" aria-label="顯示播放控制"></button>
+  <section class="content">
+    <div class="eyebrow">今晚的核心詞</div>
+    <h1 id="title">星光故事</h1>
+    <div class="theme-word" id="themeWord" aria-label="核心詞"></div>
+    <button class="primary" id="start">開始今晚的故事</button>
+    <div class="controls" id="controls">
+      <button class="secondary" id="pause">暫停</button>
+      <button class="secondary" id="resume">繼續</button>
+      <button class="secondary" id="restart">重新播放</button>
     </div>
-    <div class="secret-panel" id="secretPanel"></div>
-    <div class="word"><div class="eyebrow">今晚收進詞彙寶盒</div><strong id="word"></strong><p id="connection"></p></div>
-    <div class="question" id="question"></div>
-    <div class="choices"><button class="choice" id="choiceA"></button><button class="choice" id="choiceB"></button></div>
-    <div class="closing" id="closing"></div>
+    <p class="status" id="status" aria-live="polite">舒服地躺好，點一下就會自動聽完整篇故事。</p>
   </section>
-  <section class="map" id="map"><h2>週末故事地圖</h2><p class="muted">請 Apple 挑喜歡的一幕說給你聽，只記下她想用哪種方式分享。</p><div id="mapCards"></div></section>
 </main>
 <script>
 const STORY_URL = 'stories/week01.json';
-const KEYS = { choices:'apple-bedtime-choices', vocabulary:'apple-bedtime-vocabulary', completed:'apple-bedtime-completed', retell:'apple-bedtime-retell' };
-const load = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch { return fallback; } };
-const save = (key, value) => localStorage.setItem(key, JSON.stringify(value));
-let story, activeAct = 0, hintLevel = 0;
+const PROGRESS_KEY = 'apple-bedtime-progress';
+const DIM_DELAY_MS = 20000;
+const night = document.getElementById('night');
+const statusText = document.getElementById('status');
+let story;
+let state = 'ready';
+let currentSection = 0;
+let completedSection = -1;
+let dimRemaining = DIM_DELAY_MS;
+let dimStartedAt = 0;
+let dimTimer;
+let controlsTimer;
+let speakTimer;
+let playbackId = 0;
 
-function speakSequence(texts) {
-  speechSynthesis.cancel();
-  let i = 0;
-  function next() {
-    if (i >= texts.length) return;
-    const u = new SpeechSynthesisUtterance(texts[i++]);
-    u.lang = 'zh-TW'; u.rate = 0.85; u.pitch = 1.1;
-    u.onend = next;
-    u.onerror = next;
-    speechSynthesis.speak(u);
-  }
-  next();
+function setState(next) {
+  state = next;
+  night.classList.toggle('playing', next === 'playing');
+  night.classList.add('controls-visible');
+  document.getElementById('start').hidden = next !== 'ready';
+  document.getElementById('pause').hidden = next !== 'playing';
+  document.getElementById('resume').hidden = next !== 'paused' && next !== 'error';
+  document.getElementById('restart').hidden = next === 'ready';
 }
 
-function speak(text, element) {
-  speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'zh-TW'; utterance.rate = 0.9; utterance.pitch = 1.2;
-  utterance.onstart = () => element && element.classList.add('active');
-  utterance.onend = () => element && element.classList.remove('active');
+function saveProgress() {
+  try {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify({ storyId:story.id, completedSection }));
+  } catch {}
+}
+
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PROGRESS_KEY));
+    if (saved && saved.storyId === story.id && Number.isInteger(saved.completedSection)) completedSection = saved.completedSection;
+  } catch {}
+  currentSection = completedSection >= 0 && completedSection < story.sections.length - 1
+    ? completedSection + 2
+    : 0;
+}
+
+function narration() {
+  return [
+    { id:'intro', text:story.intro },
+    ...story.sections,
+    { id:'wind-down-scene', text:story.wind_down.scene },
+    { id:'wind-down-breath', text:story.wind_down.breath },
+    { id:'wind-down-goodnight', text:story.wind_down.goodnight }
+  ];
+}
+
+function startDimTimer() {
+  clearTimeout(dimTimer);
+  dimStartedAt = Date.now();
+  dimTimer = setTimeout(() => {
+    night.classList.add('dimmed');
+    night.classList.remove('controls-visible');
+  }, dimRemaining);
+}
+
+function freezeDimTimer() {
+  clearTimeout(dimTimer);
+  if (!night.classList.contains('dimmed')) dimRemaining = Math.max(0, dimRemaining - (Date.now() - dimStartedAt));
+}
+
+function revealControls() {
+  night.classList.add('controls-visible');
+  clearTimeout(controlsTimer);
+  if (state === 'playing' && night.classList.contains('dimmed')) {
+    controlsTimer = setTimeout(() => night.classList.remove('controls-visible'), 5000);
+  }
+}
+
+function speakFrom(index, activePlaybackId) {
+  if (activePlaybackId !== playbackId || state !== 'playing') return;
+  const items = narration();
+  if (index >= items.length) {
+    completedSection = story.sections.length - 1;
+    saveProgress();
+    freezeDimTimer();
+    revealControls();
+    setState('ended');
+    statusText.textContent = '故事說完了。晚安。';
+    return;
+  }
+  currentSection = index;
+  const utterance = new SpeechSynthesisUtterance(items[index].text);
+  utterance.lang = 'zh-TW';
+  utterance.rate = 0.82;
+  utterance.pitch = 1.02;
+  utterance.onend = () => {
+    if (activePlaybackId !== playbackId || state !== 'playing') return;
+    if (index >= 1 && index <= story.sections.length) {
+      completedSection = index - 1;
+      saveProgress();
+    }
+    speakFrom(index + 1, activePlaybackId);
+  };
+  utterance.onerror = event => {
+    if (event.error === 'canceled' || activePlaybackId !== playbackId || state !== 'playing') return;
+    freezeDimTimer();
+    night.classList.remove('dimmed');
+    revealControls();
+    setState('error');
+    statusText.textContent = '故事停了一下。點「繼續」就能從這一段再聽。';
+  };
   speechSynthesis.speak(utterance);
 }
 
-function renderLines(segments) {
-  return segments.map(segment => segment.zhuyin ? `<ruby>${segment.text}<rt>${segment.zhuyin}</rt></ruby>` : segment.text).join('');
+function begin(index) {
+  playbackId++;
+  clearTimeout(speakTimer);
+  speechSynthesis.cancel();
+  setState('playing');
+  statusText.textContent = '故事正在播放。';
+  startDimTimer();
+  const activePlaybackId = playbackId;
+  speakTimer = setTimeout(() => speakFrom(index, activePlaybackId), 80);
 }
 
-function rememberedHint(index) {
-  if (index === 0) return '偷偷告訴妳：今晚由妳替主角決定故事方向。';
-  const previous = story.acts[index - 1];
-  const choice = load(KEYS.choices, {})[previous.id];
-  return choice ? previous[`next_hint_${choice}`] : '小秘密：故事會記得妳替主角做過的決定。';
+function pauseStory() {
+  playbackId++;
+  clearTimeout(speakTimer);
+  speechSynthesis.cancel();
+  freezeDimTimer();
+  revealControls();
+  setState('paused');
+  statusText.textContent = '故事暫停了。';
 }
 
-function renderAct(index) {
-  if (index !== 0) return;
-  activeAct = index; hintLevel = 0;
-  const act = story.acts[index];
-  document.getElementById('storyView').style.display = 'block';
-  document.getElementById('map').classList.remove('visible');
-  document.getElementById('actTitle').textContent = `第 ${index + 1} 幕：${act.act_title}`;
-  document.getElementById('memoryHint').textContent = rememberedHint(index);
-  document.getElementById('lines').innerHTML = act.lines.map(line => `<article class="bubble"><div class="text">${line.segments ? renderLines(line.segments) : line.text}</div></article>`).join('');
-  document.getElementById('word').textContent = act.target_word;
-  document.getElementById('connection').textContent = act.word_connection;
-  document.getElementById('question').textContent = act.prompt_question;
-  document.getElementById('choiceA').textContent = act.choice_A;
-  document.getElementById('choiceB').textContent = act.choice_B;
-  document.getElementById('secretPanel').innerHTML = '';
-  const isCompleted = load(KEYS.completed, []).includes(act.id);
-  document.getElementById('closing').textContent = isCompleted ? '故事記得妳的決定了。明晚會從新的一幕開始。' : '';
-  document.getElementById('choiceA').disabled = isCompleted;
-  document.getElementById('choiceB').disabled = isCompleted;
-  renderProgress();
+function resumeStory() {
+  begin(currentSection);
 }
 
-function choose(choice) {
-  const act = story.acts[activeAct];
-  if (load(KEYS.completed, []).includes(act.id)) return;
-  const choices = load(KEYS.choices, {}); choices[act.id] = choice; save(KEYS.choices, choices);
-  const vocabulary = load(KEYS.vocabulary, {});
-  vocabulary[act.target_word] = { story:story.title, act:act.act_title, connection:act.word_connection, lastSeen:new Date().toISOString() };
-  save(KEYS.vocabulary, vocabulary);
-  const completed = new Set(load(KEYS.completed, [])); completed.add(act.id); save(KEYS.completed, [...completed]);
-  document.getElementById('closing').textContent = '故事記得妳的決定了。明晚會從新的一幕開始。';
-  document.getElementById('choiceA').disabled = true;
-  document.getElementById('choiceB').disabled = true;
-  renderProgress();
-  const wd = act.wind_down;
-  if (wd) {
-    speakSequence([
-      wd.warm_scene,
-      wd.breath, wd.breath, wd.breath,
-      wd.goodnight
-    ].filter(Boolean));
-  } else {
-    speak('這個決定很有意思。故事記住了。', document.getElementById('closing'));
-  }
-}
-
-function renderProgress() {
-  const completed = load(KEYS.completed, []);
-  document.getElementById('progress').innerHTML = story.acts.map((act, i) => `<button class="${i === activeAct ? 'active' : ''} ${completed.includes(act.id) ? 'done' : ''}" data-act="${i}" ${i !== 0 ? 'disabled' : ''}>${i + 1}</button>`).join('');
-  document.querySelectorAll('[data-act]').forEach(button => {
-    if (Number(button.dataset.act) === 0) button.onclick = () => renderAct(0);
-  });
-}
-
-function showMap() {
-  document.getElementById('storyView').style.display = 'none';
-  document.getElementById('map').classList.add('visible');
-  const retell = load(KEYS.retell, {});
-  document.getElementById('mapCards').innerHTML = story.acts.map(act => `<div class="map-card"><strong>${act.act_title}</strong><div class="muted">${act.target_word}：${act.word_connection}</div><select data-retell="${act.id}"><option value="">還沒選</option><option value="hint" ${retell[act.id] === 'hint' ? 'selected' : ''}>需一點提示</option><option value="independent" ${retell[act.id] === 'independent' ? 'selected' : ''}>可以自己說</option></select></div>`).join('');
-  document.querySelectorAll('[data-retell]').forEach(select => select.onchange = () => { retell[select.dataset.retell] = select.value; save(KEYS.retell, retell); });
+function restartStory() {
+  completedSection = -1;
+  currentSection = 0;
+  dimRemaining = DIM_DELAY_MS;
+  night.classList.remove('dimmed');
+  saveProgress();
+  begin(0);
 }
 
 fetch(STORY_URL).then(response => {
-  if (!response.ok) throw new Error(`Story request failed: ${response.status}`);
+  if (!response.ok) throw new Error('story request failed');
   return response.json();
 }).then(data => {
   story = data;
-  document.getElementById('reviewBanner').classList.toggle('visible', story.review_status === 'pending_adult_review');
   document.getElementById('title').textContent = story.title;
-  document.getElementById('subtitle').textContent = `本週主題：${story.theme}`;
-  renderAct(0);
+  const themeWord = document.getElementById('themeWord');
+  story.theme_word.forEach(item => {
+    const character = document.createElement('span');
+    const hanzi = document.createElement('span');
+    const zhuyin = document.createElement('span');
+    character.className = 'theme-character';
+    hanzi.className = 'theme-hanzi';
+    zhuyin.className = 'theme-zhuyin';
+    hanzi.textContent = item.char;
+    zhuyin.textContent = item.zhuyin;
+    character.append(hanzi, zhuyin);
+    themeWord.append(character);
+  });
+  loadProgress();
+  if (currentSection > 0) statusText.textContent = '上次聽到一半，點一下會從下一段繼續。';
+  setState('ready');
 }).catch(() => {
-  document.querySelector('main').innerHTML = '<p style="padding:24px">故事還沒準備好，請重新整理頁面。</p>';
+  statusText.textContent = '故事還沒準備好，請稍後重新整理。';
+  document.getElementById('start').disabled = true;
 });
 
-document.getElementById('listen').onclick = () => {
-  const bubbles = [...document.querySelectorAll('.bubble')]; const lines = story.acts[activeAct].lines; let i = 0;
-  const next = () => { if (i >= bubbles.length) return; const bubble = bubbles[i]; const utterance = new SpeechSynthesisUtterance(lines[i++].text); utterance.lang = 'zh-TW'; utterance.rate = 0.9; utterance.pitch = 1.2; utterance.onstart = () => bubble.classList.add('active'); utterance.onend = () => { bubble.classList.remove('active'); next(); }; speechSynthesis.speak(utterance); };
-  speechSynthesis.cancel(); next();
-};
-document.getElementById('secret').onclick = () => {
-  const hints = story.acts[activeAct].secret_hints;
-  if (hintLevel < hints.length) document.getElementById('secretPanel').insertAdjacentHTML('beforeend', `<p>${hints[hintLevel++]}</p>`);
-};
-document.getElementById('choiceA').onclick = () => choose('A');
-document.getElementById('choiceB').onclick = () => choose('B');
+document.getElementById('start').onclick = () => begin(currentSection);
+document.getElementById('pause').onclick = pauseStory;
+document.getElementById('resume').onclick = resumeStory;
+document.getElementById('restart').onclick = restartStory;
+document.getElementById('tapLayer').onclick = revealControls;
+document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'playing') pauseStory(); });
+window.addEventListener('beforeunload', () => {
+  clearTimeout(speakTimer);
+  speechSynthesis.cancel();
+});
 </script>
 </body>
 </html>

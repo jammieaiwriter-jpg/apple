@@ -51,6 +51,7 @@ if (!html.includes('function startOriginalMistakes()')) throw new Error('startOr
 if (!html.includes('function generateOriginalMistakeQuestion()')) throw new Error('original mistake generator missing');
 if (!html.includes('function reviewableOriginalMistakes()')) throw new Error('reviewable original mistake filter missing');
 if (!html.includes('originalMistakeOrder = reviewableOriginalMistakes();')) throw new Error('original mistake practice does not use filtered 29-question list');
+if (html.includes('localStorage.clear()')) throw new Error('math reset must not erase unrelated localStorage data');
 if (missing.length || extra.length) {
   throw new Error(`screenshot coverage mismatch: missing=${JSON.stringify(missing)}, extra=${JSON.stringify(extra)}`);
 }

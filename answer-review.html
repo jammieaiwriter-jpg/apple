@@ -103,7 +103,15 @@
       {"id":33,"file":"截圖 2026-05-22 晚上8.23.55.png","current":"左 右 中 左 中","hint":"照題目的順序一個一個判斷位置，再把左、右、中依序填上。"}
     ];
     const STORAGE_KEY = 'apple_answer_review_draft';
-    let answers = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    function loadAnswers() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        return saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {};
+      } catch {
+        return {};
+      }
+    }
+    let answers = loadAnswers();
 
     function render() {
       const list = document.getElementById('list');

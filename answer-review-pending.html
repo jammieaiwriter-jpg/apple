@@ -93,7 +93,15 @@
       }
 ];
     const STORAGE_KEY = 'apple_pending_answer_review_draft';
-    let answers = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    function loadAnswers() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        return saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {};
+      } catch {
+        return {};
+      }
+    }
+    let answers = loadAnswers();
     function render() {
       document.getElementById('list').innerHTML = QUESTIONS.map(q => {
         const value = answers[q.id]?.answer ?? q.current ?? '';

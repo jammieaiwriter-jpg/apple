@@ -2,59 +2,38 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const storyPath = path.join(root, 'bedtime', 'stories', 'week01.json');
-const indexPath = path.join(root, 'bedtime', 'index.html');
+const story = JSON.parse(fs.readFileSync(path.join(root, 'bedtime/stories/week01.json'), 'utf8'));
+const html = fs.readFileSync(path.join(root, 'bedtime/index.html'), 'utf8');
+const serialized = JSON.stringify(story);
 
-if (!fs.existsSync(storyPath)) throw new Error('week01.json missing');
-if (!fs.existsSync(indexPath)) throw new Error('bedtime/index.html missing');
+if (!['pending_adult_review', 'adult_verified'].includes(story.review_status)) throw new Error('invalid review status');
+if (!Array.isArray(story.theme_word) || !story.theme_word.length) throw new Error('theme_word missing');
+if (!story.theme_word.every(item => item.char && item.zhuyin)) throw new Error('each theme character needs zhuyin');
+if (!story.intro || !Array.isArray(story.sections) || story.sections.length < 5) throw new Error('story needs intro and at least five sections');
+if (!story.sections.every(section => section.id && section.text && typeof section.text === 'string')) throw new Error('sections need id and plain text');
+if (!story.wind_down || !['scene', 'breath', 'goodnight'].every(key => story.wind_down[key])) throw new Error('wind_down incomplete');
 
-const story = JSON.parse(fs.readFileSync(storyPath, 'utf8'));
-const html = fs.readFileSync(indexPath, 'utf8');
-const banned = /答錯|錯了|答對|考試|分數|過關/;
+['acts', 'choice_A', 'choice_B', 'prompt_question', 'secret_hints', 'word_connection', 'next_hint_A', 'next_hint_B', 'segments']
+  .forEach(token => { if (serialized.includes(`"${token}"`)) throw new Error(`story contains legacy field ${token}`); });
 
-if (!['pending_adult_review', 'adult_verified'].includes(story.review_status)) throw new Error('story lacks a valid review status');
-if (!Array.isArray(story.acts) || story.acts.length !== 5) throw new Error('story must contain five acts');
-
-story.acts.forEach((act, index) => {
-  const required = [
-    'id', 'act_title', 'lines', 'target_word', 'word_connection',
-    'prompt_question', 'choice_A', 'choice_B', 'next_hint_A', 'next_hint_B', 'secret_hints'
-  ];
-  required.forEach(key => {
-    if (!act[key] || (Array.isArray(act[key]) && !act[key].length)) {
-      throw new Error(`act ${index + 1} missing ${key}`);
-    }
-  });
-  if (!act.lines.every(line => {
-    if (!line.text) return false;
-    if (!line.segments) return Boolean(line.zhuyin);
-    return line.segments.every(segment =>
-      [...segment.text].length === 1 &&
-      typeof segment.zhuyin === 'string' &&
-      (!/[，。！？、]/.test(segment.text) || segment.zhuyin === '')
-    );
-  })) throw new Error(`act ${index + 1} lacks real zhuyin content`);
-  if (act.secret_hints.length !== 3) throw new Error(`act ${index + 1} needs three secret hints`);
-  if (!['觀察', '方法', '關鍵'].every(label => act.secret_hints.some(hint => hint.startsWith(label)))) {
-    throw new Error(`act ${index + 1} lacks observation-method-key hints`);
-  }
-  if (banned.test(JSON.stringify(act))) throw new Error(`act ${index + 1} contains test language`);
-});
+['秘密情報', '週末故事地圖', '詞彙寶盒', '需一點提示', '可以自己說', 'choiceA', 'choiceB', 'prompt_question', 'secret_hints', '答題', '測驗']
+  .forEach(token => { if (html.includes(token)) throw new Error(`index.html contains legacy interaction ${token}`); });
 
 [
-  'speechSynthesis', 'zh-TW', 'localStorage',
-  'apple-bedtime-choices', 'apple-bedtime-vocabulary', 'apple-bedtime-completed', 'apple-bedtime-retell',
-  '秘密情報', '週末故事地圖', '需一點提示', '可以自己說'
-].forEach(token => {
-  if (!html.includes(token)) throw new Error(`index.html missing ${token}`);
-});
+  'speechSynthesis', 'zh-TW', 'localStorage', 'apple-bedtime-progress',
+  'theme-character', 'theme-zhuyin', 'dimmed', 'DIM_DELAY_MS',
+  '開始今晚的故事', '暫停', '繼續', '重新播放',
+  "setState('playing')", "setState('paused')", "setState('ended')", "setState('error')",
+  'completedSection', 'revealControls'
+].forEach(token => { if (!html.includes(token)) throw new Error(`index.html missing ${token}`); });
 
-if (banned.test(html)) throw new Error('index.html contains test language');
-if (html.includes("bubble.querySelector('.text').textContent")) {
-  throw new Error('listen handler must not read ruby zhuyin from textContent');
+if (html.includes('<ruby>')) throw new Error('use flex-based right-side zhuyin, not ruby');
+if (html.includes('story.sections') && html.includes('textContent = section.text')) throw new Error('night screen must not display story body');
+if (!html.includes('let speakTimer;') || !html.includes('clearTimeout(speakTimer);')) {
+  throw new Error('pending speech start must be cancellable');
 }
-if (!html.includes('const lines = story.acts[activeAct].lines;')) {
-  throw new Error('listen handler must read plain text from the active act');
+if (html.includes("document.getElementById('themeWord').innerHTML")) {
+  throw new Error('theme word must not inject story data through innerHTML');
 }
 
-console.log(JSON.stringify({ acts: story.acts.length, targetWords: story.acts.map(act => act.target_word) }, null, 2));
+console.log(JSON.stringify({ sections: story.sections.length, theme: story.theme_word.map(item => item.char).join('') }, null, 2));

@@ -80,7 +80,7 @@ function speak(text, element) {
 }
 
 function renderLines(segments) {
-  return segments.map(segment => `<ruby>${segment.text}<rt>${segment.zhuyin}</rt></ruby>`).join('');
+  return segments.map(segment => segment.zhuyin ? `<ruby>${segment.text}<rt>${segment.zhuyin}</rt></ruby>` : segment.text).join('');
 }
 
 function rememberedHint(index) {
@@ -91,6 +91,7 @@ function rememberedHint(index) {
 }
 
 function renderAct(index) {
+  if (index !== 0) return;
   activeAct = index; hintLevel = 0;
   const act = story.acts[index];
   document.getElementById('storyView').style.display = 'block';
@@ -122,8 +123,10 @@ function choose(choice) {
 
 function renderProgress() {
   const completed = load(KEYS.completed, []);
-  document.getElementById('progress').innerHTML = story.acts.map((act, i) => `<button class="${i === activeAct ? 'active' : ''} ${completed.includes(act.id) ? 'done' : ''}" data-act="${i}">${i + 1}</button>`).join('');
-  document.querySelectorAll('[data-act]').forEach(button => button.onclick = () => renderAct(Number(button.dataset.act)));
+  document.getElementById('progress').innerHTML = story.acts.map((act, i) => `<button class="${i === activeAct ? 'active' : ''} ${completed.includes(act.id) ? 'done' : ''}" data-act="${i}" ${i !== 0 ? 'disabled' : ''}>${i + 1}</button>`).join('');
+  document.querySelectorAll('[data-act]').forEach(button => {
+    if (Number(button.dataset.act) === 0) button.onclick = () => renderAct(0);
+  });
 }
 
 function showMap() {
@@ -142,11 +145,7 @@ fetch(STORY_URL).then(response => {
   document.getElementById('reviewBanner').classList.toggle('visible', story.review_status === 'pending_adult_review');
   document.getElementById('title').textContent = story.title;
   document.getElementById('subtitle').textContent = `本週主題：${story.theme}`;
-  const completed = load(KEYS.completed, []);
-  const next = story.acts.findIndex(act => !completed.includes(act.id));
-  renderAct(next === -1 ? 0 : next);
-  const mapButton = document.createElement('button'); mapButton.className = 'pill'; mapButton.textContent = '週末故事地圖'; mapButton.onclick = showMap;
-  document.querySelector('header').appendChild(mapButton);
+  renderAct(0);
 }).catch(() => {
   document.querySelector('main').innerHTML = '<p style="padding:24px">故事還沒準備好，請重新整理頁面。</p>';
 });

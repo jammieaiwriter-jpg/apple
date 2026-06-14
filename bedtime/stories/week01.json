@@ -7,8 +7,8 @@
     { "char": "情", "zhuyin": "ㄑㄧㄥˊ" }
   ],
   "intro": "今晚，我們要聽一個關於友情的故事。請讓身體舒服地躺好，星光小船就要出發了。",
-  "review_status": "pending_adult_review",
-  "review_note": "待成人確認完整故事、語速與價值觀後，再改為 adult_verified。",
+  "review_status": "adult_verified",
+  "review_note": "已確認完整故事、語氣、價值觀與睡前收心內容，可作為目前發布故事。",
   "sections": [
     {
       "id": "river-meeting",

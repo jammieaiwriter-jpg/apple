@@ -36,6 +36,17 @@ if (!story.wind_down || !['scene', 'breath', 'goodnight'].every(key => story.win
   'completedSection', 'revealControls'
 ].forEach(token => { if (!html.includes(token)) throw new Error(`index.html missing ${token}`); });
 
+[
+  'SECTION_PAUSE_MS = 1800',
+  'WIND_DOWN_PAUSE_MS = 3000',
+  'BEFORE_WIND_DOWN_PAUSE_MS = 2500',
+  'speechSynthesis.getVoices()',
+  "voice.lang === 'zh-TW'",
+  'utterance.voice = preferredVoice',
+  'pauseBeforeNext',
+  'clearTimeout(pauseTimer)'
+].forEach(token => { if (!html.includes(token)) throw new Error(`index.html missing natural narration ${token}`); });
+
 if (!html.includes('saved.date === todayKey()')) {
   throw new Error('progress must only resume on the same local date');
 }

@@ -67,6 +67,8 @@
 - `adult_verified` 顯示為已審閱；若同時由 `current.json` 指向，顯示為今晚播放。
 - `pending_adult_review` 顯示為草稿試聽。
 - `planned` 顯示為規劃中且不可播放。
+- 每集右側顯示核心詞漢字及聲調位置正確的右側直式注音。
+- 可播放故事會預先載入；點選單一次即開始朗讀，避免 iPhone Safari 在非同步載入後失去播放授權。
 - 選擇草稿只影響當次試聽，不改動 `current.json`。
 - 十二週選單資料由 `stories/catalog.json` 管理。
 

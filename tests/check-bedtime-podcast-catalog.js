@@ -19,6 +19,9 @@ catalog.episodes.forEach((episode, index) => {
   if (!episode.title || !episode.theme || !episode.status) {
     throw new Error(`${expectedId} catalog metadata incomplete`);
   }
+  if (!Array.isArray(episode.theme_word) || !episode.theme_word.every(item => item.char && item.zhuyin)) {
+    throw new Error(`${expectedId} catalog theme_word pronunciation incomplete`);
+  }
   if (episode.available && !fs.existsSync(path.join(storiesDir, `${episode.id}.json`))) {
     throw new Error(`${expectedId} marked available without story file`);
   }
@@ -39,7 +42,13 @@ catalog.episodes.forEach((episode, index) => {
   'episode.available',
   '今晚播放',
   '草稿試聽',
-  '規劃中'
+  '規劃中',
+  'storyCache',
+  'preloadAvailableStories',
+  'begin(0)',
+  'splitZhuyin',
+  'episode-pronunciation',
+  'theme-tone'
 ].forEach(token => {
   if (!html.includes(token)) throw new Error(`podcast homepage missing ${token}`);
 });

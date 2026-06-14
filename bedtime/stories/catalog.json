@@ -2,17 +2,17 @@
   "season": 1,
   "title": "森林裡的十二道星光",
   "episodes": [
-    { "id": "week01", "week": "W01", "title": "星光小船", "theme": "友情", "status": "adult_verified", "available": true },
-    { "id": "week02", "week": "W02", "title": "月光果醬", "theme": "誠實", "status": "pending_adult_review", "available": true },
-    { "id": "week03", "week": "W03", "title": "銀紙小鳥的邀請", "theme": "友善", "status": "planned", "available": false },
-    { "id": "week04", "week": "W04", "title": "螢火蟲的新屋", "theme": "合作", "status": "planned", "available": false },
-    { "id": "week05", "week": "W05", "title": "不說話的小鳥", "theme": "傾聽", "status": "planned", "available": false },
-    { "id": "week06", "week": "W06", "title": "會迷路的飛行器", "theme": "嘗試", "status": "planned", "available": false },
-    { "id": "week07", "week": "W07", "title": "心情方向卡", "theme": "表達", "status": "planned", "available": false },
-    { "id": "week08", "week": "W08", "title": "補好的風鈴", "theme": "道歉", "status": "pending_adult_review", "available": true },
-    { "id": "week09", "week": "W09", "title": "還沒發芽的種子", "theme": "耐心", "status": "planned", "available": false },
-    { "id": "week10", "week": "W10", "title": "通往星星湖的路", "theme": "選擇", "status": "planned", "available": false },
-    { "id": "week11", "week": "W11", "title": "畫紙城市的門", "theme": "想像", "status": "planned", "available": false },
-    { "id": "week12", "week": "W12", "title": "森林裡的舊腳印", "theme": "成長", "status": "planned", "available": false }
+    { "id": "week01", "week": "W01", "title": "星光小船", "theme": "友情", "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, { "char": "情", "zhuyin": "ㄑㄧㄥˊ" }], "status": "adult_verified", "available": true },
+    { "id": "week02", "week": "W02", "title": "月光果醬", "theme": "誠實", "theme_word": [{ "char": "誠", "zhuyin": "ㄔㄥˊ" }, { "char": "實", "zhuyin": "ㄕˊ" }], "status": "pending_adult_review", "available": true },
+    { "id": "week03", "week": "W03", "title": "銀紙小鳥的邀請", "theme": "友善", "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, { "char": "善", "zhuyin": "ㄕㄢˋ" }], "status": "planned", "available": false },
+    { "id": "week04", "week": "W04", "title": "螢火蟲的新屋", "theme": "合作", "theme_word": [{ "char": "合", "zhuyin": "ㄏㄜˊ" }, { "char": "作", "zhuyin": "ㄗㄨㄛˋ" }], "status": "planned", "available": false },
+    { "id": "week05", "week": "W05", "title": "不說話的小鳥", "theme": "傾聽", "theme_word": [{ "char": "傾", "zhuyin": "ㄑㄧㄥ" }, { "char": "聽", "zhuyin": "ㄊㄧㄥ" }], "status": "planned", "available": false },
+    { "id": "week06", "week": "W06", "title": "會迷路的飛行器", "theme": "嘗試", "theme_word": [{ "char": "嘗", "zhuyin": "ㄔㄤˊ" }, { "char": "試", "zhuyin": "ㄕˋ" }], "status": "planned", "available": false },
+    { "id": "week07", "week": "W07", "title": "心情方向卡", "theme": "表達", "theme_word": [{ "char": "表", "zhuyin": "ㄅㄧㄠˇ" }, { "char": "達", "zhuyin": "ㄉㄚˊ" }], "status": "planned", "available": false },
+    { "id": "week08", "week": "W08", "title": "補好的風鈴", "theme": "道歉", "theme_word": [{ "char": "道", "zhuyin": "ㄉㄠˋ" }, { "char": "歉", "zhuyin": "ㄑㄧㄢˋ" }], "status": "pending_adult_review", "available": true },
+    { "id": "week09", "week": "W09", "title": "還沒發芽的種子", "theme": "耐心", "theme_word": [{ "char": "耐", "zhuyin": "ㄋㄞˋ" }, { "char": "心", "zhuyin": "ㄒㄧㄣ" }], "status": "planned", "available": false },
+    { "id": "week10", "week": "W10", "title": "通往星星湖的路", "theme": "選擇", "theme_word": [{ "char": "選", "zhuyin": "ㄒㄩㄢˇ" }, { "char": "擇", "zhuyin": "ㄗㄜˊ" }], "status": "planned", "available": false },
+    { "id": "week11", "week": "W11", "title": "畫紙城市的門", "theme": "想像", "theme_word": [{ "char": "想", "zhuyin": "ㄒㄧㄤˇ" }, { "char": "像", "zhuyin": "ㄒㄧㄤˋ" }], "status": "planned", "available": false },
+    { "id": "week12", "week": "W12", "title": "森林裡的舊腳印", "theme": "成長", "theme_word": [{ "char": "成", "zhuyin": "ㄔㄥˊ" }, { "char": "長", "zhuyin": "ㄓㄤˇ" }], "status": "planned", "available": false }
   ]
 }

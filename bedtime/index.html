@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Apple 的星光故事</title>
+  <style>
+    :root { color-scheme: dark; --ink:#fff7dc; --soft:#c9c5de; --card:#29284a; --gold:#ffd77a; --mint:#9fe3ce; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family:"PingFang TC","Noto Sans TC",sans-serif; color:var(--ink); background:radial-gradient(circle at top,#403b78,#17162d 65%); }
+    button { font:inherit; }
+    main { width:min(680px,100%); margin:auto; padding:24px 18px 72px; }
+    header { display:flex; justify-content:space-between; align-items:start; gap:12px; }
+    h1 { margin:0 0 4px; font-size:clamp(26px,7vw,38px); }
+    .eyebrow,.muted { color:var(--soft); font-size:14px; }
+    .pill { border:1px solid #ffffff33; border-radius:999px; padding:8px 12px; background:#ffffff12; color:var(--ink); }
+    .progress { display:flex; gap:7px; margin:22px 0; }
+    .progress button { flex:1; min-height:40px; border:0; border-radius:14px; background:#ffffff18; color:var(--soft); }
+    .progress button.done { background:#426f68; color:white; }
+    .progress button.active { outline:2px solid var(--gold); color:white; }
+    .hint { padding:12px 15px; border-radius:16px; background:#fff1b71a; border:1px solid #ffd77a55; color:#ffe8ab; margin-bottom:14px; }
+    .bubble { margin:12px 0; padding:18px; border-radius:22px 22px 22px 7px; background:var(--card); box-shadow:0 8px 24px #0003; }
+    .bubble.active { outline:2px solid var(--mint); }
+    .text { font-size:clamp(22px,6vw,30px); line-height:1.65; }
+    .zhuyin { display:none; margin-top:8px; color:var(--soft); font-size:17px; line-height:1.8; letter-spacing:2px; }
+    body.show-zhuyin .zhuyin { display:block; }
+    .actions,.choices { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
+    .primary,.choice { border:0; border-radius:18px; padding:15px; color:#24213e; background:var(--gold); font-weight:700; }
+    .secondary { border:1px solid #ffffff44; border-radius:18px; padding:14px; color:var(--ink); background:#ffffff12; }
+    .word { margin-top:20px; padding:18px; border-radius:20px; background:#24544c; }
+    .word strong { color:#c9ffed; font-size:26px; }
+    .question { margin-top:20px; font-size:20px; line-height:1.5; }
+    .choice { text-align:left; background:#d8d1ff; min-height:68px; }
+    .secret-panel { margin-top:14px; }
+    .secret-panel p { padding:12px; border-left:3px solid var(--gold); background:#ffffff0d; }
+    .closing { margin-top:20px; text-align:center; color:#c9ffed; font-size:20px; }
+    .map { display:none; }
+    .map.visible { display:block; }
+    .map-card { padding:14px; margin:10px 0; border-radius:16px; background:var(--card); }
+    .map-card select { width:100%; margin-top:8px; padding:10px; border-radius:10px; font-size:16px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div><div class="eyebrow">今晚只聽一小幕</div><h1 id="title">星光故事</h1><div class="muted" id="subtitle"></div></div>
+    <button class="pill" id="zhuyinToggle">顯示注音</button>
+  </header>
+  <nav class="progress" id="progress" aria-label="故事進度"></nav>
+  <section id="storyView">
+    <div class="hint" id="memoryHint"></div>
+    <h2 id="actTitle"></h2>
+    <div id="lines"></div>
+    <div class="actions">
+      <button class="primary" id="listen">聽故事</button>
+      <button class="secondary" id="secret">只給我秘密情報</button>
+    </div>
+    <div class="secret-panel" id="secretPanel"></div>
+    <div class="word"><div class="eyebrow">今晚收進詞彙寶盒</div><strong id="word"></strong><p id="connection"></p></div>
+    <div class="question" id="question"></div>
+    <div class="choices"><button class="choice" id="choiceA"></button><button class="choice" id="choiceB"></button></div>
+    <div class="closing" id="closing"></div>
+  </section>
+  <section class="map" id="map"><h2>週末故事地圖</h2><p class="muted">請 Apple 挑喜歡的一幕說給你聽，只記下她想用哪種方式分享。</p><div id="mapCards"></div></section>
+</main>
+<script>
+const STORY_URL = 'stories/week01.json';
+const KEYS = { choices:'apple-bedtime-choices', vocabulary:'apple-bedtime-vocabulary', completed:'apple-bedtime-completed', retell:'apple-bedtime-retell' };
+const load = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch { return fallback; } };
+const save = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+let story, activeAct = 0, hintLevel = 0;
+
+function speak(text, element) {
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'zh-TW'; utterance.rate = 0.9; utterance.pitch = 1.2;
+  utterance.onstart = () => element && element.classList.add('active');
+  utterance.onend = () => element && element.classList.remove('active');
+  speechSynthesis.speak(utterance);
+}
+
+function rememberedHint(index) {
+  if (index === 0) return '偷偷告訴妳：今晚由妳替主角決定故事方向。';
+  const previous = story.acts[index - 1];
+  const choice = load(KEYS.choices, {})[previous.id];
+  return choice ? previous[`next_hint_${choice}`] : '小秘密：故事會記得妳替主角做過的決定。';
+}
+
+function renderAct(index) {
+  activeAct = index; hintLevel = 0;
+  const act = story.acts[index];
+  document.getElementById('storyView').style.display = 'block';
+  document.getElementById('map').classList.remove('visible');
+  document.getElementById('actTitle').textContent = `第 ${index + 1} 幕：${act.act_title}`;
+  document.getElementById('memoryHint').textContent = rememberedHint(index);
+  document.getElementById('lines').innerHTML = act.lines.map(line => `<article class="bubble"><div class="text">${line.text}</div><div class="zhuyin">${line.zhuyin}</div></article>`).join('');
+  document.getElementById('word').textContent = act.target_word;
+  document.getElementById('connection').textContent = act.word_connection;
+  document.getElementById('question').textContent = act.prompt_question;
+  document.getElementById('choiceA').textContent = act.choice_A;
+  document.getElementById('choiceB').textContent = act.choice_B;
+  document.getElementById('secretPanel').innerHTML = '';
+  document.getElementById('closing').textContent = load(KEYS.completed, []).includes(act.id) ? '故事記得妳的決定了。明晚會從新的一幕開始。' : '';
+  renderProgress();
+}
+
+function choose(choice) {
+  const act = story.acts[activeAct];
+  const choices = load(KEYS.choices, {}); choices[act.id] = choice; save(KEYS.choices, choices);
+  const vocabulary = load(KEYS.vocabulary, {});
+  vocabulary[act.target_word] = { story:story.title, act:act.act_title, connection:act.word_connection, lastSeen:new Date().toISOString() };
+  save(KEYS.vocabulary, vocabulary);
+  const completed = new Set(load(KEYS.completed, [])); completed.add(act.id); save(KEYS.completed, [...completed]);
+  document.getElementById('closing').textContent = '故事記得妳的決定了。明晚會從新的一幕開始。';
+  speak('這個決定很有意思。故事記住了。', document.getElementById('closing'));
+  renderProgress();
+}
+
+function renderProgress() {
+  const completed = load(KEYS.completed, []);
+  document.getElementById('progress').innerHTML = story.acts.map((act, i) => `<button class="${i === activeAct ? 'active' : ''} ${completed.includes(act.id) ? 'done' : ''}" data-act="${i}">${i + 1}</button>`).join('');
+  document.querySelectorAll('[data-act]').forEach(button => button.onclick = () => renderAct(Number(button.dataset.act)));
+}
+
+function showMap() {
+  document.getElementById('storyView').style.display = 'none';
+  document.getElementById('map').classList.add('visible');
+  const retell = load(KEYS.retell, {});
+  document.getElementById('mapCards').innerHTML = story.acts.map(act => `<div class="map-card"><strong>${act.act_title}</strong><div class="muted">${act.target_word}：${act.word_connection}</div><select data-retell="${act.id}"><option value="">還沒選</option><option value="hint" ${retell[act.id] === 'hint' ? 'selected' : ''}>需一點提示</option><option value="independent" ${retell[act.id] === 'independent' ? 'selected' : ''}>可以自己說</option></select></div>`).join('');
+  document.querySelectorAll('[data-retell]').forEach(select => select.onchange = () => { retell[select.dataset.retell] = select.value; save(KEYS.retell, retell); });
+}
+
+fetch(STORY_URL).then(response => {
+  if (!response.ok) throw new Error(`Story request failed: ${response.status}`);
+  return response.json();
+}).then(data => {
+  story = data;
+  document.getElementById('title').textContent = story.title;
+  document.getElementById('subtitle').textContent = `本週主題：${story.theme}`;
+  const completed = load(KEYS.completed, []);
+  const next = story.acts.findIndex(act => !completed.includes(act.id));
+  renderAct(next === -1 ? 0 : next);
+  const mapButton = document.createElement('button'); mapButton.className = 'pill'; mapButton.textContent = '週末故事地圖'; mapButton.onclick = showMap;
+  document.querySelector('header').appendChild(mapButton);
+}).catch(() => {
+  document.querySelector('main').innerHTML = '<p style="padding:24px">故事還沒準備好，請重新整理頁面。</p>';
+});
+
+document.getElementById('zhuyinToggle').onclick = event => {
+  document.body.classList.toggle('show-zhuyin');
+  event.target.textContent = document.body.classList.contains('show-zhuyin') ? '收起注音' : '顯示注音';
+};
+document.getElementById('listen').onclick = () => {
+  const bubbles = [...document.querySelectorAll('.bubble')]; let i = 0;
+  const next = () => { if (i >= bubbles.length) return; const bubble = bubbles[i++]; const utterance = new SpeechSynthesisUtterance(bubble.querySelector('.text').textContent); utterance.lang = 'zh-TW'; utterance.rate = 0.9; utterance.pitch = 1.2; utterance.onstart = () => bubble.classList.add('active'); utterance.onend = () => { bubble.classList.remove('active'); next(); }; speechSynthesis.speak(utterance); };
+  speechSynthesis.cancel(); next();
+};
+document.getElementById('secret').onclick = () => {
+  const hints = story.acts[activeAct].secret_hints;
+  if (hintLevel < hints.length) document.getElementById('secretPanel').insertAdjacentHTML('beforeend', `<p>${hints[hintLevel++]}</p>`);
+};
+document.getElementById('choiceA').onclick = () => choose('A');
+document.getElementById('choiceB').onclick = () => choose('B');
+</script>
+</body>
+</html>

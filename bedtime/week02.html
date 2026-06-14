@@ -51,17 +51,22 @@
 <script>
 const PROGRESS_KEY = 'apple-bedtime-progress-draft';
 const DIM_DELAY_MS = 20000;
+const SECTION_PAUSE_MS = 1800;
+const BEFORE_WIND_DOWN_PAUSE_MS = 2500;
+const WIND_DOWN_PAUSE_MS = 3000;
 const night = document.getElementById('night');
 const statusText = document.getElementById('status');
 let story;
 let state = 'ready';
 let currentSection = 0;
 let completedSection = -1;
+let preferredVoice;
 let dimRemaining = DIM_DELAY_MS;
 let dimStartedAt = 0;
 let dimTimer;
 let controlsTimer;
 let speakTimer;
+let pauseTimer;
 let playbackId = 0;
 
 function setState(next) {
@@ -98,6 +103,27 @@ function narration() {
     { id:'wind-down-breath', text:story.wind_down.breath },
     { id:'wind-down-goodnight', text:story.wind_down.goodnight }
   ];
+}
+
+function refreshPreferredVoice() {
+  const voices = speechSynthesis.getVoices();
+  preferredVoice =
+    voices.find(voice => voice.lang === 'zh-TW' && voice.localService) ||
+    voices.find(voice => voice.lang === 'zh-TW') ||
+    voices.find(voice => /^zh[-_]Hant/i.test(voice.lang)) ||
+    voices.find(voice => /^zh/i.test(voice.lang));
+}
+
+function pauseBeforeNext(nextIndex, activePlaybackId) {
+  currentSection = nextIndex;
+  const firstWindDownIndex = story.sections.length + 1;
+  const delay = nextIndex === firstWindDownIndex
+    ? BEFORE_WIND_DOWN_PAUSE_MS
+    : nextIndex > firstWindDownIndex
+      ? WIND_DOWN_PAUSE_MS
+      : SECTION_PAUSE_MS;
+  clearTimeout(pauseTimer);
+  pauseTimer = setTimeout(() => speakFrom(nextIndex, activePlaybackId), delay);
 }
 
 function startDimTimer() {
@@ -137,15 +163,16 @@ function speakFrom(index, activePlaybackId) {
   currentSection = index;
   const utterance = new SpeechSynthesisUtterance(items[index].text);
   utterance.lang = 'zh-TW';
-  utterance.rate = 0.82;
-  utterance.pitch = 1.02;
+  utterance.rate = 0.78;
+  utterance.pitch = 1;
+  if (preferredVoice) utterance.voice = preferredVoice;
   utterance.onend = () => {
     if (activePlaybackId !== playbackId || state !== 'playing') return;
     if (index >= 1 && index <= story.sections.length) {
       completedSection = index - 1;
       saveProgress();
     }
-    speakFrom(index + 1, activePlaybackId);
+    pauseBeforeNext(index + 1, activePlaybackId);
   };
   utterance.onerror = event => {
     if (event.error === 'canceled' || activePlaybackId !== playbackId || state !== 'playing') return;
@@ -161,6 +188,7 @@ function speakFrom(index, activePlaybackId) {
 function begin(index) {
   playbackId++;
   clearTimeout(speakTimer);
+  clearTimeout(pauseTimer);
   speechSynthesis.cancel();
   setState('playing');
   statusText.textContent = '故事正在播放。';
@@ -172,6 +200,7 @@ function begin(index) {
 function pauseStory() {
   playbackId++;
   clearTimeout(speakTimer);
+  clearTimeout(pauseTimer);
   speechSynthesis.cancel();
   freezeDimTimer();
   revealControls();
@@ -224,6 +253,8 @@ fetch('stories/week02.json').then(response => {
   document.getElementById('controls').hidden = true;
 });
 
+refreshPreferredVoice();
+speechSynthesis.onvoiceschanged = refreshPreferredVoice;
 document.getElementById('start').onclick = () => begin(currentSection);
 document.getElementById('pause').onclick = pauseStory;
 document.getElementById('resume').onclick = resumeStory;
@@ -232,6 +263,7 @@ document.getElementById('tapLayer').onclick = revealControls;
 document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'playing') pauseStory(); });
 window.addEventListener('beforeunload', () => {
   clearTimeout(speakTimer);
+  clearTimeout(pauseTimer);
   speechSynthesis.cancel();
 });
 </script>

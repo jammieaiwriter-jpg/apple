@@ -35,8 +35,12 @@ w01.stories.forEach(entry => {
   const file = JSON.parse(fs.readFileSync(path.join(storiesDir, `${id}.json`), 'utf8'));
   if (file.id !== id || file.schema_version !== 2) throw new Error(`${id} identity invalid`);
   if (!Array.isArray(file.sections) || file.sections.length !== 6) throw new Error(`${id} must keep six sections`);
-  if (file.sections.map(section => section.text).join('').length < 2000) {
-    throw new Error(`${id}正文 must be at least 2000 characters`);
+  // Length is now gated by rendered duration (8-10 min), not a char floor — the
+  // dialogue/multi-voice format runs the same minutes on fewer characters.
+  // See docs/story-scoring-rubric.md and tools/check-bedtime-story.py. This stays
+  // only as a sanity floor against empty/stub bodies.
+  if (file.sections.map(section => section.text || '').join('').length < 1200) {
+    throw new Error(`${id}正文 too short (sanity floor 1200 chars; duration is the real gate)`);
   }
   if (file.theme_word.map(item => item.char).join('') !== '友情') throw new Error(`${id} core word must be 友情`);
   if (!file.wind_down || !['scene', 'breath', 'goodnight'].every(key => file.wind_down[key])) {
@@ -56,8 +60,13 @@ catalog.episodes.forEach(episode => {
       throw new Error(`${entry.id} focus "${entry.focus}" is not a declared facet of ${episode.id}`);
     }
   });
-  const used = (episode.stories || []).map(entry => entry.focus);
-  if (new Set(used).size !== used.length) throw new Error(`${episode.id} has two stories on the same facet`);
+  // Facet uniqueness applies to the rotation pool (adult_verified). A draft
+  // (pending_adult_review) may share a facet with the live story it is being
+  // trialed to replace; it never enters rotation, so no collision occurs.
+  const used = (episode.stories || [])
+    .filter(entry => entry.status === 'adult_verified')
+    .map(entry => entry.focus);
+  if (new Set(used).size !== used.length) throw new Error(`${episode.id} has two adult_verified stories on the same facet`);
 });
 
 const w01Facets = w01.facets || [];

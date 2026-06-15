@@ -18,6 +18,24 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 
 每一週是一個核心詞主題（例如 W01「友情」），主題固定拆成五個依序切點，一切點一篇獨立故事。夜間頁在「本週主題」內依切點順序每晚自動換下一篇**已審閱**（`adult_verified`）的故事，跨日才換片；同一晚重開會沿用當晚那篇並從上次的段落續播。輪播只收 `adult_verified` 的故事，草稿（`pending_adult_review`）只能在 Podcast 選單裡試聽，不會進入夜間輪播，成人審閱 gate 因此自然守住。輪播狀態存在 `localStorage` 的 `apple-bedtime-rotation-v1`（記 `date`／`week`／`index`）。
 
+## 生產流水線（固定流程・低 token）
+
+故事量產走**固定五步**。只有第 1、3 步用到 LLM（會花 token）；其餘都是 repo 裡的**普通腳本**，誰都能直接跑、零 token。所有腳本都在 `bedtime/tools/`（產物）或 repo 根的 `tests/`（資料契約），**不藏在任何 `.claude/` skill 裡**；`bedtime-audio` skill 只是 Claude 的方便包裝，本體就是下面的 `tools/generate-bedtime-audio.py`。
+
+規格與交接：[docs/format-revamp-handoff.md](docs/format-revamp-handoff.md)（給 Codex 的交接單）、[stories/season01-plan.md](stories/season01-plan.md)（架構矩陣／前言／聲線）、[docs/story-scoring-rubric.md](docs/story-scoring-rubric.md)（評分）、[docs/tts-audio-writing-guide.md](docs/tts-audio-writing-guide.md)（對白寫法）。
+
+| 步 | 做什麼 | 指令 | Token |
+|---|---|---|---|
+| 1 | **Codex 寫稿**：依交接單改成 `pending_adult_review` 草稿（含 `shape`/`prologue`/`voices`/`turns`/`text`） | `$bedtime-story-publisher` skill | 用（LLM） |
+| 2 | **格式自檢**（硬性全自動）：欄位／6 段／`text`==turns 串接／focus／形狀輪替／時長 | `python3 tools/check-bedtime-story.py <id>` | 零 |
+| 3 | **Claude 審稿**：只評寫作品質（rubric 八維度），格式錯誤已被第 2 步擋掉 | Claude 依 rubric | 用（LLM） |
+| 4 | **合成童聲單檔**：每句逐輪換聲音、拼成 `audio/<id>.mp3`（8–10 分） | `python3 tools/generate-bedtime-audio.py <id>` | 零 |
+| 5 | **上線**：設 `adult_verified` → 跑資料契約測試 → commit/push（GitHub Pages） | `node tests/check-bedtime-week-rotation.js` 等 + git | 零 |
+
+省 token 的關鍵：**所有機械性檢查（步驟 2、4、5）都是腳本**，LLM 只負責「寫」與「評品質」。Codex 交稿前先自跑 `check-bedtime-story.py`，把結構錯誤清乾淨，Claude 審稿就不必花 token 抓格式問題。
+
+一次最多兩篇，Emma 陪聽無誤再進下一批。
+
 ## 夜間體驗
 
 - 開場顯示「本週主題 · W0X 核心詞」儀式列、今晚故事標題與核心詞，每個國字右側以 flex 容器顯示直式注音。
@@ -32,7 +50,7 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 
 ## 故事資料
 
-`stories/week01.json` 使用根層 `theme_word`、`intro`、`sections` 與 `wind_down`。故事本文是供 TTS 使用的純文字；僅核心詞保存字符級注音。六段正文合計至少 2,000 字，目標為 2,100–2,400 字。每篇故事發布前須由成人完整試聽並標記 `adult_verified`。
+故事檔（如 `stories/week01-2b.json`）使用根層 `theme_word`、`intro`、`prologue`、`voices`、`sections` 與 `wind_down`。**新模式（2026-06 起）**：每篇宣告 `shape`（六形狀之一）、`prologue`（點題前言）、`voices`（旁白＋兩童聲），`sections[].turns` 是帶 `role` 的對白輪、`sections[].text` 為 turns 串接（供瀏覽器後備與閱讀）。長度以**合成後 MP3 落 8–10 分鐘**為硬性判定（取代舊「≥2,000 字」；對白＋停頓使同時長字數更少），字數只剩軟性參考。發布由 Claude 依 rubric 達標後設 `adult_verified`（家長 Emma 已授權事後陪聽把關）。欄位完整規格見 [docs/format-revamp-handoff.md](docs/format-revamp-handoff.md)。
 
 故事正文須遵循 [TTS 聽覺優化寫作準則](docs/tts-audio-writing-guide.md)：以短句、自然標點、適量口語助詞、疊字與聲音詞增加真人說故事的呼吸感；文字評分不能取代實際 TTS 試聽。
 
@@ -40,16 +58,20 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 
 `stories/catalog.json` 保存十二週 Podcast 選單、核心詞注音與完成狀態；每週以 `stories[]` 列出該週多篇故事（id／標題／狀態／available）。`stories/current.json` 指向今晚正式故事，並用來決定「本週」是哪一週——夜間輪播會在該週的 `adult_verified` 故事之間每晚換片。
 
-使用已安裝的 `$bedtime-story-publisher` Skill，可依同一流程完成故事創作、字數檢查、試聽、成人審閱、今晚切換與上線。
-
-分工寫稿時：Codex 用 skill 寫 `pending_adult_review` 草稿 → 跑自動檢查 → Claude 依 [docs/story-scoring-rubric.md](docs/story-scoring-rubric.md) 評分（達標／待修／退回）→ 成人試聽後才設 `adult_verified`。Claude 評分達標不等於發布，成人試聽仍是最後關卡；審核通過前不開始下一周。
+分工（2026-06-16 定）：**Codex 全改／全寫、Claude 審**。Codex 用 `$bedtime-story-publisher` skill 寫 `pending_adult_review` 草稿 → 自跑 `python3 tools/check-bedtime-story.py <id>`（格式硬性自檢）→ Claude 依 [docs/story-scoring-rubric.md](docs/story-scoring-rubric.md) 評分（達標／待修／退回）→ 達標由 Claude 跑 `tools/generate-bedtime-audio.py` 產童聲音檔並設 `adult_verified` 上線。完整步驟見上方「生產流水線」。
 
 ## 首版限制
 
 - 改用單一連續音檔後，iPhone Safari 鎖屏／切到背景可繼續播放（靠 `MediaSession`）；但低耗電模式或關閉分頁仍可能中止，且需由使用者手勢開始播放。
 - 週末親子回顧會另做獨立頁面；首版只在故事資料保留不評分的對話提示。
 
-執行 `node tests/check-bedtime.js` 驗證資料契約與夜間頁面禁用舊互動。
+## 驗證腳本
+
+從 **repo 根**執行。新格式的逐篇硬性閘門是 `check-bedtime-story.py`；其餘 `tests/*.js` 驗資料契約與夜間頁邏輯。
+
+`python3 bedtime/tools/check-bedtime-story.py [id...]`（**新格式主閘門**）：欄位齊全（含 `shape`/`prologue`/`voices`）、正好 6 段、對白格式 `text`==turns 串接且 role 合法、`focus` 屬本週切點、`shape` 不與輪播前一晚同形、（已合成則）時長 8–10 分。無參數＝檢查全部有檔故事。退出碼非 0 即有篇需修。
+
+執行 `node tests/check-bedtime.js` 驗證資料契約與夜間頁面禁用舊互動。**（注意：此檔與 `check-bedtime-podcast-catalog.js` 目前在 main 上即失敗，因仍檢查已移除的舊播放架構 token，如 `completedSection`／`begin(0)`；待修，與本次改版無關。）**
 
 執行 `node tests/check-bedtime-season.js` 驗證 W08 壓力測試與第一季計畫：六段結構、單一核心詞、嵌入式人物故事、行動式週末問題及 12 週六欄完整性。角色是否以行動呈現核心詞仍須成人人工驗收。
 

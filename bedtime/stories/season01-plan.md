@@ -33,9 +33,22 @@
 
 ## 多聲線（voices / turns）
 
-- 音檔採「旁白 + 兩個柔和角色聲線」。故事檔加 `voices`（role → Azure 語音）與 `sections[].turns`（`[{role,text}]`）。
-- 起步聲線：`narrator` HsiaoChen、`mimi` HsiaoYu、`dodo` YunJhe；prosody 維持 `-15%`，試聽若太亮再降。
-- `sections[].text` 仍保留整段純敘述（= turns 串接），給瀏覽器後備與閱讀；現有舊篇無 `turns` 時沿用單聲。
+- 音檔採「旁白 + 兩個童聲」。故事檔加 `voices`（role → Azure 語音）與 `sections[].turns`（`[{role,text}]`）。
+- **定案聲線（2026-06-16，Emma 試聽通過）**：
+  - `narrator` → `zh-TW-HsiaoChenNeural`（台灣女聲，沉穩旁白）
+  - `mimi` → `zh-CN-XiaoshuangNeural`（女童）
+  - `dodo` → `zh-CN-YunxiaNeural`（男童）
+  - zh-TW 無童聲，真童聲只在 zh-CN，故兩角色帶輕微大陸口音；Emma 已接受。旁白維持台灣腔。prosody 維持 `-15%`。
+- 角色↔role 對應：女角預設 `mimi`、男角預設 `dodo`；同篇若有第三角，沿用既有聲音不新增第四聲線（睡前低刺激優先）。
+- 對白為主：角色說自己的話，**旁白只接場景與轉場**，不替角色轉述心情。
+- `sections[].text` 仍保留整段純敘述（= turns 串接，不含 role 標記），給瀏覽器後備與閱讀；現有舊篇無 `turns` 時沿用單聲。
+
+## 全面改版（現有故事遷移）
+
+- 範圍：W01 友情、W02 誠實**已上線的所有 `adult_verified` 故事**，全部照本頁的「架構矩陣＋點題前言＋多聲線童聲」重做；W03 起新寫的故事直接套用。
+- 分工（2026-06-16 定）：**Codex 全改、Claude 審**。沿用「Codex 寫稿 → Claude 依 rubric 評分上線」既有流程，不採各改一週互審（保單一作者聲音與單一品質尺）。
+- 流程每篇：Codex 改寫成 `pending_adult_review` 草稿（含 `shape`/`prologue`/`voices`/`turns`）→ Claude 依更新後 rubric 審 → 通過由 Claude 跑 `bedtime-audio` 產童聲 MP3、設 `adult_verified` 上線。
+- 參考樣板：`stories/week01-2b.json`〈一人一半的月亮〉（相遇型）。交接細節見 `docs/format-revamp-handoff.md`。
 
 ### W01 友情 切點表
 

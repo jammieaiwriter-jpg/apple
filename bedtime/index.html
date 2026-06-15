@@ -77,9 +77,9 @@ const PROGRESS_KEY = 'apple-bedtime-progress-v1';
 const LAST_PLAYED_KEY = 'apple-bedtime-last-played-v1';
 const ROTATION_KEY = 'apple-bedtime-rotation-v1';
 const DIM_DELAY_MS = 20000;
-const SECTION_PAUSE_MS = 1800;
-const BEFORE_WIND_DOWN_PAUSE_MS = 2500;
-const WIND_DOWN_PAUSE_MS = 3000;
+const SECTION_PAUSE_MS = 1300;
+const BEFORE_WIND_DOWN_PAUSE_MS = 1900;
+const WIND_DOWN_PAUSE_MS = 2300;
 const AZURE_TTS_VOICE = 'zh-TW-HsiaoChenNeural';
 const night = document.getElementById('night');
 const statusText = document.getElementById('status');
@@ -424,18 +424,16 @@ function stopAzureSpeech() {
   releaseAzureSpeech();
 }
 
-async function playAzureSpeech(text, onEnd, onError, activePlaybackId) {
-  if (azureDisabled) return false;
+function segmentAudioUrl(item) {
+  return `audio/${encodeURIComponent(story.id)}/${encodeURIComponent(item.id)}.mp3`;
+}
+
+async function playAudioResponse(requestFactory, onEnd, onError, activePlaybackId, disableOnFail) {
   stopAzureSpeech();
   azureAbortController = new AbortController();
   try {
-    const response = await fetch('/api/tts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, voice: AZURE_TTS_VOICE }),
-      signal: azureAbortController.signal
-    });
-    if (!response.ok) throw new Error(`Azure Speech returned ${response.status}`);
+    const response = await requestFactory(azureAbortController.signal);
+    if (!response.ok) throw new Error(`audio request returned ${response.status}`);
     const audioBlob = await response.blob();
     if (activePlaybackId !== playbackId || state !== 'playing') {
       stopAzureSpeech();
@@ -457,9 +455,31 @@ async function playAzureSpeech(text, onEnd, onError, activePlaybackId) {
     const wasCanceled = error.name === 'AbortError';
     stopAzureSpeech();
     if (wasCanceled) return true;
-    azureDisabled = true;
+    if (disableOnFail) azureDisabled = true;
     return false;
   }
+}
+
+// Pre-rendered static MP3 (works on GitHub Pages with no backend). Falls back
+// to the live Azure proxy, then browser speech, if the file is missing.
+function playPrerenderedSpeech(item, onEnd, onError, activePlaybackId) {
+  return playAudioResponse(
+    signal => fetch(segmentAudioUrl(item), { signal }),
+    onEnd, onError, activePlaybackId, false
+  );
+}
+
+function playAzureSpeech(text, onEnd, onError, activePlaybackId) {
+  if (azureDisabled) return Promise.resolve(false);
+  return playAudioResponse(
+    signal => fetch('/api/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, voice: AZURE_TTS_VOICE }),
+      signal
+    }),
+    onEnd, onError, activePlaybackId, true
+  );
 }
 
 function playBrowserSpeech(text, onEnd, onError) {
@@ -503,10 +523,13 @@ function speakFrom(index, activePlaybackId) {
     setState('error');
     statusText.textContent = '故事停了一下。點「繼續」就能從這一段再聽。';
   };
-  playAzureSpeech(items[index].text, onEnd, onError, activePlaybackId).then(played => {
-    if (!played && activePlaybackId === playbackId && state === 'playing') {
-      playBrowserSpeech(items[index].text, onEnd, onError);
-    }
+  playPrerenderedSpeech(items[index], onEnd, onError, activePlaybackId).then(played => {
+    if (played || activePlaybackId !== playbackId || state !== 'playing') return;
+    return playAzureSpeech(items[index].text, onEnd, onError, activePlaybackId).then(playedAzure => {
+      if (!playedAzure && activePlaybackId === playbackId && state === 'playing') {
+        playBrowserSpeech(items[index].text, onEnd, onError);
+      }
+    });
   });
 }
 

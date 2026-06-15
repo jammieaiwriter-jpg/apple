@@ -24,7 +24,7 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 - 首頁下方提供 Podcast 式第一季故事選單，依週分組逐篇列出；今晚故事、草稿試聽與規劃中集數有清楚狀態。每週第一列右側顯示核心詞與注音，點可播放故事會立即開始朗讀。
 - 播放約 20 秒後畫面逐漸變暗；點暗幕可短暫顯示控制。
 - 控制只包含開始、暫停、繼續與重新播放。
-- 朗讀優先使用 Azure `zh-TW-HsiaoChenNeural`；不可用時選擇 `zh-TW` 系統語音。故事段落後留白 1.8 秒、進入收心前留白 2.5 秒、收心段之間留白 3 秒。
+- 朗讀優先使用 Azure `zh-TW-HsiaoChenNeural`；不可用時選擇 `zh-TW` 系統語音。故事段落後留白 1.3 秒、進入收心前留白 1.9 秒、收心段之間留白 2.3 秒。
 - 暫停或語音錯誤時會取消當前朗讀；繼續後從該段開頭重播。
 - `localStorage` 保存最後完成段落，重新開頁可從下一段繼續。
 - 夜間不顯示故事全文，也沒有問題、選項、提示、跟讀或評量。
@@ -34,6 +34,8 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 `stories/week01.json` 使用根層 `theme_word`、`intro`、`sections` 與 `wind_down`。故事本文是供 TTS 使用的純文字；僅核心詞保存字符級注音。六段正文合計至少 2,000 字，目標為 2,100–2,400 字。每篇故事發布前須由成人完整試聽並標記 `adult_verified`。
 
 故事正文須遵循 [TTS 聽覺優化寫作準則](docs/tts-audio-writing-guide.md)：以短句、自然標點、適量口語助詞、疊字與聲音詞增加真人說故事的呼吸感；文字評分不能取代實際 TTS 試聽。
+
+後續由 Claude 寫稿、修稿或審核時，須同時遵循 [Azure Neural 睡前故事朗讀定案](docs/azure-neural-narration-handoff.md)，沿用已通過成人試聽的音色、SSML、部署與秘密金鑰規則。
 
 `stories/catalog.json` 保存十二週 Podcast 選單、核心詞注音與完成狀態；每週以 `stories[]` 列出該週多篇故事（id／標題／狀態／available）。`stories/current.json` 指向今晚正式故事，並用來決定「本週」是哪一週——夜間輪播會在該週的 `adult_verified` 故事之間每晚換片。
 

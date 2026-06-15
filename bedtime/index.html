@@ -53,7 +53,7 @@
 <main class="night controls-visible" id="night">
   <button class="tap-layer" id="tapLayer" aria-label="顯示播放控制"></button>
   <section class="content">
-    <div class="eyebrow">今晚的核心詞</div>
+    <div class="eyebrow" id="eyebrow">今晚的核心詞</div>
     <h1 id="title">星光故事</h1>
     <div class="theme-word" id="themeWord" aria-label="核心詞"></div>
     <button class="primary" id="start">開始今晚的故事</button>
@@ -75,6 +75,7 @@ const CURRENT_STORY_URL = 'stories/current.json';
 const CATALOG_URL = 'stories/catalog.json';
 const PROGRESS_KEY = 'apple-bedtime-progress-v1';
 const LAST_PLAYED_KEY = 'apple-bedtime-last-played-v1';
+const ROTATION_KEY = 'apple-bedtime-rotation-v1';
 const DIM_DELAY_MS = 20000;
 const SECTION_PAUSE_MS = 1800;
 const BEFORE_WIND_DOWN_PAUSE_MS = 2500;
@@ -83,6 +84,7 @@ const night = document.getElementById('night');
 const statusText = document.getElementById('status');
 let story;
 let currentStoryId;
+let tonightStoryId;
 let catalog;
 const storyCache = {};
 let state = 'ready';
@@ -172,11 +174,53 @@ function narration() {
   ];
 }
 
-function episodeStatus(episode) {
-  if (episode.id === currentStoryId) return '今晚播放';
-  if (episode.status === 'pending_adult_review') return '草稿試聽';
-  if (episode.status === 'adult_verified') return '已審閱';
+function episodeStories(episode) {
+  return (episode.stories && episode.stories.length)
+    ? episode.stories
+    : [{ id: episode.id, title: episode.title, status: episode.status, available: episode.available }];
+}
+
+function storyStatus(entry) {
+  if (entry.id === tonightStoryId) return '今晚播放';
+  if (entry.status === 'pending_adult_review') return '草稿試聽';
+  if (entry.status === 'adult_verified') return '已審閱';
   return '規劃中';
+}
+
+function episodeForStory(id) {
+  return catalog.episodes.find(episode =>
+    episode.id === id || episodeStories(episode).some(entry => entry.id === id)
+  );
+}
+
+function activeEpisode() {
+  return episodeForStory(currentStoryId) || catalog.episodes[0];
+}
+
+function weekRotationPool(episode) {
+  return episodeStories(episode).filter(entry =>
+    entry.available && entry.status === 'adult_verified' && storyCache[entry.id]
+  );
+}
+
+function pickTonight() {
+  const episode = activeEpisode();
+  const pool = weekRotationPool(episode);
+  if (!pool.length) {
+    return { story: storyCache[currentStoryId], episode };
+  }
+  let index = 0;
+  try {
+    const saved = JSON.parse(localStorage.getItem(ROTATION_KEY));
+    if (saved && saved.week === episode.week && Number.isInteger(saved.index)) {
+      index = saved.date === todayKey() ? saved.index : saved.index + 1;
+    }
+  } catch {}
+  index = ((index % pool.length) + pool.length) % pool.length;
+  try {
+    localStorage.setItem(ROTATION_KEY, JSON.stringify({ date: todayKey(), week: episode.week, index }));
+  } catch {}
+  return { story: storyCache[pool[index].id], episode };
 }
 
 function fetchJson(url) {
@@ -217,31 +261,36 @@ function renderPodcastList() {
   const podcastList = document.getElementById('podcastList');
   podcastList.replaceChildren();
   catalog.episodes.forEach(episode => {
-    const button = document.createElement('button');
-    const label = document.createElement('span');
-    const details = document.createElement('span');
-    const title = document.createElement('span');
-    const theme = document.createElement('span');
-    const pronunciation = document.createElement('span');
-    const episodeState = document.createElement('span');
-    button.className = `episode${episode.id === story.id ? ' active' : ''}`;
-    button.disabled = !episode.available;
-    button.setAttribute('aria-label', `${episode.week} ${episode.title}，${episodeStatus(episode)}`);
-    label.className = 'episode-week';
-    details.className = 'episode-details';
-    title.className = 'episode-title';
-    theme.className = 'episode-theme';
-    pronunciation.className = 'episode-pronunciation';
-    episodeState.className = 'episode-status';
-    label.textContent = episode.week;
-    title.textContent = episode.title;
-    theme.textContent = `核心詞：${episode.theme}`;
-    episodeState.textContent = episodeStatus(episode);
-    episode.theme_word.forEach(item => pronunciation.append(createPronouncedCharacter(item)));
-    details.append(title, theme);
-    button.append(label, details, pronunciation, episodeState);
-    if (episode.available) button.onclick = () => selectEpisode(episode);
-    podcastList.append(button);
+    const entries = episodeStories(episode);
+    entries.forEach((entry, indexInWeek) => {
+      const button = document.createElement('button');
+      const label = document.createElement('span');
+      const details = document.createElement('span');
+      const title = document.createElement('span');
+      const theme = document.createElement('span');
+      const pronunciation = document.createElement('span');
+      const episodeState = document.createElement('span');
+      button.className = `episode${entry.id === story.id ? ' active' : ''}`;
+      button.disabled = !entry.available;
+      button.setAttribute('aria-label', `${episode.week} ${entry.title}，${storyStatus(entry)}`);
+      label.className = 'episode-week';
+      details.className = 'episode-details';
+      title.className = 'episode-title';
+      theme.className = 'episode-theme';
+      pronunciation.className = 'episode-pronunciation';
+      episodeState.className = 'episode-status';
+      label.textContent = indexInWeek === 0 ? episode.week : '';
+      title.textContent = entry.title;
+      theme.textContent = `核心詞：${episode.theme}`;
+      episodeState.textContent = storyStatus(entry);
+      if (indexInWeek === 0) {
+        episode.theme_word.forEach(item => pronunciation.append(createPronouncedCharacter(item)));
+      }
+      details.append(title, theme);
+      button.append(label, details, pronunciation, episodeState);
+      if (entry.available) button.onclick = () => selectEpisode(entry);
+      podcastList.append(button);
+    });
   });
 }
 
@@ -258,6 +307,10 @@ function showStory(selectedStory, message, resetProgress = true) {
   dimRemaining = DIM_DELAY_MS;
   night.classList.remove('dimmed');
   document.getElementById('title').textContent = story.title;
+  const episode = episodeForStory(story.id);
+  document.getElementById('eyebrow').textContent = episode
+    ? `本週主題 · ${episode.week} ${episode.theme}`
+    : '今晚的核心詞';
   const themeWord = document.getElementById('themeWord');
   themeWord.replaceChildren();
   story.theme_word.forEach(item => {
@@ -268,23 +321,33 @@ function showStory(selectedStory, message, resetProgress = true) {
   renderPodcastList();
 }
 
-function selectEpisode(episode) {
-  const selectedStory = storyCache[episode.id];
+function selectEpisode(entry) {
+  const selectedStory = storyCache[entry.id];
   if (!selectedStory) {
     statusText.textContent = '這一集暫時無法載入，請稍後再試。';
     return;
   }
-  const message = episode.status === 'pending_adult_review'
-    ? `草稿試聽：${episode.title}。`
-    : `正在播放：${episode.title}。`;
+  const message = entry.status === 'pending_adult_review'
+    ? `草稿試聽：${entry.title}。`
+    : `正在播放：${entry.title}。`;
   showStory(selectedStory, message);
   begin(0);
 }
 
 function preloadAvailableStories() {
-  return Promise.all(catalog.episodes.filter(episode => episode.available).map(episode =>
-    fetchJson(`stories/${episode.id}.json`).then(data => {
-      storyCache[episode.id] = data;
+  const seen = new Set();
+  const targets = [];
+  catalog.episodes.forEach(episode => {
+    episodeStories(episode).forEach(entry => {
+      if (entry.available && !seen.has(entry.id)) {
+        seen.add(entry.id);
+        targets.push(entry.id);
+      }
+    });
+  });
+  return Promise.all(targets.map(id =>
+    fetchJson(`stories/${id}.json`).then(data => {
+      storyCache[id] = data;
     })
   ));
 }
@@ -412,8 +475,10 @@ Promise.all([fetchJson(CURRENT_STORY_URL), fetchJson(CATALOG_URL)]).then(([curre
   currentStoryId = current.story;
   return preloadAvailableStories();
 }).then(() => {
-  story = storyCache[currentStoryId];
+  const tonight = pickTonight();
+  story = tonight.story || storyCache[currentStoryId];
   if (!story) throw new Error('current story missing from cache');
+  tonightStoryId = story.id;
   loadProgress();
   const completedStatus = completionStatus();
   const message = completedStatus || (currentSection > 0

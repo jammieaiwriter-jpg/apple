@@ -44,6 +44,27 @@ w01.stories.forEach(entry => {
   }
 });
 
+// Theme -> facet -> story model: each story's focus must be a declared facet.
+catalog.episodes.forEach(episode => {
+  if (!episode.facets) return;
+  if (!Array.isArray(episode.facets) || episode.facets.length < 4 || episode.facets.length > 5) {
+    throw new Error(`${episode.id} facets must list 4-5 teaching angles`);
+  }
+  (episode.stories || []).forEach(entry => {
+    if (!entry.focus) throw new Error(`${entry.id} story needs a focus facet`);
+    if (!episode.facets.includes(entry.focus)) {
+      throw new Error(`${entry.id} focus "${entry.focus}" is not a declared facet of ${episode.id}`);
+    }
+  });
+  const used = (episode.stories || []).map(entry => entry.focus);
+  if (new Set(used).size !== used.length) throw new Error(`${episode.id} has two stories on the same facet`);
+});
+
+const w01Facets = w01.facets || [];
+if (!w01Facets.includes('分辨善意與不友善')) {
+  throw new Error('W01 facet syllabus must include 分辨善意與不友善');
+}
+
 // Nightly rotation only draws adult_verified stories; drafts stay trial-only.
 const w01Pool = w01.stories.filter(entry => entry.available && entry.status === 'adult_verified');
 if (!w01Pool.length) throw new Error('W01 rotation pool needs at least one adult_verified story');

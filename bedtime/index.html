@@ -77,10 +77,11 @@ const PROGRESS_KEY = 'apple-bedtime-progress-v1';
 const LAST_PLAYED_KEY = 'apple-bedtime-last-played-v1';
 const ROTATION_KEY = 'apple-bedtime-rotation-v1';
 const DIM_DELAY_MS = 20000;
+// Inter-section pauses are baked into the combined audio as silence at
+// generation time (see tools/generate-bedtime-audio.py); kept here for reference.
 const SECTION_PAUSE_MS = 900;
 const BEFORE_WIND_DOWN_PAUSE_MS = 1900;
 const WIND_DOWN_PAUSE_MS = 2300;
-const AZURE_TTS_VOICE = 'zh-TW-HsiaoChenNeural';
 const night = document.getElementById('night');
 const statusText = document.getElementById('status');
 let story;
@@ -89,20 +90,15 @@ let tonightStoryId;
 let catalog;
 const storyCache = {};
 let state = 'ready';
-let currentSection = 0;
-let completedSection = -1;
 let preferredVoice;
 let dimRemaining = DIM_DELAY_MS;
 let dimStartedAt = 0;
 let dimTimer;
 let controlsTimer;
-let speakTimer;
-let pauseTimer;
 let playbackId = 0;
-let azureAudio;
-let azureAudioUrl;
-let azureAbortController;
-let azureDisabled = false;
+let storyAudio;
+let resumeTime = 0;
+let lastSavedTime = -1;
 
 function setState(next) {
   state = next;
@@ -116,20 +112,19 @@ function setState(next) {
 
 function saveProgress() {
   try {
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify({ date: todayKey(), storyId:story.id, completedSection }));
+    const time = storyAudio ? storyAudio.currentTime : resumeTime;
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify({ date: todayKey(), storyId: story.id, time }));
   } catch {}
 }
 
 function loadProgress() {
+  resumeTime = 0;
   try {
     const saved = JSON.parse(localStorage.getItem(PROGRESS_KEY));
-    if (saved && saved.date === todayKey() && saved.storyId === story.id && Number.isInteger(saved.completedSection)) {
-      completedSection = saved.completedSection;
+    if (saved && saved.date === todayKey() && saved.storyId === story.id && Number.isFinite(saved.time)) {
+      resumeTime = saved.time;
     }
   } catch {}
-  currentSection = completedSection >= 0 && completedSection < story.sections.length - 1
-    ? completedSection + 2
-    : 0;
 }
 
 function dateKey(date) {
@@ -301,14 +296,12 @@ function renderPodcastList() {
 
 function showStory(selectedStory, message, resetProgress = true) {
   playbackId++;
-  clearTimeout(speakTimer);
-  clearTimeout(pauseTimer);
-  stopAzureSpeech();
+  releaseStoryAudio();
   speechSynthesis.cancel();
   story = selectedStory;
   if (resetProgress) {
-    completedSection = -1;
-    currentSection = 0;
+    resumeTime = 0;
+    lastSavedTime = -1;
   }
   dimRemaining = DIM_DELAY_MS;
   night.classList.remove('dimmed');
@@ -337,7 +330,7 @@ function selectEpisode(entry) {
     ? `草稿試聽：${entry.title}。`
     : `正在播放：${entry.title}。`;
   showStory(selectedStory, message);
-  begin(0);
+  playStory(0);
 }
 
 function preloadAvailableStories() {
@@ -371,16 +364,68 @@ function refreshPreferredVoice() {
     voices.find(voice => /^zh/i.test(voice.lang));
 }
 
-function pauseBeforeNext(nextIndex, activePlaybackId) {
-  currentSection = nextIndex;
-  const firstWindDownIndex = story.sections.length + 1;
-  const delay = nextIndex === firstWindDownIndex
-    ? BEFORE_WIND_DOWN_PAUSE_MS
-    : nextIndex > firstWindDownIndex
-      ? WIND_DOWN_PAUSE_MS
-      : SECTION_PAUSE_MS;
-  clearTimeout(pauseTimer);
-  pauseTimer = setTimeout(() => speakFrom(nextIndex, activePlaybackId), delay);
+function combinedAudioUrl() {
+  return `audio/${encodeURIComponent(story.id)}.mp3`;
+}
+
+function releaseStoryAudio() {
+  if (storyAudio) {
+    storyAudio.onended = null;
+    storyAudio.onerror = null;
+    storyAudio.ontimeupdate = null;
+    storyAudio.onloadedmetadata = null;
+    storyAudio.pause();
+    storyAudio.removeAttribute('src');
+    storyAudio.load();
+    storyAudio = undefined;
+  }
+}
+
+function setupMediaSession() {
+  if (!('mediaSession' in navigator)) return;
+  try {
+    const episode = episodeForStory(story.id);
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: story.title,
+      artist: '星光故事',
+      album: episode ? `${episode.week} ${episode.theme}` : '第一季故事'
+    });
+    navigator.mediaSession.setActionHandler('play', () => { if (state !== 'playing') resumeStory(); });
+    navigator.mediaSession.setActionHandler('pause', () => { if (state === 'playing') pauseStory(); });
+  } catch {}
+}
+
+function markEnded() {
+  resumeTime = 0;
+  lastSavedTime = -1;
+  saveCompletion();
+  saveProgress();
+  if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'none';
+  freezeDimTimer();
+  revealControls();
+  setState('ended');
+  statusText.textContent = `今晚已聽完：${story.title} ✓ 晚安。`;
+}
+
+// Combined audio unavailable: read the whole story with the browser voice.
+function playFallbackSpeech() {
+  releaseStoryAudio();
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(narration().map(item => item.text).join('\n\n'));
+  utterance.lang = 'zh-TW';
+  utterance.rate = 0.78;
+  utterance.pitch = 1;
+  if (preferredVoice) utterance.voice = preferredVoice;
+  utterance.onend = () => { if (state === 'playing') markEnded(); };
+  utterance.onerror = event => {
+    if (event?.error === 'canceled' || state !== 'playing') return;
+    freezeDimTimer();
+    night.classList.remove('dimmed');
+    revealControls();
+    setState('error');
+    statusText.textContent = '故事停了一下。點「繼續」就能再聽。';
+  };
+  speechSynthesis.speak(utterance);
 }
 
 function startDimTimer() {
@@ -405,157 +450,52 @@ function revealControls() {
   }
 }
 
-function releaseAzureSpeech() {
-  if (azureAudio) {
-    azureAudio.onended = null;
-    azureAudio.onerror = null;
-    azureAudio.removeAttribute('src');
-    azureAudio.load();
-  }
-  if (azureAudioUrl) URL.revokeObjectURL(azureAudioUrl);
-  azureAudio = undefined;
-  azureAudioUrl = undefined;
-  azureAbortController = undefined;
-}
-
-function stopAzureSpeech() {
-  if (azureAbortController) azureAbortController.abort();
-  if (azureAudio) azureAudio.pause();
-  releaseAzureSpeech();
-}
-
-function segmentAudioUrl(item) {
-  return `audio/${encodeURIComponent(story.id)}/${encodeURIComponent(item.id)}.mp3`;
-}
-
-async function playAudioResponse(requestFactory, onEnd, onError, activePlaybackId, disableOnFail) {
-  stopAzureSpeech();
-  azureAbortController = new AbortController();
-  try {
-    const response = await requestFactory(azureAbortController.signal);
-    if (!response.ok) throw new Error(`audio request returned ${response.status}`);
-    const audioBlob = await response.blob();
-    if (activePlaybackId !== playbackId || state !== 'playing') {
-      stopAzureSpeech();
-      return true;
-    }
-    azureAudioUrl = URL.createObjectURL(audioBlob);
-    azureAudio = new Audio(azureAudioUrl);
-    azureAudio.onended = () => {
-      releaseAzureSpeech();
-      onEnd();
-    };
-    azureAudio.onerror = () => {
-      releaseAzureSpeech();
-      onError();
-    };
-    await azureAudio.play();
-    return true;
-  } catch (error) {
-    const wasCanceled = error.name === 'AbortError';
-    stopAzureSpeech();
-    if (wasCanceled) return true;
-    if (disableOnFail) azureDisabled = true;
-    return false;
-  }
-}
-
-// Pre-rendered static MP3 (works on GitHub Pages with no backend). Falls back
-// to the live Azure proxy, then browser speech, if the file is missing.
-function playPrerenderedSpeech(item, onEnd, onError, activePlaybackId) {
-  return playAudioResponse(
-    signal => fetch(segmentAudioUrl(item), { signal }),
-    onEnd, onError, activePlaybackId, false
-  );
-}
-
-function playAzureSpeech(text, onEnd, onError, activePlaybackId) {
-  if (azureDisabled) return Promise.resolve(false);
-  return playAudioResponse(
-    signal => fetch('/api/tts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, voice: AZURE_TTS_VOICE }),
-      signal
-    }),
-    onEnd, onError, activePlaybackId, true
-  );
-}
-
-function playBrowserSpeech(text, onEnd, onError) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'zh-TW';
-  utterance.rate = 0.78;
-  utterance.pitch = 1;
-  if (preferredVoice) utterance.voice = preferredVoice;
-  utterance.onend = onEnd;
-  utterance.onerror = onError;
-  speechSynthesis.speak(utterance);
-}
-
-function speakFrom(index, activePlaybackId) {
-  if (activePlaybackId !== playbackId || state !== 'playing') return;
-  const items = narration();
-  if (index >= items.length) {
-    completedSection = story.sections.length - 1;
-    saveProgress();
-    saveCompletion();
-    freezeDimTimer();
-    revealControls();
-    setState('ended');
-    statusText.textContent = `今晚已聽完：${story.title} ✓ 晚安。`;
-    return;
-  }
-  currentSection = index;
-  const onEnd = () => {
-    if (activePlaybackId !== playbackId || state !== 'playing') return;
-    if (index >= 1 && index <= story.sections.length) {
-      completedSection = index - 1;
-      saveProgress();
-    }
-    pauseBeforeNext(index + 1, activePlaybackId);
-  };
-  const onError = event => {
-    if (event?.error === 'canceled' || activePlaybackId !== playbackId || state !== 'playing') return;
-    freezeDimTimer();
-    night.classList.remove('dimmed');
-    revealControls();
-    setState('error');
-    statusText.textContent = '故事停了一下。點「繼續」就能從這一段再聽。';
-  };
-  playPrerenderedSpeech(items[index], onEnd, onError, activePlaybackId).then(played => {
-    if (played || activePlaybackId !== playbackId || state !== 'playing') return;
-    return playAzureSpeech(items[index].text, onEnd, onError, activePlaybackId).then(playedAzure => {
-      if (!playedAzure && activePlaybackId === playbackId && state === 'playing') {
-        playBrowserSpeech(items[index].text, onEnd, onError);
-      }
-    });
-  });
-  // Warm the next segment's audio during this one, so the between-section gap is
-  // just the pause and not a download.
-  const upcoming = items[index + 1];
-  if (upcoming) fetch(segmentAudioUrl(upcoming)).catch(() => {});
-}
-
-function begin(index) {
+// Play the whole story as one continuous audio file. A single playing media
+// element keeps going on the iOS lock screen / in the background, which
+// segment-by-segment JS playback cannot. Pauses are baked into the file.
+function playStory(fromTime) {
   playbackId++;
-  clearTimeout(speakTimer);
-  clearTimeout(pauseTimer);
-  stopAzureSpeech();
+  const activePlaybackId = playbackId;
+  releaseStoryAudio();
   speechSynthesis.cancel();
   setState('playing');
   statusText.textContent = '故事正在播放。';
   startDimTimer();
-  const activePlaybackId = playbackId;
-  speakTimer = setTimeout(() => speakFrom(index, activePlaybackId), 80);
+  setupMediaSession();
+  if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+  storyAudio = new Audio(combinedAudioUrl());
+  storyAudio.preload = 'auto';
+  storyAudio.onloadedmetadata = () => {
+    if (fromTime > 0 && storyAudio && fromTime < storyAudio.duration - 1) {
+      storyAudio.currentTime = fromTime;
+    }
+  };
+  storyAudio.ontimeupdate = () => {
+    if (state !== 'playing' || !storyAudio) return;
+    if (Math.abs(storyAudio.currentTime - lastSavedTime) >= 5) {
+      lastSavedTime = storyAudio.currentTime;
+      saveProgress();
+    }
+  };
+  storyAudio.onended = () => { if (activePlaybackId === playbackId) markEnded(); };
+  storyAudio.onerror = () => { if (activePlaybackId === playbackId && state === 'playing') playFallbackSpeech(); };
+  storyAudio.play().catch(error => {
+    if (error.name !== 'AbortError' && activePlaybackId === playbackId && state === 'playing') playFallbackSpeech();
+  });
+}
+
+function begin() {
+  playStory(resumeTime);
 }
 
 function pauseStory() {
-  playbackId++;
-  clearTimeout(speakTimer);
-  clearTimeout(pauseTimer);
-  stopAzureSpeech();
-  speechSynthesis.cancel();
+  if (storyAudio && !storyAudio.paused) {
+    storyAudio.pause();
+    resumeTime = storyAudio.currentTime;
+  }
+  if (speechSynthesis.speaking && !speechSynthesis.paused) speechSynthesis.pause();
+  saveProgress();
+  if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
   freezeDimTimer();
   revealControls();
   setState('paused');
@@ -563,16 +503,31 @@ function pauseStory() {
 }
 
 function resumeStory() {
-  begin(currentSection);
+  if (speechSynthesis.paused) {
+    setState('playing');
+    statusText.textContent = '故事正在播放。';
+    startDimTimer();
+    speechSynthesis.resume();
+    return;
+  }
+  if (storyAudio && storyAudio.paused && !storyAudio.ended) {
+    setState('playing');
+    statusText.textContent = '故事正在播放。';
+    startDimTimer();
+    if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+    storyAudio.play().catch(() => playStory(resumeTime));
+    return;
+  }
+  playStory(resumeTime);
 }
 
 function restartStory() {
-  completedSection = -1;
-  currentSection = 0;
+  resumeTime = 0;
+  lastSavedTime = -1;
   dimRemaining = DIM_DELAY_MS;
   night.classList.remove('dimmed');
   saveProgress();
-  begin(0);
+  playStory(0);
 }
 
 Promise.all([fetchJson(CURRENT_STORY_URL), fetchJson(CATALOG_URL)]).then(([current, loadedCatalog]) => {
@@ -587,8 +542,8 @@ Promise.all([fetchJson(CURRENT_STORY_URL), fetchJson(CATALOG_URL)]).then(([curre
   tonightStoryId = story.id;
   loadProgress();
   const completedStatus = completionStatus();
-  const message = completedStatus || (currentSection > 0
-    ? '今晚聽到一半，點一下會從下一段繼續。'
+  const message = completedStatus || (resumeTime > 0
+    ? '今晚聽到一半，點一下會從上次的地方繼續。'
     : '舒服地躺好，點一下就會自動聽完整篇故事。');
   showStory(story, message, false);
 }).catch(() => {
@@ -598,16 +553,16 @@ Promise.all([fetchJson(CURRENT_STORY_URL), fetchJson(CATALOG_URL)]).then(([curre
 
 refreshPreferredVoice();
 speechSynthesis.onvoiceschanged = refreshPreferredVoice;
-document.getElementById('start').onclick = () => begin(currentSection);
+document.getElementById('start').onclick = begin;
 document.getElementById('pause').onclick = pauseStory;
 document.getElementById('resume').onclick = resumeStory;
 document.getElementById('restart').onclick = restartStory;
 document.getElementById('tapLayer').onclick = revealControls;
-document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'playing') pauseStory(); });
+// No visibilitychange auto-pause: the single audio file keeps playing on the
+// lock screen / in the background, which is the whole point of the combined file.
 window.addEventListener('beforeunload', () => {
-  clearTimeout(speakTimer);
-  clearTimeout(pauseTimer);
-  stopAzureSpeech();
+  saveProgress();
+  releaseStoryAudio();
   speechSynthesis.cancel();
 });
 </script>

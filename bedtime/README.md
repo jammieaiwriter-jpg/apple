@@ -24,9 +24,10 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 - 首頁下方提供 Podcast 式第一季故事選單，依週分組逐篇列出；今晚故事、草稿試聽與規劃中集數有清楚狀態。每週第一列右側顯示核心詞與注音，點可播放故事會立即開始朗讀。
 - 播放約 20 秒後畫面逐漸變暗；點暗幕可短暫顯示控制。
 - 控制只包含開始、暫停、繼續與重新播放。
-- 朗讀優先使用 Azure `zh-TW-HsiaoChenNeural`；不可用時選擇 `zh-TW` 系統語音。故事段落後留白 0.9 秒、進入收心前留白 1.9 秒、收心段之間留白 2.3 秒。
-- 暫停或語音錯誤時會取消當前朗讀；繼續後從該段開頭重播。
-- `localStorage` 保存最後完成段落，重新開頁可從下一段繼續。
+- 朗讀使用 Azure `zh-TW-HsiaoChenNeural`，事先合成為**整篇一個** `audio/<storyId>.mp3`，段落停頓（0.9／1.9／2.3 秒）燒成靜音播放；載入或播放失敗才退回 `zh-TW` 系統語音。
+- 整篇是單一連續音檔，iOS 鎖屏／切到背景仍會繼續播放，並透過 `MediaSession` 顯示鎖屏控制；不再逐段以計時器接續，也不再「切到背景就暫停」。
+- 暫停或語音錯誤時暫停當前音檔；繼續後從上次秒數接續。
+- `localStorage` 保存播放秒數（`audio.currentTime`），重新開頁可從上次的地方繼續。
 - 夜間不顯示故事全文，也沒有問題、選項、提示、跟讀或評量。
 
 ## 故事資料
@@ -45,7 +46,7 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 
 ## 首版限制
 
-- iPhone Safari 僅支援前景播放；切到背景或鎖屏時會暫停，不承諾背景連續朗讀。
+- 改用單一連續音檔後，iPhone Safari 鎖屏／切到背景可繼續播放（靠 `MediaSession`）；但低耗電模式或關閉分頁仍可能中止，且需由使用者手勢開始播放。
 - 週末親子回顧會另做獨立頁面；首版只在故事資料保留不評分的對話提示。
 
 執行 `node tests/check-bedtime.js` 驗證資料契約與夜間頁面禁用舊互動。

@@ -4,6 +4,7 @@ import hashlib
 import html
 import json
 import os
+import re
 import urllib.error
 import urllib.request
 from collections import OrderedDict
@@ -40,11 +41,28 @@ def speech_config():
     return os.environ.get("AZURE_SPEECH_KEY"), os.environ.get("AZURE_SPEECH_REGION")
 
 
+# Polyphone (多音字) pronunciation fixes. Each entry rewrites a character to a
+# specific reading via SSML <phoneme>. For the zh-TW voice the SAPI alphabet
+# expects Zhuyin/Bopomofo (e.g. ㄕㄨˇ), not Pinyin. Patterns run on already
+# HTML-escaped text, so the matched characters must contain no escaped symbols.
+PRONUNCIATIONS = [
+    # 數 as the verb "to count" → ㄕㄨˇ (shǔ, 3rd tone). Skip the noun readings
+    # 數量 / 數學 / 字數, which are correctly ㄕㄨˋ (shù, 4th tone).
+    (re.compile(r"(?<!字)數(?![量學])"), '<phoneme alphabet="sapi" ph="ㄕㄨˇ">數</phoneme>'),
+]
+
+
+def apply_pronunciations(escaped_text):
+    for pattern, replacement in PRONUNCIATIONS:
+        escaped_text = pattern.sub(replacement, escaped_text)
+    return escaped_text
+
+
 def build_ssml(text):
-    escaped = html.escape(text, quote=False)
+    escaped = apply_pronunciations(html.escape(text, quote=False))
     return (
         '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" '
-        'xml:lang="zh-TW">'
+        'xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="zh-TW">'
         f'<voice name="{html.escape(AZURE_SPEECH_VOICE, quote=True)}">'
         '<prosody rate="-15%" pitch="-2%">'
         f"{escaped}"

@@ -13,33 +13,38 @@
 
 ## 不可改動的播放規則
 
-- 前端每一段先讀取事先產生的靜態音檔 `audio/<storyId>/<segmentId>.mp3`。
-- 找不到靜態音檔時，才呼叫同網域的 `POST /api/tts`（僅 Render 等有後端時可用）。
-- 兩者都失敗時，最後才退回瀏覽器 `speechSynthesis`。
-- 瀏覽器備援固定使用 `zh-TW`、`rate = 0.78`、`pitch = 1`。
-- 故事段落後留白 `0.9` 秒（前端會預抓下一段音檔，間隔只剩純停頓）。
-- 進入 `wind_down.scene` 前留白 `1.9` 秒。
-- `wind_down` 各段之間留白 `2.3` 秒。
-- 以上留白已配合 `rate="-15%"` 的較慢語速縮短；如再調語速，需一併重抓留白。
-- 暫停時取消目前音訊與待執行留白；繼續時從目前段落開頭重播。
+- 前端把整篇故事當成**單一連續音檔** `audio/<storyId>.mp3` 播放（段落停頓已燒成靜音）。
+- 單一連續音檔才能在 iOS 鎖屏／背景持續播放；故**不再**逐段以 JS 計時器接續，也移除了「切到背景就暫停」。
+- 音檔載入或播放失敗時，才退回瀏覽器 `speechSynthesis`（固定 `zh-TW`、`rate = 0.78`、`pitch = 1`，一次讀完整篇）。
+- 進度以 `audio.currentTime`（秒）保存於 `localStorage`，續播從上次秒數接續；不再以段落索引記錄。
+- 燒進音檔的停頓：段落之間 `0.9` 秒、進入 `wind_down.scene` 前 `1.9` 秒、`wind_down` 各段之間 `2.3` 秒。
+- 以上停頓已配合 `rate="-15%"` 的較慢語速縮短；如要再調停頓或語速，改 `tools/generate-bedtime-audio.py` 的常數後重跑產生音檔。
+- 設定 `MediaSession` 中繼資料（標題／核心詞），讓鎖屏控制列顯示並可暫停／繼續。
 - 不為了改善聲音而破壞暫停、續播、重新播放、進度保存或每晚輪播。
 
 ## 靜態音檔（GitHub Pages 正式站）
 
 - 正式對外站是 GitHub Pages：<https://jammieaiwriter-jpg.github.io/apple/bedtime/>。它是純靜態托管，**無法執行 `server.py`**，所以 `/api/tts` 在那裡不存在。
-- 因此每一段朗讀都要事先用 Azure 產生 mp3、提交進版本庫，靜態站才能播出真正的 `zh-TW-HsiaoChenNeural`；否則只會退回瀏覽器語音。
-- 產生指令（金鑰由 `bedtime/.env` 讀取，不會寫入檔案或輸出）：
+- 因此整篇朗讀要事先用 Azure 產生、合併成**一篇一個** `audio/<storyId>.mp3`、提交進版本庫，靜態站才能播出真正的 `zh-TW-HsiaoChenNeural` 並支援鎖屏／背景播放；否則只會退回瀏覽器語音。
+- 產生流程（需 `ffmpeg`；金鑰由 `bedtime/.env` 讀取，不會寫入檔案或輸出）：
 
 ```bash
 cd bedtime
 python3 tools/generate-bedtime-audio.py            # 重建所有可播放故事
 python3 tools/generate-bedtime-audio.py week01     # 只重建指定故事
-python3 tools/generate-bedtime-audio.py --force    # 文字改過時強制覆蓋
+python3 tools/generate-bedtime-audio.py --force    # 文字改過時強制重合成
 ```
 
-- 音檔輸出到 `audio/<storyId>/<segmentId>.mp3`，`segmentId` 與前端 `narration()` 完全一致（`intro`、各段 `id`、`wind-down-scene`／`-breath`／`-goodnight`）。
-- 腳本沿用 `server.synthesize`，SSML、音色、`rate="-15%" pitch="-2%"` 與音訊格式與 Render 代理完全相同。
-- **改寫或新增故事後，務必重跑此腳本並提交對應 mp3**，否則該段在 GitHub Pages 會退回瀏覽器語音。Render 站仍可即時用 `/api/tts` 補上尚未產生的段落。
+- 腳本兩階段：① 用 `server.synthesize` 逐段合成（SSML、音色、`rate="-15%" pitch="-2%"`、音訊格式與 Render 代理完全相同），段落暫存於 `audio/<storyId>/`；② 用 ffmpeg 把各段與「燒成靜音的停頓」串成單一 `audio/<storyId>.mp3`。
+- **只提交 `audio/<storyId>.mp3`**；`audio/<storyId>/`（逐段）與 `audio/.silence/`（靜音）是可重建的中介檔，已在 `.gitignore` 排除。
+- **改寫或新增故事後，務必 `--force` 重跑此腳本並提交對應的合併 mp3**，否則該篇在 GitHub Pages 會退回瀏覽器語音。
+
+## 破音字（多音字）發音修正
+
+- 神經語音偶爾把多音字念錯調。修正集中在 `server.py` 的 `PRONUNCIATIONS`，用 SSML `<phoneme>` 指定讀音；因為 `build_ssml` 同時供 Render 代理與產生腳本使用，改一處即可同步生效。
+- **zh-TW 的 `sapi` 音標吃注音（Bopomofo），不是拼音**：格式為 `<phoneme alphabet="sapi" ph="ㄕㄨˇ">數</phoneme>`（拼音 `shu3` 會回 HTTP 400）。
+- 已修：`數`（動詞「數數」）→ `ㄕㄨˇ`（三聲）；以負向斷言略過名詞讀音 `數量`／`數學`／`字數`（四聲 `ㄕㄨˋ`）。
+- 新增修正後，受影響的故事要 `--force` 重新產生音檔，成人再實際試聽確認調值正確（程式只能確認 Azure 接受 SSML，不能保證聽感）。
 
 ## Claude 寫稿與修稿規則
 

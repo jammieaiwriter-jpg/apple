@@ -5,3 +5,7 @@ node_modules/
 .env
 .venv/
 game-mistakes.json
+__pycache__/
+# Bedtime audio: commit only the combined per-story files (audio/<id>.mp3);
+# the per-segment + silence intermediates are rebuildable, so keep them out.
+bedtime/audio/*/

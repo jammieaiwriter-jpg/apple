@@ -54,6 +54,7 @@ const DIM_DELAY_MS = 20000;
 const SECTION_PAUSE_MS = 1800;
 const BEFORE_WIND_DOWN_PAUSE_MS = 2500;
 const WIND_DOWN_PAUSE_MS = 3000;
+const AZURE_TTS_VOICE = 'zh-TW-HsiaoChenNeural';
 const night = document.getElementById('night');
 const statusText = document.getElementById('status');
 let story;
@@ -68,6 +69,10 @@ let controlsTimer;
 let speakTimer;
 let pauseTimer;
 let playbackId = 0;
+let azureAudio;
+let azureAudioUrl;
+let azureAbortController;
+let azureDisabled = false;
 
 function setState(next) {
   state = next;
@@ -148,6 +153,74 @@ function revealControls() {
   }
 }
 
+function releaseAzureSpeech() {
+  if (azureAudio) {
+    azureAudio.onended = null;
+    azureAudio.onerror = null;
+    azureAudio.removeAttribute('src');
+    azureAudio.load();
+  }
+  if (azureAudioUrl) URL.revokeObjectURL(azureAudioUrl);
+  azureAudio = undefined;
+  azureAudioUrl = undefined;
+  azureAbortController = undefined;
+}
+
+function stopAzureSpeech() {
+  if (azureAbortController) azureAbortController.abort();
+  if (azureAudio) azureAudio.pause();
+  releaseAzureSpeech();
+}
+
+async function playAzureSpeech(text, onEnd, onError, activePlaybackId) {
+  if (azureDisabled) return false;
+  stopAzureSpeech();
+  azureAbortController = new AbortController();
+  try {
+    const response = await fetch('/api/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, voice: AZURE_TTS_VOICE }),
+      signal: azureAbortController.signal
+    });
+    if (!response.ok) throw new Error(`Azure Speech returned ${response.status}`);
+    const audioBlob = await response.blob();
+    if (activePlaybackId !== playbackId || state !== 'playing') {
+      stopAzureSpeech();
+      return true;
+    }
+    azureAudioUrl = URL.createObjectURL(audioBlob);
+    azureAudio = new Audio(azureAudioUrl);
+    azureAudio.onended = () => {
+      releaseAzureSpeech();
+      onEnd();
+    };
+    azureAudio.onerror = () => {
+      releaseAzureSpeech();
+      onError();
+    };
+    await azureAudio.play();
+    return true;
+  } catch (error) {
+    const wasCanceled = error.name === 'AbortError';
+    stopAzureSpeech();
+    if (wasCanceled) return true;
+    azureDisabled = true;
+    return false;
+  }
+}
+
+function playBrowserSpeech(text, onEnd, onError) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'zh-TW';
+  utterance.rate = 0.78;
+  utterance.pitch = 1;
+  if (preferredVoice) utterance.voice = preferredVoice;
+  utterance.onend = onEnd;
+  utterance.onerror = onError;
+  speechSynthesis.speak(utterance);
+}
+
 function speakFrom(index, activePlaybackId) {
   if (activePlaybackId !== playbackId || state !== 'playing') return;
   const items = narration();
@@ -161,12 +234,7 @@ function speakFrom(index, activePlaybackId) {
     return;
   }
   currentSection = index;
-  const utterance = new SpeechSynthesisUtterance(items[index].text);
-  utterance.lang = 'zh-TW';
-  utterance.rate = 0.78;
-  utterance.pitch = 1;
-  if (preferredVoice) utterance.voice = preferredVoice;
-  utterance.onend = () => {
+  const onEnd = () => {
     if (activePlaybackId !== playbackId || state !== 'playing') return;
     if (index >= 1 && index <= story.sections.length) {
       completedSection = index - 1;
@@ -174,21 +242,26 @@ function speakFrom(index, activePlaybackId) {
     }
     pauseBeforeNext(index + 1, activePlaybackId);
   };
-  utterance.onerror = event => {
-    if (event.error === 'canceled' || activePlaybackId !== playbackId || state !== 'playing') return;
+  const onError = event => {
+    if (event?.error === 'canceled' || activePlaybackId !== playbackId || state !== 'playing') return;
     freezeDimTimer();
     night.classList.remove('dimmed');
     revealControls();
     setState('error');
     statusText.textContent = '故事停了一下。點「繼續」就能從這一段再聽。';
   };
-  speechSynthesis.speak(utterance);
+  playAzureSpeech(items[index].text, onEnd, onError, activePlaybackId).then(played => {
+    if (!played && activePlaybackId === playbackId && state === 'playing') {
+      playBrowserSpeech(items[index].text, onEnd, onError);
+    }
+  });
 }
 
 function begin(index) {
   playbackId++;
   clearTimeout(speakTimer);
   clearTimeout(pauseTimer);
+  stopAzureSpeech();
   speechSynthesis.cancel();
   setState('playing');
   statusText.textContent = '故事正在播放。';
@@ -201,6 +274,7 @@ function pauseStory() {
   playbackId++;
   clearTimeout(speakTimer);
   clearTimeout(pauseTimer);
+  stopAzureSpeech();
   speechSynthesis.cancel();
   freezeDimTimer();
   revealControls();
@@ -264,6 +338,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && sta
 window.addEventListener('beforeunload', () => {
   clearTimeout(speakTimer);
   clearTimeout(pauseTimer);
+  stopAzureSpeech();
   speechSynthesis.cancel();
 });
 </script>

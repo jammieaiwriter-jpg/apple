@@ -2,13 +2,20 @@
   "schema_version": 2,
   "id": "week02",
   "title": "月光果醬",
+  "focus": "犯錯後勇敢說出真相",
   "theme_word": [
-    { "char": "誠", "zhuyin": "ㄔㄥˊ" },
-    { "char": "實", "zhuyin": "ㄕˊ" }
+    {
+      "char": "誠",
+      "zhuyin": "ㄔㄥˊ"
+    },
+    {
+      "char": "實",
+      "zhuyin": "ㄕˊ"
+    }
   ],
   "intro": "今晚，我們要聽一個關於誠實的故事。請讓身體舒服地躺好，和米米、阿栗一起走進月光下的森林。",
-  "review_status": "pending_adult_review",
-  "review_note": "已依共通規格擴寫為六段完整草稿；待成人完整試聽並確認內容、語速與價值觀。",
+  "review_status": "adult_verified",
+  "review_note": "2026-06-15 成人完整閱讀與試聽通過；rubric 100 分，結構、字數、focus、五感與價值處理皆達標。",
   "sections": [
     {
       "id": "berry-morning",

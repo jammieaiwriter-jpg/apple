@@ -6,7 +6,7 @@ const story = JSON.parse(fs.readFileSync(path.join(root, 'bedtime/stories/week02
 const sectionText = story.sections.map(section => section.text).join('');
 
 if (story.id !== 'week02') throw new Error('week02 id invalid');
-if (story.review_status !== 'pending_adult_review') throw new Error('week02 must remain pending adult review');
+if (!['pending_adult_review', 'adult_verified'].includes(story.review_status)) throw new Error('week02 review_status invalid');
 if (!Array.isArray(story.sections) || story.sections.length !== 6) throw new Error('week02 must have six sections');
 if (sectionText.length < 2100 || sectionText.length > 2400) {
   throw new Error(`week02正文 must be 2100-2400 characters; received ${sectionText.length}`);

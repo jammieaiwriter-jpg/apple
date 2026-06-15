@@ -2,26 +2,31 @@
   "season": 1,
   "title": "森林裡的十二道星光",
   "episodes": [
-    { "id": "week01", "week": "W01", "title": "友情", "theme": "友情", "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, { "char": "情", "zhuyin": "ㄑㄧㄥˊ" }], "status": "adult_verified", "available": true, "facets": ["如何交朋友", "分享與付出", "可靠與不離棄", "分辨善意與不友善", "不必強求、做自己"], "stories": [
-      { "id": "week01", "title": "星光小船", "focus": "如何交朋友", "status": "adult_verified", "available": true },
-      { "id": "week01-2", "title": "荷葉小傘", "focus": "分享與付出", "status": "pending_adult_review", "available": true },
-      { "id": "week01-3", "title": "會發光的腳印", "focus": "可靠與不離棄", "status": "pending_adult_review", "available": true },
-      { "id": "week01-4", "title": "剛剛好的朋友", "focus": "不必強求、做自己", "status": "pending_adult_review", "available": true }
+    { "id": "week01", "week": "W01", "title": "友情", "theme": "友情", "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, { "char": "情", "zhuyin": "ㄑㄧㄥˊ" }], "status": "adult_verified", "available": true, "facets": ["主動靠近與接納陌生", "分享與互相付出", "守約與陪伴等待", "分辨善意與不友善", "不必討好，選擇適合自己的朋友"], "stories": [
+      { "id": "week01", "title": "星光小船", "focus": "主動靠近與接納陌生", "status": "adult_verified", "available": true },
+      { "id": "week01-2", "title": "荷葉小傘", "focus": "分享與互相付出", "status": "adult_verified", "available": true },
+      { "id": "week01-3", "title": "會發光的腳印", "focus": "守約與陪伴等待", "status": "adult_verified", "available": true },
+      { "id": "week01-5", "title": "風鈴草的另一邊", "focus": "分辨善意與不友善", "status": "adult_verified", "available": true },
+      { "id": "week01-4", "title": "剛剛好的朋友", "focus": "不必討好，選擇適合自己的朋友", "status": "adult_verified", "available": true }
     ] },
-    { "id": "week02", "week": "W02", "title": "誠實", "theme": "誠實", "theme_word": [{ "char": "誠", "zhuyin": "ㄔㄥˊ" }, { "char": "實", "zhuyin": "ㄕˊ" }], "status": "pending_adult_review", "available": true, "stories": [
-      { "id": "week02", "title": "月光果醬", "status": "pending_adult_review", "available": true }
+    { "id": "week02", "week": "W02", "title": "誠實", "theme": "誠實", "theme_word": [{ "char": "誠", "zhuyin": "ㄔㄥˊ" }, { "char": "實", "zhuyin": "ㄕˊ" }], "status": "adult_verified", "available": true, "facets": ["分清楚自己真正看見的事", "犯錯後勇敢說出真相", "把事情完整說清楚，不只說一半", "發現說錯時主動更正", "沒有人看見時，也做真實的選擇"], "stories": [
+      { "id": "week02-2", "title": "霧裡的月亮熊", "focus": "分清楚自己真正看見的事", "status": "adult_verified", "available": true },
+      { "id": "week02", "title": "月光果醬", "focus": "犯錯後勇敢說出真相", "status": "adult_verified", "available": true },
+      { "id": "week02-3", "title": "只說一半的紙條", "focus": "把事情完整說清楚，不只說一半", "status": "adult_verified", "available": true },
+      { "id": "week02-4", "title": "飛錯方向的銀紙鳥", "focus": "發現說錯時主動更正", "status": "adult_verified", "available": true },
+      { "id": "week02-5", "title": "多出來的金色種子", "focus": "沒有人看見時，也做真實的選擇", "status": "adult_verified", "available": true }
     ] },
-    { "id": "week03", "week": "W03", "title": "銀紙小鳥的邀請", "theme": "友善", "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, { "char": "善", "zhuyin": "ㄕㄢˋ" }], "status": "planned", "available": false },
-    { "id": "week04", "week": "W04", "title": "螢火蟲的新屋", "theme": "合作", "theme_word": [{ "char": "合", "zhuyin": "ㄏㄜˊ" }, { "char": "作", "zhuyin": "ㄗㄨㄛˋ" }], "status": "planned", "available": false },
-    { "id": "week05", "week": "W05", "title": "不說話的小鳥", "theme": "傾聽", "theme_word": [{ "char": "傾", "zhuyin": "ㄑㄧㄥ" }, { "char": "聽", "zhuyin": "ㄊㄧㄥ" }], "status": "planned", "available": false },
-    { "id": "week06", "week": "W06", "title": "會迷路的飛行器", "theme": "嘗試", "theme_word": [{ "char": "嘗", "zhuyin": "ㄔㄤˊ" }, { "char": "試", "zhuyin": "ㄕˋ" }], "status": "planned", "available": false },
-    { "id": "week07", "week": "W07", "title": "心情方向卡", "theme": "表達", "theme_word": [{ "char": "表", "zhuyin": "ㄅㄧㄠˇ" }, { "char": "達", "zhuyin": "ㄉㄚˊ" }], "status": "planned", "available": false },
-    { "id": "week08", "week": "W08", "title": "道歉", "theme": "道歉", "theme_word": [{ "char": "道", "zhuyin": "ㄉㄠˋ" }, { "char": "歉", "zhuyin": "ㄑㄧㄢˋ" }], "status": "pending_adult_review", "available": true, "stories": [
-      { "id": "week08", "title": "補好的風鈴", "status": "pending_adult_review", "available": true }
+    { "id": "week03", "week": "W03", "title": "銀紙小鳥的邀請", "theme": "友善", "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, { "char": "善", "zhuyin": "ㄕㄢˋ" }], "status": "planned", "available": false, "facets": ["主動邀請還沒加入的人", "用小行動讓別人感到舒服", "尊重別人不同的玩法與喜好", "友善也可以保留自己的界線", "把收到的善意傳給下一個人"] },
+    { "id": "week04", "week": "W04", "title": "螢火蟲的新屋", "theme": "合作", "theme_word": [{ "char": "合", "zhuyin": "ㄏㄜˊ" }, { "char": "作", "zhuyin": "ㄗㄨㄛˋ" }], "status": "planned", "available": false, "facets": ["先找到大家共同的目標", "依照各自擅長的事分工", "做不順時互相說明與調整", "意見不同時一起找第三種方法", "完成後分享成果與功勞"] },
+    { "id": "week05", "week": "W05", "title": "不說話的小鳥", "theme": "傾聽", "theme_word": [{ "char": "傾", "zhuyin": "ㄑㄧㄥ" }, { "char": "聽", "zhuyin": "ㄊㄧㄥ" }], "status": "planned", "available": false, "facets": ["停下自己的聲音，讓身體安靜", "注意表情、動作與沒有說出口的訊息", "不確定時先詢問，不急著猜答案", "讓對方慢慢說完，不搶著回應", "用行動回應真正聽見的需要"] },
+    { "id": "week06", "week": "W06", "title": "會迷路的飛行器", "theme": "嘗試", "theme_word": [{ "char": "嘗", "zhuyin": "ㄔㄤˊ" }, { "char": "試", "zhuyin": "ㄕˋ" }], "status": "planned", "available": false, "facets": ["還沒有把握，也願意開始", "把失敗當成尋找方法的線索", "一種方法不行，就換一種試試看", "遇到困難時願意請人幫忙", "休息、調整，再決定下一步"] },
+    { "id": "week07", "week": "W07", "title": "心情方向卡", "theme": "表達", "theme_word": [{ "char": "表", "zhuyin": "ㄅㄧㄠˇ" }, { "char": "達", "zhuyin": "ㄉㄚˊ" }], "status": "planned", "available": false, "facets": ["從身體感覺認出自己的心情", "用清楚的話說出感受", "不舒服時說「不要、請停下來」", "具體說出需要什麼幫助", "選擇適合的時間與方式表達"] },
+    { "id": "week08", "week": "W08", "title": "道歉", "theme": "道歉", "theme_word": [{ "char": "道", "zhuyin": "ㄉㄠˋ" }, { "char": "歉", "zhuyin": "ㄑㄧㄢˋ" }], "status": "pending_adult_review", "available": true, "facets": ["發現自己的行動影響了別人", "具體承認做了什麼，不急著找理由", "聽對方說感受，也尊重對方暫時不接受", "用實際行動修補造成的影響", "下次遇到相同情況時做出改變"], "stories": [
+      { "id": "week08", "title": "補好的風鈴", "focus": "用實際行動修補造成的影響", "status": "pending_adult_review", "available": true }
     ] },
-    { "id": "week09", "week": "W09", "title": "還沒發芽的種子", "theme": "耐心", "theme_word": [{ "char": "耐", "zhuyin": "ㄋㄞˋ" }, { "char": "心", "zhuyin": "ㄒㄧㄣ" }], "status": "planned", "available": false },
-    { "id": "week10", "week": "W10", "title": "通往星星湖的路", "theme": "選擇", "theme_word": [{ "char": "選", "zhuyin": "ㄒㄩㄢˇ" }, { "char": "擇", "zhuyin": "ㄗㄜˊ" }], "status": "planned", "available": false },
-    { "id": "week11", "week": "W11", "title": "畫紙城市的門", "theme": "想像", "theme_word": [{ "char": "想", "zhuyin": "ㄒㄧㄤˇ" }, { "char": "像", "zhuyin": "ㄒㄧㄤˋ" }], "status": "planned", "available": false },
-    { "id": "week12", "week": "W12", "title": "森林裡的舊腳印", "theme": "成長", "theme_word": [{ "char": "成", "zhuyin": "ㄔㄥˊ" }, { "char": "長", "zhuyin": "ㄓㄤˇ" }], "status": "planned", "available": false }
+    { "id": "week09", "week": "W09", "title": "還沒發芽的種子", "theme": "耐心", "theme_word": [{ "char": "耐", "zhuyin": "ㄋㄞˋ" }, { "char": "心", "zhuyin": "ㄒㄧㄣ" }], "status": "planned", "available": false, "facets": ["等待時不急著干擾結果", "在等待中持續做能做的照顧", "留心還不明顯的小變化", "著急時先安頓自己的身體", "分辨哪些事情能加快，哪些需要時間"] },
+    { "id": "week10", "week": "W10", "title": "通往星星湖的路", "theme": "選擇", "theme_word": [{ "char": "選", "zhuyin": "ㄒㄩㄢˇ" }, { "char": "擇", "zhuyin": "ㄗㄜˊ" }], "status": "planned", "available": false, "facets": ["先停下來，想清楚真正需要什麼", "比較不同選擇可能帶來的結果", "聽聽會受到影響的人的想法", "做出決定，也接受沒有選到的部分", "得到新資訊後，可以重新調整選擇"] },
+    { "id": "week11", "week": "W11", "title": "畫紙城市的門", "theme": "想像", "theme_word": [{ "char": "想", "zhuyin": "ㄒㄧㄤˇ" }, { "char": "像", "zhuyin": "ㄒㄧㄤˋ" }], "status": "planned", "available": false, "facets": ["從平常事物看見不同可能", "勇敢提出「如果……會怎樣？」", "把兩個原本不同的東西組合起來", "不只照著別人畫，畫出自己的答案", "把想像變成可以分享或使用的作品"] },
+    { "id": "week12", "week": "W12", "title": "森林裡的舊腳印", "theme": "成長", "theme_word": [{ "char": "成", "zhuyin": "ㄔㄥˊ" }, { "char": "長", "zhuyin": "ㄓㄤˇ" }], "status": "planned", "available": false, "facets": ["回頭看見自己已經做到的改變", "在新困難中使用以前學過的方法", "以前需要幫忙的事，現在能自己完成", "陪伴別人成長，但不替對方完成", "接受自己仍在學習，帶著勇氣繼續前進"] }
   ]
 }

@@ -4,12 +4,18 @@
   "title": "剛剛好的朋友",
   "focus": "不必討好，選擇適合自己的朋友",
   "theme_word": [
-    { "char": "友", "zhuyin": "ㄧㄡˇ" },
-    { "char": "情", "zhuyin": "ㄑㄧㄥˊ" }
+    {
+      "char": "友",
+      "zhuyin": "ㄧㄡˇ"
+    },
+    {
+      "char": "情",
+      "zhuyin": "ㄑㄧㄥˊ"
+    }
   ],
   "intro": "今晚，我們要聽一個關於友情的故事。請讓身體舒服地躺好，聽聽看，什麼樣的朋友，才是剛剛好的朋友。",
-  "review_status": "pending_adult_review",
-  "review_note": "W01 切點5「不必討好，選擇適合自己的朋友」。加入友情可貴但不必強求討好、有很多選擇、不必執著的意涵；不醜化角色、不勉強和好。已依五感畫面準則重修（主感官：色彩與熱鬧的聲音，胸口小石頭的身體感受）。待成人完整試聽後再標記 adult_verified。",
+  "review_status": "adult_verified",
+  "review_note": "經 Claude 依 docs/story-scoring-rubric.md 評分達標，依家長授權直接上線；家長每日陪聽，發現問題再回報修訂。原稿說明：W01 切點5「不必討好，選擇適合自己的朋友」。加入友情可貴但不必強求討好、有很多選擇、不必執著的意涵；不醜化角色、不勉強和好。已依五感畫面準則重修（主感官：色彩與熱鬧的聲音，胸口小石頭的身體感受）。待成人完整試聽後再標記 adult_verified。",
   "sections": [
     {
       "id": "the-shiny-stones",

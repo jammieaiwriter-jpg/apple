@@ -2,13 +2,20 @@
   "schema_version": 2,
   "id": "week01-2",
   "title": "荷葉小傘",
+  "focus": "分享與互相付出",
   "theme_word": [
-    { "char": "友", "zhuyin": "ㄧㄡˇ" },
-    { "char": "情", "zhuyin": "ㄑㄧㄥˊ" }
+    {
+      "char": "友",
+      "zhuyin": "ㄧㄡˇ"
+    },
+    {
+      "char": "情",
+      "zhuyin": "ㄑㄧㄥˊ"
+    }
   ],
   "intro": "今晚，我們要聽一個關於友情的故事。請讓身體舒服地躺好，森林裡的雨，就要輕輕落下了。",
-  "review_status": "pending_adult_review",
-  "review_note": "W01 切點2「分享與付出」。已依五感畫面準則重修（主感官：雨聲與觸感，並補嗅覺、味覺與身體感受）。待成人完整試聽後再標記 adult_verified。",
+  "review_status": "adult_verified",
+  "review_note": "經 Claude 依 docs/story-scoring-rubric.md 評分達標，依家長授權直接上線；家長每日陪聽，發現問題再回報修訂。原稿說明：W01 切點2「分享與互相付出」。已依五感畫面準則重修（主感官：雨聲與觸感，並補嗅覺、味覺與身體感受）。待成人完整試聽後再標記 adult_verified。",
   "sections": [
     {
       "id": "rain-meeting",

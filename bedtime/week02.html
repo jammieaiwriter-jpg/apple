@@ -51,7 +51,7 @@
 <script>
 const PROGRESS_KEY = 'apple-bedtime-progress-draft';
 const DIM_DELAY_MS = 20000;
-const SECTION_PAUSE_MS = 1300;
+const SECTION_PAUSE_MS = 900;
 const BEFORE_WIND_DOWN_PAUSE_MS = 1900;
 const WIND_DOWN_PAUSE_MS = 2300;
 const AZURE_TTS_VOICE = 'zh-TW-HsiaoChenNeural';
@@ -278,6 +278,10 @@ function speakFrom(index, activePlaybackId) {
       }
     });
   });
+  // Warm the next segment's audio during this one, so the between-section gap is
+  // just the pause and not a download.
+  const upcoming = items[index + 1];
+  if (upcoming) fetch(segmentAudioUrl(upcoming)).catch(() => {});
 }
 
 function begin(index) {

@@ -354,9 +354,13 @@ function preloadAvailableStories() {
 
 function refreshPreferredVoice() {
   const voices = speechSynthesis.getVoices();
+  const zhTw = voices.filter(voice => voice.lang === 'zh-TW');
+  const isHighQuality = voice =>
+    /premium|enhanced|neural|natural|美佳|美嘉|Meijia|Yating|Hanhan|Siri/i.test(`${voice.name} ${voice.voiceURI}`);
   preferredVoice =
-    voices.find(voice => voice.lang === 'zh-TW' && voice.localService) ||
-    voices.find(voice => voice.lang === 'zh-TW') ||
+    zhTw.find(isHighQuality) ||
+    zhTw.find(voice => voice.localService) ||
+    zhTw[0] ||
     voices.find(voice => /^zh[-_]Hant/i.test(voice.lang)) ||
     voices.find(voice => /^zh/i.test(voice.lang));
 }

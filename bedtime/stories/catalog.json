@@ -5,7 +5,8 @@
     { "id": "week01", "week": "W01", "title": "友情", "theme": "友情", "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, { "char": "情", "zhuyin": "ㄑㄧㄥˊ" }], "status": "adult_verified", "available": true, "stories": [
       { "id": "week01", "title": "星光小船", "status": "adult_verified", "available": true },
       { "id": "week01-2", "title": "荷葉小傘", "status": "pending_adult_review", "available": true },
-      { "id": "week01-3", "title": "會發光的腳印", "status": "pending_adult_review", "available": true }
+      { "id": "week01-3", "title": "會發光的腳印", "status": "pending_adult_review", "available": true },
+      { "id": "week01-4", "title": "剛剛好的朋友", "status": "pending_adult_review", "available": true }
     ] },
     { "id": "week02", "week": "W02", "title": "誠實", "theme": "誠實", "theme_word": [{ "char": "誠", "zhuyin": "ㄔㄥˊ" }, { "char": "實", "zhuyin": "ㄕˊ" }], "status": "pending_adult_review", "available": true, "stories": [
       { "id": "week02", "title": "月光果醬", "status": "pending_adult_review", "available": true }

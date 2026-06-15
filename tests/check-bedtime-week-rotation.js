@@ -23,12 +23,15 @@ catalog.episodes.forEach(episode => {
   });
 });
 
-// W01 friendship week is the vertical slice: one theme, three parallel stories.
+// W01 friendship week is the vertical slice: one theme, several parallel stories.
 const w01 = catalog.episodes.find(episode => episode.id === 'week01');
-if (!w01.stories || w01.stories.length !== 3) throw new Error('W01 must hold three parallel stories');
+if (!w01.stories || w01.stories.length < 3) throw new Error('W01 must hold at least three parallel stories');
 if (w01.theme !== '友情') throw new Error('W01 theme must stay 友情');
 ['week01', 'week01-2', 'week01-3'].forEach(id => {
   if (!w01.stories.some(entry => entry.id === id)) throw new Error(`W01 missing story ${id}`);
+});
+w01.stories.forEach(entry => {
+  const id = entry.id;
   const file = JSON.parse(fs.readFileSync(path.join(storiesDir, `${id}.json`), 'utf8'));
   if (file.id !== id || file.schema_version !== 2) throw new Error(`${id} identity invalid`);
   if (!Array.isArray(file.sections) || file.sections.length !== 6) throw new Error(`${id} must keep six sections`);

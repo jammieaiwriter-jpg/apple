@@ -36,4 +36,6 @@
 
 執行 `node tests/check-bedtime-podcast-catalog.js` 驗證十二週 Podcast 選單、可播放故事檔與狀態。
 
-執行 `node tests/check-bedtime-week-rotation.js` 驗證「一週一主題 × 多篇平行故事」模型：W01 友情三篇結構與字數、每週 `stories[]` 條目合法、輪播只收 `adult_verified`、`current.json` 對應週有可輪播故事，以及夜間頁的輪播邏輯（`pickTonight`／`weekRotationPool`／本週主題儀式）。
+執行 `node tests/check-bedtime-week-rotation.js` 驗證「主題 → 切點 → 故事」模型：W01 友情多篇結構與字數、每週 `facets` 與每篇 `focus` 合法（focus 必屬宣告切點、切點不重複）、輪播只收 `adult_verified`、`current.json` 對應週有可輪播故事，以及夜間頁的輪播邏輯（`pickTonight`／`weekRotationPool`／本週主題儀式）。
+
+執行 `node tests/check-bedtime-sensory.js` 跑五感畫面助言檢查：逐篇列出觸及的感官、提醒哪一段缺畫面或缺聲音／觸感。此檢查只提醒、不阻擋發布，是寫作輔助而非 gate。

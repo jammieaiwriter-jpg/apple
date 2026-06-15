@@ -167,6 +167,7 @@ function completionStatus() {
 function narration() {
   return [
     { id:'intro', text:story.intro },
+    ...(story.prologue ? [{ id:'prologue', text:story.prologue }] : []),
     ...story.sections,
     { id:'wind-down-scene', text:story.wind_down.scene },
     { id:'wind-down-breath', text:story.wind_down.breath },

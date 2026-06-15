@@ -58,9 +58,17 @@ AUDIO_ROOT = BASE / "audio"
 SILENCE_DIR = AUDIO_ROOT / ".silence"
 
 
+TURN_PAUSE_MS = 250  # gentle gap between speaker turns inside one section
+
+
 def narration_segments(story):
-    """Return [(segment_id, text)] in the same order as the front-end narration()."""
+    """Return [(segment_id, text)] in the same order as the front-end narration().
+
+    Mirrors index.html narration(): intro, optional prologue, sections, wind-down.
+    """
     segments = [("intro", story["intro"])]
+    if story.get("prologue"):
+        segments.append(("prologue", story["prologue"]))
     for section in story["sections"]:
         segments.append((section["id"], section["text"]))
     wind_down = story["wind_down"]
@@ -70,10 +78,32 @@ def narration_segments(story):
     return segments
 
 
-def pause_after(index, num_sections):
-    """Silence (ms) that follows narration item ``index`` (0-based)."""
+def section_turns(story, segment_id):
+    """If ``segment_id`` is a multi-voice section, return [(voice, text)] turns.
+
+    Maps each turn's ``role`` to an Azure voice via story ``voices`` (falling
+    back to the default voice). Returns None for single-voice segments.
+    """
+    voices = story.get("voices") or {}
+    for section in story["sections"]:
+        if section["id"] != segment_id:
+            continue
+        turns = section.get("turns")
+        if not turns:
+            return None
+        return [(voices.get(turn.get("role")), turn["text"]) for turn in turns]
+    return None
+
+
+def pause_after(index, segments):
+    """Silence (ms) that follows narration item ``index`` (0-based).
+
+    Derives the wind-down boundary from the segment ids so it stays correct
+    regardless of leading items (intro / optional prologue).
+    """
+    is_wind_down = [sid.startswith("wind-down") for sid, _ in segments]
+    first_wind_down = is_wind_down.index(True)
     next_index = index + 1
-    first_wind_down = num_sections + 1
     if next_index == first_wind_down:
         return BEFORE_WIND_DOWN_PAUSE_MS
     if next_index > first_wind_down:
@@ -113,20 +143,12 @@ def ensure_silence(duration_ms):
     return path
 
 
-def build_combined(story_id, segments, num_sections, seg_dir):
-    """ffmpeg-concat segment MP3s + silence into one audio/<storyId>.mp3."""
-    entries = []
-    for index, (segment_id, _text) in enumerate(segments):
-        entries.append(seg_dir / f"{segment_id}.mp3")
-        if index < len(segments) - 1:
-            entries.append(ensure_silence(pause_after(index, num_sections)))
-
+def concat_mp3s(entries, out_path):
+    """ffmpeg-concat a list of MP3 paths into ``out_path`` (re-encoded uniformly)."""
     with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False, encoding="utf-8") as listing:
         for path in entries:
-            listing.write(f"file '{path.resolve()}'\n")
+            listing.write(f"file '{Path(path).resolve()}'\n")
         list_path = listing.name
-
-    out_path = AUDIO_ROOT / f"{story_id}.mp3"
     try:
         subprocess.run(
             [
@@ -139,6 +161,39 @@ def build_combined(story_id, segments, num_sections, seg_dir):
     finally:
         Path(list_path).unlink(missing_ok=True)
     return out_path
+
+
+def synthesize_segment(story, segment_id, text, seg_path, seg_dir):
+    """Render one narration segment to ``seg_path``.
+
+    Multi-voice sections (those with ``turns``) are synthesized turn-by-turn —
+    each turn in its mapped voice — and concatenated with a short gap; all other
+    segments use the single default voice.
+    """
+    turns = section_turns(story, segment_id)
+    if not turns:
+        seg_path.write_bytes(server.synthesize(text))
+        return
+    turn_entries = []
+    for i, (voice, turn_text) in enumerate(turns):
+        turn_path = seg_dir / f"{segment_id}-t{i}.mp3"
+        turn_path.write_bytes(server.synthesize(turn_text, voice))
+        turn_entries.append(turn_path)
+        if i < len(turns) - 1:
+            turn_entries.append(ensure_silence(TURN_PAUSE_MS))
+    concat_mp3s(turn_entries, seg_path)
+
+
+def build_combined(story_id, segments, seg_dir):
+    """ffmpeg-concat segment MP3s + silence into one audio/<storyId>.mp3."""
+    entries = []
+    for index, (segment_id, _text) in enumerate(segments):
+        entries.append(seg_dir / f"{segment_id}.mp3")
+        if index < len(segments) - 1:
+            entries.append(ensure_silence(pause_after(index, segments)))
+
+    out_path = AUDIO_ROOT / f"{story_id}.mp3"
+    return concat_mp3s(entries, out_path)
 
 
 def main():
@@ -166,7 +221,6 @@ def main():
     for story_id in story_ids:
         story = json.loads((BASE / "stories" / f"{story_id}.json").read_text(encoding="utf-8"))
         segments = narration_segments(story)
-        num_sections = len(story["sections"])
         seg_dir = AUDIO_ROOT / story_id
         seg_dir.mkdir(parents=True, exist_ok=True)
         print(f"{story_id}: {story.get('title', '')}")
@@ -175,10 +229,10 @@ def main():
             seg_path = seg_dir / f"{segment_id}.mp3"
             if seg_path.exists() and not args.force:
                 continue
-            seg_path.write_bytes(server.synthesize(text))
+            synthesize_segment(story, segment_id, text, seg_path, seg_dir)
             print(f"  synth {segment_id}.mp3")
 
-        out_path = build_combined(story_id, segments, num_sections, seg_dir)
+        out_path = build_combined(story_id, segments, seg_dir)
         size = out_path.stat().st_size
         combined += 1
         total_bytes += size

@@ -5,6 +5,7 @@
     { "id": "week01", "week": "W01", "title": "友情", "theme": "友情", "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, { "char": "情", "zhuyin": "ㄑㄧㄥˊ" }], "status": "adult_verified", "available": true, "facets": ["主動靠近與接納陌生", "分享與互相付出", "守約與陪伴等待", "分辨善意與不友善", "不必討好，選擇適合自己的朋友"], "stories": [
       { "id": "week01", "title": "星光小船", "focus": "主動靠近與接納陌生", "status": "adult_verified", "available": true },
       { "id": "week01-2", "title": "荷葉小傘", "focus": "分享與互相付出", "status": "adult_verified", "available": true },
+      { "id": "week01-2b", "title": "一人一半的月亮（改版樣板）", "focus": "分享與互相付出", "status": "pending_adult_review", "available": true },
       { "id": "week01-3", "title": "會發光的腳印", "focus": "守約與陪伴等待", "status": "adult_verified", "available": true },
       { "id": "week01-5", "title": "風鈴草的另一邊", "focus": "分辨善意與不友善", "status": "adult_verified", "available": true },
       { "id": "week01-4", "title": "剛剛好的朋友", "focus": "不必討好，選擇適合自己的朋友", "status": "adult_verified", "available": true }

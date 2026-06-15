@@ -58,24 +58,26 @@ def apply_pronunciations(escaped_text):
     return escaped_text
 
 
-def build_ssml(text):
+def build_ssml(text, voice=None):
+    voice = voice or AZURE_SPEECH_VOICE
     escaped = apply_pronunciations(html.escape(text, quote=False))
     return (
         '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" '
         'xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="zh-TW">'
-        f'<voice name="{html.escape(AZURE_SPEECH_VOICE, quote=True)}">'
+        f'<voice name="{html.escape(voice, quote=True)}">'
         '<prosody rate="-15%" pitch="-2%">'
         f"{escaped}"
         "</prosody></voice></speak>"
     ).encode("utf-8")
 
 
-def synthesize(text):
+def synthesize(text, voice=None):
+    voice = voice or AZURE_SPEECH_VOICE
     key, region = speech_config()
     if not key or not region:
         raise RuntimeError("Azure Speech environment variables are not configured")
 
-    cache_key = hashlib.sha256(f"{AZURE_SPEECH_VOICE}\0{text}".encode("utf-8")).hexdigest()
+    cache_key = hashlib.sha256(f"{voice}\0{text}".encode("utf-8")).hexdigest()
     if cache_key in AUDIO_CACHE:
         AUDIO_CACHE.move_to_end(cache_key)
         return AUDIO_CACHE[cache_key]
@@ -83,7 +85,7 @@ def synthesize(text):
     endpoint = f"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1"
     request = urllib.request.Request(
         endpoint,
-        data=build_ssml(text),
+        data=build_ssml(text, voice),
         method="POST",
         headers={
             "Ocp-Apim-Subscription-Key": key,

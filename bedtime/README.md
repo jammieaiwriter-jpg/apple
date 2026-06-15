@@ -25,6 +25,8 @@
 
 使用已安裝的 `$bedtime-story-publisher` Skill，可依同一流程完成故事創作、字數檢查、試聽、成人審閱、今晚切換與上線。
 
+分工寫稿時：Codex 用 skill 寫 `pending_adult_review` 草稿 → 跑自動檢查 → 依 [docs/story-scoring-rubric.md](docs/story-scoring-rubric.md) 評分（達標／待修／退回）→ 成人試聽後才設 `adult_verified`。評分達標不等於發布，成人試聽仍是最後關卡。
+
 ## 首版限制
 
 - iPhone Safari 僅支援前景播放；切到背景或鎖屏時會暫停，不承諾背景連續朗讀。

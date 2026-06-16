@@ -16,7 +16,10 @@
       {"id":"week02-4","title":"飛錯方向的銀紙鳥","focus":"發現說錯時主動更正","status":"adult_verified","available":true},
       {"id":"week02-5","title":"多出來的金色種子","focus":"沒有人看見時，也做真實的選擇","status":"adult_verified","available":true}
     ] },
-    { "id": "week03", "week": "W03", "title": "銀紙小鳥的邀請", "theme": "友善", "theme_word": [{"char":"友","zhuyin":"ㄧㄡˇ"},{"char":"善","zhuyin":"ㄕㄢˋ"}], "status": "planned", "available": false, "facets": ["主動邀請還沒加入的人","用小行動讓別人感到舒服","尊重別人不同的玩法與喜好","友善也可以保留自己的界線","把收到的善意傳給下一個人"] },
+    { "id": "week03", "week": "W03", "title": "友善", "theme": "友善", "theme_word": [{"char":"友","zhuyin":"ㄧㄡˇ"},{"char":"善","zhuyin":"ㄕㄢˋ"}], "status": "adult_verified", "available": true, "facets": ["主動邀請還沒加入的人","用小行動讓別人感到舒服","尊重別人不同的玩法與喜好","友善也可以保留自己的界線","把收到的善意傳給下一個人"], "stories": [
+      {"id":"week03","title":"窗外的小狐狸","focus":"主動邀請還沒加入的人","status":"adult_verified","available":true},
+      {"id":"week03-2","title":"剛剛好的小光","focus":"用小行動讓別人感到舒服","status":"adult_verified","available":true}
+    ] },
     { "id": "week04", "week": "W04", "title": "螢火蟲的新屋", "theme": "合作", "theme_word": [{"char":"合","zhuyin":"ㄏㄜˊ"},{"char":"作","zhuyin":"ㄗㄨㄛˋ"}], "status": "planned", "available": false, "facets": ["先找到大家共同的目標","依照各自擅長的事分工","做不順時互相說明與調整","意見不同時一起找第三種方法","完成後分享成果與功勞"] },
     { "id": "week05", "week": "W05", "title": "不說話的小鳥", "theme": "傾聽", "theme_word": [{"char":"傾","zhuyin":"ㄑㄧㄥ"},{"char":"聽","zhuyin":"ㄊㄧㄥ"}], "status": "planned", "available": false, "facets": ["停下自己的聲音，讓身體安靜","注意表情、動作與沒有說出口的訊息","不確定時先詢問，不急著猜答案","讓對方慢慢說完，不搶著回應","用行動回應真正聽見的需要"] },
     { "id": "week06", "week": "W06", "title": "會迷路的飛行器", "theme": "嘗試", "theme_word": [{"char":"嘗","zhuyin":"ㄔㄤˊ"},{"char":"試","zhuyin":"ㄕˋ"}], "status": "planned", "available": false, "facets": ["還沒有把握，也願意開始","把失敗當成尋找方法的線索","一種方法不行，就換一種試試看","遇到困難時願意請人幫忙","休息、調整，再決定下一步"] },

@@ -79,6 +79,8 @@ def rotation_order():
             p = STORIES / f"{entry['id']}.json"
             if p.exists():
                 d = json.loads(p.read_text(encoding="utf-8"))
+                if not d.get("shape"):
+                    continue  # skip pre-migration drafts (no recipe fields) — they shouldn't set context
                 d["_id"] = entry["id"]
                 out.append(d)
     return out

@@ -36,11 +36,17 @@ STORIES = BASE / "stories"
 AUDIO = BASE / "audio"
 
 SHAPES = {"旅程型", "相遇型", "等待型", "製作型", "尋找型", "來訪型"}
+# Required in every story.
 VOICES = {
     "narrator": "zh-TW-HsiaoChenNeural",
     "mimi": "zh-CN-XiaoshuangNeural",
     "dodo": "zh-CN-YunxiaNeural",
 }
+# Optional roles (used only when a story needs them), still pinned to one voice.
+OPTIONAL_VOICES = {
+    "girl2": "zh-CN-XiaoyiNeural",  # second girl, distinct from mimi
+}
+LOCKED_VOICES = {**VOICES, **OPTIONAL_VOICES}
 DURATION_MIN_S = 8 * 60
 DURATION_MAX_S = 10 * 60 + 30  # small grace over 10:00
 
@@ -50,12 +56,19 @@ def load_catalog():
 
 
 def story_index(catalog):
-    """Map story id -> (episode, facets, rotation_prev_id)."""
+    """Map story id -> (episode, facets, rotation_prev_id).
+
+    ``prev_id`` carries across episode boundaries so the shape-adjacency check
+    also catches the cross-week seam (last night of one theme → first night of
+    the next), which the child hears on consecutive nights.
+    """
     index = {}
+    prev = None
     for ep in catalog["episodes"]:
-        entries = ep.get("stories") or [ep]
+        entries = ep.get("stories")
+        if not entries:
+            continue  # planning-only week, no story files yet
         facets = set(ep.get("facets") or [])
-        prev = None
         for entry in entries:
             sid = entry.get("id")
             if sid:
@@ -115,6 +128,9 @@ def check_story(sid, index, loaded):
             errs.append(f"voices 缺少角色：{role}")
         elif voices[role] != want:
             warns.append(f"voices.{role} = {voices[role]}（定案為 {want}）")
+    for role, voice in voices.items():
+        if role in LOCKED_VOICES and voice != LOCKED_VOICES[role]:
+            warns.append(f"voices.{role} = {voice}（定案為 {LOCKED_VOICES[role]}）")
 
     # sections
     sections = s.get("sections") or []

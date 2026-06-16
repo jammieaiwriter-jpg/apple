@@ -36,10 +36,11 @@
 - 音檔採「旁白 + 兩個童聲」。故事檔加 `voices`（role → Azure 語音）與 `sections[].turns`（`[{role,text}]`）。
 - **定案聲線（2026-06-16，Emma 試聽通過）**：
   - `narrator` → `zh-TW-HsiaoChenNeural`（台灣女聲，沉穩旁白）
-  - `mimi` → `zh-CN-XiaoshuangNeural`（女童）
+  - `mimi` → `zh-CN-XiaoshuangNeural`（女童・主角女）
   - `dodo` → `zh-CN-YunxiaNeural`（男童）
-  - zh-TW 無童聲，真童聲只在 zh-CN，故兩角色帶輕微大陸口音；Emma 已接受。旁白維持台灣腔。prosody 維持 `-15%`。
-- 角色↔role 對應：女角預設 `mimi`、男角預設 `dodo`；同篇若有第三角，沿用既有聲音不新增第四聲線（睡前低刺激優先）。
+  - `girl2` → `zh-CN-XiaoyiNeural`（第二女童，2026-06-16 Emma 試聽選定）— 只在「同篇出現兩個說話的女生」時使用，用來和 `mimi` 區分。
+  - zh-TW 無童聲，真童聲只在 zh-CN，故角色帶輕微大陸口音；Emma 已接受。旁白維持台灣腔。prosody 維持 `-15%`。
+- 角色↔role 對應：主角女→`mimi`、第二個說話的女生→`girl2`、男角→`dodo`。一篇最多這四個聲線（睡前低刺激優先）；同性別的次要配角若不與主角同場對話，可共用同一聲線。
 - 對白為主：角色說自己的話，**旁白只接場景與轉場**，不替角色轉述心情。
 - `sections[].text` 仍保留整段純敘述（= turns 串接，不含 role 標記），給瀏覽器後備與閱讀；現有舊篇無 `turns` 時沿用單聲。
 

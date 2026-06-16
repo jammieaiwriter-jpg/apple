@@ -26,7 +26,8 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 
 | 步 | 做什麼 | 指令 | Token |
 |---|---|---|---|
-| 1 | **Codex 寫稿**：依交接單改成 `pending_adult_review` 草稿（含 `shape`/`prologue`/`voices`/`turns`/`text`） | `$bedtime-story-publisher` skill | 用（LLM） |
+| 0 | **先抽配方卡**：依切點抽一組配方（形狀／主角／場景／情緒／解法／感官／結尾＋自動禁用元素），Codex 照配方寫 | `python3 tools/draw-recipe.py --facet "<切點>" --theme <核心詞> --id <id>` | 零 |
+| 1 | **Codex 寫稿**：照配方卡改成 `pending_adult_review` 草稿（含 `shape`/`protagonist`/`scene`/`emotion_arc`/`resolution`/`dominant_sense`/`ending_style`/`prologue`/`voices`/`turns`/`text`） | `$bedtime-story-publisher` skill | 用（LLM） |
 | 2 | **格式自檢**（硬性全自動）：欄位／6 段／`text`==turns 串接／focus／形狀輪替／時長 | `python3 tools/check-bedtime-story.py <id>` | 零 |
 | 3 | **Claude 審稿**：只評寫作品質（rubric 八維度），格式錯誤已被第 2 步擋掉 | Claude 依 rubric | 用（LLM） |
 | 4 | **合成童聲單檔**：每句逐輪換聲音、拼成 `audio/<id>.mp3`（8–10 分） | `python3 tools/generate-bedtime-audio.py <id>` | 零 |

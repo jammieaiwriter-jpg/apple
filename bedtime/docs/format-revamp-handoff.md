@@ -91,7 +91,8 @@
 
 ## 每篇流程
 
-1. **Codex 寫**：依上表改寫成 `pending_adult_review` 草稿（含 `shape`/`prologue`/`voices`/`turns`/`text`），**不要**自設 `adult_verified`、不要動 `current.json`、不要產音檔。
+0. **先抽配方卡（最重要）**：`python3 tools/draw-recipe.py --facet "<切點>" --theme <核心詞> --id <id>`，得到一張含「形狀／主角／場景／情緒曲線／解決方式／陪伴角色／主導感官／睡前收束／結尾句式／**自動禁用元素**」的配方卡。**照配方寫**，不要自己另想一套。主角／場景已全放開（不再鎖森林）；禁用元素會逼這篇和最近兩晚岔開。
+1. **Codex 寫**：照配方卡改寫成 `pending_adult_review` 草稿（JSON 需含 `shape`/`protagonist`/`scene`/`emotion_arc`/`resolution`/`dominant_sense`/`ending_style`/`prologue`/`voices`/`turns`/`text`），**不要**自設 `adult_verified`、不要動 `current.json`、不要產音檔。
 2. **Codex 自檢**：跑 `check-bedtime-week-rotation.js`、`check-bedtime-sensory.js`，並核對 `text` == turns 串接、`shape` 不與相鄰同形。
 3. **Claude 審**：依更新後的 `docs/story-scoring-rubric.md` 逐篇評分。
 4. **Claude 合成上線**：達標 → 跑 `bedtime-audio` 產童聲 MP3（時長落 8–10 分）→ 設 `adult_verified` → commit/push（GitHub Pages）。可試聽待修／退回則回給 Codex 修。

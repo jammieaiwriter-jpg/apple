@@ -229,5 +229,11 @@
   "weekend_prompts": [
     "米米做了哪一個小動作，讓剛搬來的阿栗可以慢慢靠近？",
     "阿栗後來陪米米做了哪些事，讓星光小船繼續旅行？"
-  ]
+  ],
+  "emotion_arc": "害羞→安心",
+  "resolution": "合作",
+  "dominant_sense": "視覺",
+  "ending_style": "願式",
+  "protagonist": "小兔米米＋害羞的小刺蝟阿栗",
+  "scene": "夜晚森林的星光小河"
 }

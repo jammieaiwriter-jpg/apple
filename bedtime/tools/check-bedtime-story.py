@@ -35,7 +35,11 @@ BASE = Path(__file__).resolve().parent.parent
 STORIES = BASE / "stories"
 AUDIO = BASE / "audio"
 
-SHAPES = {"旅程型", "相遇型", "等待型", "製作型", "尋找型", "來訪型"}
+SHAPES = {"旅程型", "相遇型", "等待型", "製作型", "尋找型", "來訪型", "變化型", "守護型"}
+SENSES = {"視覺", "聽覺", "觸覺", "嗅覺", "味覺"}
+ENDING_STYLES = {"願式", "比喻式", "物件呼應式", "身體放鬆式", "明日式"}
+# Axes that must differ from the previous night in the rotation (within + cross week).
+ROTATION_AXES = ["shape", "resolution", "dominant_sense", "ending_style"]
 # Required in every story.
 VOICES = {
     "narrator": "zh-TW-HsiaoChenNeural",
@@ -47,7 +51,7 @@ OPTIONAL_VOICES = {
     "girl2": "zh-CN-XiaoyiNeural",  # second girl, distinct from mimi
 }
 LOCKED_VOICES = {**VOICES, **OPTIONAL_VOICES}
-DURATION_MIN_S = 8 * 60
+DURATION_MIN_S = 7 * 60 + 30   # ~8 min target, small grace under (don't fail on a few seconds)
 DURATION_MAX_S = 10 * 60 + 30  # small grace over 10:00
 
 
@@ -122,6 +126,14 @@ def check_story(sid, index, loaded):
         errs.append(f"shape 必須為六形狀之一，目前：{shape!r}")
     if not (s.get("prologue") or "").strip():
         errs.append("缺少 prologue（點題前言）")
+    # recipe axes (故事配方表) — declared per story before writing
+    for f in ("emotion_arc", "resolution", "protagonist", "scene"):
+        if not (s.get(f) or "").strip():
+            errs.append(f"缺少配方欄位：{f}")
+    if s.get("dominant_sense") not in SENSES:
+        errs.append(f"dominant_sense 必須為五感之一，目前：{s.get('dominant_sense')!r}")
+    if s.get("ending_style") not in ENDING_STYLES:
+        errs.append(f"ending_style 必須為定案五句式之一，目前：{s.get('ending_style')!r}")
     voices = s.get("voices") or {}
     for role, want in VOICES.items():
         if role not in voices:
@@ -168,11 +180,13 @@ def check_story(sid, index, loaded):
             errs.append(f"focus（{s.get('focus')!r}）不在本週 facets")
         prev_id = meta["prev_id"]
         if prev_id and prev_id in loaded:
-            prev_shape = loaded[prev_id].get("shape")
-            if shape and prev_shape and shape == prev_shape:
-                errs.append(f"shape 與輪播前一晚（{prev_id}）相同：{shape}")
-        elif prev_id and shape:
-            warns.append(f"前一晚（{prev_id}）尚未載入或未遷移，無法比對形狀輪替")
+            prev = loaded[prev_id]
+            for axis in ROTATION_AXES:
+                cur, pre = s.get(axis), prev.get(axis)
+                if cur and pre and cur == pre:
+                    errs.append(f"{axis} 與輪播前一晚（{prev_id}）相同：{cur}")
+        elif prev_id:
+            warns.append(f"前一晚（{prev_id}）尚未載入或未遷移，無法比對輪替軸")
 
     # duration (only if rendered)
     dur = mp3_duration_s(sid)

@@ -52,7 +52,13 @@ PRONUNCIATIONS = [
 ]
 
 
-def apply_pronunciations(escaped_text):
+def apply_pronunciations(escaped_text, voice=None):
+    # The SAPI Zhuyin <phoneme> overrides only work for zh-TW voices. zh-CN
+    # voices (the child character voices) reject any <phoneme alphabet="sapi">
+    # with HTTP 400 — Zhuyin *and* Pinyin — so skip overrides for them and rely
+    # on the zh-CN voice's own context-based polyphone reading.
+    if voice and voice.startswith("zh-CN"):
+        return escaped_text
     for pattern, replacement in PRONUNCIATIONS:
         escaped_text = pattern.sub(replacement, escaped_text)
     return escaped_text
@@ -60,7 +66,7 @@ def apply_pronunciations(escaped_text):
 
 def build_ssml(text, voice=None):
     voice = voice or AZURE_SPEECH_VOICE
-    escaped = apply_pronunciations(html.escape(text, quote=False))
+    escaped = apply_pronunciations(html.escape(text, quote=False), voice)
     return (
         '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" '
         'xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="zh-TW">'

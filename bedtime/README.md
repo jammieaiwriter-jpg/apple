@@ -30,10 +30,12 @@ AZURE_SPEECH_KEY='你的金鑰' AZURE_SPEECH_REGION='eastasia' python3 server.py
 | 1 | **Codex 寫稿**：照配方卡改成 `pending_adult_review` 草稿（含 `shape`/`protagonist`/`scene`/`emotion_arc`/`resolution`/`dominant_sense`/`ending_style`/`prologue`/`voices`/`turns`/`text`） | `$bedtime-story-publisher` skill | 用（LLM） |
 | 2 | **格式自檢**（硬性全自動）：欄位／6 段／`text`==turns 串接／focus／形狀輪替／時長 | `python3 tools/check-bedtime-story.py <id>` | 零 |
 | 3 | **Claude 審稿**：只評寫作品質（rubric 八維度），格式錯誤已被第 2 步擋掉 | Claude 依 rubric | 用（LLM） |
-| 4 | **合成童聲單檔**：每句逐輪換聲音、拼成 `audio/<id>.mp3`（8–10 分） | `python3 tools/generate-bedtime-audio.py <id>` | 零 |
-| 5 | **上線**：設 `adult_verified` → 跑資料契約測試 → commit/push（GitHub Pages） | `node tests/check-bedtime-week-rotation.js` 等 + git | 零 |
+| 4 | **Codex 合成童聲（兩套）**：每句逐輪換聲音、拼成 `audio/<id>.mp3`；再產兄妹版 `.gz` | `generate-bedtime-audio.py <id>`＋`… --name "光哥、阿築" --suffix gz` | 零 |
+| 5 | **Codex 上線**：設 `adult_verified`、補 `catalog.json` → 跑資料契約測試 → commit/push | `node tests/check-bedtime-week-rotation.js` 等 + git | 零 |
 
-省 token 的關鍵：**所有機械性檢查（步驟 2、4、5）都是腳本**，LLM 只負責「寫」與「評品質」。Codex 交稿前先自跑 `check-bedtime-story.py`，把結構錯誤清乾淨，Claude 審稿就不必花 token 抓格式問題。
+**分工（2026-06 起）**：Claude 只做「動腦」——抽配方（步 0）與審稿（步 3）；**寫稿、合成音檔、補 catalog、部署（步 1、4、5）都由 Codex 做**。省 token 的關鍵：所有機械性步驟都是腳本，Claude 的 LLM 額度只花在「評品質」。Codex 交稿前先自跑 `check-bedtime-story.py` 清乾淨，Claude 審稿不必花 token 抓格式。
+
+W04–W12 的配方卡已預抽好（`stories/recipes/`），每週交辦單見 `docs/handoff-W04.md`…`handoff-W12.md`。
 
 一次最多兩篇，Emma 陪聽無誤再進下一批。
 

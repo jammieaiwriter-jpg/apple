@@ -69,4 +69,4 @@ python3 tools/check-bedtime-story.py week03 week03-2 week03-3 week03-4 week03-5
 
 ## 節奏
 
-先做前兩篇 `week03`、`week03-2`，自檢通過後交回給 Claude 審；Claude 審完＋合成童聲音檔＋上線，再做下一批。
+`week03`、`week03-2` 已審核上線。**剩下三篇 `week03-3`、`week03-4`、`week03-5` 一起寫、一起交**（不分批）：三篇都自檢通過後一次交回，Claude 一次審三篇，通過就一起合成童聲音檔並上線。不要動已上線的 `week03`、`week03-2`。

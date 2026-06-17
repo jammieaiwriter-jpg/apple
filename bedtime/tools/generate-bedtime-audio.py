@@ -59,6 +59,7 @@ SILENCE_DIR = AUDIO_ROOT / ".silence"
 
 
 TURN_PAUSE_MS = 250  # gentle gap between speaker turns inside one section
+DEFAULT_NAME = "雨芯"  # name spoken in the goodnight of the default audio set
 
 
 def narration_segments(story):
@@ -184,15 +185,22 @@ def synthesize_segment(story, segment_id, text, seg_path, seg_dir):
     concat_mp3s(turn_entries, seg_path)
 
 
-def build_combined(story_id, segments, seg_dir):
-    """ffmpeg-concat segment MP3s + silence into one audio/<storyId>.mp3."""
+def build_combined(story_id, segments, seg_dir, overrides=None, out_suffix=""):
+    """ffmpeg-concat segment MP3s + silence into audio/<storyId>[.<suffix>].mp3.
+
+    ``overrides`` maps segment_id -> a replacement mp3 path (used by name
+    variants to swap only the goodnight segment); everything else reuses the
+    default cached segments.
+    """
+    overrides = overrides or {}
     entries = []
     for index, (segment_id, _text) in enumerate(segments):
-        entries.append(seg_dir / f"{segment_id}.mp3")
+        entries.append(overrides.get(segment_id, seg_dir / f"{segment_id}.mp3"))
         if index < len(segments) - 1:
             entries.append(ensure_silence(pause_after(index, segments)))
 
-    out_path = AUDIO_ROOT / f"{story_id}.mp3"
+    name = f"{story_id}.{out_suffix}.mp3" if out_suffix else f"{story_id}.mp3"
+    out_path = AUDIO_ROOT / name
     return concat_mp3s(entries, out_path)
 
 
@@ -200,7 +208,11 @@ def main():
     parser = argparse.ArgumentParser(description="Pre-render bedtime narration to combined MP3.")
     parser.add_argument("stories", nargs="*", help="story ids to render (default: all available)")
     parser.add_argument("--force", action="store_true", help="re-synthesize segments and rebuild combined files")
+    parser.add_argument("--name", help="念這個稱呼的晚安變體（取代預設「%s」），例如「光哥、阿築」" % DEFAULT_NAME)
+    parser.add_argument("--suffix", help="變體檔名後綴＝網址 ?for= 代號，例如 gz → audio/<id>.gz.mp3")
     args = parser.parse_args()
+    if args.name and not args.suffix:
+        sys.exit("--name 需搭配 --suffix（網址代號，如 gz）")
 
     if not all(server.speech_config()):
         sys.exit("Azure Speech not configured: set AZURE_SPEECH_KEY and AZURE_SPEECH_REGION in bedtime/.env")
@@ -232,7 +244,20 @@ def main():
             synthesize_segment(story, segment_id, text, seg_path, seg_dir)
             print(f"  synth {segment_id}.mp3")
 
-        out_path = build_combined(story_id, segments, seg_dir)
+        if args.name:
+            # Name variant: re-synth only the goodnight (swap the spoken name),
+            # reuse every other cached segment, output audio/<id>.<suffix>.mp3.
+            good_text = story["wind_down"]["goodnight"].replace(DEFAULT_NAME, args.name)
+            var_good = seg_dir / f"wind-down-goodnight.{args.suffix}.mp3"
+            if args.force or not var_good.exists():
+                var_good.write_bytes(server.synthesize(good_text))
+                print(f"  synth wind-down-goodnight.{args.suffix}.mp3")
+            out_path = build_combined(
+                story_id, segments, seg_dir,
+                overrides={"wind-down-goodnight": var_good}, out_suffix=args.suffix,
+            )
+        else:
+            out_path = build_combined(story_id, segments, seg_dir)
         size = out_path.stat().st_size
         combined += 1
         total_bytes += size

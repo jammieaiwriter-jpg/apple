@@ -365,8 +365,22 @@ function refreshPreferredVoice() {
     voices.find(voice => /^zh/i.test(voice.lang));
 }
 
+// Per-child audio sets: the goodnight says a different name. ?for=<code> picks
+// the set and is remembered on the device; default (no code) = 雨芯's files.
+const CHILDREN = { '': '雨芯', gz: '光哥、阿築' };
+const CHILD_KEY = 'apple-bedtime-child';
+function childCode() {
+  let code = null;
+  try {
+    const p = new URLSearchParams(location.search).get('for');
+    if (p !== null) { code = p; localStorage.setItem(CHILD_KEY, p); }
+    else { code = localStorage.getItem(CHILD_KEY); }
+  } catch {}
+  return (code && CHILDREN[code] !== undefined) ? code : '';
+}
 function combinedAudioUrl() {
-  return `audio/${encodeURIComponent(story.id)}.mp3`;
+  const code = childCode();
+  return `audio/${encodeURIComponent(story.id)}${code ? '.' + code : ''}.mp3`;
 }
 
 function releaseStoryAudio() {
@@ -531,6 +545,7 @@ function restartStory() {
   playStory(0);
 }
 
+document.title = `${CHILDREN[childCode()]} 的星光故事`;
 Promise.all([fetchJson(CURRENT_STORY_URL), fetchJson(CATALOG_URL)]).then(([current, loadedCatalog]) => {
   catalog = loadedCatalog;
   if (!current.story || !/^[a-z0-9-]+$/.test(current.story)) throw new Error('current story pointer invalid');

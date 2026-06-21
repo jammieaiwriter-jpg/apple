@@ -12,7 +12,7 @@
 
 ## 三個規格（細節見 `stories/season01-plan.md`、`docs/tts-audio-writing-guide.md`、`docs/story-scoring-rubric.md`）
 
-1. **架構矩陣（`shape`）**：六種形狀——旅程／相遇／等待／製作／尋找／來訪型。每篇宣告一個 `shape`；**同週五篇不重複、且不與夜間輪播前一晚同形**。
+1. **架構矩陣（`shape`）**：八種形狀——旅程／相遇／等待／製作／尋找／來訪／變化（角色慢慢轉變）／守護（照顧更小更弱的對象）型。每篇宣告一個 `shape`；**同週五篇不重複、且不與夜間輪播前一晚同形**。
 2. **點題前言（`prologue`）**：`intro` 之後、第一段之前，2–3 句**明講**今晚的小道理（被授權講道理的唯一位置）；正文本體照舊「演出不說教」、收尾不下結論。
 3. **多聲線童聲（`voices` + `sections[].turns`）**：
    - `narrator` → `zh-TW-HsiaoChenNeural`（台灣女聲旁白）
@@ -35,7 +35,7 @@
   "id": "weekNN[-x]",
   "title": "...",
   "focus": "（該週 facets 之一）",
-  "shape": "相遇型",                       // 新增：六形狀之一
+  "shape": "相遇型",                       // 新增：八形狀之一
   "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, ...],
   "intro": "...",
   "prologue": "今晚的故事，是關於「分享」。……聽聽看，米米和豆豆是怎麼學會的。", // 新增

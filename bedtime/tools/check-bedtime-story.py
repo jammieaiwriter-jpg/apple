@@ -7,7 +7,7 @@ is then only about writing quality (the rubric's 8 dimensions).
 
 What it checks per story JSON (see docs/format-revamp-handoff.md):
   - required top-level fields incl. new ones: shape / prologue / voices
-  - shape is one of the six allowed story shapes
+  - shape is one of the eight allowed story shapes
   - voices maps narrator/mimi/dodo to the locked Azure voices
   - exactly 6 sections, each with an id
   - multi-voice sections: every turn.role is declared in voices, and the flat

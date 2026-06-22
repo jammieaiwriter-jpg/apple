@@ -4,6 +4,8 @@ audio/*/
 # set that index.html serves via the ?for=gz child selector (CHILDREN map).
 # Secrets and local env
 .env
+# Local Claude Code settings
+.claude/
 # Python / macOS cruft
 __pycache__/
 *.pyc

@@ -39,6 +39,12 @@ W04–W12 的配方卡已預抽好（`stories/recipes/`），每週交辦單見 
 
 一次最多兩篇，Emma 陪聽無誤再進下一批。
 
+### 省 token 輔助工具
+
+- 單篇審稿包：`python3 tools/export-review-packet.py week05-5`。輸出 Markdown，保留 `turns` 角色對話，但省略重複的 `sections[].text`。需要機器讀取時用 `--format json`。
+- 跨篇摘要索引：`python3 tools/export-review-packet.py --index-only` 會重建 `stories/story-index.json`。寫新稿前只餵這份摘要給 LLM，用來檢查角色、場景、形狀、解決方式、主導感官與結尾是否撞梗，不必貼所有故事全文。
+- 同時重建索引並輸出審稿包：`python3 tools/export-review-packet.py week05-5 --write-index`。
+
 ## 夜間體驗
 
 - 開場顯示「本週主題 · W0X 核心詞」儀式列、今晚故事標題與核心詞，每個國字右側以 flex 容器顯示直式注音。

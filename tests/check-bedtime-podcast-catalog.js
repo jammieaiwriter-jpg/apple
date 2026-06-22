@@ -9,23 +9,33 @@ const html = fs.readFileSync(path.join(root, 'bedtime/index.html'), 'utf8');
 if (!fs.existsSync(catalogPath)) throw new Error('podcast catalog missing');
 
 const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-if (!Array.isArray(catalog.episodes) || catalog.episodes.length !== 12) {
-  throw new Error('podcast catalog must contain twelve episodes');
+if (!Array.isArray(catalog.episodes)) {
+  throw new Error('podcast catalog episodes missing');
 }
 
 catalog.episodes.forEach((episode, index) => {
-  const expectedId = `week${String(index + 1).padStart(2, '0')}`;
-  if (episode.id !== expectedId) throw new Error(`catalog episode ${index + 1} id invalid`);
+  const weekMatch = /^week(\d{2})$/.exec(episode.id || '');
+  if (weekMatch) {
+    const expectedId = `week${weekMatch[1]}`;
+    if (episode.id !== expectedId) throw new Error(`catalog episode ${index + 1} id invalid`);
+  }
   if (!episode.title || !episode.theme || !episode.status) {
-    throw new Error(`${expectedId} catalog metadata incomplete`);
+    throw new Error(`${episode.id || `episode ${index + 1}`} catalog metadata incomplete`);
   }
   if (!Array.isArray(episode.theme_word) || !episode.theme_word.every(item => item.char && item.zhuyin)) {
-    throw new Error(`${expectedId} catalog theme_word pronunciation incomplete`);
+    throw new Error(`${episode.id} catalog theme_word pronunciation incomplete`);
   }
   if (episode.available && !fs.existsSync(path.join(storiesDir, `${episode.id}.json`))) {
-    throw new Error(`${expectedId} marked available without story file`);
+    throw new Error(`${episode.id} marked available without story file`);
   }
 });
+
+for (let week = 1; week <= 12; week += 1) {
+  const expectedId = `week${String(week).padStart(2, '0')}`;
+  if (!catalog.episodes.some(episode => episode.id === expectedId)) {
+    throw new Error(`podcast catalog missing ${expectedId}`);
+  }
+}
 
 ['adult_verified', 'pending_adult_review', 'planned'].forEach(status => {
   if (!catalog.episodes.some(episode => episode.status === status)) {
@@ -45,7 +55,7 @@ catalog.episodes.forEach((episode, index) => {
   '規劃中',
   'storyCache',
   'preloadAvailableStories',
-  'begin(0)',
+  'playStory(0)',
   'splitZhuyin',
   'episode-pronunciation',
   'theme-tone',
@@ -57,5 +67,7 @@ catalog.episodes.forEach((episode, index) => {
 
 console.log(JSON.stringify({
   episodes: catalog.episodes.length,
+  mainSeason: catalog.episodes.filter(episode => /^week\d{2}$/.test(episode.id)).length,
+  specials: catalog.episodes.filter(episode => !/^week\d{2}$/.test(episode.id)).length,
   available: catalog.episodes.filter(episode => episode.available).length
 }, null, 2));

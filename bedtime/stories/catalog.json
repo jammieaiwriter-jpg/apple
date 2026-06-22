@@ -42,6 +42,12 @@
     { "id": "week08", "week": "W08", "title": "道歉", "theme": "道歉", "theme_word": [{"char":"道","zhuyin":"ㄉㄠˋ"},{"char":"歉","zhuyin":"ㄑㄧㄢˋ"}], "status": "pending_adult_review", "available": true, "facets": ["發現自己的行動影響了別人","具體承認做了什麼，不急著找理由","聽對方說感受，也尊重對方暫時不接受","用實際行動修補造成的影響","下次遇到相同情況時做出改變"], "stories": [
       {"id":"week08","title":"補好的風鈴","focus":"用實際行動修補造成的影響","status":"pending_adult_review","available":true}
     ] },
+    { "id": "together", "week": "SP01", "title": "一起玩", "theme": "一起玩", "theme_word": [{"char":"一","zhuyin":"ㄧˋ"},{"char":"起","zhuyin":"ㄑㄧˇ"},{"char":"玩","zhuyin":"ㄨㄢˊ"}], "status": "adult_verified", "available": true, "facets": ["比起搶第一，一起玩更開心","別人和我步調不同，不是錯","用邀請代替命令，朋友才會留下來","先想對方的感受，問他想怎麼玩"], "stories": [
+      {"id":"together","title":"紅溜慢慢跑","focus":"比起搶第一，一起玩更開心","status":"adult_verified","available":true},
+      {"id":"together-2","title":"花路上的亮翼","focus":"別人和我步調不同，不是錯","status":"adult_verified","available":true},
+      {"id":"together-3","title":"沙坑裡的小邀請","focus":"用邀請代替命令，朋友才會留下來","status":"adult_verified","available":true},
+      {"id":"together-4","title":"路燈下的小紙偶","focus":"先想對方的感受，問他想怎麼玩","status":"adult_verified","available":true}
+    ] },
     { "id": "week09", "week": "W09", "title": "還沒發芽的種子", "theme": "耐心", "theme_word": [{"char":"耐","zhuyin":"ㄋㄞˋ"},{"char":"心","zhuyin":"ㄒㄧㄣ"}], "status": "planned", "available": false, "facets": ["等待時不急著干擾結果","在等待中持續做能做的照顧","留心還不明顯的小變化","著急時先安頓自己的身體","分辨哪些事情能加快，哪些需要時間"] },
     { "id": "week10", "week": "W10", "title": "通往星星湖的路", "theme": "選擇", "theme_word": [{"char":"選","zhuyin":"ㄒㄩㄢˇ"},{"char":"擇","zhuyin":"ㄗㄜˊ"}], "status": "planned", "available": false, "facets": ["先停下來，想清楚真正需要什麼","比較不同選擇可能帶來的結果","聽聽會受到影響的人的想法","做出決定，也接受沒有選到的部分","得到新資訊後，可以重新調整選擇"] },
     { "id": "week11", "week": "W11", "title": "畫紙城市的門", "theme": "想像", "theme_word": [{"char":"想","zhuyin":"ㄒㄧㄤˇ"},{"char":"像","zhuyin":"ㄒㄧㄤˋ"}], "status": "planned", "available": false, "facets": ["從平常事物看見不同可能","勇敢提出「如果……會怎樣？」","把兩個原本不同的東西組合起來","不只照著別人畫，畫出自己的答案","把想像變成可以分享或使用的作品"] },

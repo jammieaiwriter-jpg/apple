@@ -1,8 +1,7 @@
 # Azure TTS per-segment intermediate caches (rebuilt by generate-bedtime-audio.py)
 audio/*/
-# Gzipped MP3s are dead weight: the front-end only loads plain .mp3, and
-# gzipping an already-compressed MP3 makes it larger, not smaller.
-*.gz.mp3
+# NOTE: audio/<id>.gz.mp3 are NOT ignored — they are the「光哥、阿築」narration
+# set that index.html serves via the ?for=gz child selector (CHILDREN map).
 # Secrets and local env
 .env
 # Python / macOS cruft

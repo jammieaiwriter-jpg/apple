@@ -5,6 +5,7 @@ import html
 import json
 import os
 import re
+import time
 import urllib.error
 import urllib.request
 from collections import OrderedDict
@@ -31,6 +32,11 @@ AZURE_SPEECH_FORMAT = "audio-24khz-48kbitrate-mono-mp3"
 MAX_TEXT_LENGTH = 5000
 MAX_CACHE_ITEMS = 64
 AUDIO_CACHE = OrderedDict()
+# Retry transient Azure throttling (429 Too Many Requests / 503) with backoff.
+# Batch synthesis (generate-bedtime-audio.py) fires many requests in a row and
+# can trip the per-second/per-minute transaction cap; without this a whole run
+# aborts partway. Honors the Retry-After header when Azure sends one.
+TTS_MAX_RETRIES = 6
 
 
 def json_bytes(value):
@@ -100,8 +106,20 @@ def synthesize(text, voice=None):
             "User-Agent": "apple-bedtime-story",
         },
     )
-    with urllib.request.urlopen(request, timeout=30) as response:
-        audio = response.read()
+    for attempt in range(TTS_MAX_RETRIES):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                audio = response.read()
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429, 503) or attempt == TTS_MAX_RETRIES - 1:
+                raise
+            retry_after = (exc.headers.get("Retry-After") or "").strip()
+            if retry_after.replace(".", "", 1).isdigit():
+                delay = float(retry_after)
+            else:
+                delay = min(60.0, 5.0 * (attempt + 1))
+            time.sleep(delay)
 
     AUDIO_CACHE[cache_key] = audio
     AUDIO_CACHE.move_to_end(cache_key)

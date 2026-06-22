@@ -1,0 +1,11 @@
+# Azure TTS per-segment intermediate caches (rebuilt by generate-bedtime-audio.py)
+audio/*/
+# Gzipped MP3s are dead weight: the front-end only loads plain .mp3, and
+# gzipping an already-compressed MP3 makes it larger, not smaller.
+*.gz.mp3
+# Secrets and local env
+.env
+# Python / macOS cruft
+__pycache__/
+*.pyc
+.DS_Store

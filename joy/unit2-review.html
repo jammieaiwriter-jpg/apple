@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Joy Unit 2 課後複習</title>
+    <style>
+      :root {
+        --ink: #27313f;
+        --muted: #667085;
+        --paper: #fffdf8;
+        --mint: #dff5e7;
+        --rose: #ffe4ec;
+        --sky: #dff0ff;
+        --sun: #ffe9a8;
+        --line: #e7e0d2;
+        --accent: #207f71;
+        --accent-dark: #145a51;
+        --wrong: #b54708;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(246, 250, 255, 0.96)),
+          radial-gradient(circle at 18% 18%, rgba(255, 228, 236, 0.65), transparent 26%),
+          radial-gradient(circle at 84% 28%, rgba(223, 245, 231, 0.8), transparent 28%);
+        color: var(--ink);
+        font-family: ui-rounded, "SF Pro Rounded", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .app {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(28px, 5vw, 56px);
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      .progress {
+        min-width: 148px;
+        padding: 10px 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.75);
+        text-align: center;
+        color: var(--accent-dark);
+        font-weight: 800;
+      }
+
+      .mode-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 18px 0;
+      }
+
+      .mode-tabs button,
+      .pill-button {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        padding: 10px 14px;
+        cursor: pointer;
+        min-height: 44px;
+      }
+
+      .mode-tabs button.active,
+      .pill-button.primary {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .stage {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .theater {
+        min-height: 560px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        overflow: hidden;
+      }
+
+      .scene {
+        min-height: 310px;
+        padding: 28px;
+        background:
+          linear-gradient(180deg, rgba(223, 240, 255, 0.9), rgba(255, 253, 248, 0.9));
+        border-bottom: 1px solid var(--line);
+        position: relative;
+      }
+
+      .scene-title {
+        color: var(--accent-dark);
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+
+      .characters {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .character {
+        width: 120px;
+        min-height: 154px;
+        display: grid;
+        place-items: center;
+        gap: 6px;
+        color: var(--accent-dark);
+        font-weight: 900;
+        opacity: 0.42;
+        transform: scale(0.92);
+        transition: transform 160ms ease, opacity 160ms ease;
+      }
+
+      .character.active {
+        opacity: 1;
+        transform: scale(1.04);
+      }
+
+      .face {
+        width: 96px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 3px solid rgba(39, 49, 63, 0.18);
+        display: grid;
+        place-items: center;
+        font-size: 42px;
+        background: #fff;
+      }
+
+      .nick .face {
+        background: var(--sky);
+      }
+
+      .abby .face {
+        background: var(--rose);
+      }
+
+      .fifi .face {
+        background: var(--mint);
+      }
+
+      .together .face {
+        background: var(--sun);
+      }
+
+      .speech-card {
+        padding: 24px;
+      }
+
+      .speaker-line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .speaker {
+        font-size: 20px;
+        font-weight: 900;
+        color: var(--accent-dark);
+      }
+
+      .turn {
+        padding: 6px 10px;
+        border-radius: 8px;
+        background: var(--mint);
+        color: var(--accent-dark);
+        font-weight: 900;
+      }
+
+      .sentence {
+        margin: 0;
+        font-size: clamp(32px, 5.5vw, 68px);
+        line-height: 1.08;
+        font-weight: 950;
+        letter-spacing: 0;
+      }
+
+      .translation {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .big-button {
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        padding: 14px 16px;
+        min-height: 52px;
+        cursor: pointer;
+        font-weight: 900;
+      }
+
+      .big-button.secondary {
+        background: #fff;
+        color: var(--accent-dark);
+        border: 1px solid var(--line);
+      }
+
+      .big-button.warn {
+        background: var(--wrong);
+      }
+
+      .big-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      .stars {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        min-height: 48px;
+        margin-top: 18px;
+        align-items: center;
+      }
+
+      .star-button {
+        border: 0;
+        background: transparent;
+        color: #d98d00;
+        cursor: pointer;
+        font-size: 34px;
+        line-height: 1;
+        min-width: 38px;
+        min-height: 42px;
+        padding: 2px;
+        transform: scale(1);
+        transition: transform 140ms ease;
+      }
+
+      .star-button:hover,
+      .star-button:focus-visible {
+        transform: scale(1.12);
+      }
+
+      .star-button:disabled {
+        color: #d1d5db;
+        cursor: default;
+        transform: none;
+      }
+
+      .stars.pop .star-button:not(:disabled) {
+        animation: star-pop 260ms ease;
+      }
+
+      @keyframes star-pop {
+        0% {
+          transform: scale(0.9);
+        }
+        55% {
+          transform: scale(1.22);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .heard {
+        min-height: 26px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+
+      .line-list {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.84);
+        overflow: hidden;
+      }
+
+      .line-list-header {
+        padding: 14px 16px;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        font-weight: 900;
+      }
+
+      .line-button {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr) 68px;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .line-button.active {
+        background: var(--mint);
+      }
+
+      .line-button.weak {
+        background: #fff8db;
+      }
+
+      .line-button:last-child {
+        border-bottom: 0;
+      }
+
+      .line-number {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid var(--line);
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        font-weight: 900;
+      }
+
+      .line-text strong {
+        display: block;
+        color: var(--accent-dark);
+      }
+
+      .line-text span {
+        display: block;
+        overflow-wrap: anywhere;
+      }
+
+      .mini-stars {
+        color: #d98d00;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .practice-tag {
+        display: inline-block;
+        margin-top: 4px;
+        color: var(--wrong);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .coach {
+        margin-top: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 16px;
+        background: #fff;
+      }
+
+      .coach h2 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+
+      .coach p {
+        margin: 8px 0;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .role-picker {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .unsupported {
+        display: none;
+        margin-top: 14px;
+        padding: 12px;
+        border-radius: 8px;
+        background: #fff3cd;
+        color: #7a4d00;
+      }
+
+      .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+      .tabs > button, .tabs > .pill-button {
+        border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink);
+        padding: 10px 14px; cursor: pointer; min-height: 44px; display: inline-flex; align-items: center;
+        text-decoration: none; font-weight: 800;
+      }
+      .tabs > button.active { border-color: var(--accent); background: var(--accent); color: #fff; }
+      .panel { display: none; } .panel.active { display: block; }
+
+      .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+      .vocab-card { border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px; position: relative; }
+      .vocab-card .word { font-size: 26px; font-weight: 950; color: var(--accent-dark); }
+      .vocab-card .kk { color: var(--muted); font-size: 15px; margin-top: 2px; }
+      .vocab-card .zh { margin-top: 4px; font-size: 15px; }
+      .vocab-card .row { display: flex; align-items: center; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+      .listen-btn { border: 1px solid var(--line); background: var(--mint); color: var(--accent-dark); border-radius: 8px; padding: 8px 12px; min-height: 40px; cursor: pointer; font-weight: 800; }
+      .mini-star { border: 0; background: transparent; color: #d98d00; cursor: pointer; font-size: 26px; line-height: 1; min-width: 30px; min-height: 38px; padding: 0; }
+      .mini-star:disabled { color: #d1d5db; }
+
+      .phonics-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px; margin-bottom: 12px; }
+      .phonics-letter { font-size: 44px; font-weight: 950; color: var(--accent-dark); min-width: 84px; cursor: pointer; background: transparent; border: 0; }
+      .phonics-sound { color: var(--muted); font-weight: 800; }
+      .phonics-examples { display: flex; gap: 8px; flex-wrap: wrap; }
+      .chip { border: 1px solid var(--line); border-radius: 999px; background: var(--mint); color: var(--accent-dark); padding: 8px 14px; cursor: pointer; font-weight: 800; min-height: 40px; }
+      .done-btn { margin-left: auto; border: 1px solid var(--line); background: #fff; color: var(--accent-dark); border-radius: 8px; padding: 8px 14px; min-height: 40px; cursor: pointer; font-weight: 800; }
+      .done-btn.on { background: var(--sun); border-color: #d98d00; }
+
+      .gram-rule { border-left: 5px solid var(--accent); background: #fff; border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; font-weight: 700; }
+      .quiz-card { border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px; margin-bottom: 12px; }
+      .quiz-sentence { font-size: 28px; font-weight: 900; color: var(--accent-dark); }
+      .quiz-sentence .blank { color: #c2410c; border-bottom: 3px solid #c2410c; padding: 0 14px; }
+      .quiz-zh { color: var(--muted); margin: 4px 0 12px; }
+      .quiz-options { display: flex; gap: 8px; flex-wrap: wrap; }
+      .quiz-options button { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 8px; padding: 12px 22px; min-height: 48px; cursor: pointer; font-weight: 900; font-size: 18px; }
+      .quiz-options button.correct { background: var(--mint); border-color: var(--accent); color: var(--accent-dark); }
+      .quiz-options button.wrong { background: #ffe4e4; border-color: #e57373; }
+
+      @media (max-width: 860px) {
+        .app {
+          padding: 16px;
+        }
+
+        .topbar,
+        .stage {
+          display: block;
+        }
+
+        .progress {
+          margin-top: 12px;
+        }
+
+        .theater {
+          min-height: 0;
+          margin-bottom: 16px;
+        }
+
+        .scene {
+          min-height: 238px;
+          padding: 18px;
+        }
+
+        .character {
+          width: 92px;
+          min-height: 120px;
+        }
+
+        .face {
+          width: 72px;
+          font-size: 30px;
+        }
+
+        .line-button {
+          grid-template-columns: 38px minmax(0, 1fr) 54px;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>Joy Unit 2 課後複習</h1>
+          <p class="subtitle">點一句念念看，自己聽一遍，再點星星鼓勵自己。</p>
+        </div>
+        <div class="progress" id="progress">0 / 12 句</div>
+      </header>
+
+      <nav class="tabs" aria-label="複習區塊">
+        <button class="active" type="button" data-tab="dialogue">🗣️ 對話</button>
+        <button type="button" data-tab="vocab">🔤 單字</button>
+        <button type="button" data-tab="phonics">🔡 發音 Dd–Ff</button>
+        <button type="button" data-tab="grammar">🧩 文法 He is / She is</button>
+        <a class="pill-button" href="./unit2-preview.html" style="text-decoration:none;display:inline-flex;align-items:center">← 回課前預習</a>
+      </nav>
+
+      <section class="panel active" data-panel="dialogue">
+      <nav class="mode-tabs" aria-label="練習模式">
+        <button class="active" type="button" data-mode="line">點一句練</button>
+        <button type="button" data-mode="role">角色扮演</button>
+      </nav>
+
+      <section class="stage">
+        <div class="theater">
+          <div class="scene">
+            <div class="scene-title" id="sceneTitle">A new place</div>
+            <div class="characters" aria-hidden="true">
+              <div class="character nick" data-character="nick">
+                <div class="face">🧢</div>
+                <div>Nick</div>
+              </div>
+              <div class="character abby" data-character="abby">
+                <div class="face">🎀</div>
+                <div>Abby</div>
+              </div>
+              <div class="character fifi" data-character="fifi">
+                <div class="face">⭐</div>
+                <div>Fifi</div>
+              </div>
+            </div>
+          </div>
+
+          <article class="speech-card">
+            <div class="speaker-line">
+              <div class="speaker" id="speaker">Nick</div>
+              <div class="turn" id="turnLabel">先聽網頁說</div>
+            </div>
+            <p class="sentence" id="sentence">Ahh...</p>
+            <div class="translation" id="translation">啊...</div>
+            <div class="actions">
+              <button class="big-button" type="button" id="speakButton">聽示範</button>
+              <button class="big-button secondary" type="button" id="recordButton">我來念</button>
+              <button class="big-button secondary" type="button" id="playbackButton" disabled>聽我的聲音</button>
+              <button class="big-button secondary" type="button" id="pauseButton">暫停</button>
+              <button class="big-button secondary" type="button" id="nextButton">下一句</button>
+            </div>
+            <div class="unsupported" id="unsupported">
+              這台瀏覽器目前不能錄音。仍然可以聽示範，然後直接點星星做鼓勵記錄。
+            </div>
+            <div class="stars" id="stars" aria-live="polite" aria-label="手動評星"></div>
+            <div class="heard" id="heard"></div>
+          </article>
+        </div>
+
+        <aside>
+          <div class="line-list">
+            <div class="line-list-header">Unit 2 每一句</div>
+            <div id="lineList"></div>
+          </div>
+
+          <div class="coach">
+            <h2>今天玩法</h2>
+            <p id="coachText">先點一句，聽網頁示範，再按「我來念」挑戰 5 顆星。</p>
+            <div class="role-picker" id="rolePicker" hidden>
+              <button class="pill-button primary" type="button" data-role="abby">我當 Abby</button>
+              <button class="pill-button" type="button" data-role="nick">我當 Nick</button>
+              <button class="pill-button" type="button" data-role="fifi">我當 Fifi</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+      </section>
+
+      <section class="panel" data-panel="vocab">
+        <div class="coach"><h2>單字練習 🔤</h2><p>點 🔊 聽一次，自己念念看，覺得念得好就點星星。念到 5 顆星就很棒了！</p></div>
+        <div class="vocab-grid" id="vocabGrid"></div>
+      </section>
+
+      <section class="panel" data-panel="phonics">
+        <div class="coach"><h2>發音 Dd–Ff 🔡</h2><p>點字母聽聲音、點單字聽念法，自己念念看。會念了就點 ⭐。</p></div>
+        <div id="phonicsList"></div>
+      </section>
+
+      <section class="panel" data-panel="grammar">
+        <div class="gram-rule" id="gramRule"></div>
+        <div class="coach" id="gramNameBox" style="margin-top:0">
+          <p>換角色練一句：<input id="nameInput" placeholder="輸入名字，如 Oz" style="font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;min-width:120px" />
+          <button class="big-button" type="button" id="nameSayButton" style="min-height:44px;padding:10px 14px">🔊 He is ___</button></p>
+        </div>
+        <div id="quizBox"></div>
+        <div class="coach"><p id="quizScore">選對的會打 ✓。He / She 後面可以接 is，也可以用 can 說「會、可以」。</p></div>
+      </section>
+    </main>
+
+    <script type="module">
+      import {
+        beOptions,
+        checkBeAnswer,
+        chooseRecorderMimeType,
+        dialogueLines,
+        getPracticeTurn,
+        getSortedLineIndexes,
+        grammar,
+        isLineScored,
+        loadFlags,
+        loadScores,
+        phonics,
+        resolveVoiceProfile,
+        saveFlags,
+        saveScores,
+        vocab,
+      } from "./unit2.mjs?v=unit2-20260623";
+
+      const canRecord = Boolean(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
+      const state = {
+        index: 0,
+        mode: "line",
+        childRole: "abby",
+        scores: loadScores(window.localStorage, dialogueLines.length),
+        recording: false,
+        storyPlaying: false,
+        recorder: null,
+        audioStream: null,
+        playbackUrl: "",
+        audioUnlocked: false,
+      };
+
+      const elements = {
+        progress: document.querySelector("#progress"),
+        sceneTitle: document.querySelector("#sceneTitle"),
+        speaker: document.querySelector("#speaker"),
+        turnLabel: document.querySelector("#turnLabel"),
+        sentence: document.querySelector("#sentence"),
+        translation: document.querySelector("#translation"),
+        speakButton: document.querySelector("#speakButton"),
+        recordButton: document.querySelector("#recordButton"),
+        playbackButton: document.querySelector("#playbackButton"),
+        pauseButton: document.querySelector("#pauseButton"),
+        nextButton: document.querySelector("#nextButton"),
+        stars: document.querySelector("#stars"),
+        heard: document.querySelector("#heard"),
+        unsupported: document.querySelector("#unsupported"),
+        lineList: document.querySelector("#lineList"),
+        coachText: document.querySelector("#coachText"),
+        rolePicker: document.querySelector("#rolePicker"),
+        modeButtons: [...document.querySelectorAll("[data-mode]")],
+        roleButtons: [...document.querySelectorAll("[data-role]")],
+        characters: [...document.querySelectorAll("[data-character]")],
+      };
+
+      function starsText(count) {
+        return "★★★★★".slice(0, count) + "☆☆☆☆☆".slice(0, 5 - count);
+      }
+
+      function renderStars() {
+        const line = currentLine();
+        const score = state.scores[state.index] ?? 0;
+        if (!isLineScored(line)) {
+          elements.stars.innerHTML = `<span class="translation">這句只要聽一聽、模仿語氣，不用拿星星。</span>`;
+          return;
+        }
+        elements.stars.innerHTML = Array.from({ length: 5 }, (_, index) => {
+          const value = index + 1;
+          const filled = value <= score ? "★" : "☆";
+          return `<button class="star-button" type="button" data-star="${value}" aria-label="${value} 顆星">${filled}</button>`;
+        }).join("");
+      }
+
+      function currentLine() {
+        return dialogueLines[state.index];
+      }
+
+      function renderLineList() {
+        const indexes = getSortedLineIndexes(dialogueLines, state.scores);
+        elements.lineList.innerHTML = indexes
+          .map((index) => {
+            const line = dialogueLines[index];
+            const active = index === state.index ? " active" : "";
+            const score = state.scores[index];
+            const weak = isLineScored(line) && score < 5 ? " weak" : "";
+            const tag = isLineScored(line) && score < 5 ? `<span class="practice-tag">再練一次</span>` : "";
+            const miniStars = isLineScored(line) ? (score ? starsText(score) : "☆☆☆☆☆") : "聽";
+            return `
+              <button class="line-button${active}${weak}" type="button" data-line="${index}">
+                <span class="line-number">${index + 1}</span>
+                <span class="line-text"><strong>${line.speaker}</strong><span>${line.text}</span>${tag}</span>
+                <span class="mini-stars">${miniStars}</span>
+              </button>
+            `;
+          })
+          .join("");
+      }
+
+      function render() {
+        const line = currentLine();
+        elements.sceneTitle.textContent = line.scene;
+        elements.speaker.textContent = line.speaker;
+        elements.sentence.textContent = line.text;
+        elements.translation.textContent = line.zh;
+        elements.turnLabel.textContent = state.mode === "role" ? getPracticeTurn(line, state.childRole) : "點一句練";
+        renderStars();
+        elements.heard.textContent = isLineScored(line) ? "念完後聽自己的聲音，再點星星。" : "這句重點是語氣，可以跟著玩聲音。";
+        const scoredLines = dialogueLines.filter(isLineScored).length;
+        const finished = dialogueLines.filter((lineItem, index) => isLineScored(lineItem) && state.scores[index] >= 5).length;
+        elements.progress.textContent = `${finished} / ${scoredLines} 句`;
+        elements.rolePicker.hidden = state.mode !== "role";
+        elements.unsupported.style.display = canRecord ? "none" : "block";
+        elements.recordButton.disabled = !canRecord || state.recording;
+        elements.recordButton.textContent = state.recording ? "錄音中..." : "我來念";
+        elements.playbackButton.disabled = !state.playbackUrl;
+        elements.pauseButton.hidden = state.mode !== "story";
+        elements.characters.forEach((character) => {
+          const key = character.dataset.character;
+          character.classList.toggle("active", line.role === key || line.role === "together");
+        });
+        elements.modeButtons.forEach((button) => {
+          button.classList.toggle("active", button.dataset.mode === state.mode);
+        });
+        elements.roleButtons.forEach((button) => {
+          button.classList.toggle("primary", button.dataset.role === state.childRole);
+        });
+        if (state.mode === "story") {
+          elements.coachText.textContent = "按「聽故事」會從目前這句開始播放。聽完再挑喜歡的一句練。";
+        } else if (state.mode === "role") {
+          elements.coachText.textContent = "網頁會先演其他角色，輪到你的角色時就按「我來念」拿星星。";
+        } else {
+          elements.coachText.textContent = "先點一句，聽網頁示範，再按「我來念」挑戰 5 顆星。";
+        }
+        renderLineList();
+      }
+
+      function unlockAudio() {
+        if (state.audioUnlocked) return;
+        state.audioUnlocked = true;
+        try {
+          const utterance = new SpeechSynthesisUtterance(" ");
+          utterance.volume = 0;
+          window.speechSynthesis.speak(utterance);
+        } catch {
+          state.audioUnlocked = false;
+        }
+      }
+
+      function speak(text, role, onEnd) {
+        unlockAudio();
+        window.speechSynthesis.cancel();
+        const voices = window.speechSynthesis?.getVoices?.() ?? [];
+        const profile = resolveVoiceProfile(voices, role);
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-US";
+        const chosen = profile.voiceName ? voices.find((voice) => voice.name === profile.voiceName) : null;
+        if (chosen) utterance.voice = chosen;
+        utterance.rate = profile.rate;
+        utterance.pitch = profile.pitch;
+        utterance.onend = () => onEnd?.();
+        window.speechSynthesis.speak(utterance);
+      }
+
+      function speakCurrent() {
+        speak(currentLine().text, currentLine().role);
+      }
+
+      function playStoryFrom(index = state.index) {
+        state.mode = "story";
+        state.storyPlaying = true;
+        state.index = index;
+        render();
+        speak(currentLine().text, currentLine().role, () => {
+          if (state.mode !== "story" || !state.storyPlaying) return;
+          if (state.index < dialogueLines.length - 1) {
+            state.index += 1;
+            playStoryFrom(state.index);
+          } else {
+            state.storyPlaying = false;
+            render();
+          }
+        });
+      }
+
+      // 角色扮演：不是孩子選的角色，由系統發聲並自動往下；
+      // 輪到孩子選的角色就停下來等她念（按「我來念」錄音，念完按「下一句」繼續）。
+      function runRolePlay(index) {
+        state.index = index;
+        clearPlayback();
+        render();
+        const line = currentLine();
+        if (line.role === state.childRole) {
+          elements.heard.textContent = "🎤 換你念！可以按「我來念」錄音，念完按「下一句」。";
+          return;
+        }
+        elements.heard.textContent = "聽其他角色說…";
+        speak(line.text, line.role, () => {
+          if (state.mode !== "role") return;
+          if (state.index < dialogueLines.length - 1) {
+            runRolePlay(state.index + 1);
+          } else {
+            elements.heard.textContent = "這一段演完了！可以再選一個角色重玩。";
+          }
+        });
+      }
+
+      function nextLine() {
+        state.storyPlaying = false;
+        if (state.mode === "role") {
+          runRolePlay((state.index + 1) % dialogueLines.length);
+          return;
+        }
+        state.index = (state.index + 1) % dialogueLines.length;
+        clearPlayback();
+        render();
+      }
+
+      function clearPlayback() {
+        if (state.playbackUrl) URL.revokeObjectURL(state.playbackUrl);
+        state.playbackUrl = "";
+      }
+
+      function playRecording() {
+        if (!state.playbackUrl) return;
+        unlockAudio();
+        const audio = new Audio(state.playbackUrl);
+        audio.play().catch(() => {
+          elements.heard.textContent = "請再按一次「聽我的聲音」播放。";
+        });
+      }
+
+      function setScore(value) {
+        if (!isLineScored(currentLine())) return;
+        state.scores[state.index] = value;
+        saveScores(window.localStorage, state.scores);
+        elements.stars.classList.remove("pop");
+        renderStars();
+        requestAnimationFrame(() => elements.stars.classList.add("pop"));
+        elements.heard.textContent = value >= 5 ? "5 顆星！這句很穩了。" : `${value} 顆星，想挑戰可以再念一次。`;
+        const scoredLines = dialogueLines.filter(isLineScored).length;
+        const finished = dialogueLines.filter((lineItem, index) => isLineScored(lineItem) && state.scores[index] >= 5).length;
+        elements.progress.textContent = `${finished} / ${scoredLines} 句`;
+        renderLineList();
+      }
+
+      async function startRecording() {
+        if (!canRecord) {
+          elements.heard.textContent = "這台瀏覽器不能錄音，可以直接點星星。";
+          return;
+        }
+        unlockAudio();
+        clearPlayback();
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const mimeType = chooseRecorderMimeType((type) => MediaRecorder.isTypeSupported(type));
+          const recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+          const chunks = [];
+          state.audioStream = stream;
+          state.recorder = recorder;
+          state.recording = true;
+          elements.heard.textContent = "錄音中，念完這一句就好。";
+          render();
+
+          recorder.ondataavailable = (event) => {
+            if (event.data.size > 0) chunks.push(event.data);
+          };
+          recorder.onstop = () => {
+            stream.getTracks().forEach((track) => track.stop());
+            state.recording = false;
+            const blob = new Blob(chunks, { type: recorder.mimeType || "audio/mp4" });
+            state.playbackUrl = URL.createObjectURL(blob);
+            elements.heard.textContent = "錄好了。先聽自己的聲音，再點星星。";
+            render();
+            playRecording();
+          };
+          recorder.start();
+          window.setTimeout(() => {
+            if (recorder.state === "recording") recorder.stop();
+          }, 4200);
+        } catch {
+          state.recording = false;
+          elements.heard.textContent = "麥克風沒有開啟也沒關係，可以先跟讀，再手動點星星。";
+          render();
+        }
+      }
+
+      elements.speakButton.addEventListener("click", () => {
+        unlockAudio();
+        if (state.mode === "story") playStoryFrom(state.index);
+        else speakCurrent();
+      });
+      elements.recordButton.addEventListener("click", startRecording);
+      elements.playbackButton.addEventListener("click", playRecording);
+      elements.pauseButton.addEventListener("click", () => {
+        state.storyPlaying = false;
+        window.speechSynthesis.cancel();
+        elements.heard.textContent = "故事暫停了，可以重聽這句或繼續下一句。";
+      });
+      elements.nextButton.addEventListener("click", nextLine);
+      elements.stars.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-star]");
+        if (!button) return;
+        setScore(Number(button.dataset.star));
+      });
+      elements.lineList.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-line]");
+        if (!button) return;
+        const idx = Number(button.dataset.line);
+        state.storyPlaying = false;
+        window.speechSynthesis.cancel();
+        if (state.mode === "role") {
+          runRolePlay(idx);
+          return;
+        }
+        state.index = idx;
+        state.mode = "line";
+        clearPlayback();
+        render();
+      });
+      elements.modeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          unlockAudio();
+          state.mode = button.dataset.mode;
+          state.storyPlaying = false;
+          window.speechSynthesis.cancel();
+          if (state.mode === "role") runRolePlay(0);
+          else render();
+        });
+      });
+      elements.roleButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          state.childRole = button.dataset.role;
+          if (state.mode === "role") runRolePlay(0);
+          else render();
+        });
+      });
+
+      /* ============ 單字 / 發音 / 文法 分頁 ============ */
+      const byId = (id) => document.getElementById(id);
+      const vocabScores = loadScores(window.localStorage, vocab.length, "joy-unit2-vocab-scores");
+      const phonicsDone = loadFlags(window.localStorage, phonics.items.length, "joy-unit2-phonics-done");
+      const quizDone = loadFlags(window.localStorage, grammar.quiz.length, "joy-unit2-grammar-done");
+
+      function starRow(score) {
+        return Array.from({ length: 5 }, (_, i) =>
+          `<button class="mini-star" type="button" data-star="${i + 1}">${i + 1 <= score ? "★" : "☆"}</button>`).join("");
+      }
+
+      // 單字
+      function renderVocab() {
+        byId("vocabGrid").innerHTML = vocab.map((v, i) => `
+          <div class="vocab-card">
+            <div class="word">${v.word}</div>
+            <div class="kk">${v.kk} ${v.pos}</div>
+            <div class="zh">${v.zh}</div>
+            <div class="row"><button class="listen-btn" type="button" data-vlisten="${i}">🔊 聽</button>
+              <span data-vstars="${i}">${starRow(vocabScores[i] ?? 0)}</span></div>
+          </div>`).join("");
+      }
+      byId("vocabGrid").addEventListener("click", (e) => {
+        const lb = e.target.closest("[data-vlisten]");
+        if (lb) { speak(vocab[Number(lb.dataset.vlisten)].word, "together"); return; }
+        const st = e.target.closest("[data-star]");
+        if (st) {
+          const wrap = st.closest("[data-vstars]"); const i = Number(wrap.dataset.vstars);
+          vocabScores[i] = Number(st.dataset.star);
+          saveScores(window.localStorage, vocabScores, "joy-unit2-vocab-scores");
+          wrap.innerHTML = starRow(vocabScores[i]);
+        }
+      });
+
+      // 發音 Phonics
+      function renderPhonics() {
+        byId("phonicsList").innerHTML = phonics.items.map((it, i) => `
+          <div class="phonics-row">
+            <button class="phonics-letter" type="button" data-pletter="${it.letter.charAt(0)}">${it.letter}</button>
+            <span class="phonics-sound">${it.sound}</span>
+            <div class="phonics-examples">${it.examples.map((e) => `<button class="chip" type="button" data-pword="${e.w}">${e.w} <small>${e.zh}</small></button>`).join("")}</div>
+            <button class="done-btn${phonicsDone[i] ? " on" : ""}" type="button" data-pdone="${i}">${phonicsDone[i] ? "⭐ 會念了" : "我會念了"}</button>
+          </div>`).join("");
+      }
+      byId("phonicsList").addEventListener("click", (e) => {
+        const w = e.target.closest("[data-pword]"); if (w) { speak(w.dataset.pword, "together"); return; }
+        const l = e.target.closest("[data-pletter]"); if (l) { speak(l.dataset.pletter, "together"); return; }
+        const d = e.target.closest("[data-pdone]");
+        if (d) { const i = Number(d.dataset.pdone); phonicsDone[i] = !phonicsDone[i]; saveFlags(window.localStorage, phonicsDone, "joy-unit2-phonics-done"); renderPhonics(); }
+      });
+
+      // 文法 He is / She is / can
+      function renderQuiz() {
+        byId("gramRule").textContent = `${grammar.title} — ${grammar.rule}`;
+        byId("quizBox").innerHTML = grammar.quiz.map((q, i) => {
+          const parts = q.full.split(new RegExp(`\\b${q.answer}\\b`));
+          const sentence = quizDone[i]
+            ? `${parts[0]}<span class="blank" style="border:0;color:#207f71">${q.answer}</span>${parts[1] ?? ""}`
+            : `${parts[0]}<span class="blank">？</span>${parts[1] ?? ""}`;
+          return `<div class="quiz-card" data-quiz="${i}">
+            <div class="quiz-sentence">${sentence}</div>
+            <div class="quiz-zh">${q.zh}</div>
+            <div class="quiz-options">${beOptions.map((o) => `<button type="button" data-opt="${o}"${quizDone[i] && o === q.answer ? ' class="correct"' : ""}>${o}</button>`).join("")}</div>
+          </div>`;
+        }).join("");
+        const done = quizDone.filter(Boolean).length;
+        byId("quizScore").textContent = `答對 ${done} / ${grammar.quiz.length} 題。He / She 可以接 is，也可以接 can。`;
+      }
+      byId("quizBox").addEventListener("click", (e) => {
+        const opt = e.target.closest("[data-opt]"); if (!opt) return;
+        const card = opt.closest("[data-quiz]"); const i = Number(card.dataset.quiz);
+        if (checkBeAnswer(grammar.quiz[i], opt.dataset.opt)) {
+          quizDone[i] = true; saveFlags(window.localStorage, quizDone, "joy-unit2-grammar-done");
+          speak(grammar.quiz[i].full, "abby"); renderQuiz();
+        } else {
+          opt.classList.add("wrong");
+          setTimeout(() => opt.classList.remove("wrong"), 600);
+        }
+      });
+      byId("nameSayButton").addEventListener("click", () => {
+        const name = byId("nameInput").value.trim() || "Oz";
+        speak(`He is ${name}.`, "nick");
+      });
+
+      // 分頁切換（只認最上面那排 data-tab）
+      document.querySelector("nav.tabs").addEventListener("click", (e) => {
+        const b = e.target.closest("[data-tab]"); if (!b) return;
+        unlockAudio();
+        state.storyPlaying = false; window.speechSynthesis.cancel();
+        document.querySelectorAll("nav.tabs > [data-tab]").forEach((x) => x.classList.toggle("active", x === b));
+        document.querySelectorAll("[data-panel]").forEach((p) => p.classList.toggle("active", p.dataset.panel === b.dataset.tab));
+      });
+
+      window.speechSynthesis?.getVoices?.();
+      render();
+      renderVocab(); renderPhonics(); renderQuiz();
+    </script>
+  </body>
+</html>

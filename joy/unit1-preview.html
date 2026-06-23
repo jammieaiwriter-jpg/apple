@@ -168,10 +168,14 @@
     </main>
 
     <script type="module">
-      import { dialogueLines, vocab, phonics, grammar, resolveVoiceProfile, loadFlags, saveFlags } from "./unit1.mjs?v=v4-20260623";
+      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit1.mjs?v=v5-azure-20260623";
 
       const HEARD_KEY = "joy-unit1-heard";
       const VOCAB_KEY = "joy-unit1-vocab-heard";
+      const TTS_BASE = "https://apple-bedtime-story.onrender.com";
+      const ttsCache = new Map();
+      let azureOK = true;
+      let activeAzureAudio = null;
 
       const state = {
         index: 0, playingAll: false, audioUnlocked: false,
@@ -182,15 +186,32 @@
       const el = (id) => document.getElementById(id);
       const characters = [...document.querySelectorAll("[data-character]")];
 
+      function stopSpeaking() {
+        if (activeAzureAudio) {
+          activeAzureAudio.onended = null;
+          activeAzureAudio.pause();
+          activeAzureAudio = null;
+        }
+        window.speechSynthesis.cancel();
+      }
+      function showVoiceLoading() {
+        el("hint").textContent = "載入語音中…第一次可能要等 Render 冷啟動。";
+      }
+      function warmTTS() {
+        fetch(`${TTS_BASE}/api/tts/status`, { cache: "no-store" }).catch(() => { azureOK = false; });
+      }
       function unlockAudio() {
         if (state.audioUnlocked) return;
         state.audioUnlocked = true;
         try { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; window.speechSynthesis.speak(u); }
         catch { state.audioUnlocked = false; }
+        try {
+          const audio = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==");
+          audio.volume = 0;
+          audio.play().catch(() => {});
+        } catch {}
       }
-      function speak(text, role, onEnd) {
-        unlockAudio();
-        window.speechSynthesis.cancel();
+      function speakBrowser(text, role, onEnd) {
         const voices = window.speechSynthesis?.getVoices?.() ?? [];
         const profile = resolveVoiceProfile(voices, role);
         const u = new SpeechSynthesisUtterance(text);
@@ -200,6 +221,40 @@
         u.rate = profile.rate; u.pitch = profile.pitch;
         u.onend = () => onEnd?.();
         window.speechSynthesis.speak(u);
+      }
+      async function speak(text, role, onEnd) {
+        unlockAudio();
+        stopSpeaking();
+        const voice = azureVoiceForRole(role);
+        if (azureOK) {
+          try {
+            const key = `${voice}|${text}`;
+            let url = ttsCache.get(key);
+            if (!url) {
+              showVoiceLoading();
+              const response = await fetch(`${TTS_BASE}/api/tts`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text, voice }),
+              });
+              if (!response.ok) throw new Error(`tts ${response.status}`);
+              url = URL.createObjectURL(await response.blob());
+              ttsCache.set(key, url);
+            }
+            const audio = new Audio(url);
+            activeAzureAudio = audio;
+            audio.onended = () => {
+              if (activeAzureAudio === audio) activeAzureAudio = null;
+              onEnd?.();
+            };
+            await audio.play();
+            return;
+          } catch {
+            azureOK = false;
+            if (activeAzureAudio) activeAzureAudio = null;
+          }
+        }
+        speakBrowser(text, role, onEnd);
       }
 
       const currentLine = () => dialogueLines[state.index];
@@ -271,7 +326,7 @@
       }
 
       function switchTab(name) {
-        window.speechSynthesis.cancel(); state.playingAll = false;
+        stopSpeaking(); state.playingAll = false;
         document.querySelectorAll("[data-tab]").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
         document.querySelectorAll("[data-panel]").forEach((p) => p.classList.toggle("active", p.dataset.panel === name));
       }
@@ -281,7 +336,7 @@
         unlockAudio(); switchTab(b.dataset.tab);
       });
       el("playAllButton").addEventListener("click", () => { el("hint").textContent = "故事播放中…每句聽完會打 ✓。"; playAllFrom(0); });
-      el("pauseButton").addEventListener("click", () => { state.playingAll = false; window.speechSynthesis.cancel(); renderStory(); el("hint").textContent = "故事暫停了。可再按「聽整段故事」或點一句單獨聽。"; });
+      el("pauseButton").addEventListener("click", () => { state.playingAll = false; stopSpeaking(); renderStory(); el("hint").textContent = "故事暫停了。可再按「聽整段故事」或點一句單獨聽。"; });
       el("replayButton").addEventListener("click", () => playOne(state.index));
       el("nextButton").addEventListener("click", () => playOne((state.index + 1) % dialogueLines.length));
       el("lineList").addEventListener("click", (e) => { const b = e.target.closest("[data-line]"); if (b) playOne(Number(b.dataset.line)); });
@@ -293,6 +348,7 @@
       el("gramLines").addEventListener("click", (e) => { const b = e.target.closest("[data-gram]"); if (b) speak(grammar.examples[Number(b.dataset.gram)].text, "abby"); });
 
       window.speechSynthesis?.getVoices?.();
+      warmTTS();
       renderStory(); renderVocab(); renderPhonics(); renderGrammar();
     </script>
   </body>

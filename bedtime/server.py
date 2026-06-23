@@ -70,12 +70,17 @@ def apply_pronunciations(escaped_text, voice=None):
     return escaped_text
 
 
+def lang_of(voice):
+    parts = (voice or "").split("-")
+    return "-".join(parts[:2]) if len(parts) >= 2 else "zh-TW"
+
+
 def build_ssml(text, voice=None):
     voice = voice or AZURE_SPEECH_VOICE
     escaped = apply_pronunciations(html.escape(text, quote=False), voice)
     return (
         '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" '
-        'xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="zh-TW">'
+        f'xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="{html.escape(lang_of(voice), quote=True)}">'
         f'<voice name="{html.escape(voice, quote=True)}">'
         '<prosody rate="-15%" pitch="-2%">'
         f"{escaped}"
@@ -129,13 +134,24 @@ def synthesize(text, voice=None):
 
 
 class BedtimeHandler(SimpleHTTPRequestHandler):
+    def send_cors_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "https://jammieaiwriter-jpg.github.io")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+
     def send_bytes(self, status, body, content_type):
         self.send_response(status)
+        self.send_cors_headers()
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(body)
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self.send_cors_headers()
+        self.end_headers()
 
     def do_GET(self):
         if self.path == "/health":
@@ -166,11 +182,14 @@ class BedtimeHandler(SimpleHTTPRequestHandler):
             length = int(self.headers.get("Content-Length", "0"))
             payload = json.loads(self.rfile.read(length))
             text = payload.get("text", "")
+            voice = payload.get("voice")
             if not isinstance(text, str) or not text.strip():
                 raise ValueError("text is required")
+            if voice is not None and not isinstance(voice, str):
+                raise ValueError("voice must be a string")
             if len(text) > MAX_TEXT_LENGTH:
                 raise ValueError(f"text exceeds {MAX_TEXT_LENGTH} characters")
-            audio = synthesize(text)
+            audio = synthesize(text, voice)
             self.send_bytes(200, audio, "audio/mpeg")
         except ValueError as error:
             self.send_bytes(400, json_bytes({"error": str(error)}), "application/json")

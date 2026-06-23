@@ -76,6 +76,17 @@ export function getPracticeTurn(line, childRole = "abby") {
   return "先聽網頁說";
 }
 
+export const AZURE_VOICE = {
+  nick: "en-US-GuyNeural",
+  abby: "en-US-JennyNeural",
+  fifi: "en-US-AnaNeural",
+  together: "en-US-AriaNeural",
+};
+
+export function azureVoiceForRole(role) {
+  return AZURE_VOICE[role] ?? AZURE_VOICE.together;
+}
+
 // 每個角色一種聲音，語速放慢給小一孩子。回傳純資料（voiceName + pitch + rate），
 // 方便測試；瀏覽器端再依 voiceName 找實際 voice 物件。
 export function resolveVoiceProfile(voices, role) {

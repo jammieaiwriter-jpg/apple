@@ -85,7 +85,7 @@ export function resolveVoiceProfile(voices, role) {
   const profiles = {
     nick: { candidates: ["Aaron", "Daniel", "Fred", "Arthur", "Albert", "Reed"], pitch: 0.8, rate: 0.66 },
     abby: { candidates: ["Samantha", "Allison", "Ava", "Karen", "Susan"], pitch: 1.2, rate: 0.68 },
-    fifi: { candidates: ["Tessa", "Moira", "Karen", "Samantha"], pitch: 1.5, rate: 0.72 },
+    fifi: { candidates: ["Karen", "Samantha", "Allison", "Ava"], pitch: 1.3, rate: 0.7 },
     together: { candidates: ["Samantha", "Karen"], pitch: 1.05, rate: 0.68 },
   };
   const profile = profiles[role] ?? profiles.together;

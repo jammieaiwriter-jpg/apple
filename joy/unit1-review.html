@@ -563,7 +563,7 @@
               <button class="big-button secondary" type="button" id="nextButton">下一句</button>
             </div>
             <div class="unsupported" id="unsupported">
-              這台瀏覽器目前不能錄音。仍然可以聽示範，然後直接點星星做鼓勵記錄。
+              這台瀏覽器不支援語音自動評分。仍然可以聽示範，然後直接點星星做鼓勵記錄。
             </div>
             <div class="stars" id="stars" aria-live="polite" aria-label="手動評星"></div>
             <div class="heard" id="heard"></div>
@@ -630,15 +630,27 @@
       } from "./unit1.mjs?v=v3-20260623";
 
       const canRecord = Boolean(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const srSupported = Boolean(SR);
+      let recognizer = null, recStopped = false, recText = "";
+      // OiKID 驗證可在 iOS Safari 穩定跑的辨識寫法：continuous + onend 自動重啟，按「停」才結算分數。
+      function beginSpeech(onDone) {
+        recText = ""; recStopped = false;
+        const r = new SR(); recognizer = r;
+        r.lang = "en-US"; r.continuous = true; r.interimResults = false;
+        r.onresult = (e) => { for (let i = e.resultIndex; i < e.results.length; i++) if (e.results[i].isFinal) recText += e.results[i][0].transcript + " "; };
+        r.onerror = () => {};
+        r.onend = () => { if (!recStopped) { setTimeout(() => { try { r.start(); } catch (_) {} }, 120); return; } onDone(recText.trim()); };
+        try { r.start(); } catch (_) {}
+      }
+      function endSpeech() { recStopped = true; try { recognizer?.stop(); } catch (_) {} setTimeout(() => { try { recognizer?.abort(); } catch (_) {} }, 1200); }
       const state = {
         index: 0,
         mode: "line",
         childRole: "abby",
         scores: loadScores(window.localStorage, dialogueLines.length),
-        recording: false,
+        listening: false,
         storyPlaying: false,
-        recorder: null,
-        audioStream: null,
         playbackUrl: "",
         audioUnlocked: false,
       };
@@ -722,10 +734,10 @@
         const finished = dialogueLines.filter((lineItem, index) => isLineScored(lineItem) && state.scores[index] >= 5).length;
         elements.progress.textContent = `${finished} / ${scoredLines} 句`;
         elements.rolePicker.hidden = state.mode !== "role";
-        elements.unsupported.style.display = canRecord ? "none" : "block";
-        elements.recordButton.disabled = !canRecord || state.recording;
-        elements.recordButton.textContent = state.recording ? "錄音中..." : "我來念";
-        elements.playbackButton.disabled = !state.playbackUrl;
+        elements.unsupported.style.display = srSupported ? "none" : "block";
+        elements.recordButton.disabled = false;
+        elements.recordButton.textContent = state.listening ? "⏹ 念好了（聽你說…）" : (srSupported ? "🎤 開始念" : "我來念");
+        elements.playbackButton.hidden = true;
         elements.pauseButton.hidden = state.mode !== "story";
         elements.characters.forEach((character) => {
           const key = character.dataset.character;
@@ -856,45 +868,32 @@
         renderLineList();
       }
 
-      async function startRecording() {
-        if (!canRecord) {
-          elements.heard.textContent = "這台瀏覽器不能錄音，可以直接點星星。";
+      // 自動評分：開始念 → 念好了 → 用 scoreSpeech 比對打星
+      function startSpeaking() {
+        if (!srSupported) {
+          elements.heard.textContent = "這台瀏覽器不支援語音辨識，可以直接點星星。";
+          return;
+        }
+        if (state.listening) {
+          state.listening = false;
+          elements.recordButton.textContent = "整理中…";
+          elements.recordButton.disabled = true;
+          endSpeech();
           return;
         }
         unlockAudio();
-        clearPlayback();
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          const mimeType = chooseRecorderMimeType((type) => MediaRecorder.isTypeSupported(type));
-          const recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
-          const chunks = [];
-          state.audioStream = stream;
-          state.recorder = recorder;
-          state.recording = true;
-          elements.heard.textContent = "錄音中，念完這一句就好。";
+        state.listening = true;
+        render();
+        elements.heard.textContent = "聽你說…念完按「念好了」。";
+        beginSpeech((heard) => {
+          state.listening = false;
           render();
-
-          recorder.ondataavailable = (event) => {
-            if (event.data.size > 0) chunks.push(event.data);
-          };
-          recorder.onstop = () => {
-            stream.getTracks().forEach((track) => track.stop());
-            state.recording = false;
-            const blob = new Blob(chunks, { type: recorder.mimeType || "audio/mp4" });
-            state.playbackUrl = URL.createObjectURL(blob);
-            elements.heard.textContent = "錄好了。先聽自己的聲音，再點星星。";
-            render();
-            playRecording();
-          };
-          recorder.start();
-          window.setTimeout(() => {
-            if (recorder.state === "recording") recorder.stop();
-          }, 4200);
-        } catch {
-          state.recording = false;
-          elements.heard.textContent = "麥克風沒有開啟也沒關係，可以先跟讀，再手動點星星。";
-          render();
-        }
+          if (!heard) { elements.heard.textContent = "沒聽清楚，再按一次「開始念」試試。"; return; }
+          if (!isLineScored(currentLine())) { elements.heard.textContent = `我聽到：${heard}`; return; }
+          const result = scoreSpeech(currentLine().text, heard);
+          setScore(result.stars);
+          elements.heard.textContent = `我聽到：${heard}　→　${result.stars} ★`;
+        });
       }
 
       elements.speakButton.addEventListener("click", () => {
@@ -902,8 +901,7 @@
         if (state.mode === "story") playStoryFrom(state.index);
         else speakCurrent();
       });
-      elements.recordButton.addEventListener("click", startRecording);
-      elements.playbackButton.addEventListener("click", playRecording);
+      elements.recordButton.addEventListener("click", startSpeaking);
       elements.pauseButton.addEventListener("click", () => {
         state.storyPlaying = false;
         window.speechSynthesis.cancel();
@@ -967,18 +965,38 @@
             <div class="kk">${v.kk} ${v.pos}</div>
             <div class="zh">${v.zh}</div>
             <div class="row"><button class="listen-btn" type="button" data-vlisten="${i}">🔊 聽</button>
+              <button class="listen-btn" type="button" data-vspeak="${i}">${srSupported ? "🎤 念" : "🎤"}</button>
               <span data-vstars="${i}">${starRow(vocabScores[i] ?? 0)}</span></div>
           </div>`).join("");
+      }
+      function saveVocab(i) {
+        saveScores(window.localStorage, vocabScores, "joy-unit1-vocab-scores");
+        const wrap = byId("vocabGrid").querySelector(`[data-vstars="${i}"]`);
+        if (wrap) wrap.innerHTML = starRow(vocabScores[i]);
       }
       byId("vocabGrid").addEventListener("click", (e) => {
         const lb = e.target.closest("[data-vlisten]");
         if (lb) { speak(vocab[Number(lb.dataset.vlisten)].word, "together"); return; }
+        const sp = e.target.closest("[data-vspeak]");
+        if (sp) {
+          if (!srSupported) { return; }
+          const i = Number(sp.dataset.vspeak);
+          if (state.listening) { state.listening = false; sp.textContent = "整理中…"; endSpeech(); return; }
+          unlockAudio(); state.listening = true; sp.textContent = "⏹ 停";
+          beginSpeech((heard) => {
+            state.listening = false; sp.textContent = "🎤 念";
+            if (!heard) return;
+            const res = scoreSpeech(vocab[i].word, heard);
+            vocabScores[i] = Math.max(vocabScores[i] ?? 0, res.stars);
+            saveVocab(i);
+          });
+          return;
+        }
         const st = e.target.closest("[data-star]");
         if (st) {
           const wrap = st.closest("[data-vstars]"); const i = Number(wrap.dataset.vstars);
           vocabScores[i] = Number(st.dataset.star);
-          saveScores(window.localStorage, vocabScores, "joy-unit1-vocab-scores");
-          wrap.innerHTML = starRow(vocabScores[i]);
+          saveVocab(i);
         }
       });
 

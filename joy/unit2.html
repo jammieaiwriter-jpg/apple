@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Joy Unit 2</title>
+    <style>
+      :root {
+        --ink: #27313f; --muted: #667085; --line: #e7e0d2;
+        --accent: #207f71; --accent-dark: #145a51; --sky: #dff0ff; --rose: #ffe4ec;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px;
+        background:
+          linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(246, 250, 255, 0.96)),
+          radial-gradient(circle at 18% 18%, rgba(255, 228, 236, 0.65), transparent 26%),
+          radial-gradient(circle at 84% 28%, rgba(223, 245, 231, 0.8), transparent 28%);
+        color: var(--ink);
+        font-family: ui-rounded, "SF Pro Rounded", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      }
+      main { width: 100%; max-width: 560px; text-align: center; }
+      h1 { font-size: clamp(30px, 7vw, 52px); margin: 0 0 6px; }
+      .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+      .cards { display: grid; gap: 16px; }
+      a.card {
+        display: block; text-decoration: none; color: var(--ink); text-align: left;
+        border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; background: #fff;
+        transition: transform 140ms ease;
+      }
+      a.card:hover { transform: translateY(-2px); }
+      a.card.preview { background: linear-gradient(180deg, #fff, var(--sky)); }
+      a.card.review { background: linear-gradient(180deg, #fff, var(--rose)); }
+      .card .emoji { font-size: 38px; }
+      .card .title { font-size: 24px; font-weight: 900; color: var(--accent-dark); margin: 6px 0 4px; }
+      .card .desc { color: var(--muted); font-size: 15px; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Joy Unit 2</h1>
+      <p class="sub">選一個開始 ✨</p>
+      <div class="cards">
+        <a class="card preview" href="./unit2-preview.html">
+          <div class="emoji">🎧</div>
+          <div class="title">課前預習</div>
+          <div class="desc">上課前聽一聽，熟悉角色聲音和句子，不用開口。</div>
+        </a>
+        <a class="card review" href="./unit2-review.html">
+          <div class="emoji">🎤</div>
+          <div class="title">課後複習</div>
+          <div class="desc">念念看、聽自己的聲音，再點星星，把每一句念到穩。</div>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

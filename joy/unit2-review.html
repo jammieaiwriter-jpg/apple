@@ -623,12 +623,17 @@
         loadFlags,
         loadScores,
         phonics,
+        azureVoiceForRole,
         resolveVoiceProfile,
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit2.mjs?v=v4u2-20260623";
+      } from "./unit2.mjs?v=v5u2-azure-20260623";
 
+      const TTS_BASE = "https://apple-bedtime-story.onrender.com";
+      const ttsCache = new Map();
+      let azureOK = true;
+      let activeAzureAudio = null;
       const canRecord = Boolean(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
       const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
       const srSupported = Boolean(SR);
@@ -639,7 +644,7 @@
         const r = new SR(); recognizer = r;
         r.lang = "en-US"; r.continuous = true; r.interimResults = false;
         r.onresult = (e) => { for (let i = e.resultIndex; i < e.results.length; i++) if (e.results[i].isFinal) recText += e.results[i][0].transcript + " "; };
-        r.onerror = () => {};
+        r.onerror = (e) => { elements.heard.textContent = "辨識問題：" + (e.error || "未知") + "（若顯示 not-allowed / service-not-allowed，請到 iPad 設定→一般→鍵盤→開啟「啟用聽寫」，再允許麥克風）"; };
         r.onend = () => { if (!recStopped) { setTimeout(() => { try { r.start(); } catch (_) {} }, 120); return; } onDone(recText.trim()); };
         try { r.start(); } catch (_) {}
       }
@@ -769,11 +774,31 @@
         } catch {
           state.audioUnlocked = false;
         }
+        try {
+          const audio = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==");
+          audio.volume = 0;
+          audio.play().catch(() => {});
+        } catch {}
       }
 
-      function speak(text, role, onEnd) {
-        unlockAudio();
+      function stopSpeaking() {
+        if (activeAzureAudio) {
+          activeAzureAudio.onended = null;
+          activeAzureAudio.pause();
+          activeAzureAudio = null;
+        }
         window.speechSynthesis.cancel();
+      }
+
+      function showVoiceLoading() {
+        elements.heard.textContent = "載入語音中…第一次可能要等 Render 冷啟動。";
+      }
+
+      function warmTTS() {
+        fetch(`${TTS_BASE}/api/tts/status`, { cache: "no-store" }).catch(() => { azureOK = false; });
+      }
+
+      function speakBrowser(text, role, onEnd) {
         const voices = window.speechSynthesis?.getVoices?.() ?? [];
         const profile = resolveVoiceProfile(voices, role);
         const utterance = new SpeechSynthesisUtterance(text);
@@ -784,6 +809,41 @@
         utterance.pitch = profile.pitch;
         utterance.onend = () => onEnd?.();
         window.speechSynthesis.speak(utterance);
+      }
+
+      async function speak(text, role, onEnd) {
+        unlockAudio();
+        stopSpeaking();
+        const voice = azureVoiceForRole(role);
+        if (azureOK) {
+          try {
+            const key = `${voice}|${text}`;
+            let url = ttsCache.get(key);
+            if (!url) {
+              showVoiceLoading();
+              const response = await fetch(`${TTS_BASE}/api/tts`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text, voice }),
+              });
+              if (!response.ok) throw new Error(`tts ${response.status}`);
+              url = URL.createObjectURL(await response.blob());
+              ttsCache.set(key, url);
+            }
+            const audio = new Audio(url);
+            activeAzureAudio = audio;
+            audio.onended = () => {
+              if (activeAzureAudio === audio) activeAzureAudio = null;
+              onEnd?.();
+            };
+            await audio.play();
+            return;
+          } catch {
+            azureOK = false;
+            if (activeAzureAudio) activeAzureAudio = null;
+          }
+        }
+        speakBrowser(text, role, onEnd);
       }
 
       function speakCurrent() {
@@ -904,7 +964,7 @@
       elements.recordButton.addEventListener("click", startSpeaking);
       elements.pauseButton.addEventListener("click", () => {
         state.storyPlaying = false;
-        window.speechSynthesis.cancel();
+        stopSpeaking();
         elements.heard.textContent = "故事暫停了，可以重聽這句或繼續下一句。";
       });
       elements.nextButton.addEventListener("click", nextLine);
@@ -918,7 +978,7 @@
         if (!button) return;
         const idx = Number(button.dataset.line);
         state.storyPlaying = false;
-        window.speechSynthesis.cancel();
+        stopSpeaking();
         if (state.mode === "role") {
           runRolePlay(idx);
           return;
@@ -933,7 +993,7 @@
           unlockAudio();
           state.mode = button.dataset.mode;
           state.storyPlaying = false;
-          window.speechSynthesis.cancel();
+          stopSpeaking();
           if (state.mode === "role") runRolePlay(0);
           else render();
         });
@@ -1054,12 +1114,13 @@
       document.querySelector("nav.tabs").addEventListener("click", (e) => {
         const b = e.target.closest("[data-tab]"); if (!b) return;
         unlockAudio();
-        state.storyPlaying = false; window.speechSynthesis.cancel();
+        state.storyPlaying = false; stopSpeaking();
         document.querySelectorAll("nav.tabs > [data-tab]").forEach((x) => x.classList.toggle("active", x === b));
         document.querySelectorAll("[data-panel]").forEach((p) => p.classList.toggle("active", p.dataset.panel === b.dataset.tab));
       });
 
       window.speechSynthesis?.getVoices?.();
+      warmTTS();
       render();
       renderVocab(); renderPhonics(); renderQuiz();
     </script>

@@ -557,7 +557,8 @@
             <div class="translation" id="translation">啊...</div>
             <div class="actions">
               <button class="big-button" type="button" id="speakButton">聽示範</button>
-              <button class="big-button secondary" type="button" id="recordButton">我來念</button>
+              <button class="big-button secondary" type="button" id="recordButton">🎤 開始念</button>
+              <button class="big-button secondary" type="button" id="recordStopButton" disabled>⏹ 念好了</button>
               <button class="big-button secondary" type="button" id="playbackButton" disabled>聽我的聲音</button>
               <button class="big-button secondary" type="button" id="pauseButton">暫停</button>
               <button class="big-button secondary" type="button" id="nextButton">下一句</button>
@@ -653,7 +654,7 @@
         };
         r.onerror = (e) => { elements.heard.textContent = "辨識問題：" + (e.error || "未知") + "（not-allowed / service-not-allowed → 設定→一般→鍵盤→開啟「啟用聽寫」）"; };
         r.onend = () => { if (!recStopped) { setTimeout(() => { try { r.start(); } catch (_) {} }, 120); return; } onDone((recText.trim() || sessionInterim.trim())); };
-        try { r.start(); } catch (_) {}
+        try { r.start(); return true; } catch (_) { return false; }
       }
       function endSpeech() { recStopped = true; try { recognizer?.stop(); } catch (_) {} setTimeout(() => { try { recognizer?.abort(); } catch (_) {} }, 1200); }
       const state = {
@@ -676,6 +677,7 @@
         translation: document.querySelector("#translation"),
         speakButton: document.querySelector("#speakButton"),
         recordButton: document.querySelector("#recordButton"),
+        recordStopButton: document.querySelector("#recordStopButton"),
         playbackButton: document.querySelector("#playbackButton"),
         pauseButton: document.querySelector("#pauseButton"),
         nextButton: document.querySelector("#nextButton"),
@@ -747,8 +749,9 @@
         elements.progress.textContent = `${finished} / ${scoredLines} 句`;
         elements.rolePicker.hidden = state.mode !== "role";
         elements.unsupported.style.display = srSupported ? "none" : "block";
-        elements.recordButton.disabled = false;
-        elements.recordButton.textContent = state.listening ? "⏹ 念好了（聽你說…）" : (srSupported ? "🎤 開始念" : "我來念");
+        elements.recordButton.disabled = state.listening;
+        elements.recordButton.textContent = srSupported ? "🎤 開始念" : "我來念";
+        elements.recordStopButton.disabled = !state.listening;
         elements.playbackButton.hidden = true;
         elements.pauseButton.hidden = state.mode !== "story";
         elements.characters.forEach((character) => {
@@ -936,20 +939,10 @@
           elements.heard.textContent = "這台瀏覽器不支援語音辨識，可以直接點星星。";
           return;
         }
-        if (state.listening) {
+        const lineIndex = state.index;
+        const started = beginSpeech((heard) => {
           state.listening = false;
-          elements.recordButton.textContent = "整理中…";
-          elements.recordButton.disabled = true;
-          endSpeech();
-          return;
-        }
-        stopSpeaking();
-        window.speechSynthesis.cancel();
-        state.listening = true;
-        render();
-        elements.heard.textContent = "聽你說…念完按「念好了」。";
-        beginSpeech((heard) => {
-          state.listening = false;
+          state.index = lineIndex;
           render();
           if (!heard) { elements.heard.textContent = "沒聽清楚，再按一次「開始念」試試。"; return; }
           if (!isLineScored(currentLine())) { elements.heard.textContent = `我聽到：${heard}`; return; }
@@ -957,6 +950,22 @@
           setScore(result.stars);
           elements.heard.textContent = `我聽到：${heard}　→　${result.stars} ★`;
         });
+        if (!started) {
+          elements.heard.textContent = "請再按一次「開始念」。";
+          return;
+        }
+        state.listening = true;
+        elements.recordButton.disabled = true;
+        elements.recordStopButton.disabled = false;
+        elements.heard.textContent = "聽你說…念完按「念好了」。";
+      }
+
+      function stopLineSpeaking() {
+        if (!state.listening) return;
+        state.listening = false;
+        elements.recordStopButton.disabled = true;
+        elements.recordButton.textContent = "整理中…";
+        endSpeech();
       }
 
       elements.speakButton.addEventListener("click", () => {
@@ -965,6 +974,7 @@
         else speakCurrent();
       });
       elements.recordButton.addEventListener("click", startSpeaking);
+      elements.recordStopButton.addEventListener("click", stopLineSpeaking);
       elements.pauseButton.addEventListener("click", () => {
         state.storyPlaying = false;
         stopSpeaking();
@@ -1029,6 +1039,7 @@
             <div class="zh">${v.zh}</div>
             <div class="row"><button class="listen-btn" type="button" data-vlisten="${i}">🔊 聽</button>
               <button class="listen-btn" type="button" data-vspeak="${i}">${srSupported ? "🎤 念" : "🎤"}</button>
+              <button class="listen-btn" type="button" data-vstop="${i}" disabled>⏹ 停</button>
               <span data-vstars="${i}">${starRow(vocabScores[i] ?? 0)}</span></div>
           </div>`).join("");
       }
@@ -1044,15 +1055,26 @@
         if (sp) {
           if (!srSupported) { return; }
           const i = Number(sp.dataset.vspeak);
-          if (state.listening) { state.listening = false; sp.textContent = "整理中…"; endSpeech(); return; }
-          stopSpeaking(); window.speechSynthesis.cancel(); state.listening = true; sp.textContent = "⏹ 停";
-          beginSpeech((heard) => {
-            state.listening = false; sp.textContent = "🎤 念";
+          const stop = byId("vocabGrid").querySelector(`[data-vstop="${i}"]`);
+          const started = beginSpeech((heard) => {
+            state.listening = false; sp.disabled = false; sp.textContent = "🎤 念"; if (stop) stop.disabled = true;
             if (!heard) return;
             const res = scoreSpeech(vocab[i].word, heard);
             vocabScores[i] = Math.max(vocabScores[i] ?? 0, res.stars);
             saveVocab(i);
           });
+          if (!started) return;
+          state.listening = true; sp.disabled = true; if (stop) stop.disabled = false;
+          return;
+        }
+        const vst = e.target.closest("[data-vstop]");
+        if (vst) {
+          if (!state.listening) return;
+          state.listening = false;
+          vst.disabled = true;
+          const spButton = byId("vocabGrid").querySelector(`[data-vspeak="${vst.dataset.vstop}"]`);
+          if (spButton) spButton.textContent = "整理中…";
+          endSpeech();
           return;
         }
         const st = e.target.closest("[data-star]");

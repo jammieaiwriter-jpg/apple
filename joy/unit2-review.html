@@ -629,7 +629,7 @@
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit2.mjs?v=v10u2-azure-20260624";
+      } from "./unit2.mjs?v=v12u2-azure-20260625";
 
       const TTS_BASE = "https://apple-bedtime-story.onrender.com";
       const ttsCache = new Map();
@@ -646,7 +646,7 @@
         let sessionInterim = "";
         let gotAny = false;
         const r = new SR(); recognizer = r;
-        r.lang = "en-US"; r.continuous = true; r.interimResults = false;
+        r.lang = "en-US"; r.continuous = true; r.interimResults = false; // 完全比照 OiKID 已驗證可用設定
         r.onstart = () => { dbg("🎙 已啟動麥克風…請開始念"); };
         r.onaudiostart = () => { dbg("🎙 收音中…"); };
         r.onresult = (e) => {
@@ -796,6 +796,8 @@
         if (activeAzureAudio) {
           activeAzureAudio.onended = null;
           activeAzureAudio.pause();
+          // iOS：徹底釋放 <audio>，把音訊工作階段交還給麥克風，否則語音辨識收不到聲音
+          try { activeAzureAudio.src = ""; activeAzureAudio.load(); } catch (_) {}
           activeAzureAudio = null;
         }
         window.speechSynthesis.cancel();
@@ -945,6 +947,7 @@
           elements.heard.textContent = "這台瀏覽器不支援語音辨識，可以直接點星星。";
           return;
         }
+        stopSpeaking(); // 先釋放任何 Azure 音訊，把 iOS 音訊通道交還麥克風
         const lineIndex = state.index;
         const started = beginSpeech((heard) => {
           state.listening = false;
@@ -1060,6 +1063,7 @@
         const sp = e.target.closest("[data-vspeak]");
         if (sp) {
           if (!srSupported) { return; }
+          stopSpeaking(); // 釋放 Azure 音訊，交還麥克風
           const i = Number(sp.dataset.vspeak);
           const stop = byId("vocabGrid").querySelector(`[data-vstop="${i}"]`);
           const started = beginSpeech((heard) => {

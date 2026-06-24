@@ -628,11 +628,11 @@
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit2.mjs?v=v8u2-20260623";
+      } from "./unit2.mjs?v=v9u2-20260623";
 
       const TTS_BASE = "https://apple-bedtime-story.onrender.com";
       const ttsCache = new Map();
-      let azureOK = true;
+      let azureOK = false; // OiKID 模式：用瀏覽器語音，不播 HTML5 Audio，避免佔住麥克風讓辨識失效
       let activeAzureAudio = null;
       const canRecord = Boolean(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
       const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -781,11 +781,6 @@
         } catch {
           state.audioUnlocked = false;
         }
-        try {
-          const audio = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==");
-          audio.volume = 0;
-          audio.play().catch(() => {});
-        } catch {}
       }
 
       function stopSpeaking() {

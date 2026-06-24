@@ -628,7 +628,7 @@
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit1.mjs?v=v7-20260623";
+      } from "./unit1.mjs?v=v8-20260623";
 
       const TTS_BASE = "https://apple-bedtime-story.onrender.com";
       const ttsCache = new Map();
@@ -643,7 +643,7 @@
         recText = ""; recStopped = false;
         let sessionInterim = "";
         const r = new SR(); recognizer = r;
-        r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+        r.lang = "en-US"; r.continuous = true; r.interimResults = false;
         r.onresult = (e) => {
           sessionInterim = "";
           for (let i = e.resultIndex; i < e.results.length; i++) {
@@ -948,7 +948,8 @@
           endSpeech();
           return;
         }
-        unlockAudio();
+        stopSpeaking();
+        window.speechSynthesis.cancel();
         state.listening = true;
         render();
         elements.heard.textContent = "聽你說…念完按「念好了」。";
@@ -1049,7 +1050,7 @@
           if (!srSupported) { return; }
           const i = Number(sp.dataset.vspeak);
           if (state.listening) { state.listening = false; sp.textContent = "整理中…"; endSpeech(); return; }
-          unlockAudio(); state.listening = true; sp.textContent = "⏹ 停";
+          stopSpeaking(); window.speechSynthesis.cancel(); state.listening = true; sp.textContent = "⏹ 停";
           beginSpeech((heard) => {
             state.listening = false; sp.textContent = "🎤 念";
             if (!heard) return;

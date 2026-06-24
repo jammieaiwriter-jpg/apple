@@ -628,7 +628,7 @@
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit1.mjs?v=v6-20260623";
+      } from "./unit1.mjs?v=v7-20260623";
 
       const TTS_BASE = "https://apple-bedtime-story.onrender.com";
       const ttsCache = new Map();
@@ -641,11 +641,18 @@
       // OiKID 驗證可在 iOS Safari 穩定跑的辨識寫法：continuous + onend 自動重啟，按「停」才結算分數。
       function beginSpeech(onDone) {
         recText = ""; recStopped = false;
+        let sessionInterim = "";
         const r = new SR(); recognizer = r;
-        r.lang = "en-US"; r.continuous = true; r.interimResults = false;
-        r.onresult = (e) => { for (let i = e.resultIndex; i < e.results.length; i++) if (e.results[i].isFinal) recText += e.results[i][0].transcript + " "; };
-        r.onerror = (e) => { elements.heard.textContent = "辨識問題：" + (e.error || "未知") + "（若顯示 not-allowed / service-not-allowed，請到 iPad 設定→一般→鍵盤→開啟「啟用聽寫」，再允許麥克風）"; };
-        r.onend = () => { if (!recStopped) { setTimeout(() => { try { r.start(); } catch (_) {} }, 120); return; } onDone(recText.trim()); };
+        r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+        r.onresult = (e) => {
+          sessionInterim = "";
+          for (let i = e.resultIndex; i < e.results.length; i++) {
+            const tr = e.results[i][0].transcript;
+            if (e.results[i].isFinal) recText += tr + " "; else sessionInterim += tr + " ";
+          }
+        };
+        r.onerror = (e) => { elements.heard.textContent = "辨識問題：" + (e.error || "未知") + "（not-allowed / service-not-allowed → 設定→一般→鍵盤→開啟「啟用聽寫」）"; };
+        r.onend = () => { if (!recStopped) { setTimeout(() => { try { r.start(); } catch (_) {} }, 120); return; } onDone((recText.trim() || sessionInterim.trim())); };
         try { r.start(); } catch (_) {}
       }
       function endSpeech() { recStopped = true; try { recognizer?.stop(); } catch (_) {} setTimeout(() => { try { recognizer?.abort(); } catch (_) {} }, 1200); }

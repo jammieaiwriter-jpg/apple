@@ -629,31 +629,37 @@
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit2.mjs?v=v9u2-20260623";
+      } from "./unit2.mjs?v=v10u2-azure-20260624";
 
       const TTS_BASE = "https://apple-bedtime-story.onrender.com";
       const ttsCache = new Map();
-      let azureOK = false; // OiKID 模式：用瀏覽器語音，不播 HTML5 Audio，避免佔住麥克風讓辨識失效
+      let azureOK = true; // Azure 真人語音；播放(輸出)不會佔住麥克風(輸入)，與辨識無關，失敗時自動退回瀏覽器語音
       let activeAzureAudio = null;
       const canRecord = Boolean(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
       const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
       const srSupported = Boolean(SR);
       let recognizer = null, recStopped = false, recText = "";
       // OiKID 驗證可在 iOS Safari 穩定跑的辨識寫法：continuous + onend 自動重啟，按「停」才結算分數。
+      function dbg(msg) { if (elements?.heard) elements.heard.textContent = msg; }
       function beginSpeech(onDone) {
         recText = ""; recStopped = false;
         let sessionInterim = "";
+        let gotAny = false;
         const r = new SR(); recognizer = r;
         r.lang = "en-US"; r.continuous = true; r.interimResults = false;
+        r.onstart = () => { dbg("🎙 已啟動麥克風…請開始念"); };
+        r.onaudiostart = () => { dbg("🎙 收音中…"); };
         r.onresult = (e) => {
           sessionInterim = "";
           for (let i = e.resultIndex; i < e.results.length; i++) {
             const tr = e.results[i][0].transcript;
             if (e.results[i].isFinal) recText += tr + " "; else sessionInterim += tr + " ";
           }
+          gotAny = true;
+          dbg("👂 聽到：" + ((recText + sessionInterim).trim() || "(空)"));
         };
-        r.onerror = (e) => { elements.heard.textContent = "辨識問題：" + (e.error || "未知") + "（not-allowed / service-not-allowed → 設定→一般→鍵盤→開啟「啟用聽寫」）"; };
-        r.onend = () => { if (!recStopped) { setTimeout(() => { try { r.start(); } catch (_) {} }, 120); return; } onDone((recText.trim() || sessionInterim.trim())); };
+        r.onerror = (e) => { dbg("🔴 辨識問題：" + (e.error || "未知") + "（若是 not-allowed/service-not-allowed → 設定→一般→鍵盤→開啟「啟用聽寫」）"); };
+        r.onend = () => { if (!recStopped) { setTimeout(() => { try { r.start(); } catch (_) {} }, 120); return; } dbg(gotAny ? "⏹ 結束，整理中…" : "⏹ 結束，但沒收到任何字（多半是 iPad「啟用聽寫」沒開，或用了主畫面圖示而非 Safari 分頁）"); onDone((recText.trim() || sessionInterim.trim())); };
         try { r.start(); return true; } catch (_) { return false; }
       }
       function endSpeech() { recStopped = true; try { recognizer?.stop(); } catch (_) {} setTimeout(() => { try { recognizer?.abort(); } catch (_) {} }, 1200); }

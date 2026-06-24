@@ -628,7 +628,7 @@
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit2.mjs?v=v5u2-azure-20260623";
+      } from "./unit2.mjs?v=v6u2-20260623";
 
       const TTS_BASE = "https://apple-bedtime-story.onrender.com";
       const ttsCache = new Map();
@@ -734,7 +734,7 @@
         elements.translation.textContent = line.zh;
         elements.turnLabel.textContent = state.mode === "role" ? getPracticeTurn(line, state.childRole) : "點一句練";
         renderStars();
-        elements.heard.textContent = isLineScored(line) ? "念完後聽自己的聲音，再點星星。" : "這句重點是語氣，可以跟著玩聲音。";
+        elements.heard.textContent = isLineScored(line) ? (srSupported ? "按「🎤 開始念」念念看，念完按「⏹ 念好了」會自動打分。" : "念念看，再點星星。") : "這句重點是語氣，可以跟著玩聲音。";
         const scoredLines = dialogueLines.filter(isLineScored).length;
         const finished = dialogueLines.filter((lineItem, index) => isLineScored(lineItem) && state.scores[index] >= 5).length;
         elements.progress.textContent = `${finished} / ${scoredLines} 句`;
@@ -875,7 +875,7 @@
         render();
         const line = currentLine();
         if (line.role === state.childRole) {
-          elements.heard.textContent = "🎤 換你念！可以按「我來念」錄音，念完按「下一句」。";
+          elements.heard.textContent = "🎤 換你念！按「開始念」念，念完按「念好了」自動打分，再按「下一句」。";
           return;
         }
         elements.heard.textContent = "聽其他角色說…";

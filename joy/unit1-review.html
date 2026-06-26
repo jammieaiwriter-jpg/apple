@@ -629,11 +629,11 @@
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit1.mjs?v=v12-azure-20260625";
+      } from "./unit1.mjs?v=v13-planb-20260625";
 
       const TTS_BASE = "https://apple-bedtime-story.onrender.com";
       const ttsCache = new Map();
-      let azureOK = true; // Azure 真人語音；播放(輸出)不會佔住麥克風(輸入)，與辨識無關，失敗時自動退回瀏覽器語音
+      let azureOK = false; // 複習頁＝評分頁：iPad 上只要用過 new Audio()(Azure) 就會毒死麥克風辨識，故此頁全程不碰 HTML5 Audio，改用瀏覽器語音。Azure 真人聲保留在預習頁。
       let activeAzureAudio = null;
       const canRecord = Boolean(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
       const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -811,15 +811,31 @@
         fetch(`${TTS_BASE}/api/tts/status`, { cache: "no-store" }).catch(() => { azureOK = false; });
       }
 
+      function pickEnUsVoice(voices, role) {
+        const en = voices.filter((v) => /en[-_]US/i.test(v.lang));
+        if (!en.length) return null;
+        // 偏好 iOS 上較自然的女聲/角色聲，避開最機械的 Fred/Albert
+        const pref = role === "nick" ? ["Aaron", "Arthur", "Daniel", "Samantha"]
+          : role === "fifi" ? ["Karen", "Moira", "Samantha", "Nicky"]
+          : ["Samantha", "Nicky", "Karen", "Aaron"];
+        for (const name of pref) {
+          const hit = en.find((v) => v.name.includes(name));
+          if (hit) return hit;
+        }
+        return en.find((v) => !/Fred|Albert|Zarvox|Bad|Bells/i.test(v.name)) || en[0];
+      }
       function speakBrowser(text, role, onEnd) {
         const voices = window.speechSynthesis?.getVoices?.() ?? [];
         const profile = resolveVoiceProfile(voices, role);
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = "en-US";
-        const chosen = profile.voiceName ? voices.find((voice) => voice.name === profile.voiceName) : null;
+        const chosen = pickEnUsVoice(voices, role)
+          || (profile.voiceName ? voices.find((voice) => voice.name === profile.voiceName) : null);
         if (chosen) utterance.voice = chosen;
-        utterance.rate = profile.rate;
-        utterance.pitch = profile.pitch;
+        // 夾住音高避免太尖(Fifi)或太悶(Nick)，補滿音量，速度放慢一點較清楚
+        utterance.rate = Math.min(0.95, Math.max(0.8, profile.rate ?? 0.85));
+        utterance.pitch = Math.min(1.12, Math.max(0.92, profile.pitch ?? 1));
+        utterance.volume = 1;
         utterance.onend = () => onEnd?.();
         window.speechSynthesis.speak(utterance);
       }

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>麥克風裸測（純 OiKID）</title>
+  <style>
+    body { margin:0; padding:20px; font-family: ui-rounded,"PingFang TC",system-ui,sans-serif; color:#27313f; background:#fffdf8; }
+    h1 { font-size:22px; }
+    .target { font-size:34px; font-weight:900; margin:14px 0; color:#145a51; }
+    button { font:inherit; border:0; border-radius:10px; padding:16px 18px; margin:6px 6px 6px 0; min-height:56px; font-weight:900; cursor:pointer; }
+    .listen { background:#207f71; color:#fff; }
+    .start { background:#dff0ff; color:#145a51; border:2px solid #207f71; }
+    .stop { background:#b54708; color:#fff; }
+    button:disabled { opacity:.5; }
+    #log { margin-top:18px; padding:14px; border:1px solid #e7e0d2; border-radius:10px; background:#fff; min-height:200px; font-size:18px; line-height:1.6; white-space:pre-wrap; }
+    .big { font-size:20px; font-weight:900; }
+    .note { color:#667085; font-size:14px; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <h1>🎤 麥克風裸測（純 OiKID，無 Azure、無模組）</h1>
+  <p class="note">用 <b>Safari 分頁</b>開（不要用主畫面圖示）。念這一句：</p>
+  <div class="target" id="target">I like apples.</div>
+
+  <button class="listen" id="listen">🔊 先聽一次</button>
+  <button class="start" id="line-start">🎤 開始念</button>
+  <button class="stop" id="line-stop" disabled>⏹ 念好了</button>
+
+  <div id="log"><span class="big">準備好了。按「開始念」。</span></div>
+  <p class="note">這頁完全沒有用到 Azure 或 &lt;audio&gt;，跟哥哥 OiKID 的辨識寫法 100% 一樣。</p>
+
+  <div id="line-out" style="display:none"></div>
+
+  <script>
+    var TARGET = "I like apples.";
+    function log(msg){ document.getElementById('log').innerHTML = '<span class="big">'+msg+'</span>'; }
+
+    // 示範語音：純瀏覽器 speechSynthesis（跟 OiKID 一樣，不用 Audio）
+    document.getElementById('listen').onclick = function(){
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(TARGET);
+      u.lang = 'en-US'; u.rate = 0.85;
+      window.speechSynthesis.speak(u);
+    };
+
+    function SR(){ return window.SpeechRecognition || window.webkitSpeechRecognition; }
+
+    // ↓↓↓ 這段就是線上 OiKID lv7-10.html 的 rec()，只多加了畫面事件顯示 ↓↓↓
+    function rec(id, cb){
+      var C = SR(),
+          start = document.getElementById(id+'-start'),
+          stop  = document.getElementById(id+'-stop');
+      if(!C){ log('❌ 此瀏覽器不支援語音辨識。'); return; }
+      var text = '', stopped = false, gotAny = false;
+      var r = new C();
+      r.lang = 'en-US'; r.continuous = true; r.interimResults = false;
+      r.onstart      = function(){ log('🎙 已啟動（onstart）'); };
+      r.onaudiostart = function(){ log('🎙 收音中（onaudiostart）…請大聲念'); };
+      r.onspeechstart= function(){ log('🗣 偵測到說話（onspeechstart）'); };
+      r.onresult = function(e){
+        for(var i=e.resultIndex; i<e.results.length; i++){
+          if(e.results[i].isFinal) text += e.results[i][0].transcript + ' ';
+        }
+        gotAny = true;
+        log('👂 聽到：' + (text.trim() || '(空)'));
+      };
+      r.onerror = function(e){ log('🔴 onerror：' + (e.error || '未知')); };
+      r.onend = function(){
+        if(!stopped){ setTimeout(function(){ try{ r.start(); }catch(e){} }, 120); return; }
+        if(start) start.disabled = false;
+        if(stop)  stop.disabled = true;
+        if(!gotAny){ log('⏹ 結束，但一個字都沒收到（onresult 從未觸發）'); }
+        cb(text.trim());
+      };
+      if(start) start.disabled = true;
+      if(stop){
+        stop.disabled = false;
+        stop.onclick = function(){ stopped = true; try{ r.stop(); }catch(e){} setTimeout(function(){ try{ r.abort(); }catch(e){} }, 1200); };
+      }
+      log('🎙 啟動中…');
+      try{ r.start(); }catch(e){ log('⚠️ start 失敗，請再按一次。'); }
+    }
+
+    function norm(s){ return String(s||'').toLowerCase().replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim(); }
+
+    document.getElementById('line-start').onclick = function(){
+      rec('line', function(heard){
+        if(!heard){ return; } // onend 已顯示「沒收到字」
+        var ok = norm(heard).indexOf('apple') >= 0 || norm(heard) === norm(TARGET);
+        log('👂 聽到：' + heard + '　→　' + (ok ? '✅ 評分成功！⭐⭐⭐' : '🟡 有收到字（評分邏輯之後再調）'));
+      });
+    };
+  </script>
+</body>
+</html>

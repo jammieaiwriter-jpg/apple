@@ -629,7 +629,7 @@
         saveFlags,
         saveScores,
         vocab,
-      } from "./unit2.mjs?v=v14u2-fresh-20260625";
+      } from "./unit2.mjs?v=v15u2-nosynth-20260625";
 
       const TTS_BASE = "https://apple-bedtime-story.onrender.com";
       const ttsCache = new Map();
@@ -785,15 +785,9 @@
       }
 
       function unlockAudio() {
-        if (state.audioUnlocked) return;
+        // 複習頁＝評分頁：不使用 Azure HTML5 Audio，也刻意不碰 speechSynthesis，
+        // 因為 iOS 上 speechSynthesis 與語音辨識共用子系統，任何非必要的合成呼叫都會讓辨識收不到聲音。
         state.audioUnlocked = true;
-        try {
-          const utterance = new SpeechSynthesisUtterance(" ");
-          utterance.volume = 0;
-          window.speechSynthesis.speak(utterance);
-        } catch {
-          state.audioUnlocked = false;
-        }
       }
 
       function stopSpeaking() {
@@ -965,7 +959,7 @@
           elements.heard.textContent = "這台瀏覽器不支援語音辨識，可以直接點星星。";
           return;
         }
-        stopSpeaking(); // 先釋放任何 Azure 音訊，把 iOS 音訊通道交還麥克風
+        // iOS 鐵律：start() 前不碰 speechSynthesis（含 cancel），否則辨識收不到聲音
         const lineIndex = state.index;
         const started = beginSpeech((heard) => {
           state.listening = false;
@@ -1081,7 +1075,6 @@
         const sp = e.target.closest("[data-vspeak]");
         if (sp) {
           if (!srSupported) { return; }
-          stopSpeaking(); // 釋放 Azure 音訊，交還麥克風
           const i = Number(sp.dataset.vspeak);
           const stop = byId("vocabGrid").querySelector(`[data-vstop="${i}"]`);
           const started = beginSpeech((heard) => {

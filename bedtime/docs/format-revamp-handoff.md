@@ -8,12 +8,12 @@
 
 ## 為什麼改
 
-早期友情第一、二篇六段逐拍同骨架，孩子聽到第二晚就嫌膩。三項改版：① 用**架構矩陣**讓每篇形狀不同；② 開頭加**點題前言**明講小道理；③ 改**多聲線對白**、角色用童聲自己說話。
+早期友情第一、二篇六段逐拍同骨架，孩子聽到第二晚就嫌膩。三項改版：① 用**架構矩陣**讓每篇形狀不同；② 開頭加**故事入口**，先介紹角色與場景，再明講小道理；③ 改**多聲線對白**、角色用童聲自己說話。
 
 ## 三個規格（細節見 `stories/season01-plan.md`、`docs/tts-audio-writing-guide.md`、`docs/story-scoring-rubric.md`）
 
 1. **架構矩陣（`shape`）**：八種形狀——旅程／相遇／等待／製作／尋找／來訪／變化（角色慢慢轉變）／守護（照顧更小更弱的對象）型。每篇宣告一個 `shape`；**同週五篇不重複、且不與夜間輪播前一晚同形**。
-2. **點題前言（`prologue`）**：`intro` 之後、第一段之前，2–3 句**明講**今晚的小道理（被授權講道理的唯一位置）；正文本體照舊「演出不說教」、收尾不下結論。
+2. **故事入口（`prologue`）**：`intro` 之後、第一段之前，4–6 句介紹今晚的角色、場景、起始狀況，再**明講**核心道理（被授權講道理的主要位置）；正文本體照舊「演出不說教」。尾端可做故事結果回望，但不可訓話。
 3. **多聲線童聲（`voices` + `sections[].turns`）**：
    - `narrator` → `zh-TW-HsiaoChenNeural`（台灣女聲旁白）
    - `mimi` → `zh-CN-XiaoshuangNeural`（女童・主角女）
@@ -38,7 +38,7 @@
   "shape": "相遇型",                       // 新增：八形狀之一
   "theme_word": [{ "char": "友", "zhuyin": "ㄧㄡˇ" }, ...],
   "intro": "...",
-  "prologue": "今晚的故事，是關於「分享」。……聽聽看，米米和豆豆是怎麼學會的。", // 新增
+  "prologue": "今晚的故事，會來到……。這裡有……。一開始，……。等一下，我們會聽見／看見……。今晚的小道理是……。", // 新增：角色＋場景＋起始狀況＋核心道理
   "voices": {                               // 新增
     "narrator": "zh-TW-HsiaoChenNeural",
     "mimi": "zh-CN-XiaoshuangNeural",
@@ -94,7 +94,7 @@
 ## 每篇流程
 
 0. **先抽配方卡（最重要）**：`python3 tools/draw-recipe.py --facet "<切點>" --theme <核心詞> --id <id>`，得到一張含「形狀／主角／場景／情緒曲線／解決方式／陪伴角色／主導感官／睡前收束／結尾句式／**自動禁用元素**」的配方卡。**照配方寫**，不要自己另想一套。主角／場景已全放開（不再鎖森林）；禁用元素會逼這篇和最近兩晚岔開。
-1. **Codex 寫**：照配方卡改寫成 `pending_adult_review` 草稿（JSON 需含 `shape`/`protagonist`/`scene`/`emotion_arc`/`resolution`/`dominant_sense`/`ending_style`/`prologue`/`voices`/`turns`/`text`），**不要**自設 `adult_verified`、不要動 `current.json`、不要產音檔。
+1. **Codex 寫**：照配方卡改寫成 `pending_adult_review` 草稿（JSON 需含 `shape`/`protagonist`/`scene`/`emotion_arc`/`resolution`/`dominant_sense`/`ending_style`/`prologue`/`voices`/`turns`/`text`）。`prologue` 必須是故事入口，不只是短道理；第 6 段需完整收束後再接 `wind_down`。**不要**自設 `adult_verified`、不要動 `current.json`、不要產音檔。
 2. **Codex 自檢**：跑 `check-bedtime-week-rotation.js`、`check-bedtime-sensory.js`，並核對 `text` == turns 串接、`shape` 不與相鄰同形。
 3. **Claude 審**：依更新後的 `docs/story-scoring-rubric.md` 逐篇評分。
 4. **Claude 合成上線**：達標 → 跑 `bedtime-audio` 產童聲 MP3（時長落 8–10 分）→ 設 `adult_verified` → commit/push（GitHub Pages）。可試聽待修／退回則回給 Codex 修。
@@ -102,7 +102,8 @@
 ## 驗收重點（rubric 已更新對應條目）
 
 - **硬性**：新欄位齊全；6 段；對白格式 `text`==turns 串接；**時長 8–10 分（取代舊「≥2,000 字」硬門檻——對白＋停頓使同時長字數更少，字數只剩軟參考）**；`focus` 合法；`shape` 不與相鄰同形。
-- **品質**：道理只在前言、正文不說教（維度 5）；對白像孩子說話、旁白只接場景、各角口吻有別（維度 7）；形狀與解法/收尾跨篇不重複（維度 8）。
+- **品質**：`prologue` 先介紹角色／場景／起始狀況，再明講核心道理；正文不說教（維度 5）；第 6 段有角色變化小總結與安靜畫面，能順接 `wind_down`；對白像孩子說話、旁白只接場景、各角口吻有別（維度 7）；形狀與解法/收尾跨篇不重複（維度 8）。
+- **語感**：五感以比喻、擬人、具體動作、光影/觸感/氣味為主；狀聲詞只作點綴，每篇保留一組主要聲音意象即可，不逐段堆「沙沙、刷刷、嗒嗒、喀」等效果音。
 - **安全閥不變**：價值與安全 ≤2 一律退回；不強迫原諒/和好、孩子可離開找可信大人。
 
 ## 一次處理量

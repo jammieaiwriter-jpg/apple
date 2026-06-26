@@ -63,8 +63,15 @@ python3 tools/draw-recipe.py --facet "<本篇切點>" --theme <核心詞> --id <
 
 ## 點題前言（prologue）
 
-- 每篇 `intro` 之後、第一段之前，加 2–3 句 `prologue`：**明講今晚的小道理**，再開始故事（家長指定明講，非鏡頭式）。
-- 結論放在前言；故事本體仍以角色行動「演出」，不在正文裡再說教。
+- 每篇 `intro` 之後、第一段之前，加 4–6 句 `prologue`，作為六歲孩子的**故事入口**：先簡介今晚會出現的角色、故事開始的場景、角色一開始遇到的小狀況，再溫柔明講今晚的核心道理。
+- `prologue` 不要像課堂摘要，也不要劇透全部解法；孩子聽完應知道「誰在什麼地方，要開始一件什麼事」。
+- 結論的核心道理放在前言；故事本體仍以角色行動「演出」，不在正文裡反覆說教。
+
+## 尾端收束
+
+- 第 6 段不能只快速說「大家懂了、晚安」。需先落下角色的具體改變，再給一個安靜畫面，讓故事自然滑進 `wind_down`。
+- `wind_down.scene` 可簡短回望故事結果：角色已經怎麼安定下來、場景或物件留下什麼溫柔變化；接著 `breath` 放慢身體，`goodnight` 才正式道晚安。
+- 收束是睡前畫面，不是主題複習；避免格言式結尾。
 
 ## 多聲線（voices / turns）
 
@@ -114,7 +121,7 @@ python3 tools/draw-recipe.py --facet "<本篇切點>" --theme <核心詞> --id <
 
 ### 寫稿前企劃欄位
 
-每篇開寫前先確認：`facet`、`shape`（故事形狀）、`visible_action`、`body_signal`、`boundary_or_safety`、`dominant_sense`、`change_action`、`prologue`（點題小道理）、`voices`／`turns`（多聲線分工）。
+每篇開寫前先確認：`facet`、`shape`（故事形狀）、`visible_action`、`body_signal`、`boundary_or_safety`、`dominant_sense`、`change_action`、`prologue`（角色＋場景＋起始狀況＋核心道理）、第 6 段收束畫面、`voices`／`turns`（多聲線分工）。
 
 ## 共通規格
 

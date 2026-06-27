@@ -270,42 +270,77 @@ export const phonics = {
     {
       "letter": "Dd",
       "sound": "/d/",
+      "ipa": "d",
+      "nameIpa": "di",
       "examples": [
         {
           "w": "duck",
-          "zh": "鴨子"
+          "zh": "鴨子",
+          "seg": [
+            "d",
+            "ʌ",
+            "k"
+          ]
         },
         {
           "w": "sad",
-          "zh": "傷心的"
+          "zh": "傷心的",
+          "seg": [
+            "s",
+            "æ",
+            "d"
+          ]
         }
       ]
     },
     {
       "letter": "Ee",
       "sound": "/ɛ/",
+      "ipa": "ɛ",
+      "nameIpa": "i",
       "examples": [
         {
           "w": "egg",
-          "zh": "蛋"
+          "zh": "蛋",
+          "seg": [
+            "ɛ",
+            "g"
+          ]
         },
         {
           "w": "red",
-          "zh": "紅色的"
+          "zh": "紅色的",
+          "seg": [
+            "r",
+            "ɛ",
+            "d"
+          ]
         }
       ]
     },
     {
       "letter": "Ff",
       "sound": "/f/",
+      "ipa": "f",
+      "nameIpa": "ɛf",
       "examples": [
         {
           "w": "fish",
-          "zh": "魚"
+          "zh": "魚",
+          "seg": [
+            "f",
+            "ɪ",
+            "ʃ"
+          ]
         },
         {
           "w": "fat",
-          "zh": "胖胖的"
+          "zh": "胖胖的",
+          "seg": [
+            "f",
+            "æ",
+            "t"
+          ]
         }
       ]
     }

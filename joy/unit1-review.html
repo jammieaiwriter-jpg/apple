@@ -394,36 +394,18 @@ function tgPick(picked, answer, q){
 }
 
 /* ===== 發音（聽，不用麥克風） ===== */
-// 依序唸一串音（拼讀），每個音之間留間隔，唸完最後自動唸整個字
-function speakSeq(parts){
-  var i=0;
-  (function next(){
-    if(i>=parts.length) return;
-    var t=parts[i++];
-    speak(t,'together', function(){ setTimeout(next, 250); });
-  })();
-}
 function jatt(x){ return JSON.stringify(x).replace(/"/g,'&quot;'); } // 給 onclick 屬性用的安全字串
+// 複習頁發音＝單純聽例字讀音（拼讀/音標教學在「預習頁」用 Azure 真人聲做）
 function buildPhonics(){
   var html='';
   phonics.forEach(function(p){
     html+='<div class="card">';
     html+='<div class="en">'+p.letter+' <span class="kk">'+p.sound+'</span></div>';
     html+='<div class="row" style="margin-top:8px">';
-    html+='<button class="act listen" onclick="speak('+jatt(p.name||p.letter[0])+',\'together\')">🔊 字母</button>';
-    html+='<button class="act start" onclick="speak('+jatt(p.phon||p.letter[0])+',\'together\')">🔊 音 '+p.sound+'</button>';
-    html+='</div>';
     p.examples.forEach(function(e){
-      var seq = e.blend ? e.blend.concat([e.w]) : [e.w];
-      html+='<div style="margin-top:10px;border-top:1px dashed var(--line);padding-top:8px">';
-      html+='<div class="en" style="font-size:24px">'+e.w+' <span class="zh">'+e.zh+'</span></div>';
-      if(e.blend) html+='<div class="kk" style="font-size:18px;margin:2px 0">'+e.blend.join(' - ')+' → '+e.w+'</div>';
-      html+='<div class="row">';
-      html+='<button class="act listen" onclick="speak('+jatt(e.w)+',\'together\')">🔊 整個字</button>';
-      if(e.blend) html+='<button class="act start" onclick="speakSeq('+jatt(seq)+')">🔡 拼讀</button>';
-      html+='</div></div>';
+      html+='<button class="act listen" onclick="speak('+jatt(e.w)+',\'together\')">🔊 '+e.w+'（'+e.zh+'）</button>';
     });
-    html+='</div>';
+    html+='</div></div>';
   });
   document.getElementById('panel-phonics').innerHTML=html;
 }

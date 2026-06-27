@@ -19,8 +19,12 @@
     header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
     h1{font-size:clamp(24px,5vw,38px);margin:0;}
     .progress{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-weight:800;color:var(--accent-dark);}
-    .tabs{display:flex;gap:8px;margin:16px 0;}
-    .tabs button{flex:1;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:12px;font-weight:800;font-size:17px;min-height:48px;cursor:pointer;}
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+    .tabs button{flex:1 1 40%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:12px;font-weight:800;font-size:17px;min-height:48px;cursor:pointer;}
+    .game-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0;}
+    button.opt{border:2px solid var(--accent);background:#fff;color:var(--accent-dark);border-radius:12px;padding:14px 18px;font-weight:900;font-size:20px;min-height:54px;cursor:pointer;}
+    button.opt:active{background:var(--mint);}
+    button.opt.wide{display:block;width:100%;margin:8px 0;font-size:19px;text-align:center;}
     .tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
     .card{
       border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px 16px 14px;margin-bottom:14px;
@@ -52,10 +56,14 @@
   <div class="tabs">
     <button id="tab-dialog" class="active" onclick="switchTab('dialog')">對話</button>
     <button id="tab-vocab" onclick="switchTab('vocab')">單字</button>
+    <button id="tab-wordgame" onclick="switchTab('wordgame')">單字遊戲</button>
+    <button id="tab-talkgame" onclick="switchTab('talkgame')">對話遊戲</button>
   </div>
 
   <div id="panel-dialog"></div>
   <div id="panel-vocab" class="hide"></div>
+  <div id="panel-wordgame" class="hide"></div>
+  <div id="panel-talkgame" class="hide"></div>
 </div>
 
 <script>
@@ -255,11 +263,97 @@ function recVocab(i){
   });
 }
 
+/* ===== 小遊戲共用 ===== */
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+
+/* ===== 單字遊戲：念一個字，點對那個字 ===== */
+var wgOrder=[], wgPos=0, wgScore=0;
+function wgStart(){
+  wgOrder=shuffle(vocab.map(function(_,i){return i;}));
+  wgPos=0; wgScore=0;
+  wgRender();
+}
+function wgRender(){
+  var p=document.getElementById('panel-wordgame');
+  if(wgPos>=wgOrder.length){
+    p.innerHTML='<div class="card" style="text-align:center"><div class="en">🎉 全部過關！</div><div class="zh">答對 '+wgScore+' / '+wgOrder.length+'</div><div class="row" style="justify-content:center"><button class="act start" onclick="wgStart()">再玩一次</button></div></div>';
+    return;
+  }
+  var target=wgOrder[wgPos];
+  var html='<div class="card" style="text-align:center">';
+  html+='<div class="zh">第 '+(wgPos+1)+' / '+wgOrder.length+' 題　答對 '+wgScore+'</div>';
+  html+='<div class="en">聽一聽，點出那個字 👂</div>';
+  html+='<div class="row" style="justify-content:center"><button class="act listen" onclick="speak('+JSON.stringify(vocab[target].word).replace(/"/g,'&quot;')+',\'together\')">🔊 再聽一次</button></div>';
+  html+='<div id="wg-grid" class="game-grid">';
+  vocab.forEach(function(w,i){
+    html+='<button class="opt" onclick="wgPick('+i+','+target+')">'+w.word+'</button>';
+  });
+  html+='</div><div class="out" id="wg-out"></div></div>';
+  p.innerHTML=html;
+  setTimeout(function(){ speak(vocab[target].word,'together'); }, 250);
+}
+function wgPick(i,target){
+  var out=document.getElementById('wg-out');
+  if(i===target){
+    wgScore++;
+    out.textContent='✅ 答對了！'+vocab[target].word;
+    wgPos++;
+    setTimeout(wgRender, 900);
+  }else{
+    out.textContent='再聽一次，找找看 🙂';
+    speak(vocab[target].word,'together');
+  }
+}
+
+/* ===== 對話遊戲：念一句，選對的回答 ===== */
+var talkPairs=[
+  {q:"Are you okay?", a:"Yes, I am. Thank you.", d:["Let's go!","I don't know."]},
+  {q:"Hi, I'm Nick. What's your name?", a:"Hello, Nick. I'm Abby.", d:["Hi, Fifi!","Look, a door."]},
+  {q:"Where are we?", a:"I don't know.", d:["Yes, I am. Thank you.","Hello, Nick. I'm Abby."]},
+  {q:"Look, a door.", a:"Let's go!", d:["Ouch!","I don't know."]},
+];
+var tgOrder=[], tgPos=0, tgScore=0;
+function tgStart(){ tgOrder=shuffle(talkPairs.map(function(_,i){return i;})); tgPos=0; tgScore=0; tgRender(); }
+function tgRender(){
+  var p=document.getElementById('panel-talkgame');
+  if(tgPos>=tgOrder.length){
+    p.innerHTML='<div class="card" style="text-align:center"><div class="en">🎉 全部過關！</div><div class="zh">答對 '+tgScore+' / '+tgOrder.length+'</div><div class="row" style="justify-content:center"><button class="act start" onclick="tgStart()">再玩一次</button></div></div>';
+    return;
+  }
+  var pair=talkPairs[tgOrder[tgPos]];
+  var opts=shuffle([pair.a].concat(pair.d));
+  var html='<div class="card">';
+  html+='<div class="zh" style="text-align:center">第 '+(tgPos+1)+' / '+tgOrder.length+' 題　答對 '+tgScore+'</div>';
+  html+='<div class="en" style="text-align:center">'+pair.q+'</div>';
+  html+='<div class="row" style="justify-content:center"><button class="act listen" onclick="speak('+JSON.stringify(pair.q).replace(/"/g,'&quot;')+',\'nick\')">🔊 再聽一次</button></div>';
+  html+='<div class="zh" style="text-align:center;margin:8px 0">該怎麼回答？👇</div>';
+  opts.forEach(function(o){
+    html+='<button class="opt wide" onclick="tgPick('+JSON.stringify(o).replace(/"/g,'&quot;')+','+JSON.stringify(pair.a).replace(/"/g,'&quot;')+')">'+o+'</button>';
+  });
+  html+='<div class="out" id="tg-out"></div></div>';
+  p.innerHTML=html;
+  setTimeout(function(){ speak(pair.q,'nick'); }, 250);
+}
+function tgPick(picked, answer){
+  var out=document.getElementById('tg-out');
+  if(picked===answer){
+    tgScore++;
+    out.textContent='✅ 答對了！';
+    speak(answer,'abby');
+    tgPos++;
+    setTimeout(tgRender, 1200);
+  }else{
+    out.textContent='再想想看，再聽一次 🙂';
+  }
+}
+
 function switchTab(t){
-  document.getElementById('tab-dialog').classList.toggle('active', t==='dialog');
-  document.getElementById('tab-vocab').classList.toggle('active', t==='vocab');
-  document.getElementById('panel-dialog').classList.toggle('hide', t!=='dialog');
-  document.getElementById('panel-vocab').classList.toggle('hide', t!=='vocab');
+  ['dialog','vocab','wordgame','talkgame'].forEach(function(name){
+    document.getElementById('tab-'+name).classList.toggle('active', t===name);
+    document.getElementById('panel-'+name).classList.toggle('hide', t!==name);
+  });
+  if(t==='wordgame') wgStart();
+  if(t==='talkgame') tgStart();
 }
 
 buildDialog();

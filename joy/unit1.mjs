@@ -169,12 +169,20 @@ export const vocab = [
 ];
 
 // Phonics 字母篇：Unit 1 = Aa–Cc
+// ipa = 字母的拼讀音(音標)；nameIpa = 字母名稱發音；每個例字 seg = 逐音 IPA(拼讀用)
+// 預習頁用 Azure 真人聲＋SSML phoneme 唸這些 IPA，音準正確。
 export const phonics = {
   letters: "Aa–Cc",
   items: [
-    { letter: "Aa", sound: "/æ/", examples: [{ w: "ant", zh: "螞蟻" }, { w: "mad", zh: "生氣的" }] },
-    { letter: "Bb", sound: "/b/", examples: [{ w: "bag", zh: "袋子" }, { w: "big", zh: "大的" }] },
-    { letter: "Cc", sound: "/k/", examples: [{ w: "cat", zh: "貓" }, { w: "cute", zh: "可愛的" }] },
+    { letter: "Aa", sound: "/æ/", ipa: "æ", nameIpa: "eɪ", examples: [
+      { w: "ant", zh: "螞蟻", seg: ["æ", "n", "t"] },
+      { w: "mad", zh: "生氣的", seg: ["m", "æ", "d"] }] },
+    { letter: "Bb", sound: "/b/", ipa: "b", nameIpa: "bi", examples: [
+      { w: "bag", zh: "袋子", seg: ["b", "æ", "g"] },
+      { w: "big", zh: "大的", seg: ["b", "ɪ", "g"] }] },
+    { letter: "Cc", sound: "/k/", ipa: "k", nameIpa: "si", examples: [
+      { w: "cat", zh: "貓", seg: ["k", "æ", "t"] },
+      { w: "cute", zh: "可愛的", seg: ["k", "j", "u", "t"] }] },
   ],
 };
 

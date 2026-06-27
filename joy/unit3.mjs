@@ -258,38 +258,68 @@ export const phonics = {
     {
       "letter": "Gg",
       "sound": "/g/",
+      "ipa": "g",
+      "nameIpa": "dʒi",
       "examples": [
         {
           "w": "gun",
-          "zh": "槍"
+          "zh": "槍",
+          "seg": [
+            "g",
+            "ʌ",
+            "n"
+          ]
         },
         {
           "w": "gold",
-          "zh": "金色的"
+          "zh": "金色的",
+          "seg": [
+            "g",
+            "oʊ",
+            "l",
+            "d"
+          ]
         }
       ]
     },
     {
       "letter": "Hh",
       "sound": "/h/",
+      "ipa": "h",
+      "nameIpa": "eɪtʃ",
       "examples": [
         {
           "w": "hen",
-          "zh": "母雞"
+          "zh": "母雞",
+          "seg": [
+            "h",
+            "ɛ",
+            "n"
+          ]
         }
       ]
     },
     {
       "letter": "Ii",
       "sound": "/ɪ/",
+      "ipa": "ɪ",
+      "nameIpa": "aɪ",
       "examples": [
         {
           "w": "inn",
-          "zh": "小旅館"
+          "zh": "小旅館",
+          "seg": [
+            "ɪ",
+            "n"
+          ]
         },
         {
           "w": "in",
-          "zh": "在裡面"
+          "zh": "在裡面",
+          "seg": [
+            "ɪ",
+            "n"
+          ]
         }
       ]
     }

@@ -1,13 +1,67 @@
 export const dialogueLines = [
-  { speaker: "Abby", text: "Where are we?", role: "abby", scene: "Looking around", zh: "我們在哪裡？" },
-  { speaker: "Nick", text: "I don't know.", role: "nick", scene: "Not sure yet", zh: "我不知道。" },
-  { speaker: "Abby", text: "Wow! It's pretty here.", role: "abby", scene: "A pretty place", zh: "哇！這裡好漂亮。" },
-  { speaker: "Abby", text: "Look! Who's that?", role: "abby", scene: "Someone over there", zh: "看啊！那是誰？" },
-  { speaker: "Fifi", text: "I don't know.", role: "fifi", scene: "Fifi is not sure", zh: "我不知道。" },
-  { speaker: "Nick", text: "He's Oz. He can help.", role: "nick", scene: "Meet Oz", zh: "他是歐茲王。他可以幫忙。" },
-  { speaker: "Abby", text: "Yay! We can go home.", role: "abby", scene: "Hopeful news", zh: "耶！我們可以回家了。" },
-  { speaker: "Fifi", text: "He's Oz. He can help.", role: "fifi", scene: "Fifi repeats", zh: "他是歐茲王。他可以幫忙。" },
-  { speaker: "Nick + Abby", text: "Let's go!", role: "together", scene: "Go together", zh: "我們走吧！" },
+  {
+    "speaker": "Abby",
+    "text": "Where are we?",
+    "role": "abby",
+    "scene": "Looking around",
+    "zh": "我們在哪裡？"
+  },
+  {
+    "speaker": "Nick",
+    "text": "I don't know.",
+    "role": "nick",
+    "scene": "Not sure yet",
+    "zh": "我不知道。"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Wow! It's pretty here.",
+    "role": "abby",
+    "scene": "A pretty place",
+    "zh": "哇！這裡好漂亮。"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Look! Who's that?",
+    "role": "abby",
+    "scene": "Someone over there",
+    "zh": "看啊！那是誰？"
+  },
+  {
+    "speaker": "Fifi",
+    "text": "I don't know.",
+    "role": "fifi",
+    "scene": "Fifi is not sure",
+    "zh": "我不知道。"
+  },
+  {
+    "speaker": "Nick",
+    "text": "He's Oz. He can help.",
+    "role": "nick",
+    "scene": "Meet Oz",
+    "zh": "他是歐茲王。他可以幫忙。"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Yay! We can go home.",
+    "role": "abby",
+    "scene": "Hopeful news",
+    "zh": "耶！我們可以回家了。"
+  },
+  {
+    "speaker": "Fifi",
+    "text": "He's Oz. He can help.",
+    "role": "fifi",
+    "scene": "Fifi repeats",
+    "zh": "他是歐茲王。他可以幫忙。"
+  },
+  {
+    "speaker": "Nick + Abby",
+    "text": "Let's go!",
+    "role": "together",
+    "scene": "Go together",
+    "zh": "我們走吧！"
+  }
 ];
 
 const contractionMap = new Map([
@@ -152,49 +206,162 @@ export function getSortedLineIndexes(lines, scores) {
     .map((item) => item.index);
 }
 
-// ---- Unit 2 加強內容：單字、Phonics、文法（He is / She is）----
-
-// 核心單字（KK 音標出自佳音單字表）
+// ---- Unit 2 加強內容：單字、Phonics、文法 ----
 export const vocab = [
-  { word: "look", kk: "[lʊk]", pos: "v.", zh: "看；注視" },
-  { word: "he", kk: "[hi]", pos: "pron.", zh: "他" },
-  { word: "she", kk: "[ʃi]", pos: "pron.", zh: "她" },
-  { word: "Oz", kk: "[ɑz]", pos: "n.", zh: "歐茲王（人名）" },
-  { word: "Fifi", kk: "['fɪfɪ]", pos: "n.", zh: "菲菲（人名）" },
-  { word: "can", kk: "[kæn]", pos: "aux.", zh: "可以；能；會" },
-  { word: "help", kk: "[hɛlp]", pos: "v.", zh: "幫忙" },
-  { word: "let's", kk: "[lɛts]", pos: "phr.", zh: "讓我們" },
-  { word: "go", kk: "[go]", pos: "v.", zh: "去" },
+  {
+    "word": "look",
+    "kk": "[lʊk]",
+    "pos": "v.",
+    "zh": "看；注視"
+  },
+  {
+    "word": "he",
+    "kk": "[hi]",
+    "pos": "pron.",
+    "zh": "他"
+  },
+  {
+    "word": "she",
+    "kk": "[ʃi]",
+    "pos": "pron.",
+    "zh": "她"
+  },
+  {
+    "word": "Oz",
+    "kk": "[ɑz]",
+    "pos": "n.",
+    "zh": "歐茲王（人名）"
+  },
+  {
+    "word": "Fifi",
+    "kk": "[ˈfɪfɪ]",
+    "pos": "n.",
+    "zh": "菲菲（人名）"
+  },
+  {
+    "word": "can",
+    "kk": "[kæn]",
+    "pos": "aux.",
+    "zh": "可以；能；會"
+  },
+  {
+    "word": "help",
+    "kk": "[hɛlp]",
+    "pos": "v.",
+    "zh": "幫忙"
+  },
+  {
+    "word": "let's",
+    "kk": "[lɛts]",
+    "pos": "phr.",
+    "zh": "讓我們"
+  },
+  {
+    "word": "go",
+    "kk": "[go]",
+    "pos": "v.",
+    "zh": "去"
+  }
 ];
 
-// Phonics 字母篇：Unit 2 = Dd–Ff
 export const phonics = {
-  letters: "Dd–Ff",
-  items: [
-    { letter: "Dd", sound: "/d/", examples: [{ w: "duck", zh: "鴨子" }, { w: "sad", zh: "傷心的" }] },
-    { letter: "Ee", sound: "/ɛ/", examples: [{ w: "egg", zh: "蛋" }, { w: "red", zh: "紅色的" }] },
-    { letter: "Ff", sound: "/f/", examples: [{ w: "fish", zh: "魚" }, { w: "fat", zh: "胖胖的" }] },
-  ],
+  "letters": "Dd–Ff",
+  "items": [
+    {
+      "letter": "Dd",
+      "sound": "/d/",
+      "examples": [
+        {
+          "w": "duck",
+          "zh": "鴨子"
+        },
+        {
+          "w": "sad",
+          "zh": "傷心的"
+        }
+      ]
+    },
+    {
+      "letter": "Ee",
+      "sound": "/ɛ/",
+      "examples": [
+        {
+          "w": "egg",
+          "zh": "蛋"
+        },
+        {
+          "w": "red",
+          "zh": "紅色的"
+        }
+      ]
+    },
+    {
+      "letter": "Ff",
+      "sound": "/f/",
+      "examples": [
+        {
+          "w": "fish",
+          "zh": "魚"
+        },
+        {
+          "w": "fat",
+          "zh": "胖胖的"
+        }
+      ]
+    }
+  ]
 };
 
-// 文法：He is / She is
 export const grammar = {
-  title: "介紹他人：He is / She is",
-  rule: "男生或男性角色用 He is...；女生或女性角色用 She is...。",
-  examples: [
-    { text: "He is Oz.", zh: "他是歐茲王。" },
-    { text: "She is Fifi.", zh: "她是菲菲。" },
-    { text: "He can help.", zh: "他可以幫忙。" },
+  "title": "介紹他人：He is / She is",
+  "rule": "男生或男性角色用 He is...；女生或女性角色用 She is...。",
+  "examples": [
+    {
+      "text": "He is Oz.",
+      "zh": "他是歐茲王。"
+    },
+    {
+      "text": "She is Fifi.",
+      "zh": "她是菲菲。"
+    },
+    {
+      "text": "He can help.",
+      "zh": "他可以幫忙。"
+    }
   ],
-  quiz: [
-    { subject: "He", answer: "is", full: "He is Oz.", zh: "他是歐茲王。" },
-    { subject: "She", answer: "is", full: "She is Fifi.", zh: "她是菲菲。" },
-    { subject: "He", answer: "can", full: "He can help.", zh: "他可以幫忙。" },
-    { subject: "She", answer: "can", full: "She can help.", zh: "她可以幫忙。" },
-  ],
+  "quiz": [
+    {
+      "subject": "He",
+      "answer": "is",
+      "full": "He is Oz.",
+      "zh": "他是歐茲王。"
+    },
+    {
+      "subject": "She",
+      "answer": "is",
+      "full": "She is Fifi.",
+      "zh": "她是菲菲。"
+    },
+    {
+      "subject": "He",
+      "answer": "can",
+      "full": "He can help.",
+      "zh": "他可以幫忙。"
+    },
+    {
+      "subject": "She",
+      "answer": "can",
+      "full": "She can help.",
+      "zh": "她可以幫忙。"
+    }
+  ]
 };
 
-export const beOptions = ["is", "can", "are"];
+export const beOptions = [
+  "is",
+  "can",
+  "are"
+];
 
 export function checkBeAnswer(item, picked) {
   return Boolean(item) && item.answer === picked;

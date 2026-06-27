@@ -106,6 +106,15 @@
 - **語感**：五感以比喻、擬人、具體動作、光影/觸感/氣味為主；狀聲詞只作點綴，每篇保留一組主要聲音意象即可，不逐段堆「沙沙、刷刷、嗒嗒、喀」等效果音。
 - **安全閥不變**：價值與安全 ≤2 一律退回；不強迫原諒/和好、孩子可離開找可信大人。
 
+## 2026-06-27 完整改版上線記憶
+
+- W01–W05 共 26 篇已完成 Emma 2026-06 語感重寫、Claude 審核通過、Codex 合成並上線。範圍含 `week01-2b` 試聽樣板；它不在 catalog 輪播，但已有雨芯版與光哥阿築版音檔。
+- 寫作成品已落地：每篇 `prologue` 是 4–6 句故事入口；正文降低狀聲詞，改以比喻、擬人、具體動作、光影、觸感、氣味寫五感；第 6 段先落角色改變，再接各篇獨特 `wind_down.scene`。
+- 曾發生的錯誤：批量改寫時一度把 26 篇 `wind_down.scene` 都收成同一句「現在，讓這個畫面留在心裡，像一盞放低的小燈。」這違反維度 8，已修正。後續不可用公式句收尾；收束畫面必須貼合該篇物件、場景與角色變化。
+- 音檔上線：兩套音檔均以 `tools/generate-bedtime-audio.py` 加 `--force` 重合成，避免舊 per-turn segment 快取拼入舊句子；52 個 MP3 已驗證落在 8–10 分鐘。
+- 測試權威來源：睡前故事的資料契約測試以 repo 根層 `tests/` 為權威；不要在 `bedtime/tests/` 新增同名 `check-bedtime-week-rotation.js` 或 `check-bedtime-sensory.js`，避免兩套測試各自 PASS、造成假綠燈。
+- 工具行為：`generate-bedtime-audio.py` 現在允許命令列明確指定「story JSON 存在但不在 catalog available」的 id 合成，供 pending 草稿與 `week01-2b` 這類樣板試聽使用。`check-bedtime-story.py` 無參數預設只檢查 `adult_verified + available` 輪播故事；草稿、pending 或樣板請明確帶 id。
+
 ## 一次處理量
 
 每批最多兩篇，Claude 審完、Emma 陪聽無誤再進下一批（沿用 `season01-progress.md` 節奏）。

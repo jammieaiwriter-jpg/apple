@@ -155,7 +155,7 @@ export function getSortedLineIndexes(lines, scores) {
 export const vocab = [
   { word: "hi", kk: "[haɪ]", pos: "int.", zh: "嗨" },
   { word: "hello", kk: "[hɛˈlo]", pos: "int.", zh: "哈囉" },
-  { word: "I", kk: "[aɪ]", pos: "pron.", zh: "我" },
+  { word: "I", kk: "[aɪ]", pos: "pron.", zh: "我", say: "eye" },
   { word: "you", kk: "[ju]", pos: "pron.", zh: "你" },
   { word: "your", kk: "[jʊr]", pos: "pron.", zh: "你的" },
   { word: "am", kk: "[æm]", pos: "v.", zh: "是（be 動詞，配 I）" },

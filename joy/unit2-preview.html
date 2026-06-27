@@ -113,8 +113,8 @@
         <button class="active" type="button" data-tab="story">🎧 聽故事</button>
         <button type="button" data-tab="vocab">🔤 單字</button>
         <button type="button" data-tab="phonics">🔡 字母 Dd–Ff</button>
-        <button type="button" data-tab="grammar">🧩 句型 He is / She is</button>
-        <a class="pill-button" href="./unit2-review.html">課後複習 →</a>
+        <button type="button" data-tab="grammar">🧩 句型 He / She</button>
+        <a class="pill-button" href="./unit2-review.html?v=v2-dialoggame-20260627">課後複習 →</a>
       </nav>
 
       <section class="panel active" data-panel="story">
@@ -156,19 +156,19 @@
       </section>
 
       <section class="panel" data-panel="phonics">
-        <div class="coach"><h2>字母 Dd–Ff 的聲音 🔡</h2><p>點大字母聽字母的音，點下面的單字聽它怎麼念。先讓耳朵記住聲音。</p></div>
+        <div class="coach"><h2>字母 Aa–Cc 的聲音 🔡</h2><p>點大字母聽字母的音，點下面的單字聽它怎麼念。先讓耳朵記住聲音。</p></div>
         <div id="phonicsList"></div>
       </section>
 
       <section class="panel" data-panel="grammar">
         <div class="gram-rule" id="gramRule"></div>
         <div id="gramLines"></div>
-        <div class="coach"><p>這個階段只要聽、跟著念就好。課後複習頁有「選 is／can」的小遊戲。</p></div>
+        <div class="coach"><p>這個階段只要聽、跟著念就好。課後複習頁有「選 am／is／are」的小遊戲。</p></div>
       </section>
     </main>
 
     <script type="module">
-      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit2.mjs?v=v5u2-azure-20260623";
+      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit2.mjs?v=v1-unit2-5-20260627";
 
       const HEARD_KEY = "joy-unit2-heard";
       const VOCAB_KEY = "joy-unit2-vocab-heard";
@@ -198,7 +198,8 @@
         el("hint").textContent = "載入語音中…第一次可能要等 Render 冷啟動。";
       }
       function warmTTS() {
-        fetch(`${TTS_BASE}/api/tts/status`, { cache: "no-store" }).catch(() => { azureOK = false; });
+        // 只是暖機叫醒 Render，失敗(冷啟動逾時)也不要關掉 Azure，否則 Nick 等真人聲會退回機械音
+        fetch(`${TTS_BASE}/api/tts/status`, { cache: "no-store" }).catch(() => {});
       }
       function unlockAudio() {
         if (state.audioUnlocked) return;
@@ -250,7 +251,7 @@
             await audio.play();
             return;
           } catch {
-            azureOK = false;
+            // 這一句失敗就退回瀏覽器語音，但不要永久關閉 Azure（冷啟動暖了之後下一句還能用真人聲）
             if (activeAzureAudio) activeAzureAudio = null;
           }
         }
@@ -303,7 +304,7 @@
             <span class="speaker-emoji">🔊</span></button>`).join("");
       }
       function playVocab(i) {
-        speak(vocab[i].word, "together");
+        speak(vocab[i].say || vocab[i].word, "together");
         if (!state.vocabHeard[i]) { state.vocabHeard[i] = true; saveFlags(window.localStorage, state.vocabHeard, VOCAB_KEY); renderVocab(); }
       }
 
@@ -320,7 +321,7 @@
       function renderGrammar() {
         el("gramRule").textContent = `${grammar.title} — ${grammar.rule}`;
         el("gramLines").innerHTML = grammar.examples.map((ex, i) => {
-          const html = ex.text.replace(/\b(is|can)\b/, "<b>$1</b>");
+          const html = ex.text.replace(/\b(am|are|is)\b/, "<b>$1</b>");
           return `<div class="gram-line" data-gram="${i}"><div><div class="en">${html}</div><div class="zh">${ex.zh}</div></div><div class="play">🔊</div></div>`;
         }).join("");
       }

@@ -1,0 +1,418 @@
+export const dialogueLines = [
+  {
+    "speaker": "Smart",
+    "text": "Point to my hat.",
+    "role": "smart",
+    "scene": "TPR practice",
+    "zh": "指向我的帽子。"
+  },
+  {
+    "speaker": "Nick",
+    "text": "OK!",
+    "role": "nick",
+    "scene": "Nick follows",
+    "zh": "好的！"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Circle your hat.",
+    "role": "abby",
+    "scene": "TPR practice",
+    "zh": "圈出你的帽子。"
+  },
+  {
+    "speaker": "Fifi",
+    "text": "OK!",
+    "role": "fifi",
+    "scene": "Fifi follows",
+    "zh": "好的！"
+  },
+  {
+    "speaker": "Smart",
+    "text": "Show me your book.",
+    "role": "smart",
+    "scene": "TPR practice",
+    "zh": "把你的書給我看。"
+  },
+  {
+    "speaker": "Nick",
+    "text": "Here you are.",
+    "role": "nick",
+    "scene": "Nick shows it",
+    "zh": "給你。"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Touch the red hat.",
+    "role": "abby",
+    "scene": "TPR practice",
+    "zh": "摸紅色的帽子。"
+  },
+  {
+    "speaker": "Dum-dum",
+    "text": "I can try.",
+    "role": "dum-dum",
+    "scene": "Dum-dum tries",
+    "zh": "我可以試試看。"
+  },
+  {
+    "speaker": "Smart",
+    "text": "Try again.",
+    "role": "smart",
+    "scene": "Smart encourages",
+    "zh": "再試一次。"
+  },
+  {
+    "speaker": "Dum-dum",
+    "text": "Try again.",
+    "role": "dum-dum",
+    "scene": "Dum-dum repeats",
+    "zh": "再試一次。"
+  }
+];
+
+const contractionMap = new Map([
+  ["i'm", "i am"],
+  ["im", "i am"],
+  ["what's", "what is"],
+  ["whats", "what is"],
+  ["who's", "who is"],
+  ["whos", "who is"],
+  ["he's", "he is"],
+  ["hes", "he is"],
+  ["it's", "it is"],
+  ["its", "it is"],
+  ["don't", "do not"],
+  ["dont", "do not"],
+  ["let's", "let us"],
+  ["lets", "let us"],
+]);
+
+export function normalizeSpeech(value) {
+  let normalized = value.toLowerCase();
+  for (const [from, to] of contractionMap.entries()) {
+    normalized = normalized.replaceAll(from, to);
+  }
+  return normalized
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function scoreSpeech(expected, heard) {
+  const expectedWords = normalizeSpeech(expected).split(" ").filter(Boolean);
+  const heardWords = normalizeSpeech(heard).split(" ").filter(Boolean);
+
+  if (!heardWords.length) {
+    return { stars: 0, percent: 0, matched: 0, total: expectedWords.length };
+  }
+
+  let cursor = 0;
+  let matched = 0;
+  for (const word of expectedWords) {
+    const foundAt = heardWords.indexOf(word, cursor);
+    if (foundAt !== -1) {
+      matched += 1;
+      cursor = foundAt + 1;
+    }
+  }
+
+  const coverage = matched / Math.max(expectedWords.length, 1);
+  const extraPenalty = Math.max(heardWords.length - expectedWords.length - 2, 0) * 0.04;
+  const percent = Math.max(0, Math.min(1, coverage - extraPenalty));
+  let stars = Math.ceil(percent * 5 + 0.25);
+
+  if (matched === expectedWords.length) stars = 5;
+  if (matched === 0) stars = 1;
+  if (stars === 0 && heardWords.length) stars = 1;
+
+  return {
+    stars,
+    percent: Math.round(percent * 100),
+    matched,
+    total: expectedWords.length,
+  };
+}
+
+export function getPracticeTurn(line, childRole = "abby") {
+  if (line.role === "together") return "一起說";
+  if (line.role === childRole) return "你的回合";
+  return "先聽網頁說";
+}
+
+export const AZURE_VOICE = {
+  nick: "en-US-GuyNeural",
+  abby: "en-US-JennyNeural",
+  fifi: "en-US-AnaNeural",
+  together: "en-US-AriaNeural",
+};
+
+export function azureVoiceForRole(role) {
+  return AZURE_VOICE[role] ?? AZURE_VOICE.together;
+}
+
+// 每個角色一種聲音，語速放慢給小一孩子。回傳純資料（voiceName + pitch + rate），
+// 方便測試；瀏覽器端再依 voiceName 找實際 voice 物件。
+export function resolveVoiceProfile(voices, role) {
+  const profiles = {
+    nick: { candidates: ["Aaron", "Daniel", "Fred", "Arthur", "Albert", "Reed"], pitch: 0.8, rate: 0.66 },
+    abby: { candidates: ["Samantha", "Allison", "Ava", "Karen", "Susan"], pitch: 1.2, rate: 0.68 },
+    fifi: { candidates: ["Karen", "Samantha", "Allison", "Ava"], pitch: 1.3, rate: 0.7 },
+    together: { candidates: ["Samantha", "Karen"], pitch: 1.05, rate: 0.68 },
+  };
+  const profile = profiles[role] ?? profiles.together;
+  const enVoices = (voices ?? []).filter((voice) => voice?.lang?.toLowerCase?.().startsWith("en"));
+  let voice = null;
+  for (const name of profile.candidates) {
+    voice = enVoices.find((v) => v.name === name) ?? enVoices.find((v) => v.name?.includes(name));
+    if (voice) break;
+  }
+  if (!voice) voice = enVoices.find((v) => v.lang === "en-US") ?? enVoices[0] ?? null;
+  return { voiceName: voice ? voice.name : null, pitch: profile.pitch, rate: profile.rate };
+}
+
+export function isLineScored(line) {
+  return line.scored !== false;
+}
+
+export function chooseRecorderMimeType(isTypeSupported) {
+  const candidates = ["audio/mp4", "audio/webm;codecs=opus", "audio/webm", "audio/aac"];
+  return candidates.find((type) => isTypeSupported(type)) ?? "";
+}
+
+export function loadScores(storage, length, key = "joy-unit15-scores") {
+  try {
+    const parsed = JSON.parse(storage?.getItem(key) ?? "[]");
+    if (!Array.isArray(parsed)) return new Array(length).fill(0);
+    return Array.from({ length }, (_, index) => {
+      const value = Number(parsed[index]);
+      return Number.isFinite(value) ? Math.max(0, Math.min(5, Math.round(value))) : 0;
+    });
+  } catch {
+    return new Array(length).fill(0);
+  }
+}
+
+export function saveScores(storage, scores, key = "joy-unit15-scores") {
+  try {
+    storage?.setItem(key, JSON.stringify(scores));
+  } catch {
+    // Safari private mode can throw on localStorage writes.
+  }
+}
+
+export function getSortedLineIndexes(lines, scores) {
+  return lines
+    .map((line, index) => ({ line, index, score: scores[index] ?? 0 }))
+    .sort((a, b) => {
+      const aWeak = isLineScored(a.line) && a.score < 5;
+      const bWeak = isLineScored(b.line) && b.score < 5;
+      if (aWeak !== bWeak) return aWeak ? -1 : 1;
+      return a.index - b.index;
+    })
+    .map((item) => item.index);
+}
+
+// ---- Unit 15 content: vocab, phonics, grammar ----
+
+export const vocab = [
+  {
+    "word": "point to",
+    "kk": "[pɔɪnt tu]",
+    "pos": "phr.",
+    "zh": "指向"
+  },
+  {
+    "word": "circle",
+    "kk": "[ˈsɝkəl]",
+    "pos": "v.",
+    "zh": "圈出"
+  },
+  {
+    "word": "show",
+    "kk": "[ʃo]",
+    "pos": "v.",
+    "zh": "給……看"
+  },
+  {
+    "word": "me",
+    "kk": "[mi]",
+    "pos": "pron.",
+    "zh": "我"
+  },
+  {
+    "word": "touch",
+    "kk": "[tʌtʃ]",
+    "pos": "v.",
+    "zh": "摸；碰"
+  },
+  {
+    "word": "try",
+    "kk": "[traɪ]",
+    "pos": "v.",
+    "zh": "嘗試"
+  },
+  {
+    "word": "again",
+    "kk": "[əˈgɛn]",
+    "pos": "adv.",
+    "zh": "再次"
+  }
+];
+
+export const phonics = {
+  "letters": "重點發音複習",
+  "items": [
+    {
+      "letter": "try",
+      "sound": "/aɪ/",
+      "ipa": "aɪ",
+      "nameIpa": "traɪ",
+      "examples": [
+        {
+          "w": "try",
+          "zh": "嘗試",
+          "seg": [
+            "t",
+            "r",
+            "aɪ"
+          ]
+        },
+        {
+          "w": "my",
+          "zh": "我的",
+          "seg": [
+            "m",
+            "aɪ"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "show",
+      "sound": "/ʃ/",
+      "ipa": "ʃ",
+      "nameIpa": "ʃo",
+      "examples": [
+        {
+          "w": "show",
+          "zh": "給看",
+          "seg": [
+            "ʃ",
+            "o"
+          ]
+        },
+        {
+          "w": "Shy",
+          "zh": "害羞",
+          "seg": [
+            "ʃ",
+            "aɪ"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "touch",
+      "sound": "/ʌ/",
+      "ipa": "ʌ",
+      "nameIpa": "tʌtʃ",
+      "examples": [
+        {
+          "w": "touch",
+          "zh": "摸",
+          "seg": [
+            "t",
+            "ʌ",
+            "tʃ"
+          ]
+        },
+        {
+          "w": "Dum-dum",
+          "zh": "笨笨",
+          "seg": [
+            "d",
+            "ʌ",
+            "m"
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+export const grammar = {
+  "title": "Review: my / your / can / too",
+  "rule": "複習所有格 my/your、能力 can、以及 too。",
+  "examples": [
+    {
+      "text": "Point to my hat.",
+      "zh": "指向我的帽子。"
+    },
+    {
+      "text": "I can try.",
+      "zh": "我可以試試看。"
+    }
+  ],
+  "quiz": [
+    {
+      "subject": "Point",
+      "answer": "my",
+      "full": "Point to my hat.",
+      "prompt": "Point to ___ hat.",
+      "zh": "指向我的帽子。"
+    },
+    {
+      "subject": "Show",
+      "answer": "your",
+      "full": "Show me your book.",
+      "prompt": "Show me ___ book.",
+      "zh": "把你的書給我看。"
+    },
+    {
+      "subject": "I",
+      "answer": "can",
+      "full": "I can try.",
+      "prompt": "I ___ try.",
+      "zh": "我可以試試看。"
+    },
+    {
+      "subject": "Try",
+      "answer": "again",
+      "full": "Try again.",
+      "prompt": "Try ___.",
+      "zh": "再試一次。"
+    }
+  ]
+};
+
+export const beOptions = [
+  "my",
+  "your",
+  "can",
+  "too",
+  "again"
+];
+
+export function checkBeAnswer(item, picked) {
+  return Boolean(item) && item.answer === picked;
+}
+
+// 通用的「看過/聽過」布林記錄（給預習各區塊用），讀寫都防 Safari 無痕例外
+export function loadFlags(storage, length, key) {
+  try {
+    const parsed = JSON.parse(storage?.getItem(key) ?? "[]");
+    if (!Array.isArray(parsed)) return new Array(length).fill(false);
+    return Array.from({ length }, (_, i) => Boolean(parsed[i]));
+  } catch {
+    return new Array(length).fill(false);
+  }
+}
+
+export function saveFlags(storage, flags, key) {
+  try {
+    storage?.setItem(key, JSON.stringify(flags));
+  } catch {
+    // Safari private mode can throw on localStorage writes.
+  }
+}

@@ -172,15 +172,16 @@ function pickVoice(role){
   }
   return best(good);
 }
-function speak(text, role){
+function speak(text, role, onEnd){
   try{
     window.speechSynthesis.cancel();
     var u=new SpeechSynthesisUtterance(text);
     u.lang="en-US"; u.rate=0.82; u.volume=1;
     u.pitch = role==="nick"?0.85 : (role==="fifi"?1.15 : 1); // Nick 壓低一點當男孩、Fifi 高一點
     var v=pickVoice(role); if(v) u.voice=v;
+    if(onEnd){ u.onend=onEnd; u.onerror=onEnd; }   // 念完才做下一步，避免長句被打斷
     window.speechSynthesis.speak(u);
-  }catch(e){}
+  }catch(e){ if(onEnd) onEnd(); }
 }
 
 /* ===== 語音辨識：1:1 照搬已驗證可用的 mic-test.html rec() ===== */
@@ -329,11 +330,11 @@ function wgPick(i,target){
     wgScore++;
     out.textContent='✅ 答對了！'+vocab[target].word;
     wgPos++;
-    setTimeout(wgRender, 900);
+    speak(vocab[target].say||vocab[target].word,'together', wgRender); // 念完獎勵字再下一題
   }else{
     out.textContent='❌ 答錯了，你點的是「'+vocab[i].word+'」，再試試看 🙂';
-    speak(vocab[i].say||vocab[i].word,'together');               // 先念出點錯的字，多練習
-    setTimeout(function(){ speak(vocab[target].say||vocab[target].word,'together'); }, 1200); // 再念一次題目讓她重找
+    // 先把點錯的字念完，再念一次題目讓她重找（用 onEnd 串接，長字也不會被打斷）
+    speak(vocab[i].say||vocab[i].word,'together', function(){ speak(vocab[target].say||vocab[target].word,'together'); });
   }
 }
 
@@ -371,13 +372,12 @@ function tgPick(picked, answer, q){
   if(picked===answer){
     tgScore++;
     out.textContent='✅ 答對了！';
-    speak(answer,'abby');
     tgPos++;
-    setTimeout(tgRender, 1200);
+    speak(answer,'abby', tgRender);                         // 念完整句答案再進下一題（不會被切斷）
   }else{
     out.textContent='❌ 答錯了，你選的是「'+picked+'」，再試試看 🙂';
-    speak(picked,'abby');                                   // 先念出選錯的句子，多練習
-    setTimeout(function(){ speak(q,'nick'); }, 1500);       // 再念一次題目讓她重選
+    // 先把選錯的句子念完，再念一次題目讓她重選（onEnd 串接，長句不被打斷）
+    speak(picked,'abby', function(){ speak(q,'nick'); });
   }
 }
 

@@ -234,59 +234,244 @@ export const vocab = [
 ];
 
 export const phonics = {
-  "letters": "Review",
+  "letters": "Aa–Ll Review",
   "items": [
     {
-      "letter": "Aa–Cc",
-      "sound": "review",
+      "letter": "Aa",
+      "sound": "/æ/",
+      "ipa": "æ",
+      "nameIpa": "eɪ",
       "examples": [
         {
           "w": "ant",
-          "zh": "螞蟻"
-        },
-        {
-          "w": "bag",
-          "zh": "袋子"
-        },
-        {
-          "w": "cat",
-          "zh": "貓"
+          "zh": "螞蟻",
+          "seg": [
+            "æ",
+            "n",
+            "t"
+          ]
         }
       ]
     },
     {
-      "letter": "Dd–Ff",
-      "sound": "review",
+      "letter": "Bb",
+      "sound": "/b/",
+      "ipa": "b",
+      "nameIpa": "bi",
+      "examples": [
+        {
+          "w": "bag",
+          "zh": "袋子",
+          "seg": [
+            "b",
+            "æ",
+            "g"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Cc",
+      "sound": "/k/",
+      "ipa": "k",
+      "nameIpa": "si",
+      "examples": [
+        {
+          "w": "cat",
+          "zh": "貓",
+          "seg": [
+            "k",
+            "æ",
+            "t"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Dd",
+      "sound": "/d/",
+      "ipa": "d",
+      "nameIpa": "di",
       "examples": [
         {
           "w": "duck",
-          "zh": "鴨子"
+          "zh": "鴨子",
+          "seg": [
+            "d",
+            "ʌ",
+            "k"
+          ]
         },
         {
-          "w": "egg",
-          "zh": "蛋"
-        },
-        {
-          "w": "fish",
-          "zh": "魚"
+          "w": "sad",
+          "zh": "傷心的",
+          "seg": [
+            "s",
+            "æ",
+            "d"
+          ]
         }
       ]
     },
     {
-      "letter": "Gg–Ll",
-      "sound": "review",
+      "letter": "Ee",
+      "sound": "/ɛ/",
+      "ipa": "ɛ",
+      "nameIpa": "i",
+      "examples": [
+        {
+          "w": "egg",
+          "zh": "蛋",
+          "seg": [
+            "ɛ",
+            "g"
+          ]
+        },
+        {
+          "w": "red",
+          "zh": "紅色的",
+          "seg": [
+            "r",
+            "ɛ",
+            "d"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Ff",
+      "sound": "/f/",
+      "ipa": "f",
+      "nameIpa": "ɛf",
+      "examples": [
+        {
+          "w": "fish",
+          "zh": "魚",
+          "seg": [
+            "f",
+            "ɪ",
+            "ʃ"
+          ]
+        },
+        {
+          "w": "fat",
+          "zh": "胖胖的",
+          "seg": [
+            "f",
+            "æ",
+            "t"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Gg",
+      "sound": "/g/",
+      "ipa": "g",
+      "nameIpa": "dʒi",
       "examples": [
         {
           "w": "good",
-          "zh": "好的"
+          "zh": "好的",
+          "seg": [
+            "g",
+            "ʊ",
+            "d"
+          ]
         },
+        {
+          "w": "gun",
+          "zh": "槍",
+          "seg": [
+            "g",
+            "ʌ",
+            "n"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Hh",
+      "sound": "/h/",
+      "ipa": "h",
+      "nameIpa": "eɪtʃ",
+      "examples": [
+        {
+          "w": "hen",
+          "zh": "母雞",
+          "seg": [
+            "h",
+            "ɛ",
+            "n"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Ii",
+      "sound": "/ɪ/",
+      "ipa": "ɪ",
+      "nameIpa": "aɪ",
+      "examples": [
+        {
+          "w": "in",
+          "zh": "在裡面",
+          "seg": [
+            "ɪ",
+            "n"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Jj",
+      "sound": "/dʒ/",
+      "ipa": "dʒ",
+      "nameIpa": "dʒeɪ",
+      "examples": [
         {
           "w": "jet",
-          "zh": "噴射機"
-        },
+          "zh": "噴射機",
+          "seg": [
+            "dʒ",
+            "ɛ",
+            "t"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Kk",
+      "sound": "/k/",
+      "ipa": "k",
+      "nameIpa": "keɪ",
+      "examples": [
+        {
+          "w": "kid",
+          "zh": "小孩",
+          "seg": [
+            "k",
+            "ɪ",
+            "d"
+          ]
+        }
+      ]
+    },
+    {
+      "letter": "Ll",
+      "sound": "/l/",
+      "ipa": "l",
+      "nameIpa": "ɛl",
+      "examples": [
         {
           "w": "lamp",
-          "zh": "燈"
+          "zh": "燈",
+          "seg": [
+            "l",
+            "æ",
+            "m",
+            "p"
+          ]
         }
       ]
     }

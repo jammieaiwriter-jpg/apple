@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joy Unit 19 課後複習</title>
+  <style>
+    :root{
+      --ink:#27313f; --muted:#667085; --paper:#fffdf8; --line:#e7e0d2;
+      --accent:#207f71; --accent-dark:#145a51; --sky:#dff0ff; --rose:#ffe4ec; --sun:#ffe9a8; --mint:#dff5e7;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0; min-height:100vh; color:var(--ink); padding:18px;
+      font-family:ui-rounded,"SF Pro Rounded","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+      background:linear-gradient(180deg,#fffdf8,#f4f9ff);
+    }
+    .wrap{max-width:760px;margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    h1{font-size:clamp(24px,5vw,38px);margin:0;}
+    .progress{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-weight:800;color:var(--accent-dark);}
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+    .tabs button{flex:1 1 40%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:12px;font-weight:800;font-size:17px;min-height:48px;cursor:pointer;}
+    .game-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0;}
+    button.opt{border:2px solid var(--accent);background:#fff;color:var(--accent-dark);border-radius:12px;padding:14px 18px;font-weight:900;font-size:20px;min-height:54px;cursor:pointer;}
+    button.opt:active{background:var(--mint);}
+    button.opt.wide{display:block;width:100%;margin:8px 0;font-size:19px;text-align:center;}
+    .tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+    .card{
+      border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px 16px 14px;margin-bottom:14px;
+    }
+    .card .who{font-weight:900;color:var(--accent-dark);font-size:14px;letter-spacing:.04em;}
+    .card .en{font-size:clamp(24px,5.5vw,34px);font-weight:900;line-height:1.15;margin:4px 0 2px;}
+    .card .zh{color:var(--muted);font-size:15px;margin-bottom:10px;}
+    .kk{color:var(--accent-dark);font-weight:700;font-size:16px;}
+    .row{display:flex;flex-wrap:wrap;gap:8px;}
+    button.act{border:0;border-radius:10px;padding:12px 16px;min-height:50px;font-weight:900;font-size:16px;cursor:pointer;}
+    .listen{background:#fff;color:var(--accent-dark);border:2px solid var(--accent);}
+    .start{background:var(--accent);color:#fff;}
+    .stop{background:#b54708;color:#fff;}
+    button:disabled{opacity:.5;cursor:not-allowed;}
+    .out{margin-top:10px;font-size:16px;min-height:24px;color:var(--muted);}
+    .stars{font-size:26px;letter-spacing:2px;margin-top:6px;}
+    .hide{display:none;}
+    .hint{color:var(--muted);font-size:13px;margin:6px 0 14px;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Joy Unit 19 複習 🎤</h1>
+    <div class="progress" id="progress">0 / 0</div>
+  </header>
+  <p class="hint">用 Safari 分頁開。先按「🔊 聽」聽一次，再按「🎤 開始念」，念完按「⏹ 念好了」就會打星。</p>
+
+  <div class="tabs">
+    <button id="tab-dialog" class="active" onclick="switchTab('dialog')">對話</button>
+    <button id="tab-vocab" onclick="switchTab('vocab')">單字</button>
+    <button id="tab-phonics" onclick="switchTab('phonics')">發音</button>
+    <button id="tab-grammar" onclick="switchTab('grammar')">文法</button>
+    <button id="tab-wordgame" onclick="switchTab('wordgame')">單字遊戲</button>
+    <button id="tab-talkgame" onclick="switchTab('talkgame')">對話遊戲</button>
+  </div>
+
+  <div id="panel-dialog"></div>
+  <div id="panel-vocab" class="hide"></div>
+  <div id="panel-phonics" class="hide"></div>
+  <div id="panel-grammar" class="hide"></div>
+  <div id="panel-wordgame" class="hide"></div>
+  <div id="panel-talkgame" class="hide"></div>
+</div>
+
+<script>
+/* ===== Unit 19 內容（內嵌，不用模組） ===== */
+var dialogueLines = [
+  {
+    "speaker": "Dum-dum",
+    "text": "What... is... it...?",
+    "role": "dum-dum",
+    "zh": "它……是……什麼？"
+  },
+  {
+    "speaker": "Smart",
+    "text": "It's an apple!",
+    "role": "smart",
+    "zh": "它是一顆蘋果！"
+  },
+  {
+    "speaker": "Mad",
+    "text": "It's blue!",
+    "role": "mad",
+    "zh": "它是藍色的！"
+  },
+  {
+    "speaker": "Happy",
+    "text": "It's a blue apple!",
+    "role": "happy",
+    "zh": "它是一顆藍色的蘋果！"
+  },
+  {
+    "speaker": "Nick",
+    "text": "It's cool!",
+    "role": "nick",
+    "zh": "它好酷！"
+  },
+  {
+    "speaker": "Abby",
+    "text": "It's pretty!",
+    "role": "abby",
+    "zh": "它好漂亮！"
+  },
+  {
+    "speaker": "Achoo, Shy, and Tired",
+    "text": "It's a blue apple!",
+    "role": "together",
+    "zh": "它是一顆藍色的蘋果！"
+  },
+  {
+    "speaker": "Dum-dum",
+    "text": "It's...",
+    "role": "dum-dum",
+    "zh": "它是……"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Yum, yum, yum!",
+    "role": "abby",
+    "zh": "好好吃！",
+    "scored": false
+  },
+  {
+    "speaker": "Mirror",
+    "text": "Oh no! Don't eat it!",
+    "role": "mirror",
+    "zh": "喔不！不要吃它！"
+  },
+  {
+    "speaker": "Smart",
+    "text": "Look! A chocolate house!",
+    "role": "smart",
+    "zh": "看！一間巧克力房子！"
+  }
+];
+var vocab = [
+  {
+    "word": "oh",
+    "kk": "[o]",
+    "zh": "喔"
+  },
+  {
+    "word": "no",
+    "kk": "[no]",
+    "zh": "不"
+  },
+  {
+    "word": "blue",
+    "kk": "[blu]",
+    "zh": "藍色的"
+  },
+  {
+    "word": "green",
+    "kk": "[grin]",
+    "zh": "綠色的"
+  },
+  {
+    "word": "yellow",
+    "kk": "[ˈjɛlo]",
+    "zh": "黃色的"
+  },
+  {
+    "word": "apple",
+    "kk": "[ˈæpəl]",
+    "zh": "蘋果"
+  },
+  {
+    "word": "orange",
+    "kk": "[ˈɔrɪndʒ]",
+    "zh": "柳橙"
+  },
+  {
+    "word": "banana",
+    "kk": "[bəˈnænə]",
+    "zh": "香蕉"
+  }
+];
+var phonics = [
+  {
+    "letter": "blue apple",
+    "sound": "/u/ + /æ/",
+    "ipa": "u",
+    "nameIpa": "blu æpəl",
+    "examples": [
+      {
+        "w": "blue",
+        "zh": "藍色的",
+        "seg": [
+          "b",
+          "l",
+          "u"
+        ]
+      },
+      {
+        "w": "apple",
+        "zh": "蘋果",
+        "seg": [
+          "æ",
+          "p",
+          "əl"
+        ]
+      }
+    ]
+  },
+  {
+    "letter": "green orange",
+    "sound": "/i/ + /ɔ/",
+    "ipa": "i",
+    "nameIpa": "grin ɔrɪndʒ",
+    "examples": [
+      {
+        "w": "green",
+        "zh": "綠色的",
+        "seg": [
+          "g",
+          "r",
+          "i",
+          "n"
+        ]
+      },
+      {
+        "w": "orange",
+        "zh": "柳橙",
+        "seg": [
+          "ɔ",
+          "r",
+          "ɪ",
+          "n",
+          "dʒ"
+        ]
+      }
+    ]
+  },
+  {
+    "letter": "yellow banana",
+    "sound": "/ɛ/ + /æ/",
+    "ipa": "ɛ",
+    "nameIpa": "jɛlo bənænə",
+    "examples": [
+      {
+        "w": "yellow",
+        "zh": "黃色的",
+        "seg": [
+          "j",
+          "ɛ",
+          "l",
+          "o"
+        ]
+      },
+      {
+        "w": "banana",
+        "zh": "香蕉",
+        "seg": [
+          "b",
+          "ə",
+          "n",
+          "æ",
+          "n",
+          "ə"
+        ]
+      }
+    ]
+  }
+];
+var grammar = {
+  "rule": "英文形容詞放在名詞前面：a + color + fruit。",
+  "quiz": [
+    {
+      "subject": "It",
+      "answer": "blue",
+      "full": "It is a blue apple.",
+      "prompt": "It is a ___ apple.",
+      "zh": "它是一顆藍色的蘋果。"
+    },
+    {
+      "subject": "It",
+      "answer": "green",
+      "full": "It is a green orange.",
+      "prompt": "It is a ___ orange.",
+      "zh": "它是一顆綠色的柳橙。"
+    },
+    {
+      "subject": "It",
+      "answer": "yellow",
+      "full": "It is a yellow banana.",
+      "prompt": "It is a ___ banana.",
+      "zh": "它是一根黃色的香蕉。"
+    }
+  ]
+};
+var beOptions = [
+  "blue",
+  "green",
+  "yellow",
+  "apple",
+  "orange",
+  "banana"
+];
+
+/* ===== 評分（內嵌自 unit1.mjs） ===== */
+var contractions = {"i'm":"i am","im":"i am","what's":"what is","whats":"what is","don't":"do not","dont":"do not","let's":"let us","lets":"let us"};
+function normalizeSpeech(v){
+  var s=String(v||"").toLowerCase();
+  for(var k in contractions){ s=s.split(k).join(contractions[k]); }
+  return s.replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();
+}
+function scoreSpeech(expected, heard){
+  var e=normalizeSpeech(expected).split(" ").filter(Boolean);
+  var h=normalizeSpeech(heard).split(" ").filter(Boolean);
+  if(!h.length) return {stars:0};
+  var cur=0, matched=0;
+  for(var i=0;i<e.length;i++){ var at=h.indexOf(e[i],cur); if(at!==-1){matched++;cur=at+1;} }
+  var coverage=matched/Math.max(e.length,1);
+  var penalty=Math.max(h.length-e.length-2,0)*0.04;
+  var pct=Math.max(0,Math.min(1,coverage-penalty));
+  var stars=Math.ceil(pct*5+0.25);
+  if(matched===e.length) stars=5;
+  if(matched===0) stars=1;
+  if(stars===0&&h.length) stars=1;
+  return {stars:stars};
+}
+
+/* ===== 星星儲存 ===== */
+var SCORE_KEY="joy-unit19-scores";
+function loadScores(){ try{ var a=JSON.parse(localStorage.getItem(SCORE_KEY)||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function saveScores(a){ try{ localStorage.setItem(SCORE_KEY, JSON.stringify(a)); }catch(e){} }
+var scores = loadScores();
+var VOCAB_KEY="joy-unit19-vocab";
+function loadVocab(){ try{ var a=JSON.parse(localStorage.getItem(VOCAB_KEY)||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function saveVocab(a){ try{ localStorage.setItem(VOCAB_KEY, JSON.stringify(a)); }catch(e){} }
+var vScores = loadVocab();
+
+/* ===== 示範語音：只用 speechSynthesis（不用任何 HTML5 Audio） ===== */
+var BAD_VOICE=/Fred|Albert|Zarvox|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed|Rishi/i;
+var speakSeq=0;
+function pickVoice(role){
+  var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];
+  var en=vs.filter(function(v){return /en[-_](US|GB|AU)/i.test(v.lang);});
+  if(!en.length) return null;
+  var good=en.filter(function(v){return !BAD_VOICE.test(v.name);});
+  if(!good.length) good=en;
+  // 同名若有「增強/進階/Siri」版優先（音質好很多）
+  function best(list){ return list.find(function(v){return /enhanced|premium|siri/i.test(v.name+'|'+(v.voiceURI||''));}) || list[0]; }
+  var pref = role==="nick"?["Aaron","Tom","Nathan","Arthur","Daniel","Alex"]
+    : role==="fifi"?["Karen","Tessa","Moira","Samantha","Allison"]
+    : ["Samantha","Allison","Ava","Karen","Aaron"];
+  for(var i=0;i<pref.length;i++){
+    var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;});
+    if(hits.length) return best(hits);
+  }
+  return best(good);
+}
+function speak(text, role, onEnd){
+  var seq=++speakSeq, done=false;
+  function finish(){ if(done || seq!==speakSeq) return; done=true; if(onEnd) onEnd(); }
+  try{
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(text);
+    u.lang="en-US"; u.rate=0.82; u.volume=1;
+    u.pitch = role==="nick"?0.85 : (role==="fifi"?1.15 : 1); // Nick 壓低一點當男孩、Fifi 高一點
+    var v=pickVoice(role); if(v) u.voice=v;
+    if(onEnd){ u.onend=finish; u.onerror=finish; }   // 念完才做下一步，避免長句被打斷
+    window.speechSynthesis.speak(u);
+  }catch(e){ finish(); }
+}
+
+/* ===== 語音辨識：1:1 照搬已驗證可用的 mic-test.html rec() ===== */
+function SR(){ return window.SpeechRecognition||window.webkitSpeechRecognition; }
+var srSupported = !!SR();
+function rec(id, cb){
+  var C=SR(),
+      out=document.getElementById(id+'-out'),
+      start=document.getElementById(id+'-start'),
+      stop=document.getElementById(id+'-stop');
+  if(!C){ if(out) out.textContent='此瀏覽器不支援語音辨識。'; return; }
+  var text='', stopped=false, gotAny=false;
+  var r=new C();
+  r.lang='en-US'; r.continuous=true; r.interimResults=false;
+  r.onaudiostart=function(){ if(out) out.textContent='🎙 收音中…請大聲念'; };
+  r.onresult=function(e){
+    for(var i=e.resultIndex;i<e.results.length;i++){ if(e.results[i].isFinal) text+=e.results[i][0].transcript+' '; }
+    gotAny=true; if(out) out.textContent='👂 聽到：'+(text.trim()||'(空)');
+  };
+  r.onerror=function(e){ if(out) out.textContent='🔴 辨識問題：'+(e.error||'未知'); };
+  r.onend=function(){
+    if(!stopped){ setTimeout(function(){ try{r.start();}catch(_){}} ,120); return; }
+    if(start) start.disabled=false;
+    if(stop) stop.disabled=true;
+    if(!gotAny && out) out.textContent='⏹ 沒收到字，再按一次「開始念」。';
+    cb(text.trim());
+  };
+  if(start) start.disabled=true;
+  if(stop){ stop.disabled=false; stop.onclick=function(){ stopped=true; try{r.stop();}catch(_){} setTimeout(function(){ try{r.abort();}catch(_){}} ,1200); }; }
+  // iOS：語音合成(聽)和辨識(念)共用音訊子系統。先取消合成、留一點時間讓音訊通道從「播放」釋放成「錄音」，再啟動辨識，
+  // 否則先按過「聽」就會收音中卻收不到字。
+  try{ window.speechSynthesis.cancel(); }catch(_){}
+  if(out) out.textContent='🎙 啟動中…';
+  setTimeout(function(){ try{ r.start(); }catch(e){ if(start) start.disabled=false; if(stop) stop.disabled=true; if(out) out.textContent='請再按一次「開始念」。'; } }, 350);
+}
+
+/* ===== 畫面 ===== */
+function starStr(n){ var s=''; for(var i=0;i<5;i++) s+= i<n?'⭐':'☆'; return s; }
+
+function scoredDialogIndexes(){
+  var arr=[]; dialogueLines.forEach(function(l,i){ if(l.scored!==false) arr.push(i); }); return arr;
+}
+function updateProgress(){
+  var idxs=scoredDialogIndexes();
+  var done=idxs.filter(function(i){ return (scores[i]||0)>=3; }).length;
+  document.getElementById('progress').textContent=done+' / '+idxs.length+' 句';
+}
+
+function buildDialog(){
+  var html='';
+  dialogueLines.forEach(function(l,i){
+    var scorable=(l.scored!==false);
+    var id='d'+i;
+    html+='<div class="card">';
+    html+='<div class="who">'+l.speaker+'</div>';
+    html+='<div class="en">'+l.text+'</div>';
+    html+='<div class="zh">'+l.zh+'</div>';
+    html+='<div class="row">';
+    html+='<button class="act listen" onclick="speak('+JSON.stringify(l.text).replace(/"/g,'&quot;')+',\''+l.role+'\')">🔊 聽</button>';
+    if(scorable){
+      html+='<button class="act start" id="'+id+'-start" onclick="recLine('+i+')">🎤 開始念</button>';
+      html+='<button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button>';
+    }
+    html+='</div>';
+    if(scorable){
+      html+='<div class="out" id="'+id+'-out"></div>';
+      html+='<div class="stars" id="'+id+'-stars">'+starStr(scores[i]||0)+'</div>';
+    }
+    html+='</div>';
+  });
+  document.getElementById('panel-dialog').innerHTML=html;
+}
+function recLine(i){
+  rec('d'+i, function(heard){
+    if(!heard) return;
+    var s=scoreSpeech(dialogueLines[i].text, heard).stars;
+    scores[i]=Math.max(scores[i]||0, s);
+    saveScores(scores);
+    document.getElementById('d'+i+'-stars').textContent=starStr(s);
+    document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
+    updateProgress();
+  });
+}
+
+function buildVocab(){
+  var html='';
+  vocab.forEach(function(w,i){
+    var id='v'+i;
+    html+='<div class="card">';
+    html+='<div class="en">'+w.word+' <span class="kk">'+w.kk+'</span></div>';
+    html+='<div class="zh">'+w.zh+'</div>';
+    html+='<div class="row">';
+    html+='<button class="act listen" onclick="speak('+JSON.stringify(w.say||w.word).replace(/"/g,'&quot;')+',\'together\')">🔊 聽</button>';
+    html+='<button class="act start" id="'+id+'-start" onclick="recVocab('+i+')">🎤 開始念</button>';
+    html+='<button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button>';
+    html+='</div>';
+    html+='<div class="out" id="'+id+'-out"></div>';
+    html+='<div class="stars" id="'+id+'-stars">'+starStr(vScores[i]||0)+'</div>';
+    html+='</div>';
+  });
+  document.getElementById('panel-vocab').innerHTML=html;
+}
+function recVocab(i){
+  rec('v'+i, function(heard){
+    if(!heard) return;
+    var s=scoreSpeech(vocab[i].word, heard).stars;
+    vScores[i]=Math.max(vScores[i]||0, s);
+    saveVocab(vScores);
+    document.getElementById('v'+i+'-stars').textContent=starStr(s);
+    document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
+  });
+}
+
+/* ===== 小遊戲共用 ===== */
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+
+/* ===== 單字遊戲：念一個字，點對那個字 ===== */
+var wgOrder=[], wgPos=0, wgScore=0;
+function wgStart(){
+  wgOrder=shuffle(vocab.map(function(_,i){return i;}));
+  wgPos=0; wgScore=0;
+  wgRender();
+}
+function wgRender(){
+  var p=document.getElementById('panel-wordgame');
+  if(wgPos>=wgOrder.length){
+    p.innerHTML='<div class="card" style="text-align:center"><div class="en">🎉 全部過關！</div><div class="zh">答對 '+wgScore+' / '+wgOrder.length+'</div><div class="row" style="justify-content:center"><button class="act start" onclick="wgStart()">再玩一次</button></div></div>';
+    return;
+  }
+  var target=wgOrder[wgPos];
+  var html='<div class="card" style="text-align:center">';
+  html+='<div class="zh">第 '+(wgPos+1)+' / '+wgOrder.length+' 題　答對 '+wgScore+'</div>';
+  html+='<div class="en">聽一聽，點出那個字 👂</div>';
+  html+='<div class="row" style="justify-content:center"><button class="act listen" onclick="speak('+JSON.stringify(vocab[target].say||vocab[target].word).replace(/"/g,'&quot;')+',\'together\')">🔊 再聽一次</button></div>';
+  html+='<div id="wg-grid" class="game-grid">';
+  vocab.forEach(function(w,i){
+    html+='<button class="opt" onclick="wgPick('+i+','+target+')">'+w.word+'</button>';
+  });
+  html+='</div><div class="out" id="wg-out"></div></div>';
+  p.innerHTML=html;
+  setTimeout(function(){ speak(vocab[target].say||vocab[target].word,'together'); }, 250);
+}
+function wgPick(i,target){
+  var out=document.getElementById('wg-out');
+  if(i===target){
+    wgScore++;
+    out.textContent='✅ 答對了！'+vocab[target].word;
+    wgPos++;
+    speak(vocab[target].say||vocab[target].word,'together', wgRender); // 念完獎勵字再下一題
+  }else{
+    out.textContent='❌ 答錯了，你點的是「'+vocab[i].word+'」，再試試看 🙂';
+    // 先把點錯的字念完，再念一次題目讓她重找（用 onEnd 串接，長字也不會被打斷）
+    speak(vocab[i].say||vocab[i].word,'together', function(){ speak(vocab[target].say||vocab[target].word,'together'); });
+  }
+}
+
+/* ===== 對話遊戲：念一句，選對的回答 ===== */
+var talkPairs=[
+  {
+    "q": "What is it?",
+    "a": "It's an apple!",
+    "d": [
+      "It's blue!",
+      "Oh no!"
+    ]
+  },
+  {
+    "q": "What color is it?",
+    "a": "It's blue!",
+    "d": [
+      "It's an apple!",
+      "Look! A chocolate house!"
+    ]
+  },
+  {
+    "q": "It is a blue apple.",
+    "a": "It's cool!",
+    "d": [
+      "Don't eat it!",
+      "My name is Abby."
+    ]
+  }
+];
+var tgOrder=[], tgPos=0, tgScore=0;
+function tgStart(){ tgOrder=shuffle(talkPairs.map(function(_,i){return i;})); tgPos=0; tgScore=0; tgRender(); }
+function tgRender(){
+  var p=document.getElementById('panel-talkgame');
+  if(tgPos>=tgOrder.length){
+    p.innerHTML='<div class="card" style="text-align:center"><div class="en">🎉 全部過關！</div><div class="zh">答對 '+tgScore+' / '+tgOrder.length+'</div><div class="row" style="justify-content:center"><button class="act start" onclick="tgStart()">再玩一次</button></div></div>';
+    return;
+  }
+  var pair=talkPairs[tgOrder[tgPos]];
+  var opts=shuffle([pair.a].concat(pair.d));
+  var html='<div class="card">';
+  html+='<div class="zh" style="text-align:center">第 '+(tgPos+1)+' / '+tgOrder.length+' 題　答對 '+tgScore+'</div>';
+  html+='<div class="en" style="text-align:center">'+pair.q+'</div>';
+  html+='<div class="row" style="justify-content:center"><button class="act listen" onclick="speak('+JSON.stringify(pair.q).replace(/"/g,'&quot;')+',\'nick\')">🔊 再聽一次</button></div>';
+  html+='<div class="zh" style="text-align:center;margin:8px 0">該怎麼回答？👇</div>';
+  opts.forEach(function(o){
+    html+='<button class="opt wide" onclick="tgPick('+JSON.stringify(o).replace(/"/g,'&quot;')+','+JSON.stringify(pair.a).replace(/"/g,'&quot;')+','+JSON.stringify(pair.q).replace(/"/g,'&quot;')+')">'+o+'</button>';
+  });
+  html+='<div class="out" id="tg-out"></div></div>';
+  p.innerHTML=html;
+  setTimeout(function(){ speak(pair.q,'nick'); }, 250);
+}
+function tgPick(picked, answer, q){
+  var out=document.getElementById('tg-out');
+  if(picked===answer){
+    tgScore++;
+    out.textContent='✅ 答對了！';
+    tgPos++;
+    speak(answer,'abby', tgRender);                         // 念完整句答案再進下一題（不會被切斷）
+  }else{
+    out.textContent='❌ 答錯了，你選的是「'+picked+'」，再試試看 🙂';
+    // 先把選錯的句子念完，再念一次題目讓她重選（onEnd 串接，長句不被打斷）
+    speak(picked,'abby', function(){ speak(q,'nick'); });
+  }
+}
+
+/* ===== 發音（聽，不用麥克風） ===== */
+function jatt(x){ return JSON.stringify(x).replace(/"/g,'&quot;'); } // 給 onclick 屬性用的安全字串
+// 複習頁發音＝單純聽例字讀音（拼讀/音標教學在「預習頁」用 Azure 真人聲做）
+function buildPhonics(){
+  var html='';
+  phonics.forEach(function(p){
+    html+='<div class="card">';
+    html+='<div class="en">'+p.letter+' <span class="kk">'+p.sound+'</span></div>';
+    html+='<div class="row" style="margin-top:8px">';
+    p.examples.forEach(function(e){
+      html+='<button class="act listen" onclick="speak('+jatt(e.w)+',\'together\')">🔊 '+e.w+'（'+e.zh+'）</button>';
+    });
+    html+='</div></div>';
+  });
+  document.getElementById('panel-phonics').innerHTML=html;
+}
+
+/* ===== 文法 be 動詞（選詞填空，不用麥克風） ===== */
+function buildGrammar(){
+  var html='<div class="card"><div class="zh">'+grammar.rule+'</div></div>';
+  grammar.quiz.forEach(function(q,i){
+    html+='<div class="card">';
+    html+='<div class="en">'+(q.prompt || (q.subject+' ___ '+q.full.replace(q.subject+' '+q.answer+' ','').replace(/\.$/,'' )+'.'))+'</div>';
+    html+='<div class="zh">'+q.zh+'</div>';
+    html+='<div class="row">';
+    beOptions.forEach(function(opt){
+      html+='<button class="opt" onclick="grPick('+i+',\''+opt+'\')">'+opt+'</button>';
+    });
+    html+='</div><div class="out" id="gr'+i+'-out"></div></div>';
+  });
+  document.getElementById('panel-grammar').innerHTML=html;
+}
+function grPick(i,opt){
+  var q=grammar.quiz[i], out=document.getElementById('gr'+i+'-out');
+  if(opt===q.answer){ out.textContent='✅ 答對了！'+q.full; speak(q.full,'abby'); }
+  else { out.textContent='❌ 再想想看，'+q.subject+' 配哪一個？'; }
+}
+
+function switchTab(t){
+  ['dialog','vocab','phonics','grammar','wordgame','talkgame'].forEach(function(name){
+    document.getElementById('tab-'+name).classList.toggle('active', t===name);
+    document.getElementById('panel-'+name).classList.toggle('hide', t!==name);
+  });
+  if(t==='wordgame') wgStart();
+  if(t==='talkgame') tgStart();
+}
+
+buildDialog();
+buildVocab();
+buildPhonics();
+buildGrammar();
+updateProgress();
+// 預先載入語音清單（iOS 有時要先觸發一次）
+if(window.speechSynthesis) speechSynthesis.getVoices();
+</script>
+</body>
+</html>

@@ -102,10 +102,18 @@ var vocab = [
   {word:"Abby", kk:"[ˈæbɪ]", zh:"艾比"},
 ];
 /* Phonics：Unit 1 = Aa–Cc */
+// phon = 字母的「拼讀音」近似拼法（給 TTS 唸，不是字母名稱）；
+// 每個例字 blend = 拆成一個一個音（拼讀），最後會自動再唸整個字。
 var phonics = [
-  {letter:"Aa", sound:"/æ/", examples:[{w:"ant", zh:"螞蟻"},{w:"mad", zh:"生氣的"}]},
-  {letter:"Bb", sound:"/b/", examples:[{w:"bag", zh:"袋子"},{w:"big", zh:"大的"}]},
-  {letter:"Cc", sound:"/k/", examples:[{w:"cat", zh:"貓"},{w:"cute", zh:"可愛的"}]},
+  {letter:"Aa", sound:"/æ/", phon:"ah", examples:[
+    {w:"ant", zh:"螞蟻", blend:["ah","nn","tuh"]},
+    {w:"mad", zh:"生氣的", blend:["mm","ah","duh"]}]},
+  {letter:"Bb", sound:"/b/", phon:"buh", examples:[
+    {w:"bag", zh:"袋子", blend:["buh","ah","guh"]},
+    {w:"big", zh:"大的", blend:["buh","ih","guh"]}]},
+  {letter:"Cc", sound:"/k/", phon:"kuh", examples:[
+    {w:"cat", zh:"貓", blend:["kuh","ah","tuh"]},
+    {w:"cute", zh:"可愛的", blend:["kuh","yoo","tuh"]}]},
 ];
 /* 文法：be 動詞 am/is/are */
 var grammar = {
@@ -155,6 +163,7 @@ var vScores = loadVocab();
 
 /* ===== 示範語音：只用 speechSynthesis（不用任何 HTML5 Audio） ===== */
 var BAD_VOICE=/Fred|Albert|Zarvox|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed|Rishi/i;
+var speakSeq=0;
 function pickVoice(role){
   var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];
   var en=vs.filter(function(v){return /en[-_](US|GB|AU)/i.test(v.lang);});
@@ -173,15 +182,17 @@ function pickVoice(role){
   return best(good);
 }
 function speak(text, role, onEnd){
+  var seq=++speakSeq, done=false;
+  function finish(){ if(done || seq!==speakSeq) return; done=true; if(onEnd) onEnd(); }
   try{
     window.speechSynthesis.cancel();
     var u=new SpeechSynthesisUtterance(text);
     u.lang="en-US"; u.rate=0.82; u.volume=1;
     u.pitch = role==="nick"?0.85 : (role==="fifi"?1.15 : 1); // Nick 壓低一點當男孩、Fifi 高一點
     var v=pickVoice(role); if(v) u.voice=v;
-    if(onEnd){ u.onend=onEnd; u.onerror=onEnd; }   // 念完才做下一步，避免長句被打斷
+    if(onEnd){ u.onend=finish; u.onerror=finish; }   // 念完才做下一步，避免長句被打斷
     window.speechSynthesis.speak(u);
-  }catch(e){ if(onEnd) onEnd(); }
+  }catch(e){ finish(); }
 }
 
 /* ===== 語音辨識：1:1 照搬已驗證可用的 mic-test.html rec() ===== */
@@ -382,18 +393,40 @@ function tgPick(picked, answer, q){
 }
 
 /* ===== 發音（聽，不用麥克風） ===== */
+// 依序唸一串音（拼讀），每個音之間留間隔，唸完最後自動唸整個字
+function speakSeq(parts){
+  var i=0;
+  (function next(){
+    if(i>=parts.length) return;
+    var t=parts[i++];
+    speak(t,'together', function(){ setTimeout(next, 250); });
+  })();
+}
+function blendDisplay(b){ return b.join(' - '); }
 function buildPhonics(){
+  var PH=[]; // 給 onclick 用的暫存
   var html='';
-  phonics.forEach(function(p){
+  phonics.forEach(function(p,pi){
     html+='<div class="card">';
-    html+='<div class="en">'+p.letter+' <span class="kk">'+p.sound+'</span> ';
-    html+='<button class="act listen" onclick="speak('+JSON.stringify(p.letter[0]).replace(/"/g,'&quot;')+',\'together\')">🔊 字母</button></div>';
+    html+='<div class="en">'+p.letter+' <span class="kk">'+p.sound+'</span></div>';
     html+='<div class="row" style="margin-top:8px">';
-    p.examples.forEach(function(e){
-      html+='<button class="act listen" onclick="speak('+JSON.stringify(e.w).replace(/"/g,'&quot;')+',\'together\')">🔊 '+e.w+'（'+e.zh+'）</button>';
+    html+='<button class="act listen" onclick="speak('+JSON.stringify(p.letter[0]).replace(/"/g,'&quot;')+',\'together\')">🔊 字母</button>';
+    html+='<button class="act start" onclick="speak('+JSON.stringify(p.phon||p.letter[0]).replace(/"/g,'&quot;')+',\'together\')">🔊 音 '+p.sound+'</button>';
+    html+='</div>';
+    p.examples.forEach(function(e,ei){
+      PH.push(e.blend ? e.blend.concat([e.w]) : [e.w]);
+      var idx=PH.length-1;
+      html+='<div style="margin-top:10px;border-top:1px dashed var(--line);padding-top:8px">';
+      html+='<div class="en" style="font-size:24px">'+e.w+' <span class="zh">'+e.zh+'</span></div>';
+      if(e.blend) html+='<div class="kk" style="font-size:18px;margin:2px 0">'+blendDisplay(e.blend)+' → '+e.w+'</div>';
+      html+='<div class="row">';
+      html+='<button class="act listen" onclick="speak('+JSON.stringify(e.w).replace(/"/g,'&quot;')+',\'together\')">🔊 整個字</button>';
+      if(e.blend) html+='<button class="act start" onclick="speakSeq(PHSEQ['+idx+'])">🔡 拼讀</button>';
+      html+='</div></div>';
     });
-    html+='</div></div>';
+    html+='</div>';
   });
+  window.PHSEQ=PH;
   document.getElementById('panel-phonics').innerHTML=html;
 }
 

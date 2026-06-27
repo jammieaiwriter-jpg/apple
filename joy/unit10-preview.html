@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Joy Unit 10 課前預習</title>
+    <style>
+      :root {
+        --ink: #27313f; --muted: #667085; --paper: #fffdf8;
+        --mint: #dff5e7; --rose: #ffe4ec; --sky: #dff0ff; --sun: #ffe9a8;
+        --line: #e7e0d2; --accent: #207f71; --accent-dark: #145a51;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh;
+        background:
+          linear-gradient(180deg, rgba(255,253,248,.98), rgba(246,250,255,.96)),
+          radial-gradient(circle at 18% 18%, rgba(255,228,236,.65), transparent 26%),
+          radial-gradient(circle at 84% 28%, rgba(223,245,231,.8), transparent 28%);
+        color: var(--ink);
+        font-family: ui-rounded, "SF Pro Rounded", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      }
+      button, a.pill-button { font: inherit; }
+      .app { max-width: 1180px; margin: 0 auto; padding: 24px; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+      h1 { margin: 0; font-size: clamp(26px, 5vw, 52px); }
+      .subtitle { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+      .progress { min-width: 140px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px;
+        background: rgba(255,255,255,.75); text-align: center; color: var(--accent-dark); font-weight: 800; }
+      .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+      .tabs button, .pill-button {
+        border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink);
+        padding: 10px 14px; cursor: pointer; min-height: 44px; display: inline-flex; align-items: center;
+        text-decoration: none; font-weight: 800;
+      }
+      .tabs button.active { border-color: var(--accent); background: var(--accent); color: #fff; }
+      .panel { display: none; }
+      .panel.active { display: block; }
+
+      .stage { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(300px,.9fr); gap: 18px; align-items: start; }
+      .theater { min-height: 460px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); overflow: hidden; }
+      .scene { min-height: 280px; padding: 26px; background: linear-gradient(180deg, rgba(223,240,255,.9), rgba(255,253,248,.9)); border-bottom: 1px solid var(--line); }
+      .scene-title { color: var(--accent-dark); font-weight: 900; text-transform: uppercase; font-size: 13px; letter-spacing: .08em; }
+      .characters { display: flex; align-items: flex-end; justify-content: space-around; gap: 12px; margin-top: 28px; }
+      .character { width: 110px; min-height: 140px; display: grid; place-items: center; gap: 6px; color: var(--accent-dark); font-weight: 900; opacity: .42; transform: scale(.92); transition: transform .16s ease, opacity .16s ease; }
+      .character.active { opacity: 1; transform: scale(1.04); }
+      .face { width: 90px; aspect-ratio: 1; border-radius: 50%; border: 3px solid rgba(39,49,63,.18); display: grid; place-items: center; font-size: 40px; background: #fff; }
+      .nick .face { background: var(--sky); } .abby .face { background: var(--rose); }
+      .fifi .face { background: var(--mint); } .together .face { background: var(--sun); }
+      .speech-card { padding: 22px; }
+      .speaker-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+      .speaker { font-size: 20px; font-weight: 900; color: var(--accent-dark); }
+      .turn { padding: 6px 10px; border-radius: 8px; background: var(--mint); color: var(--accent-dark); font-weight: 900; }
+      .sentence { margin: 0; font-size: clamp(30px, 5vw, 60px); line-height: 1.1; font-weight: 950; }
+      .translation { margin-top: 12px; color: var(--muted); font-size: 18px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+      .big-button { border: 0; border-radius: 8px; background: var(--accent); color: #fff; padding: 14px 16px; min-height: 52px; cursor: pointer; font-weight: 900; }
+      .big-button.secondary { background: #fff; color: var(--accent-dark); border: 1px solid var(--line); }
+      .hint { min-height: 24px; color: var(--muted); margin-top: 12px; }
+
+      .list-card { border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.84); overflow: hidden; }
+      .list-header { padding: 14px 16px; background: #fff; border-bottom: 1px solid var(--line); font-weight: 900; }
+      .line-button { width: 100%; display: grid; grid-template-columns: 44px minmax(0,1fr) 38px; align-items: center; gap: 10px; padding: 12px 14px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; cursor: pointer; }
+      .line-button.active { background: var(--mint); } .line-button:last-child { border-bottom: 0; }
+      .line-number { width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); font-weight: 900; }
+      .line-text strong { display: block; color: var(--accent-dark); } .line-text span { display: block; overflow-wrap: anywhere; }
+      .check { color: var(--accent); text-align: right; font-weight: 900; font-size: 20px; }
+
+      .coach { margin-top: 16px; border: 1px solid var(--line); border-radius: 8px; padding: 16px; background: #fff; }
+      .coach h2 { margin: 0 0 8px; font-size: 19px; } .coach p { margin: 6px 0; color: var(--muted); line-height: 1.5; }
+
+      .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+      .vocab-card { border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px; text-align: left; cursor: pointer; position: relative; transition: transform .12s ease; }
+      .vocab-card:hover { transform: translateY(-2px); }
+      .vocab-card .word { font-size: 28px; font-weight: 950; color: var(--accent-dark); }
+      .vocab-card .kk { color: var(--muted); font-size: 16px; margin-top: 2px; }
+      .vocab-card .zh { margin-top: 6px; font-size: 16px; }
+      .vocab-card .seen { position: absolute; top: 10px; right: 12px; color: var(--accent); font-weight: 900; }
+      .vocab-card .speaker-emoji { position: absolute; bottom: 10px; right: 12px; font-size: 18px; opacity: .5; }
+
+      .phonics-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px; margin-bottom: 12px; }
+      .phonics-letter { font-size: 46px; font-weight: 950; color: var(--accent-dark); min-width: 90px; cursor: pointer; background: transparent; border: 0; }
+      .phonics-sound { color: var(--muted); font-weight: 800; }
+      .phonics-examples { display: flex; gap: 10px; flex-wrap: wrap; }
+      .phon-ex { display: inline-flex; gap: 4px; align-items: center; border: 1px dashed var(--line); border-radius: 10px; padding: 4px; }
+      .chip.blend { background: var(--accent); color: #fff; }
+      .chip { border: 1px solid var(--line); border-radius: 999px; background: var(--mint); color: var(--accent-dark); padding: 8px 14px; cursor: pointer; font-weight: 800; min-height: 40px; }
+
+      .gram-rule { border-left: 5px solid var(--accent); background: #fff; border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; color: var(--ink); font-weight: 700; }
+      .gram-line { display: flex; align-items: center; gap: 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px; margin-bottom: 10px; cursor: pointer; }
+      .gram-line .en { font-size: 26px; font-weight: 900; color: var(--accent-dark); }
+      .gram-line .en b { color: #c2410c; }
+      .gram-line .zh { color: var(--muted); margin-top: 2px; }
+      .gram-line .play { font-size: 22px; margin-left: auto; }
+
+      @media (max-width: 860px) {
+        .app { padding: 16px; }
+        .topbar, .stage { display: block; }
+        .progress { margin-top: 12px; }
+        .theater { min-height: 0; margin-bottom: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>Joy Unit 10 課前預習</h1>
+          <p class="subtitle">上課前聽一聽，熟悉聲音、單字和句子，不用開口。</p>
+        </div>
+        <div class="progress" id="progress">聽過 0 / 12 句</div>
+      </header>
+
+      <nav class="tabs" aria-label="預習區塊">
+        <button class="active" type="button" data-tab="story">🎧 聽故事</button>
+        <button type="button" data-tab="vocab">🔤 單字</button>
+        <button type="button" data-tab="phonics">🔡 字母 Mm–Zz Review</button>
+        <button type="button" data-tab="grammar">🧩 複習 He / She / is</button>
+        <a class="pill-button" href="./unit10-review.html?v=v1-unit6-10-20260627">課後複習 →</a>
+      </nav>
+
+      <section class="panel active" data-panel="story">
+        <div class="tabs"><button class="pill-button" type="button" id="playAllButton">▶ 聽整段故事</button>
+          <button class="pill-button" type="button" id="pauseButton" hidden>⏸ 暫停</button></div>
+        <div class="stage">
+          <div class="theater">
+            <div class="scene">
+              <div class="scene-title" id="sceneTitle">A new place</div>
+              <div class="characters" aria-hidden="true">
+                <div class="character nick" data-character="nick"><div class="face">🧢</div><div>Nick</div></div>
+                <div class="character abby" data-character="abby"><div class="face">🎀</div><div>Abby</div></div>
+                <div class="character fifi" data-character="fifi"><div class="face">⭐</div><div>Fifi</div></div>
+              </div>
+            </div>
+            <article class="speech-card">
+              <div class="speaker-line"><div class="speaker" id="speaker">Nick</div><div class="turn">先用耳朵聽</div></div>
+              <p class="sentence" id="sentence">Ahh...</p>
+              <div class="translation" id="translation">啊...</div>
+              <div class="actions">
+                <button class="big-button" type="button" id="replayButton">🔊 再聽這句</button>
+                <button class="big-button secondary" type="button" id="nextButton">下一句</button>
+              </div>
+              <div class="hint" id="hint">按「聽整段故事」從頭聽，或點右邊任何一句單獨聽。</div>
+            </article>
+          </div>
+          <aside>
+            <div class="list-card"><div class="list-header">Unit 10 每一句（聽過會打 ✓）</div><div id="lineList"></div></div>
+            <div class="coach"><h2>課前怎麼用</h2>
+              <p>上課前 5–8 分鐘，按「聽整段故事」放給孩子聽。重點是熟悉角色聲音和句子節奏，不用要求開口或拼字。</p>
+              <p>也可以切到「單字／字母／句型」分頁，帶她聽聽看。</p></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="vocab">
+        <div class="coach"><h2>單字卡 🔤</h2><p>點一張卡片就會念給你聽，順便看 KK 音標和中文。聽過會打 ✓，不用背、不用考。</p></div>
+        <div class="vocab-grid" id="vocabGrid"></div>
+      </section>
+
+      <section class="panel" data-panel="phonics">
+        <div class="coach"><h2>字母 Aa–Cc 的聲音 🔡</h2><p>點大字母聽字母的音，點下面的單字聽它怎麼念。先讓耳朵記住聲音。</p></div>
+        <div id="phonicsList"></div>
+      </section>
+
+      <section class="panel" data-panel="grammar">
+        <div class="gram-rule" id="gramRule"></div>
+        <div id="gramLines"></div>
+        <div class="coach"><p>這個階段只要聽、跟著念就好。課後複習頁有「選 am／is／are」的小遊戲。</p></div>
+      </section>
+    </main>
+
+    <script type="module">
+      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit10.mjs?v=v1-unit6-10-20260627";
+
+      const HEARD_KEY = "joy-unit10-heard";
+      const VOCAB_KEY = "joy-unit10-vocab-heard";
+      const TTS_BASE = "https://apple-bedtime-story.onrender.com";
+      const ttsCache = new Map();
+      let azureOK = true;
+      let activeAzureAudio = null;
+
+      const state = {
+        index: 0, playingAll: false, audioUnlocked: false,
+        heard: loadFlags(window.localStorage, dialogueLines.length, HEARD_KEY),
+        vocabHeard: loadFlags(window.localStorage, vocab.length, VOCAB_KEY),
+      };
+
+      const el = (id) => document.getElementById(id);
+      const characters = [...document.querySelectorAll("[data-character]")];
+
+      function stopSpeaking() {
+        if (activeAzureAudio) {
+          activeAzureAudio.onended = null;
+          activeAzureAudio.pause();
+          activeAzureAudio = null;
+        }
+        window.speechSynthesis.cancel();
+      }
+      function showVoiceLoading() {
+        el("hint").textContent = "載入語音中…第一次可能要等 Render 冷啟動。";
+      }
+      function warmTTS() {
+        // 只是暖機叫醒 Render，失敗(冷啟動逾時)也不要關掉 Azure，否則 Nick 等真人聲會退回機械音
+        fetch(`${TTS_BASE}/api/tts/status`, { cache: "no-store" }).catch(() => {});
+      }
+      function unlockAudio() {
+        if (state.audioUnlocked) return;
+        state.audioUnlocked = true;
+        try { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; window.speechSynthesis.speak(u); }
+        catch { state.audioUnlocked = false; }
+        try {
+          const audio = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==");
+          audio.volume = 0;
+          audio.play().catch(() => {});
+        } catch {}
+      }
+      function speakBrowser(text, role, onEnd) {
+        const voices = window.speechSynthesis?.getVoices?.() ?? [];
+        const profile = resolveVoiceProfile(voices, role);
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = "en-US";
+        const chosen = profile.voiceName ? voices.find((v) => v.name === profile.voiceName) : null;
+        if (chosen) u.voice = chosen;
+        u.rate = profile.rate; u.pitch = profile.pitch;
+        u.onend = () => onEnd?.();
+        window.speechSynthesis.speak(u);
+      }
+      async function speak(text, role, onEnd, ipa) {
+        unlockAudio();
+        stopSpeaking();
+        const voice = azureVoiceForRole(role);
+        if (azureOK) {
+          try {
+            const key = `${voice}|${ipa || ""}|${text}`;
+            let url = ttsCache.get(key);
+            if (!url) {
+              showVoiceLoading();
+              const response = await fetch(`${TTS_BASE}/api/tts`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(ipa ? { text, voice, ipa } : { text, voice }),
+              });
+              if (!response.ok) throw new Error(`tts ${response.status}`);
+              url = URL.createObjectURL(await response.blob());
+              ttsCache.set(key, url);
+            }
+            const audio = new Audio(url);
+            activeAzureAudio = audio;
+            audio.onended = () => {
+              if (activeAzureAudio === audio) activeAzureAudio = null;
+              onEnd?.();
+            };
+            await audio.play();
+            return;
+          } catch {
+            // 這一句失敗就退回瀏覽器語音，但不要永久關閉 Azure（冷啟動暖了之後下一句還能用真人聲）
+            if (activeAzureAudio) activeAzureAudio = null;
+          }
+        }
+        speakBrowser(text, role, onEnd);
+      }
+
+      const currentLine = () => dialogueLines[state.index];
+      function renderProgress() {
+        el("progress").textContent = `聽過 ${state.heard.filter(Boolean).length} / ${dialogueLines.length} 句`;
+      }
+      function markHeard(i) {
+        if (!state.heard[i]) { state.heard[i] = true; saveFlags(window.localStorage, state.heard, HEARD_KEY); renderProgress(); renderLineList(); }
+      }
+      function renderLineList() {
+        el("lineList").innerHTML = dialogueLines.map((line, i) => `
+          <button class="line-button${i === state.index ? " active" : ""}" type="button" data-line="${i}">
+            <span class="line-number">${i + 1}</span>
+            <span class="line-text"><strong>${line.speaker}</strong><span>${line.text}</span></span>
+            <span class="check">${state.heard[i] ? "✓" : ""}</span></button>`).join("");
+      }
+      function renderStory() {
+        const line = currentLine();
+        el("sceneTitle").textContent = line.scene;
+        el("speaker").textContent = line.speaker;
+        el("sentence").textContent = line.text;
+        el("translation").textContent = line.zh;
+        el("pauseButton").hidden = !state.playingAll;
+        el("playAllButton").disabled = state.playingAll;
+        characters.forEach((c) => c.classList.toggle("active", line.role === c.dataset.character || line.role === "together"));
+        renderProgress(); renderLineList();
+      }
+      function playOne(i) { state.playingAll = false; state.index = i; renderStory(); speak(currentLine().text, currentLine().role, () => markHeard(i)); }
+      function playAllFrom(i) {
+        state.playingAll = true; state.index = i; renderStory();
+        speak(currentLine().text, currentLine().role, () => {
+          markHeard(state.index);
+          if (!state.playingAll) return;
+          if (state.index < dialogueLines.length - 1) playAllFrom(state.index + 1);
+          else { state.playingAll = false; el("hint").textContent = "整段聽完了！可以再聽一次，或挑一句重聽。"; renderStory(); }
+        });
+      }
+
+      function renderVocab() {
+        el("vocabGrid").innerHTML = vocab.map((v, i) => `
+          <button class="vocab-card" type="button" data-vocab="${i}">
+            <span class="seen">${state.vocabHeard[i] ? "✓" : ""}</span>
+            <div class="word">${v.word}</div>
+            <div class="kk">${v.kk} ${v.pos}</div>
+            <div class="zh">${v.zh}</div>
+            <span class="speaker-emoji">🔊</span></button>`).join("");
+      }
+      function playVocab(i) {
+        speak(vocab[i].say || vocab[i].word, "together");
+        if (!state.vocabHeard[i]) { state.vocabHeard[i] = true; saveFlags(window.localStorage, state.vocabHeard, VOCAB_KEY); renderVocab(); }
+      }
+
+      function renderPhonics() {
+        el("phonicsList").innerHTML = phonics.items.map((it, li) => `
+          <div class="phonics-row">
+            <button class="phonics-letter" type="button" data-letter="${li}">${it.letter}</button>
+            <button class="chip" type="button" data-snd="${li}">🔊 音 ${it.sound}</button>
+            <div class="phonics-examples">
+              ${it.examples.map((e, ei) => `
+                <span class="phon-ex">
+                  <button class="chip" type="button" data-word="${e.w}">🔊 ${e.w} <small>${e.zh}</small></button>
+                  ${e.seg ? `<button class="chip blend" type="button" data-li="${li}" data-ei="${ei}">🔡 拼讀</button>` : ``}
+                </span>`).join("")}
+            </div></div>`).join("");
+      }
+      // 用 Azure 真人聲依序唸每個 IPA 音，最後唸整個字（拼讀）
+      function speakBlend(seg, word) {
+        let i = 0;
+        (function next() {
+          if (i >= seg.length) { setTimeout(() => speak(word, "together"), 200); return; }
+          const ph = seg[i++];
+          speak(ph, "together", () => setTimeout(next, 180), ph); // text=ph, ipa=ph
+        })();
+      }
+
+      function renderGrammar() {
+        el("gramRule").textContent = `${grammar.title} — ${grammar.rule}`;
+        el("gramLines").innerHTML = grammar.examples.map((ex, i) => {
+          const html = ex.text.replace(/\b(am|are|is)\b/, "<b>$1</b>");
+          return `<div class="gram-line" data-gram="${i}"><div><div class="en">${html}</div><div class="zh">${ex.zh}</div></div><div class="play">🔊</div></div>`;
+        }).join("");
+      }
+
+      function switchTab(name) {
+        stopSpeaking(); state.playingAll = false;
+        document.querySelectorAll("[data-tab]").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
+        document.querySelectorAll("[data-panel]").forEach((p) => p.classList.toggle("active", p.dataset.panel === name));
+      }
+
+      document.querySelector("nav.tabs").addEventListener("click", (e) => {
+        const b = e.target.closest("[data-tab]"); if (!b) return;
+        unlockAudio(); switchTab(b.dataset.tab);
+      });
+      el("playAllButton").addEventListener("click", () => { el("hint").textContent = "故事播放中…每句聽完會打 ✓。"; playAllFrom(0); });
+      el("pauseButton").addEventListener("click", () => { state.playingAll = false; stopSpeaking(); renderStory(); el("hint").textContent = "故事暫停了。可再按「聽整段故事」或點一句單獨聽。"; });
+      el("replayButton").addEventListener("click", () => playOne(state.index));
+      el("nextButton").addEventListener("click", () => playOne((state.index + 1) % dialogueLines.length));
+      el("lineList").addEventListener("click", (e) => { const b = e.target.closest("[data-line]"); if (b) playOne(Number(b.dataset.line)); });
+      el("vocabGrid").addEventListener("click", (e) => { const b = e.target.closest("[data-vocab]"); if (b) playVocab(Number(b.dataset.vocab)); });
+      el("phonicsList").addEventListener("click", (e) => {
+        const bl = e.target.closest("[data-ei]");
+        if (bl) { const it = phonics.items[+bl.dataset.li], ex = it.examples[+bl.dataset.ei]; speakBlend(ex.seg, ex.w); return; }
+        const w = e.target.closest("[data-word]"); if (w) { speak(w.dataset.word, "together"); return; }
+        const sn = e.target.closest("[data-snd]"); if (sn) { const it = phonics.items[+sn.dataset.snd]; speak(it.ipa, "together", null, it.ipa); return; }
+        const l = e.target.closest("[data-letter]"); if (l) { const it = phonics.items[+l.dataset.letter]; speak(it.letter.charAt(0), "together", null, it.nameIpa); return; }
+      });
+      el("gramLines").addEventListener("click", (e) => { const b = e.target.closest("[data-gram]"); if (b) speak(grammar.examples[Number(b.dataset.gram)].text, "abby"); });
+
+      window.speechSynthesis?.getVoices?.();
+      warmTTS();
+      renderStory(); renderVocab(); renderPhonics(); renderGrammar();
+    </script>
+  </body>
+</html>

@@ -241,42 +241,78 @@ export const phonics = {
     {
       "letter": "Jj",
       "sound": "/dʒ/",
+      "ipa": "dʒ",
+      "nameIpa": "dʒeɪ",
       "examples": [
         {
           "w": "jet",
-          "zh": "噴射機"
+          "zh": "噴射機",
+          "seg": [
+            "dʒ",
+            "ɛ",
+            "t"
+          ]
         },
         {
           "w": "jar",
-          "zh": "罐子"
+          "zh": "罐子",
+          "seg": [
+            "dʒ",
+            "ɑr"
+          ]
         }
       ]
     },
     {
       "letter": "Kk",
       "sound": "/k/",
+      "ipa": "k",
+      "nameIpa": "keɪ",
       "examples": [
         {
           "w": "kid",
-          "zh": "小孩"
+          "zh": "小孩",
+          "seg": [
+            "k",
+            "ɪ",
+            "d"
+          ]
         },
         {
           "w": "keg",
-          "zh": "小桶"
+          "zh": "小桶",
+          "seg": [
+            "k",
+            "ɛ",
+            "g"
+          ]
         }
       ]
     },
     {
       "letter": "Ll",
       "sound": "/l/",
+      "ipa": "l",
+      "nameIpa": "ɛl",
       "examples": [
         {
           "w": "lamp",
-          "zh": "燈"
+          "zh": "燈",
+          "seg": [
+            "l",
+            "æ",
+            "m",
+            "p"
+          ]
         },
         {
           "w": "wall",
-          "zh": "牆"
+          "zh": "牆",
+          "seg": [
+            "w",
+            "ɔ",
+            "l"
+          ]
         }
       ]
     }

@@ -81,7 +81,9 @@
       .phonics-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px; margin-bottom: 12px; }
       .phonics-letter { font-size: 46px; font-weight: 950; color: var(--accent-dark); min-width: 90px; cursor: pointer; background: transparent; border: 0; }
       .phonics-sound { color: var(--muted); font-weight: 800; }
-      .phonics-examples { display: flex; gap: 8px; flex-wrap: wrap; }
+      .phonics-examples { display: flex; gap: 10px; flex-wrap: wrap; }
+      .phon-ex { display: inline-flex; gap: 4px; align-items: center; border: 1px dashed var(--line); border-radius: 10px; padding: 4px; }
+      .chip.blend { background: var(--accent); color: #fff; }
       .chip { border: 1px solid var(--line); border-radius: 999px; background: var(--mint); color: var(--accent-dark); padding: 8px 14px; cursor: pointer; font-weight: 800; min-height: 40px; }
 
       .gram-rule { border-left: 5px solid var(--accent); background: #fff; border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; color: var(--ink); font-weight: 700; }
@@ -168,7 +170,7 @@
     </main>
 
     <script type="module">
-      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit2.mjs?v=v1-unit2-5-20260627";
+      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit2.mjs?v=v3-phonics-20260627";
 
       const HEARD_KEY = "joy-unit2-heard";
       const VOCAB_KEY = "joy-unit2-vocab-heard";
@@ -223,20 +225,20 @@
         u.onend = () => onEnd?.();
         window.speechSynthesis.speak(u);
       }
-      async function speak(text, role, onEnd) {
+      async function speak(text, role, onEnd, ipa) {
         unlockAudio();
         stopSpeaking();
         const voice = azureVoiceForRole(role);
         if (azureOK) {
           try {
-            const key = `${voice}|${text}`;
+            const key = `${voice}|${ipa || ""}|${text}`;
             let url = ttsCache.get(key);
             if (!url) {
               showVoiceLoading();
               const response = await fetch(`${TTS_BASE}/api/tts`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text, voice }),
+                body: JSON.stringify(ipa ? { text, voice, ipa } : { text, voice }),
               });
               if (!response.ok) throw new Error(`tts ${response.status}`);
               url = URL.createObjectURL(await response.blob());
@@ -309,13 +311,26 @@
       }
 
       function renderPhonics() {
-        el("phonicsList").innerHTML = phonics.items.map((it) => `
+        el("phonicsList").innerHTML = phonics.items.map((it, li) => `
           <div class="phonics-row">
-            <button class="phonics-letter" type="button" data-letter="${it.letter}">${it.letter}</button>
-            <span class="phonics-sound">${it.sound}</span>
+            <button class="phonics-letter" type="button" data-letter="${li}">${it.letter}</button>
+            <button class="chip" type="button" data-snd="${li}">🔊 音 ${it.sound}</button>
             <div class="phonics-examples">
-              ${it.examples.map((e) => `<button class="chip" type="button" data-word="${e.w}">${e.w} <small>${e.zh}</small></button>`).join("")}
+              ${it.examples.map((e, ei) => `
+                <span class="phon-ex">
+                  <button class="chip" type="button" data-word="${e.w}">🔊 ${e.w} <small>${e.zh}</small></button>
+                  ${e.seg ? `<button class="chip blend" type="button" data-li="${li}" data-ei="${ei}">🔡 拼讀</button>` : ``}
+                </span>`).join("")}
             </div></div>`).join("");
+      }
+      // 用 Azure 真人聲依序唸每個 IPA 音，最後唸整個字（拼讀）
+      function speakBlend(seg, word) {
+        let i = 0;
+        (function next() {
+          if (i >= seg.length) { setTimeout(() => speak(word, "together"), 200); return; }
+          const ph = seg[i++];
+          speak(ph, "together", () => setTimeout(next, 180), ph); // text=ph, ipa=ph
+        })();
       }
 
       function renderGrammar() {
@@ -343,8 +358,11 @@
       el("lineList").addEventListener("click", (e) => { const b = e.target.closest("[data-line]"); if (b) playOne(Number(b.dataset.line)); });
       el("vocabGrid").addEventListener("click", (e) => { const b = e.target.closest("[data-vocab]"); if (b) playVocab(Number(b.dataset.vocab)); });
       el("phonicsList").addEventListener("click", (e) => {
+        const bl = e.target.closest("[data-ei]");
+        if (bl) { const it = phonics.items[+bl.dataset.li], ex = it.examples[+bl.dataset.ei]; speakBlend(ex.seg, ex.w); return; }
         const w = e.target.closest("[data-word]"); if (w) { speak(w.dataset.word, "together"); return; }
-        const l = e.target.closest("[data-letter]"); if (l) speak(l.dataset.letter.charAt(0), "together");
+        const sn = e.target.closest("[data-snd]"); if (sn) { const it = phonics.items[+sn.dataset.snd]; speak(it.ipa, "together", null, it.ipa); return; }
+        const l = e.target.closest("[data-letter]"); if (l) { const it = phonics.items[+l.dataset.letter]; speak(it.letter.charAt(0), "together", null, it.nameIpa); return; }
       });
       el("gramLines").addEventListener("click", (e) => { const b = e.target.closest("[data-gram]"); if (b) speak(grammar.examples[Number(b.dataset.gram)].text, "abby"); });
 

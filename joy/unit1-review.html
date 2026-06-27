@@ -118,6 +118,10 @@ var SCORE_KEY="joy-unit1-scores";
 function loadScores(){ try{ var a=JSON.parse(localStorage.getItem(SCORE_KEY)||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
 function saveScores(a){ try{ localStorage.setItem(SCORE_KEY, JSON.stringify(a)); }catch(e){} }
 var scores = loadScores();
+var VOCAB_KEY="joy-unit1-vocab";
+function loadVocab(){ try{ var a=JSON.parse(localStorage.getItem(VOCAB_KEY)||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function saveVocab(a){ try{ localStorage.setItem(VOCAB_KEY, JSON.stringify(a)); }catch(e){} }
+var vScores = loadVocab();
 
 /* ===== 示範語音：只用 speechSynthesis（不用任何 HTML5 Audio） ===== */
 function pickVoice(role){
@@ -235,6 +239,7 @@ function buildVocab(){
     html+='<button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button>';
     html+='</div>';
     html+='<div class="out" id="'+id+'-out"></div>';
+    html+='<div class="stars" id="'+id+'-stars">'+starStr(vScores[i]||0)+'</div>';
     html+='</div>';
   });
   document.getElementById('panel-vocab').innerHTML=html;
@@ -243,6 +248,9 @@ function recVocab(i){
   rec('v'+i, function(heard){
     if(!heard) return;
     var s=scoreSpeech(vocab[i].word, heard).stars;
+    vScores[i]=Math.max(vScores[i]||0, s);
+    saveVocab(vScores);
+    document.getElementById('v'+i+'-stars').textContent=starStr(s);
     document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
   });
 }

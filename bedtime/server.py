@@ -75,9 +75,16 @@ def lang_of(voice):
     return "-".join(parts[:2]) if len(parts) >= 2 else "zh-TW"
 
 
-def build_ssml(text, voice=None):
+def build_ssml(text, voice=None, ipa=None):
     voice = voice or AZURE_SPEECH_VOICE
-    escaped = apply_pronunciations(html.escape(text, quote=False), voice)
+    if ipa:
+        # 念指定 IPA 音標的音（給 Joy 預習頁 Phonics 用）。text 當作後備字形。
+        escaped = (
+            f'<phoneme alphabet="ipa" ph="{html.escape(str(ipa), quote=True)}">'
+            f"{html.escape(text, quote=False)}</phoneme>"
+        )
+    else:
+        escaped = apply_pronunciations(html.escape(text, quote=False), voice)
     return (
         '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" '
         f'xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="{html.escape(lang_of(voice), quote=True)}">'
@@ -88,13 +95,13 @@ def build_ssml(text, voice=None):
     ).encode("utf-8")
 
 
-def synthesize(text, voice=None):
+def synthesize(text, voice=None, ipa=None):
     voice = voice or AZURE_SPEECH_VOICE
     key, region = speech_config()
     if not key or not region:
         raise RuntimeError("Azure Speech environment variables are not configured")
 
-    cache_key = hashlib.sha256(f"{voice}\0{text}".encode("utf-8")).hexdigest()
+    cache_key = hashlib.sha256(f"{voice}\0{ipa or ''}\0{text}".encode("utf-8")).hexdigest()
     if cache_key in AUDIO_CACHE:
         AUDIO_CACHE.move_to_end(cache_key)
         return AUDIO_CACHE[cache_key]
@@ -102,7 +109,7 @@ def synthesize(text, voice=None):
     endpoint = f"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1"
     request = urllib.request.Request(
         endpoint,
-        data=build_ssml(text, voice),
+        data=build_ssml(text, voice, ipa),
         method="POST",
         headers={
             "Ocp-Apim-Subscription-Key": key,
@@ -183,13 +190,18 @@ class BedtimeHandler(SimpleHTTPRequestHandler):
             payload = json.loads(self.rfile.read(length))
             text = payload.get("text", "")
             voice = payload.get("voice")
+            ipa = payload.get("ipa")
             if not isinstance(text, str) or not text.strip():
                 raise ValueError("text is required")
             if voice is not None and not isinstance(voice, str):
                 raise ValueError("voice must be a string")
+            if ipa is not None and not isinstance(ipa, str):
+                raise ValueError("ipa must be a string")
+            if ipa is not None and len(ipa) > 64:
+                raise ValueError("ipa too long")
             if len(text) > MAX_TEXT_LENGTH:
                 raise ValueError(f"text exceeds {MAX_TEXT_LENGTH} characters")
-            audio = synthesize(text, voice)
+            audio = synthesize(text, voice, ipa)
             self.send_bytes(200, audio, "audio/mpeg")
         except ValueError as error:
             self.send_bytes(400, json_bytes({"error": str(error)}), "application/json")

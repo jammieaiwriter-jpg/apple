@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>佳音 Joy 練習</title>
+  <!-- 加到主畫面：用一般 Safari 分頁開（不設 standalone，避免影響麥克風辨識） -->
+  <meta name="apple-mobile-web-app-title" content="佳音 Joy" />
+  <meta name="theme-color" content="#207f71" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <style>
+    :root{
+      --ink:#27313f; --muted:#667085; --line:#e7e0d2;
+      --accent:#207f71; --accent-dark:#145a51; --sky:#dff0ff; --rose:#ffe4ec;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0; min-height:100vh; color:var(--ink); padding:24px 18px 40px;
+      font-family:ui-rounded,"SF Pro Rounded","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+      background:linear-gradient(180deg,#fffdf8,#eef6ff);
+    }
+    .wrap{max-width:680px;margin:0 auto;}
+    .logo{font-size:60px;text-align:center;line-height:1;margin-top:8px;}
+    h1{font-size:clamp(28px,7vw,44px);margin:6px 0 2px;text-align:center;}
+    .sub{color:var(--muted);text-align:center;margin:0 0 22px;font-size:16px;}
+    .unit{border:1px solid var(--line);border-radius:18px;background:#fff;padding:18px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.04);}
+    .unit h2{margin:0 0 2px;font-size:22px;color:var(--accent-dark);}
+    .unit .topic{color:var(--muted);font-size:14px;margin-bottom:12px;}
+    .links{display:flex;gap:10px;}
+    a.btn{flex:1;text-decoration:none;text-align:center;border-radius:12px;padding:14px;font-weight:900;font-size:18px;min-height:54px;display:flex;align-items:center;justify-content:center;gap:6px;}
+    a.preview{background:linear-gradient(180deg,#fff,var(--sky));color:var(--accent-dark);border:1px solid var(--line);}
+    a.review{background:var(--accent);color:#fff;}
+    .note{margin-top:24px;color:var(--muted);font-size:13px;line-height:1.6;border-top:1px dashed var(--line);padding-top:14px;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">🌟</div>
+  <h1>佳音 Joy 練習</h1>
+  <p class="sub">選一課開始 ✨</p>
+  <div id="units"></div>
+
+  <p class="note">
+    💡 加到 iPad 桌面：在瀏覽器按「分享 → 加入主畫面」，之後點圖示就能直接進來。<br>
+    🎤 複習頁要用麥克風評分：建議用 <b>Chrome</b>；若用 Safari，請先到「設定 → 一般 → 鍵盤 →
+    開啟『啟用聽寫』」。請用瀏覽器分頁開，不要用 standalone。
+  </p>
+</div>
+
+<script>
+/* 新增單元只要在這裡加一筆（review 的 ?v= 每次改複習頁就更新，iPad 才會抓新檔） */
+var UNITS = [
+  { n:1, topic:"打招呼 / 自我介紹 / be 動詞", preview:"unit1-preview.html", review:"unit1-review.html?v=v22-full-20260625" },
+];
+
+var html = "";
+UNITS.forEach(function(u){
+  html += '<div class="unit">';
+  html += '<h2>Unit ' + u.n + '</h2>';
+  html += '<div class="topic">' + u.topic + '</div>';
+  html += '<div class="links">';
+  html += '<a class="btn preview" href="./' + u.preview + '">🎧 預習</a>';
+  html += '<a class="btn review" href="./' + u.review + '">🎤 複習</a>';
+  html += '</div></div>';
+});
+document.getElementById("units").innerHTML = html;
+</script>
+</body>
+</html>

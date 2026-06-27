@@ -167,8 +167,11 @@ function rec(id, cb){
   };
   if(start) start.disabled=true;
   if(stop){ stop.disabled=false; stop.onclick=function(){ stopped=true; try{r.stop();}catch(_){} setTimeout(function(){ try{r.abort();}catch(_){}} ,1200); }; }
+  // iOS：語音合成(聽)和辨識(念)共用音訊子系統。先取消合成、留一點時間讓音訊通道從「播放」釋放成「錄音」，再啟動辨識，
+  // 否則先按過「聽」就會收音中卻收不到字。
+  try{ window.speechSynthesis.cancel(); }catch(_){}
   if(out) out.textContent='🎙 啟動中…';
-  try{ r.start(); }catch(e){ if(out) out.textContent='請再按一次「開始念」。'; }
+  setTimeout(function(){ try{ r.start(); }catch(e){ if(start) start.disabled=false; if(stop) stop.disabled=true; if(out) out.textContent='請再按一次「開始念」。'; } }, 350);
 }
 
 /* ===== 畫面 ===== */

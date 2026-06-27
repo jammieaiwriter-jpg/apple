@@ -85,7 +85,7 @@ var dialogueLines = [
 var vocab = [
   {word:"hi", kk:"[haɪ]", zh:"嗨"},
   {word:"hello", kk:"[hɛˈlo]", zh:"哈囉"},
-  {word:"I", kk:"[aɪ]", zh:"我"},
+  {word:"I", kk:"[aɪ]", zh:"我", say:"eye"},
   {word:"you", kk:"[ju]", zh:"你"},
   {word:"your", kk:"[jʊr]", zh:"你的"},
   {word:"am", kk:"[æm]", zh:"是（配 I）"},
@@ -242,7 +242,7 @@ function buildVocab(){
     html+='<div class="en">'+w.word+' <span class="kk">'+w.kk+'</span></div>';
     html+='<div class="zh">'+w.zh+'</div>';
     html+='<div class="row">';
-    html+='<button class="act listen" onclick="speak('+JSON.stringify(w.word).replace(/"/g,'&quot;')+',\'together\')">🔊 聽</button>';
+    html+='<button class="act listen" onclick="speak('+JSON.stringify(w.say||w.word).replace(/"/g,'&quot;')+',\'together\')">🔊 聽</button>';
     html+='<button class="act start" id="'+id+'-start" onclick="recVocab('+i+')">🎤 開始念</button>';
     html+='<button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button>';
     html+='</div>';
@@ -283,14 +283,14 @@ function wgRender(){
   var html='<div class="card" style="text-align:center">';
   html+='<div class="zh">第 '+(wgPos+1)+' / '+wgOrder.length+' 題　答對 '+wgScore+'</div>';
   html+='<div class="en">聽一聽，點出那個字 👂</div>';
-  html+='<div class="row" style="justify-content:center"><button class="act listen" onclick="speak('+JSON.stringify(vocab[target].word).replace(/"/g,'&quot;')+',\'together\')">🔊 再聽一次</button></div>';
+  html+='<div class="row" style="justify-content:center"><button class="act listen" onclick="speak('+JSON.stringify(vocab[target].say||vocab[target].word).replace(/"/g,'&quot;')+',\'together\')">🔊 再聽一次</button></div>';
   html+='<div id="wg-grid" class="game-grid">';
   vocab.forEach(function(w,i){
     html+='<button class="opt" onclick="wgPick('+i+','+target+')">'+w.word+'</button>';
   });
   html+='</div><div class="out" id="wg-out"></div></div>';
   p.innerHTML=html;
-  setTimeout(function(){ speak(vocab[target].word,'together'); }, 250);
+  setTimeout(function(){ speak(vocab[target].say||vocab[target].word,'together'); }, 250);
 }
 function wgPick(i,target){
   var out=document.getElementById('wg-out');
@@ -301,7 +301,7 @@ function wgPick(i,target){
     setTimeout(wgRender, 900);
   }else{
     out.textContent='再聽一次，找找看 🙂';
-    speak(vocab[target].word,'together');
+    speak(vocab[target].say||vocab[target].word,'together');
   }
 }
 

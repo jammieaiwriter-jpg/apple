@@ -168,7 +168,7 @@
     </main>
 
     <script type="module">
-      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit1.mjs?v=v5-azure-20260623";
+      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit1.mjs?v=v6-azure-20260627";
 
       const HEARD_KEY = "joy-unit1-heard";
       const VOCAB_KEY = "joy-unit1-vocab-heard";
@@ -198,7 +198,8 @@
         el("hint").textContent = "載入語音中…第一次可能要等 Render 冷啟動。";
       }
       function warmTTS() {
-        fetch(`${TTS_BASE}/api/tts/status`, { cache: "no-store" }).catch(() => { azureOK = false; });
+        // 只是暖機叫醒 Render，失敗(冷啟動逾時)也不要關掉 Azure，否則 Nick 等真人聲會退回機械音
+        fetch(`${TTS_BASE}/api/tts/status`, { cache: "no-store" }).catch(() => {});
       }
       function unlockAudio() {
         if (state.audioUnlocked) return;
@@ -250,7 +251,7 @@
             await audio.play();
             return;
           } catch {
-            azureOK = false;
+            // 這一句失敗就退回瀏覽器語音，但不要永久關閉 Azure（冷啟動暖了之後下一句還能用真人聲）
             if (activeAzureAudio) activeAzureAudio = null;
           }
         }
@@ -303,7 +304,7 @@
             <span class="speaker-emoji">🔊</span></button>`).join("");
       }
       function playVocab(i) {
-        speak(vocab[i].word, "together");
+        speak(vocab[i].say || vocab[i].word, "together");
         if (!state.vocabHeard[i]) { state.vocabHeard[i] = true; saveFlags(window.localStorage, state.vocabHeard, VOCAB_KEY); renderVocab(); }
       }
 

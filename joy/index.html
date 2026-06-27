@@ -38,7 +38,7 @@
   <div class="logo">🌟</div>
   <h1>佳音 Joy 練習</h1>
   <p class="sub">選一課開始 ✨</p>
-  <div id="units"></div>
+  <div id="units"><p class="sub">載入課程清單中…</p></div>
 
   <p class="note">
     💡 加到 iPad 桌面：在瀏覽器按「分享 → 加入主畫面」，之後點圖示就能直接進來。<br>
@@ -48,22 +48,28 @@
 </div>
 
 <script>
-/* 新增單元只要在這裡加一筆（review 的 ?v= 每次改複習頁就更新，iPad 才會抓新檔） */
-var UNITS = [
-  { n:1, topic:"打招呼 / 自我介紹 / be 動詞", preview:"unit1-preview.html", review:"unit1-review.html?v=v22-full-20260625" },
+/* 課程清單放在 units.json，每次開都強制抓最新 → 新增單元免重新整理。
+   離線或抓不到時，用下面的備援清單。 */
+var FALLBACK = [
+  { n:1, topic:"打招呼 / 自我介紹 / be 動詞", preview:"unit1-preview.html", review:"unit1-review.html?v=v22-full-20260625" }
 ];
-
-var html = "";
-UNITS.forEach(function(u){
-  html += '<div class="unit">';
-  html += '<h2>Unit ' + u.n + '</h2>';
-  html += '<div class="topic">' + u.topic + '</div>';
-  html += '<div class="links">';
-  html += '<a class="btn preview" href="./' + u.preview + '">🎧 預習</a>';
-  html += '<a class="btn review" href="./' + u.review + '">🎤 複習</a>';
-  html += '</div></div>';
-});
-document.getElementById("units").innerHTML = html;
+function render(units){
+  var html = "";
+  units.forEach(function(u){
+    html += '<div class="unit">';
+    html += '<h2>Unit ' + u.n + '</h2>';
+    html += '<div class="topic">' + (u.topic||"") + '</div>';
+    html += '<div class="links">';
+    html += '<a class="btn preview" href="./' + u.preview + '">🎧 預習</a>';
+    html += '<a class="btn review" href="./' + u.review + '">🎤 複習</a>';
+    html += '</div></div>';
+  });
+  document.getElementById("units").innerHTML = html;
+}
+fetch("./units.json?t=" + Date.now(), { cache: "no-store" })
+  .then(function(r){ if(!r.ok) throw new Error("http "+r.status); return r.json(); })
+  .then(function(data){ render((data && data.units) || FALLBACK); })
+  .catch(function(){ render(FALLBACK); });
 </script>
 </body>
 </html>

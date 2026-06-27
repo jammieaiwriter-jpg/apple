@@ -206,8 +206,23 @@ def main():
 
     catalog = load_catalog()
     index = story_index(catalog)
-    # default: every catalog id that actually has a story file (skip planning-only weeks)
-    ids = args.stories or [sid for sid in index if (STORIES / f"{sid}.json").exists()]
+    # Default publishing check: adult_verified rotation stories that actually
+    # have files. Drafts may be incomplete while they are being written; pass
+    # explicit ids to validate draft/review stories.
+    if args.stories:
+        ids = args.stories
+    else:
+        ids = []
+        for ep in catalog["episodes"]:
+            for entry in ep.get("stories") or []:
+                sid = entry.get("id")
+                if (
+                    sid
+                    and entry.get("available")
+                    and entry.get("status") == "adult_verified"
+                    and (STORIES / f"{sid}.json").exists()
+                ):
+                    ids.append(sid)
 
     loaded = {}
     # pre-load so shape-adjacency can see the previous story even when checking one id

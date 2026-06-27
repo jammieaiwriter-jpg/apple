@@ -222,11 +222,14 @@ def main():
     catalog = json.loads((BASE / "stories" / "catalog.json").read_text(encoding="utf-8"))
     story_ids = available_story_ids(catalog)
     if args.stories:
-        wanted = set(args.stories)
-        missing = wanted - set(story_ids)
-        if missing:
-            print(f"warning: not in available catalog, skipping: {', '.join(sorted(missing))}")
-        story_ids = [sid for sid in story_ids if sid in wanted]
+        available = set(story_ids)
+        story_ids = []
+        for sid in args.stories:
+            if sid in available or (BASE / "stories" / f"{sid}.json").exists():
+                if sid not in story_ids:
+                    story_ids.append(sid)
+            else:
+                print(f"warning: story not found, skipping: {sid}")
 
     combined = 0
     total_bytes = 0

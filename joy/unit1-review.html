@@ -154,21 +154,30 @@ function saveVocab(a){ try{ localStorage.setItem(VOCAB_KEY, JSON.stringify(a)); 
 var vScores = loadVocab();
 
 /* ===== 示範語音：只用 speechSynthesis（不用任何 HTML5 Audio） ===== */
+var BAD_VOICE=/Fred|Albert|Zarvox|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed|Rishi/i;
 function pickVoice(role){
   var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];
-  var en=vs.filter(function(v){return /en[-_]US/i.test(v.lang);});
+  var en=vs.filter(function(v){return /en[-_](US|GB|AU)/i.test(v.lang);});
   if(!en.length) return null;
-  var pref = role==="nick"?["Aaron","Arthur","Daniel","Samantha"]
-    : role==="fifi"?["Karen","Moira","Samantha","Nicky"]
-    : ["Samantha","Nicky","Karen","Aaron"];
-  for(var i=0;i<pref.length;i++){ var hit=en.find(function(v){return v.name.indexOf(pref[i])>=0;}); if(hit) return hit; }
-  return en.find(function(v){return !/Fred|Albert|Zarvox/i.test(v.name);})||en[0];
+  var good=en.filter(function(v){return !BAD_VOICE.test(v.name);});
+  if(!good.length) good=en;
+  // 同名若有「增強/進階/Siri」版優先（音質好很多）
+  function best(list){ return list.find(function(v){return /enhanced|premium|siri/i.test(v.name+'|'+(v.voiceURI||''));}) || list[0]; }
+  var pref = role==="nick"?["Aaron","Tom","Nathan","Arthur","Daniel","Alex"]
+    : role==="fifi"?["Karen","Tessa","Moira","Samantha","Allison"]
+    : ["Samantha","Allison","Ava","Karen","Aaron"];
+  for(var i=0;i<pref.length;i++){
+    var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;});
+    if(hits.length) return best(hits);
+  }
+  return best(good);
 }
 function speak(text, role){
   try{
     window.speechSynthesis.cancel();
     var u=new SpeechSynthesisUtterance(text);
-    u.lang="en-US"; u.rate=0.8; u.pitch=1; u.volume=1;
+    u.lang="en-US"; u.rate=0.82; u.volume=1;
+    u.pitch = role==="nick"?0.85 : (role==="fifi"?1.15 : 1); // Nick 壓低一點當男孩、Fifi 高一點
     var v=pickVoice(role); if(v) u.voice=v;
     window.speechSynthesis.speak(u);
   }catch(e){}

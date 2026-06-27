@@ -56,12 +56,16 @@
   <div class="tabs">
     <button id="tab-dialog" class="active" onclick="switchTab('dialog')">對話</button>
     <button id="tab-vocab" onclick="switchTab('vocab')">單字</button>
+    <button id="tab-phonics" onclick="switchTab('phonics')">發音</button>
+    <button id="tab-grammar" onclick="switchTab('grammar')">文法</button>
     <button id="tab-wordgame" onclick="switchTab('wordgame')">單字遊戲</button>
     <button id="tab-talkgame" onclick="switchTab('talkgame')">對話遊戲</button>
   </div>
 
   <div id="panel-dialog"></div>
   <div id="panel-vocab" class="hide"></div>
+  <div id="panel-phonics" class="hide"></div>
+  <div id="panel-grammar" class="hide"></div>
   <div id="panel-wordgame" class="hide"></div>
   <div id="panel-talkgame" class="hide"></div>
 </div>
@@ -97,6 +101,24 @@ var vocab = [
   {word:"Nick", kk:"[nɪk]", zh:"尼克"},
   {word:"Abby", kk:"[ˈæbɪ]", zh:"艾比"},
 ];
+/* Phonics：Unit 1 = Aa–Cc */
+var phonics = [
+  {letter:"Aa", sound:"/æ/", examples:[{w:"ant", zh:"螞蟻"},{w:"mad", zh:"生氣的"}]},
+  {letter:"Bb", sound:"/b/", examples:[{w:"bag", zh:"袋子"},{w:"big", zh:"大的"}]},
+  {letter:"Cc", sound:"/k/", examples:[{w:"cat", zh:"貓"},{w:"cute", zh:"可愛的"}]},
+];
+/* 文法：be 動詞 am/is/are */
+var grammar = {
+  rule:"I 配 am；you 配 are；he / she / it 配 is。",
+  quiz:[
+    {subject:"I", answer:"am", full:"I am Nick.", zh:"我是 Nick。"},
+    {subject:"You", answer:"are", full:"You are Abby.", zh:"你是 Abby。"},
+    {subject:"She", answer:"is", full:"She is Fifi.", zh:"她是 Fifi。"},
+    {subject:"I", answer:"am", full:"I am happy.", zh:"我很開心。"},
+    {subject:"You", answer:"are", full:"You are good.", zh:"你很棒。"},
+  ],
+};
+var beOptions = ["am","is","are"];
 
 /* ===== 評分（內嵌自 unit1.mjs） ===== */
 var contractions = {"i'm":"i am","im":"i am","what's":"what is","whats":"what is","don't":"do not","dont":"do not","let's":"let us","lets":"let us"};
@@ -350,8 +372,45 @@ function tgPick(picked, answer, q){
   }
 }
 
+/* ===== 發音（聽，不用麥克風） ===== */
+function buildPhonics(){
+  var html='';
+  phonics.forEach(function(p){
+    html+='<div class="card">';
+    html+='<div class="en">'+p.letter+' <span class="kk">'+p.sound+'</span> ';
+    html+='<button class="act listen" onclick="speak('+JSON.stringify(p.letter[0]).replace(/"/g,'&quot;')+',\'together\')">🔊 字母</button></div>';
+    html+='<div class="row" style="margin-top:8px">';
+    p.examples.forEach(function(e){
+      html+='<button class="act listen" onclick="speak('+JSON.stringify(e.w).replace(/"/g,'&quot;')+',\'together\')">🔊 '+e.w+'（'+e.zh+'）</button>';
+    });
+    html+='</div></div>';
+  });
+  document.getElementById('panel-phonics').innerHTML=html;
+}
+
+/* ===== 文法 be 動詞（選詞填空，不用麥克風） ===== */
+function buildGrammar(){
+  var html='<div class="card"><div class="zh">'+grammar.rule+'</div></div>';
+  grammar.quiz.forEach(function(q,i){
+    html+='<div class="card">';
+    html+='<div class="en">'+q.subject+' ___ '+q.full.replace(q.subject+' '+q.answer+' ','').replace(/\.$/,'')+'.</div>';
+    html+='<div class="zh">'+q.zh+'</div>';
+    html+='<div class="row">';
+    beOptions.forEach(function(opt){
+      html+='<button class="opt" onclick="grPick('+i+',\''+opt+'\')">'+opt+'</button>';
+    });
+    html+='</div><div class="out" id="gr'+i+'-out"></div></div>';
+  });
+  document.getElementById('panel-grammar').innerHTML=html;
+}
+function grPick(i,opt){
+  var q=grammar.quiz[i], out=document.getElementById('gr'+i+'-out');
+  if(opt===q.answer){ out.textContent='✅ 答對了！'+q.full; speak(q.full,'abby'); }
+  else { out.textContent='❌ 再想想看，'+q.subject+' 配哪一個？'; }
+}
+
 function switchTab(t){
-  ['dialog','vocab','wordgame','talkgame'].forEach(function(name){
+  ['dialog','vocab','phonics','grammar','wordgame','talkgame'].forEach(function(name){
     document.getElementById('tab-'+name).classList.toggle('active', t===name);
     document.getElementById('panel-'+name).classList.toggle('hide', t!==name);
   });
@@ -361,6 +420,8 @@ function switchTab(t){
 
 buildDialog();
 buildVocab();
+buildPhonics();
+buildGrammar();
 updateProgress();
 // 預先載入語音清單（iOS 有時要先觸發一次）
 if(window.speechSynthesis) speechSynthesis.getVoices();

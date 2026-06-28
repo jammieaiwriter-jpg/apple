@@ -39,6 +39,8 @@
     .start{background:var(--accent);color:#fff;}
     .stop{background:#b54708;color:#fff;}
     button:disabled{opacity:.5;cursor:not-allowed;}
+    .next{border:0;border-radius:10px;padding:13px 18px;min-height:50px;font-weight:900;font-size:17px;cursor:pointer;background:var(--accent);color:#fff;margin-top:12px;}
+    .big{font-size:clamp(28px,7vw,42px);font-weight:950;color:var(--accent-dark);margin:8px 0;}
     .out{margin-top:10px;font-size:16px;min-height:24px;color:var(--muted);}
     .stars{font-size:26px;letter-spacing:2px;margin-top:6px;}
     .hide{display:none;}
@@ -69,7 +71,6 @@
   <div id="panel-wordgame" class="hide"></div>
   <div id="panel-talkgame" class="hide"></div>
 </div>
-
 <script>
 /* ===== Unit 17 內容（內嵌，不用模組） ===== */
 var dialogueLines = [
@@ -299,11 +300,12 @@ function scoreSpeech(expected, heard){
 var SCORE_KEY="joy-unit17-scores";
 function loadScores(){ try{ var a=JSON.parse(localStorage.getItem(SCORE_KEY)||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
 function saveScores(a){ try{ localStorage.setItem(SCORE_KEY, JSON.stringify(a)); }catch(e){} }
-var scores = loadScores();
+// 每次打開都重新作答；舊 localStorage 星星不再帶入，避免孩子靠上一輪 5 顆星直接 pass。
+var scores = [];
 var VOCAB_KEY="joy-unit17-vocab";
 function loadVocab(){ try{ var a=JSON.parse(localStorage.getItem(VOCAB_KEY)||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
 function saveVocab(a){ try{ localStorage.setItem(VOCAB_KEY, JSON.stringify(a)); }catch(e){} }
-var vScores = loadVocab();
+var vScores = [];
 
 /* ===== 示範語音：只用 speechSynthesis（不用任何 HTML5 Audio） ===== */
 var BAD_VOICE=/Fred|Albert|Zarvox|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed|Rishi/i;
@@ -414,7 +416,6 @@ function recLine(i){
     if(!heard) return;
     var s=scoreSpeech(dialogueLines[i].text, heard).stars;
     scores[i]=Math.max(scores[i]||0, s);
-    saveScores(scores);
     document.getElementById('d'+i+'-stars').textContent=starStr(s);
     document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
     updateProgress();
@@ -444,7 +445,6 @@ function recVocab(i){
     if(!heard) return;
     var s=scoreSpeech(vocab[i].word, heard).stars;
     vScores[i]=Math.max(vScores[i]||0, s);
-    saveVocab(vScores);
     document.getElementById('v'+i+'-stars').textContent=starStr(s);
     document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
   });
@@ -452,46 +452,88 @@ function recVocab(i){
 
 /* ===== 小遊戲共用 ===== */
 function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+function disableAll(box){ [].forEach.call(box.querySelectorAll('button'), function(b){ b.disabled=true; }); }
 
-/* ===== 單字遊戲：念一個字，點對那個字 ===== */
-var wgOrder=[], wgPos=0, wgScore=0;
-function wgStart(){
-  wgOrder=shuffle(vocab.map(function(_,i){return i;}));
-  wgPos=0; wgScore=0;
-  wgRender();
+/* ===== 通用錯題闖關：作答一輪 → 開始錯題挑戰 → 全清才恭喜完成 ===== */
+var CH={};
+function Challenge(key, panelId, build){
+  this.key=key; this.panelId=panelId; this.build=build; CH[key]=this;
 }
-function wgRender(){
-  var p=document.getElementById('panel-wordgame');
-  if(wgPos>=wgOrder.length){
-    p.innerHTML='<div class="card" style="text-align:center"><div class="en">🎉 全部過關！</div><div class="zh">答對 '+wgScore+' / '+wgOrder.length+'</div><div class="row" style="justify-content:center"><button class="act start" onclick="wgStart()">再玩一次</button></div></div>';
+Challenge.prototype.start=function(){
+  this.qs=this.build();
+  this.order=shuffle(this.qs.map(function(_,i){return i;}));
+  this.phase='answer'; this.pos=0; this.correct=0; this.total=this.qs.length; this.wrong=[];
+  this.render();
+};
+Challenge.prototype.render=function(){
+  var self=this, p=document.getElementById(this.panelId);
+  if(this.phase==='answer' && this.pos>=this.order.length){
+    if(!this.wrong.length){ this.congrats(); return; }
+    p.innerHTML='<div class="card" style="text-align:center"><div class="big">✅ 作答已完成！</div>'
+      +'<div class="zh">答對 '+this.correct+' / '+this.total+'，還有 '+this.wrong.length+' 題要再練一次。</div>'
+      +'<button class="next" id="'+this.key+'-retry">開始錯題挑戰 →</button></div>';
+    document.getElementById(this.key+'-retry').onclick=function(){ self.phase='retry'; self.pos=0; self.render(); };
     return;
   }
-  var target=wgOrder[wgPos];
-  var html='<div class="card" style="text-align:center">';
-  html+='<div class="zh">第 '+(wgPos+1)+' / '+wgOrder.length+' 題　答對 '+wgScore+'</div>';
-  html+='<div class="en">聽一聽，點出那個字 👂</div>';
-  html+='<div class="row" style="justify-content:center"><button class="act listen" onclick="speak('+JSON.stringify(vocab[target].say||vocab[target].word).replace(/"/g,'&quot;')+',\'together\')">🔊 再聽一次</button></div>';
-  html+='<div id="wg-grid" class="game-grid">';
-  vocab.forEach(function(w,i){
-    html+='<button class="opt" onclick="wgPick('+i+','+target+')">'+w.word+'</button>';
-  });
-  html+='</div><div class="out" id="wg-out"></div></div>';
-  p.innerHTML=html;
-  setTimeout(function(){ speak(vocab[target].say||vocab[target].word,'together'); }, 250);
-}
-function wgPick(i,target){
-  var out=document.getElementById('wg-out');
-  if(i===target){
-    wgScore++;
-    out.textContent='✅ 答對了！'+vocab[target].word;
-    wgPos++;
-    speak(vocab[target].say||vocab[target].word,'together', wgRender); // 念完獎勵字再下一題
-  }else{
-    out.textContent='❌ 答錯了，你點的是「'+vocab[i].word+'」，再試試看 🙂';
-    // 先把點錯的字念完，再念一次題目讓她重找（用 onEnd 串接，長字也不會被打斷）
-    speak(vocab[i].say||vocab[i].word,'together', function(){ speak(vocab[target].say||vocab[target].word,'together'); });
+  if(this.phase==='retry'){
+    if(!this.wrong.length){ this.congrats(); return; }
+    if(this.pos>=this.wrong.length) this.pos=0;
+    this.ask(this.wrong[this.pos], 'retry');
+    return;
   }
-}
+  this.ask(this.qs[this.order[this.pos]], 'answer');
+};
+Challenge.prototype.ask=function(q, phase){
+  var self=this, p=document.getElementById(this.panelId);
+  var head = phase==='answer'
+    ? '<div class="zh">第 '+(this.pos+1)+' / '+this.total+' 題　答對 '+this.correct+'</div>'
+    : '<div class="zh">🔁 錯題挑戰　還有 '+this.wrong.length+' 題</div>';
+  p.innerHTML='<div class="card" style="text-align:center">'+head+'<div class="ch-q"></div><div class="out ch-out"></div><div class="ch-foot"></div></div>';
+  var settled=false;
+  q.mount(p.querySelector('.ch-q'), p.querySelector('.ch-out'), phase, function(firstTryCorrect){
+    if(settled) return; settled=true;
+    if(phase==='answer'){
+      if(firstTryCorrect) self.correct++;
+      else self.wrong.push(q);
+    }else{
+      var w=self.wrong.indexOf(q); if(w>=0) self.wrong.splice(w,1);
+    }
+    var foot=p.querySelector('.ch-foot');
+    foot.innerHTML='<button class="next">下一題 →</button>';
+    foot.querySelector('button').onclick=function(){ if(phase==='answer') self.pos++; self.render(); };
+  });
+};
+Challenge.prototype.congrats=function(){
+  document.getElementById(this.panelId).innerHTML='<div class="card" style="text-align:center"><div class="big">🎉 恭喜完成！</div><div class="zh">這一關錯題也都過關了。</div><div class="row" style="justify-content:center"><button class="act start" onclick="CH[\''+this.key+'\'].start()">再玩一次</button></div></div>';
+};
+
+/* ===== 單字遊戲：念一個字，點對那個字 ===== */
+function qWord(target){ return { mount:function(qEl,outEl,phase,settle){
+  var firstTry=true;
+  qEl.innerHTML='<div class="en">聽一聽，點出那個字 👂</div>'
+    +'<div class="row" style="justify-content:center"><button class="act listen" id="wg-listen">🔊 再聽一次</button></div>'
+    +'<div id="wg-grid" class="game-grid">'+vocab.map(function(w,i){ return '<button class="opt" data-i="'+i+'">'+w.word+'</button>'; }).join('')+'</div>';
+  document.getElementById('wg-listen').onclick=function(){ speak(vocab[target].say||vocab[target].word,'together'); };
+  var grid=document.getElementById('wg-grid');
+  grid.onclick=function(e){
+    var btn=e.target.closest('button[data-i]'); if(!btn||btn.disabled) return;
+    var i=+btn.dataset.i;
+    if(i===target){
+      outEl.textContent='✅ 答對了！'+vocab[target].word;
+      disableAll(grid);
+      speak(vocab[target].say||vocab[target].word,'together');
+      settle(firstTry);
+    }else{
+      firstTry=false;
+      outEl.textContent='❌ 答錯了，你點的是「'+vocab[i].word+'」，再試試看 🙂';
+      speak(vocab[i].say||vocab[i].word,'together', function(){ speak(vocab[target].say||vocab[target].word,'together'); });
+    }
+  };
+  setTimeout(function(){ speak(vocab[target].say||vocab[target].word,'together'); }, 250);
+}}; }
+
+new Challenge('wordgame','panel-wordgame', function(){ return vocab.map(function(_,i){ return qWord(i); }); });
+function wgStart(){ CH.wordgame.start(); }
 
 /* ===== 對話遊戲：念一句，選對的回答 ===== */
 var talkPairs=[
@@ -520,41 +562,33 @@ var talkPairs=[
     ]
   }
 ];
-var tgOrder=[], tgPos=0, tgScore=0;
-function tgStart(){ tgOrder=shuffle(talkPairs.map(function(_,i){return i;})); tgPos=0; tgScore=0; tgRender(); }
-function tgRender(){
-  var p=document.getElementById('panel-talkgame');
-  if(tgPos>=tgOrder.length){
-    p.innerHTML='<div class="card" style="text-align:center"><div class="en">🎉 全部過關！</div><div class="zh">答對 '+tgScore+' / '+tgOrder.length+'</div><div class="row" style="justify-content:center"><button class="act start" onclick="tgStart()">再玩一次</button></div></div>';
-    return;
-  }
-  var pair=talkPairs[tgOrder[tgPos]];
+function qTalk(pi){ var pair=talkPairs[pi]; return { mount:function(qEl,outEl,phase,settle){
+  var firstTry=true;
   var opts=shuffle([pair.a].concat(pair.d));
-  var html='<div class="card">';
-  html+='<div class="zh" style="text-align:center">第 '+(tgPos+1)+' / '+tgOrder.length+' 題　答對 '+tgScore+'</div>';
-  html+='<div class="en" style="text-align:center">'+pair.q+'</div>';
-  html+='<div class="row" style="justify-content:center"><button class="act listen" onclick="speak('+JSON.stringify(pair.q).replace(/"/g,'&quot;')+',\'nick\')">🔊 再聽一次</button></div>';
-  html+='<div class="zh" style="text-align:center;margin:8px 0">該怎麼回答？👇</div>';
-  opts.forEach(function(o){
-    html+='<button class="opt wide" onclick="tgPick('+JSON.stringify(o).replace(/"/g,'&quot;')+','+JSON.stringify(pair.a).replace(/"/g,'&quot;')+','+JSON.stringify(pair.q).replace(/"/g,'&quot;')+')">'+o+'</button>';
-  });
-  html+='<div class="out" id="tg-out"></div></div>';
-  p.innerHTML=html;
+  qEl.innerHTML='<div class="en">'+pair.q+'</div>'
+    +'<div class="row" style="justify-content:center"><button class="act listen" id="tg-listen">🔊 再聽一次</button></div>'
+    +'<div class="zh" style="text-align:center;margin:8px 0">該怎麼回答？👇</div>'
+    +'<div id="tg-opts">'+opts.map(function(o,k){ return '<button class="opt wide" data-k="'+k+'">'+o+'</button>'; }).join('')+'</div>';
+  document.getElementById('tg-listen').onclick=function(){ speak(pair.q,'nick'); };
+  var box=document.getElementById('tg-opts');
+  box.onclick=function(e){
+    var btn=e.target.closest('button[data-k]'); if(!btn||btn.disabled) return;
+    var picked=opts[+btn.dataset.k];
+    if(picked===pair.a){
+      outEl.textContent='✅ 答對了！';
+      disableAll(box);
+      speak(pair.a,'abby');
+      settle(firstTry);
+    }else{
+      firstTry=false;
+      outEl.textContent='❌ 答錯了，你選的是「'+picked+'」，再試試看 🙂';
+      speak(picked,'abby', function(){ speak(pair.q,'nick'); });
+    }
+  };
   setTimeout(function(){ speak(pair.q,'nick'); }, 250);
-}
-function tgPick(picked, answer, q){
-  var out=document.getElementById('tg-out');
-  if(picked===answer){
-    tgScore++;
-    out.textContent='✅ 答對了！';
-    tgPos++;
-    speak(answer,'abby', tgRender);                         // 念完整句答案再進下一題（不會被切斷）
-  }else{
-    out.textContent='❌ 答錯了，你選的是「'+picked+'」，再試試看 🙂';
-    // 先把選錯的句子念完，再念一次題目讓她重選（onEnd 串接，長句不被打斷）
-    speak(picked,'abby', function(){ speak(q,'nick'); });
-  }
-}
+}}; }
+new Challenge('talkgame','panel-talkgame', function(){ return talkPairs.map(function(_,i){ return qTalk(i); }); });
+function tgStart(){ CH.talkgame.start(); }
 
 /* ===== 發音（聽，不用麥克風） ===== */
 function jatt(x){ return JSON.stringify(x).replace(/"/g,'&quot;'); } // 給 onclick 屬性用的安全字串

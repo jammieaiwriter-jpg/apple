@@ -668,25 +668,41 @@ function phExamples(){
   phonics.forEach(function(p,pi){ (p.examples||[]).forEach(function(e,ei){ arr.push({p:p,pi:pi,e:e,ei:ei}); }); });
   return arr;
 }
+function graphForReview(ex){
+  if(ex.graph && ex.graph.length) return ex.graph;
+  var seg=Array.isArray(ex.seg)?ex.seg:[];
+  var letters=String(ex.w||'').replace(/[^A-Za-z]/g,'').split('');
+  if(!letters.length) return seg.map(function(p){ return {g:p,p:p}; });
+  if(seg.length===letters.length) return letters.map(function(g,i){ return {g:g,p:seg[i]||''}; });
+  if(seg.length===1) return [{g:ex.w,p:seg[0]}];
+  return letters.map(function(g,i){ return {g:g,p:seg[i]||''}; });
+}
+function phTilePool(){
+  var pool=[];
+  phExamples().forEach(function(x){ graphForReview(x.e).forEach(function(gp){ if(gp.p) pool.push(gp); }); });
+  var seen={};
+  return pool.filter(function(gp){ var k=gp.g+'|'+gp.p; if(seen[k]) return false; seen[k]=1; return true; });
+}
 function qPhonics(target){ return { mount:function(qEl,outEl,phase,settle){
   var firstTry=true;
-  var pool=phonics.map(function(_,i){return i;});
-  var opts=shuffle([target.pi].concat(shuffle(pool.filter(function(i){return i!==target.pi;})).slice(0,3)));
-  qEl.innerHTML='<div class="en">聽一聽，這個字是哪個發音？</div>'
-    +'<div class="big">'+target.e.w+'</div>'
+  var graph=graphForReview(target.e).filter(function(gp){return gp.p;});
+  var blank=graph[Math.floor(Math.random()*graph.length)];
+  var opts=shuffle([blank].concat(shuffle(phTilePool().filter(function(gp){return gp.g!==blank.g || gp.p!==blank.p;})).slice(0,3))).slice(0,4);
+  qEl.innerHTML='<div class="en">聽 '+target.e.w+'，選缺少的音塊</div>'
+    +'<div class="big">'+graphForReview(target.e).map(function(gp){ return (gp.g===blank.g && gp.p===blank.p) ? '_' : gp.g; }).join(' ')+'</div>'
     +'<div class="row" style="justify-content:center"><button class="act listen" id="ph-listen">🔊 再聽一次</button></div>'
-    +'<div id="ph-opts" class="game-grid">'+opts.map(function(i){ return '<button class="opt" data-i="'+i+'">'+phonics[i].letter+'<br><span class="kk">'+phonics[i].sound+'</span></button>'; }).join('')+'</div>';
+    +'<div id="ph-opts" class="game-grid">'+opts.map(function(gp,i){ return '<button class="opt" data-i="'+i+'" data-g="'+gp.g+'" data-p="'+gp.p+'">'+gp.g+'</button>'; }).join('')+'</div>';
   document.getElementById('ph-listen').onclick=function(){ speak(target.e.w,'together'); };
   var box=document.getElementById('ph-opts');
   box.onclick=function(e){
     var btn=e.target.closest('button[data-i]'); if(!btn||btn.disabled) return;
-    var i=+btn.dataset.i;
-    if(i===target.pi){
-      outEl.textContent='✅ 答對了！'+target.e.w+' 是 '+target.p.letter+' 的聲音。';
+    var ok=(btn.dataset.g===blank.g && btn.dataset.p===blank.p);
+    if(ok){
+      outEl.textContent='✅ 答對了！'+target.e.w+' 缺的是 '+blank.g+'。';
       disableAll(box); speak(target.e.w,'together'); settle(firstTry);
     }else{
       firstTry=false;
-      outEl.textContent='❌ 你選的是「'+phonics[i].letter+'」，再聽一次。';
+      outEl.textContent='❌ 你選的是「'+btn.dataset.g+'」，再聽一次 '+target.e.w+'。';
       speak(target.e.w,'together');
     }
   };

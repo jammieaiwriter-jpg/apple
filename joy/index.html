@@ -44,7 +44,7 @@
   <div class="logo">🌟</div>
   <h1>佳音 Joy 練習</h1>
   <p class="sub">選一課開始 ✨</p>
-  <div class="tools"><button class="refresh" type="button" id="refreshBtn">更新課程清單</button><span class="version" id="versionText">v2-ph4-wrong-20260628</span></div>
+  <div class="tools"><button class="refresh" type="button" id="refreshBtn">更新課程清單</button><span class="version" id="versionText">v3-ph4-reviewtest-20260628</span></div>
   <div id="units"><p class="sub">載入課程清單中…</p></div>
 
   <p class="note">
@@ -57,127 +57,127 @@
 <script>
 /* 課程清單放在 units.json，每次開都強制抓最新 → 新增單元免重新整理。
    離線或抓不到時，用下面的備援清單。 */
-var APP_VERSION = "v2-ph4-wrong-20260628";
+var APP_VERSION = "v3-ph4-reviewtest-20260628";
 var FALLBACK = [
   {
     "n": 1,
     "topic": "打招呼 / 自我介紹 / be 動詞",
-    "preview": "unit1-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit1-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit1-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit1-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 2,
     "topic": "看與幫忙、介紹他人",
-    "preview": "unit2-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit2-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit2-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit2-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 3,
     "topic": "打招呼、一天時段",
-    "preview": "unit3-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit3-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit3-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit3-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 4,
     "topic": "表達需求",
-    "preview": "unit4-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit4-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit4-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit4-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 5,
     "topic": "複習 U1–U4 / Sight Words",
-    "preview": "unit5-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit5-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit5-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit5-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 6,
     "topic": "感謝、道歉",
-    "preview": "unit6-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit6-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit6-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit6-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 7,
     "topic": "詢問近況",
-    "preview": "unit7-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit7-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit7-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit7-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 8,
     "topic": "安慰與介紹",
-    "preview": "unit8-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit8-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit8-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit8-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 9,
     "topic": "能力",
-    "preview": "unit9-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit9-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit9-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit9-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 10,
     "topic": "複習 U1–U4、U6–U9 / Sight Words",
-    "preview": "unit10-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit10-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit10-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit10-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 11,
     "topic": "自我介紹進階、數字 1-6",
-    "preview": "unit11-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit11-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit11-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit11-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 12,
     "topic": "初次見面、數字 7-12",
-    "preview": "unit12-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit12-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit12-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit12-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 13,
     "topic": "顏色與近物",
-    "preview": "unit13-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit13-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit13-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit13-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 14,
     "topic": "顏色與遠物",
-    "preview": "unit14-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit14-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit14-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit14-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 15,
     "topic": "複習與 TPR 指令",
-    "preview": "unit15-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit15-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit15-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit15-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 16,
     "topic": "進屋、文具",
-    "preview": "unit16-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit16-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit16-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit16-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 17,
     "topic": "文具（遠物）",
-    "preview": "unit17-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit17-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit17-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit17-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 18,
     "topic": "水果、a/an",
-    "preview": "unit18-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit18-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit18-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit18-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 19,
     "topic": "形容詞＋名詞",
-    "preview": "unit19-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit19-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit19-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit19-review.html?v=v3-ph4-reviewtest-20260628"
   },
   {
     "n": 20,
     "topic": "複習與位置",
-    "preview": "unit20-preview.html?v=v2-ph4-wrong-20260628",
-    "review": "unit20-review.html?v=v2-ph4-wrong-20260628"
+    "preview": "unit20-preview.html?v=v3-ph4-reviewtest-20260628",
+    "review": "unit20-review.html?v=v3-ph4-reviewtest-20260628"
   }
 ];
 function bust(url){ return url + (url.indexOf("?")>=0 ? "&" : "?") + "appv=" + encodeURIComponent(APP_VERSION); }

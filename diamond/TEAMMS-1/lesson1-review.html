@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>小鑽石 Lesson 1 複習闖關</title>
+  <title>貝兒美語 第一冊 Lesson 1 複習闖關</title>
   <style>
     :root{
       --ink:#2c2433; --muted:#8a7d92; --paper:#fffdf8; --line:#f0d9e6;
@@ -83,7 +83,7 @@
 <body>
 <div class="wrap">
   <header>
-    <h1><span class="gem">💎</span> 小鑽石 Lesson 1 複習</h1>
+    <h1><span class="gem">💎</span> 貝兒美語 · 第一冊 Lesson 1 複習</h1>
     <a class="pre-link" href="./lesson1-pre.html?v=v2-20260627">← 回預習</a>
   </header>
   <p class="hint">用平板的 Chrome 分頁開。一關一關闖：先按「🔊 聽」，再按「🎤 開始念」，念完按「⏹ 念好了」就打星。遊戲關不用麥克風。第一次念要允許麥克風。<b>若完全沒聲音：把平板「媒體音量」調大、關掉靜音，再點一下「🔊 聽」。</b></p>
@@ -94,13 +94,13 @@
 
   <div class="banner" id="banner">
     <div class="big">🎉 全部闖關成功！</div>
-    <div style="margin-top:8px;color:var(--muted)">小鑽石超棒！6 關全破關 ✨ 記得去上課大聲說 Hello！</div>
+    <div style="margin-top:8px;color:var(--muted)">你超棒！6 關全破關 ✨ 記得去上課大聲說 Hello！</div>
   </div>
 </div>
 
 <script>
 /* ===================================================================
-   TEAMMS 貝兒國際美語 · 小鑽石 Lesson 1「Hello! How are you?」
+   TEAMMS 貝兒國際美語 · 第一冊 Lesson 1「Hello! How are you?」
    內容全部來自課本照片：主對話 Sam&Ann、Listen and Do 的 Mary&Tom、
    Conversation Practice 配對、O/X 對錯題、STEM Skill（measure/compare/
    observe/sort＋數名字長度）。
@@ -275,7 +275,7 @@ function markStageUI(key){
 function checkAllDone(){
   var all=STAGES.every(function(s){return cleared[s.key];});
   document.getElementById('banner').classList.toggle('show',all);
-  if(all) notifyOnce('all','🎉 小鑽石把 Lesson 1 複習 6 關全部闖關成功了！👏✨');
+  if(all) notifyOnce('all','🎉 第一冊 Lesson 1 複習 6 關全部闖關成功了！👏✨');
 }
 function renderDots(){
   document.getElementById('dots').innerHTML=STAGES.map(function(s){
@@ -316,7 +316,7 @@ function recLine(i){
     scores[i]=Math.max(scores[i]||0,s);
     document.getElementById('d'+i+'-stars').textContent=starStr(s);
     document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
-    if(dialogueLines.every(function(_,k){return (scores[k]||0)>=3;})) markCleared('dialog','💬 小鑽石 對話跟讀全部 3 星以上過關！');
+    if(dialogueLines.every(function(_,k){return (scores[k]||0)>=3;})) markCleared('dialog','💬 對話跟讀全部 3 星以上過關！');
   });
 }
 
@@ -341,7 +341,7 @@ function recVocab(i){
     vScores[i]=Math.max(vScores[i]||0,s);
     document.getElementById('v'+i+'-stars').textContent=starStr(s);
     document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
-    if(vocab.every(function(_,k){return (vScores[k]||0)>=3;})) markCleared('vocab','🔤 小鑽石 10 個招呼語跟讀全部過關！');
+    if(vocab.every(function(_,k){return (vScores[k]||0)>=3;})) markCleared('vocab','🔤 10 個招呼語跟讀全部過關！');
   });
 }
 
@@ -517,10 +517,10 @@ function qStemName(ni){ var q=nameQuiz[ni]; return { mount:function(qEl,outEl,ph
 }}; }
 
 /* ---- 建立四個闖關（含錯題挑戰） ---- */
-new Challenge('match','body-match', function(){ return vocab.map(function(_,i){return qMatch(i);}); }, '🎯 小鑽石 完成連連看（含錯題挑戰）！');
-new Challenge('talk','body-talk', function(){ return talkPairs.map(function(_,i){return qTalk(i);}); }, '🗣️ 小鑽石 完成對話配對（含錯題挑戰）！');
-new Challenge('check','body-check', function(){ return checkItems.map(function(_,i){return qCheck(i);}); }, '✅ 小鑽石 完成對錯偵探（含錯題挑戰）！');
-new Challenge('stem','body-stem', function(){ return nameQuiz.map(function(_,i){return qStemName(i);}).concat(stemWords.map(function(_,i){return qStemWord(i);})); }, '🔬 小鑽石 完成 STEM 闖關（含錯題挑戰）！', true);
+new Challenge('match','body-match', function(){ return vocab.map(function(_,i){return qMatch(i);}); }, '🎯 完成連連看（含錯題挑戰）！');
+new Challenge('talk','body-talk', function(){ return talkPairs.map(function(_,i){return qTalk(i);}); }, '🗣️ 完成對話配對（含錯題挑戰）！');
+new Challenge('check','body-check', function(){ return checkItems.map(function(_,i){return qCheck(i);}); }, '✅ 完成對錯偵探（含錯題挑戰）！');
+new Challenge('stem','body-stem', function(){ return nameQuiz.map(function(_,i){return qStemName(i);}).concat(stemWords.map(function(_,i){return qStemWord(i);})); }, '🔬 完成 STEM 闖關（含錯題挑戰）！', true);
 
 /* ===== 啟動 ===== */
 buildShell();

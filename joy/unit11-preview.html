@@ -132,7 +132,7 @@
         <button type="button" data-tab="vocab">🔤 單字</button>
         <button type="button" data-tab="phonics">🔡 字母 重點發音</button>
         <button type="button" data-tab="grammar">🧩 句型 My name is... / I am...</button>
-        <a class="pill-button" href="./unit11-review.html?v=v2-ph4-wrong-20260628">課後複習 →</a>
+        <a class="pill-button" href="./unit11-review.html?v=v3-ph4-reviewtest-20260628">課後複習 →</a>
       </nav>
 
       <section class="panel active" data-panel="story">
@@ -188,7 +188,7 @@
     </main>
 
     <script type="module">
-      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit11.mjs?v=v2-ph4-wrong-20260628";
+      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit11.mjs?v=v3-ph4-reviewtest-20260628";
 
       const HEARD_KEY = "joy-unit11-heard";
       const VOCAB_KEY = "joy-unit11-vocab-heard";
@@ -448,8 +448,17 @@
         else if (step === 3) buildWordGame();
         else missingSoundGame();
       }
+      function phonicsComplete() {
+        el("phonicsGame").innerHTML = `
+          <div class="game-box" style="text-align:center">
+            <div class="big" style="font-size:42px;font-weight:950;color:var(--accent-dark)">🎉 四關完成！</div>
+            <div class="sg-out">聽音、開頭音、拼字、補缺音都過關了。</div>
+            <button class="chip blend" type="button" data-pg-restart>再玩一次</button>
+          </div>`;
+      }
       function nextPhonicsStep() {
-        startPhonicsGame(pgStep >= 4 ? 1 : pgStep + 1);
+        if (pgStep >= 4) phonicsComplete();
+        else startPhonicsGame(pgStep + 1);
       }
 
       function renderGrammar() {
@@ -497,6 +506,7 @@
           else if (pgTarget?.ex) speak(pgTarget.ex.w, "together");
           return;
         }
+        if (e.target.closest("[data-pg-restart]")) { startPhonicsGame(1); return; }
         const soundPick = e.target.closest("[data-pg-sound]");
         if (soundPick) {
           const it = phonics.items[+soundPick.dataset.pgSound];

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>小鑽石 Lesson 1 課前預習</title>
+  <style>
+    :root{
+      --ink:#2c2433; --muted:#8a7d92; --paper:#fffdf8; --line:#f0d9e6;
+      --accent:#e85a9b; --accent-dark:#c23d7d; --gem:#43b3e0; --gem-dark:#2487b5;
+      --mint:#dff5e7; --green:#3aa66b; --sun:#ffe9a8; --sky:#e3f3fb; --rose:#ffe4ec;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0; min-height:100vh; color:var(--ink); padding:16px 14px 60px;
+      font-family:ui-rounded,"SF Pro Rounded","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(232,90,155,.10), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(67,179,224,.12), transparent 32%),
+        linear-gradient(180deg,#fffdf8,#fdf3f8);
+    }
+    .wrap{max-width:920px;margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    h1{font-size:clamp(22px,5vw,38px);margin:0;color:var(--accent-dark);}
+    .sub{color:var(--muted);font-size:14px;margin:4px 0 0;}
+    .rev-link{font-weight:800;color:#fff;background:var(--accent);text-decoration:none;border-radius:10px;padding:10px 14px;}
+    .hint{color:var(--muted);font-size:13px;margin:8px 0 14px;min-height:20px;}
+
+    .progress-bar{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.94);backdrop-filter:blur(6px);
+      border:1px solid var(--line);border-radius:14px;padding:10px 8px;margin:14px 0 16px;}
+    .dots{display:flex;align-items:center;gap:4px;overflow-x:auto;}
+    .dot{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:74px;cursor:pointer;}
+    .dot .bubble{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:20px;background:#fff;border:2px solid var(--line);transition:.2s;}
+    .dot .lbl{font-size:11px;color:var(--muted);font-weight:700;}
+    .dot.done .bubble{background:var(--green);border-color:var(--green);color:#fff;}
+    .dot.done .lbl{color:var(--green);}
+
+    .stage{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;margin-bottom:18px;
+      box-shadow:0 3px 10px rgba(180,120,150,.07);scroll-margin-top:80px;}
+    .stage-head{display:flex;align-items:center;gap:10px;}
+    .stage-icon{font-size:26px;} .stage-title{font-size:18px;font-weight:900;color:var(--accent-dark);}
+    .stage-badge{margin-left:auto;font-size:12px;font-weight:800;color:var(--green);}
+    .stage-sub{font-size:12.5px;color:var(--muted);margin:2px 0 12px 36px;}
+
+    .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
+    .vocab-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;text-align:left;cursor:pointer;position:relative;transition:transform .12s;}
+    .vocab-card:hover{transform:translateY(-2px);}
+    .vocab-card .emo{font-size:26px;}
+    .vocab-card .word{font-size:20px;font-weight:900;color:var(--accent-dark);margin-top:4px;}
+    .vocab-card .kk{color:var(--muted);font-size:13px;} .vocab-card .zh{font-size:14px;margin-top:2px;}
+    .vocab-card .seen{position:absolute;top:10px;right:12px;color:var(--green);font-weight:900;}
+
+    .conv-title{font-weight:900;color:var(--gem-dark);margin:6px 0 8px;font-size:15px;}
+    .line-button{width:100%;display:grid;grid-template-columns:34px 1fr 26px;align-items:center;gap:10px;padding:11px 12px;
+      border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);text-align:left;cursor:pointer;margin-bottom:8px;}
+    .line-button .num{width:28px;height:28px;border-radius:50%;background:var(--sky);display:grid;place-items:center;color:var(--gem-dark);font-weight:900;}
+    .line-button strong{display:block;color:var(--accent-dark);font-size:13px;}
+    .line-button span.t{display:block;font-size:16px;font-weight:700;overflow-wrap:anywhere;}
+    .line-button .ck{color:var(--green);font-weight:900;text-align:right;}
+    .playall{border:0;border-radius:10px;background:var(--gem);color:#fff;padding:11px 15px;min-height:46px;font-weight:900;cursor:pointer;margin-bottom:10px;}
+
+    .gram-line{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px;margin-bottom:9px;cursor:pointer;}
+    .gram-line .en{font-size:20px;font-weight:900;color:var(--accent-dark);} .gram-line .en b{color:#c2410c;}
+    .gram-line .zh{color:var(--muted);font-size:13px;margin-top:2px;} .gram-line .play{margin-left:auto;font-size:20px;}
+
+    .coach{border-left:5px solid var(--gem);background:var(--sky);border-radius:10px;padding:12px 14px;color:var(--ink);font-size:14px;line-height:1.5;margin-top:6px;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>💎 小鑽石 Lesson 1 課前預習</h1>
+      <p class="sub">Hello! How are you? — 上課前聽一聽，熟悉聲音和句子，不用開口。</p>
+    </div>
+    <a class="rev-link" href="./lesson1-review.html?v=v2-20260627">課後複習闖關 →</a>
+  </header>
+  <p class="hint" id="hint">點任何卡片或句子就會念給你聽，聽過會打 ✓。</p>
+
+  <div class="progress-bar"><div class="dots" id="dots"></div></div>
+  <div id="stages"></div>
+</div>
+
+<script>
+/* ===== 貝兒 小鑽石 Lesson 1 內容（全部來自課本照片） ===== */
+var vocab=[
+  {word:"fine", kk:"[faɪn]", zh:"好的、不錯", emo:"🙂"},
+  {word:"great", kk:"[ɡret]", zh:"很棒", emo:"😄"},
+  {word:"name", kk:"[nem]", zh:"名字", emo:"🏷️"},
+  {word:"thank you", kk:"[θæŋk ju]", zh:"謝謝你", emo:"🙏"},
+  {word:"see you later", kk:"[si ju ˈletɚ]", zh:"待會見", emo:"👋"},
+  {word:"goodbye", kk:"[ˌɡʊdˈbaɪ]", zh:"再見", emo:"👋"},
+  {word:"nice to meet you", kk:"[naɪs tu mit ju]", zh:"很高興認識你", emo:"🤝"},
+  {word:"good morning", kk:"[ɡʊd ˈmɔrnɪŋ]", zh:"早安", emo:"🌅"},
+  {word:"good afternoon", kk:"[ɡʊd ˌæftɚˈnun]", zh:"午安", emo:"☀️"},
+  {word:"good evening", kk:"[ɡʊd ˈivnɪŋ]", zh:"晚安（傍晚）", emo:"🌆"},
+];
+/* 兩組對話：主對話 Sam&Ann、Listen and Do 的 Mary&Tom */
+var convs=[
+  {title:"💬 對話一 · Sam 和 Ann（校車站）", lines:[
+    {speaker:"Sam", text:"Hello! How are you?", role:"sam", zh:"哈囉！你好嗎？"},
+    {speaker:"Ann", text:"I'm great. How about you?", role:"ann", zh:"我很好。你呢？"},
+    {speaker:"Sam", text:"I'm fine, thank you. My name is Sam. What's your name?", role:"sam", zh:"我很好，謝謝。我叫 Sam。你叫什麼名字？"},
+    {speaker:"Ann", text:"My name is Ann.", role:"ann", zh:"我叫 Ann。"},
+  ]},
+  {title:"💬 對話二 · Mary 和 Tom（Listen and Do）", lines:[
+    {speaker:"Mary", text:"Good afternoon! My name is Mary. What's your name?", role:"ann", zh:"午安！我叫 Mary。你叫什麼名字？"},
+    {speaker:"Tom", text:"My name is Tom. How are you?", role:"sam", zh:"我叫 Tom。你好嗎？"},
+    {speaker:"Mary", text:"I'm great, thank you. How about you?", role:"ann", zh:"我很好，謝謝。你呢？"},
+    {speaker:"Tom", text:"I'm fine.", role:"sam", zh:"我很好。"},
+  ]},
+];
+var grammar={ rule:"縮寫小魔術：I'm = I am，What's = What is。短短的念起來一樣喔！", examples:[
+  {text:"I'm fine.", full:"I am fine.", zh:"我很好。"},
+  {text:"I'm great.", full:"I am great.", zh:"我很棒。"},
+  {text:"What's your name?", full:"What is your name?", zh:"你叫什麼名字？"},
+]};
+// en=淺顯英文解釋；desc=中文說明（預習頁先教，複習頁再考）
+var stemWords=[
+  {word:"measure", zh:"測量", emo:"📏", en:"You use a ruler to see how long something is.", desc:"用尺量量看，看它有多長、多高。"},
+  {word:"compare", zh:"比較", emo:"⚖️", en:"You look at two things and see what is different, like big and small, long and short, or red and blue.", desc:"把兩個東西放一起，看看哪裡不一樣——大和小、長和短、紅和藍。"},
+  {word:"observe", zh:"觀察", emo:"🔍", en:"You use your eyes to look very carefully.", desc:"用眼睛或放大鏡仔細看。"},
+  {word:"sort", zh:"分類", emo:"🗂️", en:"You put the same things together in groups.", desc:"把一樣的東西放在一起、分成一組一組。"},
+];
+
+/* 把兩組對話攤平方便記錄聽過 */
+var allLines=[]; convs.forEach(function(c){ c.lines.forEach(function(l){ allLines.push(l); }); });
+
+/* ===== 角色語音（Azure）＋失敗退回瀏覽器 ===== */
+var AZURE_VOICE={ sam:"en-US-GuyNeural", ann:"en-US-JennyNeural", together:"en-US-AriaNeural" };
+function azureVoiceForRole(r){ return AZURE_VOICE[r]||AZURE_VOICE.together; }
+var TTS_BASE="https://apple-bedtime-story.onrender.com";
+var ttsCache=new Map(), azureOK=true, activeAzureAudio=null, audioUnlocked=false;
+
+function lsGet(k,def){ try{ var a=JSON.parse(localStorage.getItem(k)); return a==null?def:a; }catch(e){ return def; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+var heardLine=lsGet("teamms-diamond-l1-pre-line",{})||{};
+var heardVocab=lsGet("teamms-diamond-l1-pre-vocab",{})||{};
+var heardStem=lsGet("teamms-diamond-l1-pre-stem",{})||{};
+
+function stopSpeaking(){ if(activeAzureAudio){ activeAzureAudio.onended=null; activeAzureAudio.pause(); activeAzureAudio=null; } window.speechSynthesis.cancel(); }
+function warmTTS(){ fetch(TTS_BASE+"/api/tts/status",{cache:"no-store"}).catch(function(){}); }
+function unlockAudio(){
+  if(audioUnlocked) return; audioUnlocked=true;
+  try{ var u=new SpeechSynthesisUtterance(" "); u.volume=0; window.speechSynthesis.speak(u); }catch(e){ audioUnlocked=false; }
+  try{ var a=new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=="); a.volume=0; a.play().catch(function(){}); }catch(e){}
+}
+function pickBrowserVoice(role){
+  var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];
+  var en=vs.filter(function(v){ return /^en/i.test(v.lang||""); });
+  if(!en.length) return {voice:null,pitch:1,rate:0.72};
+  var pref=role==="sam"?["Aaron","Daniel","Arthur","Alex","Tom"]:["Samantha","Allison","Ava","Karen"];
+  var voice=null;
+  for(var i=0;i<pref.length;i++){ voice=en.find(function(v){ return (v.name||"").indexOf(pref[i])>=0; }); if(voice)break; }
+  if(!voice) voice=en.find(function(v){ return v.lang==="en-US"; })||en[0];
+  return {voice:voice,pitch:role==="sam"?0.85:1.1,rate:0.68};
+}
+function speakBrowser(text,role,onEnd){
+  var p=pickBrowserVoice(role);
+  var u=new SpeechSynthesisUtterance(text); u.lang="en-US"; if(p.voice)u.voice=p.voice; u.rate=p.rate; u.pitch=p.pitch;
+  u.onend=function(){ if(onEnd)onEnd(); };
+  window.speechSynthesis.speak(u);
+}
+function speak(text,role,onEnd){
+  unlockAudio(); stopSpeaking();
+  var voice=azureVoiceForRole(role);
+  if(azureOK){
+    var key=voice+"|"+text, cached=ttsCache.get(key);
+    var run=function(url){ var a=new Audio(url); activeAzureAudio=a; a.onended=function(){ if(activeAzureAudio===a)activeAzureAudio=null; if(onEnd)onEnd(); }; a.play().catch(function(){ if(activeAzureAudio===a)activeAzureAudio=null; speakBrowser(text,role,onEnd); }); };
+    if(cached){ run(cached); return; }
+    el("hint").textContent="載入語音中…第一次可能要等雲端語音冷啟動。";
+    fetch(TTS_BASE+"/api/tts",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:text,voice:voice})})
+      .then(function(r){ if(!r.ok) throw new Error("tts "+r.status); return r.blob(); })
+      .then(function(b){ var url=URL.createObjectURL(b); ttsCache.set(key,url); run(url); })
+      .catch(function(){ if(activeAzureAudio)activeAzureAudio=null; speakBrowser(text,role,onEnd); });
+    return;
+  }
+  speakBrowser(text,role,onEnd);
+}
+
+/* ===== 闖關進度 ===== */
+var STAGES=[
+  {key:"vocab",   icon:"🔤", title:"單字聽一聽", sub:"10 個招呼語，點卡片聽發音"},
+  {key:"dialog",  icon:"💬", title:"對話聽一聽", sub:"兩組對話，點句子單獨聽或聽整段"},
+  {key:"grammar", icon:"🧩", title:"縮寫小魔術", sub:"I'm = I am、What's = What is"},
+  {key:"stem",    icon:"🔬", title:"STEM 動作字", sub:"科學家的四個動作"},
+];
+function el(id){ return document.getElementById(id); }
+function stageDone(key){
+  if(key==="vocab")  return vocab.every(function(_,i){ return heardVocab[i]; });
+  if(key==="dialog") return allLines.every(function(_,i){ return heardLine[i]; });
+  if(key==="grammar")return grammar._done;
+  if(key==="stem")   return stemWords.every(function(_,i){ return heardStem[i]; });
+  return false;
+}
+function renderDots(){
+  el("dots").innerHTML=STAGES.map(function(s){
+    var d=stageDone(s.key);
+    return '<div class="dot'+(d?' done':'')+'" onclick="goStage(\''+s.key+'\')"><div class="bubble">'+(d?'✓':s.icon)+'</div><div class="lbl">'+s.title+'</div></div>';
+  }).join('');
+}
+function goStage(key){ var e=el('stage-'+key); if(e) e.scrollIntoView({behavior:'smooth',block:'start'}); }
+function refreshBadge(key){ var b=el('badge-'+key); if(b) b.textContent=stageDone(key)?'✅ 聽完了':''; renderDots(); }
+
+function buildShell(){
+  el("stages").innerHTML=STAGES.map(function(s){
+    return '<section class="stage" id="stage-'+s.key+'"><div class="stage-head"><span class="stage-icon">'+s.icon+'</span>'
+      +'<span class="stage-title">'+s.title+'</span><span class="stage-badge" id="badge-'+s.key+'"></span></div>'
+      +'<p class="stage-sub">'+s.sub+'</p><div id="body-'+s.key+'"></div></section>';
+  }).join('');
+}
+function js(x){ return JSON.stringify(x).replace(/"/g,'&quot;'); }
+
+/* ---- 單字 ---- */
+function buildVocab(){
+  el("body-vocab").innerHTML='<div class="vocab-grid">'+vocab.map(function(v,i){
+    return '<button class="vocab-card" onclick="playVocab('+i+')"><span class="seen" id="vseen-'+i+'">'+(heardVocab[i]?'✓':'')+'</span>'
+      +'<div class="emo">'+v.emo+'</div><div class="word">'+v.word+'</div><div class="kk">'+v.kk+'</div><div class="zh">'+v.zh+'</div></button>';
+  }).join('')+'</div>';
+}
+function playVocab(i){ speak(vocab[i].word,"together"); if(!heardVocab[i]){ heardVocab[i]=true; lsSet("teamms-diamond-l1-pre-vocab",heardVocab); el("vseen-"+i).textContent='✓'; refreshBadge("vocab"); } }
+
+/* ---- 對話（兩組） ---- */
+var lineIndex=[]; // 攤平索引對應
+function buildDialog(){
+  lineIndex=[]; var gi=0, html='';
+  convs.forEach(function(c,ci){
+    html+='<div class="conv-title">'+c.title+'</div>';
+    html+='<button class="playall" onclick="playConv('+ci+')">🔊 聽整段對話'+(ci+1)+'</button>';
+    c.lines.forEach(function(l){
+      var idx=gi++; lineIndex.push({ci:ci});
+      html+='<button class="line-button" id="line-'+idx+'" onclick="playLine('+idx+')"><span class="num">'+(idx- (ci? convs[0].lines.length:0) +1)+'</span>'
+        +'<span><strong>'+l.speaker+'</strong><span class="t">'+l.text+'</span><span class="zh" style="color:var(--muted);font-size:12px">'+l.zh+'</span></span>'
+        +'<span class="ck" id="lck-'+idx+'">'+(heardLine[idx]?'✓':'')+'</span></button>';
+    });
+  });
+  el("body-dialog").innerHTML=html;
+}
+function markLine(idx){ if(!heardLine[idx]){ heardLine[idx]=true; lsSet("teamms-diamond-l1-pre-line",heardLine); var c=el("lck-"+idx); if(c)c.textContent='✓'; refreshBadge("dialog"); } }
+function playLine(idx){ speak(allLines[idx].text, allLines[idx].role, function(){ markLine(idx); }); }
+function playConv(ci){
+  var startIdx=0; for(var k=0;k<ci;k++) startIdx+=convs[k].lines.length;
+  var endIdx=startIdx+convs[ci].lines.length;
+  (function next(i){
+    if(i>=endIdx) return;
+    speak(allLines[i].text, allLines[i].role, function(){ markLine(i); next(i+1); });
+  })(startIdx);
+}
+
+/* ---- 縮寫 ---- */
+function buildGrammar(){
+  el("body-grammar").innerHTML='<div class="coach">'+grammar.rule+'</div>'+grammar.examples.map(function(ex,i){
+    return '<div class="gram-line" onclick="playGram('+i+')"><div><div class="en">'+ex.text+' <b>= '+ex.full+'</b></div><div class="zh">'+ex.zh+'</div></div><div class="play">🔊</div></div>';
+  }).join('');
+}
+function playGram(i){ speak(grammar.examples[i].full,"ann"); grammar._done=true; refreshBadge("grammar"); }
+
+/* ---- STEM ---- */
+function buildStem(){
+  el("body-stem").innerHTML='<div class="coach">這課有「科學家小任務」！這四個動作是科學家常做的事。先看圖、聽單字，再聽一次英文小解釋，懂意思之後複習頁就會考喔。</div>'
+    +stemWords.map(function(s,i){
+      return '<div class="card" style="text-align:left">'
+        +'<div class="en" style="font-size:22px"><span id="sseen-'+i+'" style="color:var(--green);font-weight:900">'+(heardStem[i]?'✓ ':'')+'</span>'+s.emo+' '+s.word+'　<span class="zh" style="color:var(--muted);font-size:15px">'+s.zh+'</span></div>'
+        +'<div class="zh" style="margin:6px 0">📖 '+s.desc+'</div>'
+        +'<div class="zh" style="font-style:italic;color:var(--gem-dark)">"'+s.en+'"</div>'
+        +'<div class="row" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">'
+        +'<button class="playall" style="margin:0" onclick="playStem('+i+')">🔊 聽單字</button>'
+        +'<button class="playall" style="margin:0;background:var(--accent)" onclick="playStemEn('+i+')">🗣️ 聽英文解釋</button>'
+        +'</div></div>';
+    }).join('');
+}
+function markStemHeard(i){ if(!heardStem[i]){ heardStem[i]=true; lsSet("teamms-diamond-l1-pre-stem",heardStem); var e=el("sseen-"+i); if(e)e.textContent='✓ '; refreshBadge("stem"); } }
+function playStem(i){ speak(stemWords[i].word,"together"); markStemHeard(i); }
+function playStemEn(i){ speak(stemWords[i].en,"together"); markStemHeard(i); }
+
+/* ===== 啟動 ===== */
+buildShell(); buildVocab(); buildDialog(); buildGrammar(); buildStem();
+STAGES.forEach(function(s){ refreshBadge(s.key); });
+if(window.speechSynthesis&&speechSynthesis.getVoices) speechSynthesis.getVoices();
+warmTTS();
+</script>
+</body>
+</html>

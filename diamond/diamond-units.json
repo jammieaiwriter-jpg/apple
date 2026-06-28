@@ -1,0 +1,54 @@
+{
+  "updated": "2026-06-28",
+  "series": [
+    {
+      "id": "teamms1",
+      "title": "TEAMMS 1",
+      "subtitle": "小鑽石第一冊",
+      "units": [
+        {
+          "n": 1,
+          "topic": "Hello! How are you?",
+          "preview": "TEAMMS-1/lesson1-pre.html?v=teamms1-u1-20260628",
+          "review": "TEAMMS-1/lesson1-review.html?v=teamms1-u1-20260628"
+        },
+        {
+          "n": 2,
+          "topic": "Sit down, please.",
+          "preview": "TEAMMS-1/lesson2-pre.html?v=teamms1-u2-20260628",
+          "review": "TEAMMS-1/lesson2-review.html?v=teamms1-u2-20260628"
+        },
+        {
+          "n": 3,
+          "topic": "Who is she?",
+          "preview": "TEAMMS-1/lesson3-pre.html?v=teamms1-u3-20260628",
+          "review": "TEAMMS-1/lesson3-review.html?v=teamms1-u3-20260628"
+        },
+        {
+          "n": 4,
+          "topic": "What is it?",
+          "preview": "TEAMMS-1/lesson4-pre.html?v=teamms1-u4-20260628",
+          "review": "TEAMMS-1/lesson4-review.html?v=teamms1-u4-20260628"
+        },
+        {
+          "n": 5,
+          "topic": "Do you have a dog?",
+          "preview": "TEAMMS-1/lesson5-pre.html?v=teamms1-u5-20260628",
+          "review": "TEAMMS-1/lesson5-review.html?v=teamms1-u5-20260628"
+        },
+        {
+          "n": 6,
+          "topic": "What do you have?",
+          "preview": "TEAMMS-1/lesson6-pre.html?v=teamms1-u6-20260628",
+          "review": "TEAMMS-1/lesson6-review.html?v=teamms1-u6-20260628"
+        }
+      ]
+    },
+    {
+      "id": "teamms2",
+      "title": "TEAMMS 2",
+      "subtitle": "小鑽石第二冊",
+      "units": []
+    }
+  ]
+}

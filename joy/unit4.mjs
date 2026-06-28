@@ -200,7 +200,8 @@ export function getSortedLineIndexes(lines, scores) {
     .map((item) => item.index);
 }
 
-// ---- Unit 4 加強內容：單字、Phonics、文法 ----
+// ---- Unit 4 content: vocab, phonics, grammar ----
+
 export const vocab = [
   {
     "word": "great",

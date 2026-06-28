@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>小鑽石 Lesson 6 複習闖關</title>
+  <title>小鑽石 Lesson 8 複習闖關</title>
   <style>
     :root{--ink:#2c2433;--muted:#8a7d92;--line:#f0d9e6;--accent:#e85a9b;--accent-dark:#c23d7d;--gem:#43b3e0;--gem-dark:#2487b5;--green:#3aa66b;--sky:#e3f3fb;--mint:#dff5e7;}
     *{box-sizing:border-box}
@@ -52,216 +52,212 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>💎 小鑽石 Lesson 6 複習</h1>
-    <a class="back" href="./lesson6-pre.html?v=teamms1-u6-20260628">← 回預習</a>
+    <h1>💎 小鑽石 Lesson 8 複習</h1>
+    <a class="back" href="./lesson8-pre.html?v=teamms1-u8-20260628">← 回預習</a>
   </header>
   <p class="hint">用平板的 Chrome 分頁開。一關一關闖：先按「🔊 聽」，再按「🎤 開始念」，念完按「⏹ 念好了」就打星。遊戲關不用麥克風。</p>
   <div class="progress-bar"><div class="dots" id="dots"></div></div>
   <div id="stages"></div>
-  <div class="banner" id="banner"><div class="big">🎉 全部闖關成功！</div><div class="zh">小鑽石 Lesson 6 6 關全破關 ✨</div></div>
+  <div class="banner" id="banner"><div class="big">🎉 全部闖關成功！</div><div class="zh">小鑽石 Lesson 8 6 關全破關 ✨</div></div>
 </div>
 <script>
 var dialogueLines = [
   {
-    "speaker": "Dan",
-    "text": "Hi, Dan.",
+    "speaker": "Bob",
+    "text": "This is my friend, Jeff.",
     "role": "sam",
-    "zh": "嗨，Dan。"
+    "zh": "這是我的朋友 Jeff。"
   },
   {
-    "speaker": "Bill",
-    "text": "Hello, Bill.",
+    "speaker": "Dad",
+    "text": "Hi, Jeff! Nice to meet you.",
     "role": "ann",
-    "zh": "哈囉，Bill。"
+    "zh": "嗨，Jeff！很高興認識你。"
   },
   {
-    "speaker": "Dan",
-    "text": "Look, I have three buses. What do you have?",
+    "speaker": "Jeff",
+    "text": "Nice to meet you, too!",
     "role": "sam",
-    "zh": "看，我有三台公車。你有什麼？"
+    "zh": "我也很高興認識你！"
   },
   {
-    "speaker": "Bill",
-    "text": "I have two trains. Do you have a car?",
-    "role": "ann",
-    "zh": "我有兩台火車。你有車嗎？"
-  },
-  {
-    "speaker": "Dan",
-    "text": "Yes, I do.",
+    "speaker": "Bob",
+    "text": "Dad, where are Bob and Alex?",
     "role": "sam",
-    "zh": "是的，我有。"
+    "zh": "爸爸，Bob 和 Alex 在哪裡？"
   },
   {
-    "speaker": "Bill",
-    "text": "How many cars do you have?",
+    "speaker": "Dad",
+    "text": "They are at the bookstore. Are these their robots?",
     "role": "ann",
-    "zh": "你有幾台車？"
+    "zh": "他們在書店。這些是他們的機器人嗎？"
   },
   {
-    "speaker": "Dan",
-    "text": "I have ten cars.",
+    "speaker": "Bob",
+    "text": "No, they're not. That is Jeff's robot. His robot is big.",
     "role": "sam",
-    "zh": "我有十台車。"
+    "zh": "不，不是。那是 Jeff 的機器人。他的機器人很大。"
   },
   {
-    "speaker": "Bill",
-    "text": "Wow! Ten cars!",
+    "speaker": "Dad",
+    "text": "Nice! Is this your robot?",
     "role": "ann",
-    "zh": "哇！十台車！"
+    "zh": "不錯！這是你的機器人嗎？"
+  },
+  {
+    "speaker": "Bob",
+    "text": "Yes, it is. My robot is fast.",
+    "role": "sam",
+    "zh": "是的。我的機器人很快。"
   }
 ];
 var vocab = [
   {
-    "word": "one",
-    "kk": "[wʌn]",
-    "zh": "一",
-    "emo": "1️⃣"
+    "word": "robot",
+    "kk": "[ˈrobɑt]",
+    "zh": "機器人",
+    "emo": "🤖"
   },
   {
-    "word": "two",
-    "kk": "[tu]",
-    "zh": "二",
-    "emo": "2️⃣"
+    "word": "toys",
+    "kk": "[tɔɪz]",
+    "zh": "玩具",
+    "emo": "🧸"
   },
   {
-    "word": "three",
-    "kk": "[θri]",
-    "zh": "三",
-    "emo": "3️⃣"
+    "word": "teddy bear",
+    "kk": "[ˈtɛdi bɛr]",
+    "zh": "泰迪熊",
+    "emo": "🧸"
   },
   {
-    "word": "four",
-    "kk": "[fɔr]",
-    "zh": "四",
-    "emo": "4️⃣"
+    "word": "glasses",
+    "kk": "[ˈɡlæsɪz]",
+    "zh": "眼鏡",
+    "emo": "👓"
   },
   {
-    "word": "five",
-    "kk": "[faɪv]",
-    "zh": "五",
-    "emo": "5️⃣"
+    "word": "pencil case",
+    "kk": "[ˈpɛnsəl kes]",
+    "zh": "鉛筆盒",
+    "emo": "✏️"
   },
   {
-    "word": "six",
-    "kk": "[sɪks]",
-    "zh": "六",
-    "emo": "6️⃣"
+    "word": "scissors",
+    "kk": "[ˈsɪzɚz]",
+    "zh": "剪刀",
+    "emo": "✂️"
   },
   {
-    "word": "seven",
-    "kk": "[ˈsɛvən]",
-    "zh": "七",
-    "emo": "7️⃣"
+    "word": "glue stick",
+    "kk": "[ɡlu stɪk]",
+    "zh": "口紅膠",
+    "emo": "🧴"
   },
   {
-    "word": "eight",
-    "kk": "[et]",
-    "zh": "八",
-    "emo": "8️⃣"
+    "word": "umbrella",
+    "kk": "[ʌmˈbrɛlə]",
+    "zh": "雨傘",
+    "emo": "☂️"
   },
   {
-    "word": "nine",
-    "kk": "[naɪn]",
-    "zh": "九",
-    "emo": "9️⃣"
+    "word": "folder",
+    "kk": "[ˈfoldɚ]",
+    "zh": "資料夾",
+    "emo": "📁"
   },
   {
-    "word": "ten",
-    "kk": "[tɛn]",
-    "zh": "十",
-    "emo": "🔟"
+    "word": "key",
+    "kk": "[ki]",
+    "zh": "鑰匙",
+    "emo": "🔑"
   }
 ];
 var talkPairs = [
   {
-    "q": "What do you have?",
-    "a": "I have two trains.",
+    "q": "Where are Bob and Alex?",
+    "a": "They are at the bookstore.",
     "d": [
       "It is a bus.",
+      "No, I don't."
+    ]
+  },
+  {
+    "q": "Are these their robots?",
+    "a": "No, they're not.",
+    "d": [
+      "Yes, I do.",
       "She is my sister."
     ]
   },
   {
-    "q": "Do you have a car?",
-    "a": "Yes, I do.",
+    "q": "Is this your robot?",
+    "a": "Yes, it is.",
     "d": [
-      "No, I do.",
-      "I have ten cars."
-    ]
-  },
-  {
-    "q": "How many cars do you have?",
-    "a": "I have ten cars.",
-    "d": [
-      "I have a duck.",
+      "I have ten cars.",
       "Be quiet."
     ]
   },
   {
-    "q": "Look, I have three buses.",
-    "a": "Wow! Three buses!",
+    "q": "Whose robot is big?",
+    "a": "Jeff's robot is big.",
     "d": [
-      "Who is she?",
-      "No, I don't."
+      "They are green.",
+      "I'm at the park."
     ]
   }
 ];
 var checkItems = [
   {
-    "text": "what do you have?",
+    "text": "where is dad?",
     "ok": false,
-    "bad": "what",
-    "fixTok": "What",
-    "correct": "What do you have?",
-    "fix": "句子開頭第一個字要大寫。"
+    "bad": "where",
+    "fixTok": "Where",
+    "correct": "Where is Dad?",
+    "fix": "句首和名字要大寫。"
   },
   {
-    "text": "I have two trains.",
+    "text": "They are at the bookstore.",
     "ok": true
   },
   {
-    "text": "How many cars do you have?",
+    "text": "Is this your robot?",
     "ok": true
   },
   {
-    "text": "I have ten car.",
+    "text": "Are these their robot?",
     "ok": false,
-    "bad": "car",
-    "fixTok": "cars",
-    "correct": "I have ten cars.",
-    "fix": "ten 是很多台，要用複數 cars。"
+    "bad": "robot",
+    "fixTok": "robots",
+    "correct": "Are these their robots?",
+    "fix": "these 是複數，要用 robots。"
   },
   {
-    "text": "Do you have a car.",
-    "ok": false,
-    "bad": ".",
-    "fixTok": "?",
-    "correct": "Do you have a car?",
-    "fix": "問句要用問號。"
+    "text": "His robot is big.",
+    "ok": true
   }
 ];
 var stemWords = [
   {
-    "word": "greater than",
-    "zh": "大於",
-    "emo": ">",
-    "en": "Five is greater than three.",
-    "desc": "5 比 3 大。"
+    "word": "identify",
+    "zh": "辨認",
+    "emo": "🔎",
+    "en": "You identify whose object it is.",
+    "desc": "辨認這是誰的東西。"
   },
   {
-    "word": "less than",
-    "zh": "小於",
-    "emo": "<",
-    "en": "Two is less than four.",
-    "desc": "2 比 4 小。"
+    "word": "compare",
+    "zh": "比較",
+    "emo": "⚖️",
+    "en": "You compare a big robot and a fast robot.",
+    "desc": "比較機器人的不同特徵。"
   },
   {
-    "word": "equal to",
-    "zh": "等於",
-    "emo": "=",
-    "en": "Three is equal to three.",
-    "desc": "兩邊一樣多。"
+    "word": "locate",
+    "zh": "定位",
+    "emo": "📍",
+    "en": "You find where people are.",
+    "desc": "找出人在哪裡。"
   }
 ];
 var contractions={"i'm":"i am","im":"i am","what's":"what is","whats":"what is","don't":"do not","dont":"do not","let's":"let us","lets":"let us"};

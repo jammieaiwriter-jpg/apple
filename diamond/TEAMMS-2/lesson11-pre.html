@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>小鑽石 Lesson 5 課前預習</title>
+  <title>小鑽石 Lesson 11 課前預習</title>
   <style>
     :root{--ink:#2c2433;--muted:#8a7d92;--line:#f0d9e6;--accent:#e85a9b;--accent-dark:#c23d7d;--gem:#43b3e0;--gem-dark:#2487b5;--green:#3aa66b;--sky:#e3f3fb;--mint:#dff5e7;}
     *{box-sizing:border-box}
@@ -53,10 +53,10 @@
 <div class="wrap">
   <header>
     <div>
-      <h1>💎 小鑽石 Lesson 5 課前預習</h1>
-      <p class="sub">Do you have a dog? — Pets and animals — 問別人有沒有寵物。</p>
+      <h1>💎 小鑽石 Lesson 11 課前預習</h1>
+      <p class="sub">This Is My Father — Family descriptions — 介紹家人、外貌和年紀。</p>
     </div>
-    <a class="nav" href="./lesson5-review.html?v=teamms1-u5-20260628">課後複習闖關 →</a>
+    <a class="nav" href="./lesson11-review.html?v=teamms1-u11-20260628">課後複習闖關 →</a>
   </header>
   <p class="hint" id="hint">點任何卡片或句子就會念給你聽，聽過會打 ✓。</p>
   <div class="progress-bar"><div class="dots" id="dots"></div></div>
@@ -65,146 +65,146 @@
 <script>
 var vocab = [
   {
-    "word": "cat",
-    "kk": "[kæt]",
-    "zh": "貓",
-    "emo": "🐱"
+    "word": "father",
+    "kk": "[ˈfɑðɚ]",
+    "zh": "爸爸",
+    "emo": "👨"
   },
   {
-    "word": "rabbit",
-    "kk": "[ˈræbɪt]",
-    "zh": "兔子",
-    "emo": "🐰"
+    "word": "mother",
+    "kk": "[ˈmʌðɚ]",
+    "zh": "媽媽",
+    "emo": "👩"
   },
   {
-    "word": "bird",
-    "kk": "[bɝd]",
-    "zh": "鳥",
-    "emo": "🐦"
+    "word": "sister",
+    "kk": "[ˈsɪstɚ]",
+    "zh": "姊妹",
+    "emo": "👧"
   },
   {
-    "word": "fish",
-    "kk": "[fɪʃ]",
-    "zh": "魚",
-    "emo": "🐟"
+    "word": "brother",
+    "kk": "[ˈbrʌðɚ]",
+    "zh": "兄弟",
+    "emo": "👦"
   },
   {
-    "word": "horse",
-    "kk": "[hɔrs]",
-    "zh": "馬",
-    "emo": "🐴"
+    "word": "tall",
+    "kk": "[tɔl]",
+    "zh": "高的",
+    "emo": "📏"
   },
   {
-    "word": "pig",
-    "kk": "[pɪɡ]",
-    "zh": "豬",
-    "emo": "🐷"
+    "word": "strong",
+    "kk": "[strɔŋ]",
+    "zh": "強壯的",
+    "emo": "💪"
   },
   {
-    "word": "cow",
-    "kk": "[kaʊ]",
-    "zh": "牛",
-    "emo": "🐮"
+    "word": "short",
+    "kk": "[ʃɔrt]",
+    "zh": "矮的",
+    "emo": "↘️"
   },
   {
-    "word": "chicken",
-    "kk": "[ˈtʃɪkɪn]",
-    "zh": "雞",
-    "emo": "🐔"
+    "word": "pretty",
+    "kk": "[ˈprɪti]",
+    "zh": "漂亮的",
+    "emo": "🌸"
   },
   {
-    "word": "duck",
-    "kk": "[dʌk]",
-    "zh": "鴨",
-    "emo": "🦆"
+    "word": "nice",
+    "kk": "[naɪs]",
+    "zh": "友善的",
+    "emo": "🙂"
   },
   {
-    "word": "dog",
-    "kk": "[dɔɡ]",
-    "zh": "狗",
-    "emo": "🐶"
+    "word": "busy",
+    "kk": "[ˈbɪzi]",
+    "zh": "忙碌的",
+    "emo": "🌀"
   }
 ];
 var dialogueLines = [
   {
-    "speaker": "Sam",
-    "text": "Hello! My name is Sam.",
+    "speaker": "Boy",
+    "text": "This is my father. He is tall and strong.",
     "role": "sam",
-    "zh": "哈囉！我叫 Sam。"
+    "zh": "這是我的爸爸。他又高又強壯。"
   },
   {
-    "speaker": "Ben",
-    "text": "Nice to meet you, Sam. I'm Ben.",
-    "role": "ann",
-    "zh": "很高興認識你，Sam。我是 Ben。"
-  },
-  {
-    "speaker": "Sam",
-    "text": "Nice to meet you, Ben.",
+    "speaker": "Boy",
+    "text": "This is my mother. She is short and pretty.",
     "role": "sam",
-    "zh": "很高興認識你，Ben。"
+    "zh": "這是我的媽媽。她矮矮的、很漂亮。"
   },
   {
-    "speaker": "Sam",
-    "text": "Look. It is my dog. I love my dog! Do you have a dog?",
+    "speaker": "Boy",
+    "text": "This is my sister. She is nice. She is ten years old.",
     "role": "sam",
-    "zh": "看。這是我的狗。我愛我的狗！你有狗嗎？"
+    "zh": "這是我的姊姊。她很友善。她十歲。"
   },
   {
-    "speaker": "Ben",
-    "text": "No, I don't. I have a duck.",
-    "role": "ann",
-    "zh": "不，我沒有。我有一隻鴨。"
-  },
-  {
-    "speaker": "Sam",
-    "text": "Wow, a duck!",
+    "speaker": "Boy",
+    "text": "And this is me! I am busy. I am seven years old.",
     "role": "sam",
-    "zh": "哇，一隻鴨！"
+    "zh": "這是我！我很忙。我七歲。"
+  },
+  {
+    "speaker": "Boy",
+    "text": "We play together. We have fun together.",
+    "role": "sam",
+    "zh": "我們一起玩。我們一起很開心。"
+  },
+  {
+    "speaker": "Boy",
+    "text": "I love my family!",
+    "role": "sam",
+    "zh": "我愛我的家人！"
   }
 ];
-var convs = [{title:"💬 課本對話 · 動物寵物", lines:dialogueLines}];
+var convs = [{title:"💬 課本對話 · 家人描述", lines:dialogueLines}];
 var grammar = {
-  "rule": "Do you have...? 問「你有沒有？」Yes, I do. / No, I don't. 回答很常用。",
+  "rule": "介紹人用 This is my...，描述男生用 He is，描述女生用 She is。",
   "examples": [
     {
-      "text": "Do you have a dog?",
-      "full": "Do you have a dog?",
-      "zh": "你有狗嗎？"
+      "text": "This is my father.",
+      "full": "This is my father.",
+      "zh": "這是我的爸爸。"
     },
     {
-      "text": "Yes, I do.",
-      "full": "Yes, I do.",
-      "zh": "是的，我有。"
+      "text": "He is tall and strong.",
+      "full": "He is tall and strong.",
+      "zh": "他又高又強壯。"
     },
     {
-      "text": "No, I don't.",
-      "full": "No, I do not.",
-      "zh": "不，我沒有。"
+      "text": "How old are you?",
+      "full": "How old are you?",
+      "zh": "你幾歲？"
     }
   ]
 };
 var stemWords = [
   {
-    "word": "sort",
-    "zh": "分類",
-    "emo": "🗂️",
-    "en": "You sort animals by how many legs they have.",
-    "desc": "依照腳的數量分類動物。"
+    "word": "measure",
+    "zh": "測量",
+    "emo": "📏",
+    "en": "You can measure how tall a person is.",
+    "desc": "可以測量一個人多高。"
+  },
+  {
+    "word": "describe",
+    "zh": "描述",
+    "emo": "🗣️",
+    "en": "You use words to tell what a person is like.",
+    "desc": "用形容詞描述一個人。"
   },
   {
     "word": "compare",
     "zh": "比較",
     "emo": "⚖️",
-    "en": "You compare animals with two legs, four legs, or no legs.",
-    "desc": "比較動物有幾隻腳。"
-  },
-  {
-    "word": "observe",
-    "zh": "觀察",
-    "emo": "🔍",
-    "en": "You look at the animal carefully.",
-    "desc": "仔細觀察動物的特徵。"
+    "en": "You compare ages and heights.",
+    "desc": "比較年紀和身高。"
   }
 ];
 var allLines=[]; convs.forEach(function(c){ c.lines.forEach(function(l){ allLines.push(l); }); });
@@ -215,31 +215,31 @@ var ttsCache=new Map(), activeAzureAudio=null, audioUnlocked=false;
 function el(id){ return document.getElementById(id); }
 function lsGet(k,def){ try{ var a=JSON.parse(localStorage.getItem(k)); return a==null?def:a; }catch(e){ return def; } }
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
-var heardLine=lsGet("teamms-diamond-l5-pre-line",{})||{};
-var heardVocab=lsGet("teamms-diamond-l5-pre-vocab",{})||{};
-var heardStem=lsGet("teamms-diamond-l5-pre-stem",{})||{};
+var heardLine=lsGet("teamms-diamond-l11-pre-line",{})||{};
+var heardVocab=lsGet("teamms-diamond-l11-pre-vocab",{})||{};
+var heardStem=lsGet("teamms-diamond-l11-pre-stem",{})||{};
 function stopSpeaking(){ if(activeAzureAudio){ activeAzureAudio.onended=null; activeAzureAudio.pause(); activeAzureAudio=null; } window.speechSynthesis.cancel(); }
 function warmTTS(){ fetch(TTS_BASE+"/api/tts/status",{cache:"no-store"}).catch(function(){}); }
 function unlockAudio(){ if(audioUnlocked) return; audioUnlocked=true; try{ var u=new SpeechSynthesisUtterance(" "); u.volume=0; window.speechSynthesis.speak(u); }catch(e){ audioUnlocked=false; } try{ var a=new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=="); a.volume=0; a.play().catch(function(){}); }catch(e){} }
 function pickBrowserVoice(role){ var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[]; var en=vs.filter(function(v){ return /^en/i.test(v.lang||""); }); if(!en.length) return {voice:null,pitch:1,rate:.72}; var pref=role==="sam"?["Aaron","Daniel","Arthur","Alex","Tom"]:["Samantha","Allison","Ava","Karen"]; var voice=null; for(var i=0;i<pref.length;i++){ voice=en.find(function(v){ return (v.name||"").indexOf(pref[i])>=0; }); if(voice)break; } return {voice:voice||en[0],pitch:role==="sam"?.85:1.1,rate:.68}; }
 function speakBrowser(text,role,onEnd){ var p=pickBrowserVoice(role); var u=new SpeechSynthesisUtterance(text); u.lang="en-US"; if(p.voice)u.voice=p.voice; u.rate=p.rate; u.pitch=p.pitch; u.onend=function(){ if(onEnd)onEnd(); }; window.speechSynthesis.speak(u); }
 function speak(text,role,onEnd){ unlockAudio(); stopSpeaking(); var voice=azureVoiceForRole(role); var key=voice+"|"+text, cached=ttsCache.get(key); var run=function(url){ var a=new Audio(url); activeAzureAudio=a; a.onended=function(){ if(activeAzureAudio===a)activeAzureAudio=null; if(onEnd)onEnd(); }; a.play().catch(function(){ if(activeAzureAudio===a)activeAzureAudio=null; speakBrowser(text,role,onEnd); }); }; if(cached){ run(cached); return; } el("hint").textContent="載入語音中…第一次可能要等雲端語音冷啟動。"; fetch(TTS_BASE+"/api/tts",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:text,voice:voice})}).then(function(r){ if(!r.ok) throw new Error("tts "+r.status); return r.blob(); }).then(function(b){ var url=URL.createObjectURL(b); ttsCache.set(key,url); run(url); }).catch(function(){ speakBrowser(text,role,onEnd); }); }
-var STAGES=[{key:"vocab",icon:"🔤",title:"單字聽一聽",sub:"10 個 動物寵物 重點字，點卡片聽發音"},{key:"dialog",icon:"💬",title:"對話聽一聽",sub:"課本對話，點句子單獨聽或聽整段"},{key:"grammar",icon:"🧩",title:"句型小魔術",sub:"先聽會說，複習頁再闖關"},{key:"stem",icon:"🔬",title:"STEM 動作字",sub:"課本跨科小任務的關鍵字"}];
+var STAGES=[{key:"vocab",icon:"🔤",title:"單字聽一聽",sub:"10 個 家人描述 重點字，點卡片聽發音"},{key:"dialog",icon:"💬",title:"對話聽一聽",sub:"課本對話，點句子單獨聽或聽整段"},{key:"grammar",icon:"🧩",title:"句型小魔術",sub:"先聽會說，複習頁再闖關"},{key:"stem",icon:"🔬",title:"STEM 動作字",sub:"課本跨科小任務的關鍵字"}];
 function stageDone(key){ if(key==="vocab")return vocab.every(function(_,i){return heardVocab[i];}); if(key==="dialog")return allLines.every(function(_,i){return heardLine[i];}); if(key==="grammar")return grammar._done; if(key==="stem")return stemWords.every(function(_,i){return heardStem[i];}); return false; }
 function renderDots(){ el("dots").innerHTML=STAGES.map(function(s){ var d=stageDone(s.key); return '<div class="dot'+(d?' done':'')+'" onclick="goStage(\''+s.key+'\')"><div class="bubble">'+(d?'✓':s.icon)+'</div><div class="lbl">'+s.title+'</div></div>'; }).join(''); }
 function goStage(key){ var e=el("stage-"+key); if(e)e.scrollIntoView({behavior:"smooth",block:"start"}); }
 function refreshBadge(key){ var b=el("badge-"+key); if(b)b.textContent=stageDone(key)?"✅ 聽完了":""; renderDots(); }
 function buildShell(){ el("stages").innerHTML=STAGES.map(function(s){ return '<section class="stage" id="stage-'+s.key+'"><div class="stage-head"><span class="stage-icon">'+s.icon+'</span><span class="stage-title">'+s.title+'</span><span class="stage-badge" id="badge-'+s.key+'"></span></div><p class="stage-sub">'+s.sub+'</p><div id="body-'+s.key+'"></div></section>'; }).join(''); }
 function buildVocab(){ el("body-vocab").innerHTML='<div class="vocab-grid">'+vocab.map(function(v,i){ return '<button class="vocab-card" onclick="playVocab('+i+')"><span class="seen" id="vseen-'+i+'">'+(heardVocab[i]?'✓':'')+'</span><div class="emo">'+v.emo+'</div><div class="word">'+v.word+'</div><div class="kk">'+v.kk+'</div><div class="zh">'+v.zh+'</div></button>'; }).join('')+'</div>'; }
-function playVocab(i){ speak(vocab[i].word,"together"); if(!heardVocab[i]){ heardVocab[i]=true; lsSet("teamms-diamond-l5-pre-vocab",heardVocab); el("vseen-"+i).textContent='✓'; refreshBadge("vocab"); } }
+function playVocab(i){ speak(vocab[i].word,"together"); if(!heardVocab[i]){ heardVocab[i]=true; lsSet("teamms-diamond-l11-pre-vocab",heardVocab); el("vseen-"+i).textContent='✓'; refreshBadge("vocab"); } }
 function buildDialog(){ var html='<button class="playall" onclick="playConv()">🔊 聽整段對話</button>'; dialogueLines.forEach(function(l,i){ html+='<button class="line-button" onclick="playLine('+i+')"><span class="num">'+(i+1)+'</span><span><strong>'+l.speaker+'</strong><span class="t">'+l.text+'</span><span class="zh">'+l.zh+'</span></span><span class="ck" id="lck-'+i+'">'+(heardLine[i]?'✓':'')+'</span></button>'; }); el("body-dialog").innerHTML=html; }
-function markLine(i){ if(!heardLine[i]){ heardLine[i]=true; lsSet("teamms-diamond-l5-pre-line",heardLine); var c=el("lck-"+i); if(c)c.textContent='✓'; refreshBadge("dialog"); } }
+function markLine(i){ if(!heardLine[i]){ heardLine[i]=true; lsSet("teamms-diamond-l11-pre-line",heardLine); var c=el("lck-"+i); if(c)c.textContent='✓'; refreshBadge("dialog"); } }
 function playLine(i){ speak(dialogueLines[i].text,dialogueLines[i].role,function(){ markLine(i); }); }
 function playConv(){ (function next(i){ if(i>=dialogueLines.length)return; speak(dialogueLines[i].text,dialogueLines[i].role,function(){ markLine(i); next(i+1); }); })(0); }
 function buildGrammar(){ el("body-grammar").innerHTML='<div class="coach">'+grammar.rule+'</div>'+grammar.examples.map(function(ex,i){ return '<div class="gram-line" onclick="playGram('+i+')"><div><div class="en">'+ex.text+' <b>'+((ex.full!==ex.text)?'= '+ex.full:'')+'</b></div><div class="zh">'+ex.zh+'</div></div><div style="margin-left:auto;font-size:20px">🔊</div></div>'; }).join(''); }
 function playGram(i){ speak(grammar.examples[i].full,"ann"); grammar._done=true; refreshBadge("grammar"); }
 function buildStem(){ el("body-stem").innerHTML='<div class="coach">先聽 STEM 小字，複習頁會用遊戲考你意思。</div>'+stemWords.map(function(s,i){ return '<div class="card"><div class="en"><span class="seen" id="sseen-'+i+'">'+(heardStem[i]?'✓ ':'')+'</span>'+s.emo+' '+s.word+' <span class="zh">'+s.zh+'</span></div><div class="zh">'+s.desc+'</div><div class="zh" style="color:var(--gem-dark);font-style:italic">"'+s.en+'"</div><div class="row" style="margin-top:10px"><button class="playall" onclick="playStem('+i+')">🔊 聽單字</button><button class="playall" style="background:var(--accent)" onclick="playStemEn('+i+')">🗣️ 聽英文解釋</button></div></div>'; }).join(''); }
-function markStem(i){ if(!heardStem[i]){ heardStem[i]=true; lsSet("teamms-diamond-l5-pre-stem",heardStem); el("sseen-"+i).textContent='✓ '; refreshBadge("stem"); } }
+function markStem(i){ if(!heardStem[i]){ heardStem[i]=true; lsSet("teamms-diamond-l11-pre-stem",heardStem); el("sseen-"+i).textContent='✓ '; refreshBadge("stem"); } }
 function playStem(i){ speak(stemWords[i].word,"together"); markStem(i); } function playStemEn(i){ speak(stemWords[i].en,"together"); markStem(i); }
 buildShell(); buildVocab(); buildDialog(); buildGrammar(); buildStem(); STAGES.forEach(function(s){refreshBadge(s.key);}); if(window.speechSynthesis&&speechSynthesis.getVoices)speechSynthesis.getVoices(); warmTTS();
 </script>

@@ -155,8 +155,8 @@ var stemWords=[
 ];
 /* ---- STEM Measuring：數名字有幾個字母（課本量名牌活動）---- */
 var nameQuiz=[
-  {ask:"誰的名字最短？（字母最少）", names:["Tom","Lily","Jean","Anne"], answer:"Tom"},
-  {ask:"誰的名字最長？（字母最多）", names:["Tiffany","Jefferson","Nancy","Mary"], answer:"Jefferson"},
+  {askEn:"Whose name is the shortest?", ask:"誰的名字最短？（字母最少的那一個）", names:["Tom","Lily","Jean","Anne"], answer:"Tom"},
+  {askEn:"Whose name is the longest?", ask:"誰的名字最長？（字母最多的那一個）", names:["Tiffany","Jefferson","Nancy","Mary"], answer:"Jefferson"},
 ];
 
 /* ===== 評分（內嵌） ===== */
@@ -213,6 +213,11 @@ function primeVoice(){
   try{ window.speechSynthesis.resume(); var u=new SpeechSynthesisUtterance(' '); u.volume=0; window.speechSynthesis.speak(u); }catch(e){}
 }
 function autoSpeak(text,role){ if(primed) speak(text,role); }
+/* 中文題目用中文語音念（題目先英文、再中文，給看不懂中文的二年級孩子） */
+function pickZhVoice(){ var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[]; return vs.find(function(v){ return /zh[-_]?(TW|HK|CN)|cmn|Mandarin|Tingting|Meijia|Sinji|Yating|Hanhan/i.test((v.lang||'')+'|'+(v.name||'')); })||null; }
+function speakZh(text,onEnd){ primed=true; var seq=++speakSeq,done=false; function finish(){ if(done||seq!==speakSeq)return; done=true; if(onEnd)onEnd(); } try{ window.speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(text); u.lang='zh-TW'; u.rate=0.92; u.volume=1; var v=pickZhVoice(); if(v)u.voice=v; if(onEnd){ u.onend=finish; u.onerror=finish; } window.speechSynthesis.speak(u); setTimeout(function(){ try{ window.speechSynthesis.resume(); }catch(_){} },90); }catch(e){ finish(); } }
+function speakQA(en,zh){ speak(en,'ann',function(){ setTimeout(function(){ speakZh(zh); },220); }); }
+function autoSpeakQA(en,zh){ if(primed) speakQA(en,zh); }
 function speak(text,role,onEnd){
   primed=true;
   var seq=++speakSeq,done=false;
@@ -357,10 +362,11 @@ function ckHL(text,tok,cls){ var i=text.indexOf(tok); if(i<0) return ckEsc(text)
    - 錯題挑戰(retry)階段：一律要答對才 settle。
 =================================================================== */
 var CH={};
-function Challenge(key,bodyId,build,congratsMsg){ this.key=key; this.bodyId=bodyId; this.build=build; this.congratsMsg=congratsMsg; CH[key]=this; }
+function Challenge(key,bodyId,build,congratsMsg,keepOrder){ this.key=key; this.bodyId=bodyId; this.build=build; this.congratsMsg=congratsMsg; this.keepOrder=keepOrder; CH[key]=this; }
 Challenge.prototype.start=function(){
   this.qs=this.build();
-  this.order=shuffle(this.qs.map(function(_,i){return i;}));
+  var idx=this.qs.map(function(_,i){return i;});
+  this.order=this.keepOrder?idx:shuffle(idx);
   this.phase='answer'; this.pos=0; this.correct=0; this.total=this.qs.length; this.wrong=[];
   this._render();
 };
@@ -438,25 +444,42 @@ function qTalk(pi){ var pair=talkPairs[pi]; return { mount:function(qEl,outEl,ph
   setTimeout(function(){ autoSpeak(pair.q,'sam'); },250);
 }}; }
 
-/* ---- 對錯偵探：答一次就揭曉、標紅錯字（猜對也再看一次） ---- */
+/* ---- 對錯偵探：選錯之後，再把每個字（含標點）變成選項，讓孩子點出錯在哪 ---- */
+function ckTokens(text){ return String(text).match(/[A-Za-z0-9']+|[^\sA-Za-z0-9']/g)||[]; }
 function qCheck(ci){ var it=checkItems[ci]; return { mount:function(qEl,outEl,phase,settle){
-  qEl.innerHTML='<div class="en">「'+it.text+'」</div><div class="zh">這句寫得對嗎？</div>'
+  var firstTry=true;
+  qEl.innerHTML='<div class="en">「'+ckEsc(it.text)+'」</div><div class="zh">這句寫得對嗎？</div>'
     +'<div class="row" id="c-row" style="justify-content:center;margin-top:6px">'
     +'<button class="opt" data-v="1">⭕ 對</button><button class="opt gem" data-v="0">❌ 錯</button></div>'
     +'<div class="reveal" id="c-reveal"></div>';
-  var row=document.getElementById('c-row');
-  row.onclick=function(e){ var btn=e.target.closest('button[data-v]'); if(!btn||btn.disabled) return;
-    var saysOk=(btn.dataset.v==='1'), correct=(saysOk===it.ok);
-    if(phase==='retry' && !correct){ outEl.textContent='❌ 再想想看～'; return; }   // 錯題挑戰要答對
-    disableAll(row);
-    var html=correct?'<div style="color:var(--green);font-weight:900;font-size:18px">✅ 答對了！</div>'
-                    :'<div style="color:#e11d48;font-weight:900;font-size:18px">❌ 答錯了，看看正確答案</div>';
-    if(it.ok){ html+='<div class="reveal">這句寫得<b>對</b> 👍<br><span class="sent">'+ckEsc(it.text)+'</span></div>'; }
-    else{ html+='<div class="reveal">這句<b>錯</b>了！錯在紅色的地方 👇<br><span class="sent">'+ckHL(it.text,it.bad,'err')+'</span>'
+  var reveal=document.getElementById('c-reveal');
+  function showFix(){ reveal.innerHTML='<div style="color:var(--green);font-weight:900;font-size:18px">✅ 找到了！</div>'
+      +'<div class="reveal">錯在紅色的地方 👇<br><span class="sent">'+ckHL(it.text,it.bad,'err')+'</span>'
       +'<br>✏️ 正確要寫成：<br><span class="sent">'+ckHL(it.correct,it.fixTok,'fixh')+'</span>'
       +'<br><small style="color:var(--muted)">'+it.fix+'</small></div>'; }
-    document.getElementById('c-reveal').innerHTML=html;
-    settle(correct);
+  function startDrill(intro){
+    var toks=ckTokens(it.text), badIdx=-1;
+    for(var i=0;i<toks.length;i++){ if(toks[i]===it.bad){ badIdx=i; break; } }
+    if(badIdx<0){ showFix(); settle(firstTry); return; }
+    reveal.innerHTML='<div class="zh" style="font-weight:900">'+intro+'</div>'
+      +'<div class="zh">點一下你覺得寫錯的地方（每個字和標點都看一看）👇</div>'
+      +'<div class="game-grid" id="c-toks">'+toks.map(function(t,k){ return '<button class="opt gem" data-ti="'+k+'">'+ckEsc(t)+'</button>'; }).join('')+'</div>';
+    var grid=document.getElementById('c-toks');
+    grid.onclick=function(e){ var btn=e.target.closest('button[data-ti]'); if(!btn||btn.disabled) return; var k=+btn.dataset.ti;
+      if(k===badIdx){ disableAll(grid); showFix(); settle(firstTry); }
+      else{ firstTry=false; btn.disabled=true; btn.style.opacity=.35; outEl.textContent='🔍 不是這個，再找找看～'; }
+    };
+  }
+  var row=document.getElementById('c-row');
+  row.onclick=function(e){ var btn=e.target.closest('button[data-v]'); if(!btn||btn.disabled) return;
+    var saysOk=(btn.dataset.v==='1');
+    if(it.ok){
+      if(saysOk){ disableAll(row); reveal.innerHTML='<div style="color:var(--green);font-weight:900;font-size:18px">✅ 答對了！</div><div class="reveal">這句寫得<b>對</b> 👍<br><span class="sent">'+ckEsc(it.text)+'</span></div>'; settle(true); }
+      else{ if(phase==='retry'){ outEl.textContent='❌ 再想想看，這句其實沒問題～'; return; } disableAll(row); reveal.innerHTML='<div style="color:#e11d48;font-weight:900;font-size:18px">❌ 其實這句是對的喔</div><div class="reveal"><span class="sent">'+ckEsc(it.text)+'</span></div>'; settle(false); }
+    } else {
+      if(saysOk){ if(phase==='retry'){ outEl.textContent='❌ 再想想，這句其實有地方寫錯囉～'; return; } disableAll(row); firstTry=false; startDrill('這句其實有地方寫錯囉，一起來找找看！'); }
+      else{ disableAll(row); startDrill('沒錯！這句怪怪的～那…錯在哪裡？'); }
+    }
   };
 }}; }
 
@@ -476,23 +499,28 @@ function qStemWord(t){ return { mount:function(qEl,outEl,phase,settle){
   setTimeout(function(){ autoSpeak(stemWords[t].en,'together'); },250);
 }}; }
 
-/* ---- STEM 數名字長度（答錯留原題重數） ---- */
+/* ---- STEM 數名字長度（題目先英文再中文唸；不顯示字母數，讓孩子自己數）---- */
 function qStemName(ni){ var q=nameQuiz[ni]; return { mount:function(qEl,outEl,phase,settle){
   var firstTry=true;
-  qEl.innerHTML='<div class="zh">📏 數一數名字</div><div class="en">'+q.ask+'</div>'
-    +'<div class="game-grid" id="n-grid">'+shuffle(q.names).map(function(n){return '<button class="opt" data-n="'+n+'">'+n+'<br><small>'+n.length+' 個字母</small></button>';}).join('')+'</div>';
+  qEl.innerHTML='<div class="zh">📏 數一數每個名字有幾個字母</div>'
+    +'<div class="en" style="font-size:21px">'+q.askEn+'</div>'
+    +'<div class="zh" style="font-size:15px">'+q.ask+'</div>'
+    +'<div class="row" style="justify-content:center"><button class="act listen" id="n-listen">🔊 再聽一次</button></div>'
+    +'<div class="game-grid" id="n-grid">'+shuffle(q.names).map(function(n){return '<button class="opt" data-n="'+n+'">'+n+'</button>';}).join('')+'</div>';
+  document.getElementById('n-listen').onclick=function(){ speakQA(q.askEn,q.ask); };
   var grid=document.getElementById('n-grid');
   grid.onclick=function(e){ var btn=e.target.closest('button[data-n]'); if(!btn||btn.disabled) return; var n=btn.dataset.n;
-    if(n===q.answer){ outEl.textContent='✅ 答對了！'+q.answer+' 有 '+q.answer.length+' 個字母'; disableAll(grid); settle(firstTry); }
-    else{ firstTry=false; outEl.textContent='❌ 再數數看～「'+n+'」有 '+n.length+' 個字母'; }
+    if(n===q.answer){ outEl.textContent='✅ 答對了！是 '+q.answer; disableAll(grid); settle(firstTry); }
+    else{ firstTry=false; outEl.textContent='❌ 再數數看～自己數一數「'+n+'」有幾個字母'; }
   };
+  setTimeout(function(){ autoSpeakQA(q.askEn,q.ask); },250);
 }}; }
 
 /* ---- 建立四個闖關（含錯題挑戰） ---- */
 new Challenge('match','body-match', function(){ return vocab.map(function(_,i){return qMatch(i);}); }, '🎯 小鑽石 完成連連看（含錯題挑戰）！');
 new Challenge('talk','body-talk', function(){ return talkPairs.map(function(_,i){return qTalk(i);}); }, '🗣️ 小鑽石 完成對話配對（含錯題挑戰）！');
 new Challenge('check','body-check', function(){ return checkItems.map(function(_,i){return qCheck(i);}); }, '✅ 小鑽石 完成對錯偵探（含錯題挑戰）！');
-new Challenge('stem','body-stem', function(){ return stemWords.map(function(_,i){return qStemWord(i);}).concat(nameQuiz.map(function(_,i){return qStemName(i);})); }, '🔬 小鑽石 完成 STEM 闖關（含錯題挑戰）！');
+new Challenge('stem','body-stem', function(){ return nameQuiz.map(function(_,i){return qStemName(i);}).concat(stemWords.map(function(_,i){return qStemWord(i);})); }, '🔬 小鑽石 完成 STEM 闖關（含錯題挑戰）！', true);
 
 /* ===== 啟動 ===== */
 buildShell();

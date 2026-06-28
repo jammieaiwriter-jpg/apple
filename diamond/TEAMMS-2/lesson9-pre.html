@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>小鑽石 Lesson 5 課前預習</title>
+  <title>小鑽石 Lesson 9 課前預習</title>
   <style>
     :root{--ink:#2c2433;--muted:#8a7d92;--line:#f0d9e6;--accent:#e85a9b;--accent-dark:#c23d7d;--gem:#43b3e0;--gem-dark:#2487b5;--green:#3aa66b;--sky:#e3f3fb;--mint:#dff5e7;}
     *{box-sizing:border-box}
@@ -53,10 +53,10 @@
 <div class="wrap">
   <header>
     <div>
-      <h1>💎 小鑽石 Lesson 5 課前預習</h1>
-      <p class="sub">Do you have a dog? — Pets and animals — 問別人有沒有寵物。</p>
+      <h1>💎 小鑽石 Lesson 9 課前預習</h1>
+      <p class="sub">Where Is My Cat? — Positions — 問東西在哪裡，練習位置字。</p>
     </div>
-    <a class="nav" href="./lesson5-review.html?v=teamms1-u5-20260628">課後複習闖關 →</a>
+    <a class="nav" href="./lesson9-review.html?v=teamms1-u9-20260628">課後複習闖關 →</a>
   </header>
   <p class="hint" id="hint">點任何卡片或句子就會念給你聽，聽過會打 ✓。</p>
   <div class="progress-bar"><div class="dots" id="dots"></div></div>
@@ -65,146 +65,170 @@
 <script>
 var vocab = [
   {
-    "word": "cat",
-    "kk": "[kæt]",
-    "zh": "貓",
-    "emo": "🐱"
+    "word": "on",
+    "kk": "[ɑn]",
+    "zh": "在上面",
+    "emo": "⬆️"
   },
   {
-    "word": "rabbit",
-    "kk": "[ˈræbɪt]",
-    "zh": "兔子",
-    "emo": "🐰"
+    "word": "in",
+    "kk": "[ɪn]",
+    "zh": "在裡面",
+    "emo": "📦"
   },
   {
-    "word": "bird",
-    "kk": "[bɝd]",
-    "zh": "鳥",
-    "emo": "🐦"
+    "word": "under",
+    "kk": "[ˈʌndɚ]",
+    "zh": "在下面",
+    "emo": "⬇️"
   },
   {
-    "word": "fish",
-    "kk": "[fɪʃ]",
-    "zh": "魚",
-    "emo": "🐟"
+    "word": "next to",
+    "kk": "[nɛkst tu]",
+    "zh": "在旁邊",
+    "emo": "↔️"
   },
   {
-    "word": "horse",
-    "kk": "[hɔrs]",
-    "zh": "馬",
-    "emo": "🐴"
+    "word": "behind",
+    "kk": "[bɪˈhaɪnd]",
+    "zh": "在後面",
+    "emo": "🙈"
   },
   {
-    "word": "pig",
-    "kk": "[pɪɡ]",
-    "zh": "豬",
-    "emo": "🐷"
+    "word": "in front of",
+    "kk": "[ɪn frʌnt ʌv]",
+    "zh": "在前面",
+    "emo": "👀"
   },
   {
-    "word": "cow",
-    "kk": "[kaʊ]",
-    "zh": "牛",
-    "emo": "🐮"
+    "word": "in the middle of",
+    "kk": "[ɪn ðə ˈmɪdəl ʌv]",
+    "zh": "在中間",
+    "emo": "🎯"
   },
   {
-    "word": "chicken",
-    "kk": "[ˈtʃɪkɪn]",
-    "zh": "雞",
-    "emo": "🐔"
+    "word": "between",
+    "kk": "[bɪˈtwin]",
+    "zh": "在兩者之間",
+    "emo": "🔀"
   },
   {
-    "word": "duck",
-    "kk": "[dʌk]",
-    "zh": "鴨",
-    "emo": "🦆"
+    "word": "bookshelf",
+    "kk": "[ˈbʊkˌʃɛlf]",
+    "zh": "書架",
+    "emo": "📚"
   },
   {
-    "word": "dog",
-    "kk": "[dɔɡ]",
-    "zh": "狗",
-    "emo": "🐶"
+    "word": "stairs",
+    "kk": "[stɛrz]",
+    "zh": "樓梯",
+    "emo": "🪜"
   }
 ];
 var dialogueLines = [
   {
-    "speaker": "Sam",
-    "text": "Hello! My name is Sam.",
-    "role": "sam",
-    "zh": "哈囉！我叫 Sam。"
-  },
-  {
-    "speaker": "Ben",
-    "text": "Nice to meet you, Sam. I'm Ben.",
+    "speaker": "Dad",
+    "text": "Amy, do you have your backpack?",
     "role": "ann",
-    "zh": "很高興認識你，Sam。我是 Ben。"
+    "zh": "Amy，你有你的背包嗎？"
   },
   {
-    "speaker": "Sam",
-    "text": "Nice to meet you, Ben.",
+    "speaker": "Amy",
+    "text": "Yes, I do. Where is my pencil case?",
     "role": "sam",
-    "zh": "很高興認識你，Ben。"
+    "zh": "有。我的鉛筆盒在哪裡？"
   },
   {
-    "speaker": "Sam",
-    "text": "Look. It is my dog. I love my dog! Do you have a dog?",
-    "role": "sam",
-    "zh": "看。這是我的狗。我愛我的狗！你有狗嗎？"
-  },
-  {
-    "speaker": "Ben",
-    "text": "No, I don't. I have a duck.",
+    "speaker": "Dad",
+    "text": "It's next to that chair.",
     "role": "ann",
-    "zh": "不，我沒有。我有一隻鴨。"
+    "zh": "它在那張椅子旁邊。"
   },
   {
-    "speaker": "Sam",
-    "text": "Wow, a duck!",
+    "speaker": "Amy",
+    "text": "Thanks. Now where are my books?",
     "role": "sam",
-    "zh": "哇，一隻鴨！"
+    "zh": "謝謝。那我的書在哪裡？"
+  },
+  {
+    "speaker": "Dad",
+    "text": "Are they on the bookshelf?",
+    "role": "ann",
+    "zh": "它們在書架上嗎？"
+  },
+  {
+    "speaker": "Amy",
+    "text": "Yes, they are. Thanks, Dad.",
+    "role": "sam",
+    "zh": "是的。謝謝爸爸。"
+  },
+  {
+    "speaker": "Dad",
+    "text": "Is your glue stick behind this box?",
+    "role": "ann",
+    "zh": "你的口紅膠在這個盒子後面嗎？"
+  },
+  {
+    "speaker": "Amy",
+    "text": "Yes, it is. And here is my apple.",
+    "role": "sam",
+    "zh": "是的。我的蘋果也在這裡。"
+  },
+  {
+    "speaker": "Dad",
+    "text": "Good. Here comes the bus.",
+    "role": "ann",
+    "zh": "很好。公車來了。"
+  },
+  {
+    "speaker": "Amy",
+    "text": "Bye! See you later.",
+    "role": "sam",
+    "zh": "掰掰！待會見。"
   }
 ];
-var convs = [{title:"💬 課本對話 · 動物寵物", lines:dialogueLines}];
+var convs = [{title:"💬 課本對話 · 位置", lines:dialogueLines}];
 var grammar = {
-  "rule": "Do you have...? 問「你有沒有？」Yes, I do. / No, I don't. 回答很常用。",
+  "rule": "單數用 Where is / Is it；複數用 Where are / Are they。",
   "examples": [
     {
-      "text": "Do you have a dog?",
-      "full": "Do you have a dog?",
-      "zh": "你有狗嗎？"
+      "text": "Where is my pencil case?",
+      "full": "Where is my pencil case?",
+      "zh": "我的鉛筆盒在哪裡？"
     },
     {
-      "text": "Yes, I do.",
-      "full": "Yes, I do.",
-      "zh": "是的，我有。"
+      "text": "Where are my books?",
+      "full": "Where are my books?",
+      "zh": "我的書在哪裡？"
     },
     {
-      "text": "No, I don't.",
-      "full": "No, I do not.",
-      "zh": "不，我沒有。"
+      "text": "It's next to that chair.",
+      "full": "It is next to that chair.",
+      "zh": "它在那張椅子旁邊。"
     }
   ]
 };
 var stemWords = [
   {
-    "word": "sort",
-    "zh": "分類",
-    "emo": "🗂️",
-    "en": "You sort animals by how many legs they have.",
-    "desc": "依照腳的數量分類動物。"
+    "word": "position",
+    "zh": "位置",
+    "emo": "📍",
+    "en": "You tell where an object is.",
+    "desc": "說出物品的位置。"
   },
   {
-    "word": "compare",
-    "zh": "比較",
-    "emo": "⚖️",
-    "en": "You compare animals with two legs, four legs, or no legs.",
-    "desc": "比較動物有幾隻腳。"
+    "word": "map",
+    "zh": "對照",
+    "emo": "🗺️",
+    "en": "You match an object to the correct place.",
+    "desc": "把物品和正確位置對起來。"
   },
   {
-    "word": "observe",
-    "zh": "觀察",
-    "emo": "🔍",
-    "en": "You look at the animal carefully.",
-    "desc": "仔細觀察動物的特徵。"
+    "word": "infer",
+    "zh": "推論",
+    "emo": "🧠",
+    "en": "You use clues to find the missing object.",
+    "desc": "用線索找東西。"
   }
 ];
 var allLines=[]; convs.forEach(function(c){ c.lines.forEach(function(l){ allLines.push(l); }); });
@@ -215,31 +239,31 @@ var ttsCache=new Map(), activeAzureAudio=null, audioUnlocked=false;
 function el(id){ return document.getElementById(id); }
 function lsGet(k,def){ try{ var a=JSON.parse(localStorage.getItem(k)); return a==null?def:a; }catch(e){ return def; } }
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
-var heardLine=lsGet("teamms-diamond-l5-pre-line",{})||{};
-var heardVocab=lsGet("teamms-diamond-l5-pre-vocab",{})||{};
-var heardStem=lsGet("teamms-diamond-l5-pre-stem",{})||{};
+var heardLine=lsGet("teamms-diamond-l9-pre-line",{})||{};
+var heardVocab=lsGet("teamms-diamond-l9-pre-vocab",{})||{};
+var heardStem=lsGet("teamms-diamond-l9-pre-stem",{})||{};
 function stopSpeaking(){ if(activeAzureAudio){ activeAzureAudio.onended=null; activeAzureAudio.pause(); activeAzureAudio=null; } window.speechSynthesis.cancel(); }
 function warmTTS(){ fetch(TTS_BASE+"/api/tts/status",{cache:"no-store"}).catch(function(){}); }
 function unlockAudio(){ if(audioUnlocked) return; audioUnlocked=true; try{ var u=new SpeechSynthesisUtterance(" "); u.volume=0; window.speechSynthesis.speak(u); }catch(e){ audioUnlocked=false; } try{ var a=new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=="); a.volume=0; a.play().catch(function(){}); }catch(e){} }
 function pickBrowserVoice(role){ var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[]; var en=vs.filter(function(v){ return /^en/i.test(v.lang||""); }); if(!en.length) return {voice:null,pitch:1,rate:.72}; var pref=role==="sam"?["Aaron","Daniel","Arthur","Alex","Tom"]:["Samantha","Allison","Ava","Karen"]; var voice=null; for(var i=0;i<pref.length;i++){ voice=en.find(function(v){ return (v.name||"").indexOf(pref[i])>=0; }); if(voice)break; } return {voice:voice||en[0],pitch:role==="sam"?.85:1.1,rate:.68}; }
 function speakBrowser(text,role,onEnd){ var p=pickBrowserVoice(role); var u=new SpeechSynthesisUtterance(text); u.lang="en-US"; if(p.voice)u.voice=p.voice; u.rate=p.rate; u.pitch=p.pitch; u.onend=function(){ if(onEnd)onEnd(); }; window.speechSynthesis.speak(u); }
 function speak(text,role,onEnd){ unlockAudio(); stopSpeaking(); var voice=azureVoiceForRole(role); var key=voice+"|"+text, cached=ttsCache.get(key); var run=function(url){ var a=new Audio(url); activeAzureAudio=a; a.onended=function(){ if(activeAzureAudio===a)activeAzureAudio=null; if(onEnd)onEnd(); }; a.play().catch(function(){ if(activeAzureAudio===a)activeAzureAudio=null; speakBrowser(text,role,onEnd); }); }; if(cached){ run(cached); return; } el("hint").textContent="載入語音中…第一次可能要等雲端語音冷啟動。"; fetch(TTS_BASE+"/api/tts",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:text,voice:voice})}).then(function(r){ if(!r.ok) throw new Error("tts "+r.status); return r.blob(); }).then(function(b){ var url=URL.createObjectURL(b); ttsCache.set(key,url); run(url); }).catch(function(){ speakBrowser(text,role,onEnd); }); }
-var STAGES=[{key:"vocab",icon:"🔤",title:"單字聽一聽",sub:"10 個 動物寵物 重點字，點卡片聽發音"},{key:"dialog",icon:"💬",title:"對話聽一聽",sub:"課本對話，點句子單獨聽或聽整段"},{key:"grammar",icon:"🧩",title:"句型小魔術",sub:"先聽會說，複習頁再闖關"},{key:"stem",icon:"🔬",title:"STEM 動作字",sub:"課本跨科小任務的關鍵字"}];
+var STAGES=[{key:"vocab",icon:"🔤",title:"單字聽一聽",sub:"10 個 位置 重點字，點卡片聽發音"},{key:"dialog",icon:"💬",title:"對話聽一聽",sub:"課本對話，點句子單獨聽或聽整段"},{key:"grammar",icon:"🧩",title:"句型小魔術",sub:"先聽會說，複習頁再闖關"},{key:"stem",icon:"🔬",title:"STEM 動作字",sub:"課本跨科小任務的關鍵字"}];
 function stageDone(key){ if(key==="vocab")return vocab.every(function(_,i){return heardVocab[i];}); if(key==="dialog")return allLines.every(function(_,i){return heardLine[i];}); if(key==="grammar")return grammar._done; if(key==="stem")return stemWords.every(function(_,i){return heardStem[i];}); return false; }
 function renderDots(){ el("dots").innerHTML=STAGES.map(function(s){ var d=stageDone(s.key); return '<div class="dot'+(d?' done':'')+'" onclick="goStage(\''+s.key+'\')"><div class="bubble">'+(d?'✓':s.icon)+'</div><div class="lbl">'+s.title+'</div></div>'; }).join(''); }
 function goStage(key){ var e=el("stage-"+key); if(e)e.scrollIntoView({behavior:"smooth",block:"start"}); }
 function refreshBadge(key){ var b=el("badge-"+key); if(b)b.textContent=stageDone(key)?"✅ 聽完了":""; renderDots(); }
 function buildShell(){ el("stages").innerHTML=STAGES.map(function(s){ return '<section class="stage" id="stage-'+s.key+'"><div class="stage-head"><span class="stage-icon">'+s.icon+'</span><span class="stage-title">'+s.title+'</span><span class="stage-badge" id="badge-'+s.key+'"></span></div><p class="stage-sub">'+s.sub+'</p><div id="body-'+s.key+'"></div></section>'; }).join(''); }
 function buildVocab(){ el("body-vocab").innerHTML='<div class="vocab-grid">'+vocab.map(function(v,i){ return '<button class="vocab-card" onclick="playVocab('+i+')"><span class="seen" id="vseen-'+i+'">'+(heardVocab[i]?'✓':'')+'</span><div class="emo">'+v.emo+'</div><div class="word">'+v.word+'</div><div class="kk">'+v.kk+'</div><div class="zh">'+v.zh+'</div></button>'; }).join('')+'</div>'; }
-function playVocab(i){ speak(vocab[i].word,"together"); if(!heardVocab[i]){ heardVocab[i]=true; lsSet("teamms-diamond-l5-pre-vocab",heardVocab); el("vseen-"+i).textContent='✓'; refreshBadge("vocab"); } }
+function playVocab(i){ speak(vocab[i].word,"together"); if(!heardVocab[i]){ heardVocab[i]=true; lsSet("teamms-diamond-l9-pre-vocab",heardVocab); el("vseen-"+i).textContent='✓'; refreshBadge("vocab"); } }
 function buildDialog(){ var html='<button class="playall" onclick="playConv()">🔊 聽整段對話</button>'; dialogueLines.forEach(function(l,i){ html+='<button class="line-button" onclick="playLine('+i+')"><span class="num">'+(i+1)+'</span><span><strong>'+l.speaker+'</strong><span class="t">'+l.text+'</span><span class="zh">'+l.zh+'</span></span><span class="ck" id="lck-'+i+'">'+(heardLine[i]?'✓':'')+'</span></button>'; }); el("body-dialog").innerHTML=html; }
-function markLine(i){ if(!heardLine[i]){ heardLine[i]=true; lsSet("teamms-diamond-l5-pre-line",heardLine); var c=el("lck-"+i); if(c)c.textContent='✓'; refreshBadge("dialog"); } }
+function markLine(i){ if(!heardLine[i]){ heardLine[i]=true; lsSet("teamms-diamond-l9-pre-line",heardLine); var c=el("lck-"+i); if(c)c.textContent='✓'; refreshBadge("dialog"); } }
 function playLine(i){ speak(dialogueLines[i].text,dialogueLines[i].role,function(){ markLine(i); }); }
 function playConv(){ (function next(i){ if(i>=dialogueLines.length)return; speak(dialogueLines[i].text,dialogueLines[i].role,function(){ markLine(i); next(i+1); }); })(0); }
 function buildGrammar(){ el("body-grammar").innerHTML='<div class="coach">'+grammar.rule+'</div>'+grammar.examples.map(function(ex,i){ return '<div class="gram-line" onclick="playGram('+i+')"><div><div class="en">'+ex.text+' <b>'+((ex.full!==ex.text)?'= '+ex.full:'')+'</b></div><div class="zh">'+ex.zh+'</div></div><div style="margin-left:auto;font-size:20px">🔊</div></div>'; }).join(''); }
 function playGram(i){ speak(grammar.examples[i].full,"ann"); grammar._done=true; refreshBadge("grammar"); }
 function buildStem(){ el("body-stem").innerHTML='<div class="coach">先聽 STEM 小字，複習頁會用遊戲考你意思。</div>'+stemWords.map(function(s,i){ return '<div class="card"><div class="en"><span class="seen" id="sseen-'+i+'">'+(heardStem[i]?'✓ ':'')+'</span>'+s.emo+' '+s.word+' <span class="zh">'+s.zh+'</span></div><div class="zh">'+s.desc+'</div><div class="zh" style="color:var(--gem-dark);font-style:italic">"'+s.en+'"</div><div class="row" style="margin-top:10px"><button class="playall" onclick="playStem('+i+')">🔊 聽單字</button><button class="playall" style="background:var(--accent)" onclick="playStemEn('+i+')">🗣️ 聽英文解釋</button></div></div>'; }).join(''); }
-function markStem(i){ if(!heardStem[i]){ heardStem[i]=true; lsSet("teamms-diamond-l5-pre-stem",heardStem); el("sseen-"+i).textContent='✓ '; refreshBadge("stem"); } }
+function markStem(i){ if(!heardStem[i]){ heardStem[i]=true; lsSet("teamms-diamond-l9-pre-stem",heardStem); el("sseen-"+i).textContent='✓ '; refreshBadge("stem"); } }
 function playStem(i){ speak(stemWords[i].word,"together"); markStem(i); } function playStemEn(i){ speak(stemWords[i].en,"together"); markStem(i); }
 buildShell(); buildVocab(); buildDialog(); buildGrammar(); buildStem(); STAGES.forEach(function(s){refreshBadge(s.key);}); if(window.speechSynthesis&&speechSynthesis.getVoices)speechSynthesis.getVoices(); warmTTS();
 </script>

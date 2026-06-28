@@ -173,16 +173,17 @@ export const vocab = [
 // 預習頁用 Azure 真人聲＋SSML phoneme 唸這些 IPA，音準正確。
 export const phonics = {
   letters: "Aa–Cc",
+  // graph = 字母塊↔音 對應(拼音闖關用)：g=顯示的字母, p=該塊的音(IPA, 空字串=不發音如 silent e)
   items: [
     { letter: "Aa", sound: "/æ/", ipa: "æ", nameIpa: "eɪ", examples: [
-      { w: "ant", zh: "螞蟻", seg: ["æ", "n", "t"] },
-      { w: "mad", zh: "生氣的", seg: ["m", "æ", "d"] }] },
+      { w: "ant", zh: "螞蟻", graph: [{ g: "a", p: "æ" }, { g: "n", p: "n" }, { g: "t", p: "t" }] },
+      { w: "mad", zh: "生氣的", graph: [{ g: "m", p: "m" }, { g: "a", p: "æ" }, { g: "d", p: "d" }] }] },
     { letter: "Bb", sound: "/b/", ipa: "b", nameIpa: "bi", examples: [
-      { w: "bag", zh: "袋子", seg: ["b", "æ", "g"] },
-      { w: "big", zh: "大的", seg: ["b", "ɪ", "g"] }] },
+      { w: "bag", zh: "袋子", graph: [{ g: "b", p: "b" }, { g: "a", p: "æ" }, { g: "g", p: "g" }] },
+      { w: "big", zh: "大的", graph: [{ g: "b", p: "b" }, { g: "i", p: "ɪ" }, { g: "g", p: "g" }] }] },
     { letter: "Cc", sound: "/k/", ipa: "k", nameIpa: "si", examples: [
-      { w: "cat", zh: "貓", seg: ["k", "æ", "t"] },
-      { w: "cute", zh: "可愛的", seg: ["k", "j", "u", "t"] }] },
+      { w: "cat", zh: "貓", graph: [{ g: "c", p: "k" }, { g: "a", p: "æ" }, { g: "t", p: "t" }] },
+      { w: "cute", zh: "可愛的", graph: [{ g: "c", p: "k" }, { g: "u", p: "ju" }, { g: "t", p: "t" }, { g: "e", p: "" }] }] },
   ],
 };
 

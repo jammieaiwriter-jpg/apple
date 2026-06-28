@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>小鑽石 Lesson 5 複習闖關</title>
+  <style>
+    :root{--ink:#2c2433;--muted:#8a7d92;--line:#f0d9e6;--accent:#e85a9b;--accent-dark:#c23d7d;--gem:#43b3e0;--gem-dark:#2487b5;--green:#3aa66b;--sky:#e3f3fb;--mint:#dff5e7;}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;color:var(--ink);padding:16px 14px 60px;font-family:ui-rounded,"SF Pro Rounded","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:radial-gradient(circle at 12% 8%,rgba(232,90,155,.10),transparent 30%),radial-gradient(circle at 88% 12%,rgba(67,179,224,.12),transparent 32%),linear-gradient(180deg,#fffdf8,#fdf3f8)}
+    .wrap{max-width:780px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+    h1{font-size:clamp(22px,5vw,34px);margin:0;color:var(--accent-dark);letter-spacing:0}
+    .sub,.hint{color:var(--muted);font-size:13px;margin:4px 0 14px;line-height:1.5}
+    a.nav{font-weight:800;color:#fff;background:var(--accent);text-decoration:none;border-radius:10px;padding:10px 14px}
+    a.back{font-weight:800;color:var(--gem-dark);text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px}
+    .progress-bar{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.94);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:10px 8px;margin-bottom:16px}
+    .dots{display:flex;align-items:center;gap:4px;overflow-x:auto}
+    .dot{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:66px;cursor:pointer}
+    .bubble{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:20px;background:#fff;border:2px solid var(--line)}
+    .lbl{font-size:10.5px;color:var(--muted);font-weight:700;text-align:center;line-height:1.1}
+    .dot.done .bubble{background:var(--green);border-color:var(--green);color:#fff}.dot.done .lbl{color:var(--green)}
+    .stage{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;margin-bottom:18px;box-shadow:0 3px 10px rgba(180,120,150,.07);scroll-margin-top:80px}
+    .stage.cleared{border-color:var(--green)}.stage-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+    .stage-icon{font-size:26px}.stage-title{font-size:18px;font-weight:900;color:var(--accent-dark)}.stage-badge{margin-left:auto;font-size:12px;font-weight:800;color:var(--green)}
+    .stage-sub{font-size:12.5px;color:var(--muted);margin:0 0 12px 36px}
+    .card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;margin-bottom:12px}
+    .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(154px,1fr));gap:10px}
+    button{font-family:inherit}button.act,.playall,.next{border:0;border-radius:10px;padding:11px 15px;min-height:46px;font-weight:900;font-size:15px;cursor:pointer}
+    .playall,.next{background:var(--gem);color:#fff}.start{background:var(--accent);color:#fff}.stop{background:#b54708;color:#fff}.listen{background:#fff;color:var(--gem-dark);border:2px solid var(--gem)}
+    button:disabled{opacity:.5;cursor:not-allowed}
+    .vocab-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;text-align:left;cursor:pointer;position:relative;transition:transform .12s}
+    .vocab-card:hover{transform:translateY(-2px)}.emo{font-size:26px}.word,.en{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.18;color:var(--accent-dark)}
+    .kk{color:var(--accent-dark);font-weight:700;font-size:15px}.zh{color:var(--muted);font-size:14px}.seen,.ck{color:var(--green);font-weight:900}
+    .line-button{width:100%;display:grid;grid-template-columns:34px 1fr 26px;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);text-align:left;cursor:pointer;margin-bottom:8px}
+    .num{width:28px;height:28px;border-radius:50%;background:var(--sky);display:grid;place-items:center;color:var(--gem-dark);font-weight:900}
+    .line-button strong,.who{display:block;color:var(--gem-dark);font-size:13px;font-weight:900}.line-button .t{display:block;font-size:16px;font-weight:800;overflow-wrap:anywhere}
+    .coach{border-left:5px solid var(--gem);background:var(--sky);border-radius:10px;padding:12px 14px;color:var(--ink);font-size:14px;line-height:1.5;margin-top:6px}
+    .gram-line{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px;margin-bottom:9px;cursor:pointer}.gram-line b{color:#c2410c}
+    .row{display:flex;flex-wrap:wrap;gap:8px}.out{margin-top:9px;font-size:15px;min-height:22px;color:var(--muted)}.stars{font-size:24px;letter-spacing:2px;margin-top:5px}
+    .game-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0}
+    button.opt{border:2px solid var(--accent);background:#fff;color:var(--accent-dark);border-radius:12px;padding:13px 16px;font-weight:900;font-size:18px;min-height:52px;cursor:pointer}
+    button.opt.wide{display:block;width:100%;margin:7px 0;font-size:18px;text-align:center}button.opt.gem{border-color:var(--gem);color:var(--gem-dark)}
+    .big{font-size:clamp(24px,6vw,34px);font-weight:900;color:var(--accent-dark)}.err{color:#e11d48;font-weight:900;text-decoration:underline wavy #e11d48}.fixh{color:var(--green);font-weight:900}.reveal{margin-top:12px;font-size:16px;line-height:1.7;text-align:center}.sent{font-size:22px;font-weight:800}
+    .banner{display:none;text-align:center;border:2px dashed var(--accent);border-radius:18px;background:linear-gradient(180deg,#fff,#fff0f7);padding:22px;margin-top:8px}.banner.show{display:block}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>💎 小鑽石 Lesson 5 複習</h1>
+    <a class="back" href="./lesson5-pre.html?v=teamms1-u5-20260628">← 回預習</a>
+  </header>
+  <p class="hint">用平板的 Chrome 分頁開。一關一關闖：先按「🔊 聽」，再按「🎤 開始念」，念完按「⏹ 念好了」就打星。遊戲關不用麥克風。</p>
+  <div class="progress-bar"><div class="dots" id="dots"></div></div>
+  <div id="stages"></div>
+  <div class="banner" id="banner"><div class="big">🎉 全部闖關成功！</div><div class="zh">小鑽石 Lesson 5 6 關全破關 ✨</div></div>
+</div>
+<script>
+var dialogueLines = [
+  {
+    "speaker": "Sam",
+    "text": "Hello! My name is Sam.",
+    "role": "sam",
+    "zh": "哈囉！我叫 Sam。"
+  },
+  {
+    "speaker": "Ben",
+    "text": "Nice to meet you, Sam. I'm Ben.",
+    "role": "ann",
+    "zh": "很高興認識你，Sam。我是 Ben。"
+  },
+  {
+    "speaker": "Sam",
+    "text": "Nice to meet you, Ben.",
+    "role": "sam",
+    "zh": "很高興認識你，Ben。"
+  },
+  {
+    "speaker": "Sam",
+    "text": "Look. It is my dog. I love my dog! Do you have a dog?",
+    "role": "sam",
+    "zh": "看。這是我的狗。我愛我的狗！你有狗嗎？"
+  },
+  {
+    "speaker": "Ben",
+    "text": "No, I don't. I have a duck.",
+    "role": "ann",
+    "zh": "不，我沒有。我有一隻鴨。"
+  },
+  {
+    "speaker": "Sam",
+    "text": "Wow, a duck!",
+    "role": "sam",
+    "zh": "哇，一隻鴨！"
+  }
+];
+var vocab = [
+  {
+    "word": "cat",
+    "kk": "[kæt]",
+    "zh": "貓",
+    "emo": "🐱"
+  },
+  {
+    "word": "rabbit",
+    "kk": "[ˈræbɪt]",
+    "zh": "兔子",
+    "emo": "🐰"
+  },
+  {
+    "word": "bird",
+    "kk": "[bɝd]",
+    "zh": "鳥",
+    "emo": "🐦"
+  },
+  {
+    "word": "fish",
+    "kk": "[fɪʃ]",
+    "zh": "魚",
+    "emo": "🐟"
+  },
+  {
+    "word": "horse",
+    "kk": "[hɔrs]",
+    "zh": "馬",
+    "emo": "🐴"
+  },
+  {
+    "word": "pig",
+    "kk": "[pɪɡ]",
+    "zh": "豬",
+    "emo": "🐷"
+  },
+  {
+    "word": "cow",
+    "kk": "[kaʊ]",
+    "zh": "牛",
+    "emo": "🐮"
+  },
+  {
+    "word": "chicken",
+    "kk": "[ˈtʃɪkɪn]",
+    "zh": "雞",
+    "emo": "🐔"
+  },
+  {
+    "word": "duck",
+    "kk": "[dʌk]",
+    "zh": "鴨",
+    "emo": "🦆"
+  },
+  {
+    "word": "dog",
+    "kk": "[dɔɡ]",
+    "zh": "狗",
+    "emo": "🐶"
+  }
+];
+var talkPairs = [
+  {
+    "q": "Do you have a dog?",
+    "a": "No, I don't. I have a duck.",
+    "d": [
+      "Yes, I don't.",
+      "It is a bus."
+    ]
+  },
+  {
+    "q": "Do you have a cat?",
+    "a": "Yes, I do.",
+    "d": [
+      "No, I do.",
+      "Who is she?"
+    ]
+  },
+  {
+    "q": "What do you have?",
+    "a": "I have a duck.",
+    "d": [
+      "It is my bus.",
+      "Be quiet."
+    ]
+  },
+  {
+    "q": "Nice to meet you.",
+    "a": "Nice to meet you, too.",
+    "d": [
+      "Wow, a duck!",
+      "I have ten cars."
+    ]
+  }
+];
+var checkItems = [
+  {
+    "text": "do you have a dog?",
+    "ok": false,
+    "bad": "do",
+    "fixTok": "Do",
+    "correct": "Do you have a dog?",
+    "fix": "句子開頭第一個字要大寫。"
+  },
+  {
+    "text": "Yes, I do.",
+    "ok": true
+  },
+  {
+    "text": "No, I don't.",
+    "ok": true
+  },
+  {
+    "text": "Do you have a dog.",
+    "ok": false,
+    "bad": ".",
+    "fixTok": "?",
+    "correct": "Do you have a dog?",
+    "fix": "問句要用問號。"
+  },
+  {
+    "text": "I have a duck.",
+    "ok": true
+  }
+];
+var stemWords = [
+  {
+    "word": "sort",
+    "zh": "分類",
+    "emo": "🗂️",
+    "en": "You sort animals by how many legs they have.",
+    "desc": "依照腳的數量分類動物。"
+  },
+  {
+    "word": "compare",
+    "zh": "比較",
+    "emo": "⚖️",
+    "en": "You compare animals with two legs, four legs, or no legs.",
+    "desc": "比較動物有幾隻腳。"
+  },
+  {
+    "word": "observe",
+    "zh": "觀察",
+    "emo": "🔍",
+    "en": "You look at the animal carefully.",
+    "desc": "仔細觀察動物的特徵。"
+  }
+];
+var contractions={"i'm":"i am","im":"i am","what's":"what is","whats":"what is","don't":"do not","dont":"do not","let's":"let us","lets":"let us"};
+function normalizeSpeech(v){var s=String(v||"").toLowerCase();for(var k in contractions){s=s.split(k).join(contractions[k]);}return s.replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();}
+function scoreSpeech(expected,heard){var e=normalizeSpeech(expected).split(" ").filter(Boolean);var h=normalizeSpeech(heard).split(" ").filter(Boolean);if(!h.length)return{stars:0};var cur=0,matched=0;for(var i=0;i<e.length;i++){var at=h.indexOf(e[i],cur);if(at!==-1){matched++;cur=at+1;}}var coverage=matched/Math.max(e.length,1);var penalty=Math.max(h.length-e.length-2,0)*.04;var pct=Math.max(0,Math.min(1,coverage-penalty));var stars=Math.ceil(pct*5+.25);if(matched===e.length)stars=5;if(matched===0)stars=1;if(stars===0&&h.length)stars=1;return{stars:stars};}
+var scores=[],vScores=[],cleared={};
+var BAD_VOICE=/Fred|Albert|Zarvox|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed|Rishi/i;
+var speakSeq=0,primed=false; function primeVoice(){if(primed)return;primed=true;try{window.speechSynthesis.resume();var u=new SpeechSynthesisUtterance(' ');u.volume=0;window.speechSynthesis.speak(u);}catch(e){}}
+function pickVoice(role){var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];var en=vs.filter(function(v){return /en[-_](US|GB|AU)/i.test(v.lang);});if(!en.length)return null;var good=en.filter(function(v){return !BAD_VOICE.test(v.name);});if(!good.length)good=en;var pref=role==="sam"?["Aaron","Tom","Nathan","Arthur","Daniel","Alex"]:["Samantha","Allison","Ava","Karen","Aaron"];for(var i=0;i<pref.length;i++){var hit=good.find(function(v){return v.name.indexOf(pref[i])>=0;});if(hit)return hit;}return good[0];}
+function speak(text,role,onEnd){primed=true;var seq=++speakSeq,done=false;function finish(){if(done||seq!==speakSeq)return;done=true;if(onEnd)onEnd();}try{window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=.68;u.volume=1;u.pitch=role==="sam"?.85:1.08;var v=pickVoice(role);if(v)u.voice=v;if(onEnd){u.onend=finish;u.onerror=finish;}window.speechSynthesis.speak(u);setTimeout(function(){try{window.speechSynthesis.resume();}catch(_){}},90);}catch(e){finish();}}
+function autoSpeak(text,role){if(primed)speak(text,role);}
+function SR(){return window.SpeechRecognition||window.webkitSpeechRecognition;} var srSupported=!!SR();
+function rec(id,cb){var C=SR(),out=document.getElementById(id+'-out'),start=document.getElementById(id+'-start'),stop=document.getElementById(id+'-stop');if(!C){if(out)out.textContent='此瀏覽器不支援語音辨識。';return;}var text='',stopped=false,gotAny=false;var r=new C();r.lang='en-US';r.continuous=true;r.interimResults=false;r.onaudiostart=function(){if(out)out.textContent='🎙 收音中…請大聲念';};r.onresult=function(e){for(var i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)text+=e.results[i][0].transcript+' ';}gotAny=true;if(out)out.textContent='👂 聽到：'+(text.trim()||'(空)');};r.onerror=function(e){if(out)out.textContent='🔴 辨識問題：'+(e.error||'未知');};r.onend=function(){if(!stopped){setTimeout(function(){try{r.start();}catch(_){}},120);return;}if(start)start.disabled=false;if(stop)stop.disabled=true;if(!gotAny&&out)out.textContent='⏹ 沒收到字，再按一次「開始念」。';cb(text.trim());};if(start)start.disabled=true;if(stop){stop.disabled=false;stop.onclick=function(){stopped=true;try{r.stop();}catch(_){}setTimeout(function(){try{r.abort();}catch(_){}},1200);};}try{window.speechSynthesis.cancel();}catch(_){}if(out)out.textContent='🎙 啟動中…';setTimeout(function(){try{r.start();}catch(e){if(start)start.disabled=false;if(stop)stop.disabled=true;if(out)out.textContent='請再按一次「開始念」。';}},350);}
+var STAGES=[{key:"dialog",icon:"💬",title:"對話跟讀",sub:"聽一句，跟著唸一句"},{key:"vocab",icon:"🔤",title:"單字跟讀",sub:"每個重點字念念看"},{key:"match",icon:"🎯",title:"聽音選字",sub:"聽英文，點對的字"},{key:"talk",icon:"🗣️",title:"對話配對",sub:"聽問句，選回答"},{key:"check",icon:"✅",title:"對錯偵探",sub:"句子對的圈、錯的叉"},{key:"stem",icon:"🔬",title:"STEM 闖關",sub:"聽英文解釋，選意思"}];
+function starStr(n){var s='';for(var i=0;i<5;i++)s+=i<n?'⭐':'☆';return s;} function js(x){return JSON.stringify(x).replace(/"/g,'&quot;');} function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function markCleared(key){if(cleared[key])return;cleared[key]=true;renderDots();markStageUI(key);checkAllDone();} function markStageUI(key){var st=document.getElementById('stage-'+key);if(!st)return;st.classList.toggle('cleared',!!cleared[key]);var b=document.getElementById('badge-'+key);if(b)b.textContent=cleared[key]?'✅ 過關':'';} function checkAllDone(){var all=STAGES.every(function(s){return cleared[s.key];});document.getElementById('banner').classList.toggle('show',all);}
+function renderDots(){document.getElementById('dots').innerHTML=STAGES.map(function(s){return '<div class="dot'+(cleared[s.key]?' done':'')+'" onclick="goStage(\''+s.key+'\')"><div class="bubble">'+(cleared[s.key]?'✓':s.icon)+'</div><div class="lbl">'+s.title+'</div></div>';}).join('');} function goStage(key){var e=document.getElementById('stage-'+key);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});}
+function buildShell(){document.getElementById('stages').innerHTML=STAGES.map(function(s){return '<section class="stage'+(cleared[s.key]?' cleared':'')+'" id="stage-'+s.key+'"><div class="stage-head"><span class="stage-icon">'+s.icon+'</span><span class="stage-title">'+s.title+'</span><span class="stage-badge" id="badge-'+s.key+'">'+(cleared[s.key]?'✅ 過關':'')+'</span></div><p class="stage-sub">'+s.sub+'</p><div id="body-'+s.key+'"></div></section>';}).join('');}
+function buildDialog(){var html='';dialogueLines.forEach(function(l,i){var id='d'+i;html+='<div class="card"><div class="who">'+l.speaker+'</div><div class="en">'+l.text+'</div><div class="zh">'+l.zh+'</div><div class="row"><button class="act listen" onclick="speak('+js(l.text)+',\''+l.role+'\')">🔊 聽</button><button class="act start" id="'+id+'-start" onclick="recLine('+i+')">🎤 開始念</button><button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button></div><div class="out" id="'+id+'-out"></div><div class="stars" id="'+id+'-stars">'+starStr(scores[i]||0)+'</div></div>';});document.getElementById('body-dialog').innerHTML=html;}
+function recLine(i){rec('d'+i,function(heard){if(!heard)return;var s=scoreSpeech(dialogueLines[i].text,heard).stars;scores[i]=Math.max(scores[i]||0,s);document.getElementById('d'+i+'-stars').textContent=starStr(s);document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';if(dialogueLines.every(function(_,k){return(scores[k]||0)>=3;}))markCleared('dialog');});}
+function buildVocab(){var html='';vocab.forEach(function(w,i){var id='v'+i;html+='<div class="card"><div class="en">'+w.emo+' '+w.word+' <span class="kk">'+w.kk+'</span></div><div class="zh">'+w.zh+'</div><div class="row"><button class="act listen" onclick="speak('+js(w.word)+',\'together\')">🔊 聽</button><button class="act start" id="'+id+'-start" onclick="recVocab('+i+')">🎤 開始念</button><button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button></div><div class="out" id="'+id+'-out"></div><div class="stars" id="'+id+'-stars">'+starStr(vScores[i]||0)+'</div></div>';});document.getElementById('body-vocab').innerHTML=html;}
+function recVocab(i){rec('v'+i,function(heard){if(!heard)return;var s=scoreSpeech(vocab[i].word,heard).stars;vScores[i]=Math.max(vScores[i]||0,s);document.getElementById('v'+i+'-stars').textContent=starStr(s);document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';if(vocab.every(function(_,k){return(vScores[k]||0)>=3;}))markCleared('vocab');});}
+function disableAll(box){[].forEach.call(box.querySelectorAll('button'),function(x){x.disabled=true;});} function ckEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');} function ckHL(text,tok,cls){var i=text.indexOf(tok);if(i<0)return ckEsc(text);return ckEsc(text.slice(0,i))+'<span class="'+cls+'">'+ckEsc(tok)+'</span>'+ckEsc(text.slice(i+tok.length));}
+var CH={}; function Challenge(key,bodyId,build){this.key=key;this.bodyId=bodyId;this.build=build;CH[key]=this;} Challenge.prototype.start=function(){this.qs=this.build();this.order=shuffle(this.qs.map(function(_,i){return i;}));this.phase='answer';this.pos=0;this.correct=0;this.total=this.qs.length;this.wrong=[];this._render();}; Challenge.prototype._render=function(){var self=this,b=document.getElementById(this.bodyId);if(this.phase==='answer'){if(this.pos>=this.order.length){if(this.wrong.length===0){this._congrats();return;}b.innerHTML='<div class="card" style="text-align:center"><div class="big">✅ 作答已完成！</div><div class="zh">答對 '+this.correct+' / '+this.total+'　還有 '+this.wrong.length+' 題要再練習一次</div><button class="next" id="ch-retry">開始錯題挑戰 →</button></div>';b.querySelector('#ch-retry').onclick=function(){self.phase='retry';self.pos=0;self._render();};return;}this._ask(this.qs[this.order[this.pos]],'answer');return;}if(this.wrong.length===0){this._congrats();return;}if(this.pos>=this.wrong.length)this.pos=0;this._ask(this.wrong[this.pos],'retry');}; Challenge.prototype._ask=function(q,phase){var self=this,b=document.getElementById(this.bodyId);var head=(phase==='answer')?'<div class="zh">第 '+(this.pos+1)+' / '+this.total+' 題　答對 '+this.correct+'</div>':'<div class="zh">🔁 錯題挑戰　還有 '+this.wrong.length+' 題</div>';b.innerHTML='<div class="card" style="text-align:center">'+head+'<div class="ch-q"></div><div class="out ch-out"></div><div class="ch-foot"></div></div>';var settled=false;q.mount(b.querySelector('.ch-q'),b.querySelector('.ch-out'),phase,function(firstTryCorrect){if(settled)return;settled=true;if(phase==='answer'){if(firstTryCorrect)self.correct++;else self.wrong.push(q);}else{var w=self.wrong.indexOf(q);if(w>=0)self.wrong.splice(w,1);}var foot=b.querySelector('.ch-foot');foot.innerHTML='<button class="next">下一題 →</button>';foot.querySelector('button').onclick=function(){if(phase==='answer')self.pos++;self._render();};});}; Challenge.prototype._congrats=function(){document.getElementById(this.bodyId).innerHTML='<div class="card" style="text-align:center"><div class="big">🎉 恭喜完成！</div><div class="zh">這一關全部過關啦 ✨</div><div class="row" style="justify-content:center"><button class="act start" onclick="CH[\''+this.key+'\'].start()">再玩一次</button></div></div>';markCleared(this.key);};
+function qMatch(t){return{mount:function(qEl,outEl,phase,settle){var firstTry=true;var opts=shuffle([t].concat(shuffle(vocab.map(function(_,i){return i;}).filter(function(i){return i!==t;})).slice(0,3)));qEl.innerHTML='<div class="big" style="font-size:40px">👂</div><div class="en">聽一聽，這是哪個字？</div><div class="row" style="justify-content:center"><button class="act listen" id="m-listen">🔊 再聽一次</button></div><div class="game-grid" id="m-grid">'+opts.map(function(i){return '<button class="opt gem" data-i="'+i+'">'+vocab[i].word+'</button>';}).join('')+'</div>';document.getElementById('m-listen').onclick=function(){speak(vocab[t].word,'together');};var grid=document.getElementById('m-grid');grid.onclick=function(e){var btn=e.target.closest('button[data-i]');if(!btn||btn.disabled)return;var i=+btn.dataset.i;if(i===t){outEl.textContent='✅ 答對了！'+vocab[t].word+'（'+vocab[t].zh+'）';disableAll(grid);speak(vocab[t].word,'together');settle(firstTry);}else{firstTry=false;outEl.textContent='❌ 你點的是「'+vocab[i].word+'」，正確答案再聽一次';speak(vocab[i].word,'together',function(){speak(vocab[t].word,'together');});}};setTimeout(function(){autoSpeak(vocab[t].word,'together');},250);}};}
+function qTalk(pi){var pair=talkPairs[pi];return{mount:function(qEl,outEl,phase,settle){var firstTry=true;var opts=shuffle([pair.a].concat(pair.d));qEl.innerHTML='<div class="en">'+pair.q+'</div><div class="row" style="justify-content:center"><button class="act listen" id="t-listen">🔊 再聽一次</button></div><div class="zh">該怎麼回答？👇</div><div id="t-opts">'+opts.map(function(o,k){return '<button class="opt wide" data-k="'+k+'">'+o+'</button>';}).join('')+'</div>';document.getElementById('t-listen').onclick=function(){speak(pair.q,'sam');};var box=document.getElementById('t-opts');box.onclick=function(e){var btn=e.target.closest('button[data-k]');if(!btn||btn.disabled)return;var o=opts[+btn.dataset.k];if(o===pair.a){outEl.textContent='✅ 答對了！';disableAll(box);speak(pair.a,'ann');settle(firstTry);}else{firstTry=false;outEl.textContent='❌ 你選的是「'+o+'」，再試試看';speak(o,'ann',function(){speak(pair.q,'sam');});}};setTimeout(function(){autoSpeak(pair.q,'sam');},250);}};}
+function qCheck(ci){var it=checkItems[ci];return{mount:function(qEl,outEl,phase,settle){qEl.innerHTML='<div class="en">「'+it.text+'」</div><div class="zh">這句寫得對嗎？</div><div class="row" id="c-row" style="justify-content:center;margin-top:6px"><button class="opt" data-v="1">⭕ 對</button><button class="opt gem" data-v="0">❌ 錯</button></div><div class="reveal" id="c-reveal"></div>';var row=document.getElementById('c-row');row.onclick=function(e){var btn=e.target.closest('button[data-v]');if(!btn||btn.disabled)return;var saysOk=(btn.dataset.v==='1'),correct=(saysOk===it.ok);if(phase==='retry'&&!correct){outEl.textContent='❌ 再想想看';return;}disableAll(row);var html=correct?'<div style="color:var(--green);font-weight:900;font-size:18px">✅ 答對了！</div>':'<div style="color:#e11d48;font-weight:900;font-size:18px">❌ 答錯了，看看正確答案</div>';if(it.ok){html+='<div class="reveal">這句寫得<b>對</b><br><span class="sent">'+ckEsc(it.text)+'</span></div>';}else{html+='<div class="reveal">這句<b>錯</b>了！錯在紅色的地方<br><span class="sent">'+ckHL(it.text,it.bad,'err')+'</span><br>✏️ 正確：<br><span class="sent">'+ckHL(it.correct,it.fixTok,'fixh')+'</span><br><small style="color:var(--muted)">'+it.fix+'</small></div>';}document.getElementById('c-reveal').innerHTML=html;settle(correct);};}};}
+function qStemWord(t){return{mount:function(qEl,outEl,phase,settle){var firstTry=true;qEl.innerHTML='<div class="en" style="font-size:19px;line-height:1.4">"'+stemWords[t].en+'"</div><div class="row" style="justify-content:center"><button class="act listen" id="s-listen">🔊 再聽一次</button></div><div class="zh">這句話在說哪個字？👇</div><div class="game-grid" id="s-grid">'+shuffle(stemWords.map(function(_,i){return i;})).map(function(i){return '<button class="opt gem" data-i="'+i+'">'+stemWords[i].word+'</button>';}).join('')+'</div>';document.getElementById('s-listen').onclick=function(){speak(stemWords[t].en,'together');};var grid=document.getElementById('s-grid');grid.onclick=function(e){var btn=e.target.closest('button[data-i]');if(!btn||btn.disabled)return;var i=+btn.dataset.i;if(i===t){outEl.textContent='✅ 答對了！'+stemWords[t].word+' = '+stemWords[t].zh;disableAll(grid);speak(stemWords[t].word,'together');settle(firstTry);}else{firstTry=false;outEl.textContent='❌ 你選的是「'+stemWords[i].word+'」。中文提示：'+stemWords[t].desc;speak(stemWords[t].en,'together');}};setTimeout(function(){autoSpeak(stemWords[t].en,'together');},250);}};}
+new Challenge('match','body-match',function(){return vocab.map(function(_,i){return qMatch(i);});}); new Challenge('talk','body-talk',function(){return talkPairs.map(function(_,i){return qTalk(i);});}); new Challenge('check','body-check',function(){return checkItems.map(function(_,i){return qCheck(i);});}); new Challenge('stem','body-stem',function(){return stemWords.map(function(_,i){return qStemWord(i);});});
+buildShell();buildDialog();buildVocab();CH.match.start();CH.talk.start();CH.check.start();CH.stem.start();renderDots();STAGES.forEach(function(s){markStageUI(s.key);});checkAllDone();if(window.speechSynthesis)speechSynthesis.getVoices();document.addEventListener('pointerdown',primeVoice,true);document.addEventListener('touchstart',primeVoice,true);
+</script>
+</body>
+</html>

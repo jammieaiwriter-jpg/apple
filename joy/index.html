@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>佳音 Joy 練習</title>
   <!-- 加到主畫面：用一般 Safari 分頁開（不設 standalone，避免影響麥克風辨識） -->
   <meta name="apple-mobile-web-app-title" content="佳音 Joy" />
@@ -31,6 +34,9 @@
     a.preview{background:linear-gradient(180deg,#fff,var(--sky));color:var(--accent-dark);border:1px solid var(--line);}
     a.review{background:var(--accent);color:#fff;}
     .note{margin-top:24px;color:var(--muted);font-size:13px;line-height:1.6;border-top:1px dashed var(--line);padding-top:14px;}
+    .tools{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:-8px 0 18px;}
+    .refresh{border:1px solid var(--accent);border-radius:12px;background:#fff;color:var(--accent-dark);padding:10px 14px;font-weight:900;font-size:15px;min-height:44px;}
+    .version{color:var(--muted);font-size:12px;}
   </style>
 </head>
 <body>
@@ -38,6 +44,7 @@
   <div class="logo">🌟</div>
   <h1>佳音 Joy 練習</h1>
   <p class="sub">選一課開始 ✨</p>
+  <div class="tools"><button class="refresh" type="button" id="refreshBtn">更新課程清單</button><span class="version" id="versionText">v2-ph4-wrong-20260628</span></div>
   <div id="units"><p class="sub">載入課程清單中…</p></div>
 
   <p class="note">
@@ -50,9 +57,130 @@
 <script>
 /* 課程清單放在 units.json，每次開都強制抓最新 → 新增單元免重新整理。
    離線或抓不到時，用下面的備援清單。 */
+var APP_VERSION = "v2-ph4-wrong-20260628";
 var FALLBACK = [
-  { n:1, topic:"打招呼 / 自我介紹 / be 動詞", preview:"unit1-preview.html", review:"unit1-review.html?v=v22-full-20260625" }
+  {
+    "n": 1,
+    "topic": "打招呼 / 自我介紹 / be 動詞",
+    "preview": "unit1-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit1-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 2,
+    "topic": "看與幫忙、介紹他人",
+    "preview": "unit2-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit2-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 3,
+    "topic": "打招呼、一天時段",
+    "preview": "unit3-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit3-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 4,
+    "topic": "表達需求",
+    "preview": "unit4-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit4-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 5,
+    "topic": "複習 U1–U4 / Sight Words",
+    "preview": "unit5-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit5-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 6,
+    "topic": "感謝、道歉",
+    "preview": "unit6-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit6-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 7,
+    "topic": "詢問近況",
+    "preview": "unit7-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit7-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 8,
+    "topic": "安慰與介紹",
+    "preview": "unit8-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit8-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 9,
+    "topic": "能力",
+    "preview": "unit9-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit9-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 10,
+    "topic": "複習 U1–U4、U6–U9 / Sight Words",
+    "preview": "unit10-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit10-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 11,
+    "topic": "自我介紹進階、數字 1-6",
+    "preview": "unit11-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit11-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 12,
+    "topic": "初次見面、數字 7-12",
+    "preview": "unit12-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit12-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 13,
+    "topic": "顏色與近物",
+    "preview": "unit13-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit13-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 14,
+    "topic": "顏色與遠物",
+    "preview": "unit14-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit14-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 15,
+    "topic": "複習與 TPR 指令",
+    "preview": "unit15-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit15-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 16,
+    "topic": "進屋、文具",
+    "preview": "unit16-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit16-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 17,
+    "topic": "文具（遠物）",
+    "preview": "unit17-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit17-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 18,
+    "topic": "水果、a/an",
+    "preview": "unit18-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit18-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 19,
+    "topic": "形容詞＋名詞",
+    "preview": "unit19-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit19-review.html?v=v2-ph4-wrong-20260628"
+  },
+  {
+    "n": 20,
+    "topic": "複習與位置",
+    "preview": "unit20-preview.html?v=v2-ph4-wrong-20260628",
+    "review": "unit20-review.html?v=v2-ph4-wrong-20260628"
+  }
 ];
+function bust(url){ return url + (url.indexOf("?")>=0 ? "&" : "?") + "appv=" + encodeURIComponent(APP_VERSION); }
 function render(units){
   var html = "";
   units.forEach(function(u){
@@ -60,16 +188,28 @@ function render(units){
     html += '<h2>Unit ' + u.n + '</h2>';
     html += '<div class="topic">' + (u.topic||"") + '</div>';
     html += '<div class="links">';
-    html += '<a class="btn preview" href="./' + u.preview + '">🎧 預習</a>';
-    html += '<a class="btn review" href="./' + u.review + '">🎤 複習</a>';
+    html += '<a class="btn preview" href="./' + bust(u.preview) + '">🎧 預習</a>';
+    html += '<a class="btn review" href="./' + bust(u.review) + '">🎤 複習</a>';
     html += '</div></div>';
   });
   document.getElementById("units").innerHTML = html;
 }
-fetch("./units.json?t=" + Date.now(), { cache: "no-store" })
-  .then(function(r){ if(!r.ok) throw new Error("http "+r.status); return r.json(); })
-  .then(function(data){ render((data && data.units) || FALLBACK); })
-  .catch(function(){ render(FALLBACK); });
+function loadUnits(){
+  document.getElementById("versionText").textContent = APP_VERSION + " · 更新中";
+  return fetch("./units.json?t=" + Date.now() + "&appv=" + encodeURIComponent(APP_VERSION), { cache: "no-store" })
+    .then(function(r){ if(!r.ok) throw new Error("http "+r.status); return r.json(); })
+    .then(function(data){
+      var units = (data && data.units) || FALLBACK;
+      render(units);
+      document.getElementById("versionText").textContent = APP_VERSION + " · Unit " + units[units.length-1].n;
+    })
+    .catch(function(){
+      render(FALLBACK);
+      document.getElementById("versionText").textContent = APP_VERSION + " · 離線備援 Unit " + FALLBACK[FALLBACK.length-1].n;
+    });
+}
+document.getElementById("refreshBtn").addEventListener("click", function(){ loadUnits(); });
+loadUnits();
 </script>
 </body>
 </html>

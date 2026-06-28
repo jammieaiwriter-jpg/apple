@@ -38,6 +38,12 @@
     a.rev{color:#fff;background:var(--accent)}
     .empty{border:1px dashed var(--line);border-radius:14px;background:rgba(255,255,255,.72);padding:18px;color:var(--muted);font-weight:800}
     .hint{margin-top:22px;color:var(--muted);font-size:13px;line-height:1.6}
+    .book-emoji{font-size:22px;margin-right:6px}
+    .reader{display:inline-flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--accent);color:var(--accent-dark);border-radius:999px;padding:5px 12px;font-weight:900;font-size:15px;white-space:nowrap}
+    .series-head .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .unit.soon{background:repeating-linear-gradient(135deg,#fff,#fff 9px,#fbf1f6 9px,#fbf1f6 18px);border-style:dashed}
+    .unit.soon h3{color:var(--muted)}
+    .soon-tag{display:inline-block;margin-top:10px;color:var(--muted);font-weight:900;font-size:13px}
   </style>
 </head>
 <body>
@@ -55,8 +61,12 @@
 <script>
 var FALLBACK={
   updated:"2026-06-28",
+  readers:[
+    {name:"小鑽石",emoji:"👧",series:"teamms1"},
+    {name:"光哥",emoji:"👦",series:"teamms2"}
+  ],
   series:[
-    {id:"teamms1",title:"TEAMMS 1",subtitle:"小鑽石第一冊",units:[
+    {id:"teamms1",title:"第一冊",subtitle:"TEAMMS Book 1 · 全 12 課，陸續上線",total:12,units:[
       {n:1,topic:"Hello! How are you?",preview:"TEAMMS-1/lesson1-pre.html?v=teamms1-u1-20260628",review:"TEAMMS-1/lesson1-review.html?v=teamms1-u1-20260628"},
       {n:2,topic:"Sit down, please.",preview:"TEAMMS-1/lesson2-pre.html?v=teamms1-u2-20260628",review:"TEAMMS-1/lesson2-review.html?v=teamms1-u2-20260628"},
       {n:3,topic:"Who is she?",preview:"TEAMMS-1/lesson3-pre.html?v=teamms1-u3-20260628",review:"TEAMMS-1/lesson3-review.html?v=teamms1-u3-20260628"},
@@ -64,7 +74,7 @@ var FALLBACK={
       {n:5,topic:"Do you have a dog?",preview:"TEAMMS-1/lesson5-pre.html?v=teamms1-u5-20260628",review:"TEAMMS-1/lesson5-review.html?v=teamms1-u5-20260628"},
       {n:6,topic:"What do you have?",preview:"TEAMMS-1/lesson6-pre.html?v=teamms1-u6-20260628",review:"TEAMMS-1/lesson6-review.html?v=teamms1-u6-20260628"}
     ]},
-    {id:"teamms2",title:"TEAMMS 2",subtitle:"小鑽石第二冊",units:[
+    {id:"teamms2",title:"第二冊",subtitle:"TEAMMS Book 2 · 全 12 課，陸續上線",total:12,units:[
       {n:7,topic:"Where Are You?",preview:"TEAMMS-2/lesson7-pre.html?v=teamms2-u7-20260628",review:"TEAMMS-2/lesson7-review.html?v=teamms2-u7-20260628"},
       {n:8,topic:"Where Is Dad?",preview:"TEAMMS-2/lesson8-pre.html?v=teamms2-u8-20260628",review:"TEAMMS-2/lesson8-review.html?v=teamms2-u8-20260628"},
       {n:9,topic:"Where Is My Cat?",preview:"TEAMMS-2/lesson9-pre.html?v=teamms2-u9-20260628",review:"TEAMMS-2/lesson9-review.html?v=teamms2-u9-20260628"},
@@ -75,17 +85,35 @@ var FALLBACK={
   ]
 };
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
+var BOOK_EMOJI=["📘","📗","📙","📕","📓","📔"];
 function render(data){
   document.getElementById("updated").textContent="更新 "+(data.updated||"");
-  document.getElementById("app").innerHTML=(data.series||[]).map(function(series){
+  var readers=data.readers||[];
+  document.getElementById("app").innerHTML=(data.series||[]).map(function(series,si){
     var units=series.units||[];
-    return '<section class="series"><div class="series-head"><div><h2>'+esc(series.title)+'</h2><div class="sub">'+esc(series.subtitle||"")+'</div></div><div class="count">'+units.length+' 課</div></div>'
-      +(units.length?'<div class="grid">'+units.map(function(u){
-        return '<article class="unit"><h3>Lesson '+u.n+'</h3><div class="topic">'+esc(u.topic)+'</div><div class="actions">'
+    var total=series.total||units.length;
+    // 本冊現在是誰在讀（小孩是「指標」，升冊只要改 diamond-units.json 的 readers）
+    var here=readers.filter(function(r){return r.series===series.id;});
+    var badge=here.map(function(r){return '<span class="reader"><span class="who">'+esc(r.emoji||"🙂")+' '+esc(r.name)+'</span> 現在在這冊</span>';}).join('');
+    // 把已上線的課做成查表，整冊 1..total 都排出來，沒做的顯示「準備中」
+    var byN={}; units.forEach(function(u){byN[u.n]=u;});
+    var cells=[];
+    for(var n=1;n<=total;n++){
+      var u=byN[n];
+      if(u){
+        cells.push('<article class="unit"><h3>Lesson '+u.n+'</h3><div class="topic">'+esc(u.topic)+'</div><div class="actions">'
           +'<a class="btn pre" href="'+esc(u.preview)+'">課前預習</a>'
           +'<a class="btn rev" href="'+esc(u.review)+'">複習闖關</a>'
-          +'</div></article>';
-      }).join('')+'</div>':'<div class="empty">這一冊正在整理，完成後會自動加進來。</div>')
+          +'</div></article>');
+      } else {
+        cells.push('<article class="unit soon"><h3>Lesson '+n+'</h3><div class="topic">　</div><div class="soon-tag">🚧 準備中，之後補上</div></article>');
+      }
+    }
+    return '<section class="series"><div class="series-head"><div>'
+        +'<h2><span class="book-emoji">'+(BOOK_EMOJI[si]||"📘")+'</span>'+esc(series.title)+'</h2>'
+        +'<div class="meta">'+(badge||'')+'<span class="sub">'+esc(series.subtitle||"")+'</span></div>'
+      +'</div><div class="count">已上線 '+units.length+' / '+total+' 課</div></div>'
+      +'<div class="grid">'+cells.join('')+'</div>'
       +'</section>';
   }).join('');
 }

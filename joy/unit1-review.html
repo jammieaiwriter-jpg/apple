@@ -429,9 +429,40 @@ function tgStart(){ CH.talkgame.start(); }
 
 /* ===== 發音（聽，不用麥克風） ===== */
 function jatt(x){ return JSON.stringify(x).replace(/"/g,'&quot;'); } // 給 onclick 屬性用的安全字串
-// 複習頁發音＝單純聽例字讀音（拼讀/音標教學在「預習頁」用 Azure 真人聲做）
+function phExamples(){
+  var arr=[];
+  phonics.forEach(function(p,pi){ (p.examples||[]).forEach(function(e,ei){ arr.push({p:p,pi:pi,e:e,ei:ei}); }); });
+  return arr;
+}
+function qPhonics(target){ return { mount:function(qEl,outEl,phase,settle){
+  var firstTry=true;
+  var pool=phonics.map(function(_,i){return i;});
+  var opts=shuffle([target.pi].concat(shuffle(pool.filter(function(i){return i!==target.pi;})).slice(0,3)));
+  qEl.innerHTML='<div class="en">聽一聽，這個字是哪個發音？</div>'
+    +'<div class="big">'+target.e.w+'</div>'
+    +'<div class="row" style="justify-content:center"><button class="act listen" id="ph-listen">🔊 再聽一次</button></div>'
+    +'<div id="ph-opts" class="game-grid">'+opts.map(function(i){ return '<button class="opt" data-i="'+i+'">'+phonics[i].letter+'<br><span class="kk">'+phonics[i].sound+'</span></button>'; }).join('')+'</div>';
+  document.getElementById('ph-listen').onclick=function(){ speak(target.e.w,'together'); };
+  var box=document.getElementById('ph-opts');
+  box.onclick=function(e){
+    var btn=e.target.closest('button[data-i]'); if(!btn||btn.disabled) return;
+    var i=+btn.dataset.i;
+    if(i===target.pi){
+      outEl.textContent='✅ 答對了！'+target.e.w+' 是 '+target.p.letter+' 的聲音。';
+      disableAll(box); speak(target.e.w,'together'); settle(firstTry);
+    }else{
+      firstTry=false;
+      outEl.textContent='❌ 你選的是「'+phonics[i].letter+'」，再聽一次。';
+      speak(target.e.w,'together');
+    }
+  };
+  setTimeout(function(){ speak(target.e.w,'together'); },250);
+}}; }
+new Challenge('phonics','phonics-test', function(){ return phExamples().map(function(x){ return qPhonics(x); }); });
+
+// 複習頁發音＝先檢視例字，再做聽音測驗；仍只用 speechSynthesis，不碰 Azure/Audio
 function buildPhonics(){
-  var html='';
+  var html='<div class="card"><div class="zh">先檢視發音與例字，再完成下面的聽音測驗。答錯的題目會進錯題挑戰。</div></div>';
   phonics.forEach(function(p){
     html+='<div class="card">';
     html+='<div class="en">'+p.letter+' <span class="kk">'+p.sound+'</span></div>';
@@ -441,28 +472,37 @@ function buildPhonics(){
     });
     html+='</div></div>';
   });
+  html+='<div id="phonics-test"></div>';
   document.getElementById('panel-phonics').innerHTML=html;
 }
 
 /* ===== 文法 be 動詞（選詞填空，不用麥克風） ===== */
-function buildGrammar(){
-  var html='<div class="card"><div class="zh">'+grammar.rule+'</div></div>';
-  grammar.quiz.forEach(function(q,i){
-    html+='<div class="card">';
-    html+='<div class="en">'+q.subject+' ___ '+q.full.replace(q.subject+' '+q.answer+' ','').replace(/\.$/,'')+'.</div>';
-    html+='<div class="zh">'+q.zh+'</div>';
-    html+='<div class="row">';
-    beOptions.forEach(function(opt){
-      html+='<button class="opt" onclick="grPick('+i+',\''+opt+'\')">'+opt+'</button>';
-    });
-    html+='</div><div class="out" id="gr'+i+'-out"></div></div>';
-  });
-  document.getElementById('panel-grammar').innerHTML=html;
+function promptForGrammar(q){
+  if(q.prompt) return q.prompt;
+  return q.subject+' ___ '+q.full.replace(q.subject+' '+q.answer+' ','').replace(/\.$/,'')+'.';
 }
-function grPick(i,opt){
-  var q=grammar.quiz[i], out=document.getElementById('gr'+i+'-out');
-  if(opt===q.answer){ out.textContent='✅ 答對了！'+q.full; speak(q.full,'abby'); }
-  else { out.textContent='❌ 再想想看，'+q.subject+' 配哪一個？'; }
+function qGrammar(i){ var q=grammar.quiz[i]; return { mount:function(qEl,outEl,phase,settle){
+  var firstTry=true;
+  qEl.innerHTML='<div class="en">'+promptForGrammar(q)+'</div><div class="zh">'+q.zh+'</div>'
+    +'<div class="row" id="gr-opts" style="justify-content:center">'+beOptions.map(function(opt){ return '<button class="opt" data-opt="'+opt+'">'+opt+'</button>'; }).join('')+'</div>';
+  var box=document.getElementById('gr-opts');
+  box.onclick=function(e){
+    var btn=e.target.closest('button[data-opt]'); if(!btn||btn.disabled) return;
+    var opt=btn.dataset.opt;
+    if(opt===q.answer){
+      outEl.textContent='✅ 答對了！'+q.full;
+      disableAll(box); speak(q.full,'abby'); settle(firstTry);
+    }else{
+      firstTry=false;
+      outEl.textContent='❌ 再想想看，這題要選哪一個？';
+    }
+  };
+}}; }
+new Challenge('grammar','grammar-test', function(){ return grammar.quiz.map(function(_,i){ return qGrammar(i); }); });
+
+function buildGrammar(){
+  var html='<div class="card"><div class="zh">'+grammar.rule+'</div></div><div id="grammar-test"></div>';
+  document.getElementById('panel-grammar').innerHTML=html;
 }
 
 function switchTab(t){
@@ -470,6 +510,8 @@ function switchTab(t){
     document.getElementById('tab-'+name).classList.toggle('active', t===name);
     document.getElementById('panel-'+name).classList.toggle('hide', t!==name);
   });
+  if(t==='phonics') CH.phonics.start();
+  if(t==='grammar') CH.grammar.start();
   if(t==='wordgame') wgStart();
   if(t==='talkgame') tgStart();
 }

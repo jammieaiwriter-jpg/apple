@@ -206,7 +206,8 @@ export function getSortedLineIndexes(lines, scores) {
     .map((item) => item.index);
 }
 
-// ---- Unit 2 加強內容：單字、Phonics、文法 ----
+// ---- Unit 2 content: vocab, phonics, grammar ----
+
 export const vocab = [
   {
     "word": "look",

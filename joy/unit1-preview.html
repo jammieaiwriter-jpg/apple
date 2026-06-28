@@ -93,6 +93,13 @@
       .game-q { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
       .sg-opts { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
       .sg-out { font-size: 18px; font-weight: 800; color: var(--accent-dark); min-height: 24px; }
+      .quest-head { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+      .quest-step { padding:6px 10px; border-radius:999px; background:var(--sky); color:var(--accent-dark); font-weight:900; }
+      .quest-word { font-size:38px; font-weight:950; color:var(--accent-dark); margin:8px 0; }
+      .quest-options { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+      .slot-word { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:10px; }
+      .slot { min-width:54px; min-height:58px; border:2px dashed var(--accent); border-radius:10px; display:grid; place-items:center; font-size:30px; font-weight:950; color:var(--accent-dark); background:#fff; }
+      .slot.blank { background:var(--sun); }
       .chip { border: 1px solid var(--line); border-radius: 999px; background: var(--mint); color: var(--accent-dark); padding: 8px 14px; cursor: pointer; font-weight: 800; min-height: 40px; }
 
       .gram-rule { border-left: 5px solid var(--accent); background: #fff; border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; color: var(--ink); font-weight: 700; }
@@ -125,7 +132,7 @@
         <button type="button" data-tab="vocab">🔤 單字</button>
         <button type="button" data-tab="phonics">🔡 字母 Aa–Cc</button>
         <button type="button" data-tab="grammar">🧩 句型 be 動詞</button>
-        <a class="pill-button" href="./unit1-review.html?v=v25-dialoggame-20260627">課後複習 →</a>
+        <a class="pill-button" href="./unit1-review.html?v=v2-ph4-wrong-20260628">課後複習 →</a>
       </nav>
 
       <section class="panel active" data-panel="story">
@@ -181,7 +188,7 @@
     </main>
 
     <script type="module">
-      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit1.mjs?v=v8-phgame-20260627";
+      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit1.mjs?v=v2-ph4-wrong-20260628";
 
       const HEARD_KEY = "joy-unit1-heard";
       const VOCAB_KEY = "joy-unit1-vocab-heard";
@@ -321,6 +328,43 @@
         if (!state.vocabHeard[i]) { state.vocabHeard[i] = true; saveFlags(window.localStorage, state.vocabHeard, VOCAB_KEY); renderVocab(); }
       }
 
+      function allPhonicsExamples() {
+        return phonics.items.flatMap((it, li) => it.examples.map((ex, ei) => ({ item: it, li, ei, ex })));
+      }
+      function graphForExample(ex) {
+        if (Array.isArray(ex.graph) && ex.graph.length) return ex.graph;
+        const seg = Array.isArray(ex.seg) ? ex.seg : [];
+        const letters = String(ex.w || "").replace(/[^A-Za-z]/g, "").split("");
+        if (!letters.length) return seg.map((p) => ({ g: p, p }));
+        if (seg.length === letters.length) return letters.map((g, i) => ({ g, p: seg[i] || "" }));
+        if (seg.length === 1) return [{ g: ex.w, p: seg[0] }];
+        const out = [];
+        for (let i = 0; i < letters.length; i++) out.push({ g: letters[i], p: seg[i] || "" });
+        return out;
+      }
+      function firstSound(ex) {
+        return graphForExample(ex).find((gp) => gp.p)?.p || "";
+      }
+      function firstLetters(ex) {
+        return graphForExample(ex).find((gp) => gp.p)?.g || String(ex.w || "").charAt(0);
+      }
+      function uniq(items) {
+        const seen = new Set();
+        return items.filter((x) => {
+          const k = JSON.stringify(x);
+          if (seen.has(k)) return false;
+          seen.add(k);
+          return true;
+        });
+      }
+      function sample(arr, n) {
+        return arr.slice().sort(() => Math.random() - 0.5).slice(0, n);
+      }
+      function phonicsOptions(correct, pool, key) {
+        const opts = uniq([correct].concat(sample(pool.filter((x) => key(x) !== key(correct)), 3))).slice(0, 4);
+        return sample(opts, opts.length);
+      }
+
       // 拼音闖關：每字母一張卡，例字拆成「字母塊」磚塊，孩子自己點每塊聽音，再按「合起來」唸整字
       function renderPhonics() {
         el("phonicsList").innerHTML = phonics.items.map((it, li) => `
@@ -329,7 +373,7 @@
             <button class="chip" type="button" data-snd="${li}">🔊 音 ${it.sound}</button>
             <div class="phonics-examples">
               ${it.examples.map((e, ei) => {
-                const tiles = (e.graph || []).map((gp, gi) =>
+                const tiles = graphForExample(e).map((gp, gi) =>
                   `<button class="tile${gp.p ? "" : " silent"}" type="button" data-li="${li}" data-ei="${ei}" data-gi="${gi}">${gp.g}</button>`).join("");
                 return `<div class="phon-ex2">
                   <div class="word-tiles">${tiles}</div>
@@ -339,19 +383,73 @@
               }).join("")}
             </div></div>`).join("");
       }
-      // 聽音找字母：念一個字母的音 → 孩子點出正確字母
-      let sgTarget = null;
-      function newSoundGame() {
+      let pgStep = 1;
+      let pgTarget = null;
+      function soundLetterGame() {
         const items = phonics.items;
-        sgTarget = items[Math.floor(Math.random() * items.length)];
+        pgTarget = items[Math.floor(Math.random() * items.length)];
         el("phonicsGame").innerHTML = `
           <div class="game-box">
-            <div class="game-q">🎧 聽聽看，這是哪個字母的音？</div>
-            <button class="chip" type="button" id="sgPlay">🔊 再聽一次</button>
-            <div class="sg-opts">${items.map((it, i) => `<button class="tile big" type="button" data-sg="${i}">${it.letter.charAt(0)}</button>`).join("")}</div>
-            <div id="sgOut" class="sg-out"></div>
+            <div class="quest-head"><div class="game-q">🎧 聽音找字母</div><div class="quest-step">第 1 / 4 關</div></div>
+            <button class="chip" type="button" data-pg-play>🔊 再聽一次</button>
+            <div class="quest-options">${items.map((it, i) => `<button class="tile big" type="button" data-pg-sound="${i}">${it.letter.charAt(0)}</button>`).join("")}</div>
+            <div id="pgOut" class="sg-out"></div>
           </div>`;
-        setTimeout(() => speak(sgTarget.ipa, "together", null, sgTarget.ipa), 250);
+        setTimeout(() => speak(pgTarget.ipa, "together", null, pgTarget.ipa), 250);
+      }
+      function initialSoundGame() {
+        const examples = allPhonicsExamples().filter((x) => firstSound(x.ex));
+        pgTarget = examples[Math.floor(Math.random() * examples.length)];
+        const opts = phonicsOptions(pgTarget, examples, (x) => firstSound(x.ex)).map((x) => ({ label: firstLetters(x.ex), sound: firstSound(x.ex), item: x.item }));
+        el("phonicsGame").innerHTML = `
+          <div class="game-box">
+            <div class="quest-head"><div class="game-q">👂 聽單字，找開頭音</div><div class="quest-step">第 2 / 4 關</div></div>
+            <button class="chip" type="button" data-pg-play>🔊 再聽 ${pgTarget.ex.w}</button>
+            <div class="quest-options">${opts.map((o, i) => `<button class="tile big" type="button" data-pg-initial="${i}" data-sound="${o.sound}">${o.label}</button>`).join("")}</div>
+            <div id="pgOut" class="sg-out"></div>
+          </div>`;
+        setTimeout(() => speak(pgTarget.ex.w, "together"), 250);
+      }
+      function buildWordGame() {
+        const examples = allPhonicsExamples().filter((x) => graphForExample(x.ex).length);
+        pgTarget = examples[Math.floor(Math.random() * examples.length)];
+        const graph = graphForExample(pgTarget.ex);
+        el("phonicsGame").innerHTML = `
+          <div class="game-box">
+            <div class="quest-head"><div class="game-q">🔡 點音塊，再合起來</div><div class="quest-step">第 3 / 4 關</div></div>
+            <div class="quest-word">${pgTarget.ex.w}</div>
+            <div class="word-tiles">${graph.map((gp, gi) => `<button class="tile${gp.p ? "" : " silent"}" type="button" data-pg-tile="${gi}">${gp.g}</button>`).join("")}</div>
+            <div class="quest-options"><button class="chip blend" type="button" data-pg-blend>🔗 合起來唸</button><button class="chip" type="button" data-pg-next>下一關</button></div>
+            <div id="pgOut" class="sg-out"></div>
+          </div>`;
+      }
+      function missingSoundGame() {
+        const examples = allPhonicsExamples().filter((x) => graphForExample(x.ex).filter((gp) => gp.p).length >= 2);
+        pgTarget = examples[Math.floor(Math.random() * examples.length)];
+        const graph = graphForExample(pgTarget.ex);
+        const soundTiles = graph.map((gp, gi) => ({ gp, gi })).filter((x) => x.gp.p);
+        const blank = soundTiles[Math.floor(Math.random() * soundTiles.length)];
+        const pool = uniq(allPhonicsExamples().flatMap((x) => graphForExample(x.ex).filter((gp) => gp.p))).filter((gp) => gp.p !== blank.gp.p || gp.g !== blank.gp.g);
+        const opts = sample([blank.gp].concat(sample(pool, 3)), 4);
+        el("phonicsGame").innerHTML = `
+          <div class="game-box">
+            <div class="quest-head"><div class="game-q">🧩 聽單字，補缺音</div><div class="quest-step">第 4 / 4 關</div></div>
+            <button class="chip" type="button" data-pg-play>🔊 聽 ${pgTarget.ex.w}</button>
+            <div class="slot-word">${graph.map((gp, gi) => gi === blank.gi ? `<div class="slot blank">?</div>` : `<div class="slot">${gp.g}</div>`).join("")}</div>
+            <div class="quest-options">${opts.map((gp, i) => `<button class="tile" type="button" data-pg-missing="${i}" data-g="${gp.g}" data-p="${gp.p}">${gp.g}</button>`).join("")}</div>
+            <div id="pgOut" class="sg-out"></div>
+          </div>`;
+        setTimeout(() => speak(pgTarget.ex.w, "together"), 250);
+      }
+      function startPhonicsGame(step = 1) {
+        pgStep = step;
+        if (step === 1) soundLetterGame();
+        else if (step === 2) initialSoundGame();
+        else if (step === 3) buildWordGame();
+        else missingSoundGame();
+      }
+      function nextPhonicsStep() {
+        startPhonicsGame(pgStep >= 4 ? 1 : pgStep + 1);
       }
 
       function renderGrammar() {
@@ -366,7 +464,7 @@
         stopSpeaking(); state.playingAll = false;
         document.querySelectorAll("[data-tab]").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
         document.querySelectorAll("[data-panel]").forEach((p) => p.classList.toggle("active", p.dataset.panel === name));
-        if (name === "phonics") newSoundGame(); // 進發音分頁就開一題「聽音找字母」
+        if (name === "phonics") startPhonicsGame(1); // 進發音分頁就從四關聽音任務開始
       }
 
       document.querySelector("nav.tabs").addEventListener("click", (e) => {
@@ -382,7 +480,7 @@
       el("phonicsList").addEventListener("click", (e) => {
         const ti = e.target.closest("[data-gi]"); // 點字母塊 → 唸該塊的音
         if (ti) {
-          const gp = phonics.items[+ti.dataset.li].examples[+ti.dataset.ei].graph[+ti.dataset.gi];
+          const gp = graphForExample(phonics.items[+ti.dataset.li].examples[+ti.dataset.ei])[+ti.dataset.gi];
           ti.classList.add("lit"); setTimeout(() => ti.classList.remove("lit"), 500);
           if (gp.p) speak(gp.g, "together", null, gp.p);
           return;
@@ -393,11 +491,44 @@
         const l = e.target.closest("[data-letter]"); if (l) { const it = phonics.items[+l.dataset.letter]; speak(it.letter.charAt(0), "together", null, it.nameIpa); return; }
       });
       el("phonicsGame").addEventListener("click", (e) => {
-        if (e.target.closest("#sgPlay")) { if (sgTarget) speak(sgTarget.ipa, "together", null, sgTarget.ipa); return; }
-        const o = e.target.closest("[data-sg]"); if (!o) return;
-        const it = phonics.items[+o.dataset.sg], out = el("sgOut");
-        if (it === sgTarget) { out.textContent = "✅ 答對了！是 " + it.letter; speak(it.letter.charAt(0), "together", null, it.nameIpa); setTimeout(newSoundGame, 1600); }
-        else { out.textContent = "再聽一次，這是哪個字母的音？"; speak(it.ipa, "together", null, it.ipa); }
+        const out = el("pgOut");
+        if (e.target.closest("[data-pg-play]")) {
+          if (pgStep === 1 && pgTarget) speak(pgTarget.ipa, "together", null, pgTarget.ipa);
+          else if (pgTarget?.ex) speak(pgTarget.ex.w, "together");
+          return;
+        }
+        const soundPick = e.target.closest("[data-pg-sound]");
+        if (soundPick) {
+          const it = phonics.items[+soundPick.dataset.pgSound];
+          if (it === pgTarget) { out.textContent = "✅ 答對了！是 " + it.letter; speak(it.letter.charAt(0), "together", () => setTimeout(nextPhonicsStep, 450), it.nameIpa); }
+          else { out.textContent = "再聽一次。"; speak(it.ipa, "together", null, it.ipa); }
+          return;
+        }
+        const initPick = e.target.closest("[data-pg-initial]");
+        if (initPick) {
+          const picked = initPick.dataset.sound;
+          const correct = firstSound(pgTarget.ex);
+          if (picked === correct) { out.textContent = "✅ 對，是開頭音 " + firstLetters(pgTarget.ex); speak(pgTarget.ex.w, "together", () => setTimeout(nextPhonicsStep, 450)); }
+          else { out.textContent = "再聽一次開頭音。"; speak(picked, "together", null, picked); }
+          return;
+        }
+        const tilePick = e.target.closest("[data-pg-tile]");
+        if (tilePick) {
+          const gp = graphForExample(pgTarget.ex)[+tilePick.dataset.pgTile];
+          tilePick.classList.add("lit"); setTimeout(() => tilePick.classList.remove("lit"), 500);
+          if (gp.p) speak(gp.g, "together", null, gp.p);
+          return;
+        }
+        if (e.target.closest("[data-pg-blend]")) { speak(pgTarget.ex.w, "together"); return; }
+        if (e.target.closest("[data-pg-next]")) { nextPhonicsStep(); return; }
+        const missPick = e.target.closest("[data-pg-missing]");
+        if (missPick) {
+          const g = missPick.dataset.g, p = missPick.dataset.p;
+          const graph = graphForExample(pgTarget.ex);
+          const ok = graph.some((gp) => gp.g === g && gp.p === p);
+          if (ok) { out.textContent = "✅ 補對了！"; speak(pgTarget.ex.w, "together", () => setTimeout(nextPhonicsStep, 700)); }
+          else { out.textContent = "再聽一次，找缺掉的音。"; speak(p, "together", null, p); }
+        }
       });
       el("gramLines").addEventListener("click", (e) => { const b = e.target.closest("[data-gram]"); if (b) speak(grammar.examples[Number(b.dataset.gram)].text, "abby"); });
 

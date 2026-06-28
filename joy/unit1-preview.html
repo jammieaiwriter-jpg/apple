@@ -81,9 +81,18 @@
       .phonics-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px; margin-bottom: 12px; }
       .phonics-letter { font-size: 46px; font-weight: 950; color: var(--accent-dark); min-width: 90px; cursor: pointer; background: transparent; border: 0; }
       .phonics-sound { color: var(--muted); font-weight: 800; }
-      .phonics-examples { display: flex; gap: 10px; flex-wrap: wrap; }
-      .phon-ex { display: inline-flex; gap: 4px; align-items: center; border: 1px dashed var(--line); border-radius: 10px; padding: 4px; }
+      .phonics-examples { display: flex; gap: 14px; flex-wrap: wrap; }
+      .phon-ex2 { display: flex; flex-direction: column; gap: 6px; border: 1px dashed var(--line); border-radius: 12px; padding: 10px; }
+      .word-tiles { display: flex; gap: 6px; }
+      .tile { font-size: 30px; font-weight: 950; min-width: 46px; min-height: 52px; border: 2px solid var(--accent); border-radius: 10px; background: #fff; color: var(--accent-dark); cursor: pointer; }
+      .tile.big { font-size: 40px; min-width: 64px; min-height: 70px; }
+      .tile.lit { background: var(--sun); transform: scale(1.08); }
+      .tile.silent { opacity: 0.45; border-style: dashed; }
       .chip.blend { background: var(--accent); color: #fff; }
+      .game-box { border: 1px solid var(--line); border-radius: 14px; background: #fff; padding: 16px; }
+      .game-q { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+      .sg-opts { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
+      .sg-out { font-size: 18px; font-weight: 800; color: var(--accent-dark); min-height: 24px; }
       .chip { border: 1px solid var(--line); border-radius: 999px; background: var(--mint); color: var(--accent-dark); padding: 8px 14px; cursor: pointer; font-weight: 800; min-height: 40px; }
 
       .gram-rule { border-left: 5px solid var(--accent); background: #fff; border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; color: var(--ink); font-weight: 700; }
@@ -158,7 +167,9 @@
       </section>
 
       <section class="panel" data-panel="phonics">
-        <div class="coach"><h2>字母 Aa–Cc 的聲音 🔡</h2><p>點大字母聽字母的音，點下面的單字聽它怎麼念。先讓耳朵記住聲音。</p></div>
+        <div class="coach"><h2>字母 Aa–Cc 的聲音 🔡</h2><p>① 玩「聽音找字母」②「拼音闖關」自己點每個字母的音、再合起來唸唸看。</p></div>
+        <div id="phonicsGame"></div>
+        <h3 style="margin:18px 0 6px;color:var(--accent-dark)">🔡 拼音闖關（自己點音，再合起來）</h3>
         <div id="phonicsList"></div>
       </section>
 
@@ -170,7 +181,7 @@
     </main>
 
     <script type="module">
-      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit1.mjs?v=v7-phonics-20260627";
+      import { dialogueLines, vocab, phonics, grammar, azureVoiceForRole, resolveVoiceProfile, loadFlags, saveFlags } from "./unit1.mjs?v=v8-phgame-20260627";
 
       const HEARD_KEY = "joy-unit1-heard";
       const VOCAB_KEY = "joy-unit1-vocab-heard";
@@ -310,27 +321,37 @@
         if (!state.vocabHeard[i]) { state.vocabHeard[i] = true; saveFlags(window.localStorage, state.vocabHeard, VOCAB_KEY); renderVocab(); }
       }
 
+      // 拼音闖關：每字母一張卡，例字拆成「字母塊」磚塊，孩子自己點每塊聽音，再按「合起來」唸整字
       function renderPhonics() {
         el("phonicsList").innerHTML = phonics.items.map((it, li) => `
           <div class="phonics-row">
             <button class="phonics-letter" type="button" data-letter="${li}">${it.letter}</button>
             <button class="chip" type="button" data-snd="${li}">🔊 音 ${it.sound}</button>
             <div class="phonics-examples">
-              ${it.examples.map((e, ei) => `
-                <span class="phon-ex">
-                  <button class="chip" type="button" data-word="${e.w}">🔊 ${e.w} <small>${e.zh}</small></button>
-                  ${e.seg ? `<button class="chip blend" type="button" data-li="${li}" data-ei="${ei}">🔡 拼讀</button>` : ``}
-                </span>`).join("")}
+              ${it.examples.map((e, ei) => {
+                const tiles = (e.graph || []).map((gp, gi) =>
+                  `<button class="tile${gp.p ? "" : " silent"}" type="button" data-li="${li}" data-ei="${ei}" data-gi="${gi}">${gp.g}</button>`).join("");
+                return `<div class="phon-ex2">
+                  <div class="word-tiles">${tiles}</div>
+                  <button class="chip blend" type="button" data-blend="${li}-${ei}">🔗 合起來唸：${e.w}</button>
+                  <small>${e.zh}</small>
+                </div>`;
+              }).join("")}
             </div></div>`).join("");
       }
-      // 用 Azure 真人聲依序唸每個 IPA 音，最後唸整個字（拼讀）
-      function speakBlend(seg, word) {
-        let i = 0;
-        (function next() {
-          if (i >= seg.length) { setTimeout(() => speak(word, "together"), 200); return; }
-          const ph = seg[i++];
-          speak(ph, "together", () => setTimeout(next, 180), ph); // text=ph, ipa=ph
-        })();
+      // 聽音找字母：念一個字母的音 → 孩子點出正確字母
+      let sgTarget = null;
+      function newSoundGame() {
+        const items = phonics.items;
+        sgTarget = items[Math.floor(Math.random() * items.length)];
+        el("phonicsGame").innerHTML = `
+          <div class="game-box">
+            <div class="game-q">🎧 聽聽看，這是哪個字母的音？</div>
+            <button class="chip" type="button" id="sgPlay">🔊 再聽一次</button>
+            <div class="sg-opts">${items.map((it, i) => `<button class="tile big" type="button" data-sg="${i}">${it.letter.charAt(0)}</button>`).join("")}</div>
+            <div id="sgOut" class="sg-out"></div>
+          </div>`;
+        setTimeout(() => speak(sgTarget.ipa, "together", null, sgTarget.ipa), 250);
       }
 
       function renderGrammar() {
@@ -345,6 +366,7 @@
         stopSpeaking(); state.playingAll = false;
         document.querySelectorAll("[data-tab]").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
         document.querySelectorAll("[data-panel]").forEach((p) => p.classList.toggle("active", p.dataset.panel === name));
+        if (name === "phonics") newSoundGame(); // 進發音分頁就開一題「聽音找字母」
       }
 
       document.querySelector("nav.tabs").addEventListener("click", (e) => {
@@ -358,11 +380,24 @@
       el("lineList").addEventListener("click", (e) => { const b = e.target.closest("[data-line]"); if (b) playOne(Number(b.dataset.line)); });
       el("vocabGrid").addEventListener("click", (e) => { const b = e.target.closest("[data-vocab]"); if (b) playVocab(Number(b.dataset.vocab)); });
       el("phonicsList").addEventListener("click", (e) => {
-        const bl = e.target.closest("[data-ei]");
-        if (bl) { const it = phonics.items[+bl.dataset.li], ex = it.examples[+bl.dataset.ei]; speakBlend(ex.seg, ex.w); return; }
-        const w = e.target.closest("[data-word]"); if (w) { speak(w.dataset.word, "together"); return; }
+        const ti = e.target.closest("[data-gi]"); // 點字母塊 → 唸該塊的音
+        if (ti) {
+          const gp = phonics.items[+ti.dataset.li].examples[+ti.dataset.ei].graph[+ti.dataset.gi];
+          ti.classList.add("lit"); setTimeout(() => ti.classList.remove("lit"), 500);
+          if (gp.p) speak(gp.g, "together", null, gp.p);
+          return;
+        }
+        const bl = e.target.closest("[data-blend]"); // 合起來唸整字
+        if (bl) { const [li, ei] = bl.dataset.blend.split("-"); speak(phonics.items[+li].examples[+ei].w, "together"); return; }
         const sn = e.target.closest("[data-snd]"); if (sn) { const it = phonics.items[+sn.dataset.snd]; speak(it.ipa, "together", null, it.ipa); return; }
         const l = e.target.closest("[data-letter]"); if (l) { const it = phonics.items[+l.dataset.letter]; speak(it.letter.charAt(0), "together", null, it.nameIpa); return; }
+      });
+      el("phonicsGame").addEventListener("click", (e) => {
+        if (e.target.closest("#sgPlay")) { if (sgTarget) speak(sgTarget.ipa, "together", null, sgTarget.ipa); return; }
+        const o = e.target.closest("[data-sg]"); if (!o) return;
+        const it = phonics.items[+o.dataset.sg], out = el("sgOut");
+        if (it === sgTarget) { out.textContent = "✅ 答對了！是 " + it.letter; speak(it.letter.charAt(0), "together", null, it.nameIpa); setTimeout(newSoundGame, 1600); }
+        else { out.textContent = "再聽一次，這是哪個字母的音？"; speak(it.ipa, "together", null, it.ipa); }
       });
       el("gramLines").addEventListener("click", (e) => { const b = e.target.closest("[data-gram]"); if (b) speak(grammar.examples[Number(b.dataset.gram)].text, "abby"); });
 

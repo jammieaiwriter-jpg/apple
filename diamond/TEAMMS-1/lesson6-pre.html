@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>小鑽石 Lesson 6 課前預習</title>
+  <style>
+    :root{--ink:#2c2433;--muted:#8a7d92;--line:#f0d9e6;--accent:#e85a9b;--accent-dark:#c23d7d;--gem:#43b3e0;--gem-dark:#2487b5;--green:#3aa66b;--sky:#e3f3fb;--mint:#dff5e7;}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;color:var(--ink);padding:16px 14px 60px;font-family:ui-rounded,"SF Pro Rounded","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:radial-gradient(circle at 12% 8%,rgba(232,90,155,.10),transparent 30%),radial-gradient(circle at 88% 12%,rgba(67,179,224,.12),transparent 32%),linear-gradient(180deg,#fffdf8,#fdf3f8)}
+    .wrap{max-width:920px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+    h1{font-size:clamp(22px,5vw,34px);margin:0;color:var(--accent-dark);letter-spacing:0}
+    .sub,.hint{color:var(--muted);font-size:13px;margin:4px 0 14px;line-height:1.5}
+    a.nav{font-weight:800;color:#fff;background:var(--accent);text-decoration:none;border-radius:10px;padding:10px 14px}
+    a.back{font-weight:800;color:var(--gem-dark);text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px}
+    .progress-bar{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.94);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:10px 8px;margin-bottom:16px}
+    .dots{display:flex;align-items:center;gap:4px;overflow-x:auto}
+    .dot{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:66px;cursor:pointer}
+    .bubble{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:20px;background:#fff;border:2px solid var(--line)}
+    .lbl{font-size:10.5px;color:var(--muted);font-weight:700;text-align:center;line-height:1.1}
+    .dot.done .bubble{background:var(--green);border-color:var(--green);color:#fff}.dot.done .lbl{color:var(--green)}
+    .stage{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;margin-bottom:18px;box-shadow:0 3px 10px rgba(180,120,150,.07);scroll-margin-top:80px}
+    .stage.cleared{border-color:var(--green)}.stage-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+    .stage-icon{font-size:26px}.stage-title{font-size:18px;font-weight:900;color:var(--accent-dark)}.stage-badge{margin-left:auto;font-size:12px;font-weight:800;color:var(--green)}
+    .stage-sub{font-size:12.5px;color:var(--muted);margin:0 0 12px 36px}
+    .card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;margin-bottom:12px}
+    .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(154px,1fr));gap:10px}
+    button{font-family:inherit}button.act,.playall,.next{border:0;border-radius:10px;padding:11px 15px;min-height:46px;font-weight:900;font-size:15px;cursor:pointer}
+    .playall,.next{background:var(--gem);color:#fff}.start{background:var(--accent);color:#fff}.stop{background:#b54708;color:#fff}.listen{background:#fff;color:var(--gem-dark);border:2px solid var(--gem)}
+    button:disabled{opacity:.5;cursor:not-allowed}
+    .vocab-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;text-align:left;cursor:pointer;position:relative;transition:transform .12s}
+    .vocab-card:hover{transform:translateY(-2px)}.emo{font-size:26px}.word,.en{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.18;color:var(--accent-dark)}
+    .kk{color:var(--accent-dark);font-weight:700;font-size:15px}.zh{color:var(--muted);font-size:14px}.seen,.ck{color:var(--green);font-weight:900}
+    .line-button{width:100%;display:grid;grid-template-columns:34px 1fr 26px;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);text-align:left;cursor:pointer;margin-bottom:8px}
+    .num{width:28px;height:28px;border-radius:50%;background:var(--sky);display:grid;place-items:center;color:var(--gem-dark);font-weight:900}
+    .line-button strong,.who{display:block;color:var(--gem-dark);font-size:13px;font-weight:900}.line-button .t{display:block;font-size:16px;font-weight:800;overflow-wrap:anywhere}
+    .coach{border-left:5px solid var(--gem);background:var(--sky);border-radius:10px;padding:12px 14px;color:var(--ink);font-size:14px;line-height:1.5;margin-top:6px}
+    .gram-line{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px;margin-bottom:9px;cursor:pointer}.gram-line b{color:#c2410c}
+    .row{display:flex;flex-wrap:wrap;gap:8px}.out{margin-top:9px;font-size:15px;min-height:22px;color:var(--muted)}.stars{font-size:24px;letter-spacing:2px;margin-top:5px}
+    .game-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0}
+    button.opt{border:2px solid var(--accent);background:#fff;color:var(--accent-dark);border-radius:12px;padding:13px 16px;font-weight:900;font-size:18px;min-height:52px;cursor:pointer}
+    button.opt.wide{display:block;width:100%;margin:7px 0;font-size:18px;text-align:center}button.opt.gem{border-color:var(--gem);color:var(--gem-dark)}
+    .big{font-size:clamp(24px,6vw,34px);font-weight:900;color:var(--accent-dark)}.err{color:#e11d48;font-weight:900;text-decoration:underline wavy #e11d48}.fixh{color:var(--green);font-weight:900}.reveal{margin-top:12px;font-size:16px;line-height:1.7;text-align:center}.sent{font-size:22px;font-weight:800}
+    .banner{display:none;text-align:center;border:2px dashed var(--accent);border-radius:18px;background:linear-gradient(180deg,#fff,#fff0f7);padding:22px;margin-top:8px}.banner.show{display:block}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>💎 小鑽石 Lesson 6 課前預習</h1>
+      <p class="sub">What do you have? — Numbers and toys — 說自己有幾個東西。</p>
+    </div>
+    <a class="nav" href="./lesson6-review.html?v=teamms1-u6-20260628">課後複習闖關 →</a>
+  </header>
+  <p class="hint" id="hint">點任何卡片或句子就會念給你聽，聽過會打 ✓。</p>
+  <div class="progress-bar"><div class="dots" id="dots"></div></div>
+  <div id="stages"></div>
+</div>
+<script>
+var vocab = [
+  {
+    "word": "one",
+    "kk": "[wʌn]",
+    "zh": "一",
+    "emo": "1️⃣"
+  },
+  {
+    "word": "two",
+    "kk": "[tu]",
+    "zh": "二",
+    "emo": "2️⃣"
+  },
+  {
+    "word": "three",
+    "kk": "[θri]",
+    "zh": "三",
+    "emo": "3️⃣"
+  },
+  {
+    "word": "four",
+    "kk": "[fɔr]",
+    "zh": "四",
+    "emo": "4️⃣"
+  },
+  {
+    "word": "five",
+    "kk": "[faɪv]",
+    "zh": "五",
+    "emo": "5️⃣"
+  },
+  {
+    "word": "six",
+    "kk": "[sɪks]",
+    "zh": "六",
+    "emo": "6️⃣"
+  },
+  {
+    "word": "seven",
+    "kk": "[ˈsɛvən]",
+    "zh": "七",
+    "emo": "7️⃣"
+  },
+  {
+    "word": "eight",
+    "kk": "[et]",
+    "zh": "八",
+    "emo": "8️⃣"
+  },
+  {
+    "word": "nine",
+    "kk": "[naɪn]",
+    "zh": "九",
+    "emo": "9️⃣"
+  },
+  {
+    "word": "ten",
+    "kk": "[tɛn]",
+    "zh": "十",
+    "emo": "🔟"
+  }
+];
+var dialogueLines = [
+  {
+    "speaker": "Dan",
+    "text": "Hi, Dan.",
+    "role": "sam",
+    "zh": "嗨，Dan。"
+  },
+  {
+    "speaker": "Bill",
+    "text": "Hello, Bill.",
+    "role": "ann",
+    "zh": "哈囉，Bill。"
+  },
+  {
+    "speaker": "Dan",
+    "text": "Look, I have three buses. What do you have?",
+    "role": "sam",
+    "zh": "看，我有三台公車。你有什麼？"
+  },
+  {
+    "speaker": "Bill",
+    "text": "I have two trains. Do you have a car?",
+    "role": "ann",
+    "zh": "我有兩台火車。你有車嗎？"
+  },
+  {
+    "speaker": "Dan",
+    "text": "Yes, I do.",
+    "role": "sam",
+    "zh": "是的，我有。"
+  },
+  {
+    "speaker": "Bill",
+    "text": "How many cars do you have?",
+    "role": "ann",
+    "zh": "你有幾台車？"
+  },
+  {
+    "speaker": "Dan",
+    "text": "I have ten cars.",
+    "role": "sam",
+    "zh": "我有十台車。"
+  },
+  {
+    "speaker": "Bill",
+    "text": "Wow! Ten cars!",
+    "role": "ann",
+    "zh": "哇！十台車！"
+  }
+];
+var convs = [{title:"💬 課本對話 · 數量", lines:dialogueLines}];
+var grammar = {
+  "rule": "How many...? 問「有幾個？」回答用 I have + 數字 + 名詞。",
+  "examples": [
+    {
+      "text": "What do you have?",
+      "full": "What do you have?",
+      "zh": "你有什麼？"
+    },
+    {
+      "text": "I have two trains.",
+      "full": "I have two trains.",
+      "zh": "我有兩台火車。"
+    },
+    {
+      "text": "How many cars do you have?",
+      "full": "How many cars do you have?",
+      "zh": "你有幾台車？"
+    }
+  ]
+};
+var stemWords = [
+  {
+    "word": "greater than",
+    "zh": "大於",
+    "emo": ">",
+    "en": "Five is greater than three.",
+    "desc": "5 比 3 大。"
+  },
+  {
+    "word": "less than",
+    "zh": "小於",
+    "emo": "<",
+    "en": "Two is less than four.",
+    "desc": "2 比 4 小。"
+  },
+  {
+    "word": "equal to",
+    "zh": "等於",
+    "emo": "=",
+    "en": "Three is equal to three.",
+    "desc": "兩邊一樣多。"
+  }
+];
+var allLines=[]; convs.forEach(function(c){ c.lines.forEach(function(l){ allLines.push(l); }); });
+var AZURE_VOICE={ sam:"en-US-GuyNeural", ann:"en-US-JennyNeural", together:"en-US-AriaNeural" };
+function azureVoiceForRole(r){ return AZURE_VOICE[r]||AZURE_VOICE.together; }
+var TTS_BASE="https://apple-bedtime-story.onrender.com";
+var ttsCache=new Map(), activeAzureAudio=null, audioUnlocked=false;
+function el(id){ return document.getElementById(id); }
+function lsGet(k,def){ try{ var a=JSON.parse(localStorage.getItem(k)); return a==null?def:a; }catch(e){ return def; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+var heardLine=lsGet("teamms-diamond-l6-pre-line",{})||{};
+var heardVocab=lsGet("teamms-diamond-l6-pre-vocab",{})||{};
+var heardStem=lsGet("teamms-diamond-l6-pre-stem",{})||{};
+function stopSpeaking(){ if(activeAzureAudio){ activeAzureAudio.onended=null; activeAzureAudio.pause(); activeAzureAudio=null; } window.speechSynthesis.cancel(); }
+function warmTTS(){ fetch(TTS_BASE+"/api/tts/status",{cache:"no-store"}).catch(function(){}); }
+function unlockAudio(){ if(audioUnlocked) return; audioUnlocked=true; try{ var u=new SpeechSynthesisUtterance(" "); u.volume=0; window.speechSynthesis.speak(u); }catch(e){ audioUnlocked=false; } try{ var a=new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=="); a.volume=0; a.play().catch(function(){}); }catch(e){} }
+function pickBrowserVoice(role){ var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[]; var en=vs.filter(function(v){ return /^en/i.test(v.lang||""); }); if(!en.length) return {voice:null,pitch:1,rate:.72}; var pref=role==="sam"?["Aaron","Daniel","Arthur","Alex","Tom"]:["Samantha","Allison","Ava","Karen"]; var voice=null; for(var i=0;i<pref.length;i++){ voice=en.find(function(v){ return (v.name||"").indexOf(pref[i])>=0; }); if(voice)break; } return {voice:voice||en[0],pitch:role==="sam"?.85:1.1,rate:.68}; }
+function speakBrowser(text,role,onEnd){ var p=pickBrowserVoice(role); var u=new SpeechSynthesisUtterance(text); u.lang="en-US"; if(p.voice)u.voice=p.voice; u.rate=p.rate; u.pitch=p.pitch; u.onend=function(){ if(onEnd)onEnd(); }; window.speechSynthesis.speak(u); }
+function speak(text,role,onEnd){ unlockAudio(); stopSpeaking(); var voice=azureVoiceForRole(role); var key=voice+"|"+text, cached=ttsCache.get(key); var run=function(url){ var a=new Audio(url); activeAzureAudio=a; a.onended=function(){ if(activeAzureAudio===a)activeAzureAudio=null; if(onEnd)onEnd(); }; a.play().catch(function(){ if(activeAzureAudio===a)activeAzureAudio=null; speakBrowser(text,role,onEnd); }); }; if(cached){ run(cached); return; } el("hint").textContent="載入語音中…第一次可能要等雲端語音冷啟動。"; fetch(TTS_BASE+"/api/tts",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:text,voice:voice})}).then(function(r){ if(!r.ok) throw new Error("tts "+r.status); return r.blob(); }).then(function(b){ var url=URL.createObjectURL(b); ttsCache.set(key,url); run(url); }).catch(function(){ speakBrowser(text,role,onEnd); }); }
+var STAGES=[{key:"vocab",icon:"🔤",title:"單字聽一聽",sub:"10 個 數量 重點字，點卡片聽發音"},{key:"dialog",icon:"💬",title:"對話聽一聽",sub:"課本對話，點句子單獨聽或聽整段"},{key:"grammar",icon:"🧩",title:"句型小魔術",sub:"先聽會說，複習頁再闖關"},{key:"stem",icon:"🔬",title:"STEM 動作字",sub:"課本跨科小任務的關鍵字"}];
+function stageDone(key){ if(key==="vocab")return vocab.every(function(_,i){return heardVocab[i];}); if(key==="dialog")return allLines.every(function(_,i){return heardLine[i];}); if(key==="grammar")return grammar._done; if(key==="stem")return stemWords.every(function(_,i){return heardStem[i];}); return false; }
+function renderDots(){ el("dots").innerHTML=STAGES.map(function(s){ var d=stageDone(s.key); return '<div class="dot'+(d?' done':'')+'" onclick="goStage(\''+s.key+'\')"><div class="bubble">'+(d?'✓':s.icon)+'</div><div class="lbl">'+s.title+'</div></div>'; }).join(''); }
+function goStage(key){ var e=el("stage-"+key); if(e)e.scrollIntoView({behavior:"smooth",block:"start"}); }
+function refreshBadge(key){ var b=el("badge-"+key); if(b)b.textContent=stageDone(key)?"✅ 聽完了":""; renderDots(); }
+function buildShell(){ el("stages").innerHTML=STAGES.map(function(s){ return '<section class="stage" id="stage-'+s.key+'"><div class="stage-head"><span class="stage-icon">'+s.icon+'</span><span class="stage-title">'+s.title+'</span><span class="stage-badge" id="badge-'+s.key+'"></span></div><p class="stage-sub">'+s.sub+'</p><div id="body-'+s.key+'"></div></section>'; }).join(''); }
+function buildVocab(){ el("body-vocab").innerHTML='<div class="vocab-grid">'+vocab.map(function(v,i){ return '<button class="vocab-card" onclick="playVocab('+i+')"><span class="seen" id="vseen-'+i+'">'+(heardVocab[i]?'✓':'')+'</span><div class="emo">'+v.emo+'</div><div class="word">'+v.word+'</div><div class="kk">'+v.kk+'</div><div class="zh">'+v.zh+'</div></button>'; }).join('')+'</div>'; }
+function playVocab(i){ speak(vocab[i].word,"together"); if(!heardVocab[i]){ heardVocab[i]=true; lsSet("teamms-diamond-l6-pre-vocab",heardVocab); el("vseen-"+i).textContent='✓'; refreshBadge("vocab"); } }
+function buildDialog(){ var html='<button class="playall" onclick="playConv()">🔊 聽整段對話</button>'; dialogueLines.forEach(function(l,i){ html+='<button class="line-button" onclick="playLine('+i+')"><span class="num">'+(i+1)+'</span><span><strong>'+l.speaker+'</strong><span class="t">'+l.text+'</span><span class="zh">'+l.zh+'</span></span><span class="ck" id="lck-'+i+'">'+(heardLine[i]?'✓':'')+'</span></button>'; }); el("body-dialog").innerHTML=html; }
+function markLine(i){ if(!heardLine[i]){ heardLine[i]=true; lsSet("teamms-diamond-l6-pre-line",heardLine); var c=el("lck-"+i); if(c)c.textContent='✓'; refreshBadge("dialog"); } }
+function playLine(i){ speak(dialogueLines[i].text,dialogueLines[i].role,function(){ markLine(i); }); }
+function playConv(){ (function next(i){ if(i>=dialogueLines.length)return; speak(dialogueLines[i].text,dialogueLines[i].role,function(){ markLine(i); next(i+1); }); })(0); }
+function buildGrammar(){ el("body-grammar").innerHTML='<div class="coach">'+grammar.rule+'</div>'+grammar.examples.map(function(ex,i){ return '<div class="gram-line" onclick="playGram('+i+')"><div><div class="en">'+ex.text+' <b>'+((ex.full!==ex.text)?'= '+ex.full:'')+'</b></div><div class="zh">'+ex.zh+'</div></div><div style="margin-left:auto;font-size:20px">🔊</div></div>'; }).join(''); }
+function playGram(i){ speak(grammar.examples[i].full,"ann"); grammar._done=true; refreshBadge("grammar"); }
+function buildStem(){ el("body-stem").innerHTML='<div class="coach">先聽 STEM 小字，複習頁會用遊戲考你意思。</div>'+stemWords.map(function(s,i){ return '<div class="card"><div class="en"><span class="seen" id="sseen-'+i+'">'+(heardStem[i]?'✓ ':'')+'</span>'+s.emo+' '+s.word+' <span class="zh">'+s.zh+'</span></div><div class="zh">'+s.desc+'</div><div class="zh" style="color:var(--gem-dark);font-style:italic">"'+s.en+'"</div><div class="row" style="margin-top:10px"><button class="playall" onclick="playStem('+i+')">🔊 聽單字</button><button class="playall" style="background:var(--accent)" onclick="playStemEn('+i+')">🗣️ 聽英文解釋</button></div></div>'; }).join(''); }
+function markStem(i){ if(!heardStem[i]){ heardStem[i]=true; lsSet("teamms-diamond-l6-pre-stem",heardStem); el("sseen-"+i).textContent='✓ '; refreshBadge("stem"); } }
+function playStem(i){ speak(stemWords[i].word,"together"); markStem(i); } function playStemEn(i){ speak(stemWords[i].en,"together"); markStem(i); }
+buildShell(); buildVocab(); buildDialog(); buildGrammar(); buildStem(); STAGES.forEach(function(s){refreshBadge(s.key);}); if(window.speechSynthesis&&speechSynthesis.getVoices)speechSynthesis.getVoices(); warmTTS();
+</script>
+</body>
+</html>

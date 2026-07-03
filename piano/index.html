@@ -248,6 +248,32 @@ function tone(freq, dur=0.35, type='sine', delay=0){
   osc.connect(gain); gain.connect(ctx.destination);
   osc.start(t0); osc.stop(t0+dur+0.05);
 }
+// 彈奏音高用：疊加泛音＋鋼琴式快起音/漸弱包絡，聽起來比純正弦音清亮
+function playNote(freq, dur=0.5, delay=0){
+  const ctx = ac();
+  const t0 = ctx.currentTime + delay;
+  const master = ctx.createGain();
+  master.connect(ctx.destination);
+  master.gain.setValueAtTime(0.0001, t0);
+  master.gain.exponentialRampToValueAtTime(0.32, t0+0.008);
+  master.gain.exponentialRampToValueAtTime(0.09, t0+0.15);
+  master.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
+  const partials = [
+    {mult:1, gain:1,    type:'triangle'},
+    {mult:2, gain:0.5,  type:'sine'},
+    {mult:3, gain:0.22, type:'sine'},
+    {mult:4, gain:0.1,  type:'sine'},
+  ];
+  partials.forEach(p=>{
+    const osc = ctx.createOscillator();
+    osc.type = p.type;
+    osc.frequency.value = freq*p.mult;
+    const pg = ctx.createGain();
+    pg.gain.value = p.gain;
+    osc.connect(pg); pg.connect(master);
+    osc.start(t0); osc.stop(t0+dur+0.05);
+  });
+}
 function playWrong(){ tone(196,0.22,'sawtooth'); }
 function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
 function labelFreq(label){ return activeNotes().find(n=>n.label===label).freq; }
@@ -523,10 +549,10 @@ function renderNoteAnswers(){
     b.className = 'ansBtn';
     b.textContent = label;
     b.onclick = ()=>{
-      tone(labelFreq(label));                       // 選 do 就給 do 音
+      playNote(labelFreq(label));                       // 選 do 就給 do 音
       const correct = label === currentQ.label;
       handleAttempt(correct, b, btns,
-        ()=>tone(currentQ.freq, 0.45, 'sine', 0.25), // 第一次答錯：提示播放題目的音（聽力訓練）
+        ()=>playNote(currentQ.freq, 0.45, 0.25), // 第一次答錯：提示播放題目的音（聽力訓練）
         ()=>revealStaffScale(currentQ));             // 第二次答錯：閃爍音階公佈答案
     };
     wrap.appendChild(b); btns.push(b);
@@ -539,7 +565,7 @@ async function revealStaffScale(q){
     const n = activeNotes()[i];
     const isLast = i===target;
     renderStaff(q, {y:n.y, label:n.label, color: isLast?'#f5a623':'#60a5fa', big:isLast, ledger:!!n.ledger});
-    tone(n.freq, 0.32, 'sine');
+    playNote(n.freq, 0.32);
     await sleep(400);
   }
   document.querySelectorAll('#answers .ansBtn').forEach(b=>{
@@ -552,7 +578,7 @@ function renderFindStaff(q){
   document.getElementById('staffWrap').innerHTML = `
     <div style="text-align:center;">
       <div style="font-size:20px;font-weight:800;margin-bottom:8px;">請找出所有的「${q.target}」🫘</div>
-      <button class="btn outline" style="max-width:220px;margin:0 auto 4px;padding:10px;" onclick="tone(labelFreq('${q.target}'))">🔊 聽聽「${q.target}」的音</button>
+      <button class="btn outline" style="max-width:220px;margin:0 auto 4px;padding:10px;" onclick="playNote(labelFreq('${q.target}'))">🔊 聽聽「${q.target}」的音</button>
     </div>`;
 }
 
@@ -620,7 +646,7 @@ async function handleFindSubmit(q, tiles, confirmBtn){
 
   if(attempt===1){
     setFeedback(null, '不太對喔～再檢查一次，可以調整你選的位置');
-    tone(labelFreq(q.target), 0.4, 'sine', 0.15);
+    playNote(labelFreq(q.target), 0.4, 0.15);
   } else {
     inputLocked = true;
     tiles.forEach(t=>t.disabled=true);
@@ -667,10 +693,10 @@ function renderKeyboardAnswers(){
   keys.forEach((k, idx)=>{
     if(!range.includes(idx)) k.classList.add('levelDim');   // 目前 Lv 以外的鍵先淡化，減少視覺負擔
     k.onclick = ()=>{
-      tone(activeNotes()[idx].freq);                         // 選到哪個鍵就給哪個鍵的音
+      playNote(activeNotes()[idx].freq);                         // 選到哪個鍵就給哪個鍵的音
       const correct = idx === currentQ.noteIndex;
       handleAttempt(correct, k, keys,
-        ()=>tone(currentQ.freq, 0.45, 'sine', 0.25),
+        ()=>playNote(currentQ.freq, 0.45, 0.25),
         ()=>revealKeyboardScale(currentQ, keys));
     };
   });
@@ -684,14 +710,14 @@ async function revealKeyboardScale(q, keys){
     renderStaff(q, {y:n.y, label:n.label, color:isLast?'#f5a623':'#60a5fa', big:isLast, ledger:!!n.ledger});
     keys.forEach((k,ki)=>{ if(ki===i && !isLast) k.classList.add('flash'); });
     if(isLast) keys[i].classList.add('correct');
-    tone(n.freq, 0.32, 'sine');
+    playNote(n.freq, 0.32);
     await sleep(400);
   }
 }
 
 /* ---------- 短旋律任務：看譜＋聽音，照順序在鍵盤上彈出來 ---------- */
 function playMelody(seq){
-  seq.forEach((idx,k)=> tone(activeNotes()[idx].freq, 0.4, 'sine', k*0.55));
+  seq.forEach((idx,k)=> playNote(activeNotes()[idx].freq, 0.4, k*0.55));
 }
 
 function renderMelodyQuestion(q){
@@ -758,7 +784,7 @@ function renderMelodyAnswers(q){
   keys.forEach((k, idx)=>{
     k.onclick = ()=>{
       if(k.disabled) return;
-      tone(activeNotes()[idx].freq);
+      playNote(activeNotes()[idx].freq);
       if(picked.length < q.seq.length){
         picked.push(idx);
         renderTrail();
@@ -812,7 +838,7 @@ async function revealMelodySeq(q, keys){
   for(let s=0; s<q.seq.length; s++){
     const idx = q.seq[s];
     keys[idx].classList.add(s===q.seq.length-1 ? 'correct' : 'flash');
-    tone(activeNotes()[idx].freq, 0.35, 'sine');
+    playNote(activeNotes()[idx].freq, 0.35);
     await sleep(450);
   }
 }
@@ -820,10 +846,10 @@ async function revealMelodySeq(q, keys){
 /* ---------- 唱名方向感：往上／往下／一樣高、走樓梯／跳格子 ---------- */
 function playDirectionSound(q){
   if(q.kind==='direction-pair'){
-    tone(NOTES[q.i].freq, 0.5, 'sine', 0);
-    tone(NOTES[q.j].freq, 0.5, 'sine', 0.6);
+    playNote(NOTES[q.i].freq, 0.5, 0);
+    playNote(NOTES[q.j].freq, 0.5, 0.6);
   } else {
-    q.seq.forEach((idx,k)=> tone(NOTES[idx].freq, 0.42, 'sine', k*0.5));
+    q.seq.forEach((idx,k)=> playNote(NOTES[idx].freq, 0.42, k*0.5));
   }
 }
 
@@ -1073,7 +1099,7 @@ function endRound(){
     document.getElementById('resultTitle').textContent = '過關了！太棒了！';
     document.getElementById('resultDetail').textContent = `全部都答對了，得到 ${stars} 顆星 ⭐️`;
     launchConfetti();
-    tone(523.25,0.2); tone(659.25,0.2,'sine',0.15); tone(783.99,0.35,'sine',0.3);
+    playNote(523.25,0.2); playNote(659.25,0.2,0.15); playNote(783.99,0.35,0.3);
   }
 }
 

@@ -437,17 +437,23 @@ function genQuestion(){
 
 // 高低八度：4 個小五線譜選項，其中剛好 2 個是 do（不同位置／八度），其餘 2 個是別的唱名干擾
 // 重用「找出所有的 X」(note1-find) 的畫面與作答邏輯，孩子只要認出「這些都是 do」即可，不強調高低八度方向
+// 任一唱名（不限 do）：BASS_NOTES[i] 和 NOTES[i] 剛好是同一個唱名、差一個八度（在中央 C 接軌）
 function genOctaveQuestion(){
-  const octClef = Math.random()<0.5 ? 'treble' : 'bass';
-  clef = octClef;
-  const table = activeNotes();
-  const withIdx = table.map((n,i)=>({...n, noteIndex:i}));
-  const doCandidates = [withIdx[0], withIdx[7]];
-  // 干擾唱名只從目前 Lv 範圍內挑，跟認音符的難度門檻一致（Lv.1 do re mi／Lv.2 加 fa so／Lv.3 全部）
-  const pool = levelRange().map(i=>withIdx[i]).filter(n=>n.label!=='do');
-  const distractors = shuffle(pool).slice(0,2);
-  const candidates = shuffle([...doCandidates, ...distractors]);
-  return {kind:'note1-find', target:'do', candidates, clef:octClef};
+  const range = levelRange().filter(i=>i<=6); // 0~6 = do..ti，避免用到重複意義的第 7 個高音 do
+  const pool = range.length ? range : [0];
+  const idx = pool[Math.floor(Math.random()*pool.length)];
+  const target = NOTES[idx].label;
+  const correctPair = [
+    {...BASS_NOTES[idx], noteIndex:idx, clef:'bass'},
+    {...NOTES[idx], noteIndex:idx, clef:'treble'},
+  ];
+  const distractorPool = pool.filter(i=>i!==idx).flatMap(i=>[
+    {...BASS_NOTES[i], noteIndex:i, clef:'bass'},
+    {...NOTES[i], noteIndex:i, clef:'treble'},
+  ]);
+  const distractors = shuffle(distractorPool).slice(0,2);
+  const candidates = shuffle([...correctPair, ...distractors]);
+  return {kind:'note1-find', target, candidates};
 }
 
 // 短旋律任務：從目前音域範圍隨機挑 3 個音，聽完後照順序在鍵盤上彈出來
@@ -702,14 +708,15 @@ function renderFindStaff(q){
     </div>`;
 }
 
-function miniStaffSVG(n){
+function miniStaffSVG(n, tileClef){
+  const useClef = tileClef || clef;
   const w=88,h=88;
   const lineYs=[24,34,44,54,64];
   const cx=58;
   const cy = 64 - (104-n.y)*0.625;
   let svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`;
   lineYs.forEach(y=>{ svg += `<line x1="8" y1="${y}" x2="${w-8}" y2="${y}" stroke="#c9bfe0" stroke-width="1.5"/>`; });
-  if(clef==='bass'){
+  if(useClef==='bass'){
     svg += `<text x="8" y="44" font-size="26" fill="#a78bfa">𝄢</text>`;
   } else {
     svg += `<text x="8" y="52" font-size="38" fill="#a78bfa">𝄞</text>`;
@@ -728,7 +735,7 @@ function renderFindAnswers(q){
   q.candidates.forEach(c=>{
     const tile = document.createElement('button');
     tile.className = 'findTile';
-    tile.innerHTML = miniStaffSVG(c);
+    tile.innerHTML = miniStaffSVG(c, c.clef);
     tile.onclick = ()=>{ if(!tile.disabled) tile.classList.toggle('selected'); };
     wrap.appendChild(tile);
     tiles.push(tile);

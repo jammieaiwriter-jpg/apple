@@ -225,6 +225,25 @@ function levelRange(){
 /* ---------- 音效 ---------- */
 let audioCtx;
 function ac(){ if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+
+// 追蹤所有排程中的音源，換題/換畫面時可以立刻切斷，避免上一題的聲音殘留混音
+let activeOscillators = [];
+function trackOsc(osc){
+  activeOscillators.push(osc);
+  osc.onended = ()=>{
+    const i = activeOscillators.indexOf(osc);
+    if(i>=0) activeOscillators.splice(i,1);
+  };
+}
+function stopAllAudio(){
+  if(!audioCtx) return;
+  const now = audioCtx.currentTime;
+  activeOscillators.slice().forEach(osc=>{
+    try{ osc.stop(now); }catch(e){}
+  });
+  activeOscillators = [];
+}
+
 function tone(freq, dur=0.35, type='sine', delay=0){
   const ctx = ac();
   const t0 = ctx.currentTime + delay;
@@ -236,6 +255,7 @@ function tone(freq, dur=0.35, type='sine', delay=0){
   gain.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
   osc.connect(gain); gain.connect(ctx.destination);
   osc.start(t0); osc.stop(t0+dur+0.05);
+  trackOsc(osc);
 }
 // 彈奏音高用：疊加泛音＋鋼琴式快起音/漸弱包絡，聽起來比純正弦音清亮
 // 疊更多泛音＋兩顆微微失諧的基音（模擬鋼琴同音多弦）＋會隨時間變暗的濾波器（敲擊瞬間最亮、之後變柔）
@@ -275,6 +295,7 @@ function playNote(freq, dur=0.6, delay=0){
     pg.gain.value = p.gain;
     osc.connect(pg); pg.connect(master);
     osc.start(t0); osc.stop(t0+dur+0.05);
+    trackOsc(osc);
   });
 }
 function playWrong(){ tone(196,0.22,'sawtooth'); }
@@ -300,6 +321,7 @@ function playCountIn(){
   animateBeatDots();
 }
 function playPatternClaps(units){
+  stopAllAudio();
   playCountIn();
   const offset = 4*BEAT_SEC;
   patternOnsets(units).forEach(o=> tone(880,0.14,'square', offset + o*BEAT_SEC));
@@ -508,6 +530,7 @@ function renderClefSwitchScreen(){
 }
 
 function nextQuestion(){
+  stopAllAudio();
   document.getElementById('continueBtn').classList.add('hidden');
   document.getElementById('replayHintBtn').classList.add('hidden');
   document.getElementById('feedbackText').textContent = '';

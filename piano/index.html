@@ -39,6 +39,7 @@
   .btn.blue{background:var(--blue);}
   .btn.green{background:var(--green);}
   .btn.yellow{background:var(--yellow); color:#5c4300;}
+  .btn.teal{background:#2dd4bf;}
   .btn.outline{background:#fff; color:var(--purple); border:2px solid var(--purple); box-shadow:none;}
   .hidden{display:none !important;}
 
@@ -79,8 +80,8 @@
 
   .findTile{border:2px solid #e2d6fb; border-radius:14px; background:#faf7ff; padding:2px; cursor:pointer;}
   .findTile.selected{border-color:var(--purple); background:#efe6fd;}
-  .findTile.correctTile{border-color:#2fae5c; background:#d9f7e3;}
-  .findTile.wrongTile{border-color:#d94b4b; background:#ffe0e0;}
+  .findTile.correctTile, .findTile.correct{border-color:#2fae5c; background:#d9f7e3;}
+  .findTile.wrongTile, .findTile.wrong{border-color:#d94b4b; background:#ffe0e0;}
   .findTile:disabled{opacity:.75;}
 
   .patternBtn{color:var(--purple);}
@@ -114,6 +115,7 @@
     <p class="sub">選一個關卡開始練習吧！</p>
     <button class="btn blue" onclick="chooseMode('rhythm')">🥁 節奏練習：穩定拍・強弱拍・休止符</button>
     <button class="btn yellow" onclick="chooseMode('direction')">🪜 唱名方向感：往上往下・樓梯跳格子</button>
+    <button class="btn teal" onclick="chooseMode('octave')">🎹 高低八度：找出隔壁的 do</button>
     <button class="btn pink" onclick="chooseMode('note1')">🎵 認音符 第一階段：五線譜 → do re mi</button>
     <button class="btn purple" onclick="chooseMode('note2')">⌨️ 認音符 第二階段：五線譜 → 鍵盤位置</button>
     <button class="btn green" onclick="chooseMode('melody')">🎶 短旋律任務：聽一聽，彈出來</button>
@@ -214,10 +216,10 @@ const LEVELS = [
   {id:2, label:'Lv.2 do re mi fa so', range:[0,1,2,3,4]},
   {id:3, label:'Lv.3 do～高音do', range:[0,1,2,3,4,5,6,7]},
 ];
+// 高低音譜號用同一組 Lv 範圍索引，各自從自己的基礎 do 開始（不做八度偏移）
+// 例如 Lv.1 = do re mi：高音譜號是 C4 D4 E4，低音譜號同步是 C3 D3 E3
 function levelRange(){
-  const range = LEVELS.find(l=>l.id===noteLevel).range;
-  // 低音譜表從中央 C（高音 do）往下建立難度：Lv.1 = 中央 do、si、la，而不是譜表最底部的音
-  return clef==='bass' ? range.map(i=>7-i) : range;
+  return LEVELS.find(l=>l.id===noteLevel).range;
 }
 
 /* ---------- 音效 ---------- */
@@ -236,25 +238,39 @@ function tone(freq, dur=0.35, type='sine', delay=0){
   osc.start(t0); osc.stop(t0+dur+0.05);
 }
 // 彈奏音高用：疊加泛音＋鋼琴式快起音/漸弱包絡，聽起來比純正弦音清亮
-function playNote(freq, dur=0.5, delay=0){
+// 疊更多泛音＋兩顆微微失諧的基音（模擬鋼琴同音多弦）＋會隨時間變暗的濾波器（敲擊瞬間最亮、之後變柔）
+function playNote(freq, dur=0.6, delay=0){
   const ctx = ac();
   const t0 = ctx.currentTime + delay;
+
+  const filter = ctx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.Q.value = 0.6;
+  filter.frequency.setValueAtTime(Math.min(freq*9, 9000), t0);
+  filter.frequency.exponentialRampToValueAtTime(Math.max(freq*2, 400), t0+dur);
+  filter.connect(ctx.destination);
+
   const master = ctx.createGain();
-  master.connect(ctx.destination);
+  master.connect(filter);
   master.gain.setValueAtTime(0.0001, t0);
-  master.gain.exponentialRampToValueAtTime(0.32, t0+0.008);
-  master.gain.exponentialRampToValueAtTime(0.09, t0+0.15);
+  master.gain.exponentialRampToValueAtTime(0.34, t0+0.005);
+  master.gain.exponentialRampToValueAtTime(0.11, t0+0.14);
   master.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
+
   const partials = [
-    {mult:1, gain:1,    type:'triangle'},
-    {mult:2, gain:0.5,  type:'sine'},
-    {mult:3, gain:0.22, type:'sine'},
-    {mult:4, gain:0.1,  type:'sine'},
+    {mult:1, gain:0.55, type:'triangle', detune:-5},
+    {mult:1, gain:0.55, type:'triangle', detune:5},
+    {mult:2, gain:0.42, type:'sine', detune:0},
+    {mult:3, gain:0.22, type:'sine', detune:0},
+    {mult:4, gain:0.12, type:'sine', detune:0},
+    {mult:5, gain:0.07, type:'sine', detune:0},
+    {mult:6, gain:0.04, type:'sine', detune:0},
   ];
   partials.forEach(p=>{
     const osc = ctx.createOscillator();
     osc.type = p.type;
     osc.frequency.value = freq*p.mult;
+    osc.detune.value = p.detune;
     const pg = ctx.createGain();
     pg.gain.value = p.gain;
     osc.connect(pg); pg.connect(master);
@@ -358,11 +374,23 @@ function shuffle(arr){
 function genQuestion(){
   if(currentMode==='rhythm') return genRhythmQuestion();
   if(currentMode==='direction') return Math.random()<0.5 ? genDirectionQuestion() : genStepSkipQuestion();
+  if(currentMode==='octave') return genOctaveQuestion();
   if(currentMode==='melody') return genMelodyQuestion();
   if(currentMode==='note1' && Math.random()<0.4) return genFindQuestion();
   const range = levelRange();
   const idx = range[Math.floor(Math.random()*range.length)];
   return {kind: currentMode, ...activeNotes()[idx], noteIndex: idx};
+}
+
+// 高低八度：給一個 do，找出高八度／低八度的 do 在哪裡（同一唱名、不同位置）
+function genOctaveQuestion(){
+  const octClef = Math.random()<0.5 ? 'treble' : 'bass';
+  const findHigher = Math.random()<0.5;
+  const refIdx = findHigher ? 0 : 7;
+  const correctIdx = findHigher ? 7 : 0;
+  const otherIdx = 1 + Math.floor(Math.random()*6); // re..ti 當作干擾選項
+  const candidateIdx = shuffle([correctIdx, refIdx, otherIdx]);
+  return {kind:'octave', clef:octClef, refIdx, correctIdx, findHigher, candidateIdx};
 }
 
 // 短旋律任務：從目前音域範圍隨機挑 3 個音，聽完後照順序在鍵盤上彈出來
@@ -520,6 +548,9 @@ function nextQuestion(){
     document.getElementById('staffWrap').innerHTML = '';
     renderMelodyQuestion(currentQ);
     renderMelodyAnswers(currentQ);
+  } else if(currentQ.kind==='octave'){
+    renderOctaveQuestion(currentQ);
+    renderOctaveAnswers(currentQ);
   } else {
     document.getElementById('staffWrap').innerHTML = '';
     if(currentQ.direction==='see'){
@@ -915,6 +946,45 @@ async function revealDirection(q, btns, opts){
   btns[idx].classList.add('correct');
   playDirectionSound(q);
   await sleep(600);
+}
+
+/* ---------- 高低八度：同一個 do，找出高八度／低八度的位置 ---------- */
+function renderOctaveQuestion(q){
+  const table = q.clef==='bass' ? BASS_NOTES : NOTES;
+  clef = q.clef;
+  renderStaff(table[q.refIdx]);
+  document.getElementById('rhythmWrap').innerHTML = `
+    <div style="text-align:center;font-size:16px;font-weight:800;margin-top:-4px;">
+      這是「${table[q.refIdx].label}」，哪一個是<span style="color:#2dd4bf;">${q.findHigher?'高':'低'}八度</span>的「${table[q.refIdx].label}」呢？🔍
+    </div>`;
+}
+
+function renderOctaveAnswers(q){
+  const wrap = document.getElementById('answers');
+  wrap.style.cssText = 'display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px;';
+  wrap.innerHTML = '';
+  const table = q.clef==='bass' ? BASS_NOTES : NOTES;
+  const btns = [];
+  q.candidateIdx.forEach(idx=>{
+    const tile = document.createElement('button');
+    tile.className = 'findTile';
+    tile.innerHTML = miniStaffSVG(table[idx]);
+    tile.onclick = ()=>{
+      playNote(table[idx].freq);
+      const correct = idx===q.correctIdx;
+      handleAttempt(correct, tile, btns,
+        ()=>playNote(table[q.refIdx].freq, 0.45, 0.25),
+        ()=>revealOctave(q, btns, table));
+    };
+    wrap.appendChild(tile); btns.push(tile);
+  });
+}
+
+async function revealOctave(q, btns, table){
+  const hitPos = q.candidateIdx.indexOf(q.correctIdx);
+  btns[hitPos].classList.add('correct');
+  playNote(table[q.correctIdx].freq);
+  await sleep(500);
 }
 
 /* ---------- 節奏：聽拍子選節奏型 ---------- */

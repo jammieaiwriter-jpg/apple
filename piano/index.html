@@ -231,7 +231,11 @@ const LEVELS = [
   {id:2, label:'Lv.2 do re mi fa so', range:[0,1,2,3,4]},
   {id:3, label:'Lv.3 do～高音do', range:[0,1,2,3,4,5,6,7]},
 ];
-function levelRange(){ return LEVELS.find(l=>l.id===noteLevel).range; }
+function levelRange(){
+  const range = LEVELS.find(l=>l.id===noteLevel).range;
+  // 低音譜表從中央 C（高音 do）往下建立難度：Lv.1 = 中央 do、si、la，而不是譜表最底部的音
+  return clef==='bass' ? range.map(i=>7-i) : range;
+}
 
 /* ---------- 音效 ---------- */
 let audioCtx;

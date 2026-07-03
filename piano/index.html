@@ -40,9 +40,6 @@
   .btn.green{background:var(--green);}
   .btn.yellow{background:var(--yellow); color:#5c4300;}
   .btn.outline{background:#fff; color:var(--purple); border:2px solid var(--purple); box-shadow:none;}
-  .clefRow{display:flex; gap:10px; margin-bottom:16px;}
-  .clefRow .clefBtn{flex:1; margin-bottom:0; padding:14px 4px;}
-  .clefBtn.active{background:var(--purple); color:#fff;}
   .hidden{display:none !important;}
 
   #progress{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-weight:700; color:#8b7d8b; font-size:14px;}
@@ -124,25 +121,11 @@
 
   <!-- 選難度 -->
   <div class="card hidden" id="screen-level">
-    <h1>先選譜號和音域範圍</h1>
-    <p class="sub">從最少的音開始，答對率高再往下一關喔！</p>
-    <div class="clefRow">
-      <button class="btn outline clefBtn" id="clefTrebleBtn" onclick="chooseClef('treble')">🎼 高音譜號</button>
-      <button class="btn outline clefBtn" id="clefBassBtn" onclick="chooseClef('bass')">🎼 低音譜號</button>
-    </div>
+    <h1 id="levelTitle">先選音域範圍</h1>
+    <p class="sub" id="levelSub">從最少的音開始，答對率高再往下一關喔！一輪固定 10 題，不用計時。</p>
     <button class="btn purple" onclick="chooseLevel(1)">Lv.1　do re mi（3 個音）</button>
     <button class="btn purple" onclick="chooseLevel(2)">Lv.2　do re mi fa so（5 個音）</button>
     <button class="btn purple" onclick="chooseLevel(3)">Lv.3　do 到高音 do（全部 8 個音）</button>
-    <button class="btn outline" onclick="showScreen('home')">← 回首頁</button>
-  </div>
-
-  <!-- 選題數 -->
-  <div class="card hidden" id="screen-count">
-    <h1 id="countTitle">選一輪要練幾題</h1>
-    <p class="sub">不用計時，慢慢答沒關係喔！</p>
-    <button class="btn purple" onclick="startRound(5)">5 題（暖身）</button>
-    <button class="btn purple" onclick="startRound(10)">10 題（一般）</button>
-    <button class="btn purple" onclick="startRound(15)">15 題（挑戰）</button>
     <button class="btn outline" onclick="showScreen('home')">← 回首頁</button>
   </div>
 
@@ -334,6 +317,7 @@ let isReview = false;
 let attempt = 0;
 let inputLocked = false;
 let currentHintFn = null;
+let questionsShown = 0;
 
 function showScreen(name){
   document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
@@ -343,39 +327,23 @@ function showScreen(name){
 function chooseMode(mode){
   currentMode = mode;
   if(mode==='note1' || mode==='note2' || mode==='melody'){
-    chooseClef('treble');
+    document.getElementById('levelSub').textContent =
+      (mode==='note1' || mode==='note2')
+        ? '一輪固定 10 題：前 5 題高音譜號、後 5 題低音譜號，中間會提醒你切換。'
+        : '一輪固定 10 題，不用計時，慢慢答沒關係喔！';
     showScreen('level');
   } else {
-    document.getElementById('countTitle').textContent = MODE_TITLE[mode];
-    showScreen('count');
+    startRound(10);
   }
-}
-
-function chooseClef(c){
-  clef = c;
-  document.getElementById('clefTrebleBtn').classList.toggle('active', c==='treble');
-  document.getElementById('clefBassBtn').classList.toggle('active', c==='bass');
-}
-
-function levelCountTitle(){
-  const lv = LEVELS.find(l=>l.id===noteLevel);
-  const clefLabel = clef==='bass' ? '低音譜號' : '高音譜號';
-  return MODE_TITLE[currentMode] + '（' + clefLabel + ' ' + lv.label + '）';
 }
 
 function chooseLevel(levelId){
   noteLevel = levelId;
-  document.getElementById('countTitle').textContent = levelCountTitle();
-  showScreen('count');
+  startRound(10);
 }
 
 function playAgain(){
-  if(currentMode==='note1' || currentMode==='note2' || currentMode==='melody'){
-    document.getElementById('countTitle').textContent = levelCountTitle();
-    showScreen('count');
-  } else {
-    chooseMode(currentMode);
-  }
+  startRound(10);
 }
 
 function shuffle(arr){
@@ -449,10 +417,42 @@ function genRhythmQuestion(){
   return {kind:'rhythm', target, options: shuffle(picks), direction};
 }
 
+// note1 批次：保證每 5 題至少出現一次「找出所有的 X」（八度／同音不同位置）
+function genNote1Batch(n){
+  const items = [];
+  let hasFind = false;
+  for(let i=0;i<n;i++){
+    const item = (i===n-1 && !hasFind) ? genFindQuestion() : genQuestion();
+    if(item.kind==='note1-find') hasFind = true;
+    items.push(item);
+  }
+  return items;
+}
+
+function genModeBatch(n){
+  return currentMode==='note1' ? genNote1Batch(n) : Array.from({length:n}, genQuestion);
+}
+
+// note1 / note2：前半高音譜號、後半低音譜號，中間插入提醒切換的畫面
+function buildClefSplitQueue(count){
+  const half = Math.floor(count/2);
+  const rest = count - half;
+  clef = 'treble';
+  const first = genModeBatch(half).map(q=>({...q, clef:'treble'}));
+  clef = 'bass';
+  const second = genModeBatch(rest).map(q=>({...q, clef:'bass'}));
+  return [...first, {kind:'clef-switch'}, ...second];
+}
+
 function startRound(count){
-  total = count; correctFirstTry = 0; stars = 0; isReview = false;
-  queue = Array.from({length:count}, genQuestion);
+  total = count; correctFirstTry = 0; stars = 0; isReview = false; questionsShown = 0;
   wrongThisRound = [];
+  if(currentMode==='note1' || currentMode==='note2'){
+    queue = buildClefSplitQueue(count);
+  } else {
+    if(currentMode==='melody') clef = 'treble';
+    queue = Array.from({length:count}, genQuestion);
+  }
   showScreen('quiz');
   nextQuestion();
 }
@@ -461,9 +461,22 @@ function startReview(){
   isReview = true;
   queue = shuffle(wrongThisRound);
   total = queue.length;
+  questionsShown = 0;
   wrongThisRound = [];
   showScreen('quiz');
   nextQuestion();
+}
+
+function renderClefSwitchScreen(){
+  document.getElementById('staffWrap').innerHTML = '';
+  document.getElementById('answers').innerHTML = '';
+  document.getElementById('rhythmWrap').innerHTML = `
+    <div style="text-align:center;">
+      <div style="font-size:40px;margin-bottom:8px;">🎼➡️🎼</div>
+      <div style="font-size:19px;font-weight:800;margin-bottom:8px;">高音譜號練完囉！準備換低音譜號～</div>
+      <div style="font-size:14px;color:#8b7d8b;">接下來一樣是 do re mi，畫在低音譜號上會長得不一樣，仔細看喔！</div>
+    </div>`;
+  document.getElementById('continueBtn').classList.remove('hidden');
 }
 
 function nextQuestion(){
@@ -476,9 +489,15 @@ function nextQuestion(){
   if(queue.length === 0){ endRound(); return; }
   currentQ = queue.shift();
 
-  const doneCount = total - queue.length;
+  if(currentQ.kind==='clef-switch'){
+    renderClefSwitchScreen();
+    return;
+  }
+  if(currentQ.clef) clef = currentQ.clef;
+  questionsShown++;
+
   document.getElementById('progressText').textContent =
-    (isReview? '錯題複習 ' : '第 ') + doneCount + ' / ' + total + ' 題';
+    (isReview? '錯題複習 ' : '第 ') + questionsShown + ' / ' + total + ' 題';
   document.getElementById('starsText').textContent = '⭐️ ' + stars;
 
   if(currentQ.kind==='note1'){
@@ -725,11 +744,9 @@ function playMelody(seq){
 }
 
 function renderMelodyQuestion(q){
-  const stripHTML = q.seq.map(idx=>miniStaffSVG({...activeNotes()[idx], noteIndex:idx})).join('');
   document.getElementById('rhythmWrap').innerHTML = `
     <div style="text-align:center;">
-      <div style="font-size:17px;font-weight:800;margin-bottom:8px;">照順序找到鍵盤上的音，彈出這段小旋律吧！🎶</div>
-      <div style="display:flex;justify-content:center;gap:4px;flex-wrap:wrap;">${stripHTML}</div>
+      <div style="font-size:17px;font-weight:800;margin-bottom:8px;">仔細聽，照順序在鍵盤上彈出來吧！🎶👂</div>
       <button class="btn blue" id="playMelodyBtn" style="max-width:200px;margin:10px auto 0;padding:10px;">🔊 聽聽旋律</button>
     </div>`;
   document.getElementById('playMelodyBtn').onclick = ()=>playMelody(q.seq);

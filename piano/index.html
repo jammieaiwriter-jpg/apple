@@ -115,7 +115,7 @@
     <p class="sub">選一個關卡開始練習吧！</p>
     <button class="btn blue" onclick="chooseMode('rhythm')">🥁 節奏練習：穩定拍・強弱拍・休止符</button>
     <button class="btn yellow" onclick="chooseMode('direction')">🪜 唱名方向感：往上往下・樓梯跳格子</button>
-    <button class="btn teal" onclick="chooseMode('octave')">🎹 高低八度：找出隔壁的 do</button>
+    <button class="btn teal" onclick="chooseMode('octave')">🎹 高低八度：找出所有的 do</button>
     <button class="btn pink" onclick="chooseMode('note1')">🎵 認音符 第一階段：五線譜 → do re mi</button>
     <button class="btn purple" onclick="chooseMode('note2')">⌨️ 認音符 第二階段：五線譜 → 鍵盤位置</button>
     <button class="btn green" onclick="chooseMode('melody')">🎶 短旋律任務：聽一聽，彈出來</button>
@@ -404,15 +404,17 @@ function genQuestion(){
   return {kind: currentMode, ...activeNotes()[idx], noteIndex: idx};
 }
 
-// 高低八度：給一個 do，找出高八度／低八度的 do 在哪裡（同一唱名、不同位置）
+// 高低八度：4 個小五線譜選項，其中剛好 2 個是 do（不同位置／八度），其餘 2 個是別的唱名干擾
+// 重用「找出所有的 X」(note1-find) 的畫面與作答邏輯，孩子只要認出「這些都是 do」即可，不強調高低八度方向
 function genOctaveQuestion(){
   const octClef = Math.random()<0.5 ? 'treble' : 'bass';
-  const findHigher = Math.random()<0.5;
-  const refIdx = findHigher ? 0 : 7;
-  const correctIdx = findHigher ? 7 : 0;
-  const otherIdx = 1 + Math.floor(Math.random()*6); // re..ti 當作干擾選項
-  const candidateIdx = shuffle([correctIdx, refIdx, otherIdx]);
-  return {kind:'octave', clef:octClef, refIdx, correctIdx, findHigher, candidateIdx};
+  clef = octClef;
+  const table = activeNotes();
+  const withIdx = table.map((n,i)=>({...n, noteIndex:i}));
+  const doCandidates = [withIdx[0], withIdx[7]];
+  const distractors = shuffle(withIdx.filter(n=>n.label!=='do')).slice(0,2);
+  const candidates = shuffle([...doCandidates, ...distractors]);
+  return {kind:'note1-find', target:'do', candidates, clef:octClef};
 }
 
 // 短旋律任務：從目前音域範圍隨機挑 3 個音，聽完後照順序在鍵盤上彈出來
@@ -571,9 +573,6 @@ function nextQuestion(){
     document.getElementById('staffWrap').innerHTML = '';
     renderMelodyQuestion(currentQ);
     renderMelodyAnswers(currentQ);
-  } else if(currentQ.kind==='octave'){
-    renderOctaveQuestion(currentQ);
-    renderOctaveAnswers(currentQ);
   } else {
     document.getElementById('staffWrap').innerHTML = '';
     if(currentQ.direction==='see'){
@@ -971,44 +970,6 @@ async function revealDirection(q, btns, opts){
   await sleep(600);
 }
 
-/* ---------- 高低八度：同一個 do，找出高八度／低八度的位置 ---------- */
-function renderOctaveQuestion(q){
-  const table = q.clef==='bass' ? BASS_NOTES : NOTES;
-  clef = q.clef;
-  renderStaff(table[q.refIdx]);
-  document.getElementById('rhythmWrap').innerHTML = `
-    <div style="text-align:center;font-size:16px;font-weight:800;margin-top:-4px;">
-      這是「${table[q.refIdx].label}」，哪一個是<span style="color:#2dd4bf;">${q.findHigher?'高':'低'}八度</span>的「${table[q.refIdx].label}」呢？🔍
-    </div>`;
-}
-
-function renderOctaveAnswers(q){
-  const wrap = document.getElementById('answers');
-  wrap.style.cssText = 'display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px;';
-  wrap.innerHTML = '';
-  const table = q.clef==='bass' ? BASS_NOTES : NOTES;
-  const btns = [];
-  q.candidateIdx.forEach(idx=>{
-    const tile = document.createElement('button');
-    tile.className = 'findTile';
-    tile.innerHTML = miniStaffSVG(table[idx]);
-    tile.onclick = ()=>{
-      playNote(table[idx].freq);
-      const correct = idx===q.correctIdx;
-      handleAttempt(correct, tile, btns,
-        ()=>playNote(table[q.refIdx].freq, 0.45, 0.25),
-        ()=>revealOctave(q, btns, table));
-    };
-    wrap.appendChild(tile); btns.push(tile);
-  });
-}
-
-async function revealOctave(q, btns, table){
-  const hitPos = q.candidateIdx.indexOf(q.correctIdx);
-  btns[hitPos].classList.add('correct');
-  playNote(table[q.correctIdx].freq);
-  await sleep(500);
-}
 
 /* ---------- 節奏：聽拍子選節奏型 ---------- */
 function renderRhythmQuestion(q){

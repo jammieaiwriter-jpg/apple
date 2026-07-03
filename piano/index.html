@@ -189,6 +189,26 @@ const BASS_NOTES = [
 ];
 const SOLFEGE_ORDER = ['do','re','mi','fa','so','la','ti'];
 
+// 高低八度練習專用：每個唱名（除了 do）在同一個譜號內，往高音譜號的更高處／往低音譜號的更低處
+// 延伸出「另一個八度」的位置，這樣每個唱名都能在同一個譜號裡找到自己的八度配對（do 沿用原本的 0/7 配對）
+// key = 唱名在 NOTES/BASS_NOTES 裡的 index（1~6 = re..ti）
+const TREBLE_OCTAVE_EXT = {
+  1: {pitch:'D5', y:56, freq:587.33},
+  2: {pitch:'E5', y:48, freq:659.25},
+  3: {pitch:'F5', y:40, freq:698.46},
+  4: {pitch:'G5', y:32, freq:784.00},
+  5: {pitch:'A5', y:24, freq:880.00, ledger:true},
+  6: {pitch:'B5', y:16, freq:987.77, ledger:true},
+};
+const BASS_OCTAVE_EXT = {
+  1: {pitch:'D2', y:128, freq:73.42, ledger:true},
+  2: {pitch:'E2', y:120, freq:82.41, ledger:true},
+  3: {pitch:'F2', y:112, freq:87.31},
+  4: {pitch:'G2', y:104, freq:98.00},
+  5: {pitch:'A2', y:96,  freq:110.00},
+  6: {pitch:'B2', y:88,  freq:123.47},
+};
+
 // 節奏型：Q=一拍(ta) H=兩拍(ta-a) W=四拍(ta-a-a-a) E=半拍一對(titi，佔一拍) R=一拍休止符(噓)
 const RHYTHM_PATTERNS = [
   ['Q','Q','Q','Q'],
@@ -438,22 +458,28 @@ function genQuestion(){
 // 高低八度：4 個小五線譜選項，其中剛好 2 個是 do（不同位置／八度），其餘 2 個是別的唱名干擾
 // 重用「找出所有的 X」(note1-find) 的畫面與作答邏輯，孩子只要認出「這些都是 do」即可，不強調高低八度方向
 // 任一唱名（不限 do）：BASS_NOTES[i] 和 NOTES[i] 剛好是同一個唱名、差一個八度（在中央 C 接軌）
+// 高低八度：只在「同一個譜號」裡出題（不混高低音譜號）。do 沿用原本 0/7 配對；
+// 其他唱名則用該譜號延伸出的高／低八度音，讓每個唱名都能練到「同一個唱名、不同位置」
 function genOctaveQuestion(){
-  const range = levelRange().filter(i=>i<=6); // 0~6 = do..ti，避免用到重複意義的第 7 個高音 do
-  const pool = range.length ? range : [0];
+  const octClef = Math.random()<0.5 ? 'treble' : 'bass';
+  const baseTable = octClef==='bass' ? BASS_NOTES : NOTES;
+  const extTable = octClef==='bass' ? BASS_OCTAVE_EXT : TREBLE_OCTAVE_EXT;
+
+  function makeNote(i, useExt){
+    if(i===0) return useExt ? {...baseTable[7], label:'do'} : {...baseTable[0], label:'do'};
+    return useExt ? {...extTable[i], label: baseTable[i].label} : {...baseTable[i]};
+  }
+
+  const range = levelRange().filter(i=>i<=6); // 0~6 = do..ti
+  const pool = range.length ? range : [0,1,2,3,4,5,6];
   const idx = pool[Math.floor(Math.random()*pool.length)];
-  const target = NOTES[idx].label;
-  const correctPair = [
-    {...BASS_NOTES[idx], noteIndex:idx, clef:'bass'},
-    {...NOTES[idx], noteIndex:idx, clef:'treble'},
-  ];
-  const distractorPool = pool.filter(i=>i!==idx).flatMap(i=>[
-    {...BASS_NOTES[i], noteIndex:i, clef:'bass'},
-    {...NOTES[i], noteIndex:i, clef:'treble'},
-  ]);
+  const target = baseTable[idx].label;
+
+  const correctPair = [makeNote(idx,false), makeNote(idx,true)];
+  const distractorPool = pool.filter(i=>i!==idx).flatMap(i=>[makeNote(i,false), makeNote(i,true)]);
   const distractors = shuffle(distractorPool).slice(0,2);
   const candidates = shuffle([...correctPair, ...distractors]);
-  return {kind:'note1-find', target, candidates};
+  return {kind:'note1-find', target, candidates, clef:octClef};
 }
 
 // 短旋律任務：從目前音域範圍隨機挑 3 個音，聽完後照順序在鍵盤上彈出來

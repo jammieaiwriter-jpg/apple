@@ -357,6 +357,17 @@ let inputLocked = false;
 let currentHintFn = null;
 let questionsShown = 0;
 
+// 避免連續出現同一題（同音/同節奏型/同方向答案）的追蹤變數，每輪開始時重置
+let lastNoteIdx = null;
+let lastFindTarget = null;
+let lastRhythmKey = null;
+let lastDirectionKey = null;
+let lastMelodyFirstIdx = null;
+function resetRepeatTrackers(){
+  lastNoteIdx = null; lastFindTarget = null; lastRhythmKey = null;
+  lastDirectionKey = null; lastMelodyFirstIdx = null;
+}
+
 function showScreen(name){
   document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
   document.getElementById('screen-'+name).classList.remove('hidden');
@@ -393,14 +404,34 @@ function shuffle(arr){
   return a;
 }
 
+// 從 arr 隨機選一個，盡量避免跟上一次選到的一樣（陣列夠大時才強制避開），降低題目重複感
+function pickDifferent(arr, lastVal, keyFn=(x=>x)){
+  if(arr.length<=1) return arr[0];
+  let choice, tries=0;
+  do{
+    choice = arr[Math.floor(Math.random()*arr.length)];
+    tries++;
+  } while(keyFn(choice)===lastVal && tries<8);
+  return choice;
+}
+
 function genQuestion(){
   if(currentMode==='rhythm') return genRhythmQuestion();
-  if(currentMode==='direction') return Math.random()<0.5 ? genDirectionQuestion() : genStepSkipQuestion();
+  if(currentMode==='direction'){
+    let q, tries=0;
+    do{
+      q = Math.random()<0.5 ? genDirectionQuestion() : genStepSkipQuestion();
+      tries++;
+    } while((q.kind+':'+q.answer)===lastDirectionKey && tries<6);
+    lastDirectionKey = q.kind+':'+q.answer;
+    return q;
+  }
   if(currentMode==='octave') return genOctaveQuestion();
   if(currentMode==='melody') return genMelodyQuestion();
   if(currentMode==='note1' && Math.random()<0.4) return genFindQuestion();
   const range = levelRange();
-  const idx = range[Math.floor(Math.random()*range.length)];
+  const idx = pickDifferent(range, lastNoteIdx);
+  lastNoteIdx = idx;
   return {kind: currentMode, ...activeNotes()[idx], noteIndex: idx};
 }
 
@@ -422,7 +453,14 @@ function genOctaveQuestion(){
 // 短旋律任務：從目前音域範圍隨機挑 3 個音，聽完後照順序在鍵盤上彈出來
 function genMelodyQuestion(){
   const range = levelRange();
-  const seq = Array.from({length:3}, ()=> range[Math.floor(Math.random()*range.length)]);
+  const seq = [];
+  let last = lastMelodyFirstIdx;
+  for(let i=0;i<3;i++){
+    const idx = pickDifferent(range, last);
+    seq.push(idx);
+    last = idx;
+  }
+  lastMelodyFirstIdx = seq[0];
   return {kind:'melody', seq};
 }
 
@@ -456,7 +494,8 @@ function genFindQuestion(){
   const range = levelRange();
   const withIdx = range.map(i=>({...activeNotes()[i], noteIndex:i}));
   const labelsInRange = [...new Set(withIdx.map(n=>n.label))];
-  const target = labelsInRange[Math.floor(Math.random()*labelsInRange.length)];
+  const target = pickDifferent(labelsInRange, lastFindTarget);
+  lastFindTarget = target;
   const matches = withIdx.filter(n=>n.label===target);
   const nonMatches = shuffle(withIdx.filter(n=>n.label!==target)).slice(0, Math.max(0, Math.min(5,withIdx.length)-matches.length));
   const candidates = shuffle([...matches, ...nonMatches]);
@@ -466,7 +505,8 @@ function genFindQuestion(){
 // 聽拍子選節奏型：播放一段拍手節奏，從 3 個節奏圖形中選出聽到的那一個
 function genRhythmQuestion(){
   const picks = shuffle(RHYTHM_PATTERNS).slice(0,3);
-  const target = picks[Math.floor(Math.random()*picks.length)];
+  let target = pickDifferent(picks, lastRhythmKey, p=>JSON.stringify(p));
+  lastRhythmKey = JSON.stringify(target);
   const direction = Math.random()<0.5 ? 'hear' : 'see'; // hear：聽拍子選音符／see：看音符選聲音
   return {kind:'rhythm', target, options: shuffle(picks), direction};
 }
@@ -493,6 +533,7 @@ function buildClefSplitQueue(count){
   const rest = count - half;
   clef = 'treble';
   const first = genModeBatch(half).map(q=>({...q, clef:'treble'}));
+  resetRepeatTrackers();
   clef = 'bass';
   const second = genModeBatch(rest).map(q=>({...q, clef:'bass'}));
   return [...first, {kind:'clef-switch'}, ...second];
@@ -501,6 +542,7 @@ function buildClefSplitQueue(count){
 function startRound(count){
   total = count; correctFirstTry = 0; stars = 0; isReview = false; questionsShown = 0;
   wrongThisRound = [];
+  resetRepeatTrackers();
   if(currentMode==='note1' || currentMode==='note2'){
     queue = buildClefSplitQueue(count);
   } else {

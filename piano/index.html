@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>小小音樂家 🎹</title>
+<style>
+  :root{
+    --pink:#ff8fab; --purple:#a78bfa; --blue:#60a5fa; --green:#4ade80;
+    --yellow:#fbbf24; --bg:#fff7f0; --ink:#3a2e39;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;height:100%;}
+  body{
+    font-family:"PingFang TC","Heiti TC","Microsoft JhengHei",-apple-system,sans-serif;
+    background:linear-gradient(180deg,#fff7f0,#ffe9f0);
+    color:var(--ink);
+    min-height:100%;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px;
+    user-select:none;
+  }
+  #app{width:100%; max-width:520px;}
+  .card{
+    background:#fff; border-radius:28px; padding:28px 22px;
+    box-shadow:0 10px 30px rgba(167,139,250,.18);
+  }
+  h1{text-align:center; font-size:24px; margin:0 0 6px;}
+  .sub{text-align:center; color:#8b7d8b; margin:0 0 24px; font-size:15px;}
+  .btn{
+    display:block; width:100%; border:none; border-radius:18px;
+    padding:18px; font-size:19px; font-weight:700; color:#fff;
+    margin-bottom:14px; cursor:pointer; box-shadow:0 6px 0 rgba(0,0,0,.08);
+    transition:transform .08s;
+  }
+  .btn:active{transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,.08);}
+  .btn.pink{background:var(--pink);}
+  .btn.purple{background:var(--purple);}
+  .btn.blue{background:var(--blue);}
+  .btn.green{background:var(--green);}
+  .btn.yellow{background:var(--yellow); color:#5c4300;}
+  .btn.outline{background:#fff; color:var(--purple); border:2px solid var(--purple); box-shadow:none;}
+  .clefRow{display:flex; gap:10px; margin-bottom:16px;}
+  .clefRow .clefBtn{flex:1; margin-bottom:0; padding:14px 4px;}
+  .clefBtn.active{background:var(--purple); color:#fff;}
+  .hidden{display:none !important;}
+
+  #progress{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-weight:700; color:#8b7d8b; font-size:14px;}
+  #progress .stars{color:var(--yellow); font-size:16px;}
+
+  #staffWrap{display:flex; justify-content:center; margin:10px 0 18px;}
+  #rhythmWrap{display:flex; flex-direction:column; align-items:center; margin:10px 0 18px;}
+  svg{display:block;}
+
+  #answers{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:6px;}
+  .ansBtn{
+    padding:16px 4px; border-radius:16px; border:none; font-size:17px; font-weight:800;
+    background:#f3eefc; color:var(--purple); box-shadow:0 4px 0 #e2d6fb; cursor:pointer;
+  }
+  .ansBtn:active{transform:translateY(2px); box-shadow:0 1px 0 #e2d6fb;}
+  .ansBtn.correct{background:var(--green); color:#fff; box-shadow:0 4px 0 #2fae5c;}
+  .ansBtn.wrong{background:#ff8080; color:#fff; box-shadow:0 4px 0 #d94b4b;}
+  .ansBtn.selected{box-shadow:0 0 0 3px var(--purple) inset, 0 4px 0 #e2d6fb;}
+  .ansBtn:disabled{opacity:.5;}
+  .btn:disabled{opacity:.4; cursor:default;}
+
+  .keyboard{position:relative; display:inline-block; height:120px; margin:6px auto 0;}
+  .key{
+    position:relative; width:38px; height:120px; background:#fff;
+    border:2px solid #c9bfe0; border-top:none; border-radius:0 0 10px 10px;
+    margin-right:2px; display:inline-block; vertical-align:top; padding:0;
+    box-shadow:0 4px 0 #e2d6fb; cursor:pointer; z-index:1;
+  }
+  .key:last-child{margin-right:0;}
+  .key:disabled{opacity:.55;}
+  .key.correct{background:var(--green); border-color:#2fae5c;}
+  .key.wrong{background:#ff8080; border-color:#d94b4b;}
+  .key.flash{background:#c9b6fb; border-color:#a78bfa;}
+  .key.levelDim{opacity:.35;}
+  .blackkey{position:absolute; top:0; width:24px; height:72px; background:#3a2e39; border-radius:0 0 6px 6px; pointer-events:none; z-index:2;}
+  .anchorDot{position:absolute; bottom:8px; left:50%; transform:translateX(-50%); width:9px; height:9px; border-radius:50%; background:#a78bfa;}
+
+  .findTile{border:2px solid #e2d6fb; border-radius:14px; background:#faf7ff; padding:2px; cursor:pointer;}
+  .findTile.selected{border-color:var(--purple); background:#efe6fd;}
+  .findTile.correctTile{border-color:#2fae5c; background:#d9f7e3;}
+  .findTile.wrongTile{border-color:#d94b4b; background:#ffe0e0;}
+  .findTile:disabled{opacity:.75;}
+
+  .patternBtn{color:var(--purple);}
+
+  .beatDots{display:flex; gap:10px; justify-content:center; margin:4px 0 10px;}
+  .beatDot{width:13px; height:13px; border-radius:50%; background:#e2d6fb; transition:transform .1s, background .1s;}
+  .beatDot.active{background:var(--purple); transform:scale(1.3);}
+  .beatDot.strong.active{background:var(--pink); transform:scale(1.6);}
+
+  #feedback{text-align:center; min-height:76px; margin-top:14px;}
+  #feedbackText{font-size:18px; font-weight:800; min-height:24px;}
+  #feedbackText.ok{color:#2fae5c;}
+  #feedbackText.no{color:#d94b4b;}
+  #feedbackText.hint{color:#8b7d8b;}
+  #replayHintBtn{max-width:220px; margin:8px auto 0; padding:10px;}
+
+  #resultEmoji{font-size:60px; text-align:center; margin-bottom:6px;}
+  #resultTitle{text-align:center; font-size:24px; font-weight:800; margin-bottom:4px;}
+  #resultDetail{text-align:center; color:#8b7d8b; margin-bottom:22px;}
+
+  .confetti{position:fixed; top:-40px; font-size:26px; animation:fall linear forwards; pointer-events:none;}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg); opacity:.2;}}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- 首頁 -->
+  <div class="card" id="screen-home">
+    <h1>小小音樂家 🎹</h1>
+    <p class="sub">選一個關卡開始練習吧！</p>
+    <button class="btn blue" onclick="chooseMode('rhythm')">🥁 節奏練習：穩定拍・強弱拍・休止符</button>
+    <button class="btn yellow" onclick="chooseMode('direction')">🪜 唱名方向感：往上往下・樓梯跳格子</button>
+    <button class="btn pink" onclick="chooseMode('note1')">🎵 認音符 第一階段：五線譜 → do re mi</button>
+    <button class="btn purple" onclick="chooseMode('note2')">⌨️ 認音符 第二階段：五線譜 → 鍵盤位置</button>
+    <button class="btn green" onclick="chooseMode('melody')">🎶 短旋律任務：聽一聽，彈出來</button>
+  </div>
+
+  <!-- 選難度 -->
+  <div class="card hidden" id="screen-level">
+    <h1>先選譜號和音域範圍</h1>
+    <p class="sub">從最少的音開始，答對率高再往下一關喔！</p>
+    <div class="clefRow">
+      <button class="btn outline clefBtn" id="clefTrebleBtn" onclick="chooseClef('treble')">🎼 高音譜號</button>
+      <button class="btn outline clefBtn" id="clefBassBtn" onclick="chooseClef('bass')">🎼 低音譜號</button>
+    </div>
+    <button class="btn purple" onclick="chooseLevel(1)">Lv.1　do re mi（3 個音）</button>
+    <button class="btn purple" onclick="chooseLevel(2)">Lv.2　do re mi fa so（5 個音）</button>
+    <button class="btn purple" onclick="chooseLevel(3)">Lv.3　do 到高音 do（全部 8 個音）</button>
+    <button class="btn outline" onclick="showScreen('home')">← 回首頁</button>
+  </div>
+
+  <!-- 選題數 -->
+  <div class="card hidden" id="screen-count">
+    <h1 id="countTitle">選一輪要練幾題</h1>
+    <p class="sub">不用計時，慢慢答沒關係喔！</p>
+    <button class="btn purple" onclick="startRound(5)">5 題（暖身）</button>
+    <button class="btn purple" onclick="startRound(10)">10 題（一般）</button>
+    <button class="btn purple" onclick="startRound(15)">15 題（挑戰）</button>
+    <button class="btn outline" onclick="showScreen('home')">← 回首頁</button>
+  </div>
+
+  <!-- 答題畫面 -->
+  <div class="card hidden" id="screen-quiz">
+    <div id="progress">
+      <span id="progressText">第 1 / 10 題</span>
+      <span class="stars" id="starsText">⭐️ 0</span>
+    </div>
+
+    <div id="staffWrap"></div>
+    <div id="rhythmWrap"></div>
+
+    <div id="answers"></div>
+
+    <div id="feedback">
+      <div id="feedbackText"></div>
+      <button class="btn outline hidden" id="replayHintBtn">🔊 再聽一次</button>
+      <button class="btn green hidden" id="continueBtn" onclick="nextQuestion()">繼續 →</button>
+    </div>
+  </div>
+
+  <!-- 結果 / 過關畫面 -->
+  <div class="card hidden" id="screen-result">
+    <div id="resultEmoji">🎉</div>
+    <div id="resultTitle"></div>
+    <div id="resultDetail"></div>
+    <button class="btn green hidden" id="reviewBtn" onclick="startReview()">✏️ 開始錯題複習</button>
+    <button class="btn yellow hidden" id="playAgainBtn" onclick="playAgain()">🔁 再玩一輪</button>
+    <button class="btn outline" onclick="showScreen('home')">← 回首頁</button>
+  </div>
+
+</div>
+
+<script>
+/* ---------- 音樂資料 ---------- */
+// index 0~7 = do re mi fa so la ti do（低音do到高音do，五線譜由下而上）
+const NOTES = [
+  {pitch:'C4', label:'do', y:120, freq:261.63, ledger:true},
+  {pitch:'D4', label:'re', y:112, freq:293.66},
+  {pitch:'E4', label:'mi', y:104, freq:329.63},
+  {pitch:'F4', label:'fa', y:96,  freq:349.23},
+  {pitch:'G4', label:'so', y:88,  freq:392.00},
+  {pitch:'A4', label:'la', y:80,  freq:440.00},
+  {pitch:'B4', label:'ti', y:72,  freq:493.88},
+  {pitch:'C5', label:'do', y:64,  freq:523.25},
+];
+// 低音譜表版本：index 0~7 = do re mi fa so la ti do（低音do到中央do）
+// 低音譜表最上面一個 do（C4）跟高音譜表最下面的 do 是同一個鍵，兩套譜號在中央 C 接軌
+const BASS_NOTES = [
+  {pitch:'C3', label:'do', y:80, freq:130.81},
+  {pitch:'D3', label:'re', y:72, freq:146.83},
+  {pitch:'E3', label:'mi', y:64, freq:164.81},
+  {pitch:'F3', label:'fa', y:56, freq:174.61},
+  {pitch:'G3', label:'so', y:48, freq:196.00},
+  {pitch:'A3', label:'la', y:40, freq:220.00},
+  {pitch:'B3', label:'ti', y:32, freq:246.94},
+  {pitch:'C4', label:'do', y:24, freq:261.63, ledger:true},
+];
+const SOLFEGE_ORDER = ['do','re','mi','fa','so','la','ti'];
+
+// 節奏型：Q=一拍(ta) H=兩拍(ta-a) W=四拍(ta-a-a-a) E=半拍一對(titi，佔一拍) R=一拍休止符(噓)
+const RHYTHM_PATTERNS = [
+  ['Q','Q','Q','Q'],
+  ['H','H'],
+  ['W'],
+  ['E','E','Q','Q'],
+  ['Q','E','Q','E'],
+  ['H','Q','Q'],
+  ['Q','R','Q','R'],
+  ['Q','Q','R','Q'],
+  ['R','Q','Q','Q'],
+];
+const UNIT_LEN = {Q:1,H:2,W:4,E:1,R:1};
+
+const MODE_TITLE = {
+  rhythm: '🥁 節奏練習：選一輪要練幾題',
+  direction: '🪜 唱名方向感：選一輪要練幾題',
+  note1: '🎵 認音符 第一階段：選一輪要練幾題',
+  note2: '⌨️ 認音符 第二階段：選一輪要練幾題',
+  melody: '🎶 短旋律任務：選一輪要練幾題',
+};
+
+const LEVELS = [
+  {id:1, label:'Lv.1 do re mi', range:[0,1,2]},
+  {id:2, label:'Lv.2 do re mi fa so', range:[0,1,2,3,4]},
+  {id:3, label:'Lv.3 do～高音do', range:[0,1,2,3,4,5,6,7]},
+];
+function levelRange(){ return LEVELS.find(l=>l.id===noteLevel).range; }
+
+/* ---------- 音效 ---------- */
+let audioCtx;
+function ac(){ if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+function tone(freq, dur=0.35, type='sine', delay=0){
+  const ctx = ac();
+  const t0 = ctx.currentTime + delay;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type; osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.0001, t0);
+  gain.gain.exponentialRampToValueAtTime(0.25, t0+0.02);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.start(t0); osc.stop(t0+dur+0.05);
+}
+function playWrong(){ tone(196,0.22,'sawtooth'); }
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+function labelFreq(label){ return activeNotes().find(n=>n.label===label).freq; }
+
+function patternOnsets(units){
+  let t=0; const onsets=[];
+  units.forEach(u=>{
+    const len = UNIT_LEN[u];
+    if(u==='E'){ onsets.push(t); onsets.push(t+len/2); }
+    else if(u==='R'){ /* 休止符：不出聲 */ }
+    else { onsets.push(t); }
+    t+=len;
+  });
+  return onsets;
+}
+const BEAT_SEC = 0.6;
+function playCountIn(){
+  for(let i=0;i<4;i++){
+    tone(i===0?660:440, i===0?0.16:0.1, 'triangle', i*BEAT_SEC);
+  }
+  animateBeatDots();
+}
+function playPatternClaps(units){
+  playCountIn();
+  const offset = 4*BEAT_SEC;
+  patternOnsets(units).forEach(o=> tone(880,0.14,'square', offset + o*BEAT_SEC));
+}
+function beatDotsHTML(){
+  return `<div class="beatDots">${[0,1,2,3].map(i=>`<span class="beatDot"></span>`).join('')}</div>`;
+}
+function animateBeatDots(){
+  const dots=[...document.querySelectorAll('.beatDot')];
+  if(!dots.length) return;
+  dots.forEach(d=>{ d.classList.remove('active','strong'); });
+  dots.forEach((d,i)=>{
+    setTimeout(()=>{
+      d.classList.add('active');
+      if(i===0) d.classList.add('strong');
+      setTimeout(()=>d.classList.remove('active','strong'), BEAT_SEC*1000*0.8);
+    }, i*BEAT_SEC*1000);
+  });
+}
+
+/* ---------- 狀態 ---------- */
+let currentMode = null;   // 'note1' | 'note2' | 'rhythm' | 'direction' | 'melody'
+let noteLevel = 3;        // 1~3，只影響 note1 / note2 / melody 的音域範圍
+let clef = 'treble';      // 'treble' | 'bass'，只影響 note1 / note2 / melody
+function activeNotes(){ return clef==='bass' ? BASS_NOTES : NOTES; }
+let queue = [];
+let wrongThisRound = [];
+let currentQ = null;
+let total = 0, correctFirstTry = 0, stars = 0;
+let isReview = false;
+let attempt = 0;
+let inputLocked = false;
+let currentHintFn = null;
+
+function showScreen(name){
+  document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
+  document.getElementById('screen-'+name).classList.remove('hidden');
+}
+
+function chooseMode(mode){
+  currentMode = mode;
+  if(mode==='note1' || mode==='note2' || mode==='melody'){
+    chooseClef('treble');
+    showScreen('level');
+  } else {
+    document.getElementById('countTitle').textContent = MODE_TITLE[mode];
+    showScreen('count');
+  }
+}
+
+function chooseClef(c){
+  clef = c;
+  document.getElementById('clefTrebleBtn').classList.toggle('active', c==='treble');
+  document.getElementById('clefBassBtn').classList.toggle('active', c==='bass');
+}
+
+function levelCountTitle(){
+  const lv = LEVELS.find(l=>l.id===noteLevel);
+  const clefLabel = clef==='bass' ? '低音譜號' : '高音譜號';
+  return MODE_TITLE[currentMode] + '（' + clefLabel + ' ' + lv.label + '）';
+}
+
+function chooseLevel(levelId){
+  noteLevel = levelId;
+  document.getElementById('countTitle').textContent = levelCountTitle();
+  showScreen('count');
+}
+
+function playAgain(){
+  if(currentMode==='note1' || currentMode==='note2' || currentMode==='melody'){
+    document.getElementById('countTitle').textContent = levelCountTitle();
+    showScreen('count');
+  } else {
+    chooseMode(currentMode);
+  }
+}
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function genQuestion(){
+  if(currentMode==='rhythm') return genRhythmQuestion();
+  if(currentMode==='direction') return Math.random()<0.5 ? genDirectionQuestion() : genStepSkipQuestion();
+  if(currentMode==='melody') return genMelodyQuestion();
+  if(currentMode==='note1' && Math.random()<0.4) return genFindQuestion();
+  const range = levelRange();
+  const idx = range[Math.floor(Math.random()*range.length)];
+  return {kind: currentMode, ...activeNotes()[idx], noteIndex: idx};
+}
+
+// 短旋律任務：從目前音域範圍隨機挑 3 個音，聽完後照順序在鍵盤上彈出來
+function genMelodyQuestion(){
+  const range = levelRange();
+  const seq = Array.from({length:3}, ()=> range[Math.floor(Math.random()*range.length)]);
+  return {kind:'melody', seq};
+}
+
+// 唱名方向感：聽兩個音，判斷往上／往下／一樣高
+function genDirectionQuestion(){
+  const i = Math.floor(Math.random()*NOTES.length);
+  let j;
+  if(Math.random()<0.2){ j=i; }
+  else { do{ j=Math.floor(Math.random()*NOTES.length); } while(j===i); }
+  const answer = j>i ? 'up' : j<i ? 'down' : 'same';
+  return {kind:'direction-pair', i, j, answer};
+}
+
+// 唱名方向感：聽三個音，判斷走樓梯（鄰居音）還是跳格子（跳音）
+function genStepSkipQuestion(){
+  const isStep = Math.random()<0.5;
+  const asc = Math.random()<0.5;
+  let seq;
+  if(isStep){
+    const start = Math.floor(Math.random()*(NOTES.length-2));
+    seq = asc ? [start,start+1,start+2] : [start+2,start+1,start];
+  } else {
+    const start = Math.floor(Math.random()*(NOTES.length-4));
+    seq = asc ? [start,start+2,start+4] : [start+4,start+2,start];
+  }
+  return {kind:'direction-stepskip', seq, answer: isStep?'step':'skip'};
+}
+
+// 「找出所有的 do」：多個小五線譜，選出所有符合目標唱名的（含高八度，範圍受目前 Lv 限制）
+function genFindQuestion(){
+  const range = levelRange();
+  const withIdx = range.map(i=>({...activeNotes()[i], noteIndex:i}));
+  const labelsInRange = [...new Set(withIdx.map(n=>n.label))];
+  const target = labelsInRange[Math.floor(Math.random()*labelsInRange.length)];
+  const matches = withIdx.filter(n=>n.label===target);
+  const nonMatches = shuffle(withIdx.filter(n=>n.label!==target)).slice(0, Math.max(0, Math.min(5,withIdx.length)-matches.length));
+  const candidates = shuffle([...matches, ...nonMatches]);
+  return {kind:'note1-find', target, candidates};
+}
+
+// 聽拍子選節奏型：播放一段拍手節奏，從 3 個節奏圖形中選出聽到的那一個
+function genRhythmQuestion(){
+  const picks = shuffle(RHYTHM_PATTERNS).slice(0,3);
+  const target = picks[Math.floor(Math.random()*picks.length)];
+  const direction = Math.random()<0.5 ? 'hear' : 'see'; // hear：聽拍子選音符／see：看音符選聲音
+  return {kind:'rhythm', target, options: shuffle(picks), direction};
+}
+
+function startRound(count){
+  total = count; correctFirstTry = 0; stars = 0; isReview = false;
+  queue = Array.from({length:count}, genQuestion);
+  wrongThisRound = [];
+  showScreen('quiz');
+  nextQuestion();
+}
+
+function startReview(){
+  isReview = true;
+  queue = shuffle(wrongThisRound);
+  total = queue.length;
+  wrongThisRound = [];
+  showScreen('quiz');
+  nextQuestion();
+}
+
+function nextQuestion(){
+  document.getElementById('continueBtn').classList.add('hidden');
+  document.getElementById('replayHintBtn').classList.add('hidden');
+  document.getElementById('feedbackText').textContent = '';
+  document.getElementById('feedbackText').className = '';
+  attempt = 0; inputLocked = false; currentHintFn = null;
+
+  if(queue.length === 0){ endRound(); return; }
+  currentQ = queue.shift();
+
+  const doneCount = total - queue.length;
+  document.getElementById('progressText').textContent =
+    (isReview? '錯題複習 ' : '第 ') + doneCount + ' / ' + total + ' 題';
+  document.getElementById('starsText').textContent = '⭐️ ' + stars;
+
+  if(currentQ.kind==='note1'){
+    document.getElementById('rhythmWrap').innerHTML = '';
+    renderStaff(currentQ);
+    renderNoteAnswers();
+  } else if(currentQ.kind==='note1-find'){
+    document.getElementById('rhythmWrap').innerHTML = '';
+    renderFindStaff(currentQ);
+    renderFindAnswers(currentQ);
+  } else if(currentQ.kind==='note2'){
+    document.getElementById('rhythmWrap').innerHTML = '';
+    renderStaff(currentQ);
+    renderKeyboardAnswers();
+  } else if(currentQ.kind==='direction-pair' || currentQ.kind==='direction-stepskip'){
+    document.getElementById('staffWrap').innerHTML = '';
+    renderDirectionQuestion(currentQ);
+    renderDirectionAnswers(currentQ);
+  } else if(currentQ.kind==='melody'){
+    document.getElementById('staffWrap').innerHTML = '';
+    renderMelodyQuestion(currentQ);
+    renderMelodyAnswers(currentQ);
+  } else {
+    document.getElementById('staffWrap').innerHTML = '';
+    if(currentQ.direction==='see'){
+      renderRhythmNotationQuestion(currentQ);
+      renderRhythmSoundAnswers(currentQ);
+    } else {
+      renderRhythmQuestion(currentQ);
+      renderRhythmAnswers(currentQ);
+    }
+  }
+}
+
+/* ---------- 畫五線譜（overlay 用於逐步公佈音階） ---------- */
+function renderStaff(q, overlay){
+  const w=280,h=170;
+  const lineYs=[40,56,72,88,104];
+  let svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`;
+  lineYs.forEach(y=>{ svg += `<line x1="20" y1="${y}" x2="${w-20}" y2="${y}" stroke="#c9bfe0" stroke-width="2"/>`; });
+  if(clef==='bass'){
+    svg += `<text x="24" y="80" font-size="48" fill="#a78bfa">𝄢</text>`;
+  } else {
+    svg += `<text x="26" y="94" font-size="70" fill="#a78bfa">𝄞</text>`;
+  }
+  const cx = w/2 + 20;
+  const noteColor = overlay ? '#dcd3f2' : '#3a2e39';
+  if(q.ledger){
+    svg += `<line x1="${cx-14}" y1="${q.y}" x2="${cx+14}" y2="${q.y}" stroke="${overlay?'#dcd3f2':'#c9bfe0'}" stroke-width="2"/>`;
+  }
+  svg += `<ellipse cx="${cx}" cy="${q.y}" rx="9" ry="7" fill="${noteColor}" transform="rotate(-15 ${cx} ${q.y})"/>`;
+  if(overlay){
+    const oy = overlay.y;
+    if(overlay.ledger){
+      svg += `<line x1="${cx-14}" y1="${oy}" x2="${cx+14}" y2="${oy}" stroke="${overlay.color}" stroke-width="2"/>`;
+    }
+    const r = overlay.big ? 12 : 8;
+    svg += `<ellipse cx="${cx}" cy="${oy}" rx="${r}" ry="${r*0.78}" fill="${overlay.color}" transform="rotate(-15 ${cx} ${oy})"/>`;
+    svg += `<text x="${cx+22}" y="${oy+5}" font-size="${overlay.big?20:15}" font-weight="800" fill="${overlay.color}">${overlay.label}</text>`;
+  }
+  svg += `</svg>`;
+  document.getElementById('staffWrap').innerHTML = svg;
+}
+
+function renderNoteAnswers(){
+  const wrap = document.getElementById('answers');
+  wrap.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:6px;';
+  wrap.innerHTML = '';
+  const btns = [];
+  SOLFEGE_ORDER.forEach(label=>{
+    const b = document.createElement('button');
+    b.className = 'ansBtn';
+    b.textContent = label;
+    b.onclick = ()=>{
+      tone(labelFreq(label));                       // 選 do 就給 do 音
+      const correct = label === currentQ.label;
+      handleAttempt(correct, b, btns,
+        ()=>tone(currentQ.freq, 0.45, 'sine', 0.25), // 第一次答錯：提示播放題目的音（聽力訓練）
+        ()=>revealStaffScale(currentQ));             // 第二次答錯：閃爍音階公佈答案
+    };
+    wrap.appendChild(b); btns.push(b);
+  });
+}
+
+async function revealStaffScale(q){
+  const target = q.noteIndex;
+  for(let i=0;i<=target;i++){
+    const n = activeNotes()[i];
+    const isLast = i===target;
+    renderStaff(q, {y:n.y, label:n.label, color: isLast?'#f5a623':'#60a5fa', big:isLast, ledger:!!n.ledger});
+    tone(n.freq, 0.32, 'sine');
+    await sleep(400);
+  }
+  document.querySelectorAll('#answers .ansBtn').forEach(b=>{
+    if(b.textContent===q.label) b.classList.add('correct');
+  });
+}
+
+/* ---------- 找出所有的 do（同音不同位置／高八度）---------- */
+function renderFindStaff(q){
+  document.getElementById('staffWrap').innerHTML = `
+    <div style="text-align:center;">
+      <div style="font-size:20px;font-weight:800;margin-bottom:8px;">請找出所有的「${q.target}」🫘</div>
+      <button class="btn outline" style="max-width:220px;margin:0 auto 4px;padding:10px;" onclick="tone(labelFreq('${q.target}'))">🔊 聽聽「${q.target}」的音</button>
+    </div>`;
+}
+
+function miniStaffSVG(n){
+  const w=88,h=88;
+  const lineYs=[24,34,44,54,64];
+  const cx=58;
+  const cy = 64 - (104-n.y)*0.625;
+  let svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`;
+  lineYs.forEach(y=>{ svg += `<line x1="8" y1="${y}" x2="${w-8}" y2="${y}" stroke="#c9bfe0" stroke-width="1.5"/>`; });
+  if(clef==='bass'){
+    svg += `<text x="8" y="44" font-size="26" fill="#a78bfa">𝄢</text>`;
+  } else {
+    svg += `<text x="8" y="52" font-size="38" fill="#a78bfa">𝄞</text>`;
+  }
+  if(n.ledger){ svg += `<line x1="${cx-10}" y1="${cy}" x2="${cx+10}" y2="${cy}" stroke="#c9bfe0" stroke-width="1.5"/>`; }
+  svg += `<ellipse cx="${cx}" cy="${cy}" rx="7" ry="5.5" fill="#3a2e39" transform="rotate(-15 ${cx} ${cy})"/>`;
+  svg += `</svg>`;
+  return svg;
+}
+
+function renderFindAnswers(q){
+  const wrap = document.getElementById('answers');
+  wrap.style.cssText = 'display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px;';
+  wrap.innerHTML = '';
+  const tiles = [];
+  q.candidates.forEach(c=>{
+    const tile = document.createElement('button');
+    tile.className = 'findTile';
+    tile.innerHTML = miniStaffSVG(c);
+    tile.onclick = ()=>{ if(!tile.disabled) tile.classList.toggle('selected'); };
+    wrap.appendChild(tile);
+    tiles.push(tile);
+  });
+  const confirmWrap = document.createElement('div');
+  confirmWrap.style.cssText = 'flex-basis:100%;text-align:center;margin-top:6px;';
+  const confirmBtn = document.createElement('button');
+  confirmBtn.className = 'btn green';
+  confirmBtn.style.cssText = 'max-width:220px;margin:0 auto;';
+  confirmBtn.textContent = '✅ 確認答案';
+  confirmBtn.onclick = ()=>handleFindSubmit(q, tiles, confirmBtn);
+  confirmWrap.appendChild(confirmBtn);
+  wrap.appendChild(confirmWrap);
+}
+
+async function handleFindSubmit(q, tiles, confirmBtn){
+  if(inputLocked) return;
+  attempt++;
+  const selected = new Set(tiles.map((t,i)=>t.classList.contains('selected')?i:-1).filter(i=>i>=0));
+  const correctSet = new Set(q.candidates.map((c,i)=>c.label===q.target?i:-1).filter(i=>i>=0));
+  const isCorrect = selected.size===correctSet.size && [...selected].every(i=>correctSet.has(i));
+
+  if(isCorrect){
+    inputLocked = true;
+    tiles.forEach(t=>t.disabled=true);
+    confirmBtn.disabled = true;
+    tiles.forEach((t,i)=>{ if(correctSet.has(i)) t.classList.add('correctTile'); });
+    if(attempt===1) correctFirstTry++;
+    stars++;
+    document.getElementById('starsText').textContent = '⭐️ ' + stars;
+    setFeedback(true, attempt===1 ? '答對了！真棒 🎵' : '答對了！你聽出來囉 👂✨');
+    document.getElementById('continueBtn').classList.remove('hidden');
+    return;
+  }
+
+  if(attempt===1){
+    setFeedback(null, '不太對喔～再檢查一次，可以調整你選的位置');
+    tone(labelFreq(q.target), 0.4, 'sine', 0.15);
+  } else {
+    inputLocked = true;
+    tiles.forEach(t=>t.disabled=true);
+    confirmBtn.disabled = true;
+    wrongThisRound.push({...q});
+    tiles.forEach((t,i)=>{
+      if(correctSet.has(i)) t.classList.add('correctTile');
+      else if(selected.has(i)) t.classList.add('wrongTile');
+    });
+    setFeedback(null, `答案公佈：「${q.target}」在這幾個位置`);
+    await sleep(300);
+    document.getElementById('continueBtn').classList.remove('hidden');
+  }
+}
+
+/* ---------- 第二階段：五線譜 → 鍵盤位置 ---------- */
+function renderKeyboardAnswers(){
+  const wrap = document.getElementById('answers');
+  wrap.style.cssText = 'display:flex;justify-content:center;margin-top:10px;';
+  wrap.innerHTML = '';
+  const holder = document.createElement('div');
+  holder.className = 'keyboard';
+  const keys = [];
+  activeNotes().forEach((n,i)=>{
+    const k = document.createElement('button');
+    k.className = 'key';
+    if(i===0){
+      const dot = document.createElement('div');
+      dot.className = 'anchorDot';
+      k.appendChild(dot);
+    }
+    holder.appendChild(k);
+    keys.push(k);
+  });
+  [0,1,3,4,5].forEach(i=>{
+    const bk = document.createElement('div');
+    bk.className = 'blackkey';
+    bk.style.left = (i*40+28)+'px';
+    holder.appendChild(bk);
+  });
+  wrap.appendChild(holder);
+
+  const range = levelRange();
+  keys.forEach((k, idx)=>{
+    if(!range.includes(idx)) k.classList.add('levelDim');   // 目前 Lv 以外的鍵先淡化，減少視覺負擔
+    k.onclick = ()=>{
+      tone(activeNotes()[idx].freq);                         // 選到哪個鍵就給哪個鍵的音
+      const correct = idx === currentQ.noteIndex;
+      handleAttempt(correct, k, keys,
+        ()=>tone(currentQ.freq, 0.45, 'sine', 0.25),
+        ()=>revealKeyboardScale(currentQ, keys));
+    };
+  });
+}
+
+async function revealKeyboardScale(q, keys){
+  const target = q.noteIndex;
+  for(let i=0;i<=target;i++){
+    const n = activeNotes()[i];
+    const isLast = i===target;
+    renderStaff(q, {y:n.y, label:n.label, color:isLast?'#f5a623':'#60a5fa', big:isLast, ledger:!!n.ledger});
+    keys.forEach((k,ki)=>{ if(ki===i && !isLast) k.classList.add('flash'); });
+    if(isLast) keys[i].classList.add('correct');
+    tone(n.freq, 0.32, 'sine');
+    await sleep(400);
+  }
+}
+
+/* ---------- 短旋律任務：看譜＋聽音，照順序在鍵盤上彈出來 ---------- */
+function playMelody(seq){
+  seq.forEach((idx,k)=> tone(activeNotes()[idx].freq, 0.4, 'sine', k*0.55));
+}
+
+function renderMelodyQuestion(q){
+  const stripHTML = q.seq.map(idx=>miniStaffSVG({...activeNotes()[idx], noteIndex:idx})).join('');
+  document.getElementById('rhythmWrap').innerHTML = `
+    <div style="text-align:center;">
+      <div style="font-size:17px;font-weight:800;margin-bottom:8px;">照順序找到鍵盤上的音，彈出這段小旋律吧！🎶</div>
+      <div style="display:flex;justify-content:center;gap:4px;flex-wrap:wrap;">${stripHTML}</div>
+      <button class="btn blue" id="playMelodyBtn" style="max-width:200px;margin:10px auto 0;padding:10px;">🔊 聽聽旋律</button>
+    </div>`;
+  document.getElementById('playMelodyBtn').onclick = ()=>playMelody(q.seq);
+  playMelody(q.seq);
+}
+
+function renderMelodyAnswers(q){
+  const wrap = document.getElementById('answers');
+  wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:10px;';
+  wrap.innerHTML = '';
+
+  const trail = document.createElement('div');
+  trail.style.cssText = 'display:flex;gap:8px;min-height:22px;';
+  wrap.appendChild(trail);
+
+  const holder = document.createElement('div');
+  holder.className = 'keyboard';
+  const keys = [];
+  activeNotes().forEach((n,i)=>{
+    const k = document.createElement('button');
+    k.className = 'key';
+    if(i===0){ const dot=document.createElement('div'); dot.className='anchorDot'; k.appendChild(dot); }
+    holder.appendChild(k); keys.push(k);
+  });
+  [0,1,3,4,5].forEach(i=>{
+    const bk = document.createElement('div');
+    bk.className = 'blackkey';
+    bk.style.left = (i*40+28)+'px';
+    holder.appendChild(bk);
+  });
+  wrap.appendChild(holder);
+
+  const range = levelRange();
+  keys.forEach((k,idx)=>{ if(!range.includes(idx)) k.classList.add('levelDim'); });
+
+  let picked = [];
+  const renderTrail = ()=>{
+    trail.innerHTML = q.seq.map((_,i)=>
+      `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;${i<picked.length?'background:var(--purple);':'border:2px solid #e2d6fb;'}"></span>`
+    ).join('');
+  };
+  renderTrail();
+
+  const btnRow = document.createElement('div');
+  btnRow.style.cssText = 'display:flex;gap:10px;margin-top:4px;';
+  const clearBtn = document.createElement('button');
+  clearBtn.className = 'btn outline';
+  clearBtn.style.cssText = 'max-width:130px;padding:10px;';
+  clearBtn.textContent = '🔄 清空重來';
+  const confirmBtn = document.createElement('button');
+  confirmBtn.className = 'btn green';
+  confirmBtn.style.cssText = 'max-width:150px;padding:10px;';
+  confirmBtn.textContent = '✅ 確認答案';
+  confirmBtn.disabled = true;
+
+  keys.forEach((k, idx)=>{
+    k.onclick = ()=>{
+      if(k.disabled) return;
+      tone(activeNotes()[idx].freq);
+      if(picked.length < q.seq.length){
+        picked.push(idx);
+        renderTrail();
+        confirmBtn.disabled = picked.length !== q.seq.length;
+      }
+    };
+  });
+  clearBtn.onclick = ()=>{ picked=[]; renderTrail(); confirmBtn.disabled=true; };
+  confirmBtn.onclick = ()=>{
+    handleMelodySubmit(q, picked.slice(), keys, confirmBtn, clearBtn, ()=>{ picked=[]; renderTrail(); });
+  };
+
+  btnRow.appendChild(clearBtn); btnRow.appendChild(confirmBtn);
+  wrap.appendChild(btnRow);
+}
+
+async function handleMelodySubmit(q, picked, keys, confirmBtn, clearBtn, resetFn){
+  if(inputLocked) return;
+  attempt++;
+  const isCorrect = JSON.stringify(picked)===JSON.stringify(q.seq);
+
+  if(isCorrect){
+    inputLocked = true;
+    keys.forEach(k=>k.disabled=true);
+    confirmBtn.disabled = true; clearBtn.disabled = true;
+    q.seq.forEach(idx=>keys[idx].classList.add('correct'));
+    if(attempt===1) correctFirstTry++;
+    stars++;
+    document.getElementById('starsText').textContent = '⭐️ ' + stars;
+    setFeedback(true, attempt===1 ? '答對了！真棒 🎵' : '答對了！你聽出來囉 👂✨');
+    document.getElementById('continueBtn').classList.remove('hidden');
+    return;
+  }
+
+  if(attempt===1){
+    setFeedback(null, '順序不太對喔～再聽一次，重新排排看');
+    playMelody(q.seq);
+    resetFn();
+  } else {
+    inputLocked = true;
+    keys.forEach(k=>k.disabled=true);
+    confirmBtn.disabled = true; clearBtn.disabled = true;
+    wrongThisRound.push({...q});
+    setFeedback(null, '我們一起找找正確的音吧～');
+    await revealMelodySeq(q, keys);
+    document.getElementById('continueBtn').classList.remove('hidden');
+  }
+}
+
+async function revealMelodySeq(q, keys){
+  for(let s=0; s<q.seq.length; s++){
+    const idx = q.seq[s];
+    keys[idx].classList.add(s===q.seq.length-1 ? 'correct' : 'flash');
+    tone(activeNotes()[idx].freq, 0.35, 'sine');
+    await sleep(450);
+  }
+}
+
+/* ---------- 唱名方向感：往上／往下／一樣高、走樓梯／跳格子 ---------- */
+function playDirectionSound(q){
+  if(q.kind==='direction-pair'){
+    tone(NOTES[q.i].freq, 0.5, 'sine', 0);
+    tone(NOTES[q.j].freq, 0.5, 'sine', 0.6);
+  } else {
+    q.seq.forEach((idx,k)=> tone(NOTES[idx].freq, 0.42, 'sine', k*0.5));
+  }
+}
+
+function renderDirectionQuestion(q){
+  const title = q.kind==='direction-pair'
+    ? '聽聽這兩個音，是往上還是往下呢？🎧'
+    : '聽聽這三個音，是走樓梯還是跳格子呢？🪜';
+  document.getElementById('rhythmWrap').innerHTML = `
+    <div style="text-align:center;">
+      <div style="font-size:18px;font-weight:800;margin-bottom:10px;">${title}</div>
+      <button class="btn blue" id="playDirBtn" style="max-width:200px;margin:0 auto 6px;padding:12px;">🔊 播放</button>
+    </div>`;
+  document.getElementById('playDirBtn').onclick = ()=>playDirectionSound(q);
+  playDirectionSound(q);
+}
+
+function renderDirectionAnswers(q){
+  const wrap = document.getElementById('answers');
+  wrap.style.cssText = 'display:flex;flex-direction:column;gap:12px;margin-top:6px;align-items:center;';
+  wrap.innerHTML = '';
+  const opts = q.kind==='direction-pair'
+    ? [{v:'up',label:'📈 往上'},{v:'down',label:'📉 往下'},{v:'same',label:'🟰 一樣高'}]
+    : [{v:'step',label:'🪜 走樓梯（鄰居音）'},{v:'skip',label:'🤸 跳格子（跳音）'}];
+  const btns = [];
+  opts.forEach(o=>{
+    const b = document.createElement('button');
+    b.className = 'ansBtn';
+    b.style.cssText = 'width:100%;max-width:280px;padding:18px;font-size:18px;';
+    b.textContent = o.label;
+    b.onclick = ()=>{
+      const correct = o.v===q.answer;
+      handleAttempt(correct, b, btns,
+        ()=>playDirectionSound(q),
+        ()=>revealDirection(q, btns, opts));
+    };
+    wrap.appendChild(b); btns.push(b);
+  });
+}
+
+async function revealDirection(q, btns, opts){
+  const idx = opts.findIndex(o=>o.v===q.answer);
+  btns[idx].classList.add('correct');
+  playDirectionSound(q);
+  await sleep(600);
+}
+
+/* ---------- 節奏：聽拍子選節奏型 ---------- */
+function renderRhythmQuestion(q){
+  document.getElementById('rhythmWrap').innerHTML = `
+    <div style="text-align:center;">
+      <div style="font-size:18px;font-weight:800;margin-bottom:6px;">仔細聽節奏，是哪一種呢？🥁</div>
+      <div style="font-size:12px;color:#8b7d8b;margin-bottom:4px;">先跟著數 4 拍，第 1 拍最重～</div>
+      ${beatDotsHTML()}
+      <button class="btn blue" id="playPatternBtn" style="max-width:200px;margin:0 auto 6px;padding:12px;">🔊 播放節奏</button>
+    </div>`;
+  document.getElementById('playPatternBtn').onclick = ()=>playPatternClaps(q.target);
+  playPatternClaps(q.target);
+}
+
+function noteGlyph(cx, cy, kind){
+  if(kind==='whole'){
+    return `<ellipse cx="${cx}" cy="${cy}" rx="8" ry="6" fill="none" stroke="currentColor" stroke-width="2.5"/>`;
+  }
+  const filled = kind!=='half';
+  const head = `<ellipse cx="${cx}" cy="${cy}" rx="7" ry="5.5" fill="${filled?'currentColor':'none'}" stroke="currentColor" stroke-width="2.5" transform="rotate(-15 ${cx} ${cy})"/>`;
+  const stem = `<line x1="${cx+7}" y1="${cy-2}" x2="${cx+7}" y2="${cy-38}" stroke="currentColor" stroke-width="2.5"/>`;
+  return head+stem;
+}
+function eighthPairGlyph(cx1, cx2, cy){
+  const top = cy-38;
+  const head1 = `<ellipse cx="${cx1}" cy="${cy}" rx="7" ry="5.5" fill="currentColor" stroke="currentColor" stroke-width="2.5" transform="rotate(-15 ${cx1} ${cy})"/>`;
+  const head2 = `<ellipse cx="${cx2}" cy="${cy}" rx="7" ry="5.5" fill="currentColor" stroke="currentColor" stroke-width="2.5" transform="rotate(-15 ${cx2} ${cy})"/>`;
+  const stem1 = `<line x1="${cx1+7}" y1="${cy-2}" x2="${cx1+7}" y2="${top}" stroke="currentColor" stroke-width="2.5"/>`;
+  const stem2 = `<line x1="${cx2+7}" y1="${cy-2}" x2="${cx2+7}" y2="${top}" stroke="currentColor" stroke-width="2.5"/>`;
+  const beam = `<line x1="${cx1+7}" y1="${top}" x2="${cx2+7}" y2="${top}" stroke="currentColor" stroke-width="5"/>`;
+  return head1+stem1+head2+stem2+beam;
+}
+function restGlyph(cx, cy){
+  const y = cy-18;
+  const path = `M${cx-4} ${y-14} L${cx+4} ${y-6} L${cx-5} ${y} L${cx+5} ${y+8} L${cx-3} ${y+14} L${cx+3} ${y+22}`;
+  return `<path d="${path}" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="${cx}" y="${cy+21}" font-size="11" fill="currentColor" text-anchor="middle" font-weight="700">噓</text>`;
+}
+function patternIconSVG(units){
+  const beatPx=44, marginL=14, marginR=14;
+  const w = marginL+4*beatPx+marginR, h=90, baseline=66;
+  let svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`;
+  svg += `<line x1="${marginL-6}" y1="${baseline}" x2="${w-marginR+6}" y2="${baseline}" stroke="#f0e6f9" stroke-width="1.5"/>`;
+  for(let i=0;i<=4;i++){
+    const x = marginL + i*beatPx;
+    svg += `<line x1="${x}" y1="${baseline-4}" x2="${x}" y2="${baseline+4}" stroke="#e2d6fb" stroke-width="${i===0||i===4?2:1}"/>`;
+  }
+  let t=0;
+  units.forEach(u=>{
+    const x = marginL + t*beatPx;
+    if(u==='Q'){ svg += noteGlyph(x, baseline, 'quarter'); t+=1; }
+    else if(u==='H'){ svg += noteGlyph(x, baseline, 'half'); t+=2; }
+    else if(u==='W'){ svg += noteGlyph(x, baseline, 'whole'); t+=4; }
+    else if(u==='E'){ svg += eighthPairGlyph(x, x+beatPx/2, baseline); t+=1; }
+    else if(u==='R'){ svg += restGlyph(x+beatPx/2, baseline); t+=1; }
+  });
+  svg += `</svg>`;
+  return svg;
+}
+
+function renderRhythmAnswers(q){
+  const wrap = document.getElementById('answers');
+  wrap.style.cssText = 'display:flex;flex-direction:column;gap:12px;margin-top:6px;align-items:center;';
+  wrap.innerHTML = '';
+  const optsMeta = q.options.map(pattern=>({pattern, btn:null}));
+  optsMeta.forEach(meta=>{
+    const b = document.createElement('button');
+    b.className = 'ansBtn patternBtn';
+    b.style.cssText = 'width:100%;max-width:280px;';
+    b.innerHTML = patternIconSVG(meta.pattern);
+    meta.btn = b;
+    b.onclick = ()=>{
+      playPatternClaps(meta.pattern);
+      const correct = JSON.stringify(meta.pattern)===JSON.stringify(q.target);
+      handleAttempt(correct, b, optsMeta.map(m=>m.btn),
+        ()=>playPatternClaps(q.target),
+        ()=>revealRhythmPattern(q, optsMeta));
+    };
+    wrap.appendChild(b);
+  });
+}
+
+async function revealRhythmPattern(q, optsMeta){
+  const hit = optsMeta.find(m=>JSON.stringify(m.pattern)===JSON.stringify(q.target));
+  hit.btn.classList.add('correct');
+  playPatternClaps(q.target);
+  await sleep(700);
+}
+
+/* ---------- 節奏（反向）：看音符選聲音 ---------- */
+function renderRhythmNotationQuestion(q){
+  document.getElementById('rhythmWrap').innerHTML = `
+    <div style="text-align:center;">
+      <div style="font-size:18px;font-weight:800;margin-bottom:6px;">仔細看節奏，是哪一種聲音呢？👀</div>
+      <div style="display:flex;justify-content:center;color:var(--purple);">${patternIconSVG(q.target)}</div>
+      <div style="font-size:12px;color:#8b7d8b;margin:6px 0 4px;">按下面任一個選項前，先聽 4 拍找到穩定拍～</div>
+      ${beatDotsHTML()}
+    </div>`;
+}
+
+function renderRhythmSoundAnswers(q){
+  const wrap = document.getElementById('answers');
+  wrap.style.cssText = 'display:flex;flex-direction:column;gap:12px;margin-top:6px;align-items:center;';
+  wrap.innerHTML = '';
+  const optsMeta = q.options.map((pattern,i)=>({pattern, btn:null, label:'🔊 聲音 '+(i+1)}));
+  let selectedIdx = null;
+
+  const confirmBtn = document.createElement('button');
+  confirmBtn.className = 'btn green';
+  confirmBtn.style.cssText = 'max-width:280px;margin:4px auto 0;';
+  confirmBtn.textContent = '✅ 確認答案';
+  confirmBtn.disabled = true;
+
+  optsMeta.forEach((meta,i)=>{
+    const b = document.createElement('button');
+    b.className = 'ansBtn';
+    b.style.cssText = 'width:100%;max-width:280px;font-size:19px;padding:18px;';
+    b.textContent = meta.label;
+    meta.btn = b;
+    b.onclick = ()=>{
+      playPatternClaps(meta.pattern);            // 先聽聽這個選項，不會直接送出答案
+      if(b.disabled) return;
+      optsMeta.forEach(m=>m.btn.classList.remove('selected'));
+      b.classList.add('selected');
+      selectedIdx = i;
+      confirmBtn.disabled = false;
+    };
+    wrap.appendChild(b);
+  });
+
+  confirmBtn.onclick = async ()=>{
+    if(selectedIdx===null || inputLocked) return;
+    confirmBtn.disabled = true;
+    const meta = optsMeta[selectedIdx];
+    const correct = JSON.stringify(meta.pattern)===JSON.stringify(q.target);
+    await handleAttempt(correct, meta.btn, optsMeta.map(m=>m.btn),
+      ()=>playPatternClaps(q.target),
+      ()=>revealRhythmPattern(q, optsMeta));
+    if(!inputLocked){ selectedIdx=null; confirmBtn.disabled = true; } // 答錯第一次：清空選擇，可以重聽重選
+  };
+  wrap.appendChild(confirmBtn);
+}
+
+/* ---------- 共用作答邏輯：第一次答錯給機會，第二次公佈答案 ---------- */
+async function handleAttempt(isCorrect, btnEl, allBtns, playHintFn, revealFn){
+  if(inputLocked) return;
+  attempt++;
+
+  if(isCorrect){
+    inputLocked = true;
+    allBtns.forEach(b=>b.disabled=true);
+    btnEl.classList.add('correct');
+    if(attempt===1) correctFirstTry++;
+    stars++;
+    document.getElementById('starsText').textContent = '⭐️ ' + stars;
+    setFeedback(true, attempt===1 ? '答對了！真棒 🎵' : '答對了！你聽出來囉 👂✨');
+    document.getElementById('replayHintBtn').classList.add('hidden');
+    document.getElementById('continueBtn').classList.remove('hidden');
+    return;
+  }
+
+  btnEl.classList.add('wrong');
+  btnEl.disabled = true;
+
+  if(attempt===1){
+    setFeedback(null, '再聽一次～猜猜看是哪一個？');
+    currentHintFn = playHintFn;
+    document.getElementById('replayHintBtn').classList.remove('hidden');
+    document.getElementById('replayHintBtn').onclick = ()=>currentHintFn && currentHintFn();
+    playHintFn();
+  } else {
+    inputLocked = true;
+    allBtns.forEach(b=>b.disabled=true);
+    document.getElementById('replayHintBtn').classList.add('hidden');
+    wrongThisRound.push({...currentQ});
+    setFeedback(null, '我們一起數上去找答案～');
+    await revealFn();
+    document.getElementById('continueBtn').classList.remove('hidden');
+  }
+}
+
+function setFeedback(ok, text){
+  const el = document.getElementById('feedbackText');
+  el.textContent = text;
+  el.className = ok===null ? 'hint' : (ok ? 'ok' : 'no');
+}
+
+/* ---------- 結算 ---------- */
+function endRound(){
+  showScreen('result');
+  const hasWrong = wrongThisRound.length > 0;
+  document.getElementById('reviewBtn').classList.toggle('hidden', !hasWrong);
+  document.getElementById('playAgainBtn').classList.toggle('hidden', hasWrong);
+
+  if(hasWrong){
+    document.getElementById('resultEmoji').textContent = '💪';
+    document.getElementById('resultTitle').textContent = '快答完了！';
+    document.getElementById('resultDetail').textContent =
+      `這一輪對了 ${total - wrongThisRound.length} / ${total} 題，還有 ${wrongThisRound.length} 題要複習一下～`;
+  } else {
+    document.getElementById('resultEmoji').textContent = '🏆';
+    document.getElementById('resultTitle').textContent = '過關了！太棒了！';
+    document.getElementById('resultDetail').textContent = `全部都答對了，得到 ${stars} 顆星 ⭐️`;
+    launchConfetti();
+    tone(523.25,0.2); tone(659.25,0.2,'sine',0.15); tone(783.99,0.35,'sine',0.3);
+  }
+}
+
+function launchConfetti(){
+  const emojis=['🎉','🌟','🎈','🎵','✨'];
+  for(let i=0;i<24;i++){
+    const s = document.createElement('div');
+    s.className='confetti';
+    s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    s.style.left = Math.random()*100+'vw';
+    s.style.animationDuration = (2+Math.random()*1.5)+'s';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(), 4000);
+  }
+}
+</script>
+</body>
+</html>

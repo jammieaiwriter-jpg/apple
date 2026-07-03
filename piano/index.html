@@ -364,7 +364,7 @@ function showScreen(name){
 
 function chooseMode(mode){
   currentMode = mode;
-  if(mode==='note1' || mode==='note2' || mode==='melody'){
+  if(mode==='note1' || mode==='note2' || mode==='melody' || mode==='octave'){
     document.getElementById('levelSub').textContent =
       (mode==='note1' || mode==='note2')
         ? '一輪固定 10 題：前 5 題高音譜號、後 5 題低音譜號，中間會提醒你切換。'
@@ -412,7 +412,9 @@ function genOctaveQuestion(){
   const table = activeNotes();
   const withIdx = table.map((n,i)=>({...n, noteIndex:i}));
   const doCandidates = [withIdx[0], withIdx[7]];
-  const distractors = shuffle(withIdx.filter(n=>n.label!=='do')).slice(0,2);
+  // 干擾唱名只從目前 Lv 範圍內挑，跟認音符的難度門檻一致（Lv.1 do re mi／Lv.2 加 fa so／Lv.3 全部）
+  const pool = levelRange().map(i=>withIdx[i]).filter(n=>n.label!=='do');
+  const distractors = shuffle(pool).slice(0,2);
   const candidates = shuffle([...doCandidates, ...distractors]);
   return {kind:'note1-find', target:'do', candidates, clef:octClef};
 }

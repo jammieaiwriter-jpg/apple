@@ -1,0 +1,1633 @@
+{
+  "source": "https://www.tcool.cc/",
+  "filters": {
+    "grade": "4",
+    "subject": "數學",
+    "semester": "不限",
+    "period": "不限",
+    "publisher": "翰林",
+    "has_answer": "有"
+  },
+  "createdAt": "2026-08-01T13:23:52.747Z",
+  "records": [
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002199b4214f160ec6.pdf",
+          "url": "https://www.tcool.cc/d/q/20002199b4214f160ec6.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002199a4214f160ec6.pdf",
+          "url": "https://www.tcool.cc/d/a/20002199a4214f160ec6.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "安和國小 新北市 4年級 數學 113下 期末2 翰林",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002199b4214f160ec6.pdf",
+        "url": "https://www.tcool.cc/d/q/20002199b4214f160ec6.pdf",
+        "filename": "P01_R01_安和國小_新北市_4年級_數學_113下_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P01_R01_安和國小_新北市_4年級_數學_113下_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002199a4214f160ec6.pdf",
+        "url": "https://www.tcool.cc/d/a/20002199a4214f160ec6.pdf",
+        "filename": "P01_R01_安和國小_新北市_4年級_數學_113下_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P01_R01_安和國小_新北市_4年級_數學_113下_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20000843b42472ed2bf6.pdf",
+          "url": "https://www.tcool.cc/d/q/20000843b42472ed2bf6.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20000843a42472ed2bf6.pdf",
+          "url": "https://www.tcool.cc/d/a/20000843a42472ed2bf6.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "和順國小 臺南市 4年級 數學 113下 期末2 翰林",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20000843b42472ed2bf6.pdf",
+        "url": "https://www.tcool.cc/d/q/20000843b42472ed2bf6.pdf",
+        "filename": "P01_R05_和順國小_臺南市_4年級_數學_113下_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P01_R05_和順國小_臺南市_4年級_數學_113下_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20000843a42472ed2bf6.pdf",
+        "url": "https://www.tcool.cc/d/a/20000843a42472ed2bf6.pdf",
+        "filename": "P01_R05_和順國小_臺南市_4年級_數學_113下_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P01_R05_和順國小_臺南市_4年級_數學_113下_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002198b4141a88d550.pdf",
+          "url": "https://www.tcool.cc/d/q/20002198b4141a88d550.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002198a4141a88d550.pdf",
+          "url": "https://www.tcool.cc/d/a/20002198a4141a88d550.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "安和國小 新北市 4年級 數學 113下 期中1 翰林",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002198b4141a88d550.pdf",
+        "url": "https://www.tcool.cc/d/q/20002198b4141a88d550.pdf",
+        "filename": "P01_R06_安和國小_新北市_4年級_數學_113下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P01_R06_安和國小_新北市_4年級_數學_113下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002198a4141a88d550.pdf",
+        "url": "https://www.tcool.cc/d/a/20002198a4141a88d550.pdf",
+        "filename": "P01_R06_安和國小_新北市_4年級_數學_113下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P01_R06_安和國小_新北市_4年級_數學_113下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20000819b4214633aa02.pdf",
+          "url": "https://www.tcool.cc/d/q/20000819b4214633aa02.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20000819a4214633aa02.pdf",
+          "url": "https://www.tcool.cc/d/a/20000819a4214633aa02.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "和順國小 臺南市 4年級 數學 113下 期中1 翰林",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20000819b4214633aa02.pdf",
+        "url": "https://www.tcool.cc/d/q/20000819b4214633aa02.pdf",
+        "filename": "P01_R07_和順國小_臺南市_4年級_數學_113下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P01_R07_和順國小_臺南市_4年級_數學_113下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20000819a4214633aa02.pdf",
+        "url": "https://www.tcool.cc/d/a/20000819a4214633aa02.pdf",
+        "filename": "P01_R07_和順國小_臺南市_4年級_數學_113下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P01_R07_和順國小_臺南市_4年級_數學_113下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002197b41124364c88.pdf",
+          "url": "https://www.tcool.cc/d/q/20002197b41124364c88.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002197a41124364c88.pdf",
+          "url": "https://www.tcool.cc/d/a/20002197a41124364c88.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "安和國小 新北市 4年級 數學 113上 期末2 翰林",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002197b41124364c88.pdf",
+        "url": "https://www.tcool.cc/d/q/20002197b41124364c88.pdf",
+        "filename": "P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002197a41124364c88.pdf",
+        "url": "https://www.tcool.cc/d/a/20002197a41124364c88.pdf",
+        "filename": "P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20000795b4141bd51b97.pdf",
+          "url": "https://www.tcool.cc/d/q/20000795b4141bd51b97.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20000795a4141bd51b97.pdf",
+          "url": "https://www.tcool.cc/d/a/20000795a4141bd51b97.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "和順國小 臺南市 4年級 數學 113上 期末2 翰林",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20000795b4141bd51b97.pdf",
+        "url": "https://www.tcool.cc/d/q/20000795b4141bd51b97.pdf",
+        "filename": "P01_R09_和順國小_臺南市_4年級_數學_113上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P01_R09_和順國小_臺南市_4年級_數學_113上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20000795a4141bd51b97.pdf",
+        "url": "https://www.tcool.cc/d/a/20000795a4141bd51b97.pdf",
+        "filename": "P01_R09_和順國小_臺南市_4年級_數學_113上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P01_R09_和順國小_臺南市_4年級_數學_113上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002196b4247c6c71e2.pdf",
+          "url": "https://www.tcool.cc/d/q/20002196b4247c6c71e2.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002196a4247c6c71e2.pdf",
+          "url": "https://www.tcool.cc/d/a/20002196a4247c6c71e2.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "安和國小 新北市 4年級 數學 113上 期中1 翰林",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002196b4247c6c71e2.pdf",
+        "url": "https://www.tcool.cc/d/q/20002196b4247c6c71e2.pdf",
+        "filename": "P01_R10_安和國小_新北市_4年級_數學_113上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P01_R10_安和國小_新北市_4年級_數學_113上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002196a4247c6c71e2.pdf",
+        "url": "https://www.tcool.cc/d/a/20002196a4247c6c71e2.pdf",
+        "filename": "P01_R10_安和國小_新北市_4年級_數學_113上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P01_R10_安和國小_新北市_4年級_數學_113上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20000771b411159c9303.pdf",
+          "url": "https://www.tcool.cc/d/q/20000771b411159c9303.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20000771a411159c9303.pdf",
+          "url": "https://www.tcool.cc/d/a/20000771a411159c9303.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "和順國小 臺南市 4年級 數學 113上 期中1 翰林",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20000771b411159c9303.pdf",
+        "url": "https://www.tcool.cc/d/q/20000771b411159c9303.pdf",
+        "filename": "P02_R02_和順國小_臺南市_4年級_數學_113上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P02_R02_和順國小_臺南市_4年級_數學_113上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20000771a411159c9303.pdf",
+        "url": "https://www.tcool.cc/d/a/20000771a411159c9303.pdf",
+        "filename": "P02_R02_和順國小_臺南市_4年級_數學_113上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P02_R02_和順國小_臺南市_4年級_數學_113上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002686b4210bdd4ec7.pdf",
+          "url": "https://www.tcool.cc/d/q/20002686b4210bdd4ec7.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002686a4210bdd4ec7.pdf",
+          "url": "https://www.tcool.cc/d/a/20002686a4210bdd4ec7.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "桃子腳國小 新北市 4年級 數學 112下 期末2 翰林",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002686b4210bdd4ec7.pdf",
+        "url": "https://www.tcool.cc/d/q/20002686b4210bdd4ec7.pdf",
+        "filename": "P02_R05_桃子腳國小_新北市_4年級_數學_112下_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P02_R05_桃子腳國小_新北市_4年級_數學_112下_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002686a4210bdd4ec7.pdf",
+        "url": "https://www.tcool.cc/d/a/20002686a4210bdd4ec7.pdf",
+        "filename": "P02_R05_桃子腳國小_新北市_4年級_數學_112下_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P02_R05_桃子腳國小_新北市_4年級_數學_112下_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1004881669614b9ce7c2.pdf",
+          "url": "https://www.tcool.cc/d/q/1004881669614b9ce7c2.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1004881669614b9ceaf4.pdf",
+          "url": "https://www.tcool.cc/d/a/1004881669614b9ceaf4.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "四維國小 臺中市 4年級 數學 112下 期末2 翰林",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1004881669614b9ce7c2.pdf",
+        "url": "https://www.tcool.cc/d/q/1004881669614b9ce7c2.pdf",
+        "filename": "P02_R07_四維國小_臺中市_4年級_數學_112下_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P02_R07_四維國小_臺中市_4年級_數學_112下_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1004881669614b9ceaf4.pdf",
+        "url": "https://www.tcool.cc/d/a/1004881669614b9ceaf4.pdf",
+        "filename": "P02_R07_四維國小_臺中市_4年級_數學_112下_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P02_R07_四維國小_臺中市_4年級_數學_112下_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002685b41402d66a57.pdf",
+          "url": "https://www.tcool.cc/d/q/20002685b41402d66a57.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002685a41402d66a57.pdf",
+          "url": "https://www.tcool.cc/d/a/20002685a41402d66a57.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "桃子腳國小 新北市 4年級 數學 112下 期中1 翰林",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002685b41402d66a57.pdf",
+        "url": "https://www.tcool.cc/d/q/20002685b41402d66a57.pdf",
+        "filename": "P02_R09_桃子腳國小_新北市_4年級_數學_112下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P02_R09_桃子腳國小_新北市_4年級_數學_112下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002685a41402d66a57.pdf",
+        "url": "https://www.tcool.cc/d/a/20002685a41402d66a57.pdf",
+        "filename": "P02_R09_桃子腳國小_新北市_4年級_數學_112下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P02_R09_桃子腳國小_新北市_4年級_數學_112下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10048816694daabaab89.pdf",
+          "url": "https://www.tcool.cc/d/q/10048816694daabaab89.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10048816694daabaaff0.pdf",
+          "url": "https://www.tcool.cc/d/a/10048816694daabaaff0.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "四維國小 臺中市 4年級 數學 112下 期中1 翰林",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10048816694daabaab89.pdf",
+        "url": "https://www.tcool.cc/d/q/10048816694daabaab89.pdf",
+        "filename": "P02_R10_四維國小_臺中市_4年級_數學_112下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P02_R10_四維國小_臺中市_4年級_數學_112下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10048816694daabaaff0.pdf",
+        "url": "https://www.tcool.cc/d/a/10048816694daabaaff0.pdf",
+        "filename": "P02_R10_四維國小_臺中市_4年級_數學_112下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P02_R10_四維國小_臺中市_4年級_數學_112下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002684b4115f87b113.pdf",
+          "url": "https://www.tcool.cc/d/q/20002684b4115f87b113.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002684a4115f87b113.pdf",
+          "url": "https://www.tcool.cc/d/a/20002684a4115f87b113.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "桃子腳國小 新北市 4年級 數學 112上 期末2 翰林",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002684b4115f87b113.pdf",
+        "url": "https://www.tcool.cc/d/q/20002684b4115f87b113.pdf",
+        "filename": "P03_R01_桃子腳國小_新北市_4年級_數學_112上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P03_R01_桃子腳國小_新北市_4年級_數學_112上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002684a4115f87b113.pdf",
+        "url": "https://www.tcool.cc/d/a/20002684a4115f87b113.pdf",
+        "filename": "P03_R01_桃子腳國小_新北市_4年級_數學_112上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P03_R01_桃子腳國小_新北市_4年級_數學_112上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488165c08ed40467b.pdf",
+          "url": "https://www.tcool.cc/d/q/100488165c08ed40467b.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100488165c08ed404ab1.pdf",
+          "url": "https://www.tcool.cc/d/a/100488165c08ed404ab1.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "四維國小 臺中市 4年級 數學 112上 期末2 翰林",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100488165c08ed40467b.pdf",
+        "url": "https://www.tcool.cc/d/q/100488165c08ed40467b.pdf",
+        "filename": "P03_R02_四維國小_臺中市_4年級_數學_112上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P03_R02_四維國小_臺中市_4年級_數學_112上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100488165c08ed404ab1.pdf",
+        "url": "https://www.tcool.cc/d/a/100488165c08ed404ab1.pdf",
+        "filename": "P03_R02_四維國小_臺中市_4年級_數學_112上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P03_R02_四維國小_臺中市_4年級_數學_112上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002683b42460fb816a.pdf",
+          "url": "https://www.tcool.cc/d/q/20002683b42460fb816a.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002683a42460fb816a.pdf",
+          "url": "https://www.tcool.cc/d/a/20002683a42460fb816a.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "桃子腳國小 新北市 4年級 數學 112上 期中1 翰林",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002683b42460fb816a.pdf",
+        "url": "https://www.tcool.cc/d/q/20002683b42460fb816a.pdf",
+        "filename": "P03_R03_桃子腳國小_新北市_4年級_數學_112上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P03_R03_桃子腳國小_新北市_4年級_數學_112上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002683a42460fb816a.pdf",
+        "url": "https://www.tcool.cc/d/a/20002683a42460fb816a.pdf",
+        "filename": "P03_R03_桃子腳國小_新北市_4年級_數學_112上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P03_R03_桃子腳國小_新北市_4年級_數學_112上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488165c1ccc1ee042.pdf",
+          "url": "https://www.tcool.cc/d/q/100488165c1ccc1ee042.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100488165c1ccc1ee470.pdf",
+          "url": "https://www.tcool.cc/d/a/100488165c1ccc1ee470.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "四維國小 臺中市 4年級 數學 112上 期中1 翰林",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100488165c1ccc1ee042.pdf",
+        "url": "https://www.tcool.cc/d/q/100488165c1ccc1ee042.pdf",
+        "filename": "P03_R06_四維國小_臺中市_4年級_數學_112上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P03_R06_四維國小_臺中市_4年級_數學_112上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100488165c1ccc1ee470.pdf",
+        "url": "https://www.tcool.cc/d/a/100488165c1ccc1ee470.pdf",
+        "filename": "P03_R06_四維國小_臺中市_4年級_數學_112上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P03_R06_四維國小_臺中市_4年級_數學_112上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10052266551e449851af.pdf",
+          "url": "https://www.tcool.cc/d/q/10052266551e449851af.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10052266551e44985407.pdf",
+          "url": "https://www.tcool.cc/d/a/10052266551e44985407.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "實踐國小 臺北市 4年級 數學 112上 期中1 翰林",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10052266551e449851af.pdf",
+        "url": "https://www.tcool.cc/d/q/10052266551e449851af.pdf",
+        "filename": "P03_R07_實踐國小_臺北市_4年級_數學_112上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P03_R07_實踐國小_臺北市_4年級_數學_112上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10052266551e44985407.pdf",
+        "url": "https://www.tcool.cc/d/a/10052266551e44985407.pdf",
+        "filename": "P03_R07_實踐國小_臺北市_4年級_數學_112上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P03_R07_實踐國小_臺北市_4年級_數學_112上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10050506551811c3f4ee.pdf",
+          "url": "https://www.tcool.cc/d/q/10050506551811c3f4ee.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10050506551811c3f6c1.pdf",
+          "url": "https://www.tcool.cc/d/a/10050506551811c3f6c1.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "敦化國小 臺北市 4年級 數學 112上 期中1 翰林",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10050506551811c3f4ee.pdf",
+        "url": "https://www.tcool.cc/d/q/10050506551811c3f4ee.pdf",
+        "filename": "P03_R08_敦化國小_臺北市_4年級_數學_112上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P03_R08_敦化國小_臺北市_4年級_數學_112上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10050506551811c3f6c1.pdf",
+        "url": "https://www.tcool.cc/d/a/10050506551811c3f6c1.pdf",
+        "filename": "P03_R08_敦化國小_臺北市_4年級_數學_112上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P03_R08_敦化國小_臺北市_4年級_數學_112上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002026b4217db818db.pdf",
+          "url": "https://www.tcool.cc/d/q/20002026b4217db818db.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002026a4217db818db.pdf",
+          "url": "https://www.tcool.cc/d/a/20002026a4217db818db.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "安和國小 新北市 4年級 數學 111下 期末2 翰林",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002026b4217db818db.pdf",
+        "url": "https://www.tcool.cc/d/q/20002026b4217db818db.pdf",
+        "filename": "P03_R09_安和國小_新北市_4年級_數學_111下_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P03_R09_安和國小_新北市_4年級_數學_111下_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002026a4217db818db.pdf",
+        "url": "https://www.tcool.cc/d/a/20002026a4217db818db.pdf",
+        "filename": "P03_R09_安和國小_新北市_4年級_數學_111下_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P03_R09_安和國小_新北市_4年級_數學_111下_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002025b41404f61623.pdf",
+          "url": "https://www.tcool.cc/d/q/20002025b41404f61623.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002025a41404f61623.pdf",
+          "url": "https://www.tcool.cc/d/a/20002025a41404f61623.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "安和國小 新北市 4年級 數學 111下 期中1 翰林",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002025b41404f61623.pdf",
+        "url": "https://www.tcool.cc/d/q/20002025b41404f61623.pdf",
+        "filename": "P04_R01_安和國小_新北市_4年級_數學_111下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P04_R01_安和國小_新北市_4年級_數學_111下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002025a41404f61623.pdf",
+        "url": "https://www.tcool.cc/d/a/20002025a41404f61623.pdf",
+        "filename": "P04_R01_安和國小_新北市_4年級_數學_111下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P04_R01_安和國小_新北市_4年級_數學_111下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002024b41128bb98be.pdf",
+          "url": "https://www.tcool.cc/d/q/20002024b41128bb98be.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002024a41128bb98be.pdf",
+          "url": "https://www.tcool.cc/d/a/20002024a41128bb98be.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "安和國小 新北市 4年級 數學 111上 期末2 翰林",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002024b41128bb98be.pdf",
+        "url": "https://www.tcool.cc/d/q/20002024b41128bb98be.pdf",
+        "filename": "P04_R02_安和國小_新北市_4年級_數學_111上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P04_R02_安和國小_新北市_4年級_數學_111上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002024a41128bb98be.pdf",
+        "url": "https://www.tcool.cc/d/a/20002024a41128bb98be.pdf",
+        "filename": "P04_R02_安和國小_新北市_4年級_數學_111上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P04_R02_安和國小_新北市_4年級_數學_111上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002023b4243cbc3b5a.pdf",
+          "url": "https://www.tcool.cc/d/q/20002023b4243cbc3b5a.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002023a4243cbc3b5a.pdf",
+          "url": "https://www.tcool.cc/d/a/20002023a4243cbc3b5a.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "安和國小 新北市 4年級 數學 111上 期中1 翰林",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002023b4243cbc3b5a.pdf",
+        "url": "https://www.tcool.cc/d/q/20002023b4243cbc3b5a.pdf",
+        "filename": "P04_R03_安和國小_新北市_4年級_數學_111上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P04_R03_安和國小_新北市_4年級_數學_111上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002023a4243cbc3b5a.pdf",
+        "url": "https://www.tcool.cc/d/a/20002023a4243cbc3b5a.pdf",
+        "filename": "P04_R03_安和國小_新北市_4年級_數學_111上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P04_R03_安和國小_新北市_4年級_數學_111上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002270b4112c991558.pdf",
+          "url": "https://www.tcool.cc/d/q/20002270b4112c991558.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002270a4112c991558.pdf",
+          "url": "https://www.tcool.cc/d/a/20002270a4112c991558.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "忠孝國小 高雄市 4年級 數學 110上 期末2 翰林",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002270b4112c991558.pdf",
+        "url": "https://www.tcool.cc/d/q/20002270b4112c991558.pdf",
+        "filename": "P04_R05_忠孝國小_高雄市_4年級_數學_110上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P04_R05_忠孝國小_高雄市_4年級_數學_110上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002270a4112c991558.pdf",
+        "url": "https://www.tcool.cc/d/a/20002270a4112c991558.pdf",
+        "filename": "P04_R05_忠孝國小_高雄市_4年級_數學_110上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P04_R05_忠孝國小_高雄市_4年級_數學_110上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002269b4144b987044.pdf",
+          "url": "https://www.tcool.cc/d/q/20002269b4144b987044.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002269a4144b987044.pdf",
+          "url": "https://www.tcool.cc/d/a/20002269a4144b987044.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "忠孝國小 高雄市 4年級 數學 110上 期中1 翰林",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002269b4144b987044.pdf",
+        "url": "https://www.tcool.cc/d/q/20002269b4144b987044.pdf",
+        "filename": "P04_R06_忠孝國小_高雄市_4年級_數學_110上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P04_R06_忠孝國小_高雄市_4年級_數學_110上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002269a4144b987044.pdf",
+        "url": "https://www.tcool.cc/d/a/20002269a4144b987044.pdf",
+        "filename": "P04_R06_忠孝國小_高雄市_4年級_數學_110上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P04_R06_忠孝國小_高雄市_4年級_數學_110上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488160e53f7d753ba.pdf",
+          "url": "https://www.tcool.cc/d/q/100488160e53f7d753ba.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100488160e53f7d75622.pdf",
+          "url": "https://www.tcool.cc/d/a/100488160e53f7d75622.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "四維國小 臺中市 4年級 數學 109下 期中1 翰林",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100488160e53f7d753ba.pdf",
+        "url": "https://www.tcool.cc/d/q/100488160e53f7d753ba.pdf",
+        "filename": "P04_R09_四維國小_臺中市_4年級_數學_109下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P04_R09_四維國小_臺中市_4年級_數學_109下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100488160e53f7d75622.pdf",
+        "url": "https://www.tcool.cc/d/a/100488160e53f7d75622.pdf",
+        "filename": "P04_R09_四維國小_臺中市_4年級_數學_109下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P04_R09_四維國小_臺中市_4年級_數學_109下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1004881608f5a43174d4.pdf",
+          "url": "https://www.tcool.cc/d/q/1004881608f5a43174d4.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1004881608f5a43176be.pdf",
+          "url": "https://www.tcool.cc/d/a/1004881608f5a43176be.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "四維國小 臺中市 4年級 數學 109上 期末2 翰林",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1004881608f5a43174d4.pdf",
+        "url": "https://www.tcool.cc/d/q/1004881608f5a43174d4.pdf",
+        "filename": "P04_R10_四維國小_臺中市_4年級_數學_109上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P04_R10_四維國小_臺中市_4年級_數學_109上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1004881608f5a43176be.pdf",
+        "url": "https://www.tcool.cc/d/a/1004881608f5a43176be.pdf",
+        "filename": "P04_R10_四維國小_臺中市_4年級_數學_109上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P04_R10_四維國小_臺中市_4年級_數學_109上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1001651601a082f3cd30.pdf",
+          "url": "https://www.tcool.cc/d/q/1001651601a082f3cd30.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1001651601a082f3cf3e.pdf",
+          "url": "https://www.tcool.cc/d/a/1001651601a082f3cf3e.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "興南國小 新北市 4年級 數學 109上 期末2 翰林",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1001651601a082f3cd30.pdf",
+        "url": "https://www.tcool.cc/d/q/1001651601a082f3cd30.pdf",
+        "filename": "P05_R01_興南國小_新北市_4年級_數學_109上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P05_R01_興南國小_新北市_4年級_數學_109上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1001651601a082f3cf3e.pdf",
+        "url": "https://www.tcool.cc/d/a/1001651601a082f3cf3e.pdf",
+        "filename": "P05_R01_興南國小_新北市_4年級_數學_109上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P05_R01_興南國小_新北市_4年級_數學_109上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1001651601a082f3c8f1.pdf",
+          "url": "https://www.tcool.cc/d/q/1001651601a082f3c8f1.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1001651601a082f3ca7a.pdf",
+          "url": "https://www.tcool.cc/d/a/1001651601a082f3ca7a.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "興南國小 新北市 4年級 數學 109上 期中1 翰林",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1001651601a082f3c8f1.pdf",
+        "url": "https://www.tcool.cc/d/q/1001651601a082f3c8f1.pdf",
+        "filename": "P05_R03_興南國小_新北市_4年級_數學_109上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P05_R03_興南國小_新北市_4年級_數學_109上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1001651601a082f3ca7a.pdf",
+        "url": "https://www.tcool.cc/d/a/1001651601a082f3ca7a.pdf",
+        "filename": "P05_R03_興南國小_新北市_4年級_數學_109上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P05_R03_興南國小_新北市_4年級_數學_109上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10048815fc9ea94c788c.pdf",
+          "url": "https://www.tcool.cc/d/q/10048815fc9ea94c788c.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10048815fc9ea94c7c29.pdf",
+          "url": "https://www.tcool.cc/d/a/10048815fc9ea94c7c29.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "四維國小 臺中市 4年級 數學 109上 期中1 翰林",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10048815fc9ea94c788c.pdf",
+        "url": "https://www.tcool.cc/d/q/10048815fc9ea94c788c.pdf",
+        "filename": "P05_R05_四維國小_臺中市_4年級_數學_109上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P05_R05_四維國小_臺中市_4年級_數學_109上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10048815fc9ea94c7c29.pdf",
+        "url": "https://www.tcool.cc/d/a/10048815fc9ea94c7c29.pdf",
+        "filename": "P05_R05_四維國小_臺中市_4年級_數學_109上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P05_R05_四維國小_臺中市_4年級_數學_109上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10022115fc0476b48b51.pdf",
+          "url": "https://www.tcool.cc/d/q/10022115fc0476b48b51.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10022115fc0476b48e05.pdf",
+          "url": "https://www.tcool.cc/d/a/10022115fc0476b48e05.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "田心國小 桃園市 4年級 數學 109上 期中1 翰林",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10022115fc0476b48b51.pdf",
+        "url": "https://www.tcool.cc/d/q/10022115fc0476b48b51.pdf",
+        "filename": "P05_R06_田心國小_桃園市_4年級_數學_109上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P05_R06_田心國小_桃園市_4年級_數學_109上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10022115fc0476b48e05.pdf",
+        "url": "https://www.tcool.cc/d/a/10022115fc0476b48e05.pdf",
+        "filename": "P05_R06_田心國小_桃園市_4年級_數學_109上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P05_R06_田心國小_桃園市_4年級_數學_109上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10043855f8fe52b6575e.pdf",
+          "url": "https://www.tcool.cc/d/q/10043855f8fe52b6575e.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10043855f8fe52b659a1.pdf",
+          "url": "https://www.tcool.cc/d/a/10043855f8fe52b659a1.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "瑞豐國小 臺東縣 4年級 數學 109上 期中1 翰林",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10043855f8fe52b6575e.pdf",
+        "url": "https://www.tcool.cc/d/q/10043855f8fe52b6575e.pdf",
+        "filename": "P05_R09_瑞豐國小_臺東縣_4年級_數學_109上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P05_R09_瑞豐國小_臺東縣_4年級_數學_109上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10043855f8fe52b659a1.pdf",
+        "url": "https://www.tcool.cc/d/a/10043855f8fe52b659a1.pdf",
+        "filename": "P05_R09_瑞豐國小_臺東縣_4年級_數學_109上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P05_R09_瑞豐國小_臺東縣_4年級_數學_109上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10048815fb4877ca9219.pdf",
+          "url": "https://www.tcool.cc/d/q/10048815fb4877ca9219.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10048815fb4877ca93aa.pdf",
+          "url": "https://www.tcool.cc/d/a/10048815fb4877ca93aa.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "四維國小 臺中市 4年級 數學 108下 期末2 翰林",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10048815fb4877ca9219.pdf",
+        "url": "https://www.tcool.cc/d/q/10048815fb4877ca9219.pdf",
+        "filename": "P05_R10_四維國小_臺中市_4年級_數學_108下_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P05_R10_四維國小_臺中市_4年級_數學_108下_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10048815fb4877ca93aa.pdf",
+        "url": "https://www.tcool.cc/d/a/10048815fb4877ca93aa.pdf",
+        "filename": "P05_R10_四維國小_臺中市_4年級_數學_108下_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P05_R10_四維國小_臺中市_4年級_數學_108下_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029325fa25f1bcd158.pdf",
+          "url": "https://www.tcool.cc/d/q/10029325fa25f1bcd158.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10029325fa25f1bcd3e8.pdf",
+          "url": "https://www.tcool.cc/d/a/10029325fa25f1bcd3e8.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "舊館國小 彰化縣 4年級 數學 108下 期末3 翰林",
+      "page": 6,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10029325fa25f1bcd158.pdf",
+        "url": "https://www.tcool.cc/d/q/10029325fa25f1bcd158.pdf",
+        "filename": "P06_R02_舊館國小_彰化縣_4年級_數學_108下_期末3_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P06_R02_舊館國小_彰化縣_4年級_數學_108下_期末3_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10029325fa25f1bcd3e8.pdf",
+        "url": "https://www.tcool.cc/d/a/10029325fa25f1bcd3e8.pdf",
+        "filename": "P06_R02_舊館國小_彰化縣_4年級_數學_108下_期末3_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P06_R02_舊館國小_彰化縣_4年級_數學_108下_期末3_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10043755faa3abe3d83e.pdf",
+          "url": "https://www.tcool.cc/d/q/10043755faa3abe3d83e.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10043755faa3abe3d9bc.pdf",
+          "url": "https://www.tcool.cc/d/a/10043755faa3abe3d9bc.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "美和國小 臺東縣 4年級 數學 108下 期中1 翰林",
+      "page": 6,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10043755faa3abe3d83e.pdf",
+        "url": "https://www.tcool.cc/d/q/10043755faa3abe3d83e.pdf",
+        "filename": "P06_R04_美和國小_臺東縣_4年級_數學_108下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P06_R04_美和國小_臺東縣_4年級_數學_108下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10043755faa3abe3d9bc.pdf",
+        "url": "https://www.tcool.cc/d/a/10043755faa3abe3d9bc.pdf",
+        "filename": "P06_R04_美和國小_臺東縣_4年級_數學_108下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P06_R04_美和國小_臺東縣_4年級_數學_108下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029325f20ed0ff2fdf.pdf",
+          "url": "https://www.tcool.cc/d/q/10029325f20ed0ff2fdf.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10029325f20ed0ff3132.pdf",
+          "url": "https://www.tcool.cc/d/a/10029325f20ed0ff3132.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "舊館國小 彰化縣 4年級 數學 108下 期中1 翰林",
+      "page": 6,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10029325f20ed0ff2fdf.pdf",
+        "url": "https://www.tcool.cc/d/q/10029325f20ed0ff2fdf.pdf",
+        "filename": "P06_R05_舊館國小_彰化縣_4年級_數學_108下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P06_R05_舊館國小_彰化縣_4年級_數學_108下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10029325f20ed0ff3132.pdf",
+        "url": "https://www.tcool.cc/d/a/10029325f20ed0ff3132.pdf",
+        "filename": "P06_R05_舊館國小_彰化縣_4年級_數學_108下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P06_R05_舊館國小_彰化縣_4年級_數學_108下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10048815eb4c2d158089.pdf",
+          "url": "https://www.tcool.cc/d/q/10048815eb4c2d158089.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10048815eb4c2d1581a5.pdf",
+          "url": "https://www.tcool.cc/d/a/10048815eb4c2d1581a5.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "四維國小 臺中市 4年級 數學 108下 期中1 翰林",
+      "page": 6,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10048815eb4c2d158089.pdf",
+        "url": "https://www.tcool.cc/d/q/10048815eb4c2d158089.pdf",
+        "filename": "P06_R06_四維國小_臺中市_4年級_數學_108下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P06_R06_四維國小_臺中市_4年級_數學_108下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10048815eb4c2d1581a5.pdf",
+        "url": "https://www.tcool.cc/d/a/10048815eb4c2d1581a5.pdf",
+        "filename": "P06_R06_四維國小_臺中市_4年級_數學_108下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P06_R06_四維國小_臺中市_4年級_數學_108下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10048815eb4bfdf19c5b.pdf",
+          "url": "https://www.tcool.cc/d/q/10048815eb4bfdf19c5b.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10048815eb4bfdf19d51.pdf",
+          "url": "https://www.tcool.cc/d/a/10048815eb4bfdf19d51.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "四維國小 臺中市 4年級 數學 108下 期中1 翰林",
+      "page": 6,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10048815eb4bfdf19c5b.pdf",
+        "url": "https://www.tcool.cc/d/q/10048815eb4bfdf19c5b.pdf",
+        "filename": "P06_R07_四維國小_臺中市_4年級_數學_108下_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P06_R07_四維國小_臺中市_4年級_數學_108下_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10048815eb4bfdf19d51.pdf",
+        "url": "https://www.tcool.cc/d/a/10048815eb4bfdf19d51.pdf",
+        "filename": "P06_R07_四維國小_臺中市_4年級_數學_108下_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P06_R07_四維國小_臺中市_4年級_數學_108下_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10017685e3cba057258b.pdf",
+          "url": "https://www.tcool.cc/d/q/10017685e3cba057258b.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10017685e3cba0572b01.pdf",
+          "url": "https://www.tcool.cc/d/a/10017685e3cba0572b01.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "厚德國小 新北市 4年級 數學 108上 期末2 翰林",
+      "page": 6,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10017685e3cba057258b.pdf",
+        "url": "https://www.tcool.cc/d/q/10017685e3cba057258b.pdf",
+        "filename": "P06_R09_厚德國小_新北市_4年級_數學_108上_期末2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P06_R09_厚德國小_新北市_4年級_數學_108上_期末2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10017685e3cba0572b01.pdf",
+        "url": "https://www.tcool.cc/d/a/10017685e3cba0572b01.pdf",
+        "filename": "P06_R09_厚德國小_新北市_4年級_數學_108上_期末2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P06_R09_厚德國小_新北市_4年級_數學_108上_期末2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10041475e3cc1eb6980e.pdf",
+          "url": "https://www.tcool.cc/d/q/10041475e3cc1eb6980e.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10041475e3cc1eb699b4.pdf",
+          "url": "https://www.tcool.cc/d/a/10041475e3cc1eb699b4.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "鶴聲國小 屏東縣 4年級 數學 108上 期末3 翰林",
+      "page": 6,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10041475e3cc1eb6980e.pdf",
+        "url": "https://www.tcool.cc/d/q/10041475e3cc1eb6980e.pdf",
+        "filename": "P06_R10_鶴聲國小_屏東縣_4年級_數學_108上_期末3_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P06_R10_鶴聲國小_屏東縣_4年級_數學_108上_期末3_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10041475e3cc1eb699b4.pdf",
+        "url": "https://www.tcool.cc/d/a/10041475e3cc1eb699b4.pdf",
+        "filename": "P06_R10_鶴聲國小_屏東縣_4年級_數學_108上_期末3_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P06_R10_鶴聲國小_屏東縣_4年級_數學_108上_期末3_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10041475e15458e05b05.pdf",
+          "url": "https://www.tcool.cc/d/q/10041475e15458e05b05.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10041475e15458e05cb9.pdf",
+          "url": "https://www.tcool.cc/d/a/10041475e15458e05cb9.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "鶴聲國小 屏東縣 4年級 數學 108上 期中2 翰林",
+      "page": 7,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10041475e15458e05b05.pdf",
+        "url": "https://www.tcool.cc/d/q/10041475e15458e05b05.pdf",
+        "filename": "P07_R01_鶴聲國小_屏東縣_4年級_數學_108上_期中2_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P07_R01_鶴聲國小_屏東縣_4年級_數學_108上_期中2_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10041475e15458e05cb9.pdf",
+        "url": "https://www.tcool.cc/d/a/10041475e15458e05cb9.pdf",
+        "filename": "P07_R01_鶴聲國小_屏東縣_4年級_數學_108上_期中2_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P07_R01_鶴聲國小_屏東縣_4年級_數學_108上_期中2_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10017685e3cb7c29c28e.pdf",
+          "url": "https://www.tcool.cc/d/q/10017685e3cb7c29c28e.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10017685e3cb7c29c391.pdf",
+          "url": "https://www.tcool.cc/d/a/10017685e3cb7c29c391.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "厚德國小 新北市 4年級 數學 108上 期中1 翰林",
+      "page": 7,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10017685e3cb7c29c28e.pdf",
+        "url": "https://www.tcool.cc/d/q/10017685e3cb7c29c28e.pdf",
+        "filename": "P07_R03_厚德國小_新北市_4年級_數學_108上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P07_R03_厚德國小_新北市_4年級_數學_108上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10017685e3cb7c29c391.pdf",
+        "url": "https://www.tcool.cc/d/a/10017685e3cb7c29c391.pdf",
+        "filename": "P07_R03_厚德國小_新北市_4年級_數學_108上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P07_R03_厚德國小_新北市_4年級_數學_108上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10041475dce5827ca9f3.pdf",
+          "url": "https://www.tcool.cc/d/q/10041475dce5827ca9f3.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10041475dce5827cabaa.pdf",
+          "url": "https://www.tcool.cc/d/a/10041475dce5827cabaa.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "鶴聲國小 屏東縣 4年級 數學 108上 期中1 翰林",
+      "page": 7,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10041475dce5827ca9f3.pdf",
+        "url": "https://www.tcool.cc/d/q/10041475dce5827ca9f3.pdf",
+        "filename": "P07_R05_鶴聲國小_屏東縣_4年級_數學_108上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P07_R05_鶴聲國小_屏東縣_4年級_數學_108上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10041475dce5827cabaa.pdf",
+        "url": "https://www.tcool.cc/d/a/10041475dce5827cabaa.pdf",
+        "filename": "P07_R05_鶴聲國小_屏東縣_4年級_數學_108上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P07_R05_鶴聲國小_屏東縣_4年級_數學_108上_期中1_翰林_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10048815dc8c1d425309.pdf",
+          "url": "https://www.tcool.cc/d/q/10048815dc8c1d425309.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10048815dc8c1d42544d.pdf",
+          "url": "https://www.tcool.cc/d/a/10048815dc8c1d42544d.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "四維國小 臺中市 4年級 數學 108上 期中1 翰林",
+      "page": 7,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10048815dc8c1d425309.pdf",
+        "url": "https://www.tcool.cc/d/q/10048815dc8c1d425309.pdf",
+        "filename": "P07_R06_四維國小_臺中市_4年級_數學_108上_期中1_翰林_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P07_R06_四維國小_臺中市_4年級_數學_108上_期中1_翰林_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10048815dc8c1d42544d.pdf",
+        "url": "https://www.tcool.cc/d/a/10048815dc8c1d42544d.pdf",
+        "filename": "P07_R06_四維國小_臺中市_4年級_數學_108上_期中1_翰林_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P07_R06_四維國小_臺中市_4年級_數學_108上_期中1_翰林_答案卷.pdf"
+      }
+    }
+  ],
+  "dedupedFrom": 68,
+  "deduplication": "question sourceBasename, keep first paired occurrence",
+  "excludedNoAnswer": [
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20001200b4245459fb5b.pdf",
+          "url": "https://www.tcool.cc/d/q/20001200b4245459fb5b.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "永安國小 高雄市 4年級 數學 113下 期末2 翰林",
+      "page": 1
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20001181b4240eb80dd8.pdf",
+          "url": "https://www.tcool.cc/d/q/20001181b4240eb80dd8.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "大華國小 桃園市 4年級 數學 113下 期末2 翰林",
+      "page": 1
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20001004b4240dab8567.pdf",
+          "url": "https://www.tcool.cc/d/q/20001004b4240dab8567.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "民權國小 臺北市 4年級 數學 113下 期末2 翰林",
+      "page": 1
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20000935b41121d64df0.pdf",
+          "url": "https://www.tcool.cc/d/q/20000935b41121d64df0.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "民權國小 臺北市 4年級 數學 113上 期中1 翰林",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20000203b4115b6fc0bc.pdf",
+          "url": "https://www.tcool.cc/d/q/20000203b4115b6fc0bc.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "永安國小 高雄市 4年級 數學 113上 期中1 翰林",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20000080b411108e9fc5.pdf",
+          "url": "https://www.tcool.cc/d/q/20000080b411108e9fc5.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "大華國小 桃園市 4年級 數學 113上 期中1 翰林",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002416b4213107af73.pdf",
+          "url": "https://www.tcool.cc/d/q/20002416b4213107af73.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "忠孝國小 高雄市 4年級 數學 112下 期末2 翰林",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488066839f5e24557.pdf",
+          "url": "https://www.tcool.cc/d/q/100488066839f5e24557.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "文心國小 臺中市 4年級 數學 112下 期末2 翰林",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002413b4241de0a681.pdf",
+          "url": "https://www.tcool.cc/d/q/20002413b4241de0a681.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "忠孝國小 高雄市 4年級 數學 112上 期中1 翰林",
+      "page": 3
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488065cdb4e921095.pdf",
+          "url": "https://www.tcool.cc/d/q/100488065cdb4e921095.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "文心國小 臺中市 4年級 數學 112上 期中1 翰林",
+      "page": 3
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488064fa76e0aa8aa.pdf",
+          "url": "https://www.tcool.cc/d/q/100488064fa76e0aa8aa.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "文心國小 臺中市 4年級 數學 111下 期末2 翰林",
+      "page": 3
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488063e1b728c9451.pdf",
+          "url": "https://www.tcool.cc/d/q/100488063e1b728c9451.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "文心國小 臺中市 4年級 數學 111上 期中1 翰林",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100293261c2984637f0f.pdf",
+          "url": "https://www.tcool.cc/d/q/100293261c2984637f0f.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "舊館國小 彰化縣 4年級 數學 110上 期中1 翰林",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488161832f070f490.pdf",
+          "url": "https://www.tcool.cc/d/q/100488161832f070f490.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "四維國小 臺中市 4年級 數學 110上 期中1 翰林",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10019216201d03d277e8.pdf",
+          "url": "https://www.tcool.cc/d/q/10019216201d03d277e8.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "武淵國小 宜蘭縣 4年級 數學 109上 期中1 翰林",
+      "page": 5
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10048806008db10398aa.pdf",
+          "url": "https://www.tcool.cc/d/q/10048806008db10398aa.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "文心國小 臺中市 4年級 數學 109上 期中1 翰林",
+      "page": 5
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10043525fab9736376bc.pdf",
+          "url": "https://www.tcool.cc/d/q/10043525fab9736376bc.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "馬蘭國小 臺東縣 4年級 數學 109上 期中1 翰林",
+      "page": 5
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10020865fab51006d09d.pdf",
+          "url": "https://www.tcool.cc/d/q/10020865fab51006d09d.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "壽山國小 桃園市 4年級 數學 109上 期中1 翰林",
+      "page": 5
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10037295f2a10d2bf678.pdf",
+          "url": "https://www.tcool.cc/d/q/10037295f2a10d2bf678.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "左鎮國小 臺南市 4年級 數學 108下 期末2 翰林",
+      "page": 6
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029445f0fb8b7690f5.pdf",
+          "url": "https://www.tcool.cc/d/q/10029445f0fb8b7690f5.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "青山國小 彰化縣 4年級 數學 108下 期末3 翰林",
+      "page": 6
+    },
+    {
+      "links": [],
+      "row": 8,
+      "text": "四維國小 臺中市 4年級 數學 108上 期末2 翰林",
+      "page": 6
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10028955e3cbeb6dce87.pdf",
+          "url": "https://www.tcool.cc/d/q/10028955e3cbeb6dce87.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "大同國小 彰化縣 4年級 數學 108上 期中1 翰林",
+      "page": 7
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10051025dc26b8c23368.pdf",
+          "url": "https://www.tcool.cc/d/q/10051025dc26b8c23368.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "幸安國小 臺北市 4年級 數學 108上 期中1 翰林",
+      "page": 7
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029445dc22b94abfc7.pdf",
+          "url": "https://www.tcool.cc/d/q/10029445dc22b94abfc7.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "青山國小 彰化縣 4年級 數學 108上 期中1 翰林",
+      "page": 7
+    }
+  ]
+}

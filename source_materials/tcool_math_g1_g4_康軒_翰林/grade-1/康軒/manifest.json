@@ -1,0 +1,1303 @@
+{
+  "source": "https://www.tcool.cc/",
+  "filters": {
+    "grade": "1",
+    "subject": "數學",
+    "semester": "不限",
+    "period": "不限",
+    "publisher": "康軒",
+    "has_answer": "有"
+  },
+  "createdAt": "2026-08-01T12:54:42.396Z",
+  "records": [
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002654b121581a84d8.pdf",
+          "url": "https://www.tcool.cc/d/q/20002654b121581a84d8.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002654a121581a84d8.pdf",
+          "url": "https://www.tcool.cc/d/a/20002654a121581a84d8.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "桃子腳國小 新北市 1年級 數學 112下 期末2 康軒",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002654b121581a84d8.pdf",
+        "url": "https://www.tcool.cc/d/q/20002654b121581a84d8.pdf",
+        "filename": "P01_R03_桃子腳國小_新北市_1年級_數學_112下_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P01_R03_桃子腳國小_新北市_1年級_數學_112下_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002654a121581a84d8.pdf",
+        "url": "https://www.tcool.cc/d/a/20002654a121581a84d8.pdf",
+        "filename": "P01_R03_桃子腳國小_新北市_1年級_數學_112下_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P01_R03_桃子腳國小_新北市_1年級_數學_112下_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029986675148bc1ef2.pdf",
+          "url": "https://www.tcool.cc/d/q/10029986675148bc1ef2.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10029986675148bc214f.pdf",
+          "url": "https://www.tcool.cc/d/a/10029986675148bc214f.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "廣興國小 彰化縣 1年級 數學 112下 期末2 康軒",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10029986675148bc1ef2.pdf",
+        "url": "https://www.tcool.cc/d/q/10029986675148bc1ef2.pdf",
+        "filename": "P01_R06_廣興國小_彰化縣_1年級_數學_112下_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P01_R06_廣興國小_彰化縣_1年級_數學_112下_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10029986675148bc214f.pdf",
+        "url": "https://www.tcool.cc/d/a/10029986675148bc214f.pdf",
+        "filename": "P01_R06_廣興國小_彰化縣_1年級_數學_112下_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P01_R06_廣興國小_彰化縣_1年級_數學_112下_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002653b1141e98dada.pdf",
+          "url": "https://www.tcool.cc/d/q/20002653b1141e98dada.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002653a1141e98dada.pdf",
+          "url": "https://www.tcool.cc/d/a/20002653a1141e98dada.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "桃子腳國小 新北市 1年級 數學 112下 期中1 康軒",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002653b1141e98dada.pdf",
+        "url": "https://www.tcool.cc/d/q/20002653b1141e98dada.pdf",
+        "filename": "P01_R07_桃子腳國小_新北市_1年級_數學_112下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P01_R07_桃子腳國小_新北市_1年級_數學_112下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002653a1141e98dada.pdf",
+        "url": "https://www.tcool.cc/d/a/20002653a1141e98dada.pdf",
+        "filename": "P01_R07_桃子腳國小_新北市_1年級_數學_112下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P01_R07_桃子腳國小_新北市_1年級_數學_112下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1002998662095fb76668.pdf",
+          "url": "https://www.tcool.cc/d/q/1002998662095fb76668.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1002998662095fb76bec.pdf",
+          "url": "https://www.tcool.cc/d/a/1002998662095fb76bec.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "廣興國小 彰化縣 1年級 數學 112下 期中1 康軒",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1002998662095fb76668.pdf",
+        "url": "https://www.tcool.cc/d/q/1002998662095fb76668.pdf",
+        "filename": "P01_R08_廣興國小_彰化縣_1年級_數學_112下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P01_R08_廣興國小_彰化縣_1年級_數學_112下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1002998662095fb76bec.pdf",
+        "url": "https://www.tcool.cc/d/a/1002998662095fb76bec.pdf",
+        "filename": "P01_R08_廣興國小_彰化縣_1年級_數學_112下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P01_R08_廣興國小_彰化縣_1年級_數學_112下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20002652b124433e0974.pdf",
+          "url": "https://www.tcool.cc/d/q/20002652b124433e0974.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20002652a124433e0974.pdf",
+          "url": "https://www.tcool.cc/d/a/20002652a124433e0974.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "桃子腳國小 新北市 1年級 數學 112上 期末2 康軒",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20002652b124433e0974.pdf",
+        "url": "https://www.tcool.cc/d/q/20002652b124433e0974.pdf",
+        "filename": "P01_R09_桃子腳國小_新北市_1年級_數學_112上_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P01_R09_桃子腳國小_新北市_1年級_數學_112上_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20002652a124433e0974.pdf",
+        "url": "https://www.tcool.cc/d/a/20002652a124433e0974.pdf",
+        "filename": "P01_R09_桃子腳國小_新北市_1年級_數學_112上_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P01_R09_桃子腳國小_新北市_1年級_數學_112上_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1002998659e3c02c3a52.pdf",
+          "url": "https://www.tcool.cc/d/q/1002998659e3c02c3a52.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1002998659e3c02c4297.pdf",
+          "url": "https://www.tcool.cc/d/a/1002998659e3c02c4297.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "廣興國小 彰化縣 1年級 數學 112上 期末2 康軒",
+      "page": 1,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1002998659e3c02c3a52.pdf",
+        "url": "https://www.tcool.cc/d/q/1002998659e3c02c3a52.pdf",
+        "filename": "P01_R10_廣興國小_彰化縣_1年級_數學_112上_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P01_R10_廣興國小_彰化縣_1年級_數學_112上_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1002998659e3c02c4297.pdf",
+        "url": "https://www.tcool.cc/d/a/1002998659e3c02c4297.pdf",
+        "filename": "P01_R10_廣興國小_彰化縣_1年級_數學_112上_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P01_R10_廣興國小_彰化縣_1年級_數學_112上_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20001997b1213f32194a.pdf",
+          "url": "https://www.tcool.cc/d/q/20001997b1213f32194a.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20001997a1213f32194a.pdf",
+          "url": "https://www.tcool.cc/d/a/20001997a1213f32194a.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "安和國小 新北市 1年級 數學 111下 期末2 康軒",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20001997b1213f32194a.pdf",
+        "url": "https://www.tcool.cc/d/q/20001997b1213f32194a.pdf",
+        "filename": "P02_R02_安和國小_新北市_1年級_數學_111下_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P02_R02_安和國小_新北市_1年級_數學_111下_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20001997a1213f32194a.pdf",
+        "url": "https://www.tcool.cc/d/a/20001997a1213f32194a.pdf",
+        "filename": "P02_R02_安和國小_新北市_1年級_數學_111下_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P02_R02_安和國小_新北市_1年級_數學_111下_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20001996b114701754a5.pdf",
+          "url": "https://www.tcool.cc/d/q/20001996b114701754a5.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20001996a114701754a5.pdf",
+          "url": "https://www.tcool.cc/d/a/20001996a114701754a5.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "安和國小 新北市 1年級 數學 111下 期中1 康軒",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20001996b114701754a5.pdf",
+        "url": "https://www.tcool.cc/d/q/20001996b114701754a5.pdf",
+        "filename": "P02_R05_安和國小_新北市_1年級_數學_111下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P02_R05_安和國小_新北市_1年級_數學_111下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20001996a114701754a5.pdf",
+        "url": "https://www.tcool.cc/d/a/20001996a114701754a5.pdf",
+        "filename": "P02_R05_安和國小_新北市_1年級_數學_111下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P02_R05_安和國小_新北市_1年級_數學_111下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20001995b12155452ee7.pdf",
+          "url": "https://www.tcool.cc/d/q/20001995b12155452ee7.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "20001995a12155452ee7.pdf",
+          "url": "https://www.tcool.cc/d/a/20001995a12155452ee7.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "安和國小 新北市 1年級 數學 111上 期末2 康軒",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "20001995b12155452ee7.pdf",
+        "url": "https://www.tcool.cc/d/q/20001995b12155452ee7.pdf",
+        "filename": "P02_R06_安和國小_新北市_1年級_數學_111上_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P02_R06_安和國小_新北市_1年級_數學_111上_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "20001995a12155452ee7.pdf",
+        "url": "https://www.tcool.cc/d/a/20001995a12155452ee7.pdf",
+        "filename": "P02_R06_安和國小_新北市_1年級_數學_111上_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P02_R06_安和國小_新北市_1年級_數學_111上_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1002211642248e842408.pdf",
+          "url": "https://www.tcool.cc/d/q/1002211642248e842408.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1002211642248e8429be.pdf",
+          "url": "https://www.tcool.cc/d/a/1002211642248e8429be.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "田心國小 桃園市 1年級 數學 110下 期末2 康軒",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1002211642248e842408.pdf",
+        "url": "https://www.tcool.cc/d/q/1002211642248e842408.pdf",
+        "filename": "P02_R08_田心國小_桃園市_1年級_數學_110下_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P02_R08_田心國小_桃園市_1年級_數學_110下_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1002211642248e8429be.pdf",
+        "url": "https://www.tcool.cc/d/a/1002211642248e8429be.pdf",
+        "filename": "P02_R08_田心國小_桃園市_1年級_數學_110下_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P02_R08_田心國小_桃園市_1年級_數學_110下_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100434962df726cb3bc4.pdf",
+          "url": "https://www.tcool.cc/d/q/100434962df726cb3bc4.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100434962df726cb3e14.pdf",
+          "url": "https://www.tcool.cc/d/a/100434962df726cb3e14.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "新生國小 臺東縣 1年級 數學 110下 期末2 康軒",
+      "page": 2,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100434962df726cb3bc4.pdf",
+        "url": "https://www.tcool.cc/d/q/100434962df726cb3bc4.pdf",
+        "filename": "P02_R09_新生國小_臺東縣_1年級_數學_110下_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P02_R09_新生國小_臺東縣_1年級_數學_110下_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100434962df726cb3e14.pdf",
+        "url": "https://www.tcool.cc/d/a/100434962df726cb3e14.pdf",
+        "filename": "P02_R09_新生國小_臺東縣_1年級_數學_110下_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P02_R09_新生國小_臺東縣_1年級_數學_110下_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1002211642248e84167e.pdf",
+          "url": "https://www.tcool.cc/d/q/1002211642248e84167e.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1002211642248e841a58.pdf",
+          "url": "https://www.tcool.cc/d/a/1002211642248e841a58.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "田心國小 桃園市 1年級 數學 110下 期中1 康軒",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1002211642248e84167e.pdf",
+        "url": "https://www.tcool.cc/d/q/1002211642248e84167e.pdf",
+        "filename": "P03_R01_田心國小_桃園市_1年級_數學_110下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P03_R01_田心國小_桃園市_1年級_數學_110下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1002211642248e841a58.pdf",
+        "url": "https://www.tcool.cc/d/a/1002211642248e841a58.pdf",
+        "filename": "P03_R01_田心國小_桃園市_1年級_數學_110下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P03_R01_田心國小_桃園市_1年級_數學_110下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100434962df6d6e2c5c8.pdf",
+          "url": "https://www.tcool.cc/d/q/100434962df6d6e2c5c8.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100434962df6d6e2cafa.pdf",
+          "url": "https://www.tcool.cc/d/a/100434962df6d6e2cafa.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "新生國小 臺東縣 1年級 數學 110下 期中1 康軒",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100434962df6d6e2c5c8.pdf",
+        "url": "https://www.tcool.cc/d/q/100434962df6d6e2c5c8.pdf",
+        "filename": "P03_R02_新生國小_臺東縣_1年級_數學_110下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P03_R02_新生國小_臺東縣_1年級_數學_110下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100434962df6d6e2cafa.pdf",
+        "url": "https://www.tcool.cc/d/a/100434962df6d6e2cafa.pdf",
+        "filename": "P03_R02_新生國小_臺東縣_1年級_數學_110下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P03_R02_新生國小_臺東縣_1年級_數學_110下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100434962df65d4caafc.pdf",
+          "url": "https://www.tcool.cc/d/q/100434962df65d4caafc.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100434962df65d4caf1c.pdf",
+          "url": "https://www.tcool.cc/d/a/100434962df65d4caf1c.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "新生國小 臺東縣 1年級 數學 110上 期末2 康軒",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100434962df65d4caafc.pdf",
+        "url": "https://www.tcool.cc/d/q/100434962df65d4caafc.pdf",
+        "filename": "P03_R03_新生國小_臺東縣_1年級_數學_110上_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P03_R03_新生國小_臺東縣_1年級_數學_110上_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100434962df65d4caf1c.pdf",
+        "url": "https://www.tcool.cc/d/a/100434962df65d4caf1c.pdf",
+        "filename": "P03_R03_新生國小_臺東縣_1年級_數學_110上_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P03_R03_新生國小_臺東縣_1年級_數學_110上_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100299861de501d3c6e7.pdf",
+          "url": "https://www.tcool.cc/d/q/100299861de501d3c6e7.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100299861de501d3c96b.pdf",
+          "url": "https://www.tcool.cc/d/a/100299861de501d3c96b.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "廣興國小 彰化縣 1年級 數學 110上 期末2 康軒",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100299861de501d3c6e7.pdf",
+        "url": "https://www.tcool.cc/d/q/100299861de501d3c6e7.pdf",
+        "filename": "P03_R04_廣興國小_彰化縣_1年級_數學_110上_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P03_R04_廣興國小_彰化縣_1年級_數學_110上_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100299861de501d3c96b.pdf",
+        "url": "https://www.tcool.cc/d/a/100299861de501d3c96b.pdf",
+        "filename": "P03_R04_廣興國小_彰化縣_1年級_數學_110上_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P03_R04_廣興國小_彰化縣_1年級_數學_110上_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100434962de622989d64.pdf",
+          "url": "https://www.tcool.cc/d/q/100434962de622989d64.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100434962de62298aa2a.pdf",
+          "url": "https://www.tcool.cc/d/a/100434962de62298aa2a.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "新生國小 臺東縣 1年級 數學 110上 期中1 康軒",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100434962de622989d64.pdf",
+        "url": "https://www.tcool.cc/d/q/100434962de622989d64.pdf",
+        "filename": "P03_R05_新生國小_臺東縣_1年級_數學_110上_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P03_R05_新生國小_臺東縣_1年級_數學_110上_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100434962de62298aa2a.pdf",
+        "url": "https://www.tcool.cc/d/a/100434962de62298aa2a.pdf",
+        "filename": "P03_R05_新生國小_臺東縣_1年級_數學_110上_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P03_R05_新生國小_臺東縣_1年級_數學_110上_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10017856409399301b29.pdf",
+          "url": "https://www.tcool.cc/d/q/10017856409399301b29.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10017856409399301f22.pdf",
+          "url": "https://www.tcool.cc/d/a/10017856409399301f22.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "安和國小 新北市 1年級 數學 109下 期中1 康軒",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10017856409399301b29.pdf",
+        "url": "https://www.tcool.cc/d/q/10017856409399301b29.pdf",
+        "filename": "P03_R07_安和國小_新北市_1年級_數學_109下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P03_R07_安和國小_新北市_1年級_數學_109下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10017856409399301f22.pdf",
+        "url": "https://www.tcool.cc/d/a/10017856409399301f22.pdf",
+        "filename": "P03_R07_安和國小_新北市_1年級_數學_109下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P03_R07_安和國小_新北市_1年級_數學_109下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100298660a3331202c5a.pdf",
+          "url": "https://www.tcool.cc/d/q/100298660a3331202c5a.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100298660a333120300b.pdf",
+          "url": "https://www.tcool.cc/d/a/100298660a333120300b.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "三條國小 彰化縣 1年級 數學 109下 期中1 康軒",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100298660a3331202c5a.pdf",
+        "url": "https://www.tcool.cc/d/q/100298660a3331202c5a.pdf",
+        "filename": "P03_R08_三條國小_彰化縣_1年級_數學_109下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P03_R08_三條國小_彰化縣_1年級_數學_109下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100298660a333120300b.pdf",
+        "url": "https://www.tcool.cc/d/a/100298660a333120300b.pdf",
+        "filename": "P03_R08_三條國小_彰化縣_1年級_數學_109下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P03_R08_三條國小_彰化縣_1年級_數學_109下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100223560f7c95c83d4a.pdf",
+          "url": "https://www.tcool.cc/d/q/100223560f7c95c83d4a.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "100223560f7c95c83f6c.pdf",
+          "url": "https://www.tcool.cc/d/a/100223560f7c95c83f6c.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "大湖國小 桃園市 1年級 數學 109上 期中1 康軒",
+      "page": 3,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "100223560f7c95c83d4a.pdf",
+        "url": "https://www.tcool.cc/d/q/100223560f7c95c83d4a.pdf",
+        "filename": "P03_R09_大湖國小_桃園市_1年級_數學_109上_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P03_R09_大湖國小_桃園市_1年級_數學_109上_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "100223560f7c95c83f6c.pdf",
+        "url": "https://www.tcool.cc/d/a/100223560f7c95c83f6c.pdf",
+        "filename": "P03_R09_大湖國小_桃園市_1年級_數學_109上_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P03_R09_大湖國小_桃園市_1年級_數學_109上_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1002874601227d369460.pdf",
+          "url": "https://www.tcool.cc/d/q/1002874601227d369460.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "1002874601227d369811.pdf",
+          "url": "https://www.tcool.cc/d/a/1002874601227d369811.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "寶山國小 彰化縣 1年級 數學 109上 期中1 康軒",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "1002874601227d369460.pdf",
+        "url": "https://www.tcool.cc/d/q/1002874601227d369460.pdf",
+        "filename": "P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "1002874601227d369811.pdf",
+        "url": "https://www.tcool.cc/d/a/1002874601227d369811.pdf",
+        "filename": "P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10050305f19461dc7842.pdf",
+          "url": "https://www.tcool.cc/d/q/10050305f19461dc7842.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10050305f19461dc79a7.pdf",
+          "url": "https://www.tcool.cc/d/a/10050305f19461dc79a7.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "海佃國小 臺南市 1年級 數學 108下 期末2 康軒",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10050305f19461dc7842.pdf",
+        "url": "https://www.tcool.cc/d/q/10050305f19461dc7842.pdf",
+        "filename": "P04_R04_海佃國小_臺南市_1年級_數學_108下_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P04_R04_海佃國小_臺南市_1年級_數學_108下_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10050305f19461dc79a7.pdf",
+        "url": "https://www.tcool.cc/d/a/10050305f19461dc79a7.pdf",
+        "filename": "P04_R04_海佃國小_臺南市_1年級_數學_108下_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P04_R04_海佃國小_臺南市_1年級_數學_108下_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029325f06a86b11b1f.pdf",
+          "url": "https://www.tcool.cc/d/q/10029325f06a86b11b1f.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10029325fd089b450280.pdf",
+          "url": "https://www.tcool.cc/d/a/10029325fd089b450280.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "舊館國小 彰化縣 1年級 數學 108下 期末3 康軒",
+      "page": 4,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10029325f06a86b11b1f.pdf",
+        "url": "https://www.tcool.cc/d/q/10029325f06a86b11b1f.pdf",
+        "filename": "P04_R09_舊館國小_彰化縣_1年級_數學_108下_期末3_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P04_R09_舊館國小_彰化縣_1年級_數學_108下_期末3_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10029325fd089b450280.pdf",
+        "url": "https://www.tcool.cc/d/a/10029325fd089b450280.pdf",
+        "filename": "P04_R09_舊館國小_彰化縣_1年級_數學_108下_期末3_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P04_R09_舊館國小_彰化縣_1年級_數學_108下_期末3_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10031795ebb9729225d9.pdf",
+          "url": "https://www.tcool.cc/d/q/10031795ebb9729225d9.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10031795ebb9729227b3.pdf",
+          "url": "https://www.tcool.cc/d/a/10031795ebb9729227b3.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "國姓國小 南投縣 1年級 數學 108下 期中1 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10031795ebb9729225d9.pdf",
+        "url": "https://www.tcool.cc/d/q/10031795ebb9729225d9.pdf",
+        "filename": "P05_R01_國姓國小_南投縣_1年級_數學_108下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R01_國姓國小_南投縣_1年級_數學_108下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10031795ebb9729227b3.pdf",
+        "url": "https://www.tcool.cc/d/a/10031795ebb9729227b3.pdf",
+        "filename": "P05_R01_國姓國小_南投縣_1年級_數學_108下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R01_國姓國小_南投縣_1年級_數學_108下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029325e97f2c5f1ff6.pdf",
+          "url": "https://www.tcool.cc/d/q/10029325e97f2c5f1ff6.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10029325f98db628bc21.pdf",
+          "url": "https://www.tcool.cc/d/a/10029325f98db628bc21.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "舊館國小 彰化縣 1年級 數學 108下 期中1 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10029325e97f2c5f1ff6.pdf",
+        "url": "https://www.tcool.cc/d/q/10029325e97f2c5f1ff6.pdf",
+        "filename": "P05_R02_舊館國小_彰化縣_1年級_數學_108下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R02_舊館國小_彰化縣_1年級_數學_108下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10029325f98db628bc21.pdf",
+        "url": "https://www.tcool.cc/d/a/10029325f98db628bc21.pdf",
+        "filename": "P05_R02_舊館國小_彰化縣_1年級_數學_108下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R02_舊館國小_彰化縣_1年級_數學_108下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10028775f97dafe6466b.pdf",
+          "url": "https://www.tcool.cc/d/q/10028775f97dafe6466b.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10028775f97dafe64f75.pdf",
+          "url": "https://www.tcool.cc/d/a/10028775f97dafe64f75.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "茄荖國小 彰化縣 1年級 數學 108下 期中1 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10028775f97dafe6466b.pdf",
+        "url": "https://www.tcool.cc/d/q/10028775f97dafe6466b.pdf",
+        "filename": "P05_R03_茄荖國小_彰化縣_1年級_數學_108下_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R03_茄荖國小_彰化縣_1年級_數學_108下_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10028775f97dafe64f75.pdf",
+        "url": "https://www.tcool.cc/d/a/10028775f97dafe64f75.pdf",
+        "filename": "P05_R03_茄荖國小_彰化縣_1年級_數學_108下_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R03_茄荖國小_彰化縣_1年級_數學_108下_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10017685f98d6fd61f25.pdf",
+          "url": "https://www.tcool.cc/d/q/10017685f98d6fd61f25.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10017685e3cb91676796.pdf",
+          "url": "https://www.tcool.cc/d/a/10017685e3cb91676796.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "厚德國小 新北市 1年級 數學 108上 期末2 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10017685f98d6fd61f25.pdf",
+        "url": "https://www.tcool.cc/d/q/10017685f98d6fd61f25.pdf",
+        "filename": "P05_R04_厚德國小_新北市_1年級_數學_108上_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R04_厚德國小_新北市_1年級_數學_108上_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10017685e3cb91676796.pdf",
+        "url": "https://www.tcool.cc/d/a/10017685e3cb91676796.pdf",
+        "filename": "P05_R04_厚德國小_新北市_1年級_數學_108上_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R04_厚德國小_新北市_1年級_數學_108上_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10031795e3a27bce1dbb.pdf",
+          "url": "https://www.tcool.cc/d/q/10031795e3a27bce1dbb.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10031795e3a27bce2304.pdf",
+          "url": "https://www.tcool.cc/d/a/10031795e3a27bce2304.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "國姓國小 南投縣 1年級 數學 108上 期末2 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10031795e3a27bce1dbb.pdf",
+        "url": "https://www.tcool.cc/d/q/10031795e3a27bce1dbb.pdf",
+        "filename": "P05_R05_國姓國小_南投縣_1年級_數學_108上_期末2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R05_國姓國小_南投縣_1年級_數學_108上_期末2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10031795e3a27bce2304.pdf",
+        "url": "https://www.tcool.cc/d/a/10031795e3a27bce2304.pdf",
+        "filename": "P05_R05_國姓國小_南投縣_1年級_數學_108上_期末2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R05_國姓國小_南投縣_1年級_數學_108上_期末2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10041475e3cc1eb68b0d.pdf",
+          "url": "https://www.tcool.cc/d/q/10041475e3cc1eb68b0d.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10041475e3cc1eb68d03.pdf",
+          "url": "https://www.tcool.cc/d/a/10041475e3cc1eb68d03.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "鶴聲國小 屏東縣 1年級 數學 108上 期末3 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10041475e3cc1eb68b0d.pdf",
+        "url": "https://www.tcool.cc/d/q/10041475e3cc1eb68b0d.pdf",
+        "filename": "P05_R06_鶴聲國小_屏東縣_1年級_數學_108上_期末3_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R06_鶴聲國小_屏東縣_1年級_數學_108上_期末3_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10041475e3cc1eb68d03.pdf",
+        "url": "https://www.tcool.cc/d/a/10041475e3cc1eb68d03.pdf",
+        "filename": "P05_R06_鶴聲國小_屏東縣_1年級_數學_108上_期末3_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R06_鶴聲國小_屏東縣_1年級_數學_108上_期末3_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10028775f98d3885cf11.pdf",
+          "url": "https://www.tcool.cc/d/q/10028775f98d3885cf11.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10028775f98d3885d8ad.pdf",
+          "url": "https://www.tcool.cc/d/a/10028775f98d3885d8ad.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "茄荖國小 彰化縣 1年級 數學 108上 期末3 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10028775f98d3885cf11.pdf",
+        "url": "https://www.tcool.cc/d/q/10028775f98d3885cf11.pdf",
+        "filename": "P05_R07_茄荖國小_彰化縣_1年級_數學_108上_期末3_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R07_茄荖國小_彰化縣_1年級_數學_108上_期末3_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10028775f98d3885d8ad.pdf",
+        "url": "https://www.tcool.cc/d/a/10028775f98d3885d8ad.pdf",
+        "filename": "P05_R07_茄荖國小_彰化縣_1年級_數學_108上_期末3_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R07_茄荖國小_彰化縣_1年級_數學_108上_期末3_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10041475e15458e04cee.pdf",
+          "url": "https://www.tcool.cc/d/q/10041475e15458e04cee.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10041475e15458e04f21.pdf",
+          "url": "https://www.tcool.cc/d/a/10041475e15458e04f21.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "鶴聲國小 屏東縣 1年級 數學 108上 期中2 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10041475e15458e04cee.pdf",
+        "url": "https://www.tcool.cc/d/q/10041475e15458e04cee.pdf",
+        "filename": "P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10041475e15458e04f21.pdf",
+        "url": "https://www.tcool.cc/d/a/10041475e15458e04f21.pdf",
+        "filename": "P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10050305f1944fab7357.pdf",
+          "url": "https://www.tcool.cc/d/q/10050305f1944fab7357.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10050305f1944fab751a.pdf",
+          "url": "https://www.tcool.cc/d/a/10050305f1944fab751a.pdf"
+        }
+      ],
+      "row": 9,
+      "text": "海佃國小 臺南市 1年級 數學 108上 期中1 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10050305f1944fab7357.pdf",
+        "url": "https://www.tcool.cc/d/q/10050305f1944fab7357.pdf",
+        "filename": "P05_R09_海佃國小_臺南市_1年級_數學_108上_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R09_海佃國小_臺南市_1年級_數學_108上_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10050305f1944fab751a.pdf",
+        "url": "https://www.tcool.cc/d/a/10050305f1944fab751a.pdf",
+        "filename": "P05_R09_海佃國小_臺南市_1年級_數學_108上_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R09_海佃國小_臺南市_1年級_數學_108上_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10017685e57838509a66.pdf",
+          "url": "https://www.tcool.cc/d/q/10017685e57838509a66.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10017685e5783850a27b.pdf",
+          "url": "https://www.tcool.cc/d/a/10017685e5783850a27b.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "厚德國小 新北市 1年級 數學 108上 期中1 康軒",
+      "page": 5,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10017685e57838509a66.pdf",
+        "url": "https://www.tcool.cc/d/q/10017685e57838509a66.pdf",
+        "filename": "P05_R10_厚德國小_新北市_1年級_數學_108上_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R10_厚德國小_新北市_1年級_數學_108上_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10017685e5783850a27b.pdf",
+        "url": "https://www.tcool.cc/d/a/10017685e5783850a27b.pdf",
+        "filename": "P05_R10_厚德國小_新北市_1年級_數學_108上_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R10_厚德國小_新北市_1年級_數學_108上_期中1_康軒_答案卷.pdf"
+      }
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10031795e2d34f33d073.pdf",
+          "url": "https://www.tcool.cc/d/q/10031795e2d34f33d073.pdf"
+        },
+        {
+          "kind": "answer",
+          "sourceBasename": "10031795e2d34f33d479.pdf",
+          "url": "https://www.tcool.cc/d/a/10031795e2d34f33d479.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "國姓國小 南投縣 1年級 數學 108上 期中1 康軒",
+      "page": 6,
+      "question": {
+        "kind": "question",
+        "sourceBasename": "10031795e2d34f33d073.pdf",
+        "url": "https://www.tcool.cc/d/q/10031795e2d34f33d073.pdf",
+        "filename": "P06_R01_國姓國小_南投縣_1年級_數學_108上_期中1_康軒_題目卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P06_R01_國姓國小_南投縣_1年級_數學_108上_期中1_康軒_題目卷.pdf"
+      },
+      "answer": {
+        "kind": "answer",
+        "sourceBasename": "10031795e2d34f33d479.pdf",
+        "url": "https://www.tcool.cc/d/a/10031795e2d34f33d479.pdf",
+        "filename": "P06_R01_國姓國小_南投縣_1年級_數學_108上_期中1_康軒_答案卷.pdf",
+        "outputPath": "/Users/emma/02_小孩教育/Apple/source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P06_R01_國姓國小_南投縣_1年級_數學_108上_期中1_康軒_答案卷.pdf"
+      }
+    }
+  ],
+  "excludedNoAnswer": [
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20001289b1214b86baa1.pdf",
+          "url": "https://www.tcool.cc/d/q/20001289b1214b86baa1.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "獅湖國小 高雄市 1年級 數學 113下 期末2 康軒",
+      "page": 1
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "20001172b1246b9c5df7.pdf",
+          "url": "https://www.tcool.cc/d/q/20001172b1246b9c5df7.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "大華國小 桃園市 1年級 數學 113下 期末2 康軒",
+      "page": 1
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10031296683ab6399b20.pdf",
+          "url": "https://www.tcool.cc/d/q/10031296683ab6399b20.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "社寮國小 南投縣 1年級 數學 112下 期末2 康軒",
+      "page": 1
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488066839eb4b0eef.pdf",
+          "url": "https://www.tcool.cc/d/q/100488066839eb4b0eef.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "文心國小 臺中市 1年級 數學 112下 期末2 康軒",
+      "page": 1
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10031296551dae57279e.pdf",
+          "url": "https://www.tcool.cc/d/q/10031296551dae57279e.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "社寮國小 南投縣 1年級 數學 112上 期中1 康軒",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1005167654c80debf5b0.pdf",
+          "url": "https://www.tcool.cc/d/q/1005167654c80debf5b0.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "雙蓮國小 臺北市 1年級 數學 111下 期末2 康軒",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100488064fa762855a8e.pdf",
+          "url": "https://www.tcool.cc/d/q/100488064fa762855a8e.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "文心國小 臺中市 1年級 數學 111下 期末2 康軒",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10031296372fdd848f24.pdf",
+          "url": "https://www.tcool.cc/d/q/10031296372fdd848f24.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "社寮國小 南投縣 1年級 數學 111上 期中1 康軒",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100312962cbd0f2b6549.pdf",
+          "url": "https://www.tcool.cc/d/q/100312962cbd0f2b6549.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "社寮國小 南投縣 1年級 數學 110下 期末2 康軒",
+      "page": 2
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1003129618b7b2029b27.pdf",
+          "url": "https://www.tcool.cc/d/q/1003129618b7b2029b27.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "社寮國小 南投縣 1年級 數學 110上 期中1 康軒",
+      "page": 3
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "1002966602dd3c4b137b.pdf",
+          "url": "https://www.tcool.cc/d/q/1002966602dd3c4b137b.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "二水國小 彰化縣 1年級 數學 109上 期中1 康軒",
+      "page": 3
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "100312960122cce283a9.pdf",
+          "url": "https://www.tcool.cc/d/q/100312960122cce283a9.pdf"
+        }
+      ],
+      "row": 1,
+      "text": "社寮國小 南投縣 1年級 數學 109上 期中1 康軒",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10037295f2a10d2bda3d.pdf",
+          "url": "https://www.tcool.cc/d/q/10037295f2a10d2bda3d.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "左鎮國小 臺南市 1年級 數學 108下 期末2 康軒",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10031295f0c009d3887b.pdf",
+          "url": "https://www.tcool.cc/d/q/10031295f0c009d3887b.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "社寮國小 南投縣 1年級 數學 108下 期末2 康軒",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10043525f09860046183.pdf",
+          "url": "https://www.tcool.cc/d/q/10043525f09860046183.pdf"
+        }
+      ],
+      "row": 6,
+      "text": "馬蘭國小 臺東縣 1年級 數學 108下 期末2 康軒",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10046675fa2207c79985.pdf",
+          "url": "https://www.tcool.cc/d/q/10046675fa2207c79985.pdf"
+        }
+      ],
+      "row": 7,
+      "text": "八斗國小 基隆市 1年級 數學 108下 期末3 康軒",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029445f0fb71ca1252.pdf",
+          "url": "https://www.tcool.cc/d/q/10029445f0fb71ca1252.pdf"
+        }
+      ],
+      "row": 8,
+      "text": "青山國小 彰化縣 1年級 數學 108下 期末3 康軒",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10030245fd1d956c4915.pdf",
+          "url": "https://www.tcool.cc/d/q/10030245fd1d956c4915.pdf"
+        }
+      ],
+      "row": 10,
+      "text": "路上國小 彰化縣 1年級 數學 108下 期末3 康軒",
+      "page": 4
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10027635e201cb223b5a.pdf",
+          "url": "https://www.tcool.cc/d/q/10027635e201cb223b5a.pdf"
+        }
+      ],
+      "row": 2,
+      "text": "益民國小 臺中市 1年級 數學 108上 期中1 康軒",
+      "page": 6
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10029525e181835e77ab.pdf",
+          "url": "https://www.tcool.cc/d/q/10029525e181835e77ab.pdf"
+        }
+      ],
+      "row": 3,
+      "text": "永興國小 彰化縣 1年級 數學 108上 期中1 康軒",
+      "page": 6
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10031295dd491d2bd790.pdf",
+          "url": "https://www.tcool.cc/d/q/10031295dd491d2bd790.pdf"
+        }
+      ],
+      "row": 4,
+      "text": "社寮國小 南投縣 1年級 數學 108上 期中1 康軒",
+      "page": 6
+    },
+    {
+      "links": [
+        {
+          "kind": "question",
+          "sourceBasename": "10043525dbd3bd06700a.pdf",
+          "url": "https://www.tcool.cc/d/q/10043525dbd3bd06700a.pdf"
+        }
+      ],
+      "row": 5,
+      "text": "馬蘭國小 臺東縣 1年級 數學 108上 期中1 康軒",
+      "page": 6
+    }
+  ]
+}

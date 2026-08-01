@@ -9,3 +9,6 @@ __pycache__/
 # Bedtime audio: commit only the combined per-story files (audio/<id>.mp3);
 # the per-segment + silence intermediates are rebuildable, so keep them out.
 bedtime/audio/*/
+
+# TCOOL 原始段考 PDF：保留在本機供 OCR／題型分析，不推送大型二進位檔。
+source_materials/tcool_math_g1_g4_康軒_翰林/**/*.pdf

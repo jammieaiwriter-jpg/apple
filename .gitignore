@@ -12,3 +12,5 @@ bedtime/audio/*/
 
 # TCOOL 原始段考 PDF：保留在本機供 OCR／題型分析，不推送大型二進位檔。
 source_materials/tcool_math_g1_g4_康軒_翰林/**/*.pdf
+# TCOOL OCR／裁圖／文字擷取中間產物：皆可由本機 PDF 與批次工具重建。
+source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/

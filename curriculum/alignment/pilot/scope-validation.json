@@ -1,0 +1,415 @@
+{
+  "schemaVersion": "1.0",
+  "createdAt": "2026-08-01T14:20:34.933Z",
+  "papers": [
+    {
+      "source_id": "G1-康軒-109上-期中1-P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 2,
+          "chapterTitle": "比長短",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 7,
+          "chapterTitle": "10 以內的加法",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 23,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G1-翰林-113下-期末2-P01_R01_安和國小_新北市_1年級_數學_113下_期末2_翰林",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 7,
+          "chapterTitle": "幾月幾日星期幾",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 8,
+          "chapterTitle": "兩位數的加減法",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 1,
+          "chapterTitle": "20 以內的加法",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "window",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 6,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G2-康軒-112下-期中1-P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 3,
+          "chapterTitle": "平面圖形",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 5,
+          "chapterTitle": "乘法",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 4,
+          "chapterTitle": "年、月、日",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 2,
+          "chapterTitle": "三位數的加減",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 7,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G2-翰林-113上-期末2-P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 7,
+          "chapterTitle": "乘法（一）",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 2,
+          "chapterTitle": "二位數的加減法",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 8,
+          "chapterTitle": "時間",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "window",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 6,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G3-康軒-113上-期中1-P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 1,
+          "chapterTitle": "10000 以內的數",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 2,
+          "chapterTitle": "四位數的加減",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 3,
+          "chapterTitle": "毫米",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "window",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 0,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 7,
+          "chapterTitle": "時間",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 9,
+          "chapterTitle": "面積",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 6,
+          "chapterTitle": "一位小數",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "window",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 0,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 1,
+          "chapterTitle": "多位數的乘與除",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 2,
+          "chapterTitle": "四邊形",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 3,
+          "chapterTitle": "概數",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "window",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 4,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G4-翰林-113上-期末2-P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 6,
+          "chapterTitle": "除法",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 8,
+          "chapterTitle": "兩步驟問題與併式",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "window",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 4,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G1-康軒-108上-期中2-P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 9,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G2-康軒-109上-期中1-P06_R08_螺青國小_彰化縣_2年級_數學_109上_期中1_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 3,
+          "chapterTitle": "量長度",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 1,
+          "chapterTitle": "200 以內的數",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 2,
+          "chapterTitle": "二位數的直式加減",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 7,
+          "chapterTitle": "2、5、4、8 的乘法",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 15,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G2-康軒-109上-期末3-P05_R09_螺青國小_彰化縣_2年級_數學_109上_期末3_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 10,
+          "chapterTitle": "容量與重量",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 5,
+          "chapterTitle": "面積大小的比較",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 7,
+          "chapterTitle": "2、5、4、8 的乘法",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 3,
+          "chapterTitle": "量長度",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 1,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G3-康軒-109下-期中2-P06_R03_大園國小_彰化縣_3年級_數學_109下_期中2_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 5,
+          "chapterTitle": "小數",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 0,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G3-翰林-108上-期中1-P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 1,
+          "chapterTitle": "10000 以內的數",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 3,
+          "chapterTitle": "10000 以內的加減",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 7,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G4-康軒-110上-期中2-P05_R10_大園國小_彰化縣_4年級_數學_110上_期中2_康軒",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 6,
+          "chapterTitle": "三角形",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 8,
+          "chapterTitle": "整數四則計算",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 4,
+          "chapterTitle": "整數的除法",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 0,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    },
+    {
+      "source_id": "G4-翰林-108下-期末3-P06_R02_舊館國小_彰化縣_4年級_數學_108下_期末3_翰林",
+      "expectedUnits": [],
+      "expectedUnitsStatus": "blocked_pending_publisher_edition_and_profile_backfill",
+      "printedScopeObservedUnits": [],
+      "questionTextObservedUnits": [
+        {
+          "chapterNumber": 6,
+          "chapterTitle": "小數乘法",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 5,
+          "chapterTitle": "形體的大小",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 9,
+          "chapterTitle": "時間的計算",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 8,
+          "chapterTitle": "分數（二）",
+          "basis": "question_text_candidate"
+        },
+        {
+          "chapterNumber": 7,
+          "chapterTitle": "周長與面積",
+          "basis": "question_text_candidate"
+        }
+      ],
+      "scopeType": "unknown",
+      "scope_outliers": "not_evaluable",
+      "uncertainQuestionCount": 0,
+      "notes": "expectedUnits 為空，不能判定任何題目是否為範圍離群；所有 scope_outlier 均為 not_evaluable。",
+      "outlierEvaluationStatus": "not_evaluable"
+    }
+  ]
+}

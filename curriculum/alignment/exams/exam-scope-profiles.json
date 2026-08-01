@@ -1,0 +1,2490 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-01T14:09:55.631Z",
+  "modelRule": {
+    "two_assessment": [
+      "期中1",
+      "期末2"
+    ],
+    "three_assessment": [
+      "期中1",
+      "期中2",
+      "期末3"
+    ],
+    "caveat": "這是由考卷標籤暫時正規化的制度模型；卷面或逐題證據可推翻。"
+  },
+  "profiles": [
+    {
+      "id": "G1-康軒-上-three_assessment-2",
+      "grade": 1,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期中2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G1-康軒-上-three_assessment-3",
+      "grade": 1,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G1-康軒-上-two_assessment-1",
+      "grade": 1,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 6,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G1-康軒-上-two_assessment-2",
+      "grade": 1,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 7,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G1-康軒-下-three_assessment-1",
+      "grade": 1,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G1-康軒-下-three_assessment-3",
+      "grade": 1,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G1-康軒-下-two_assessment-1",
+      "grade": 1,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 9,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G1-康軒-下-two_assessment-2",
+      "grade": 1,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 6,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 9,
+          "source": "單元 6～單元 9 ",
+          "examId": "G1-康軒-112下-期末2-P01_R03_桃子腳國小_新北市_1年級_數學_112下_期末2_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G1-翰林-上-three_assessment-3",
+      "grade": 1,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G1-翰林-上-two_assessment-1",
+      "grade": 1,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 8,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "第 1~5 單元",
+          "examId": "G1-翰林-108上-期中1-P09_R02_美和國小_臺東縣_1年級_數學_108上_期中1_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G1-翰林-上-two_assessment-2",
+      "grade": 1,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 6,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "unknown",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 18,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 9,
+          "source": "單元 1～單元 9 ",
+          "examId": "G1-翰林-110上-期末2-P05_R04_桃子腳國小_新北市_1年級_數學_110上_期末2_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G1-翰林-下-two_assessment-1",
+      "grade": 1,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 19,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G1-翰林-111下-期中1-P04_R01_桃子腳國小_新北市_1年級_數學_111下_期中1_翰林"
+        },
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G1-翰林-110下-期中1-P04_R10_桃子腳國小_新北市_1年級_數學_110下_期中1_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G1-翰林-下-two_assessment-2",
+      "grade": 1,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 14,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 9,
+          "source": "單元 6～單元 9 ",
+          "examId": "G1-翰林-111下-期末2-P03_R07_桃子腳國小_新北市_1年級_數學_111下_期末2_翰林"
+        },
+        {
+          "start": 6,
+          "end": 9,
+          "source": "第 6~9 單元",
+          "examId": "G1-翰林-108下-期末2-P07_R07_美和國小_臺東縣_1年級_數學_108下_期末2_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G2-康軒-上-three_assessment-1",
+      "grade": 2,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G2-康軒-上-three_assessment-2",
+      "grade": 2,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期中2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 4,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G2-康軒-上-three_assessment-3",
+      "grade": 2,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G2-康軒-上-two_assessment-1",
+      "grade": 2,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 12,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G2-康軒-113上-期中1-P01_R05_桃子腳國小_新北市_2年級_數學_113上_期中1_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G2-康軒-上-two_assessment-2",
+      "grade": 2,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 10,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G2-康軒-113上-期末2-P01_R03_桃子腳國小_新北市_2年級_數學_113上_期末2_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G2-康軒-下-two_assessment-1",
+      "grade": 2,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 8,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G2-康軒-下-two_assessment-2",
+      "grade": 2,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 8,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G2-康軒-113下-期末2-P01_R01_桃子腳國小_新北市_2年級_數學_113下_期末2_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G2-翰林-上-two_assessment-1",
+      "grade": 2,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 15,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G2-翰林-112上-期中1-P03_R09_桃子腳國小_新北市_2年級_數學_112上_期中1_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G2-翰林-上-two_assessment-2",
+      "grade": 2,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 16,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G2-翰林-112上-期末2-P03_R04_桃子腳國小_新北市_2年級_數學_112上_期末2_翰林"
+        },
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G2-翰林-110上-期末2-P06_R09_桃子腳國小_新北市_2年級_數學_110上_期末2_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G2-翰林-下-two_assessment-1",
+      "grade": 2,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 15,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G2-翰林-112下-期中1-P02_R10_桃子腳國小_新北市_2年級_數學_112下_期中1_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G2-翰林-下-two_assessment-2",
+      "grade": 2,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "high",
+      "evidenceCount": 3,
+      "paperCount": 12,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G2-翰林-112下-期末2-P02_R05_桃子腳國小_新北市_2年級_數學_112下_期末2_翰林"
+        },
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G2-翰林-111下-期末2-P04_R07_桃子腳國小_新北市_2年級_數學_111下_期末2_翰林"
+        },
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G2-翰林-110下-期末2-P06_R03_桃子腳國小_新北市_2年級_數學_110下_期末2_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G3-康軒-上-three_assessment-1",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-康軒-上-three_assessment-2",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期中2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-康軒-上-three_assessment-3",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-康軒-上-two_assessment-1",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 19,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 4,
+          "source": "第 1 單元～第 4 單元",
+          "examId": "G3-康軒-112上-期中1-P02_R10_桃子腳國小_新北市_3年級_數學_112上_期中1_康軒"
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "source": "單元 1～單元 4 ",
+          "examId": "G3-康軒-110上-期中1-P05_R08_桃子腳國小_新北市_3年級_數學_110上_期中1_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G3-康軒-上-two_assessment-2",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 5,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 6,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 14,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 5,
+          "end": 9,
+          "source": "單元 5～單元 9 ",
+          "examId": "G3-康軒-112上-期末2-P02_R08_桃子腳國小_新北市_3年級_數學_112上_期末2_康軒"
+        },
+        {
+          "start": 5,
+          "end": 9,
+          "source": "單元 5～單元 9 ",
+          "examId": "G3-康軒-110上-期末2-P05_R06_桃子腳國小_新北市_3年級_數學_110上_期末2_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G3-康軒-下-three_assessment-1",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-康軒-下-three_assessment-2",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期中2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-康軒-下-three_assessment-3",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-康軒-下-two_assessment-1",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 6,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 11,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 13,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 4,
+          "source": "單元 1～單元 4 ",
+          "examId": "G3-康軒-112下-期中1-P02_R06_桃子腳國小_新北市_3年級_數學_112下_期中1_康軒"
+        },
+        {
+          "start": 1,
+          "end": 9,
+          "source": "第 1~9 ",
+          "examId": "G3-康軒-112下-期中1-P02_R06_桃子腳國小_新北市_3年級_數學_112下_期中1_康軒"
+        },
+        {
+          "start": 10,
+          "end": 11,
+          "source": "第 10~11 ",
+          "examId": "G3-康軒-112下-期中1-P02_R06_桃子腳國小_新北市_3年級_數學_112下_期中1_康軒"
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "source": "單元 1～單元 4 ",
+          "examId": "G3-康軒-110下-期中1-P05_R05_桃子腳國小_新北市_3年級_數學_110下_期中1_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G3-康軒-下-two_assessment-2",
+      "grade": 3,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 5,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 6,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 9,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 5,
+          "end": 9,
+          "source": "單元 5～單元 9 ",
+          "examId": "G3-康軒-112下-期末2-P02_R02_桃子腳國小_新北市_3年級_數學_112下_期末2_康軒"
+        },
+        {
+          "start": 5,
+          "end": 9,
+          "source": "單元 5～單元 9 ",
+          "examId": "G3-康軒-110下-期末2-P05_R03_桃子腳國小_新北市_3年級_數學_110下_期末2_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G3-翰林-上-three_assessment-1",
+      "grade": 3,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-翰林-上-three_assessment-2",
+      "grade": 3,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期中2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-翰林-上-three_assessment-3",
+      "grade": 3,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G3-翰林-上-two_assessment-1",
+      "grade": 3,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 3,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "high",
+      "evidenceCount": 3,
+      "paperCount": 12,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G3-翰林-113上-期中1-P01_R09_桃子腳國小_新北市_3年級_數學_113上_期中1_翰林"
+        },
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G3-翰林-111上-期中1-P04_R01_桃子腳國小_新北市_3年級_數學_111上_期中1_翰林"
+        },
+        {
+          "start": 1,
+          "end": 5,
+          "source": "第 1-5 單元",
+          "examId": "G3-翰林-108上-期中1-P07_R05_美和國小_臺東縣_3年級_數學_108上_期中1_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G3-翰林-上-two_assessment-2",
+      "grade": 3,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 6,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "unknown",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 8,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 9,
+          "source": "單元 6～單元 9 ",
+          "examId": "G3-翰林-113上-期末2-P01_R05_桃子腳國小_新北市_3年級_數學_113上_期末2_翰林"
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "source": "1~4 ",
+          "examId": "G3-翰林-113上-期末2-P01_R05_桃子腳國小_新北市_3年級_數學_113上_期末2_翰林"
+        },
+        {
+          "start": 6,
+          "end": 9,
+          "source": "單元 6～單元 9 ",
+          "examId": "G3-翰林-111上-期末2-P03_R10_桃子腳國小_新北市_3年級_數學_111上_期末2_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G3-翰林-下-two_assessment-1",
+      "grade": 3,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 6,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1 ~ 單元 5 ",
+          "examId": "G3-翰林-111下-期中1-P03_R09_桃子腳國小_新北市_3年級_數學_111下_期中1_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G3-翰林-下-two_assessment-2",
+      "grade": 3,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 7,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 9,
+          "source": "單元 6～單元 9 ",
+          "examId": "G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林"
+        },
+        {
+          "start": 6,
+          "end": 9,
+          "source": "單元 6～單元 9 ",
+          "examId": "G3-翰林-111下-期末2-P03_R06_桃子腳國小_新北市_3年級_數學_111下_期末2_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G4-康軒-上-three_assessment-1",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-康軒-上-three_assessment-2",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期中2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-康軒-上-three_assessment-3",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-康軒-上-two_assessment-1",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 6,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 11,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 12,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 0.5,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 16,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G4-康軒-113上-期中1-P01_R09_桃子腳國小_新北市_4年級_數學_113上_期中1_康軒"
+        },
+        {
+          "start": 1,
+          "end": 9,
+          "source": "第 1~9 ",
+          "examId": "G4-康軒-113上-期中1-P01_R09_桃子腳國小_新北市_4年級_數學_113上_期中1_康軒"
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "source": "第 10~12 ",
+          "examId": "G4-康軒-113上-期中1-P01_R09_桃子腳國小_新北市_4年級_數學_113上_期中1_康軒"
+        },
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G4-康軒-111上-期中1-P04_R09_桃子腳國小_新北市_4年級_數學_111上_期中1_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G4-康軒-上-two_assessment-2",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 10,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G4-康軒-113上-期末2-P01_R05_桃子腳國小_新北市_4年級_數學_113上_期末2_康軒"
+        },
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G4-康軒-111上-期末2-P04_R08_桃子腳國小_新北市_4年級_數學_111上_期末2_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G4-康軒-下-three_assessment-2",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期中2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-康軒-下-three_assessment-3",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 2,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-康軒-下-two_assessment-1",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 12,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G4-康軒-111下-期中1-P04_R07_桃子腳國小_新北市_4年級_數學_111下_期中1_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G4-康軒-下-two_assessment-2",
+      "grade": 4,
+      "publisher": "康軒",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 7,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G4-康軒-113下-期末2-P01_R01_桃子腳國小_新北市_4年級_數學_113下_期末2_康軒"
+        },
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G4-康軒-111下-期末2-P04_R02_桃子腳國小_新北市_4年級_數學_111下_期末2_康軒"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G4-翰林-上-three_assessment-1",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-翰林-上-three_assessment-2",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期中2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-翰林-上-three_assessment-3",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-翰林-上-two_assessment-1",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 14,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G4-翰林-112上-期中1-P03_R03_桃子腳國小_新北市_4年級_數學_112上_期中1_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G4-翰林-上-two_assessment-2",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "上",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 9,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G4-翰林-112上-期末2-P03_R01_桃子腳國小_新北市_4年級_數學_112上_期末2_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G4-翰林-下-three_assessment-1",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-翰林-下-three_assessment-3",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "three_assessment",
+      "assessmentIndex": 3,
+      "examLabels": [
+        "期末3"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [],
+      "scopeType": "unknown",
+      "confidence": "low",
+      "evidenceCount": 0,
+      "paperCount": 1,
+      "printedScopeRangeEvidence": [],
+      "notes": "尚未從可讀文字取得卷面範圍；不可依考次名稱或章節序號猜測。"
+    },
+    {
+      "id": "G4-翰林-下-two_assessment-1",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 1,
+      "examLabels": [
+        "期中1"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 1,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 2,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 3,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 4,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 5,
+          "paperCount": 2,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 2,
+      "paperCount": 9,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 1,
+          "end": 5,
+          "source": "單元 1～單元 5 ",
+          "examId": "G4-翰林-112下-期中1-P02_R09_桃子腳國小_新北市_4年級_數學_112下_期中1_翰林"
+        },
+        {
+          "start": 1,
+          "end": 5,
+          "source": "第 1～5 單元",
+          "examId": "G4-翰林-108下-期中1-P06_R04_美和國小_臺東縣_4年級_數學_108下_期中1_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    },
+    {
+      "id": "G4-翰林-下-two_assessment-2",
+      "grade": 4,
+      "publisher": "翰林",
+      "semester": "下",
+      "assessmentScheme": "two_assessment",
+      "assessmentIndex": 2,
+      "examLabels": [
+        "期末2"
+      ],
+      "editionFamily": "unknown",
+      "expectedUnits": [],
+      "observedUnits": [
+        {
+          "unitNumber": 6,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 7,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 8,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 9,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        },
+        {
+          "unitNumber": 10,
+          "paperCount": 1,
+          "shareOfScopeEvidence": 1,
+          "basis": "printed_scope_text"
+        }
+      ],
+      "scopeType": "window",
+      "confidence": "medium",
+      "evidenceCount": 1,
+      "paperCount": 6,
+      "printedScopeRangeEvidence": [
+        {
+          "start": 6,
+          "end": 10,
+          "source": "單元 6～單元 10 ",
+          "examId": "G4-翰林-112下-期末2-P02_R05_桃子腳國小_新北市_4年級_數學_112下_期末2_翰林"
+        }
+      ],
+      "notes": "observedUnits 僅來自卷面「評量範圍」文字；expectedUnits 必須待出版社章節對齊表有可驗證來源後才填入。"
+    }
+  ]
+}

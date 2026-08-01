@@ -1,0 +1,1234 @@
+{
+  "schema_version": "1.0.0",
+  "title": "十二年國民基本教育課程綱要：國民中小學暨普通型高級中等學校－數學領域（G1-G4 學習內容基準）",
+  "authority": "教育部（107年7月26日臺教授國部字第1070066476B號令）",
+  "scope": {
+    "grades": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "included_domains": [
+      "N",
+      "S",
+      "R",
+      "D"
+    ],
+    "excluded_domains": [
+      "G",
+      "A",
+      "F"
+    ],
+    "reason": "G1-G4 官方學習內容表僅出現 N、S、R、D；G、A、F 不適用於此範圍。"
+  },
+  "source": {
+    "file": "sources/108-math-curriculum-moe-20180726.pdf",
+    "url": "https://edu.law.moe.gov.tw/Download.ashx?FileID=31051&id=GL001788&type=LAW",
+    "sha256": "a9fd74c24933b16e256fcbcfe77ccf24e687dc5c5795b45215859d3a1439ef21"
+  },
+  "extraction_notes": [
+    "每筆為官方學習內容表的一個代碼；description 轉錄「學習內容條目及說明」，notes 轉錄同列「備註」。",
+    "learning_performance_codes 為同列「對應學習表現」代碼；同一內容可對應多個表現代碼。",
+    "source_pdf_page 為下載 PDF 的實體頁碼；source_printed_page 為文件頁腳印刷頁碼。",
+    "學習內容代碼是對齊主標籤；名稱、備註與學習表現共同界定年級邊界。"
+  ],
+  "code_count": 85,
+  "codes": [
+    {
+      "code": "D-1-1",
+      "grade": 1,
+      "domain": "資料與不確定性",
+      "name": "簡單分類",
+      "description": "簡單分類：以操作活動為主。能蒐集、分類、記錄、呈現日常生活物品，報讀、說明已處理好之分類。觀察分類的模式，知道同一組資料可有不同的分類方式。",
+      "notes": "本條目活動中呈現之說明圖表皆出自學生的創意，並非正式表格（D-3-1）與統計圖表的教學（D-4-1以後）。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "d-I-1"
+      ],
+      "source_pdf_page": 22,
+      "source_printed_page": 20
+    },
+    {
+      "code": "N-1-1",
+      "grade": 1,
+      "domain": "數與量",
+      "name": "一百以內的數",
+      "description": "一百以內的數：含操作活動。用數表示多少與順序。結合數數、位值表徵、位值表。位值單位「個」和「十」。位值單位換算。認識0的位值意義。",
+      "notes": "教學可數到最後的「一百」，但不進行超過一百的教學。可點數代表一和十的積木進行位值教學。學習0的位值意義以便順利連結日後直式計算之學習。",
+      "reference_teaching_aids": "位值表、位 值 積木、花片",
+      "learning_performance_codes": [
+        "n-I-1"
+      ],
+      "source_pdf_page": 21,
+      "source_printed_page": 19
+    },
+    {
+      "code": "N-1-2",
+      "grade": 1,
+      "domain": "數與量",
+      "name": "加法和減法",
+      "description": "加法和減法：加法和減法的意義與應用。含「添加型」、「併加型」、「拿走型」、「比較型」等應用問題。加法和減法算式。",
+      "notes": "強調「併加型」（合成型）的學習以理解加法交換律。處理「0」的加減。應含加、減法並陳之單元，使學生主動察覺加法和減法問題的差異。一年級不做加數、被加數、減數、被減數未知題型（N-2-3）。",
+      "reference_teaching_aids": "花片",
+      "learning_performance_codes": [
+        "n-I-2"
+      ],
+      "source_pdf_page": 21,
+      "source_printed_page": 19
+    },
+    {
+      "code": "N-1-3",
+      "grade": 1,
+      "domain": "數與量",
+      "name": "基本加減法",
+      "description": "基本加減法：以操作活動為主。以熟練為目標。指1到 10 之數與 1 到 10 之數的加法，及反向的減法計算。",
+      "notes": "在活動過程中，可能練習到兩步驟以上的加減混合數算，這是活動的常態，其中自然延伸之計算策略與數感建立更值得鼓勵，這種活動不是兩步驟計算的正式教學。",
+      "reference_teaching_aids": "合 十 卡（ 撲 克牌）",
+      "learning_performance_codes": [
+        "n-I-2"
+      ],
+      "source_pdf_page": 21,
+      "source_printed_page": 19
+    },
+    {
+      "code": "N-1-4",
+      "grade": 1,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：1 元、5 元、10 元、50 元、100 元。以操作活動為主。數錢、換錢、找錢。",
+      "notes": "容許多元策略，以利建立數感，教師不應視為單純的加減單元。",
+      "reference_teaching_aids": "錢幣",
+      "learning_performance_codes": [
+        "n-I-3"
+      ],
+      "source_pdf_page": 21,
+      "source_printed_page": 19
+    },
+    {
+      "code": "N-1-5",
+      "grade": 1,
+      "domain": "數與量",
+      "name": "長度（同 S-1-1）",
+      "description": "長度（同 S-1-1）：以操作活動為主。初步認識、直接比較、間接比較（含個別單位）。",
+      "notes": "活動內容含直線與曲線。本條目教學無常用單位（N-2-11）。",
+      "reference_teaching_aids": "繩子",
+      "learning_performance_codes": [
+        "n-I-7"
+      ],
+      "source_pdf_page": 21,
+      "source_printed_page": 19
+    },
+    {
+      "code": "N-1-6",
+      "grade": 1,
+      "domain": "數與量",
+      "name": "日常時間用語",
+      "description": "日常時間用語：以操作活動為主。簡單日期報讀「幾月幾日」；「明天」、「今天」、「昨天」；「上午」、「中午」、「下午」、「晚上」。簡單時刻報讀「整點」與「半點」。",
+      "notes": "活動以教師和學生在教室中溝通之時間用語為原則，非時間單位結構之教學（N-2-13、N-2-14）。簡單日期指日曆之「幾月幾日」，不含曆法結構。時刻須以鐘面教學。簡單鐘面時刻限「整點」與「半點」。",
+      "reference_teaching_aids": "月曆或日曆、鐘面（指針）",
+      "learning_performance_codes": [
+        "n-I-9"
+      ],
+      "source_pdf_page": 21,
+      "source_printed_page": 19
+    },
+    {
+      "code": "R-1-1",
+      "grade": 1,
+      "domain": "關係",
+      "name": "算式與符號",
+      "description": "算式與符號：含加減算式中的數、加號、減號、等號。以說、讀、聽、寫、做檢驗學生的理解。適用於後續階段。",
+      "notes": "此條目包括小學之後的學習，不再另列條目。本條目應在加減法單元中完成，不須另立獨立單元教學。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-I-1"
+      ],
+      "source_pdf_page": 22,
+      "source_printed_page": 20
+    },
+    {
+      "code": "R-1-2",
+      "grade": 1,
+      "domain": "關係",
+      "name": "兩數相加的順序不影響其和",
+      "description": "兩數相加的順序不影響其和：加法交換律。可併入其他教學活動。",
+      "notes": "先用「併加型」（合成型）情境說明，再應用於其他情境。不出現「加法交換律」一詞。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-I-2"
+      ],
+      "source_pdf_page": 22,
+      "source_printed_page": 20
+    },
+    {
+      "code": "S-1-1",
+      "grade": 1,
+      "domain": "空間與形狀",
+      "name": "長度（同 N-1-5）",
+      "description": "長度（同 N-1-5）：以操作活動為主。初步認識、直接比較、間接比較（含個別單位）。",
+      "notes": "同N-1-5備註。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-7"
+      ],
+      "source_pdf_page": 21,
+      "source_printed_page": 19
+    },
+    {
+      "code": "S-1-2",
+      "grade": 1,
+      "domain": "空間與形狀",
+      "name": "形體的操作",
+      "description": "形體的操作：以操作活動為主。描繪、複製、拼貼、堆疊。",
+      "notes": "應包含平面圖形、立體形體或兩者互動之活動，豐富學生之幾何操作經驗。",
+      "reference_teaching_aids": "各式平面圖形、立體形體、拼圖",
+      "learning_performance_codes": [
+        "s-I-1"
+      ],
+      "source_pdf_page": 22,
+      "source_printed_page": 20
+    },
+    {
+      "code": "D-2-1",
+      "grade": 2,
+      "domain": "資料與不確定性",
+      "name": "分類與呈現",
+      "description": "分類與呈現：以操作活動為主。能蒐集、分類、記錄、呈現資料、生活物件或幾何形體。討論分類之中還可以再分類的情況。",
+      "notes": "非正式表格與統計圖表教學（見D-1-1備註）。可配合平面圖形與立體形體教學（S-2-2）。",
+      "reference_teaching_aids": "簡單平面圖形與立體 形 體（ 同 顏色）",
+      "learning_performance_codes": [
+        "d-I-1"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "N-2-1",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "一千以內的數",
+      "description": "一千以內的數：含位值積木操作活動。結合點數、位值表徵、位值表。位值單位「百」。位值單位換算。",
+      "notes": "教學可數到最後的「一千」，但不進行超過一千的教學。學生能局部從某數開始前後數數。須點數表示位值之積木，並熟練「十個一數」、「百個一數」的數數模式。",
+      "reference_teaching_aids": "位值表、位值積木",
+      "learning_performance_codes": [
+        "n-I-1"
+      ],
+      "source_pdf_page": 22,
+      "source_printed_page": 20
+    },
+    {
+      "code": "N-2-2",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "加減算式與直式計算",
+      "description": "加減算式與直式計算：用位值理解多位數加減計算的原理與方法。初期可操作、橫式、直式等方法並陳，二年級最後歸結於直式計算，做為後續更大位數計算之基礎。直式計算的基礎為位值概念與基本加減法，教師須說明直式計算的合理性。",
+      "notes": "不論橫式或直式，加法含二次進位，減法限一次退位。須處理數字中有0的題型。為了熟悉位值與直式計算的關係，應先在有位值的表格中學習記錄與計算。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-2"
+      ],
+      "source_pdf_page": 22,
+      "source_printed_page": 20
+    },
+    {
+      "code": "N-2-3",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：加減應用問題。加數、被加數、減數、被減數未知之應用解題。連結加與減的關係（R-2-4）。",
+      "notes": "教師使用解題策略協助學生理解與轉化問題（花片模型、線段圖、空格算式或加減互逆等），但不發展成學生答題之固定格式。本條目不須另立單元教學。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-3"
+      ],
+      "source_pdf_page": 22,
+      "source_printed_page": 20
+    },
+    {
+      "code": "N-2-4",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：簡單加減估算。具體生活情境。以百位數估算為主。",
+      "notes": "估算解題的布題應貼近生活情境。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-3"
+      ],
+      "source_pdf_page": 23,
+      "source_printed_page": 21
+    },
+    {
+      "code": "N-2-5",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：100 元、500 元、1000元。以操作活動為主兼及計算。容許多元策略，協助建立數感。包含已學習之更小幣值。",
+      "notes": "本單元的進行可與估算連結（N-2-4）。",
+      "reference_teaching_aids": "錢幣",
+      "learning_performance_codes": [
+        "n-I-3"
+      ],
+      "source_pdf_page": 23,
+      "source_printed_page": 21
+    },
+    {
+      "code": "N-2-6",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "乘法",
+      "description": "乘法：乘法的意義與應用。在學習乘法過程，逐步發展「倍」的概念，做為統整乘法應用情境的語言。",
+      "notes": "可在乘法解題脈絡中，自然使用連加算式，不限步驟。最後能以行列模型理解乘法交換律（R-2-3）。",
+      "reference_teaching_aids": "花片、陣列 教 具（ 格 狀圖）",
+      "learning_performance_codes": [
+        "n-I-4"
+      ],
+      "source_pdf_page": 23,
+      "source_printed_page": 21
+    },
+    {
+      "code": "N-2-7",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "十十乘法",
+      "description": "十十乘法：乘除直式計算的基礎，以熟練為目標。",
+      "notes": "本單元應和乘法概念的學習同時進行，不可要求學生死背乘法表。本條目的學習可協助在除法情境（如 N-2-9）中察覺乘與除的關係。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-4"
+      ],
+      "source_pdf_page": 23,
+      "source_printed_page": 21
+    },
+    {
+      "code": "N-2-8",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：兩步驟應用問題（加、減、乘）。加減混合、加與乘、減與乘之應用解題。不含併式。不含連乘。",
+      "notes": "連乘在三年級（N-3-7）。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-5"
+      ],
+      "source_pdf_page": 23,
+      "source_printed_page": 21
+    },
+    {
+      "code": "N-2-9",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：分裝與平分。以操作活動為主。除法前置經驗。理解分裝與平分之意義與方法。引導學生在解題過程，發現問題和乘法模式的關連。",
+      "notes": "本條目非除法教學，不列除式，不用「除」的名稱（N-3-4）。限相當於整除的問題。教學應在「十十乘法」範圍中進行。可用幾個一數或連減協助，但不可成為答題格式。",
+      "reference_teaching_aids": "花片",
+      "learning_performance_codes": [
+        "n-I-4"
+      ],
+      "source_pdf_page": 23,
+      "source_printed_page": 21
+    },
+    {
+      "code": "N-2-10",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "單位分數的認識",
+      "description": "單位分數的認識：從等分配的活動（如摺紙）認識單部分為全部的「幾分之一」。知道日常語言「的一半」、「的二分之一」、「的四分之一」的溝通意義。在已等分割之格圖中，能說明一格為全部的「幾分之一」。",
+      "notes": "學生應知道等分配活動之目的。二年級之分數活動與教學限連續量，不處理離散量，避免和 N-2-9混淆。摺紙限「摺半」操作：例如用長方形摺出分母2、4、8的單位分數；用圓摺出分母2或4之單位分數。已等分割之格圖，應呼應等分割活動，以長方形或圓形為主。「的幾分之一」的用語僅限於活動與溝通，不是分數乘法問題。",
+      "reference_teaching_aids": "摺紙所需之圓與長方形。已分割之分數圓形圖與長方形",
+      "learning_performance_codes": [
+        "n-I-6"
+      ],
+      "source_pdf_page": 23,
+      "source_printed_page": 21
+    },
+    {
+      "code": "N-2-11",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "長度",
+      "description": "長度：「公分」、「公尺」。實測、量感、估測與計算。單位換算。",
+      "notes": "基於N-2-1的限制，單位換算時公尺數限個位數。長度的加減問題必須包含和數線加減可以連結之題材（N-3-11）。",
+      "reference_teaching_aids": "直尺、三角板、捲尺（彎曲物體）",
+      "learning_performance_codes": [
+        "n-I-7"
+      ],
+      "source_pdf_page": 24,
+      "source_printed_page": 22
+    },
+    {
+      "code": "N-2-12",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "容量、重量、面積",
+      "description": "容量、重量、面積：以操作活動為主。此階段量的教學應包含初步認識、直接比較、間接比較（含個別單位）。不同的量應分不同的單元學習。",
+      "notes": "雖然重量部分的教學主要使用天平，但學生仍須實際體驗重量的量感。本條目教學無常用單位（N-3-14、N-3-15、N-3-16）。",
+      "reference_teaching_aids": "容器（含等容量不同形狀）、天平與砝碼、同大小不等重物體、百格圖",
+      "learning_performance_codes": [
+        "n-I-8"
+      ],
+      "source_pdf_page": 24,
+      "source_printed_page": 22
+    },
+    {
+      "code": "N-2-13",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "鐘面的時刻",
+      "description": "鐘面的時刻：以操作活動為主。以鐘面時針與分針之位置認識「幾時幾分」。含兩整時時刻之間的整時點數（時間加減的前置經驗）。",
+      "notes": "同時加強「五個一數」、「十個一數」。本活動不含秒針教學。整時的點數教學須配合鐘面進行。",
+      "reference_teaching_aids": "鐘面教具",
+      "learning_performance_codes": [
+        "n-I-9"
+      ],
+      "source_pdf_page": 24,
+      "source_printed_page": 22
+    },
+    {
+      "code": "N-2-14",
+      "grade": 2,
+      "domain": "數與量",
+      "name": "時間",
+      "description": "時間：「年」、「月」、「星期」、「日」。理解所列時間單位之關係與約定。",
+      "notes": "本條目可包含簡單計算問題（如暑假的總天數）。不做時間間隔問題。可觀察月曆結構模式。可教「閏年」，但只談「四年一閏」。",
+      "reference_teaching_aids": "月曆、日曆",
+      "learning_performance_codes": [
+        "n-I-9"
+      ],
+      "source_pdf_page": 24,
+      "source_printed_page": 22
+    },
+    {
+      "code": "R-2-1",
+      "grade": 2,
+      "domain": "關係",
+      "name": "大小關係與遞移律",
+      "description": "大小關係與遞移律：「>」與「<」符號在算式中的意義，大小的遞移關係。",
+      "notes": "教學不出現「遞移律」一詞。本階段應在加減法單元中完成，不須獨立單元教學。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-I-1"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "R-2-2",
+      "grade": 2,
+      "domain": "關係",
+      "name": "三數相加，順序改變不影響其和",
+      "description": "三數相加，順序改變不影響其和：加法交換律和結合律的綜合。可併入其他教學活動。",
+      "notes": "先在加法的「併加型」（合成型）情境中說明。教學不出現「結合律」一詞。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-I-2"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "R-2-3",
+      "grade": 2,
+      "domain": "關係",
+      "name": "兩數相乘的順序不影響其積",
+      "description": "兩數相乘的順序不影響其積：乘法交換律。可併入其他教學活動。",
+      "notes": "「乘法交換律」不宜太早教學，建議在2年級後期，以行列模型教學。教學不出現「乘法交換律」一詞。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-I-2"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "R-2-4",
+      "grade": 2,
+      "domain": "關係",
+      "name": "加法與減法的關係",
+      "description": "加法與減法的關係：加減互逆。應用於驗算與解題。",
+      "notes": "應用加減互逆到驗算時，只用加法驗算減法答案，但不用減法驗算加法答案。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-3",
+        "r-I-3"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "S-2-1",
+      "grade": 2,
+      "domain": "空間與形狀",
+      "name": "物體之幾何特徵",
+      "description": "物體之幾何特徵：以操作活動為主。進行辨認與描述之活動。藉由實際物體認識簡單幾何形體（包含平面圖形與立體形體），並連結幾何概念（如長、短、大、小等）。",
+      "notes": "本條目之活動以實際物體為主。幾何特徵指非嚴格定義的頂點、角、邊、面、周界、內外。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "s-I-1"
+      ],
+      "source_pdf_page": 24,
+      "source_printed_page": 22
+    },
+    {
+      "code": "S-2-2",
+      "grade": 2,
+      "domain": "空間與形狀",
+      "name": "簡單幾何形體",
+      "description": "簡單幾何形體：以操作活動為主。包含平面圖形與立體形體。辨認與描述平面圖形與立體形體的幾何特徵並做分類。",
+      "notes": "可做溝通使用之命名教學，但勿發展為嚴格定義之學習（S-4-7、S-4-8）。可配合資料分類與呈現之教學（D-2-1）。",
+      "reference_teaching_aids": "各種簡單幾何形體",
+      "learning_performance_codes": [
+        "s-I-1"
+      ],
+      "source_pdf_page": 24,
+      "source_printed_page": 22
+    },
+    {
+      "code": "S-2-3",
+      "grade": 2,
+      "domain": "空間與形狀",
+      "name": "直尺操作",
+      "description": "直尺操作：測量長度。報讀公分數。指定長度之線段作圖。",
+      "notes": "由此開始建立學習與使用測量工具的良好習慣。測量都會有誤差，教師教學和評量時應注意區分誤差和錯誤的差別。",
+      "reference_teaching_aids": "直尺",
+      "learning_performance_codes": [
+        "n-I-7"
+      ],
+      "source_pdf_page": 24,
+      "source_printed_page": 22
+    },
+    {
+      "code": "S-2-4",
+      "grade": 2,
+      "domain": "空間與形狀",
+      "name": "平面圖形的邊長",
+      "description": "平面圖形的邊長：以操作活動與直尺實測為主。認識特殊幾何圖形的邊長關係。含周長的計算活動。",
+      "notes": "周長計算為簡單加法連加，不受限於兩步驟加法的限制。本條目強調操作與簡單計算，但不處理公式。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-7"
+      ],
+      "source_pdf_page": 24,
+      "source_printed_page": 22
+    },
+    {
+      "code": "S-2-5",
+      "grade": 2,
+      "domain": "空間與形狀",
+      "name": "面積",
+      "description": "面積：以具體操作為主。初步認識、直接比較、間接比較（含個別單位）。",
+      "notes": "本條目相當於 N-2-12 的部分。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-I-8"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "D-3-1",
+      "grade": 3,
+      "domain": "資料與不確定性",
+      "name": "一維表格與二維表格",
+      "description": "一維表格與二維表格：以操作活動為主。報讀、說明與製作生活中的表格。二維表格含列聯表。",
+      "notes": "製作表格不限於日常資料統計性題材，也可應用於觀察數量模式的變化（R-3-2）。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "d-II-1"
+      ],
+      "source_pdf_page": 28,
+      "source_printed_page": 26
+    },
+    {
+      "code": "N-3-1",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "一萬以內的數",
+      "description": "一萬以內的數：含位值積木操作活動。結合點數、位值表徵、位值表。位值單位「千」。位值單位換算。",
+      "notes": "教學可進行到最後的「一萬」，但不進行超過一萬的教學。",
+      "reference_teaching_aids": "位值表",
+      "learning_performance_codes": [
+        "n-II-1"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "N-3-2",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "加減直式計算",
+      "description": "加減直式計算：含加、減法多次進、退位。",
+      "notes": "須處理數字中有0的題型。教學可先在有位值的表格中學習計算。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-2"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "N-3-3",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "乘以一位數",
+      "description": "乘以一位數：乘法直式計算。教師用位值的概念說明直式計算的合理性。被乘數為二、三位數。",
+      "notes": "須處理被乘數有 0 的題型。教學可先在有位值的表格中學習計算。最後須能以一列算出答案。多位數乘以一位數隱含之分配律來自操作經驗與數感，而非分配律教學。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-2"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "N-3-4",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "除法",
+      "description": "除法：除法的意義與應用。基於N-2-9之學習，透過幾個一數的解題方法，理解如何用乘法解決除法問題。熟練十十乘法範圍的除法，做為估商的基礎。",
+      "notes": "建議先處理整除情境，再處理有餘數的情境。教學中應有乘、除法並陳之單元，讓學生能主動察覺乘法與除法問題的差異。",
+      "reference_teaching_aids": "花片",
+      "learning_performance_codes": [
+        "n-II-3"
+      ],
+      "source_pdf_page": 25,
+      "source_printed_page": 23
+    },
+    {
+      "code": "N-3-5",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "除以一位數",
+      "description": "除以一位數：除法直式計算。教師用位值的概念說明直式計算的合理性。被除數為二、三位數。",
+      "notes": "須處理被除數有 0 的題型。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-3"
+      ],
+      "source_pdf_page": 26,
+      "source_printed_page": 24
+    },
+    {
+      "code": "N-3-6",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：乘除應用問題。乘數、被乘數、除數、被除數未知之應用解題。連結乘與除的關係（R-3-1）。",
+      "notes": "可使用解題策略協助學生理解與轉化問題（例如「倍」的語言、空格算式、乘除互逆等）。本條目不須另立單元教學。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-2",
+        "n-II-3"
+      ],
+      "source_pdf_page": 26,
+      "source_printed_page": 24
+    },
+    {
+      "code": "N-3-7",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：兩步驟應用問題（加減與除、連乘）。連乘、加與除、減與除之應用解題。不含併式。",
+      "notes": "乘除混合、連除在四年級（N-4-3）。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-5"
+      ],
+      "source_pdf_page": 26,
+      "source_printed_page": 24
+    },
+    {
+      "code": "N-3-8",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：四則估算。具體生活情境。較大位數之估算策略。能用估算檢驗計算結果的合理性。",
+      "notes": "估算解題的布題應貼近生活情境。本年級剛學除法，因此估算問題須簡單。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-4"
+      ],
+      "source_pdf_page": 26,
+      "source_printed_page": 24
+    },
+    {
+      "code": "N-3-9",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "簡單同分母分數",
+      "description": "簡單同分母分數：結合操作活動與整數經驗。簡單同分母分數比較、加、減的意義。牽涉之分數與運算結果皆不超過2。以單位分數之點數為基礎，連結整數之比較、加、減。知道「和等於1」的意義。",
+      "notes": "本年級分數教學只用「分數」一詞，不出現「真分數」與「假分數」的名詞，也不含帶分數的教學（N-4-5）。應區分真分數與假分數之教學（例如分開於上、下學期）。初步認識分數的應用時，情境應以連續量為主。若要處理離散量情境，必須與連續模型表徵強烈結合，而且其計數單位須為以整體數量為分母的單位分數（如 1盒餅乾有6塊，則只處理分母 6 之分數，不處理 2或3的情況）。",
+      "reference_teaching_aids": "分數圓形圖",
+      "learning_performance_codes": [
+        "n-II-6"
+      ],
+      "source_pdf_page": 26,
+      "source_printed_page": 24
+    },
+    {
+      "code": "N-3-10",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "一位小數",
+      "description": "一位小數：認識小數與小數點。結合點數、位值表徵、位值表。位值單位「十分位」。位值單位換算。比較、加減（含直式計算）與解題。",
+      "notes": "小數之學習必須與整數經驗緊密連繫。小數應用情境應以連續量為主。",
+      "reference_teaching_aids": "位值表",
+      "learning_performance_codes": [
+        "n-II-7"
+      ],
+      "source_pdf_page": 26,
+      "source_printed_page": 24
+    },
+    {
+      "code": "N-3-11",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "整數數線",
+      "description": "整數數線：認識數線，含報讀與標示。連結數序、長度、尺的經驗，理解在數線上做比較、加、減的意義。",
+      "notes": "數線須從0開始。運用長度加減法（N-2-11），理解在數線上做加、減的意義。",
+      "reference_teaching_aids": "數線教具",
+      "learning_performance_codes": [
+        "n-II-8"
+      ],
+      "source_pdf_page": 26,
+      "source_printed_page": 24
+    },
+    {
+      "code": "N-3-12",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "長度",
+      "description": "長度：「毫米」。實測、量感、估測與計算。單位換算。",
+      "notes": "基於N-3-1的限制，單位換算時，公尺數限個位數。自3年級後，量的計算可使用複名數協助加減計算（複名數不做乘除）。",
+      "reference_teaching_aids": "一公尺尺（有毫米刻度）",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 26,
+      "source_printed_page": 24
+    },
+    {
+      "code": "N-3-13",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "角與角度（同 S-3-1）",
+      "description": "角與角度（同 S-3-1）：以具體操作為主。初步認識角和角度。角度的直接比較與間接比較。認識直角。",
+      "notes": "用直尺或三角板的直角來認識與複製直角。教學應處理角大小與邊長長短或面積大小混淆之常見錯誤。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "N-3-14",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "面積",
+      "description": "面積：「平方公分」。實測、量感、估測與計算。",
+      "notes": "應用平方公分板（百格圖），協助點數簡單圖形如正方形、長方形、三角形之面積，但不發展一般公式。",
+      "reference_teaching_aids": "百 格 圖（每格１平 方 公分）",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "N-3-15",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "容量",
+      "description": "容量：「公升」、「毫升」。實測、量感、估測與計算。單位換算。",
+      "notes": "基於N-3-1的限制，單位換算公升數限個位數。可使用複名數協助加減計算（複名數不做乘除）。",
+      "reference_teaching_aids": "3 公升量杯、1公升量杯",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "N-3-16",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "重量",
+      "description": "重量：「公斤」、「公克」。實測、量感、估測與計算。單位換算。",
+      "notes": "基於N-3-1的限制，單位換算公斤數限個位數。可使用複名數協助加減計算（複名數不做乘除）。",
+      "reference_teaching_aids": "3公斤秤、1公斤秤",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "N-3-17",
+      "grade": 3,
+      "domain": "數與量",
+      "name": "時間",
+      "description": "時間：「日」、「時」、「分」、「秒」。實測、量感、估測與計算。時間單位的換算。認識時間加減問題的類型。",
+      "notes": "時間加減問題以認識加減問題類型為原則（較深入者見 N-4-13），處理時刻或時間量等常見加減問題。本年級加減限（1）同單位時間量；（2）時、分複名數加減（無進、退位）。",
+      "reference_teaching_aids": "鐘（時針、分針、秒針）",
+      "learning_performance_codes": [
+        "n-II-10"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "R-3-1",
+      "grade": 3,
+      "domain": "關係",
+      "name": "乘法與除法的關係",
+      "description": "乘法與除法的關係：乘除互逆。應用於驗算與解題。",
+      "notes": "理解例如「3 的幾倍是15」、「什麼數的4倍是12」要用除法列式解題。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-II-1"
+      ],
+      "source_pdf_page": 28,
+      "source_printed_page": 26
+    },
+    {
+      "code": "R-3-2",
+      "grade": 3,
+      "domain": "關係",
+      "name": "數量模式與推理（I）",
+      "description": "數量模式與推理（I）：以操作活動為主。一維變化模式之觀察與推理，例如數列、一維圖表等。",
+      "notes": "含學生之簡單推理與說明。本教學活動不可出現公式，此非本條目之學習目標。可結合表格教學（D-3-1）。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-II-2"
+      ],
+      "source_pdf_page": 28,
+      "source_printed_page": 26
+    },
+    {
+      "code": "S-3-1",
+      "grade": 3,
+      "domain": "空間與形狀",
+      "name": "角與角度（同 N-3-13）",
+      "description": "角與角度（同 N-3-13）：以具體操作為主。初步認識角和角度。角度的直接比較與間接比較。認識直角。",
+      "notes": "同N-3-13備註。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "S-3-2",
+      "grade": 3,
+      "domain": "空間與形狀",
+      "name": "正方形和長方形",
+      "description": "正方形和長方形：以邊與角的特徵來定義正方形和長方形。",
+      "notes": "知道如何判斷斜擺的長方形或正方形依舊是長方形或正方形。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "s-II-1"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "S-3-3",
+      "grade": 3,
+      "domain": "空間與形狀",
+      "name": "圓",
+      "description": "圓：「圓心」、「圓周」、「半徑」與「直徑」。能使用圓規畫指定半徑的圓。",
+      "notes": "知道圓心是認識圓的重要定義元素，但是圓心並不屬於圓。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "s-II-3"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "S-3-4",
+      "grade": 3,
+      "domain": "空間與形狀",
+      "name": "幾何形體之操作",
+      "description": "幾何形體之操作：以操作活動為主。平面圖形的分割與重組。初步體驗展開圖如何黏合成立體形體。知道不同之展開圖可能黏合成同一形狀之立體形體。",
+      "notes": "以操作體驗平面圖形關係與空間感為目標，啟發學生探討與發現之興趣，但不做任何數學知識的歸納。展開圖活動只是初步體驗，勿做過多複雜推理活動。本條目不做操作以外的紙筆評量。",
+      "reference_teaching_aids": "多種展開圖",
+      "learning_performance_codes": [
+        "s-II-4"
+      ],
+      "source_pdf_page": 27,
+      "source_printed_page": 25
+    },
+    {
+      "code": "D-4-1",
+      "grade": 4,
+      "domain": "資料與不確定性",
+      "name": "報讀長條圖與折線圖以及製作長條圖",
+      "description": "報讀長條圖與折線圖以及製作長條圖：報讀與說明生活中的長條圖與折線圖。配合其他領域課程，學習製作長條圖。",
+      "notes": "教學與示例應注意處理「分類資料」與「有序變化性資料」之差別。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "d-II-1"
+      ],
+      "source_pdf_page": 31,
+      "source_printed_page": 29
+    },
+    {
+      "code": "N-4-1",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "一億以內的數",
+      "description": "一億以內的數：位值單位「萬」、「十萬」、「百萬」、「千萬」。建立應用大數時之計算習慣，如「30 萬1200」與「21萬300」的加減法。",
+      "notes": "教學可進行到最後的「一億」，但不進行超過一億的教學。",
+      "reference_teaching_aids": "位值表",
+      "learning_performance_codes": [
+        "n-II-1"
+      ],
+      "source_pdf_page": 28,
+      "source_printed_page": 26
+    },
+    {
+      "code": "N-4-2",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "較大位數之乘除計算",
+      "description": "較大位數之乘除計算：處理乘數與除數為多位數之乘除直式計算。教師用位值的概念說明直式計算的合理性。",
+      "notes": "直式計算乘數與除數限三位。直式計算須注意 0的教學。較大位數除法須進行估商的教學。知道如「1600×200」與「60000÷400」這類算式，可發展出更簡單的計算方法。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-2",
+        "n-II-3"
+      ],
+      "source_pdf_page": 28,
+      "source_printed_page": 26
+    },
+    {
+      "code": "N-4-3",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：兩步驟應用問題（乘除，連除）。乘與除、連除之應用解題。",
+      "notes": "由於除法有等分除和包含除兩種類型，教學應注意題型的多元性。可和併式學習一起進行（R-4-1）。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-5",
+        "r-II-3"
+      ],
+      "source_pdf_page": 28,
+      "source_printed_page": 26
+    },
+    {
+      "code": "N-4-4",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：對大數取概數。具體生活情境。四捨五入法、無條件進入、無條件捨去。含運用概數做估算。近似符號「≈」的使用。",
+      "notes": "估算解題的布題應貼近生活情境。以概數協助估算須包含四則估算。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-4"
+      ],
+      "source_pdf_page": 28,
+      "source_printed_page": 26
+    },
+    {
+      "code": "N-4-5",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "同分母分數",
+      "description": "同分母分數：一般同分母分數教學（包括「真分數」、「假分數」、「帶分數」名詞引入）。假分數和帶分數之變換。同分母分數的比較、加、減與整數倍。",
+      "notes": "本條目教學，分子和分母的數字都不用太大，以能流暢學習同分母分數計算為目標。帶分數整數倍教學不宜強迫學生化成假分數進行，其中隱含之分配律思維來自操作經驗與數感，此非分配律教學。",
+      "reference_teaching_aids": "分數圓形圖",
+      "learning_performance_codes": [
+        "n-II-6"
+      ],
+      "source_pdf_page": 28,
+      "source_printed_page": 26
+    },
+    {
+      "code": "N-4-6",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "等值分數",
+      "description": "等值分數：由操作活動中理解等值分數的意義。簡單異分母分數的比較、加、減的意義。簡單分數與小數的互換。",
+      "notes": "簡單異分母分數指一分母為另一分母之倍數。與小數互換之簡單分數指分母為2、5、10、100。",
+      "reference_teaching_aids": "分數圓形圖",
+      "learning_performance_codes": [
+        "n-II-6"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "N-4-7",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "二位小數",
+      "description": "二位小數：位值單位「百分位」。位值單位換算。比較、計算與解題。用直式計算二位小數的加、減與整數倍。",
+      "notes": "小數之學習必須與整數經驗緊密連繫。直式計算應注意小數點位置的教學。小數應用情境以連續量為主。",
+      "reference_teaching_aids": "位值表",
+      "learning_performance_codes": [
+        "n-II-7"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "N-4-8",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "數線與分數、小數",
+      "description": "數線與分數、小數：連結分小數長度量的經驗。以標記和簡單的比較與計算，建立整數、分數、小數一體的認識。",
+      "notes": "標記限一位小數（相當於分母等於10）與分母不大於5的分數。以等值分數思維（N-4-6）協助學生認識整數、分數、小數為一體。因初學等值分數，本條目不處理分數和小數的混合計算問題。",
+      "reference_teaching_aids": "數線教具",
+      "learning_performance_codes": [
+        "n-II-8"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "N-4-9",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "長度",
+      "description": "長度：「公里」。生活實例之應用。含其他長度單位的換算與計算。",
+      "notes": "量的大單位教學仍應協助學生建立基本量感。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "N-4-10",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "角度",
+      "description": "角度：「度」（同 S-4-1）。量角器的操作。實測、估測與計算。以角的合成認識180 度到 360 度之間的角度。「平角」、「周角」。指定角度作圖。",
+      "notes": "量角器教學須包括從量角器左右兩側進行量角之活動。",
+      "reference_teaching_aids": "量角器",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "N-4-11",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "面積",
+      "description": "面積：「平方公尺」。實測、量感、估測與計算。",
+      "notes": "基於 N-4-2，本條目不做「平方公分」換到「平方公尺」的問題。不用複名數進行計算。",
+      "reference_teaching_aids": "平 方 公 尺板 （ 萬 格板）",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "N-4-12",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "體積與「立方公分」",
+      "description": "體積與「立方公分」：以具體操作為主。體積認識基於1立方公分之正方體。",
+      "notes": "教學應注意體積不容易做直接與間接比較，應和1 立方公分之正方體一起教學。",
+      "reference_teaching_aids": "正方體教具",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "N-4-13",
+      "grade": 4,
+      "domain": "數與量",
+      "name": "解題",
+      "description": "解題：日常生活的時間加減問題。跨時、跨午、跨日、24 小時制。含時間單位換算。",
+      "notes": "教學須包含各種類型的時間加減問題。建議不直接談時差，與時差有關問題，可在布題時先處理。",
+      "reference_teaching_aids": "電子鐘、電腦螢幕時間",
+      "learning_performance_codes": [
+        "n-II-10"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "R-4-1",
+      "grade": 4,
+      "domain": "關係",
+      "name": "兩步驟問題併式",
+      "description": "兩步驟問題併式：併式是代數學習的重要基礎。含四則混合計算的約定（由左往右算、先乘除後加減、括號先算）。學習逐次減項計算。",
+      "notes": "限整數。2、3年級已學習之兩步驟問題（N-2-8、N-3-7），也應複習並進行併式學習。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-II-3"
+      ],
+      "source_pdf_page": 30,
+      "source_printed_page": 28
+    },
+    {
+      "code": "R-4-2",
+      "grade": 4,
+      "domain": "關係",
+      "name": "四則計算規律（I）",
+      "description": "四則計算規律（I）：兩步驟計算規則。加減混合計算、乘除混合計算。在四則混合計算中運用數的運算性質。",
+      "notes": "加減部分，不做𝑎−(𝑏−𝑐)之去括號。乘除只做「三數相乘，順序改變不影響其積」、「先乘後除與先除後乘的結果相同」。必須呈現以下原則的範例：將應用問題轉化成算式後，再利用計算規律調整算式進行計算解題（其中調整後的算式已無法以原情境來解釋）。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-II-4"
+      ],
+      "source_pdf_page": 31,
+      "source_printed_page": 29
+    },
+    {
+      "code": "R-4-3",
+      "grade": 4,
+      "domain": "關係",
+      "name": "以文字表示數學公式",
+      "description": "以文字表示數學公式：理解以文字和運算符號聯合表示的數學公式，並能應用公式。可併入其他教學活動（如S-4-3）。",
+      "notes": "如S-4-3的「長方形面積＝長×寬」、「正方形周長＝邊長×4」等。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-II-5"
+      ],
+      "source_pdf_page": 31,
+      "source_printed_page": 29
+    },
+    {
+      "code": "R-4-4",
+      "grade": 4,
+      "domain": "關係",
+      "name": "數量模式與推理（II）",
+      "description": "數量模式與推理（II）：以操作活動為主。二維變化模式之觀察與推理，如二維數字圖之推理。奇數與偶數，及其加、減、乘模式。",
+      "notes": "含學生之簡單推理與說明。如百數表模式、月曆模式之數字模式等。不可出現公式，此非本條目之學習目標。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "r-II-2"
+      ],
+      "source_pdf_page": 31,
+      "source_printed_page": 29
+    },
+    {
+      "code": "S-4-1",
+      "grade": 4,
+      "domain": "空間與形狀",
+      "name": "角度",
+      "description": "角度：「度」（同 N-4-10）。量角器的操作。實測、估測與計算。以角的合成認識180 度到 360 度之間的角度。「平角」、「周角」。指定角度作圖。",
+      "notes": "同N-4-10備註。",
+      "reference_teaching_aids": "量角器",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 29,
+      "source_printed_page": 27
+    },
+    {
+      "code": "S-4-2",
+      "grade": 4,
+      "domain": "空間與形狀",
+      "name": "解題",
+      "description": "解題：旋轉角。以具體操作為主，並結合計算。以鐘面為模型討論從始邊轉到終邊所轉的角度。旋轉有兩個方向：「順時針」、「逆時針」。「平角」、「周角」。",
+      "notes": "不處理超過 360 度的問題。",
+      "reference_teaching_aids": "鐘 面 教具、量角器",
+      "learning_performance_codes": [
+        "s-II-4"
+      ],
+      "source_pdf_page": 30,
+      "source_printed_page": 28
+    },
+    {
+      "code": "S-4-3",
+      "grade": 4,
+      "domain": "空間與形狀",
+      "name": "正方形與長方形的面積與周長",
+      "description": "正方形與長方形的面積與周長：理解邊長與周長或面積的關係，並能理解其公式與應用。簡單複合圖形。",
+      "notes": "邊長限整數。最後學生的計算是依據定義以乘法計算，而非測量合成之結果。簡單複合圖形限兩圖形之組合。",
+      "reference_teaching_aids": "",
+      "learning_performance_codes": [
+        "s-II-1"
+      ],
+      "source_pdf_page": 30,
+      "source_printed_page": 28
+    },
+    {
+      "code": "S-4-4",
+      "grade": 4,
+      "domain": "空間與形狀",
+      "name": "體積",
+      "description": "體積：以具體操作為主。在活動中認識體積的意義與比較。認識1立方公分之正方體，能理解並計數正方體堆疊的體積。",
+      "notes": "同N-4-12備註。",
+      "reference_teaching_aids": "正方體教具",
+      "learning_performance_codes": [
+        "n-II-9"
+      ],
+      "source_pdf_page": 30,
+      "source_printed_page": 28
+    },
+    {
+      "code": "S-4-5",
+      "grade": 4,
+      "domain": "空間與形狀",
+      "name": "垂直與平行",
+      "description": "垂直與平行：以具體操作為主。直角是 90 度。直角常用記號。垂直於一線的兩線相互平行。平行線間距離處處相等。作垂直線；作平行線。",
+      "notes": "透過操作和觀察知道平行線間距離處處相等，非數學證明。",
+      "reference_teaching_aids": "三角板、直尺",
+      "learning_performance_codes": [
+        "s-II-3"
+      ],
+      "source_pdf_page": 30,
+      "source_printed_page": 28
+    },
+    {
+      "code": "S-4-6",
+      "grade": 4,
+      "domain": "空間與形狀",
+      "name": "平面圖形的全等",
+      "description": "平面圖形的全等：以具體操作為主。形狀大小一樣的兩圖形全等。能用平移、旋轉、翻轉做全等疊合。全等圖形之對應角相等、對應邊相等。",
+      "notes": "在具有平移或旋轉對稱特性的圖形上，學生可察覺豐富的全等模式。平移、旋轉、翻轉描述操作的方式，非名詞教學，名詞不應出現。",
+      "reference_teaching_aids": "具有平移對稱、旋轉對稱的圖形",
+      "learning_performance_codes": [
+        "s-II-2"
+      ],
+      "source_pdf_page": 30,
+      "source_printed_page": 28
+    },
+    {
+      "code": "S-4-7",
+      "grade": 4,
+      "domain": "空間與形狀",
+      "name": "三角形",
+      "description": "三角形：以邊與角的特徵認識特殊三角形並能作圖。如正三角形、等腰三角形、直角三角形、銳角三角形、鈍角三角形。",
+      "notes": null,
+      "reference_teaching_aids": "各種三角形",
+      "learning_performance_codes": [
+        "s-II-3"
+      ],
+      "source_pdf_page": 30,
+      "source_printed_page": 28,
+      "notes_status": "not_listed_in_official_table"
+    },
+    {
+      "code": "S-4-8",
+      "grade": 4,
+      "domain": "空間與形狀",
+      "name": "四邊形",
+      "description": "四邊形：以邊與角的特徵（含平行）認識特殊四邊形並能作圖。如正方形、長方形、平行四邊形、菱形、梯形。",
+      "notes": "作圖包含正方形、長方形、平行四邊形。",
+      "reference_teaching_aids": "各種四邊形",
+      "learning_performance_codes": [
+        "s-II-3"
+      ],
+      "source_pdf_page": 30,
+      "source_printed_page": 28
+    }
+  ]
+}

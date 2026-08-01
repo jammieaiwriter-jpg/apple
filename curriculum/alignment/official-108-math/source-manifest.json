@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "108 課綱數學領域 G1-G4 對齊的官方來源封存",
+  "sources": [
+    {
+      "id": "moe-108-math-curriculum-20180726",
+      "title": "十二年國民基本教育課程綱要國民中小學暨普通型高級中等學校－數學領域",
+      "authority": "教育部主管法規共用系統",
+      "authority_level": 1,
+      "publication_date": "2018-07-26",
+      "legal_order": "臺教授國部字第1070066476B號令",
+      "url": "https://edu.law.moe.gov.tw/Download.ashx?FileID=31051&id=GL001788&type=LAW",
+      "landing_page_url": "https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001788",
+      "local_file": "sources/108-math-curriculum-moe-20180726.pdf",
+      "media_type": "application/pdf",
+      "sha256": "a9fd74c24933b16e256fcbcfe77ccf24e687dc5c5795b45215859d3a1439ef21",
+      "purpose": "G1-G4 學習內容代碼、條目、說明、備註與對應學習表現的上位基準。"
+    },
+    {
+      "id": "naer-math-course-manual-202501",
+      "title": "十二年國民基本教育課程綱要國民中小學暨普通型高級中等學校數學領域課程手冊（114年1月更新版）",
+      "authority": "國家教育研究院",
+      "authority_level": 2,
+      "updated_date": "2025-01",
+      "url": "https://www.naer.edu.tw/upload/1/9/doc/2021/%E6%95%B8%E5%AD%B8%E9%A0%98%E5%9F%9F%E8%AA%B2%E7%A8%8B%E6%89%8B%E5%86%8A%EF%BC%88114%E5%B9%B41%E6%9C%88%E6%9B%B4%E6%96%B0%E7%89%88%EF%BC%89.pdf",
+      "landing_page_url": "https://www.naer.edu.tw/PageSyllabus?fid=197",
+      "local_file": "sources/108-math-course-manual-naer-202501.pdf",
+      "media_type": "application/pdf",
+      "sha256": "af606a74f170727afca665a1e56d92451fe53afb326368d36b71b2cb9443835c",
+      "purpose": "解釋領綱條文、教材與教學年級邊界；不得推翻教育部發布版。"
+    }
+  ],
+  "not_locally_archived": [
+    {
+      "title": "十二年國民基本教育課程綱要國民中小學暨普通型高級中等學校－數學領域（ODT）",
+      "authority": "國家教育研究院愛學網",
+      "url": "https://stv.naer.edu.tw/data/course_outline/212882526.odt",
+      "reason": "官方 ODT 連線逾時；本目錄以教育部發布版 PDF 作為可驗證基準，ODT 只作同內容的便利格式。"
+    }
+  ]
+}

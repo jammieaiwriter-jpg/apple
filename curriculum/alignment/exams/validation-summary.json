@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-08-01T14:09:55.632Z",
+  "assertions": [
+    {
+      "name": "question_paper_total",
+      "expected": 393,
+      "actual": 393,
+      "pass": true
+    },
+    {
+      "name": "answer_paper_total",
+      "expected": 393,
+      "actual": 393,
+      "pass": true
+    },
+    {
+      "name": "paired_answers",
+      "expected": 393,
+      "actual": 393,
+      "pass": true
+    },
+    {
+      "name": "期中1",
+      "expected": 204,
+      "actual": 204,
+      "pass": true
+    },
+    {
+      "name": "期中2",
+      "expected": 13,
+      "actual": 13,
+      "pass": true
+    },
+    {
+      "name": "期末2",
+      "expected": 161,
+      "actual": 161,
+      "pass": true
+    },
+    {
+      "name": "期末3",
+      "expected": 15,
+      "actual": 15,
+      "pass": true
+    }
+  ],
+  "additional": {
+    "totalProfiles": 59,
+    "profilesWithPrintedScopeEvidence": 28,
+    "pilotSampleCount": 15
+  }
+}

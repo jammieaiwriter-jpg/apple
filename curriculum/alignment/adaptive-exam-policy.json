@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "1.0",
+  "policyId": "exam-first-adaptive-matrix-v1",
+  "status": "design_only_not_connected_to_scheduler",
+  "authorityOrder": [
+    "official_108_content_code",
+    "publisher_edition_unit",
+    "confirmed_exam_scope",
+    "paper_question_evidence",
+    "internal_skill_id",
+    "koobits_product_taxonomy"
+  ],
+  "scopeGate": {
+    "requiresExamScopeProfile": true,
+    "excludeScopeOutliers": true,
+    "allowedAlignmentStatuses": [
+      "direct",
+      "partial"
+    ],
+    "conditionalAlignmentStatuses": {
+      "cross_grade": "explicit_parent_or_exam_evidence_only",
+      "enrichment": "explicit_parent_or_exam_evidence_only",
+      "uncertain": "blocked_until_reviewed"
+    }
+  },
+  "matrixDimensions": [
+    "officialContentCodes",
+    "publisherUnitIds",
+    "examScopeProfileIds",
+    "skillIds",
+    "concept",
+    "questionType",
+    "representation",
+    "askDirection",
+    "trap",
+    "level"
+  ],
+  "generation": {
+    "method": "offline_ai_variation_from_verified_matrix",
+    "liveAiInPracticePage": false,
+    "requiresVerifiedAnswer": true,
+    "requiresIndependentVerification": true,
+    "retryVariantsPerMissedItem": 2,
+    "eligibleGenerationStatus": "verified"
+  },
+  "sessionDefaults": {
+    "shortPracticeItemCount": 12,
+    "fullRunItemCount": 24,
+    "examWeekMix": {
+      "mixedCoverageRatio": 0.7,
+      "targetedRepairRatio": 0.3
+    },
+    "coverageRule": "Every in-scope official concept and high-frequency paper type keeps a minimum rolling-window exposure; weak-cell weighting cannot erase broad exam coverage."
+  },
+  "adaptationSignals": {
+    "wrong": {
+      "countsAsMastery": false,
+      "weightMultiplier": 2.0,
+      "nextActions": [
+        "retry_original_concept",
+        "same_type_new_context_or_numbers",
+        "same_concept_new_ask_direction_or_representation"
+      ]
+    },
+    "usedHint": {
+      "countsAsMastery": false,
+      "weightMultiplier": 1.75,
+      "nextActions": [
+        "keep_in_retry",
+        "reduce_scaffolding_gradually"
+      ]
+    },
+    "viewedAnswerOrSolution": {
+      "countsAsMastery": false,
+      "weightMultiplier": 2.0,
+      "nextActions": [
+        "keep_in_retry",
+        "require_two_verified_variants"
+      ]
+    },
+    "cleanCorrect": {
+      "countsAsMastery": true,
+      "weightMultiplier": 0.85,
+      "nextActions": [
+        "change_representation",
+        "change_ask_direction",
+        "raise_level_when_safe"
+      ]
+    },
+    "repeatedCleanCorrect": {
+      "countsAsMastery": true,
+      "minimumWeightBeforeExam": 0.35,
+      "nextActions": [
+        "spaced_review",
+        "retain_in_mixed_coverage"
+      ]
+    },
+    "correctButSlow": {
+      "countsAsMastery": true,
+      "weightMultiplier": 1.0,
+      "nextActions": [
+        "keep_difficulty",
+        "observe_again"
+      ],
+      "note": "Response time is a secondary signal and cannot by itself lower mastery."
+    },
+    "matchedDistractorTrap": {
+      "countsAsMastery": false,
+      "weightMultiplier": 2.25,
+      "nextActions": [
+        "target_same_trap",
+        "contrast_correct_and_wrong_reasoning"
+      ]
+    }
+  },
+  "nonNegotiableRules": [
+    "Exam scope is a hard boundary during exam mode.",
+    "KooBits chapter order and rewards never change scope or mastery.",
+    "Question count alone is not mastery.",
+    "Hints, answers, and solutions taint the attempt and require retry.",
+    "No generated item reaches the child before answer and representation verification."
+  ]
+}

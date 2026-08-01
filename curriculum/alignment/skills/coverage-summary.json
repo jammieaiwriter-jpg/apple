@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0",
+  "createdAt": "2026-08-01T15:17:06.791Z",
+  "skillTotal": 402,
+  "uniqueSkillIds": 402,
+  "statusCounts": {
+    "cross_grade": 13,
+    "direct": 312,
+    "enrichment": 4,
+    "partial": 60,
+    "uncertain": 13
+  },
+  "confidenceCounts": {
+    "high": 328,
+    "low": 14,
+    "medium": 60
+  },
+  "gradeCounts": {
+    "G1": 79,
+    "G2": 79,
+    "G3": 96,
+    "G4": 148
+  },
+  "contentCodeCoverage": {
+    "used": 69,
+    "total": 85,
+    "unused": [
+      "N-1-4",
+      "D-2-1",
+      "N-2-4",
+      "N-2-5",
+      "N-2-10",
+      "R-2-2",
+      "N-3-7",
+      "N-3-8",
+      "N-3-11",
+      "R-3-2",
+      "S-3-2",
+      "N-4-8",
+      "R-4-3",
+      "R-4-4",
+      "S-4-2",
+      "S-4-6"
+    ]
+  },
+  "recordsWithContentCodes": 389,
+  "recordsWithoutContentCodes": 13,
+  "validation": {
+    "allCatalogSkillsPresent": true,
+    "uniqueSkillIds": true,
+    "contentCodesResolve": true,
+    "performanceCodesResolve": true
+  }
+}

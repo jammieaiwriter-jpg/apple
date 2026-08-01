@@ -1,0 +1,55 @@
+{
+  "source": "https://www.tcool.cc/",
+  "retrievedAt": "2026-08-01T14:11:13.055Z",
+  "filters": {
+    "grade": "1年級",
+    "subject": "英語",
+    "semester": "不限",
+    "period": "不限",
+    "publisher": "翰林",
+    "hasAnswer": "有答案卷"
+  },
+  "pagination": {
+    "maxPage": 1,
+    "visibleRows": 4
+  },
+  "deduplication": "以題目卷 sourceBasename 去重，只保留題目卷與答案卷成對資料。",
+  "records": [
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100488160e53cf027022.pdf",
+        "https://www.tcool.cc/d/a/100488160e53cf0271fc.pdf"
+      ],
+      "row": 3,
+      "text": "四維國小\n臺中市\n1年級 英語\n109下 期中1\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/100488160e53cf027022.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100488160e53cf0271fc.pdf",
+      "questionSourceBasename": "100488160e53cf027022.pdf",
+      "answerSourceBasename": "100488160e53cf0271fc.pdf",
+      "index": 1,
+      "questionFilename": "Q_100488160e53cf027022.pdf",
+      "answerFilename": "A_100488160e53cf0271fc.pdf",
+      "questionPath": "questions/Q_100488160e53cf027022.pdf",
+      "answerPath": "answers/A_100488160e53cf0271fc.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100488160753adecbb25.pdf",
+        "https://www.tcool.cc/d/a/100488160753adecc0a1.pdf"
+      ],
+      "row": 4,
+      "text": "四維國小\n臺中市\n1年級 英語\n109上 期末2\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/100488160753adecbb25.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100488160753adecc0a1.pdf",
+      "questionSourceBasename": "100488160753adecbb25.pdf",
+      "answerSourceBasename": "100488160753adecc0a1.pdf",
+      "index": 2,
+      "questionFilename": "Q_100488160753adecbb25.pdf",
+      "answerFilename": "A_100488160753adecc0a1.pdf",
+      "questionPath": "questions/Q_100488160753adecbb25.pdf",
+      "answerPath": "answers/A_100488160753adecc0a1.pdf"
+    }
+  ]
+}

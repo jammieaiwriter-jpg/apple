@@ -1,0 +1,883 @@
+{
+  "source": "https://www.tcool.cc/",
+  "retrievedAt": "2026-08-01T14:59:52.081Z",
+  "filters": {
+    "grade": "3年級",
+    "subject": "英語",
+    "semester": "不限",
+    "period": "不限",
+    "publisher": "翰林",
+    "hasAnswer": "有答案卷"
+  },
+  "pagination": {
+    "maxPage": 9,
+    "visibleRows": 83
+  },
+  "deduplication": "以題目卷 sourceBasename 去重，只保留題目卷與答案卷成對資料。",
+  "records": [
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20002191b31406bfadd0.pdf",
+        "https://www.tcool.cc/d/a/20002191a31406bfadd0.pdf"
+      ],
+      "row": 1,
+      "text": "安和國小\n新北市\n3年級 英語\n113下 期末2\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/20002191b31406bfadd0.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20002191a31406bfadd0.pdf",
+      "questionSourceBasename": "20002191b31406bfadd0.pdf",
+      "answerSourceBasename": "20002191a31406bfadd0.pdf",
+      "index": 1,
+      "questionFilename": "Q_20002191b31406bfadd0.pdf",
+      "answerFilename": "A_20002191a31406bfadd0.pdf",
+      "questionPath": "questions/Q_20002191b31406bfadd0.pdf",
+      "answerPath": "answers/A_20002191a31406bfadd0.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20001270b32472bdd2d7.pdf",
+        "https://www.tcool.cc/d/a/20001270a32472bdd2d7.pdf"
+      ],
+      "row": 2,
+      "text": "桃子腳國小\n新北市\n3年級 英語\n113下 期末2\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/20001270b32472bdd2d7.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20001270a32472bdd2d7.pdf",
+      "questionSourceBasename": "20001270b32472bdd2d7.pdf",
+      "answerSourceBasename": "20001270a32472bdd2d7.pdf",
+      "index": 2,
+      "questionFilename": "Q_20001270b32472bdd2d7.pdf",
+      "answerFilename": "A_20001270a32472bdd2d7.pdf",
+      "questionPath": "questions/Q_20001270b32472bdd2d7.pdf",
+      "answerPath": "answers/A_20001270a32472bdd2d7.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20002190b3246f7b940a.pdf",
+        "https://www.tcool.cc/d/a/20002190a3246f7b940a.pdf"
+      ],
+      "row": 6,
+      "text": "安和國小\n新北市\n3年級 英語\n113上 期末2\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/20002190b3246f7b940a.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20002190a3246f7b940a.pdf",
+      "questionSourceBasename": "20002190b3246f7b940a.pdf",
+      "answerSourceBasename": "20002190a3246f7b940a.pdf",
+      "index": 3,
+      "questionFilename": "Q_20002190b3246f7b940a.pdf",
+      "answerFilename": "A_20002190a3246f7b940a.pdf",
+      "questionPath": "questions/Q_20002190b3246f7b940a.pdf",
+      "answerPath": "answers/A_20002190a3246f7b940a.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20000029b31427f0963b.pdf",
+        "https://www.tcool.cc/d/a/20000029a31427f0963b.pdf"
+      ],
+      "row": 7,
+      "text": "桃子腳國小\n新北市\n3年級 英語\n113上 期末2\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/20000029b31427f0963b.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20000029a31427f0963b.pdf",
+      "questionSourceBasename": "20000029b31427f0963b.pdf",
+      "answerSourceBasename": "20000029a31427f0963b.pdf",
+      "index": 4,
+      "questionFilename": "Q_20000029b31427f0963b.pdf",
+      "answerFilename": "A_20000029a31427f0963b.pdf",
+      "questionPath": "questions/Q_20000029b31427f0963b.pdf",
+      "answerPath": "answers/A_20000029a31427f0963b.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20000005b311050ac28a.pdf",
+        "https://www.tcool.cc/d/a/20000005a311050ac28a.pdf"
+      ],
+      "row": 9,
+      "text": "桃子腳國小\n新北市\n3年級 英語\n113上 期中1\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/20000005b311050ac28a.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20000005a311050ac28a.pdf",
+      "questionSourceBasename": "20000005b311050ac28a.pdf",
+      "answerSourceBasename": "20000005a311050ac28a.pdf",
+      "index": 5,
+      "questionFilename": "Q_20000005b311050ac28a.pdf",
+      "answerFilename": "A_20000005a311050ac28a.pdf",
+      "questionPath": "questions/Q_20000005b311050ac28a.pdf",
+      "answerPath": "answers/A_20000005a311050ac28a.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20000730b324568eeb6b.pdf",
+        "https://www.tcool.cc/d/a/20000730a324568eeb6b.pdf"
+      ],
+      "row": 1,
+      "text": "和順國小\n臺南市\n3年級 英語\n112下 期末2\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/20000730b324568eeb6b.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20000730a324568eeb6b.pdf",
+      "questionSourceBasename": "20000730b324568eeb6b.pdf",
+      "answerSourceBasename": "20000730a324568eeb6b.pdf",
+      "index": 6,
+      "questionFilename": "Q_20000730b324568eeb6b.pdf",
+      "answerFilename": "A_20000730a324568eeb6b.pdf",
+      "questionPath": "questions/Q_20000730b324568eeb6b.pdf",
+      "answerPath": "answers/A_20000730a324568eeb6b.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/1002958669881cb58191.pdf",
+        "https://www.tcool.cc/d/a/1002958669881cb588b8.pdf"
+      ],
+      "row": 2,
+      "text": "內安國小\n彰化縣\n3年級 英語\n112下 期末2\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/1002958669881cb58191.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/1002958669881cb588b8.pdf",
+      "questionSourceBasename": "1002958669881cb58191.pdf",
+      "answerSourceBasename": "1002958669881cb588b8.pdf",
+      "index": 7,
+      "questionFilename": "Q_1002958669881cb58191.pdf",
+      "answerFilename": "A_1002958669881cb588b8.pdf",
+      "questionPath": "questions/Q_1002958669881cb58191.pdf",
+      "answerPath": "answers/A_1002958669881cb588b8.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100488166961e25a3256.pdf",
+        "https://www.tcool.cc/d/a/100488166961e25a3534.pdf"
+      ],
+      "row": 3,
+      "text": "四維國小\n臺中市\n3年級 英語\n112下 期末2\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/100488166961e25a3256.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100488166961e25a3534.pdf",
+      "questionSourceBasename": "100488166961e25a3256.pdf",
+      "answerSourceBasename": "100488166961e25a3534.pdf",
+      "index": 8,
+      "questionFilename": "Q_100488166961e25a3256.pdf",
+      "answerFilename": "A_100488166961e25a3534.pdf",
+      "questionPath": "questions/Q_100488166961e25a3256.pdf",
+      "answerPath": "answers/A_100488166961e25a3534.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20000706b3210e918bbf.pdf",
+        "https://www.tcool.cc/d/a/20000706a3210e918bbf.pdf"
+      ],
+      "row": 4,
+      "text": "和順國小\n臺南市\n3年級 英語\n112下 期中1\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/20000706b3210e918bbf.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20000706a3210e918bbf.pdf",
+      "questionSourceBasename": "20000706b3210e918bbf.pdf",
+      "answerSourceBasename": "20000706a3210e918bbf.pdf",
+      "index": 9,
+      "questionFilename": "Q_20000706b3210e918bbf.pdf",
+      "answerFilename": "A_20000706a3210e918bbf.pdf",
+      "questionPath": "questions/Q_20000706b3210e918bbf.pdf",
+      "answerPath": "answers/A_20000706a3210e918bbf.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10048816694d7767b06c.pdf",
+        "https://www.tcool.cc/d/a/10048816694d7767b450.pdf"
+      ],
+      "row": 5,
+      "text": "四維國小\n臺中市\n3年級 英語\n112下 期中1\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/10048816694d7767b06c.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10048816694d7767b450.pdf",
+      "questionSourceBasename": "10048816694d7767b06c.pdf",
+      "answerSourceBasename": "10048816694d7767b450.pdf",
+      "index": 10,
+      "questionFilename": "Q_10048816694d7767b06c.pdf",
+      "answerFilename": "A_10048816694d7767b450.pdf",
+      "questionPath": "questions/Q_10048816694d7767b06c.pdf",
+      "answerPath": "answers/A_10048816694d7767b450.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10029556641d66b1da0c.pdf",
+        "https://www.tcool.cc/d/a/10029556641aff8a14e4.pdf"
+      ],
+      "row": 6,
+      "text": "田中國小\n彰化縣\n3年級 英語\n112下 期中1\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/10029556641d66b1da0c.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10029556641aff8a14e4.pdf",
+      "questionSourceBasename": "10029556641d66b1da0c.pdf",
+      "answerSourceBasename": "10029556641aff8a14e4.pdf",
+      "index": 11,
+      "questionFilename": "Q_10029556641d66b1da0c.pdf",
+      "answerFilename": "A_10029556641aff8a14e4.pdf",
+      "questionPath": "questions/Q_10029556641d66b1da0c.pdf",
+      "answerPath": "answers/A_10029556641aff8a14e4.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10029586627518f846ab.pdf",
+        "https://www.tcool.cc/d/a/10029586627518f84a7e.pdf"
+      ],
+      "row": 7,
+      "text": "內安國小\n彰化縣\n3年級 英語\n112下 期中1\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/10029586627518f846ab.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10029586627518f84a7e.pdf",
+      "questionSourceBasename": "10029586627518f846ab.pdf",
+      "answerSourceBasename": "10029586627518f84a7e.pdf",
+      "index": 12,
+      "questionFilename": "Q_10029586627518f846ab.pdf",
+      "answerFilename": "A_10029586627518f84a7e.pdf",
+      "questionPath": "questions/Q_10029586627518f846ab.pdf",
+      "answerPath": "answers/A_10029586627518f84a7e.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20000682b3144aa7a0cc.pdf",
+        "https://www.tcool.cc/d/a/20000682a3144aa7a0cc.pdf"
+      ],
+      "row": 8,
+      "text": "和順國小\n臺南市\n3年級 英語\n112上 期末2\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/20000682b3144aa7a0cc.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20000682a3144aa7a0cc.pdf",
+      "questionSourceBasename": "20000682b3144aa7a0cc.pdf",
+      "answerSourceBasename": "20000682a3144aa7a0cc.pdf",
+      "index": 13,
+      "questionFilename": "Q_20000682b3144aa7a0cc.pdf",
+      "answerFilename": "A_20000682a3144aa7a0cc.pdf",
+      "questionPath": "questions/Q_20000682b3144aa7a0cc.pdf",
+      "answerPath": "answers/A_20000682a3144aa7a0cc.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100299565cd7b386d093.pdf",
+        "https://www.tcool.cc/d/a/100299565cd7b386d453.pdf"
+      ],
+      "row": 9,
+      "text": "中正國小\n彰化縣\n3年級 英語\n112上 期末2\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/100299565cd7b386d093.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100299565cd7b386d453.pdf",
+      "questionSourceBasename": "100299565cd7b386d093.pdf",
+      "answerSourceBasename": "100299565cd7b386d453.pdf",
+      "index": 14,
+      "questionFilename": "Q_100299565cd7b386d093.pdf",
+      "answerFilename": "A_100299565cd7b386d453.pdf",
+      "questionPath": "questions/Q_100299565cd7b386d093.pdf",
+      "answerPath": "answers/A_100299565cd7b386d453.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100488165c0897a9ae7b.pdf",
+        "https://www.tcool.cc/d/a/100488165c0897a9b2cb.pdf"
+      ],
+      "row": 10,
+      "text": "四維國小\n臺中市\n3年級 英語\n112上 期末2\n翰林",
+      "page": 2,
+      "questionUrl": "https://www.tcool.cc/d/q/100488165c0897a9ae7b.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100488165c0897a9b2cb.pdf",
+      "questionSourceBasename": "100488165c0897a9ae7b.pdf",
+      "answerSourceBasename": "100488165c0897a9b2cb.pdf",
+      "index": 15,
+      "questionFilename": "Q_100488165c0897a9ae7b.pdf",
+      "answerFilename": "A_100488165c0897a9b2cb.pdf",
+      "questionPath": "questions/Q_100488165c0897a9ae7b.pdf",
+      "answerPath": "answers/A_100488165c0897a9b2cb.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100295865a622c442a52.pdf",
+        "https://www.tcool.cc/d/a/100295865a731a747111.pdf"
+      ],
+      "row": 1,
+      "text": "內安國小\n彰化縣\n3年級 英語\n112上 期末2\n翰林",
+      "page": 3,
+      "questionUrl": "https://www.tcool.cc/d/q/100295865a622c442a52.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100295865a731a747111.pdf",
+      "questionSourceBasename": "100295865a622c442a52.pdf",
+      "answerSourceBasename": "100295865a731a747111.pdf",
+      "index": 16,
+      "questionFilename": "Q_100295865a622c442a52.pdf",
+      "answerFilename": "A_100295865a731a747111.pdf",
+      "questionPath": "questions/Q_100295865a622c442a52.pdf",
+      "answerPath": "answers/A_100295865a731a747111.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20000658b31124905d22.pdf",
+        "https://www.tcool.cc/d/a/20000658a31124905d22.pdf"
+      ],
+      "row": 3,
+      "text": "和順國小\n臺南市\n3年級 英語\n112上 期中1\n翰林",
+      "page": 3,
+      "questionUrl": "https://www.tcool.cc/d/q/20000658b31124905d22.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20000658a31124905d22.pdf",
+      "questionSourceBasename": "20000658b31124905d22.pdf",
+      "answerSourceBasename": "20000658a31124905d22.pdf",
+      "index": 17,
+      "questionFilename": "Q_20000658b31124905d22.pdf",
+      "answerFilename": "A_20000658a31124905d22.pdf",
+      "questionPath": "questions/Q_20000658b31124905d22.pdf",
+      "answerPath": "answers/A_20000658a31124905d22.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100488165c1aa2119bf1.pdf",
+        "https://www.tcool.cc/d/a/100488165c1aa211a0af.pdf"
+      ],
+      "row": 5,
+      "text": "四維國小\n臺中市\n3年級 英語\n112上 期中1\n翰林",
+      "page": 3,
+      "questionUrl": "https://www.tcool.cc/d/q/100488165c1aa2119bf1.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100488165c1aa211a0af.pdf",
+      "questionSourceBasename": "100488165c1aa2119bf1.pdf",
+      "answerSourceBasename": "100488165c1aa211a0af.pdf",
+      "index": 18,
+      "questionFilename": "Q_100488165c1aa2119bf1.pdf",
+      "answerFilename": "A_100488165c1aa211a0af.pdf",
+      "questionPath": "questions/Q_100488165c1aa2119bf1.pdf",
+      "answerPath": "answers/A_100488165c1aa211a0af.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/1002958654d86544c286.pdf",
+        "https://www.tcool.cc/d/a/1002958654dc687bdb77.pdf"
+      ],
+      "row": 6,
+      "text": "內安國小\n彰化縣\n3年級 英語\n112上 期中1\n翰林",
+      "page": 3,
+      "questionUrl": "https://www.tcool.cc/d/q/1002958654d86544c286.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/1002958654dc687bdb77.pdf",
+      "questionSourceBasename": "1002958654d86544c286.pdf",
+      "answerSourceBasename": "1002958654dc687bdb77.pdf",
+      "index": 19,
+      "questionFilename": "Q_1002958654d86544c286.pdf",
+      "answerFilename": "A_1002958654dc687bdb77.pdf",
+      "questionPath": "questions/Q_1002958654d86544c286.pdf",
+      "answerPath": "answers/A_1002958654dc687bdb77.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20002588b32166edeb72.pdf",
+        "https://www.tcool.cc/d/a/20002588a32166edeb72.pdf"
+      ],
+      "row": 8,
+      "text": "桃子腳國小\n新北市\n3年級 英語\n111下 期末2\n翰林",
+      "page": 3,
+      "questionUrl": "https://www.tcool.cc/d/q/20002588b32166edeb72.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20002588a32166edeb72.pdf",
+      "questionSourceBasename": "20002588b32166edeb72.pdf",
+      "answerSourceBasename": "20002588a32166edeb72.pdf",
+      "index": 20,
+      "questionFilename": "Q_20002588b32166edeb72.pdf",
+      "answerFilename": "A_20002588a32166edeb72.pdf",
+      "questionPath": "questions/Q_20002588b32166edeb72.pdf",
+      "answerPath": "answers/A_20002588a32166edeb72.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100290164a65bc013960.pdf",
+        "https://www.tcool.cc/d/a/100290164a65bc0141a5.pdf"
+      ],
+      "row": 9,
+      "text": "草港國小\n彰化縣\n3年級 英語\n111下 期末2\n翰林",
+      "page": 3,
+      "questionUrl": "https://www.tcool.cc/d/q/100290164a65bc013960.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100290164a65bc0141a5.pdf",
+      "questionSourceBasename": "100290164a65bc013960.pdf",
+      "answerSourceBasename": "100290164a65bc0141a5.pdf",
+      "index": 21,
+      "questionFilename": "Q_100290164a65bc013960.pdf",
+      "answerFilename": "A_100290164a65bc0141a5.pdf",
+      "questionPath": "questions/Q_100290164a65bc013960.pdf",
+      "answerPath": "answers/A_100290164a65bc0141a5.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20002587b3146137f604.pdf",
+        "https://www.tcool.cc/d/a/20002587a3146137f604.pdf"
+      ],
+      "row": 1,
+      "text": "桃子腳國小\n新北市\n3年級 英語\n111下 期中1\n翰林",
+      "page": 4,
+      "questionUrl": "https://www.tcool.cc/d/q/20002587b3146137f604.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20002587a3146137f604.pdf",
+      "questionSourceBasename": "20002587b3146137f604.pdf",
+      "answerSourceBasename": "20002587a3146137f604.pdf",
+      "index": 22,
+      "questionFilename": "Q_20002587b3146137f604.pdf",
+      "answerFilename": "A_20002587a3146137f604.pdf",
+      "questionPath": "questions/Q_20002587b3146137f604.pdf",
+      "answerPath": "answers/A_20002587a3146137f604.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100290164a659520d842.pdf",
+        "https://www.tcool.cc/d/a/100290164a659520e42f.pdf"
+      ],
+      "row": 2,
+      "text": "草港國小\n彰化縣\n3年級 英語\n111下 期中1\n翰林",
+      "page": 4,
+      "questionUrl": "https://www.tcool.cc/d/q/100290164a659520d842.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100290164a659520e42f.pdf",
+      "questionSourceBasename": "100290164a659520d842.pdf",
+      "answerSourceBasename": "100290164a659520e42f.pdf",
+      "index": 23,
+      "questionFilename": "Q_100290164a659520d842.pdf",
+      "answerFilename": "A_100290164a659520e42f.pdf",
+      "questionPath": "questions/Q_100290164a659520d842.pdf",
+      "answerPath": "answers/A_100290164a659520e42f.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20002586b311366ef15b.pdf",
+        "https://www.tcool.cc/d/a/20002586a311366ef15b.pdf"
+      ],
+      "row": 3,
+      "text": "桃子腳國小\n新北市\n3年級 英語\n111上 期末2\n翰林",
+      "page": 4,
+      "questionUrl": "https://www.tcool.cc/d/q/20002586b311366ef15b.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20002586a311366ef15b.pdf",
+      "questionSourceBasename": "20002586b311366ef15b.pdf",
+      "answerSourceBasename": "20002586a311366ef15b.pdf",
+      "index": 24,
+      "questionFilename": "Q_20002586b311366ef15b.pdf",
+      "answerFilename": "A_20002586a311366ef15b.pdf",
+      "questionPath": "questions/Q_20002586b311366ef15b.pdf",
+      "answerPath": "answers/A_20002586a311366ef15b.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100290163d8795bcedef.pdf",
+        "https://www.tcool.cc/d/a/100290163d8795bcf497.pdf"
+      ],
+      "row": 4,
+      "text": "草港國小\n彰化縣\n3年級 英語\n111上 期末2\n翰林",
+      "page": 4,
+      "questionUrl": "https://www.tcool.cc/d/q/100290163d8795bcedef.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100290163d8795bcf497.pdf",
+      "questionSourceBasename": "100290163d8795bcedef.pdf",
+      "answerSourceBasename": "100290163d8795bcf497.pdf",
+      "index": 25,
+      "questionFilename": "Q_100290163d8795bcedef.pdf",
+      "answerFilename": "A_100290163d8795bcf497.pdf",
+      "questionPath": "questions/Q_100290163d8795bcedef.pdf",
+      "answerPath": "answers/A_100290163d8795bcf497.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100295563c792993e350.pdf",
+        "https://www.tcool.cc/d/a/100295563c792993e5ed.pdf"
+      ],
+      "row": 5,
+      "text": "田中國小\n彰化縣\n3年級 英語\n111上 期末2\n翰林",
+      "page": 4,
+      "questionUrl": "https://www.tcool.cc/d/q/100295563c792993e350.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100295563c792993e5ed.pdf",
+      "questionSourceBasename": "100295563c792993e350.pdf",
+      "answerSourceBasename": "100295563c792993e5ed.pdf",
+      "index": 26,
+      "questionFilename": "Q_100295563c792993e350.pdf",
+      "answerFilename": "A_100295563c792993e5ed.pdf",
+      "questionPath": "questions/Q_100295563c792993e350.pdf",
+      "answerPath": "answers/A_100295563c792993e5ed.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/20002585b324762bd9c9.pdf",
+        "https://www.tcool.cc/d/a/20002585a324762bd9c9.pdf"
+      ],
+      "row": 6,
+      "text": "桃子腳國小\n新北市\n3年級 英語\n111上 期中1\n翰林",
+      "page": 4,
+      "questionUrl": "https://www.tcool.cc/d/q/20002585b324762bd9c9.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/20002585a324762bd9c9.pdf",
+      "questionSourceBasename": "20002585b324762bd9c9.pdf",
+      "answerSourceBasename": "20002585a324762bd9c9.pdf",
+      "index": 27,
+      "questionFilename": "Q_20002585b324762bd9c9.pdf",
+      "answerFilename": "A_20002585a324762bd9c9.pdf",
+      "questionPath": "questions/Q_20002585b324762bd9c9.pdf",
+      "answerPath": "answers/A_20002585a324762bd9c9.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100290163d876ca06034.pdf",
+        "https://www.tcool.cc/d/a/100290163d876ca065ef.pdf"
+      ],
+      "row": 7,
+      "text": "草港國小\n彰化縣\n3年級 英語\n111上 期中1\n翰林",
+      "page": 4,
+      "questionUrl": "https://www.tcool.cc/d/q/100290163d876ca06034.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100290163d876ca065ef.pdf",
+      "questionSourceBasename": "100290163d876ca06034.pdf",
+      "answerSourceBasename": "100290163d876ca065ef.pdf",
+      "index": 28,
+      "questionFilename": "Q_100290163d876ca06034.pdf",
+      "answerFilename": "A_100290163d876ca065ef.pdf",
+      "questionPath": "questions/Q_100290163d876ca06034.pdf",
+      "answerPath": "answers/A_100290163d876ca065ef.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100434962df71c46716b.pdf",
+        "https://www.tcool.cc/d/a/100434962df71c46777f.pdf"
+      ],
+      "row": 3,
+      "text": "新生國小\n臺東縣\n3年級 英語\n110下 期中1\n翰林",
+      "page": 5,
+      "questionUrl": "https://www.tcool.cc/d/q/100434962df71c46716b.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100434962df71c46777f.pdf",
+      "questionSourceBasename": "100434962df71c46716b.pdf",
+      "answerSourceBasename": "100434962df71c46777f.pdf",
+      "index": 29,
+      "questionFilename": "Q_100434962df71c46716b.pdf",
+      "answerFilename": "A_100434962df71c46777f.pdf",
+      "questionPath": "questions/Q_100434962df71c46716b.pdf",
+      "answerPath": "answers/A_100434962df71c46777f.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100434962df6a7e9f63f.pdf",
+        "https://www.tcool.cc/d/a/100434962df6a7e9f9dc.pdf"
+      ],
+      "row": 4,
+      "text": "新生國小\n臺東縣\n3年級 英語\n110上 期末2\n翰林",
+      "page": 5,
+      "questionUrl": "https://www.tcool.cc/d/q/100434962df6a7e9f63f.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100434962df6a7e9f9dc.pdf",
+      "questionSourceBasename": "100434962df6a7e9f63f.pdf",
+      "answerSourceBasename": "100434962df6a7e9f9dc.pdf",
+      "index": 30,
+      "questionFilename": "Q_100434962df6a7e9f63f.pdf",
+      "answerFilename": "A_100434962df6a7e9f9dc.pdf",
+      "questionPath": "questions/Q_100434962df6a7e9f63f.pdf",
+      "answerPath": "answers/A_100434962df6a7e9f9dc.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100434962de65d88bd05.pdf",
+        "https://www.tcool.cc/d/a/100434962de65d88cafc.pdf"
+      ],
+      "row": 7,
+      "text": "新生國小\n臺東縣\n3年級 英語\n110上 期中1\n翰林",
+      "page": 5,
+      "questionUrl": "https://www.tcool.cc/d/q/100434962de65d88bd05.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100434962de65d88cafc.pdf",
+      "questionSourceBasename": "100434962de65d88bd05.pdf",
+      "answerSourceBasename": "100434962de65d88cafc.pdf",
+      "index": 31,
+      "questionFilename": "Q_100434962de65d88bd05.pdf",
+      "answerFilename": "A_100434962de65d88cafc.pdf",
+      "questionPath": "questions/Q_100434962de65d88bd05.pdf",
+      "answerPath": "answers/A_100434962de65d88cafc.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10029586195a8e82d572.pdf",
+        "https://www.tcool.cc/d/a/10029586195a8e82d8c2.pdf"
+      ],
+      "row": 9,
+      "text": "內安國小\n彰化縣\n3年級 英語\n110上 期中1\n翰林",
+      "page": 5,
+      "questionUrl": "https://www.tcool.cc/d/q/10029586195a8e82d572.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10029586195a8e82d8c2.pdf",
+      "questionSourceBasename": "10029586195a8e82d572.pdf",
+      "answerSourceBasename": "10029586195a8e82d8c2.pdf",
+      "index": 32,
+      "questionFilename": "Q_10029586195a8e82d572.pdf",
+      "answerFilename": "A_10029586195a8e82d8c2.pdf",
+      "questionPath": "questions/Q_10029586195a8e82d572.pdf",
+      "answerPath": "answers/A_10029586195a8e82d8c2.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100434962de5b4744044.pdf",
+        "https://www.tcool.cc/d/a/100434962de5b47444e7.pdf"
+      ],
+      "row": 3,
+      "text": "新生國小\n臺東縣\n3年級 英語\n109下 期中1\n翰林",
+      "page": 6,
+      "questionUrl": "https://www.tcool.cc/d/q/100434962de5b4744044.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100434962de5b47444e7.pdf",
+      "questionSourceBasename": "100434962de5b4744044.pdf",
+      "answerSourceBasename": "100434962de5b47444e7.pdf",
+      "index": 33,
+      "questionFilename": "Q_100434962de5b4744044.pdf",
+      "answerFilename": "A_100434962de5b47444e7.pdf",
+      "questionPath": "questions/Q_100434962de5b4744044.pdf",
+      "answerPath": "answers/A_100434962de5b47444e7.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100524560ebd122b526c.pdf",
+        "https://www.tcool.cc/d/a/100524560ebd122b5465.pdf"
+      ],
+      "row": 4,
+      "text": "成德國小\n臺北市\n3年級 英語\n109下 期中1\n翰林",
+      "page": 6,
+      "questionUrl": "https://www.tcool.cc/d/q/100524560ebd122b526c.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100524560ebd122b5465.pdf",
+      "questionSourceBasename": "100524560ebd122b526c.pdf",
+      "answerSourceBasename": "100524560ebd122b5465.pdf",
+      "index": 34,
+      "questionFilename": "Q_100524560ebd122b526c.pdf",
+      "answerFilename": "A_100524560ebd122b5465.pdf",
+      "questionPath": "questions/Q_100524560ebd122b526c.pdf",
+      "answerPath": "answers/A_100524560ebd122b5465.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100434962de53fd0e1d8.pdf",
+        "https://www.tcool.cc/d/a/100434962de53fd0e595.pdf"
+      ],
+      "row": 5,
+      "text": "新生國小\n臺東縣\n3年級 英語\n109上 期末2\n翰林",
+      "page": 6,
+      "questionUrl": "https://www.tcool.cc/d/q/100434962de53fd0e1d8.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100434962de53fd0e595.pdf",
+      "questionSourceBasename": "100434962de53fd0e1d8.pdf",
+      "answerSourceBasename": "100434962de53fd0e595.pdf",
+      "index": 35,
+      "questionFilename": "Q_100434962de53fd0e1d8.pdf",
+      "answerFilename": "A_100434962de53fd0e595.pdf",
+      "questionPath": "questions/Q_100434962de53fd0e1d8.pdf",
+      "answerPath": "answers/A_100434962de53fd0e595.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10052456065760aeb4aa.pdf",
+        "https://www.tcool.cc/d/a/10052456065760aeb8c9.pdf"
+      ],
+      "row": 7,
+      "text": "成德國小\n臺北市\n3年級 英語\n109上 期中1\n翰林",
+      "page": 6,
+      "questionUrl": "https://www.tcool.cc/d/q/10052456065760aeb4aa.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10052456065760aeb8c9.pdf",
+      "questionSourceBasename": "10052456065760aeb4aa.pdf",
+      "answerSourceBasename": "10052456065760aeb8c9.pdf",
+      "index": 36,
+      "questionFilename": "Q_10052456065760aeb4aa.pdf",
+      "answerFilename": "A_10052456065760aeb8c9.pdf",
+      "questionPath": "questions/Q_10052456065760aeb4aa.pdf",
+      "answerPath": "answers/A_10052456065760aeb8c9.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/1005245606569e72428b.pdf",
+        "https://www.tcool.cc/d/a/1005245606569e7244c4.pdf"
+      ],
+      "row": 3,
+      "text": "成德國小\n臺北市\n3年級 英語\n108下 期末2\n翰林",
+      "page": 7,
+      "questionUrl": "https://www.tcool.cc/d/q/1005245606569e72428b.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/1005245606569e7244c4.pdf",
+      "questionSourceBasename": "1005245606569e72428b.pdf",
+      "answerSourceBasename": "1005245606569e7244c4.pdf",
+      "index": 37,
+      "questionFilename": "Q_1005245606569e72428b.pdf",
+      "answerFilename": "A_1005245606569e7244c4.pdf",
+      "questionPath": "questions/Q_1005245606569e72428b.pdf",
+      "answerPath": "answers/A_1005245606569e7244c4.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10048815fb48037433b7.pdf",
+        "https://www.tcool.cc/d/a/10048815fb48037436c5.pdf"
+      ],
+      "row": 4,
+      "text": "四維國小\n臺中市\n3年級 英語\n108下 期末2\n翰林",
+      "page": 7,
+      "questionUrl": "https://www.tcool.cc/d/q/10048815fb48037433b7.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10048815fb48037436c5.pdf",
+      "questionSourceBasename": "10048815fb48037433b7.pdf",
+      "answerSourceBasename": "10048815fb48037436c5.pdf",
+      "index": 38,
+      "questionFilename": "Q_10048815fb48037433b7.pdf",
+      "answerFilename": "A_10048815fb48037436c5.pdf",
+      "questionPath": "questions/Q_10048815fb48037433b7.pdf",
+      "answerPath": "answers/A_10048815fb48037436c5.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100524560656438237cf.pdf",
+        "https://www.tcool.cc/d/a/100524560656438239f3.pdf"
+      ],
+      "row": 1,
+      "text": "成德國小\n臺北市\n3年級 英語\n108下 期中1\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/100524560656438237cf.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100524560656438239f3.pdf",
+      "questionSourceBasename": "100524560656438237cf.pdf",
+      "answerSourceBasename": "100524560656438239f3.pdf",
+      "index": 39,
+      "questionFilename": "Q_100524560656438237cf.pdf",
+      "answerFilename": "A_100524560656438239f3.pdf",
+      "questionPath": "questions/Q_100524560656438237cf.pdf",
+      "answerPath": "answers/A_100524560656438239f3.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10031795ebb98f752a7d.pdf",
+        "https://www.tcool.cc/d/a/10031795ebb98f752d32.pdf"
+      ],
+      "row": 2,
+      "text": "國姓國小\n南投縣\n3年級 英語\n108下 期中1\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10031795ebb98f752a7d.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10031795ebb98f752d32.pdf",
+      "questionSourceBasename": "10031795ebb98f752a7d.pdf",
+      "answerSourceBasename": "10031795ebb98f752d32.pdf",
+      "index": 40,
+      "questionFilename": "Q_10031795ebb98f752a7d.pdf",
+      "answerFilename": "A_10031795ebb98f752d32.pdf",
+      "questionPath": "questions/Q_10031795ebb98f752a7d.pdf",
+      "answerPath": "answers/A_10031795ebb98f752d32.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10048815eb4c2d157728.pdf",
+        "https://www.tcool.cc/d/a/1004881606183b2a4d0f.pdf"
+      ],
+      "row": 3,
+      "text": "四維國小\n臺中市\n3年級 英語\n108下 期中1\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10048815eb4c2d157728.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/1004881606183b2a4d0f.pdf",
+      "questionSourceBasename": "10048815eb4c2d157728.pdf",
+      "answerSourceBasename": "1004881606183b2a4d0f.pdf",
+      "index": 41,
+      "questionFilename": "Q_10048815eb4c2d157728.pdf",
+      "answerFilename": "A_1004881606183b2a4d0f.pdf",
+      "questionPath": "questions/Q_10048815eb4c2d157728.pdf",
+      "answerPath": "answers/A_1004881606183b2a4d0f.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10048815eb4bfdf1937b.pdf",
+        "https://www.tcool.cc/d/a/10048815eb4bfdf195c2.pdf"
+      ],
+      "row": 4,
+      "text": "四維國小\n臺中市\n3年級 英語\n108下 期中1\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10048815eb4bfdf1937b.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10048815eb4bfdf195c2.pdf",
+      "questionSourceBasename": "10048815eb4bfdf1937b.pdf",
+      "answerSourceBasename": "10048815eb4bfdf195c2.pdf",
+      "index": 42,
+      "questionFilename": "Q_10048815eb4bfdf1937b.pdf",
+      "answerFilename": "A_10048815eb4bfdf195c2.pdf",
+      "questionPath": "questions/Q_10048815eb4bfdf1937b.pdf",
+      "answerPath": "answers/A_10048815eb4bfdf195c2.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10052455e71e4a597c0d.pdf",
+        "https://www.tcool.cc/d/a/10052455e71e4a597dae.pdf"
+      ],
+      "row": 5,
+      "text": "成德國小\n臺北市\n3年級 英語\n108上 期末2\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10052455e71e4a597c0d.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10052455e71e4a597dae.pdf",
+      "questionSourceBasename": "10052455e71e4a597c0d.pdf",
+      "answerSourceBasename": "10052455e71e4a597dae.pdf",
+      "index": 43,
+      "questionFilename": "Q_10052455e71e4a597c0d.pdf",
+      "answerFilename": "A_10052455e71e4a597dae.pdf",
+      "questionPath": "questions/Q_10052455e71e4a597c0d.pdf",
+      "answerPath": "answers/A_10052455e71e4a597dae.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10017685e3cba05703cc.pdf",
+        "https://www.tcool.cc/d/a/10017685e3cba057085c.pdf"
+      ],
+      "row": 6,
+      "text": "厚德國小\n新北市\n3年級 英語\n108上 期末2\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10017685e3cba05703cc.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10017685e3cba057085c.pdf",
+      "questionSourceBasename": "10017685e3cba05703cc.pdf",
+      "answerSourceBasename": "10017685e3cba057085c.pdf",
+      "index": 44,
+      "questionFilename": "Q_10017685e3cba05703cc.pdf",
+      "answerFilename": "A_10017685e3cba057085c.pdf",
+      "questionPath": "questions/Q_10017685e3cba05703cc.pdf",
+      "answerPath": "answers/A_10017685e3cba057085c.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10031795e33dd2b91583.pdf",
+        "https://www.tcool.cc/d/a/10031795e33dd2b91826.pdf"
+      ],
+      "row": 7,
+      "text": "國姓國小\n南投縣\n3年級 英語\n108上 期末2\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10031795e33dd2b91583.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10031795e33dd2b91826.pdf",
+      "questionSourceBasename": "10031795e33dd2b91583.pdf",
+      "answerSourceBasename": "10031795e33dd2b91826.pdf",
+      "index": 45,
+      "questionFilename": "Q_10031795e33dd2b91583.pdf",
+      "answerFilename": "A_10031795e33dd2b91826.pdf",
+      "questionPath": "questions/Q_10031795e33dd2b91583.pdf",
+      "answerPath": "answers/A_10031795e33dd2b91826.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10052455e70764d60445.pdf",
+        "https://www.tcool.cc/d/a/10052455e70764d607cb.pdf"
+      ],
+      "row": 8,
+      "text": "成德國小\n臺北市\n3年級 英語\n108上 期中1\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10052455e70764d60445.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10052455e70764d607cb.pdf",
+      "questionSourceBasename": "10052455e70764d60445.pdf",
+      "answerSourceBasename": "10052455e70764d607cb.pdf",
+      "index": 46,
+      "questionFilename": "Q_10052455e70764d60445.pdf",
+      "answerFilename": "A_10052455e70764d607cb.pdf",
+      "questionPath": "questions/Q_10052455e70764d60445.pdf",
+      "answerPath": "answers/A_10052455e70764d607cb.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10017685e3cb7c29a07a.pdf",
+        "https://www.tcool.cc/d/a/10017685e3cb7c29a532.pdf"
+      ],
+      "row": 9,
+      "text": "厚德國小\n新北市\n3年級 英語\n108上 期中1\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10017685e3cb7c29a07a.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10017685e3cb7c29a532.pdf",
+      "questionSourceBasename": "10017685e3cb7c29a07a.pdf",
+      "answerSourceBasename": "10017685e3cb7c29a532.pdf",
+      "index": 47,
+      "questionFilename": "Q_10017685e3cb7c29a07a.pdf",
+      "answerFilename": "A_10017685e3cb7c29a532.pdf",
+      "questionPath": "questions/Q_10017685e3cb7c29a07a.pdf",
+      "answerPath": "answers/A_10017685e3cb7c29a532.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10031795e3a1d8a25e31.pdf",
+        "https://www.tcool.cc/d/a/10031795e3a1d8a26120.pdf"
+      ],
+      "row": 10,
+      "text": "國姓國小\n南投縣\n3年級 英語\n108上 期中1\n翰林",
+      "page": 8,
+      "questionUrl": "https://www.tcool.cc/d/q/10031795e3a1d8a25e31.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10031795e3a1d8a26120.pdf",
+      "questionSourceBasename": "10031795e3a1d8a25e31.pdf",
+      "answerSourceBasename": "10031795e3a1d8a26120.pdf",
+      "index": 48,
+      "questionFilename": "Q_10031795e3a1d8a25e31.pdf",
+      "answerFilename": "A_10031795e3a1d8a26120.pdf",
+      "questionPath": "questions/Q_10031795e3a1d8a25e31.pdf",
+      "answerPath": "answers/A_10031795e3a1d8a26120.pdf"
+    }
+  ]
+}

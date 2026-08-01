@@ -1,0 +1,109 @@
+{
+  "source": "https://www.tcool.cc/",
+  "retrievedAt": "2026-08-01T14:59:52.075Z",
+  "filters": {
+    "grade": "2年級",
+    "subject": "英語",
+    "semester": "不限",
+    "period": "不限",
+    "publisher": "翰林",
+    "hasAnswer": "有答案卷"
+  },
+  "pagination": {
+    "maxPage": 1,
+    "visibleRows": 10
+  },
+  "deduplication": "以題目卷 sourceBasename 去重，只保留題目卷與答案卷成對資料。",
+  "records": [
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10052266551754748e84.pdf",
+        "https://www.tcool.cc/d/a/1005226655175474933e.pdf"
+      ],
+      "row": 1,
+      "text": "實踐國小\n臺北市\n2年級 英語\n112上 期中1\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/10052266551754748e84.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/1005226655175474933e.pdf",
+      "questionSourceBasename": "10052266551754748e84.pdf",
+      "answerSourceBasename": "1005226655175474933e.pdf",
+      "index": 1,
+      "questionFilename": "Q_10052266551754748e84.pdf",
+      "answerFilename": "A_1005226655175474933e.pdf",
+      "questionPath": "questions/Q_10052266551754748e84.pdf",
+      "answerPath": "answers/A_1005226655175474933e.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/100488161832e2c599b8.pdf",
+        "https://www.tcool.cc/d/a/100488161832e2c59b81.pdf"
+      ],
+      "row": 3,
+      "text": "四維國小\n臺中市\n2年級 英語\n110上 期中1\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/100488161832e2c599b8.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/100488161832e2c59b81.pdf",
+      "questionSourceBasename": "100488161832e2c599b8.pdf",
+      "answerSourceBasename": "100488161832e2c59b81.pdf",
+      "index": 2,
+      "questionFilename": "Q_100488161832e2c599b8.pdf",
+      "answerFilename": "A_100488161832e2c59b81.pdf",
+      "questionPath": "questions/Q_100488161832e2c599b8.pdf",
+      "answerPath": "answers/A_100488161832e2c59b81.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/1005245606562f642e2c.pdf",
+        "https://www.tcool.cc/d/a/1005245606562f643025.pdf"
+      ],
+      "row": 7,
+      "text": "成德國小\n臺北市\n2年級 英語\n108下 期中1\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/1005245606562f642e2c.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/1005245606562f643025.pdf",
+      "questionSourceBasename": "1005245606562f642e2c.pdf",
+      "answerSourceBasename": "1005245606562f643025.pdf",
+      "index": 3,
+      "questionFilename": "Q_1005245606562f642e2c.pdf",
+      "answerFilename": "A_1005245606562f643025.pdf",
+      "questionPath": "questions/Q_1005245606562f642e2c.pdf",
+      "answerPath": "answers/A_1005245606562f643025.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10052455e71e4a595316.pdf",
+        "https://www.tcool.cc/d/a/10052455e71e4a595510.pdf"
+      ],
+      "row": 8,
+      "text": "成德國小\n臺北市\n2年級 英語\n108上 期末2\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/10052455e71e4a595316.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10052455e71e4a595510.pdf",
+      "questionSourceBasename": "10052455e71e4a595316.pdf",
+      "answerSourceBasename": "10052455e71e4a595510.pdf",
+      "index": 4,
+      "questionFilename": "Q_10052455e71e4a595316.pdf",
+      "answerFilename": "A_10052455e71e4a595510.pdf",
+      "questionPath": "questions/Q_10052455e71e4a595316.pdf",
+      "answerPath": "answers/A_10052455e71e4a595510.pdf"
+    },
+    {
+      "links": [
+        "https://www.tcool.cc/d/q/10052455e70764d5c39d.pdf",
+        "https://www.tcool.cc/d/a/10052455e70764d5c692.pdf"
+      ],
+      "row": 9,
+      "text": "成德國小\n臺北市\n2年級 英語\n108上 期中1\n翰林",
+      "page": 1,
+      "questionUrl": "https://www.tcool.cc/d/q/10052455e70764d5c39d.pdf",
+      "answerUrl": "https://www.tcool.cc/d/a/10052455e70764d5c692.pdf",
+      "questionSourceBasename": "10052455e70764d5c39d.pdf",
+      "answerSourceBasename": "10052455e70764d5c692.pdf",
+      "index": 5,
+      "questionFilename": "Q_10052455e70764d5c39d.pdf",
+      "answerFilename": "A_10052455e70764d5c692.pdf",
+      "questionPath": "questions/Q_10052455e70764d5c39d.pdf",
+      "answerPath": "answers/A_10052455e70764d5c692.pdf"
+    }
+  ]
+}

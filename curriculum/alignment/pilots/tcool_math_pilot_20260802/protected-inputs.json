@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0",
+  "purpose": "Guard upstream canonical inputs used by this pilot repair.",
+  "protectedInputs": {
+    "canonical_pilot_inventory": {
+      "path": "curriculum/alignment/pilot/source-inventory.json",
+      "sha256": "1c137519df594410238217ba496f492ab0bcbf01a98ce3269b1b6ab5547c4638"
+    },
+    "canonical_extracted_questions": {
+      "path": "curriculum/alignment/pilot/extracted-questions.jsonl",
+      "sha256": "c2b268338ab4cebad2048c619558b0398d482034d28b4e7b16537d11c45c88ee"
+    },
+    "canonical_question_alignments": {
+      "path": "curriculum/alignment/pilot/question-alignments.jsonl",
+      "sha256": "9d2c14f9eea6e83a38567194987ed6184504630a2ddff4c2ffed095180a883f3"
+    },
+    "exam_inventory": {
+      "path": "curriculum/alignment/exams/exam-inventory.json",
+      "sha256": "41334d5577d3a8b55a6a9c6c396b9167ff5a950acab092324ad260f254c73144"
+    },
+    "official_codes": {
+      "path": "curriculum/alignment/official-108-math/official-codes-g1-g4.json",
+      "sha256": "34343ef325cc899e04ae07854d87ccf6e50c93ba1781b5de37cd01a0f0e0d7b1"
+    },
+    "publisher_alignment": {
+      "path": "curriculum/alignment/publishers/publisher-unit-alignment.json",
+      "sha256": "2fe8ec3bfc04ed2d4ed6604f42594218bbf75647333c6843b41459db0571a1d9"
+    },
+    "skill_bridge": {
+      "path": "curriculum/alignment/skills/skill-official-alignment.json",
+      "sha256": "436bae970589107747b998bcd922d90a348f9c89f8d5773fbed4b790e204efda"
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "1.0",
+  "purpose": "Protect all baseline inputs read by the question-level pilot repair.",
+  "protectedInputs": {
+    "pilot_existing::alignment-review.csv": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/alignment-review.csv",
+      "sha256": "c704e0a9c7a56e7736d70c3e1a25e791a2adfb968253ad5d53a35e6769bc934b"
+    },
+    "pilot_existing::pilot-report.md": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/pilot-report.md",
+      "sha256": "dd7fb303d22b9ac29209a6b4226583aa85dda77bcd8fc537accabd3ef0352bdc"
+    },
+    "pilot_existing::protected-inputs.json": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/protected-inputs.json",
+      "sha256": "fd488d3d0317b2dd62d3fbacf70c179c315746cc5e0b5d9097fd3b5a9eb5e8bc"
+    },
+    "pilot_existing::question-items.first-pass.json": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/question-items.first-pass.json",
+      "sha256": "90ddf3af273222d1fd247f7b58f4a94146513e3881b18338829984e6fd475818"
+    },
+    "pilot_existing::source-inventory.json": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/source-inventory.json",
+      "sha256": "bee4f16b8a4dff81ad3d621580463a040abc12361c4a5f9090b0a4b8da3a9129"
+    },
+    "pilot_existing::validation-report.md": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/validation-report.md",
+      "sha256": "f713279d2914c12a58476dff33a9e8e8cf8ec953f03d62a835e9ea0f04b4808a"
+    },
+    "pilot_existing::tools/build_pilot.py": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/tools/build_pilot.py",
+      "sha256": "c1b5557321ee997710399944b74f5ae0badf405f3ff2307e560f212ca194d76f"
+    },
+    "pilot_existing::tools/build_reports.py": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/tools/build_reports.py",
+      "sha256": "78c81a15037ef1bee06b215dec3a85ad9a8095eae6272de0845d60a6f944f7ef"
+    },
+    "pilot_existing::tools/inventory.py": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/tools/inventory.py",
+      "sha256": "7189ab71782153c9966cf6e47f016408c6d0c7058f3f753c195e833527ed6d93"
+    },
+    "pilot_existing::tools/parse_questions.py": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/tools/parse_questions.py",
+      "sha256": "d2db1c18d82a1f156c021ec63598b5d2bbb2e95583af9b32cc9e838205d36dd5"
+    },
+    "pilot_existing::tools/pilot_common.py": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/tools/pilot_common.py",
+      "sha256": "0b861889bce24d4d9f044bf6913691094ee37fd81d14f499c490cb370e339be8"
+    },
+    "pilot_existing::tools/repair_pilot.py": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/tools/repair_pilot.py",
+      "sha256": "5cb94d0639a32bc645b1994be1d1170b9a8c94844361afedbe6564be37f4dbe7"
+    },
+    "pilot_existing::tools/validate_pilot.py": {
+      "path": "curriculum/alignment/pilots/tcool_math_pilot_20260802/tools/validate_pilot.py",
+      "sha256": "6f6c03aa213998d2672e2c2cd4bfb35eac228bf25e51e4f8eef852d6974cafcc"
+    },
+    "canonical_pilot_inventory": {
+      "path": "curriculum/alignment/pilot/source-inventory.json",
+      "sha256": "1c137519df594410238217ba496f492ab0bcbf01a98ce3269b1b6ab5547c4638"
+    },
+    "canonical_extracted_questions": {
+      "path": "curriculum/alignment/pilot/extracted-questions.jsonl",
+      "sha256": "c2b268338ab4cebad2048c619558b0398d482034d28b4e7b16537d11c45c88ee"
+    },
+    "canonical_question_alignments": {
+      "path": "curriculum/alignment/pilot/question-alignments.jsonl",
+      "sha256": "9d2c14f9eea6e83a38567194987ed6184504630a2ddff4c2ffed095180a883f3"
+    },
+    "exam_inventory": {
+      "path": "curriculum/alignment/exams/exam-inventory.json",
+      "sha256": "41334d5577d3a8b55a6a9c6c396b9167ff5a950acab092324ad260f254c73144"
+    },
+    "official_codes": {
+      "path": "curriculum/alignment/official-108-math/official-codes-g1-g4.json",
+      "sha256": "34343ef325cc899e04ae07854d87ccf6e50c93ba1781b5de37cd01a0f0e0d7b1"
+    },
+    "publisher_alignment": {
+      "path": "curriculum/alignment/publishers/publisher-unit-alignment.json",
+      "sha256": "2fe8ec3bfc04ed2d4ed6604f42594218bbf75647333c6843b41459db0571a1d9"
+    },
+    "skill_bridge": {
+      "path": "curriculum/alignment/skills/skill-official-alignment.json",
+      "sha256": "436bae970589107747b998bcd922d90a348f9c89f8d5773fbed4b790e204efda"
+    },
+    "question_pdf::G1-康軒-109上-期中1-P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒_題目卷.pdf",
+      "sha256": "4c2fe7cf7ae143e18e5e6b246fcb224e7b70f255f10cf5358967cf7c1f6c7dd9"
+    },
+    "answer_pdf::G1-康軒-109上-期中1-P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒_答案卷.pdf",
+      "sha256": "96d365206f51d021d367618e7fa6596b203e53a10f7df9b72e8ebddc23f8770c"
+    },
+    "page_image::G1-康軒-109上-期中1-P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G1-_-109_-_1-P04_R02_____1____109___1__/page-1.jpg",
+      "sha256": "43cd60ec53e9158e0bdd8016e6e3aa86fbd62ce884a204effef36bada6ea80ac"
+    },
+    "page_image::G1-康軒-109上-期中1-P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G1-_-109_-_1-P04_R02_____1____109___1__/page-2.jpg",
+      "sha256": "b138cca4b2597fbeecbb7de277ed58c796f38f8c5e41a1eb3ad38257e0df6bb7"
+    },
+    "page_image::G1-康軒-109上-期中1-P04_R02_寶山國小_彰化縣_1年級_數學_109上_期中1_康軒::page-3.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G1-_-109_-_1-P04_R02_____1____109___1__/page-3.jpg",
+      "sha256": "7d039e3864dae2b02009e9598a67e4c539a955a3e05b1df1826b3c88def75b68"
+    },
+    "question_pdf::G1-翰林-113下-期末2-P01_R01_安和國小_新北市_1年級_數學_113下_期末2_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/翰林/questions/P01_R01_安和國小_新北市_1年級_數學_113下_期末2_翰林_題目卷.pdf",
+      "sha256": "33dc85c30c050a399d5583bd86a5ad4ab790a0d6f11bd9405bea9058e03e3666"
+    },
+    "answer_pdf::G1-翰林-113下-期末2-P01_R01_安和國小_新北市_1年級_數學_113下_期末2_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/翰林/answers/P01_R01_安和國小_新北市_1年級_數學_113下_期末2_翰林_答案卷.pdf",
+      "sha256": "537d1a73d05190cbd6e7e22828c36edcd092eac0d1613811ce7d788ec71586e6"
+    },
+    "page_image::G1-翰林-113下-期末2-P01_R01_安和國小_新北市_1年級_數學_113下_期末2_翰林::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G1-_-113_-_2-P01_R01_____1____113___2__/page-1.jpg",
+      "sha256": "a60a88037306c9f2b5ca326accba2dbd615272b7a84f40ac822b16599f1d07b1"
+    },
+    "page_image::G1-翰林-113下-期末2-P01_R01_安和國小_新北市_1年級_數學_113下_期末2_翰林::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G1-_-113_-_2-P01_R01_____1____113___2__/page-2.jpg",
+      "sha256": "a4e8c916de661d5e209138e306164d2bce49f5252b9e43ebc03b09742a6483c7"
+    },
+    "page_image::G1-翰林-113下-期末2-P01_R01_安和國小_新北市_1年級_數學_113下_期末2_翰林::page-3.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G1-_-113_-_2-P01_R01_____1____113___2__/page-3.jpg",
+      "sha256": "629470c81622264097b9b9b8a8addd7b0eed6cb6661afaebaebd6f977d16e113"
+    },
+    "question_pdf::G2-康軒-112下-期中1-P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-2/康軒/questions/P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒_題目卷.pdf",
+      "sha256": "aa9cbdb9a45f2fcfc1c8aaa50c156877461f41dd7e61f3682589a125324d81dd"
+    },
+    "answer_pdf::G2-康軒-112下-期中1-P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-2/康軒/answers/P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒_答案卷.pdf",
+      "sha256": "0092614e5c4f8da157b0d044d286a7424e8577c495aacf4d8d89fda06ce45c32"
+    },
+    "page_image::G2-康軒-112下-期中1-P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G2-_-112_-_1-P01_R10_____2____112___1__/page-1.jpg",
+      "sha256": "494a3abb4720a0768485f6a385180838336c8e5056ac3430ad675e5b6fa16b6a"
+    },
+    "page_image::G2-康軒-112下-期中1-P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G2-_-112_-_1-P01_R10_____2____112___1__/page-2.jpg",
+      "sha256": "143982c72304ce17dea0682fa96c9cf06bebaa960dbbc4084033a70ae8b09066"
+    },
+    "page_image::G2-康軒-112下-期中1-P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒::page-3.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G2-_-112_-_1-P01_R10_____2____112___1__/page-3.jpg",
+      "sha256": "68c935024184139cd149d2d2dc43d649d30f79be24ba88afbd62d3d02b0bb204"
+    },
+    "question_pdf::G2-翰林-113上-期末2-P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-2/翰林/questions/P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林_題目卷.pdf",
+      "sha256": "6d99a04b211ea1f405819e065e11ccae7fea7afc4e1cf9edc76be78fdb4aa839"
+    },
+    "answer_pdf::G2-翰林-113上-期末2-P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-2/翰林/answers/P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林_答案卷.pdf",
+      "sha256": "18b0899cf8d1f712861f3a3ae8f4aef2638ef39d1fc947c924ee7c66f29172bc"
+    },
+    "page_image::G2-翰林-113上-期末2-P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G2-_-113_-_2-P01_R08_____2____113___2__/page-1.jpg",
+      "sha256": "548fef08dfaf29e7d3c8faf68ea6ef6a66a6025b3fb0b95a4fd4146d987f7d9f"
+    },
+    "page_image::G2-翰林-113上-期末2-P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G2-_-113_-_2-P01_R08_____2____113___2__/page-2.jpg",
+      "sha256": "3aad7ddbdc8dab55a50a048cdebf7120b2fe8bd660b27826e9d686f111f26e4a"
+    },
+    "page_image::G2-翰林-113上-期末2-P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林::page-3.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G2-_-113_-_2-P01_R08_____2____113___2__/page-3.jpg",
+      "sha256": "5bf2bfe6810bfc62420933628bc84c82c758eb7247d90754354fe11e881615a6"
+    },
+    "page_image::G2-翰林-113上-期末2-P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林::page-4.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G2-_-113_-_2-P01_R08_____2____113___2__/page-4.jpg",
+      "sha256": "75e3ee6c27183fc70a667209640d2af63744141a0c6a3af7c8854235dde2a75c"
+    },
+    "page_image::G2-翰林-113上-期末2-P01_R08_安和國小_新北市_2年級_數學_113上_期末2_翰林::page-5.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G2-_-113_-_2-P01_R08_____2____113___2__/page-5.jpg",
+      "sha256": "bcf9ed36285bc1a9f3d662293a23d6aa013af7e2f2878d54247c589d92effe65"
+    },
+    "question_pdf::G3-康軒-113上-期中1-P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-3/康軒/questions/P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒_題目卷.pdf",
+      "sha256": "8786d16a600a112b26575fcfb84284b088487bd4bdb5b274de84f21bc0f93235"
+    },
+    "answer_pdf::G3-康軒-113上-期中1-P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-3/康軒/answers/P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒_答案卷.pdf",
+      "sha256": "2ce001d748b1e1398040a3399e581eabb2be6af1362621759cae4e2424d3b63c"
+    },
+    "page_image::G3-康軒-113上-期中1-P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G3-_-113_-_1-P01_R07_____3____113___1__/page-1.jpg",
+      "sha256": "f8c65612524f8e163a21eec0dbe37261ab7c63db1be7f24c868c95c0beb3dda0"
+    },
+    "page_image::G3-康軒-113上-期中1-P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G3-_-113_-_1-P01_R07_____3____113___1__/page-2.jpg",
+      "sha256": "a703e6347d15758cfa1defd7a52ca48a326dd048108ab146b85b3c38f43beb25"
+    },
+    "page_image::G3-康軒-113上-期中1-P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒::page-3.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G3-_-113_-_1-P01_R07_____3____113___1__/page-3.jpg",
+      "sha256": "c96ec3bf759189ecc309f8db5f1436e14629b7a3858dcd64dc7607fa9bf47f95"
+    },
+    "question_pdf::G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-3/翰林/questions/P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林_題目卷.pdf",
+      "sha256": "fe49b4f8e154a31f9d62909cd0e690847b913b6c493d9ab2732fb6830ba6073e"
+    },
+    "answer_pdf::G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-3/翰林/answers/P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林_答案卷.pdf",
+      "sha256": "749bc8eaeb8c40a29ed110dcf1e066061b0c0b6856d06b8aa6b4233cd2dd804a"
+    },
+    "page_image::G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G3-_-113_-_2-P01_R01_____3____113___2__/page-1.jpg",
+      "sha256": "39aaa57ed75e4c30e19921b0201cf1e4e4a0124172aad68a1cb12369cc05f0ba"
+    },
+    "page_image::G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G3-_-113_-_2-P01_R01_____3____113___2__/page-2.jpg",
+      "sha256": "424491dbf20d45d4917df6aaaffa96a16902c5e096027e81f7e0e98c5dd079de"
+    },
+    "page_image::G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林::page-3.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G3-_-113_-_2-P01_R01_____3____113___2__/page-3.jpg",
+      "sha256": "0f3b2507e72a478417ed1b8bf35c7c461bc0bea0da609e91c9d4c17524c04443"
+    },
+    "question_pdf::G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/康軒/questions/P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒_題目卷.pdf",
+      "sha256": "9e58a73097c8e9d91ec09a44b88ad7cca62d38b17beecee6742c5e65728daa14"
+    },
+    "answer_pdf::G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/康軒/answers/P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒_答案卷.pdf",
+      "sha256": "4c21f45f32c9a6334572c1f8ff94f5511634e80052ee421215ad7ef5f367a498"
+    },
+    "page_image::G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G4-_-112_-_1-P02_R06_____4____112___1__/page-1.jpg",
+      "sha256": "1229c3c68f93cdb171d22c371ee3e208aa8f36cdcf47ff9652a39d88d42fe1dd"
+    },
+    "page_image::G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G4-_-112_-_1-P02_R06_____4____112___1__/page-2.jpg",
+      "sha256": "b357a0594d3d7dc3e39fe12110f801d02b25708a8ffdc82b34ffa71b5f1445a9"
+    },
+    "page_image::G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒::page-3.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G4-_-112_-_1-P02_R06_____4____112___1__/page-3.jpg",
+      "sha256": "ae758a7a32727275cc4964924181c0add32dc78d03a5bead57dc869e6d3fd543"
+    },
+    "question_pdf::G4-翰林-113上-期末2-P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/questions/P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林_題目卷.pdf",
+      "sha256": "2122558161a0e153fbe822159d82fe9e2f1e9a575623481d2c12fac771d2e7e8"
+    },
+    "answer_pdf::G4-翰林-113上-期末2-P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-4/翰林/answers/P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林_答案卷.pdf",
+      "sha256": "762a09371eb59c605490f983c46500171d5600d135b4d12671fee0fc6b36ddc1"
+    },
+    "page_image::G4-翰林-113上-期末2-P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G4-_-113_-_2-P01_R08_____4____113___2__/page-1.jpg",
+      "sha256": "7f158258fa3910e0c0238003e2af955fbf8b31d12931dd00bd3d64a1b9eb0ee4"
+    },
+    "page_image::G4-翰林-113上-期末2-P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G4-_-113_-_2-P01_R08_____4____113___2__/page-2.jpg",
+      "sha256": "3c479929bf6fbe2a247967c21a0bd938374546a1f9b2b2717341f470c9943dd3"
+    },
+    "question_pdf::G1-康軒-108上-期中2-P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/questions/P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒_題目卷.pdf",
+      "sha256": "df7118f403949b675f1079d23a58c409de134846b7acf4e7501582162a3165ab"
+    },
+    "answer_pdf::G1-康軒-108上-期中2-P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-1/康軒/answers/P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒_答案卷.pdf",
+      "sha256": "047a827fd8de0acd2267fdcd11d40efddc32d3598086d81dfb6589ff8ddc0395"
+    },
+    "page_image::G1-康軒-108上-期中2-P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G1-_-108_-_2-P05_R08_____1____108___2__/page-1.jpg",
+      "sha256": "57882efd5c90080460091f8ea5c83e8faf233efd3746533d6991d6f0ee0a648c"
+    },
+    "page_image::G1-康軒-108上-期中2-P05_R08_鶴聲國小_屏東縣_1年級_數學_108上_期中2_康軒::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G1-_-108_-_2-P05_R08_____1____108___2__/page-2.jpg",
+      "sha256": "aa75c3153ea8d309d1aa44e32f7f32193fbfa7e433265c1344cd86e55fa047d8"
+    },
+    "question_pdf::G3-翰林-108上-期中1-P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-3/翰林/questions/P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林_題目卷.pdf",
+      "sha256": "02b97ce47f87f1cf78dbfae871155740ed41742d052fc8e451d915d62ce77759"
+    },
+    "answer_pdf::G3-翰林-108上-期中1-P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/grade-3/翰林/answers/P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林_答案卷.pdf",
+      "sha256": "6375b54aac51c860a040ae1afb13f4acedac51b097b1cc39b99838f794da5806"
+    },
+    "page_image::G3-翰林-108上-期中1-P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林::page-1.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G3-_-108_-_1-P07_R06_____3____108___1__/page-1.jpg",
+      "sha256": "1806938c96df90bf7d3dea5d6729675391e854294b0a0339ca8d64da82532807"
+    },
+    "page_image::G3-翰林-108上-期中1-P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林::page-2.jpg": {
+      "path": "source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/pilot/pages/G3-_-108_-_1-P07_R06_____3____108___1__/page-2.jpg",
+      "sha256": "e565e6e901a8a2dd4d22edd0ce4beb825d968e1fd513c0736da9764da32e271b"
+    }
+  }
+}

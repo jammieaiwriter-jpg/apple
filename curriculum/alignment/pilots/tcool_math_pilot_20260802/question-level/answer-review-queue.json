@@ -1,0 +1,112 @@
+[
+  {
+    "questionId": "G2-康軒-112下-期中1-P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒::ql-q22",
+    "sourceId": "G2-康軒-112下-期中1-P01_R10_安和國小_新北市_2年級_數學_112下_期中1_康軒",
+    "sourcePage": 2,
+    "questionNumber": "二-8-①",
+    "answerStatus": "needs_review",
+    "verificationMethod": "visual_manual_required",
+    "correctAnswer": "略（操作題，描邊，無固定文字答案）",
+    "answerEvidence": "此為描邊操作題，答案卷本身亦標示「周界(略)」，無可獨立驗算之文字/數值答案，故不計入 verified 可用題，留待人工檢視描邊正確性。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G3-康軒-113上-期中1-P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒::ql-q05",
+    "sourceId": "G3-康軒-113上-期中1-P01_R07_安和國小_新北市_3年級_數學_113上_期中1_康軒",
+    "sourcePage": 1,
+    "questionNumber": "一-4",
+    "answerStatus": "needs_review",
+    "verificationMethod": "independent_calculation",
+    "correctAnswer": "6、7、8、9",
+    "answerEvidence": "獨立驗算：54□6=5406+10□；5467>5406+10□ 等價於 □<6.1，故合理解應為 □∈{0,1,2,3,4,5,6}（例：□=7時54□6=5476，5467並不大於5476）。此與答案卷所載「6、7、8、9」不符，已重新核對原題不等式方向確為「5467＞54□6」，非誤讀。依規定如實保留答案卷原始文字，標記 needs_review，列入 answer-review-queue，不得逕自改為獨立驗算結果。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林::ql-q36",
+    "sourceId": "G3-翰林-113下-期末2-P01_R01_桃子腳國小_新北市_3年級_數學_113下_期末2_翰林",
+    "sourcePage": 2,
+    "questionNumber": "六",
+    "answerStatus": "needs_review",
+    "verificationMethod": "visual_manual_required",
+    "correctAnswer": "略（開放式作圖題，任何面積為12平方公分且以給定粗黑線為一邊之圖形皆可）",
+    "answerEvidence": "答案卷本身標示「(略)」，屬開放式作圖題，無單一固定文字答案，不計入 verified 可用題，留待人工檢視所繪圖形面積是否恰為12平方公分。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒::ql-q16",
+    "sourceId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒",
+    "sourcePage": 1,
+    "questionNumber": "二-6-(1)",
+    "answerStatus": "needs_review",
+    "verificationMethod": "visual_manual_required",
+    "correctAnswer": "略（作圖題，畫出AC、BD兩條對角線）",
+    "answerEvidence": "開放式作圖題，答案卷標示「略」，無固定文字答案，不計入verified可用題。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒::ql-q22",
+    "sourceId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒",
+    "sourcePage": 1,
+    "questionNumber": "二-9",
+    "answerStatus": "needs_review",
+    "verificationMethod": "visual_manual_required",
+    "correctAnswer": "略（開放式數線標示作圖題）",
+    "answerEvidence": "開放式作圖題，答案卷標示「略」，不計入verified可用題。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒::ql-q26",
+    "sourceId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒",
+    "sourcePage": 2,
+    "questionNumber": "四-1",
+    "answerStatus": "needs_review",
+    "verificationMethod": "independent_calculation",
+    "correctAnswer": "1044 平方公分",
+    "answerEvidence": "獨立驗算：整體矩形36×30=1080，扣除上下兩缺口各6×8=48，即1080-48-48=984平方公分（等價算法：兩側柱15×30各450＋中間連接段6×14=84，450+450+84=984）。與答案卷所載「1044平方公分」不符，已兩次裁圖覆核尺寸(15,6,15,30,6,8,8,6)無誤，仍找不到能得出1044之合理讀法。依規定如實保留答案卷原始數值，標記needs_review，列入answer-review-queue，不得逕自改為984。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒::ql-q28",
+    "sourceId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒",
+    "sourcePage": 2,
+    "questionNumber": "五-1",
+    "answerStatus": "needs_review",
+    "verificationMethod": "visual_manual_required",
+    "correctAnswer": "略（開放式作圖題）",
+    "answerEvidence": "開放式作圖題，答案卷標示「略」，不計入verified可用題。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒::ql-q29",
+    "sourceId": "G4-康軒-112下-期中1-P02_R06_安和國小_新北市_4年級_數學_112下_期中1_康軒",
+    "sourcePage": 2,
+    "questionNumber": "五-2",
+    "answerStatus": "needs_review",
+    "verificationMethod": "visual_manual_required",
+    "correctAnswer": "略（開放式作圖題）",
+    "answerEvidence": "開放式作圖題，答案卷標示「略」，不計入verified可用題。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G4-翰林-113上-期末2-P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林::ql-q32",
+    "sourceId": "G4-翰林-113上-期末2-P01_R08_安和國小_新北市_4年級_數學_113上_期末2_翰林",
+    "sourcePage": 2,
+    "questionNumber": "四-5",
+    "answerStatus": "needs_review",
+    "verificationMethod": "visual_manual_required",
+    "correctAnswer": "略（開放式尺規作圖題）",
+    "answerEvidence": "開放式作圖題，答案卷未列固定文字答案，不計入verified可用題。",
+    "reason": "answerStatus != verified"
+  },
+  {
+    "questionId": "G3-翰林-108上-期中1-P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林::ql-q25",
+    "sourceId": "G3-翰林-108上-期中1-P07_R06_鶴聲國小_屏東縣_3年級_數學_108上_期中1_翰林",
+    "sourcePage": 2,
+    "questionNumber": "三-15",
+    "answerStatus": "needs_review",
+    "verificationMethod": "independent_calculation",
+    "correctAnswer": "167 人",
+    "answerEvidence": "答案卷方框手寫填「167人」，但獨立驗算 835-568=267，與答案卷數值不符（568+267=835 可驗證267才是正確差值；568+167=735≠835）。本題答案卷本身疑似計算或謄寫錯誤，correctAnswer 依規定如實保留答案卷原始文字「167 人」，並標記 needs_review、列入 answer-review-queue，不得逕自改為 267 或視為 verified。",
+    "reason": "answerStatus != verified"
+  }
+]

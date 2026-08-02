@@ -1,13 +1,8 @@
 {
-  "retrievedAt": "2026-08-01T15:30:16.976Z",
+  "retrievedAt": "2026-08-02T00:32:03.461Z",
   "expected": 160,
-  "copied": 159,
-  "missing": [
-    {
-      "kind": "question",
-      "basename": "20002459b12172856b06.pdf"
-    }
-  ],
+  "copied": 160,
+  "missing": [],
   "invalid": [],
-  "complete": false
+  "complete": true
 }

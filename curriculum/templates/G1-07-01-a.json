@@ -1,0 +1,20 @@
+{
+  "templateId": "G1-07-01-a",
+  "skillId": "G1-07-01",
+  "mode": "reverse",
+  "difficulty": 1,
+  "stem": "本來有{total}個圓點，拿走{taken}個，還剩幾個？",
+  "params": {"total": {"type": "int_range", "min": 4, "max": 10}, "taken": {"type": "int_range", "min": 1, "max": 8}},
+  "reject": ["taken >= total"],
+  "derived": {"remaining": "total - taken"},
+  "answer": {"formula": "remaining"},
+  "distractors": [
+    {"formula": "answer + 1", "why": "拿走後數剩下的圓點時多數了一個"},
+    {"formula": "answer - 1", "why": "拿走後數剩下的圓點時少數了一個"},
+    {"formula": "taken", "why": "把拿走的數量當成剩下的數量"},
+    {"formula": "total", "why": "忘記扣掉拿走的圓點，直接回答原來的數量"}
+  ],
+  "hints": ["先分清楚哪一種顏色是留下的，哪一種是拿走的。", "從本來的{total}個裡遮住{taken}個，再數沒有被遮住的。", "{total}個拿走{taken}個會留下{answer}個；換妳說出剩下幾個。"],
+  "figureSpec": {"type": "ten_frame", "filled": "remaining", "extra": "taken"},
+  "verify": "answer + taken == total and total - answer == taken"
+}

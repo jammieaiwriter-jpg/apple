@@ -1,0 +1,49 @@
+{
+  "templateId": "G1-02-05-a",
+  "skillId": "G1-02-05",
+  "mode": "length",
+  "difficulty": 2,
+  "stem": "甲、乙、丙、丁四個東西，哪一個是{label}的？",
+  "params": {
+    "v1": { "type": "int_range", "min": 2, "max": 10 },
+    "v2": { "type": "int_range", "min": 2, "max": 10 },
+    "v3": { "type": "int_range", "min": 2, "max": 10 },
+    "v4": { "type": "int_range", "min": 2, "max": 10 },
+    "label": { "type": "choice", "values": ["最高", "最矮", "最長", "最短"] }
+  },
+  "reject": ["len(set([v1, v2, v3, v4])) < 4"],
+  "derived": {
+    "vals": "[v1, v2, v3, v4]",
+    "labels": "['甲', '乙', '丙', '丁']",
+    "isMax": "1 if label in ['最高', '最長'] else 0",
+    "orientation": "'vertical' if label in ['最高', '最矮'] else 'horizontal'",
+    "asc": "sorted(range(4), key=lambda i: vals[i])",
+    "ansIdx": "asc[3] if isMax else asc[0]",
+    "oppIdx": "asc[0] if isMax else asc[3]",
+    "secIdx": "asc[2] if isMax else asc[1]",
+    "restIdx": "asc[1] if isMax else asc[2]"
+  },
+  "answer": { "formula": "labels[ansIdx]" },
+  "distractors": [
+    { "formula": "labels[oppIdx]", "why": "方向弄反了，把最大看成最小（或相反）" },
+    { "formula": "labels[secIdx]", "why": "只比較了一部分就決定，選到第二名" },
+    { "formula": "labels[restIdx]", "why": "沒有把四個都比過，隨便選一個" }
+  ],
+  "hints": [
+    "先想清楚，題目要妳找的是最大的那一個，還是最小的那一個？",
+    "偷偷告訴妳一個方法：先比甲和乙，把比較大的那個留下來，再拿去跟丙比，最後跟丁比。",
+    "一路比下來，{label}的就是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "segment_compare",
+    "orientation": "orientation",
+    "rows": [
+      { "label": "甲", "length": "v1" },
+      { "label": "乙", "length": "v2" },
+      { "label": "丙", "length": "v3" },
+      { "label": "丁", "length": "v4" }
+    ],
+    "ask": "label"
+  },
+  "verify": "vals[labels.index(answer)] == (max(vals) if isMax else min(vals))"
+}

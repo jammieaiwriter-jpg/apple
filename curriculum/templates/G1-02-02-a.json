@@ -1,0 +1,27 @@
+{
+  "templateId": "G1-02-02-a",
+  "skillId": "G1-02-02",
+  "mode": "length",
+  "difficulty": 2,
+  "stem": "圖中一共畫了幾條線段？",
+  "params": {
+    "n": { "type": "int_range", "min": 2, "max": 5 }
+  },
+  "derived": {
+    "endpoints": "2 * n",
+    "segRows": "[{'length': 8} for i in range(n)]"
+  },
+  "answer": { "formula": "n", "unit": "條" },
+  "distractors": [
+    { "formula": "endpoints", "why": "把端點的數量當成線段的數量，其實每條線段有兩個端點" },
+    { "formula": "n - 1", "why": "少算了一條，可能忘記數到最後一條" },
+    { "formula": "n + 1", "why": "多算了一條，可能把端點也誤算成一條線段" }
+  ],
+  "hints": [
+    "線段是直直的一小段，兩端各有一個端點。先找找圖裡總共畫了幾條直直的線。",
+    "偷偷告訴妳一個方法：從最左邊開始，一條一條指著數，數到最後一條為止。",
+    "圖裡一共有{answer}條線段，別把端點也算成線段喔。"
+  ],
+  "figureSpec": { "type": "segment_compare", "rows": "segRows" },
+  "verify": "endpoints == 2 * answer"
+}

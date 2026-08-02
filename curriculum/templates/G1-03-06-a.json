@@ -1,0 +1,31 @@
+{
+  "templateId": "G1-03-06-a",
+  "skillId": "G1-03-06",
+  "mode": "jump",
+  "difficulty": 2,
+  "stem": "甲有{a}個、乙有{b}個，哪一堆比較多？",
+  "params": {
+    "a": { "type": "int_range", "min": 1, "max": 10 },
+    "b": { "type": "int_range", "min": 1, "max": 10 }
+  },
+  "reject": ["a == b"],
+  "answer": { "formula": "'甲' if a > b else '乙'" },
+  "distractors": [
+    { "formula": "'乙' if a > b else '甲'", "why": "多少方向弄反了，把比較少的說成比較多" },
+    { "formula": "'一樣多'", "why": "沒有仔細數，覺得兩堆一樣多" },
+    { "formula": "'看不出來'", "why": "不敢下判斷，逃避比較這個步驟" }
+  ],
+  "hints": [
+    "兩堆東西，妳要找的是比較多的那一堆。",
+    "偷偷告訴妳一個方法：甲有{a}個，乙有{b}個，比比看哪個數字比較大。",
+    "{a}和{b}比起來，比較多的是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "count_group",
+    "groups": [
+      { "label": "甲", "count": "a" },
+      { "label": "乙", "count": "b" }
+    ]
+  },
+  "verify": "(answer == '甲' and a > b) or (answer == '乙' and b > a)"
+}

@@ -1,0 +1,34 @@
+{
+  "templateId": "G1-01-01-a",
+  "skillId": "G1-01-01",
+  "mode": "jump",
+  "difficulty": 1,
+  "stem": "數一數，下面一共有幾個{itemName}？",
+  "params": {
+    "a": { "type": "int_range", "min": 2, "max": 9 },
+    "itemName": { "type": "choice", "values": ["蘋果", "圈圈", "星星", "氣球", "小魚", "小兔", "小狗", "甜甜圈"] },
+    "layout": { "type": "choice", "values": ["rows", "scatter"] }
+  },
+  "answer": { "formula": "a", "unit": "個" },
+  "distractors": [
+    { "formula": "a + 1", "why": "數的時候多數了一個，可能把同一個東西數了兩次" },
+    { "formula": "a - 1", "why": "數的時候少數了一個，可能漏看了角落的一個" },
+    { "formula": "a + 2", "why": "跳著數，中間多跳了兩格" }
+  ],
+  "hints": [
+    "先深呼吸，一個一個手指著數，不要用眼睛跳著看喔。",
+    "偷偷告訴妳一個方法：從最左邊開始，數到一個就伸出一根手指頭，數到最後一個為止。",
+    "妳從1數到最後，總共數到{answer}，答案就是{answer}個。"
+  ],
+  "derived": {
+    "iconColor": "{'蘋果': '#ef4444', '圈圈': '#a855f7', '星星': '#facc15', '氣球': '#3b82f6', '小魚': '#0891b2', '小兔': '#f472b6', '小狗': '#a16207', '甜甜圈': '#f59e0b'}[itemName]",
+    "asset": "{'蘋果': 'fluent-green-apple', '圈圈': 'circle', '星星': 'fluent-star', '氣球': 'fluent-balloon', '小魚': 'fluent-fish', '小兔': 'fluent-rabbit', '小狗': 'fluent-dog', '甜甜圈': 'fluent-doughnut'}[itemName]"
+  },
+  "figureSpec": {
+    "type": "count_group",
+    "layout": "layout",
+    "seed": "a",
+    "groups": [{ "color": "iconColor", "count": "a", "asset": "asset" }]
+  },
+  "verify": "sum(1 for _ in range(a)) == answer"
+}

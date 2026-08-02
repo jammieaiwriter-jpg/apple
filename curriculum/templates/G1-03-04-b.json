@@ -1,0 +1,30 @@
+{
+  "templateId": "G1-03-04-b",
+  "skillId": "G1-03-04",
+  "mode": "space",
+  "difficulty": 2,
+  "stem": "一排小朋友一共有{n}個，妳排第{t}個，{side}邊有幾個小朋友？",
+  "params": {
+    "n": { "type": "int_range", "min": 6, "max": 9 },
+    "t": { "type": "int_range", "min": 2, "max": 8 },
+    "side": { "type": "choice", "values": ["左", "右"] }
+  },
+  "reject": ["t < 2", "t > n - 1"],
+  "derived": {
+    "leftCount": "t - 1",
+    "rightCount": "n - t"
+  },
+  "answer": { "formula": "leftCount if side == '左' else rightCount", "unit": "個" },
+  "distractors": [
+    { "formula": "rightCount if side == '左' else leftCount", "why": "左右邊算反了，算成了另一邊的人數" },
+    { "formula": "t", "why": "把自己排的位置號碼當成旁邊的人數" },
+    { "formula": "n", "why": "把全部的人數當成一邊的人數" }
+  ],
+  "hints": [
+    "先找到自己排第幾個，再想清楚要算左邊還是右邊的人。",
+    "偷偷告訴妳一個方法：如果妳排第{t}個，左邊就有{t}減1個人。",
+    "{side}邊一共有{answer}個小朋友。"
+  ],
+  "figureSpec": { "type": "space_relations", "mode": "row_count", "total": "n", "targetPos": "t", "ask": "side" },
+  "verify": "(leftCount + rightCount + 1 == n) and ((answer == leftCount and side == '左') or (answer == rightCount and side == '右'))"
+}

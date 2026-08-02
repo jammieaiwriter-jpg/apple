@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "science",
+    "grade": "G4",
+    "curriculum": "無教育部108課綱科學對照版本；本檔採 KooBits「Cambridge International Science Curriculum (0097-aligned)」小4 章節與技能顆粒度為骨架",
+    "created": "2026-08-01",
+    "totalChapters": 5,
+    "totalSkills": 30,
+    "reference": "同 G1-G3。本檔取 Cambridge 軌小4章節與技能作骨架（該課程樹小4實測共30項技能，5章，章節名稱與小3不同但深度明顯加深，尤其『能量』單章就佔18項技能）。技能原文為英文，已翻譯為繁體中文並依台灣國小自然科用語調整。難度、模式(mode)、圖形等級(figure)為本系統自訂。",
+    "publisherOrder": "pending",
+    "publisherNote": "台灣國小四年級自然課本單元通常涵蓋能量的形式與轉換、光合作用、電路等內容，與本檔『能量』『光』『電』三章方向一致，但『能量』章的深度(動能/位能/能量轉換/光合作用機制/澱粉測試)已接近國中理化前導，需要與現行課本比對後決定是否分拆為兩學期或降階。",
+    "newInG4": "本級最大特徵是『能量』(Energy)單章暴增到18項技能，涵蓋動能、位能、能量轉換、多種能量來源(水力/燃料/太陽)、節約能源、以至光合作用機制與澱粉測試——把過去分散在生物/物理的內容統整進『能量』這個大主題。『Living things』章從G1-G3的生物特徵/系統，收斂成只剩1項『人體骨骼系統』，代表人體單元在G4已近尾聲，之後應該會併入G5+的深化內容(未探查)。『地球與棲地』章的因果推理(relate/describe how X affects Y)比例明顯提高，呼應G3已建立的探究式题型走向。",
+    "modes": {
+      "concept": "🧪 概念辨識 — 是非/選擇型概念題，測知識點記憶與理解",
+      "classify": "🗂 分類歸類 — 依特徵將物品/生物分組",
+      "compare": "🔍 比較觀察 — 比較兩個以上對象的特徵、強弱、程度",
+      "match": "🔗 配對連結 — 功能配對、部位配對、感官配對",
+      "diagram": "🩻 圖表標示 — 人體/植物/器材構造標示、讀圖",
+      "process": "🔄 歷程與因果 — 生命週期、能量轉換、狀態變化等歷程推理",
+      "experiment": "⚡ 實驗推理 — 力、磁、光、電的因果推理與簡單變因控制"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值）",
+    "figureLoad": {
+      "none": 14,
+      "param": 13,
+      "grid": 0,
+      "asset": 3,
+      "note": "延續 G3 的走勢，param 持續逼近 none。asset 只剩3個，全部集中在『能量』章的『能量來源』小節(流水/燃料/太陽)，因為這類題目需要辨認『這是哪一種能量來源的照片/情境圖』，比較適合寫實圖而非參數化SVG。能量轉換(kinetic⇄potential)、光合作用流程、電路測試器、燈泡亮度變因，都可以用參數化示意圖(能量轉換箭頭圖、流程圖、電路圖)表現，是 param 的主力來源。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "SCI-G4-01",
+      "order": 1,
+      "semester": "上",
+      "name": "生物",
+      "koobitsName": "Living things",
+      "skills": [
+        { "skillId": "SCI-G4-01-01", "name": "認識人體骨骼系統的構造與功能", "mode": "diagram", "difficulty": 2, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G4-02",
+      "order": 2,
+      "semester": "上",
+      "name": "能量",
+      "koobitsName": "Energy",
+      "skills": [
+        { "skillId": "SCI-G4-02-01", "name": "辨識各種能量的形式", "mode": "classify", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G4-02-02", "name": "認識能量的特性", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G4-02-03", "name": "認識影響系統中動能大小的因素", "mode": "experiment", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G4-02-04", "name": "認識影響系統中位能大小的因素", "mode": "experiment", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G4-02-05", "name": "連結動能與位能變化對系統結果的影響", "mode": "process", "difficulty": 4, "figure": "param" },
+        { "skillId": "SCI-G4-02-06", "name": "探討系統中能量從一種形式轉換為另一種形式", "mode": "process", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G4-02-07", "name": "認識流水作為能量來源的應用", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G4-02-08", "name": "認識燃料作為能量來源的應用", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G4-02-09", "name": "辨識各種能量來源的用途", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G4-02-10", "name": "描述太陽是主要能量來源", "mode": "concept", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G4-02-11", "name": "辨識節約能源的方法", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G4-02-12", "name": "認識生物需要能量才能進行生命活動", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G4-02-13", "name": "認識動物如何獲得能量", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G4-02-14", "name": "描述植物如何透過光合作用自製養分", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G4-02-15", "name": "探討影響光合作用的因素", "mode": "experiment", "difficulty": 4, "figure": "none" },
+        { "skillId": "SCI-G4-02-16", "name": "探討植物中澱粉的存在（碘液測試）", "mode": "experiment", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G4-02-17", "name": "認識植物與周遭環境的氣體交換", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G4-02-18", "name": "描述植物運輸系統如何運送物質", "mode": "process", "difficulty": 4, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G4-03",
+      "order": 3,
+      "semester": "下",
+      "name": "地球與棲地",
+      "koobitsName": "Earth and its habitats",
+      "skills": [
+        { "skillId": "SCI-G4-03-01", "name": "連結環境因素與族群數量的關係", "mode": "process", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G4-03-02", "name": "描述環境中光量如何影響生物生存", "mode": "process", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G4-03-03", "name": "描述環境中空氣供給如何影響生物生存", "mode": "process", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G4-03-04", "name": "描述環境中水分供給如何影響生物生存", "mode": "process", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G4-03-05", "name": "描述環境中其他生物的存在如何影響生物生存", "mode": "process", "difficulty": 2, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G4-04",
+      "order": 4,
+      "semester": "下",
+      "name": "光",
+      "koobitsName": "Light",
+      "skills": [
+        { "skillId": "SCI-G4-04-01", "name": "描述物體在光線下如何被看見", "mode": "concept", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G4-04-02", "name": "認識光的性質（直線前進／反射等）", "mode": "concept", "difficulty": 2, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G4-05",
+      "order": 5,
+      "semester": "下",
+      "name": "電",
+      "koobitsName": "Electricity",
+      "skills": [
+        { "skillId": "SCI-G4-05-01", "name": "依導電性比較材料", "mode": "compare", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G4-05-02", "name": "認識如何用電路測試器測試材料導電性", "mode": "experiment", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G4-05-03", "name": "區分通路與斷路", "mode": "concept", "difficulty": 1, "figure": "param" },
+        { "skillId": "SCI-G4-05-04", "name": "探討影響電路中燈泡亮度的因素", "mode": "experiment", "difficulty": 3, "figure": "param" }
+      ]
+    }
+  ]
+}

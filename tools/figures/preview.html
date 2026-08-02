@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>圖形元件庫預覽 — Apple 小一數學</title>
+<style>
+  :root {
+    --ink: #2d2a26;
+    --paper: #fffdf7;
+    --card: #ffffff;
+    --accent: #f97316;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'PingFang TC','Microsoft JhengHei','Helvetica Neue',sans-serif;
+    background: linear-gradient(180deg, #fff7ed 0%, #fdf4e3 100%);
+    color: var(--ink);
+    padding: 24px 16px 60px;
+  }
+  header {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 28px;
+    margin: 0 0 6px;
+  }
+  header p {
+    margin: 4px 0;
+    color: #6b5f4f;
+    font-size: 14px;
+  }
+  #status {
+    max-width: 1100px;
+    margin: 0 auto 20px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+  }
+  #status.ok { background: #dcfce7; color: #166534; border: 2px solid #86efac; }
+  #status.fail { background: #fee2e2; color: #991b1b; border: 2px solid #fca5a5; }
+
+  main { max-width: 1100px; margin: 0 auto; }
+
+  section.component {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    border: 2px solid #f3ead9;
+  }
+  section.component h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0 0 4px;
+    font-size: 20px;
+  }
+  section.component h2 .no {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+  }
+  section.component .desc {
+    margin: 0 0 16px;
+    color: #6b5f4f;
+    font-size: 13px;
+  }
+  .variants {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .variant {
+    flex: 1 1 260px;
+    max-width: 320px;
+    background: #fafaf9;
+    border: 1px solid #e7e0d3;
+    border-radius: 12px;
+    padding: 12px;
+  }
+  .variant .figure-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    min-height: 120px;
+    overflow: auto;
+  }
+  .variant .figure-box svg { max-width: 100%; height: auto; }
+  .variant pre {
+    margin: 10px 0 0;
+    font-size: 11px;
+    background: #1f2937;
+    color: #d1fae5;
+    padding: 8px 10px;
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .variant .err {
+    color: #b91c1c;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px;
+  }
+  footer {
+    max-width: 1100px;
+    margin: 30px auto 0;
+    text-align: center;
+    color: #9a8f7a;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🍎 圖形元件庫預覽</h1>
+  <p>curriculum/BUILD_CONTRACT.md §2.3 第 1–9 號元件 ＋ figure-specs.json 補的 8 個 JS 版（含 2026-08-01 G3/G4 圖形缺口補強：line_relation／shape_dimension／capacity_container／balance_scale） — 給媽媽目視驗收用</p>
+  <p>每個元件顯示 2–3 組不同參數；下方灰底方塊是產生該圖用的 <code>figureSpec</code> JSON。</p>
+</header>
+
+<div id="status">載入中…</div>
+
+<main id="app"></main>
+
+<footer>tools/figures/figures.js · tools/figures/preview.html</footer>
+
+<script type="module">
+import { renderFigure, SUPPORTED } from "./figures.js";
+
+const COMPONENTS = [
+  {
+    no: 1,
+    type: "clock_face",
+    title: "clock_face 指針鐘面",
+    desc: "參數：hour, minute（可選 size）。整點、半點、一般時刻都要能畫。",
+    variants: [
+      { spec: { type: "clock_face", hour: 3, minute: 0 }, note: "整點 3:00" },
+      { spec: { type: "clock_face", hour: 7, minute: 30 }, note: "半點 7:30" },
+      { spec: { type: "clock_face", hour: 10, minute: 45 }, note: "一般時刻 10:45" },
+    ],
+  },
+  {
+    no: 2,
+    type: "digital_clock",
+    title: "digital_clock 電子鐘",
+    desc: "參數：hour, minute（可選 period=\"上午\"/\"下午\"）。",
+    variants: [
+      { spec: { type: "digital_clock", hour: 9, minute: 5 } },
+      { spec: { type: "digital_clock", hour: 14, minute: 30 } },
+      { spec: { type: "digital_clock", hour: 8, minute: 0, period: "上午" } },
+    ],
+  },
+  {
+    no: 3,
+    type: "calendar",
+    title: "calendar 月曆",
+    desc: "參數：year, month（可選 highlight=[日期陣列]）。標準七欄月曆。",
+    variants: [
+      { spec: { type: "calendar", year: 2026, month: 8, highlight: [1, 15, 31] } },
+      { spec: { type: "calendar", year: 2026, month: 2 } },
+      { spec: { type: "calendar", year: 2024, month: 2, highlight: [29] }, note: "閏年 2 月驗證" },
+    ],
+  },
+  {
+    no: 4,
+    type: "ten_frame",
+    title: "ten_frame 十格框",
+    desc: "參數：filled（可選 extra，第二色）。標準 2×5 十格框，湊十的標準表徵。",
+    variants: [
+      { spec: { type: "ten_frame", filled: 6 } },
+      { spec: { type: "ten_frame", filled: 4, extra: 3 } },
+      { spec: { type: "ten_frame", filled: 10 } },
+    ],
+  },
+  {
+    no: 5,
+    type: "place_value_board",
+    title: "place_value_board 定位板（位值）",
+    desc: "參數：tens, ones（可選 hundreds）。分欄顯示十位／個位。",
+    variants: [
+      { spec: { type: "place_value_board", tens: 3, ones: 7 } },
+      { spec: { type: "place_value_board", tens: 0, ones: 5 } },
+      { spec: { type: "place_value_board", hundreds: 1, tens: 0, ones: 9 } },
+    ],
+  },
+  {
+    no: 6,
+    type: "column_arithmetic",
+    title: "column_arithmetic 直式加減板",
+    desc: "參數：a, b, op（\"+\"/\"-\"），可選 showAnswer。直式排版對齊個位。2026-08-01 修復：a/b 現在允許浮點數，自動切換到小數版面（多一欄窄的小數點欄位），整數輸入的版面完全不變。",
+    variants: [
+      { spec: { type: "column_arithmetic", a: 24, b: 3, op: "+" }, note: "整數（相容性基準，版面未變）" },
+      { spec: { type: "column_arithmetic", a: 45, b: 18, op: "-", showAnswer: true }, note: "整數＋showAnswer" },
+      { spec: { type: "column_arithmetic", a: 7, b: 5, op: "+", showAnswer: true }, note: "整數＋showAnswer" },
+      {
+        spec: { type: "column_arithmetic", a: 1.2, b: 3.4, op: "+", showAnswer: true },
+        note: "一位小數加法（修復前會靜默算錯成「1」）",
+      },
+      {
+        spec: { type: "column_arithmetic", a: 5, b: 3.42, op: "+", showAnswer: true },
+        note: "整數 + 兩位小數：整數列自動補 0 對齊（5 → 5.00）",
+      },
+      {
+        spec: { type: "column_arithmetic", a: 8.6, b: 3.9, op: "-", showAnswer: true },
+        note: "一位小數退位減法",
+      },
+    ],
+  },
+  {
+    no: 7,
+    type: "count_group",
+    title: "count_group 數數群組（花片）",
+    desc: "參數：groups=[{color,count,label?}]，可選 layout=\"rows\"|\"scatter\"、seed（scatter 必須可重現）。",
+    variants: [
+      {
+        spec: {
+          type: "count_group",
+          groups: [
+            { color: "#f97316", count: 5, label: "紅花片" },
+            { color: "#3b82f6", count: 3, label: "藍花片" },
+          ],
+        },
+        note: "layout=rows（預設），適合比較多少",
+      },
+      {
+        spec: { type: "count_group", groups: [{ color: "#22c55e", count: 12 }], layout: "scatter", seed: 7 },
+        note: "layout=scatter，適合估計／點數",
+      },
+      {
+        spec: { type: "count_group", groups: [{ color: "#22c55e", count: 12 }], layout: "scatter", seed: 7 },
+        note: "同一 spec 再畫一次 → 驗證可重現",
+      },
+    ],
+  },
+  {
+    no: 8,
+    type: "unit_ruler",
+    title: "unit_ruler 個別單位重複排列測量",
+    desc: "參數：objectLength, unitLength（可選 unitLabel、objectLabel）。上方物件、下方重複排列個別單位。",
+    variants: [
+      { spec: { type: "unit_ruler", objectLength: 12, unitLength: 3, unitLabel: "迴紋針" } },
+      { spec: { type: "unit_ruler", objectLength: 10, unitLength: 2, unitLabel: "積木", objectLabel: "鉛筆" } },
+      { spec: { type: "unit_ruler", objectLength: 9, unitLength: 2, unitLabel: "小方塊" } },
+    ],
+  },
+  {
+    no: 9,
+    type: "pictogram",
+    title: "pictogram 圖畫記錄（象形圖）",
+    desc: "參數：categories=[{label,count}], orientation=\"vertical\"/\"horizontal\"（可選 icon）。",
+    variants: [
+      {
+        spec: {
+          type: "pictogram",
+          categories: [
+            { label: "貓", count: 3 },
+            { label: "狗", count: 5 },
+            { label: "魚", count: 2 },
+          ],
+          orientation: "vertical",
+        },
+      },
+      {
+        spec: {
+          type: "pictogram",
+          categories: [
+            { label: "蘋果", count: 4 },
+            { label: "香蕉", count: 7 },
+          ],
+          orientation: "horizontal",
+          icon: "star",
+        },
+      },
+      {
+        spec: {
+          type: "pictogram",
+          categories: [
+            { label: "晴天", count: 6 },
+            { label: "雨天", count: 3 },
+          ],
+          orientation: "horizontal",
+          icon: "square",
+        },
+      },
+    ],
+  },
+  {
+    no: 10,
+    type: "segment_compare",
+    title: "segment_compare 線段比一比",
+    desc: "參數：rows=[{label,length,shape?}]（可選 orientation=\"horizontal\"|\"vertical\"、ask、unit）。shape 可選 \"line\"|\"curve\"|\"point\"。",
+    variants: [
+      {
+        spec: {
+          type: "segment_compare",
+          ask: "長",
+          rows: [
+            { label: "甲", length: 8 },
+            { label: "乙", length: 5 },
+          ],
+        },
+        note: "水平比長短（G1-02-01）",
+      },
+      {
+        spec: {
+          type: "segment_compare",
+          orientation: "vertical",
+          ask: "高",
+          rows: [
+            { label: "甲", length: 9 },
+            { label: "乙", length: 4 },
+            { label: "丙", length: 6 },
+          ],
+        },
+        note: "垂直比高矮，三條",
+      },
+      {
+        spec: {
+          type: "segment_compare",
+          rows: [
+            { label: "甲", length: 40, shape: "point" },
+            { label: "乙", length: 40, shape: "line" },
+            { label: "丙", length: 40, shape: "curve" },
+          ],
+        },
+        note: "shape 辨認點／直線／曲線（G1-02-03）",
+      },
+    ],
+  },
+  {
+    no: 11,
+    type: "number_line",
+    title: "number_line 數線",
+    desc: "參數：min, max（可選 highlight、step、marks=[數值陣列]）。整數刻度，highlight 用醒目大紅點標記。",
+    variants: [
+      { spec: { type: "number_line", min: 0, max: 10, highlight: 6 } },
+      { spec: { type: "number_line", min: 0, max: 20, step: 2, highlight: 14 } },
+      { spec: { type: "number_line", min: 0, max: 10, highlight: 7, marks: [3, 5] }, note: "highlight + marks 同時出現" },
+    ],
+  },
+  {
+    no: 12,
+    type: "space_relations",
+    title: "space_relations 空間位置關係",
+    desc: "參數：mode(\"row_count\"|\"row_order\"), total（可選 targetPos、ask、labels、marks）。",
+    variants: [
+      {
+        spec: { type: "space_relations", mode: "row_count", total: 7, targetPos: 3, ask: "左" },
+        note: "row_count：數字格＋方向箭頭",
+      },
+      {
+        spec: {
+          type: "space_relations",
+          mode: "row_count",
+          total: 5,
+          targetPos: 2,
+          ask: "右",
+          labels: ["貓", "狗", "兔子", "鳥", "魚"],
+        },
+        note: "row_count：labels 取代數字（G1-03-04）",
+      },
+      {
+        spec: {
+          type: "space_relations",
+          mode: "row_order",
+          total: 8,
+          marks: [3, 6],
+          labels: ["小明", "小華"],
+        },
+        note: "row_order：兩個對象的前後關係（G1-03-03／05）",
+      },
+    ],
+  },
+  {
+    no: 13,
+    type: "array_model",
+    title: "array_model 乘法陣列圖",
+    desc: "參數：rows, cols（可選 mode=\"grid\"|\"addition\"|\"commutative\"|\"grouping\"、icon、color、groupLabels、unknownGroup）。服務 G2 乘法／除法啟蒙 16 個技能。",
+    variants: [
+      {
+        spec: { type: "array_model", rows: 3, cols: 4 },
+        note: "grid：3 列 4 行，乘法表基本款",
+      },
+      {
+        spec: { type: "array_model", rows: 3, cols: 4, mode: "addition" },
+        note: "addition：陣列 + 4+4+4 加法算式（用加法算乘法）",
+      },
+      {
+        spec: { type: "array_model", rows: 3, cols: 4, mode: "commutative" },
+        note: "commutative：3×4 與 4×3 並排，交換律",
+      },
+      {
+        spec: { type: "array_model", rows: 3, cols: 4, mode: "grouping", unknownGroup: 1 },
+        note: "grouping：分堆＋一組畫問號（除法啟蒙）",
+      },
+      {
+        spec: {
+          type: "array_model",
+          rows: 2,
+          cols: 5,
+          icon: "star",
+          groupLabels: ["第1籃", "第2籃"],
+        },
+        note: "grid：groupLabels 應用題情境標籤",
+      },
+    ],
+  },
+  {
+    no: 14,
+    type: "line_relation",
+    title: "line_relation 兩線關係（垂直／平行）",
+    desc: "參數：relation=\"perpendicular\"|\"parallel\"（可選 showMark、labels）。服務 G2-17-02／G4-12-01（垂直線）與 G4-12-02（平行線）共 3 個技能。",
+    variants: [
+      { spec: { type: "line_relation", relation: "perpendicular" }, note: "垂直，無標籤" },
+      {
+        spec: { type: "line_relation", relation: "perpendicular", labels: ["甲", "乙"] },
+        note: "垂直＋直角記號＋標籤",
+      },
+      {
+        spec: { type: "line_relation", relation: "parallel", labels: ["甲", "乙"] },
+        note: "平行＋方向箭頭對＋標籤",
+      },
+      { spec: { type: "line_relation", relation: "parallel", showMark: false }, note: "平行，showMark=false 不畫箭頭" },
+    ],
+  },
+  {
+    no: 15,
+    type: "shape_dimension",
+    title: "shape_dimension 標邊長的矩形",
+    desc: "參數：width, height（可選 unit、showArea、showPerimeter）。開啟時顯示計算式本身，不直接給答案數字。服務 G4 周長與面積章約 11 個技能。",
+    variants: [
+      { spec: { type: "shape_dimension", width: 6, height: 4 }, note: "只標邊長，不顯示公式" },
+      {
+        spec: { type: "shape_dimension", width: 6, height: 4, showPerimeter: true },
+        note: "showPerimeter：顯示「周長 = (6 + 4) × 2」",
+      },
+      {
+        spec: { type: "shape_dimension", width: 6, height: 4, showArea: true },
+        note: "showArea：顯示「面積 = 6 × 4」",
+      },
+      {
+        spec: { type: "shape_dimension", width: 5, height: 5, showArea: true, showPerimeter: true },
+        note: "正方形（width=height）＋兩個公式都顯示",
+      },
+    ],
+  },
+  {
+    no: 16,
+    type: "capacity_container",
+    title: "capacity_container 量杯/容器刻度圖",
+    desc: "參數：capacity, filled（可選 unit、maxScale）。液面畫在 filled 對應的刻度高度，不直接顯示 filled 數字（刻度讀數題要讓孩子自己數）。服務 G3 公升和毫升章共 4 個技能。",
+    variants: [
+      {
+        spec: { type: "capacity_container", capacity: 350, filled: 220 },
+        note: "沒給 maxScale：capacity=350 自動抓 400",
+      },
+      {
+        spec: { type: "capacity_container", capacity: 350, filled: 220, maxScale: 500 },
+        note: "有給 maxScale=500，覆蓋自動抓值",
+      },
+      {
+        spec: { type: "capacity_container", capacity: 60, filled: 25 },
+        note: "小數值：capacity<100 自動抓到十位（60→60）",
+      },
+    ],
+  },
+  {
+    no: 17,
+    type: "balance_scale",
+    title: "balance_scale 天平",
+    desc: "參數：leftWeight, rightWeight（可選 leftLabel、rightLabel、unit）。元件自己依重量大小判斷畫平衡／左傾／右傾。服務 G3 公斤和公克章重量比較共 4 個技能。",
+    variants: [
+      { spec: { type: "balance_scale", leftWeight: 150, rightWeight: 150 }, note: "平衡（重量相同）" },
+      {
+        spec: { type: "balance_scale", leftWeight: 200, rightWeight: 120, leftLabel: "蘋果", rightLabel: "梨子" },
+        note: "左傾（左邊較重）＋物品標籤",
+      },
+      {
+        spec: { type: "balance_scale", leftWeight: 90, rightWeight: 180 },
+        note: "右傾（右邊較重），無標籤只顯示重量",
+      },
+    ],
+  },
+  {
+    no: 18,
+    type: "fraction_model",
+    title: "fraction_model 分數／小數部分-全體表徵",
+    desc: "參數：numerator, denominator（可選 shape=\"circle\"|\"bar\"|\"grid\"、color、compare=[{numerator,denominator}]、showLabel）。numerator 可以大於 denominator，會自動拆成整圖＋部分圖。服務 G3/G4 分數與部分小數表徵共 24 個技能。",
+    variants: [
+      {
+        spec: { type: "fraction_model", numerator: 3, denominator: 4 },
+        note: "簡單真分數，circle 預設（G3 分數啟蒙）",
+      },
+      {
+        spec: { type: "fraction_model", numerator: 5, denominator: 4 },
+        note: "假分數 numerator>denominator：自動拆成 1 個全滿圓 + 1 個 1/4 部分圓",
+      },
+      {
+        spec: { type: "fraction_model", numerator: 9, denominator: 4 },
+        note: "帶分數情境：2 又 1/4，拆成 2 個全滿圓 + 1 個部分圓",
+      },
+      {
+        spec: { type: "fraction_model", numerator: 8, denominator: 4 },
+        note: "整除剛好 2 個全滿圓，餘數為 0 不會多畫空的部分圖",
+      },
+      {
+        spec: { type: "fraction_model", numerator: 2, denominator: 3, shape: "bar" },
+        note: "shape=bar：長條分割，方便左右對齊比較/加減",
+      },
+      {
+        spec: { type: "fraction_model", numerator: 3, denominator: 10, shape: "grid" },
+        note: "shape=grid，denominator=10：一排 10 格，對應一位小數 0.3",
+      },
+      {
+        spec: { type: "fraction_model", numerator: 37, denominator: 100, shape: "grid" },
+        note: "shape=grid，denominator=100：10×10 方格，對應二位小數 0.37",
+      },
+      {
+        spec: {
+          type: "fraction_model",
+          numerator: 1,
+          denominator: 2,
+          shape: "bar",
+          compare: [{ numerator: 2, denominator: 4 }],
+        },
+        note: "compare：1/2 與 2/4 並排比較（等值分數／擴分）",
+      },
+      {
+        spec: { type: "fraction_model", numerator: 3, denominator: 5, showLabel: false },
+        note: "showLabel=false：不顯示分數數字，只留圖形",
+      },
+    ],
+  },
+];
+
+const app = document.getElementById("app");
+const statusEl = document.getElementById("status");
+let errorCount = 0;
+let renderCount = 0;
+
+for (const comp of COMPONENTS) {
+  const section = document.createElement("section");
+  section.className = "component";
+
+  const h2 = document.createElement("h2");
+  h2.innerHTML = `<span class="no">${comp.no}</span> ${comp.title}`;
+  section.appendChild(h2);
+
+  const desc = document.createElement("p");
+  desc.className = "desc";
+  desc.textContent = comp.desc;
+  section.appendChild(desc);
+
+  const variantsWrap = document.createElement("div");
+  variantsWrap.className = "variants";
+
+  for (const v of comp.variants) {
+    const box = document.createElement("div");
+    box.className = "variant";
+
+    const figBox = document.createElement("div");
+    figBox.className = "figure-box";
+
+    renderCount++;
+    try {
+      const svg = renderFigure(v.spec);
+      figBox.innerHTML = svg;
+    } catch (e) {
+      errorCount++;
+      const err = document.createElement("div");
+      err.className = "err";
+      err.textContent = `渲染失敗：${e.message}`;
+      figBox.appendChild(err);
+    }
+    box.appendChild(figBox);
+
+    if (v.note) {
+      const note = document.createElement("div");
+      note.style.cssText = "margin-top:8px;font-size:12px;color:#92400e;font-weight:700;";
+      note.textContent = v.note;
+      box.appendChild(note);
+    }
+
+    const pre = document.createElement("pre");
+    pre.textContent = JSON.stringify(v.spec, null, 2);
+    box.appendChild(pre);
+
+    variantsWrap.appendChild(box);
+  }
+
+  section.appendChild(variantsWrap);
+  app.appendChild(section);
+}
+
+// 型別涵蓋檢查：BUILD_CONTRACT §2.3 第 1-9 號 ＋ figure-specs.json 補的
+// segment_compare／number_line／space_relations（原標 TODO_JS）都要出現在 SUPPORTED 裡
+const expected = [
+  "clock_face", "digital_clock", "calendar", "ten_frame", "place_value_board",
+  "column_arithmetic", "count_group", "unit_ruler", "pictogram",
+  "segment_compare", "number_line", "space_relations", "array_model",
+  "line_relation", "shape_dimension", "capacity_container", "balance_scale",
+  "fraction_model",
+];
+const missing = expected.filter((t) => !SUPPORTED.includes(t));
+
+if (errorCount === 0 && missing.length === 0) {
+  statusEl.className = "ok";
+  statusEl.textContent = `✅ 全部通過：${renderCount} 個渲染成功，SUPPORTED 涵蓋全部 ${expected.length} 個元件（${SUPPORTED.join(", ")}）`;
+} else {
+  statusEl.className = "fail";
+  const msgs = [];
+  if (errorCount) msgs.push(`${errorCount} 個渲染失敗`);
+  if (missing.length) msgs.push(`SUPPORTED 缺少：${missing.join(", ")}`);
+  statusEl.textContent = `❌ ${msgs.join("；")}`;
+}
+</script>
+</body>
+</html>

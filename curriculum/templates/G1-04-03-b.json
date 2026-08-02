@@ -1,0 +1,25 @@
+{
+  "templateId": "G1-04-03-b",
+  "skillId": "G1-04-03",
+  "mode": "reverse",
+  "difficulty": 2,
+  "stem": "{a}和{b}合起來是多少？",
+  "params": {
+    "a": { "type": "int_range", "min": 1, "max": 9 },
+    "b": { "type": "int_range", "min": 1, "max": 9 }
+  },
+  "reject": ["a + b > 10", "a + b < 6"],
+  "answer": { "formula": "a + b" },
+  "distractors": [
+    { "formula": "a + b + 1", "why": "湊十的時候多數了一格，多算了一個" },
+    { "formula": "a + b - 1", "why": "湊十的時候漏數了一格，少算了一個" },
+    { "formula": "abs(a - b)", "why": "把「合起來」看成「相差」，做成了減法" }
+  ],
+  "hints": [
+    "{a}和{b}合起來，要用加法還是減法呢？",
+    "偷偷告訴妳一個方法：從{a}開始，往後數{b}個。",
+    "{a}往後數{b}個就是{answer}。"
+  ],
+  "figureSpec": { "type": "ten_frame", "filled": "a", "extra": "b" },
+  "verify": "answer - b == a"
+}

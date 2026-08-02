@@ -1,0 +1,22 @@
+{
+  "templateId": "G1-03-01-a",
+  "skillId": "G1-03-01",
+  "mode": "jump",
+  "difficulty": 2,
+  "stem": "從{a}開始倒數，倒數之後的下一個數字是多少？",
+  "params": {
+    "a": { "type": "int_range", "min": 3, "max": 10 }
+  },
+  "answer": { "formula": "a - 1" },
+  "distractors": [
+    { "formula": "a", "why": "沒有往回數，還停在原本的數字上" },
+    { "formula": "a + 1", "why": "數的方向弄反了，變成往前數" },
+    { "formula": "a - 2", "why": "倒數跳太快了，一次退了兩格" }
+  ],
+  "hints": [
+    "倒數的時候，數字是越數越大、還是越數越小呢？",
+    "偷偷告訴妳一個方法：從{a}開始，往前退一步，數字要變小一個。",
+    "{a}倒數的下一個是{a}減1，也就是{answer}。"
+  ],
+  "verify": "answer + 1 == a"
+}

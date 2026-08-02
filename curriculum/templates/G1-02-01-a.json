@@ -1,0 +1,31 @@
+{
+  "templateId": "G1-02-01-a",
+  "skillId": "G1-02-01",
+  "mode": "length",
+  "difficulty": 1,
+  "stem": "甲和乙兩條，哪一條比較長？",
+  "params": {
+    "lenA": { "type": "int_range", "min": 3, "max": 10 },
+    "lenB": { "type": "int_range", "min": 3, "max": 10 }
+  },
+  "reject": ["lenA == lenB"],
+  "answer": { "formula": "'甲' if lenA > lenB else '乙'" },
+  "distractors": [
+    { "formula": "'乙' if lenA > lenB else '甲'", "why": "比較的方向看反了，把比較短的說成比較長的" },
+    { "formula": "'一樣長'", "why": "沒有仔細比較兩者的差別，覺得兩條一樣長" },
+    { "formula": "'看不出來'", "why": "不敢下判斷，逃避比較這個步驟" }
+  ],
+  "hints": [
+    "仔細看看甲和乙，誰佔的位置比較多呢？",
+    "偷偷告訴妳一個方法：把甲和乙放在一起比一比，一端對齊，看誰超出來比較多。",
+    "甲是{lenA}，乙是{lenB}，數字比較大的那一條比較長，所以答案是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "segment_compare",
+    "rows": [
+      { "label": "甲", "length": "lenA" },
+      { "label": "乙", "length": "lenB" }
+    ]
+  },
+  "verify": "(answer == '甲' and lenA > lenB) or (answer == '乙' and lenB > lenA)"
+}

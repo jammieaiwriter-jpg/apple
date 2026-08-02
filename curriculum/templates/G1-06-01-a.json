@@ -1,0 +1,18 @@
+{
+  "templateId": "G1-06-01-a",
+  "skillId": "G1-06-01",
+  "mode": "reverse",
+  "difficulty": 1,
+  "stem": "左邊有{a}個圓點，右邊再有{b}個圓點，合起來有幾個？",
+  "params": {"a": {"type": "int_range", "min": 1, "max": 8}, "b": {"type": "int_range", "min": 1, "max": 8}},
+  "reject": ["a + b > 10"],
+  "answer": {"formula": "a + b"},
+  "distractors": [
+    {"formula": "answer + 1", "why": "從第一堆往後數時多數了一個"},
+    {"formula": "answer - 1", "why": "合起來數數時少數了一個"},
+    {"formula": "abs(a - b)", "why": "把兩堆合起來誤看成在比較相差多少"}
+  ],
+  "hints": ["先看看圖上有兩堆圓點，題目要妳找的是合起來的數量。", "偷偷告訴妳：先數左邊{a}個，再接著數右邊{b}個。", "從{a}再往後數{b}個，會到{answer}；現在換妳說出答案。"],
+  "figureSpec": {"type": "ten_frame", "filled": "a", "extra": "b"},
+  "verify": "answer - a == b and answer - b == a"
+}

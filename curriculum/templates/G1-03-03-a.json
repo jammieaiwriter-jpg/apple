@@ -1,0 +1,32 @@
+{
+  "templateId": "G1-03-03-a",
+  "skillId": "G1-03-03",
+  "mode": "space",
+  "difficulty": 1,
+  "stem": "排隊的時候，小明排第{posA}個，小華排第{posB}個，小明排在小華的前面還是後面？",
+  "params": {
+    "n": { "type": "int_range", "min": 6, "max": 8 },
+    "posA": { "type": "int_range", "min": 1, "max": 6 },
+    "posB": { "type": "int_range", "min": 1, "max": 6 }
+  },
+  "reject": ["posA == posB"],
+  "answer": { "formula": "'前面' if posA < posB else '後面'" },
+  "distractors": [
+    { "formula": "'後面' if posA < posB else '前面'", "why": "前後方向弄反了，把排在前面的說成排在後面" },
+    { "formula": "'一樣'", "why": "沒有比較兩人的位置，覺得排在同一個地方" },
+    { "formula": "'中間'", "why": "誤把「之間」的位置當成答案，其實題目問的是前後關係" }
+  ],
+  "hints": [
+    "在排隊的隊伍裡，數字比較小代表排得比較靠前面喔。",
+    "偷偷告訴妳一個方法：小明排第{posA}個，小華排第{posB}個，比比看誰的數字比較小。",
+    "數字比較小的排在前面，所以小明在小華的{answer}。"
+  ],
+  "figureSpec": {
+    "type": "space_relations",
+    "mode": "row_order",
+    "total": "n",
+    "marks": ["posA", "posB"],
+    "labels": ["小明", "小華"]
+  },
+  "verify": "(answer == '前面' and posA < posB) or (answer == '後面' and posB < posA)"
+}

@@ -1,0 +1,41 @@
+{
+  "templateId": "G1-02-03-a",
+  "skillId": "G1-02-03",
+  "mode": "length",
+  "difficulty": 2,
+  "stem": "甲、乙、丙三個圖形中，哪一個是曲線？",
+  "params": {
+    "perm": {
+      "type": "choice",
+      "values": [
+        ["point", "line", "curve"],
+        ["point", "curve", "line"],
+        ["line", "point", "curve"],
+        ["line", "curve", "point"],
+        ["curve", "point", "line"],
+        ["curve", "line", "point"]
+      ]
+    },
+    "curveStyle": { "type": "choice", "values": ["arc", "oval", "wave", "loop"] }
+  },
+  "derived": {
+    "labels": "['甲', '乙', '丙']",
+    "curveIdx": "perm.index('curve')",
+    "pointIdx": "perm.index('point')",
+    "lineIdx": "perm.index('line')",
+    "segRows": "[{'label': labels[i], 'length': 40, 'shape': perm[i], 'style': curveStyle} for i in range(3)]"
+  },
+  "answer": { "formula": "labels[curveIdx]" },
+  "distractors": [
+    { "formula": "labels[pointIdx]", "why": "誤把「點」當成「曲線」，點只是一個小小的點，不是彎彎的線" },
+    { "formula": "labels[lineIdx]", "why": "誤把「直線」當成「曲線」，直線是直直的、不會轉彎" },
+    { "formula": "'都不是'", "why": "不確定曲線長什麼樣子，三個都不敢選" }
+  ],
+  "hints": [
+    "曲線是彎彎的、會轉彎的線，跟直直的線和小小的點都不一樣。",
+    "偷偷告訴妳一個方法：在甲、乙、丙三個裡面，找找看哪一個歪歪扭扭、彎來彎去。",
+    "{answer}是彎彎的曲線，所以答案是{answer}。"
+  ],
+  "figureSpec": { "type": "segment_compare", "rows": "segRows" },
+  "verify": "perm[labels.index(answer)] == 'curve'"
+}

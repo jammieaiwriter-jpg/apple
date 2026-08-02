@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "science",
+    "grade": "G5",
+    "curriculum": "無教育部108課綱科學對照版本；本檔採 KooBits「Cambridge International Science Curriculum (0097-aligned)」小5 章節與技能顆粒度為骨架",
+    "created": "2026-08-01",
+    "totalChapters": 5,
+    "totalSkills": 47,
+    "reference": "同 G1-G4。本檔取 Cambridge 軌小5章節與技能作骨架（該課程樹小5實測共47項技能，5章，是G1-G6中技能數最多的一級）。技能原文為英文，已翻譯為繁體中文並依台灣國小自然科用語調整。難度、模式(mode)、圖形等級(figure)為本系統自訂。本次為盤點記錄，暫不進入實作階段（見規劃文件§5建議1）。",
+    "publisherOrder": "pending",
+    "publisherNote": "台灣國小五年級自然課本通常涵蓋植物繁殖(開花植物構造/傳粉/受精/種子傳播)、水的三態變化、力與磁、生態環境等主題，與本檔方向大致吻合，但深度需與實際課本比對。",
+    "newInG5": "本級是深度最陡的一級：植物有性生殖從G1-G4完全沒有，一次擴充到13項技能(傳粉/受精/果實種子形成/傳播方式/發芽條件)；物質三態從G3的『初步比較』深化為G5的『成因與速率』(蒸發速率的變因控制，含探究題)；磁力從G1-G3的『認識現象』深化為『量化強度與製造方法』；新增水循環與水污染、生物對環境的構造與行為適應(棲地生存策略)。整體上G5的認知層次已經接近國中理化生物前導。",
+    "modes": {
+      "concept": "🧪 概念辨識 — 是非/選擇型概念題，測知識點記憶與理解",
+      "classify": "🗂 分類歸類 — 依特徵將物品/生物分組",
+      "compare": "🔍 比較觀察 — 比較兩個以上對象的特徵、強弱、程度",
+      "match": "🔗 配對連結 — 功能配對、部位配對、感官配對",
+      "diagram": "🩻 圖表標示 — 人體/植物/器材構造標示、讀圖",
+      "process": "🔄 歷程與因果 — 生命週期、能量轉換、狀態變化等歷程推理",
+      "experiment": "⚡ 實驗推理 — 力、磁、光、電的因果推理與簡單變因控制"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值）",
+    "figureLoad": {
+      "none": 16,
+      "param": 24,
+      "grid": 0,
+      "asset": 7,
+      "note": "param 首次超過總數一半（24/47），植物生命週期、傳粉受精流程、物質狀態變化、磁力實驗都可以用流程圖/示意圖參數化表現。asset 7個集中在『風力/水力傳播的果實種子』(3個，需要辨識蒲公英/椰子等實際外觀)與『生物如何適應環境』(4個，需要動物棲地情境圖)，這兩類都是『必須認得長什麼樣子』的寫實辨識，跟G1/G2的asset性質相同。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "SCI-G5-01",
+      "order": 1,
+      "semester": "上",
+      "name": "開花植物的生命週期",
+      "koobitsName": "Life cycles of flowering plants",
+      "skills": [
+        { "skillId": "SCI-G5-01-01", "name": "比較開花植物與不開花植物的特徵", "mode": "compare", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-01-02", "name": "比較開花植物生殖部位的功能", "mode": "compare", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-01-03", "name": "認識植物生命週期的各階段", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-01-04", "name": "描述開花植物風媒傳粉的過程", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-01-05", "name": "探討開花植物的傳粉作用", "mode": "experiment", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G5-01-06", "name": "描述開花植物受精的過程", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-01-07", "name": "描述開花植物受精後果實與種子的形成", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-01-08", "name": "認識風力傳播果實與種子的特徵", "mode": "concept", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G5-01-09", "name": "認識水力傳播果實與種子的特徵", "mode": "concept", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G5-01-10", "name": "比較不同傳播方式的果實與種子特徵", "mode": "compare", "difficulty": 3, "figure": "asset" },
+        { "skillId": "SCI-G5-01-11", "name": "認識植物如何適應以利繁殖", "mode": "concept", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G5-01-12", "name": "描述開花植物種子發芽的過程與條件", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-01-13", "name": "連結傳粉、受精、傳播、發芽與開花植物有性生殖的關係", "mode": "process", "difficulty": 4, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G5-02",
+      "order": 2,
+      "semester": "上",
+      "name": "物質的狀態與性質",
+      "koobitsName": "States and properties of materials",
+      "skills": [
+        { "skillId": "SCI-G5-02-01", "name": "認識空氣是氮氣、氧氣、水蒸氣、二氧化碳等氣體的混合物", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G5-02-02", "name": "比較水在三態的性質", "mode": "compare", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-02-03", "name": "認識吸熱對水的狀態變化的影響", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-02-04", "name": "描述水從一種狀態轉變為另一種狀態", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-02-05", "name": "描述水的融化與凝固過程", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-02-06", "name": "連結吸熱或散熱對水的溫度與狀態的影響", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-02-07", "name": "描述水的凝結過程", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-02-08", "name": "描述水的蒸發過程", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-02-09", "name": "描述溫度如何影響蒸發速率", "mode": "experiment", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G5-02-10", "name": "描述暴露表面積如何影響蒸發速率", "mode": "experiment", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G5-02-11", "name": "探討影響蒸發速率的因素", "mode": "experiment", "difficulty": 4, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G5-03",
+      "order": 3,
+      "semester": "上",
+      "name": "消化系統",
+      "koobitsName": "The digestive system",
+      "skills": [
+        { "skillId": "SCI-G5-03-01", "name": "依功能比較人體消化系統的器官", "mode": "diagram", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-03-02", "name": "描述人體消化的過程", "mode": "process", "difficulty": 2, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G5-04",
+      "order": 4,
+      "semester": "下",
+      "name": "力與磁",
+      "koobitsName": "Forces and magnetism",
+      "skills": [
+        { "skillId": "SCI-G5-04-01", "name": "區分摩擦力、彈力、重力與磁力", "mode": "classify", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G5-04-02", "name": "探討磁鐵與非磁鐵、磁性材料間的交互作用", "mode": "experiment", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-04-03", "name": "描述用摩擦法製造磁鐵的方法", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-04-04", "name": "探討磁鐵的磁力強度", "mode": "experiment", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-04-05", "name": "認識磁力作用在物體上的效果", "mode": "concept", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-04-06", "name": "認識可用通電法改變磁鐵的磁力強度", "mode": "concept", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G5-04-07", "name": "辨識磁鐵在日常物品中的應用", "mode": "concept", "difficulty": 1, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G5-05",
+      "order": 5,
+      "semester": "下",
+      "name": "季節與動植物的適應",
+      "koobitsName": "Seasons and adaptations of plants and animals",
+      "skills": [
+        { "skillId": "SCI-G5-05-01", "name": "描述水污染對地球水資源的成因與影響", "mode": "process", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G5-05-02", "name": "辨識節約用水的方法（含3R）", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G5-05-03", "name": "認識水污染對環境的成因與影響", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G5-05-04", "name": "描述污染對環境的成因與影響", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G5-05-05", "name": "辨識水循環的各部分", "mode": "diagram", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-05-06", "name": "認識水循環中的各個過程", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G5-05-07", "name": "認識水對植物與人類生命活動的重要性", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G5-05-08", "name": "區分生物的構造適應與行為適應", "mode": "classify", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G5-05-09", "name": "認識生物如何適應炎熱乾燥的環境", "mode": "concept", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G5-05-10", "name": "認識生物如何適應寒冷的環境", "mode": "concept", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G5-05-11", "name": "認識生物如何適應以獲取食物", "mode": "concept", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G5-05-12", "name": "連結環境因素與生物生存的關係", "mode": "process", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G5-05-13", "name": "認識生物如何適應以防禦掠食者", "mode": "concept", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G5-05-14", "name": "連結生物的適應與其在環境中生存的關係", "mode": "process", "difficulty": 3, "figure": "none" }
+      ]
+    }
+  ]
+}

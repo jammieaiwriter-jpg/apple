@@ -1,0 +1,44 @@
+{
+  "templateId": "G1-03-04-a",
+  "skillId": "G1-03-04",
+  "mode": "space",
+  "difficulty": 2,
+  "stem": "一排東西排好了，目標的{side}邊是什麼？",
+  "params": {
+    "icons": {
+      "type": "choice",
+      "values": [
+        ["貓", "狗", "兔子", "鳥", "魚"],
+        ["蘋果", "香蕉", "西瓜", "葡萄", "橘子"],
+        ["紅色", "藍色", "黃色", "綠色", "紫色"]
+      ]
+    },
+    "t": { "type": "choice", "values": [2, 3, 4] },
+    "side": { "type": "choice", "values": ["左", "右"] }
+  },
+  "derived": {
+    "idx": "t - 1",
+    "targetPos": "idx + 1",
+    "totalIcons": "len(icons)"
+  },
+  "answer": { "formula": "icons[idx - 1] if side == '左' else icons[idx + 1]" },
+  "distractors": [
+    { "formula": "icons[idx + 1] if side == '左' else icons[idx - 1]", "why": "左右方向弄反了，找到了另一邊的東西" },
+    { "formula": "icons[idx]", "why": "把目標自己當成答案，沒有看旁邊的東西" },
+    { "formula": "icons[0]", "why": "沒有仔細看位置，選了排在最前面的東西" }
+  ],
+  "hints": [
+    "先確定妳的左手在哪一邊，再從那一邊開始找喔。",
+    "偷偷告訴妳一個方法：先找到目標，再往{side}邊移一格，看看那裡是什麼。",
+    "目標的{side}邊是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "space_relations",
+    "mode": "row_count",
+    "total": "totalIcons",
+    "targetPos": "targetPos",
+    "labels": "icons",
+    "ask": "side"
+  },
+  "verify": "(answer == (icons[idx - 1] if side == '左' else icons[idx + 1])) and (answer != (icons[idx + 1] if side == '左' else icons[idx - 1]))"
+}

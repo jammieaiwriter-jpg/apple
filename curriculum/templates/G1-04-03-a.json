@@ -1,0 +1,25 @@
+{
+  "templateId": "G1-04-03-a",
+  "skillId": "G1-04-03",
+  "mode": "reverse",
+  "difficulty": 2,
+  "stem": "{total}可以分成{a}和多少？",
+  "params": {
+    "total": { "type": "choice", "values": [6, 7, 8, 9, 10] },
+    "a": { "type": "int_range", "min": 0, "max": 10 }
+  },
+  "reject": ["a > total"],
+  "answer": { "formula": "total - a" },
+  "distractors": [
+    { "formula": "total + a", "why": "把「分成」看成「合起來」，做成了加法" },
+    { "formula": "a", "why": "誤把已經知道的那一部分當成答案" },
+    { "formula": "total", "why": "沒有扣掉已知的部分，直接把總數當答案" }
+  ],
+  "hints": [
+    "{total}要分成兩部分，其中一部分已經知道是{a}了。",
+    "偷偷告訴妳一個方法：用十格框數一數，{total}裡面扣掉{a}，剩下幾格？",
+    "{total}分成{a}和{answer}。"
+  ],
+  "figureSpec": { "type": "ten_frame", "filled": "a", "extra": "answer" },
+  "verify": "a + answer == total"
+}

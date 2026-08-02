@@ -1,0 +1,37 @@
+{
+  "templateId": "G1-03-02-a",
+  "skillId": "G1-03-02",
+  "mode": "jump",
+  "difficulty": 2,
+  "stem": "一排小動物一共有{n}隻，特別的那隻小熊排在從左邊數來第幾個？",
+  "params": {
+    "n": { "type": "int_range", "min": 5, "max": 9 },
+    "k": { "type": "int_range", "min": 2, "max": 8 }
+  },
+  "reject": ["k >= n"],
+  "derived": {
+    "beforeK": "k - 1",
+    "afterK": "n - k"
+  },
+  "answer": { "formula": "k", "unit": "個" },
+  "distractors": [
+    { "formula": "k + 1", "why": "數的時候多數了一個，位置往後多算了一格" },
+    { "formula": "k - 1", "why": "數的時候少數了一個，位置往前少算了一格" },
+    { "formula": "n", "why": "把「排在第幾個」跟「總共有幾隻」搞混了" }
+  ],
+  "hints": [
+    "從左邊開始，一個一個數過去，數到小熊為止。",
+    "偷偷告訴妳一個方法：從左邊數，第一個、第二個……一直數到小熊站的地方。",
+    "小熊排在從左邊數來的第{k}個，所以答案是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "count_group",
+    "layout": "sequence",
+    "groups": [
+      { "color": "#60a5fa", "count": "beforeK" },
+      { "color": "#f43f5e", "count": 1, "label": "小熊" },
+      { "color": "#60a5fa", "count": "afterK" }
+    ]
+  },
+  "verify": "sum(1 for i in range(1, k + 1)) == answer"
+}

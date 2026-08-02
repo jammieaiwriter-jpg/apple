@@ -1,0 +1,33 @@
+{
+  "templateId": "G1-02-04-a",
+  "skillId": "G1-02-04",
+  "mode": "length",
+  "difficulty": 1,
+  "stem": "甲和乙兩個東西，哪一個比較高？",
+  "params": {
+    "hA": { "type": "int_range", "min": 3, "max": 10 },
+    "hB": { "type": "int_range", "min": 3, "max": 10 }
+  },
+  "reject": ["hA == hB"],
+  "answer": { "formula": "'甲' if hA > hB else '乙'" },
+  "distractors": [
+    { "formula": "'乙' if hA > hB else '甲'", "why": "把比較矮的說成比較高，先把底部對齊再看誰往上比較多" },
+    { "formula": "'一樣高'", "why": "沒有仔細比較兩個東西的高度" },
+    { "formula": "'看不出來'", "why": "還沒有把兩個東西放在同一個方向比較" }
+  ],
+  "hints": [
+    "先看兩個東西的底部，再往上看誰站得比較高。",
+    "把甲和乙的底部想成站在同一條地板上，看誰的頂端比較高。",
+    "甲是{hA}，乙是{hB}，數字比較大的那一個比較高，所以答案是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "segment_compare",
+    "orientation": "vertical",
+    "ask": "高",
+    "rows": [
+      { "label": "甲", "length": "hA" },
+      { "label": "乙", "length": "hB" }
+    ]
+  },
+  "verify": "(answer == '甲' and hA > hB) or (answer == '乙' and hB > hA)"
+}

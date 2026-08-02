@@ -1,0 +1,27 @@
+{
+  "templateId": "G1-09-04-a",
+  "skillId": "G1-09-04",
+  "mode": "clock",
+  "difficulty": 2,
+  "stem": "圖中的活動最適合在一天中的哪個時刻做？",
+  "params": {
+    "scene": {"type": "choice", "values": ["breakfast", "school", "lunch", "sleep"]},
+    "character": {"type": "choice", "values": ["Apple", "小朋友", "小兔子"]}
+  },
+  "derived": {"timeName": "{'breakfast':'早上', 'school':'早上', 'lunch':'中午', 'sleep':'晚上'}[scene]"},
+  "answer": {"formula": "timeName"},
+  "distractors": [
+    {"formula": "'早上'", "why": "把太陽高掛或月亮出現的線索忽略了"},
+    {"formula": "'中午'", "why": "把所有白天活動都當成吃午餐的時間"},
+    {"formula": "'下午'", "why": "沒有把活動和一天的日常作息連起來"},
+    {"formula": "'晚上'", "why": "把白天活動誤放到天黑後"},
+    {"formula": "'凌晨'", "why": "把日常作息放在大家通常睡覺的時段"}
+  ],
+  "hints": [
+    "先看天空是太陽還是月亮，再看小朋友正在做什麼。",
+    "想想{character}平常什麼時候會做圖中的事，把活動放進一天的作息表。",
+    "這個活動最適合在{answer}做；現在換妳自己說出時刻。"
+  ],
+  "figureSpec": {"type": "life_scene", "scene": "scene"},
+  "verify": "answer == {'breakfast':'早上', 'school':'早上', 'lunch':'中午', 'sleep':'晚上'}[scene] and answer in ['早上', '中午', '晚上']"
+}

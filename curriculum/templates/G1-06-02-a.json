@@ -1,0 +1,17 @@
+{
+  "templateId": "G1-06-02-a",
+  "skillId": "G1-06-02",
+  "mode": "reverse",
+  "difficulty": 2,
+  "stem": "{a}和{b}合起來是多少？",
+  "params": {"a": {"type": "int_range", "min": 1, "max": 9}, "b": {"type": "int_range", "min": 1, "max": 9}},
+  "reject": ["a + b > 10"],
+  "answer": {"formula": "a + b"},
+  "distractors": [
+    {"formula": "answer + 1", "why": "接著數時多跨了一格"},
+    {"formula": "answer - 1", "why": "接著數時漏掉了一格"},
+    {"formula": "abs(a - b)", "why": "把「合起來」看成兩個數相差多少"}
+  ],
+  "hints": ["看到「合起來」，想想要把兩個數放在同一堆。", "先把{a}記在心裡，再往後數{b}下。", "{a}加上{b}是{answer}；偷偷說完方法，答案請妳自己講一次。"],
+  "verify": "answer - a == b and answer - b == a"
+}

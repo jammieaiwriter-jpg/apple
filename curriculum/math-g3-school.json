@@ -1,0 +1,909 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "math",
+    "grade": "G3",
+    "curriculum": "教育部 108 課綱 小三",
+    "created": "2026-08-01",
+    "totalChapters": 17,
+    "totalSkills": 96,
+    "reference": "章節與技能顆粒度參考 KooBits「臺灣數學課程(符合教育部108課綱) 小3」的公開課程樹（該課程樹小3共96項正課技能，不含🔥進階挑戰鏡像章，已核對官網星星數÷3一致）。技能名稱已依台灣用語調整（統一「爲」→「為」、「以内」→「以內」等異體字/簡繁殘留），本批原始資料未發現「缐」「巿」這類誤植。難度為本系統自訂。",
+    "publisherOrder": "pending",
+    "publisherNote": "各版(康軒/翰林/南一)小三內容差異小，僅單元順序不同。開學拿到課本後只需調整 chapter.order 與 semester，skills 不動。上/下學期切分為推測（依技能數盡量對半估算：第1-8章共48技能為上學期，第9-17章共48技能為下學期），非官方版本確認。",
+    "newInG3": "相對小二新增四塊：(1) 分數(一)(二) 共 6 技能，新模式 fraction（分數表徵與其他模式完全不同，量也夠大，比照當初開 multiply 模式的判斷標準）；(2) 除法(一)(二)＋乘與除共 21 技能併入 multiply（延續 G2 除法啟蒙先例，從乘法表逆運算擴充到兩、三位數÷一位數含餘數）；(3) measure 擴大範圍，新增容量(公升/毫升)9技能＋重量(公斤/公克)11技能＋面積2技能＋周長3技能，共25技能（G2 的 measure 只有容量直接比較與面積比較共5技能）；(4) length 新增毫米2技能；一位小數8技能歸入 reverse（十進位位值系統的自然延伸，不是分數概念，故不用 fraction 模式）；圓和角5技能歸入 space（角的比較純屬視覺辨識，小三未教量角器度數，量測面向沒有意義）。",
+    "modes": {
+      "jump": "🐸 數數、順逆數、位值、大小比較（延伸至萬位/10000 以內）",
+      "reverse": "🧠 分合、加減計算（延伸至三個數加減、一位小數加減）",
+      "story": "🍬 生活情境應用題",
+      "clock": "⏰ 時間、日期、月曆（延伸至 24 小時制與 12/24 小時制互換）",
+      "space": "📦 平面/立體圖形、方位、垂直線、圓與角的視覺辨識（新增）",
+      "length": "📏 長度比較與測量（延伸至毫米）",
+      "chart": "📊 分類整理與圖表",
+      "multiply": "✖️ 乘法概念、九九乘法表、除法（延伸至兩三位數乘除一位數、含餘數）",
+      "measure": "📐 容量、重量、面積、周長的比較與量測（延伸自 G2，新增公升/毫升、公斤/公克標準單位換算）",
+      "fraction": "🍕 分數概念、同分母比較與加減（新增）"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值）",
+    "numberRangeNote": "小三數的認識延伸至 10000 以內；乘法涵蓋兩位數/三位數乘一位數；除法涵蓋兩、三位數除以一位數（含餘數），除法啟蒙延續九九乘法表對應範圍（0-10）；分數只做同分母（真分數）比較與加減，不含異分母、不含假分數/帶分數；小數只做一位小數（十分位）加減，不含兩位小數；容量涵蓋公升/毫升標準單位換算；重量涵蓋公斤/公克標準單位換算；長度新增毫米，與公分互相換算；周界和周長是公式化量測的起點（求邊長、比較周界），尚未教正式周長公式；面積延續小二自訂單位比較，尚未教平方公分等標準單位。",
+    "figureLoad": {
+      "none": 28,
+      "param": 37,
+      "grid": 27,
+      "asset": 4,
+      "note": "grid 主要是除法(一)(二)+乘與除 21 技能沿用 array_model（mode=grouping），以及分數 6 技能＋一位小數著色/互換 2 技能共 8 技能沿用「新元件 fraction_model（待建）」——分數目前沒有任何圖形元件，是本次最大的缺口。asset 是公斤和公克章 4 個天平/磅秤技能，沿用「新元件 balance_scale（待建）」，比照 G1/G2 對實物量測工具一律標 asset 的做法。另發現兩個較小的元件擴充缺口：place_value_board 目前不支援小數十分位（G3-16-03 因此標 none）；column_arithmetic 目前只定義整數 a/b，用於一位小數直式加減（G3-16-05~08）前需先確認是否支援小數點。容量章新增「新元件 capacity_container（待建，量杯/容器刻度圖）」共 4 技能，與已有的 unit_ruler／segment_compare 不同，是量杯刻度讀數的專屬缺口。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "G3-01",
+      "order": 1,
+      "semester": "上",
+      "name": "10000 以內的數",
+      "skills": [
+        {
+          "skillId": "G3-01-01",
+          "name": "認識四位數",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "place_value_board"
+        },
+        {
+          "skillId": "G3-01-02",
+          "name": "認識千位的概念",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "place_value_board"
+        },
+        {
+          "skillId": "G3-01-03",
+          "name": "比較大小 — 千位數字不同",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-01-04",
+          "name": "比較大小 — 千位數字相同",
+          "mode": "jump",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-01-05",
+          "name": "比較大小 — 千位和百位數字相同",
+          "mode": "jump",
+          "difficulty": 4,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-01-06",
+          "name": "順數和倒數",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "number_line"
+        },
+        {
+          "skillId": "G3-01-07",
+          "name": "每 200、250、500、1000 個一數",
+          "mode": "jump",
+          "difficulty": 4,
+          "figure": "param",
+          "note": "跳數間距比小二（20/25/50/100）更大，且間距不固定，對順逆數穩定性要求更高。",
+          "figureSource": "number_line"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-02",
+      "order": 2,
+      "semester": "上",
+      "name": "乘法",
+      "skills": [
+        {
+          "skillId": "G3-02-01",
+          "name": "兩位數乘一位數 — 積不大於 100",
+          "mode": "multiply",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-02-02",
+          "name": "兩位數乘一位數 — 積不小於 100",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-02-03",
+          "name": "三位數乘一位數",
+          "mode": "multiply",
+          "difficulty": 4,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-02-04",
+          "name": "乘法應用題（一）",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-03",
+      "order": 3,
+      "semester": "上",
+      "name": "周界和周長",
+      "skills": [
+        {
+          "skillId": "G3-03-01",
+          "name": "認識閉合圖形和周界",
+          "mode": "measure",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-03-02",
+          "name": "量度及比較平面圖形的周界",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-03-03",
+          "name": "求圖形的邊長",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "param"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-04",
+      "order": 4,
+      "semester": "上",
+      "name": "公升和毫升",
+      "skills": [
+        {
+          "skillId": "G3-04-01",
+          "name": "以毫升為單位量度容量",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "capacity_container（量杯/容器刻度圖，可參數化）"
+        },
+        {
+          "skillId": "G3-04-02",
+          "name": "毫升和公升間的關係",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-04-03",
+          "name": "以公升為單位量度容量",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "capacity_container（同上）"
+        },
+        {
+          "skillId": "G3-04-04",
+          "name": "容量與體積關係的應用",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "none",
+          "note": "原文語意較模糊，推測指容量與體積（1 公升＝1000 立方公分）概念的應用；不確定原意處保留字面翻譯，未過度改寫。"
+        },
+        {
+          "skillId": "G3-04-05",
+          "name": "以公升和毫升為單位量度容量",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "capacity_container（同上）"
+        },
+        {
+          "skillId": "G3-04-06",
+          "name": "認識毫升和公升",
+          "mode": "measure",
+          "difficulty": 1,
+          "figure": "param",
+          "figureSource": "capacity_container（同上）"
+        },
+        {
+          "skillId": "G3-04-07",
+          "name": "以毫升和公升為單位比較容量",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "segment_compare（沿用 G2 容量比較用法，垂直長條表示水位高低）"
+        },
+        {
+          "skillId": "G3-04-08",
+          "name": "將公升轉換為毫升",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-04-09",
+          "name": "將毫升轉換為公升",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-05",
+      "order": 5,
+      "semester": "上",
+      "name": "加與減",
+      "skills": [
+        {
+          "skillId": "G3-05-01",
+          "name": "三個數的加法 — 三個一位數相加",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-05-02",
+          "name": "三個數的加法",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-05-03",
+          "name": "三個數的減法",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-06",
+      "order": 6,
+      "semester": "上",
+      "name": "除法（一）",
+      "skills": [
+        {
+          "skillId": "G3-06-01",
+          "name": "2 的除法（一）",
+          "mode": "multiply",
+          "difficulty": 2,
+          "figure": "grid",
+          "note": "(一) 通常為整除操作、不特別強調除法概念；(二) 通常配合乘法表做逆運算（先想乘法再推除法）。本章其餘同構技能（5/10/3/4 的除法）比照此邏輯。",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-02",
+          "name": "2 的除法（二）",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-03",
+          "name": "5 的除法（一）",
+          "mode": "multiply",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-04",
+          "name": "5 的除法（二）",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-05",
+          "name": "10 的除法（一）",
+          "mode": "multiply",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-06",
+          "name": "10 的除法（二）",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-07",
+          "name": "3 的除法（一）",
+          "mode": "multiply",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-08",
+          "name": "3 的除法（二）",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-09",
+          "name": "4 的除法（一）",
+          "mode": "multiply",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-10",
+          "name": "4 的除法（二）",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-11",
+          "name": "乘和除",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-12",
+          "name": "認識除法的基本概念（一）",
+          "mode": "multiply",
+          "difficulty": 1,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-13",
+          "name": "認識除法的基本概念（二）",
+          "mode": "multiply",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "array_model"
+        },
+        {
+          "skillId": "G3-06-14",
+          "name": "除法應用題（一）",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model（mode=grouping, unknownGroup）"
+        },
+        {
+          "skillId": "G3-06-15",
+          "name": "除法應用題（二）",
+          "mode": "story",
+          "difficulty": 4,
+          "figure": "grid",
+          "figureSource": "array_model（mode=grouping, unknownGroup）"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-07",
+      "order": 7,
+      "semester": "上",
+      "name": "分數（一）",
+      "skills": [
+        {
+          "skillId": "G3-07-01",
+          "name": "認識分子和分母",
+          "mode": "fraction",
+          "difficulty": 1,
+          "figure": "grid",
+          "figureSource": "fraction_model"
+        },
+        {
+          "skillId": "G3-07-02",
+          "name": "幾分之幾",
+          "mode": "fraction",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "fraction_model"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-08",
+      "order": 8,
+      "semester": "上",
+      "name": "圓和角",
+      "skills": [
+        {
+          "skillId": "G3-08-01",
+          "name": "圓的基本性質",
+          "mode": "space",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-08-02",
+          "name": "由圓組成的圖形",
+          "mode": "space",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-08-03",
+          "name": "比較角的大小",
+          "mode": "space",
+          "difficulty": 2,
+          "figure": "param",
+          "note": "角的比較在小三僅是視覺辨識，尚未教量角器度數，故不歸入 measure（量測）而歸入 space（形狀概念）。"
+        },
+        {
+          "skillId": "G3-08-04",
+          "name": "認識直角",
+          "mode": "space",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-08-05",
+          "name": "將角與直角比較大小",
+          "mode": "space",
+          "difficulty": 3,
+          "figure": "param"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-09",
+      "order": 9,
+      "semester": "下",
+      "name": "毫米",
+      "skills": [
+        {
+          "skillId": "G3-09-01",
+          "name": "以毫米為單位比較長度",
+          "mode": "length",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-09-02",
+          "name": "毫米和公分間的互相轉換",
+          "mode": "length",
+          "difficulty": 3,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-10",
+      "order": 10,
+      "semester": "下",
+      "name": "分數（二）",
+      "skills": [
+        {
+          "skillId": "G3-10-01",
+          "name": "比較大小 — 同分母分數",
+          "mode": "fraction",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "fraction_model"
+        },
+        {
+          "skillId": "G3-10-02",
+          "name": "比較大小 — 單位分數",
+          "mode": "fraction",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "fraction_model"
+        },
+        {
+          "skillId": "G3-10-03",
+          "name": "同分母真分數加法",
+          "mode": "fraction",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "fraction_model"
+        },
+        {
+          "skillId": "G3-10-04",
+          "name": "同分母真分數減法",
+          "mode": "fraction",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "fraction_model"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-11",
+      "order": 11,
+      "semester": "下",
+      "name": "除法（二）",
+      "skills": [
+        {
+          "skillId": "G3-11-01",
+          "name": "兩位數除以一位數 — 沒有餘數",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-11-02",
+          "name": "兩位數除以一位數 — 有餘數",
+          "mode": "multiply",
+          "difficulty": 4,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-11-03",
+          "name": "除法 — 有餘數",
+          "mode": "multiply",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-11-04",
+          "name": "三位數除以一位數 — 沒有餘數",
+          "mode": "multiply",
+          "difficulty": 4,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-11-05",
+          "name": "三位數除以一位數 — 有餘數",
+          "mode": "multiply",
+          "difficulty": 5,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-12",
+      "order": 12,
+      "semester": "下",
+      "name": "面積",
+      "skills": [
+        {
+          "skillId": "G3-12-01",
+          "name": "以自訂單位量度面積",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "area_compare（沿用 G2 面積比較元件）"
+        },
+        {
+          "skillId": "G3-12-02",
+          "name": "以自訂單位比較面積",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "area_compare（沿用 G2 面積比較元件）"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-13",
+      "order": 13,
+      "semester": "下",
+      "name": "公斤和公克",
+      "skills": [
+        {
+          "skillId": "G3-13-01",
+          "name": "直觀和直接比較重量",
+          "mode": "measure",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-13-02",
+          "name": "利用天平比較物件的重量",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "asset",
+          "figureSource": "balance_scale（天平/砝碼/磅秤圖）"
+        },
+        {
+          "skillId": "G3-13-03",
+          "name": "選擇適合的自訂單位比較重量",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-13-04",
+          "name": "用天平和砝碼稱量物件",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "asset",
+          "note": "台灣課綱通常不特別區分天平稱重與磅秤稱重，此處保留 KooBits（新加坡教材在地化）的細節分法，不刪減。",
+          "figureSource": "balance_scale（同上）"
+        },
+        {
+          "skillId": "G3-13-05",
+          "name": "用磅稱量物件 — 不多於 1000 克",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "asset",
+          "figureSource": "balance_scale（同上）"
+        },
+        {
+          "skillId": "G3-13-06",
+          "name": "用磅稱量物件 — 不少於 1000 克",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "asset",
+          "figureSource": "balance_scale（同上）"
+        },
+        {
+          "skillId": "G3-13-07",
+          "name": "選擇合適的重量單位",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-13-08",
+          "name": "選擇合適的量度工具",
+          "mode": "measure",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-13-09",
+          "name": "比較和排列物件的重量",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G3-13-10",
+          "name": "將克化為公斤",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-13-11",
+          "name": "將公斤化為克",
+          "mode": "measure",
+          "difficulty": 3,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-14",
+      "order": 14,
+      "semester": "下",
+      "name": "乘與除",
+      "skills": [
+        {
+          "skillId": "G3-14-01",
+          "name": "除法應用題",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "array_model（mode=grouping, unknownGroup）"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-15",
+      "order": 15,
+      "semester": "下",
+      "name": "時間",
+      "skills": [
+        {
+          "skillId": "G3-15-01",
+          "name": "組成 24 小時制中最早和最晚的時刻",
+          "mode": "clock",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "digital_clock"
+        },
+        {
+          "skillId": "G3-15-02",
+          "name": "將 24 小時報時制轉換為 12 小時報時制",
+          "mode": "clock",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "digital_clock"
+        },
+        {
+          "skillId": "G3-15-03",
+          "name": "將 12 小時報時制轉換為 24 小時報時制",
+          "mode": "clock",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "digital_clock"
+        },
+        {
+          "skillId": "G3-15-04",
+          "name": "認識分鐘",
+          "mode": "clock",
+          "difficulty": 1,
+          "figure": "param",
+          "figureSource": "clock_face"
+        },
+        {
+          "skillId": "G3-15-05",
+          "name": "認識秒",
+          "mode": "clock",
+          "difficulty": 1,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-15-06",
+          "name": "以秒為單位量度及比較時間間隔",
+          "mode": "clock",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-15-07",
+          "name": "以分鐘為單位比較時間長短",
+          "mode": "clock",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "clock_face"
+        },
+        {
+          "skillId": "G3-15-08",
+          "name": "以小時為單位求結束時刻",
+          "mode": "clock",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "clock_face"
+        },
+        {
+          "skillId": "G3-15-09",
+          "name": "以分鐘為單位求結束時刻",
+          "mode": "clock",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "clock_face"
+        },
+        {
+          "skillId": "G3-15-10",
+          "name": "以分鐘為單位求時間間隔",
+          "mode": "clock",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "clock_face"
+        },
+        {
+          "skillId": "G3-15-11",
+          "name": "時間應用題（一）— 過了多久",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "clock_face"
+        },
+        {
+          "skillId": "G3-15-12",
+          "name": "時間應用題（二）— 結束時刻",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "clock_face"
+        },
+        {
+          "skillId": "G3-15-13",
+          "name": "時間應用題（三）— 遲到早到",
+          "mode": "story",
+          "difficulty": 4,
+          "figure": "param",
+          "figureSource": "clock_face"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-16",
+      "order": 16,
+      "semester": "下",
+      "name": "一位小數",
+      "skills": [
+        {
+          "skillId": "G3-16-01",
+          "name": "利用著色圖認識一位小數",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "grid",
+          "figureSource": "fraction_model（十格著色表示一位小數，與分數共用元件）"
+        },
+        {
+          "skillId": "G3-16-02",
+          "name": "利用數線認識小數",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "number_line"
+        },
+        {
+          "skillId": "G3-16-03",
+          "name": "一位小數的數值",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "none",
+          "note": "place_value_board 元件目前只支援 hundreds/tens/ones，未涵蓋小數十分位，暫不指定圖形（figure=none），待元件擴充。"
+        },
+        {
+          "skillId": "G3-16-04",
+          "name": "分母為 10 的分數 ⇆ 一位小數",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "fraction_model"
+        },
+        {
+          "skillId": "G3-16-05",
+          "name": "2 個一位小數不進位加法",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "param",
+          "note": "column_arithmetic 元件目前只定義整數 a/b，用於小數直式加減前需先確認/擴充是否支援小數點，本檔先沿用該元件名稱標記。",
+          "figureSource": "column_arithmetic"
+        },
+        {
+          "skillId": "G3-16-06",
+          "name": "2 個一位小數進位加法",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "column_arithmetic"
+        },
+        {
+          "skillId": "G3-16-07",
+          "name": "2 個一位小數不退位減法",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "column_arithmetic"
+        },
+        {
+          "skillId": "G3-16-08",
+          "name": "2 個一位小數退位減法",
+          "mode": "reverse",
+          "difficulty": 4,
+          "figure": "param",
+          "figureSource": "column_arithmetic"
+        }
+      ]
+    },
+    {
+      "chapterId": "G3-17",
+      "order": 17,
+      "semester": "下",
+      "name": "生活中的表格",
+      "skills": [
+        {
+          "skillId": "G3-17-01",
+          "name": "24 小時報時制在生活中的運用",
+          "mode": "clock",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G3-17-02",
+          "name": "生活表格應用題 — 24 小時報時制單一時間間隔",
+          "mode": "story",
+          "difficulty": 4,
+          "figure": "none"
+        }
+      ]
+    }
+  ]
+}

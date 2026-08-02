@@ -1,0 +1,17 @@
+{
+  "templateId": "G1-06-03-a",
+  "skillId": "G1-06-03",
+  "mode": "reverse",
+  "difficulty": 2,
+  "stem": "算一算：{a} + {b} = ？",
+  "params": {"a": {"type": "int_range", "min": 1, "max": 9}, "b": {"type": "int_range", "min": 1, "max": 9}},
+  "reject": ["a + b > 10", "a + b < 4"],
+  "answer": {"formula": "a + b"},
+  "distractors": [
+    {"formula": "answer + 1", "why": "算加法時進了一格卻又多加一次"},
+    {"formula": "answer - 1", "why": "從第一個數往後數時少數一次"},
+    {"formula": "abs(a - b)", "why": "看見兩個數就做成減法比較"}
+  ],
+  "hints": ["加號是在說兩個數要合在一起，不是比大小。", "從較大的{a}開始，手指或心裡再數{b}下。", "{a}後面接著數{b}個會到{answer}，所以等號右邊是{answer}。"],
+  "verify": "answer - a == b and answer - b == a"
+}

@@ -1,0 +1,18 @@
+{
+  "templateId": "G1-07-03-a",
+  "skillId": "G1-07-03",
+  "mode": "story",
+  "difficulty": 3,
+  "stem": "盤子裡原來有{total}塊{item}，Apple吃了{taken}塊，盤子裡還有幾塊？",
+  "params": {"total": {"type": "int_range", "min": 4, "max": 10}, "taken": {"type": "int_range", "min": 1, "max": 8}, "item": {"type": "choice", "values": ["餅乾", "西瓜", "起司", "蛋糕"]}},
+  "reject": ["taken >= total"],
+  "answer": {"formula": "total - taken", "unit": "塊"},
+  "distractors": [
+    {"formula": "answer + 1", "why": "扣掉吃掉的數量時少扣了一塊"},
+    {"formula": "answer - 1", "why": "扣掉吃掉的數量時多扣了一塊"},
+    {"formula": "taken", "why": "把吃掉的數量當成盤子裡剩下的數量"},
+    {"formula": "total", "why": "忘記「吃了」表示要從原來的數量拿掉"}
+  ],
+  "hints": ["「吃了」表示盤子裡的東西變少了，先找原來有多少。", "從{total}開始往回數{taken}下，看看停在哪裡。", "原來{total}塊，吃掉{taken}塊，剩{answer}塊；現在換妳說出答案。"],
+  "verify": "answer + taken == total and total - answer == taken"
+}

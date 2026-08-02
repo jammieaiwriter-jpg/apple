@@ -1,0 +1,30 @@
+{
+  "templateId": "G1-03-07-a",
+  "skillId": "G1-03-07",
+  "mode": "story",
+  "difficulty": 3,
+  "stem": "動物園裡排隊搭小火車，一共有{n}隻小動物排成一排。小兔排在從左邊數來第{t}個，牠的{side}邊還有幾隻小動物？",
+  "params": {
+    "n": { "type": "int_range", "min": 6, "max": 9 },
+    "t": { "type": "int_range", "min": 2, "max": 8 },
+    "side": { "type": "choice", "values": ["左", "右"] }
+  },
+  "reject": ["t < 2", "t > n - 1"],
+  "derived": {
+    "leftCount": "t - 1",
+    "rightCount": "n - t"
+  },
+  "answer": { "formula": "leftCount if side == '左' else rightCount", "unit": "隻" },
+  "distractors": [
+    { "formula": "rightCount if side == '左' else leftCount", "why": "左右邊算反了，算成了另一邊的隻數" },
+    { "formula": "t", "why": "把小兔自己排的順序號碼當成旁邊的隻數" },
+    { "formula": "n", "why": "把全部的隻數當成一邊的隻數" }
+  ],
+  "hints": [
+    "先找到小兔排第幾個，再想清楚題目問的是左邊還是右邊。",
+    "偷偷告訴妳一個方法：小兔排第{t}個，表示牠前面已經有{t}減1隻了。",
+    "小兔的{side}邊還有{answer}隻小動物。"
+  ],
+  "figureSpec": { "type": "space_relations", "mode": "row_count", "total": "n", "targetPos": "t", "ask": "side" },
+  "verify": "(leftCount + rightCount + 1 == n) and ((answer == leftCount and side == '左') or (answer == rightCount and side == '右'))"
+}

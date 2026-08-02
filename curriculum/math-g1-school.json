@@ -1,0 +1,739 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "math",
+    "grade": "G1",
+    "curriculum": "教育部 108 課綱 小一",
+    "created": "2026-07-31",
+    "totalChapters": 17,
+    "totalSkills": 79,
+    "reference": "章節與技能顆粒度參考 KooBits「臺灣數學課程(符合教育部108課綱) 小1」的公開課程樹（該課程樹小1共143項技能，含🔥進階挑戰鏡像章與延伸特訓；本檔只取正課79項）。技能名稱已依台灣用語調整，難度為本系統自訂。",
+    "publisherOrder": "pending",
+    "publisherNote": "各版(康軒/翰林/南一)小一內容差異小，僅單元順序不同。開學拿到課本後只需調整 chapter.order 與 semester，skills 不動。",
+    "modes": {
+      "jump": "🐸 數數、順逆數、位值、大小比較",
+      "reverse": "🧠 分合、加減計算",
+      "story": "🍬 生活情境應用題",
+      "clock": "⏰ 時間、日期、月曆",
+      "space": "📦 平面/立體圖形、方位",
+      "length": "📏 長度比較與測量（新增）",
+      "chart": "📊 分類整理與圖表（新增）"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值）",
+    "figureLoad": {
+      "none": 21,
+      "param": 49,
+      "grid": 6,
+      "asset": 3,
+      "note": "none=無圖；param=參數化SVG；grid=格線拼砌；asset=需素材圖。param 走 index.html 既有 mkSVG 模式或移植 Bobo tools/math_diagram_kit。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "G1-01",
+      "order": 1,
+      "semester": "上",
+      "name": "10 以內的數",
+      "skills": [
+        {
+          "skillId": "G1-01-01",
+          "name": "10 以內的數 — 數數",
+          "mode": "jump",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-01-02",
+          "name": "10 以內的數 — 順數",
+          "mode": "jump",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-01-03",
+          "name": "比較 10 以內的數",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "param"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-02",
+      "order": 2,
+      "semester": "上",
+      "name": "比長短",
+      "skills": [
+        {
+          "skillId": "G1-02-01",
+          "name": "直接比較長度 — 長短、寬窄",
+          "mode": "length",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-02-02",
+          "name": "認識線段",
+          "mode": "length",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "Bobo math_diagram_kit: segment_compare"
+        },
+        {
+          "skillId": "G1-02-03",
+          "name": "認識點、直線和曲線",
+          "mode": "length",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-02-04",
+          "name": "直接比較長度 — 高矮、厚薄",
+          "mode": "length",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-02-05",
+          "name": "用「最高、最矮、最長、最短」描述物件",
+          "mode": "length",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-02-06",
+          "name": "直接比較距離",
+          "mode": "length",
+          "difficulty": 2,
+          "figure": "param",
+          "figureSource": "Bobo math_diagram_kit: segment_compare"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-03",
+      "order": 3,
+      "semester": "上",
+      "name": "順序與多少",
+      "skills": [
+        {
+          "skillId": "G1-03-01",
+          "name": "進行倒數",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-03-02",
+          "name": "次序和數量",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-03-03",
+          "name": "前、後和之間",
+          "mode": "space",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-03-04",
+          "name": "左、右和之間",
+          "mode": "space",
+          "difficulty": 2,
+          "note": "她的舊弱點：左右方位辨識不穩，見 apple-mistakes.md 9.32.21",
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-03-05",
+          "name": "上、下和之間",
+          "mode": "space",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-03-06",
+          "name": "比較 — 多和少",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-03-07",
+          "name": "位置 — 綜合應用題",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-03-08",
+          "name": "次序和數量 — 綜合應用題",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "param"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-04",
+      "order": 4,
+      "semester": "上",
+      "name": "分與合",
+      "skills": [
+        {
+          "skillId": "G1-04-01",
+          "name": "0 的概念和計算",
+          "mode": "reverse",
+          "difficulty": 1,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-04-02",
+          "name": "2 至 5 各數的分與合",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-04-03",
+          "name": "6 至 10 各數的分與合",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "param"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-05",
+      "order": 5,
+      "semester": "上",
+      "name": "認識形狀",
+      "skills": [
+        {
+          "skillId": "G1-05-01",
+          "name": "認識立體圖形",
+          "mode": "space",
+          "difficulty": 1,
+          "figure": "asset",
+          "figureSource": "Bobo math_diagram_kit: solid_shape"
+        },
+        {
+          "skillId": "G1-05-02",
+          "name": "認識平面圖形",
+          "mode": "space",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-05-03",
+          "name": "生活中的平面圖形",
+          "mode": "space",
+          "difficulty": 2,
+          "figure": "asset"
+        },
+        {
+          "skillId": "G1-05-04",
+          "name": "平面圖形的拼砌",
+          "mode": "space",
+          "difficulty": 3,
+          "note": "她的舊弱點：圖形補合連續三天出錯，見 apple-mistakes.md",
+          "figure": "grid",
+          "figureSource": "index.html 現有 mkSVG/cell/gap（奧數補合題）"
+        },
+        {
+          "skillId": "G1-05-05",
+          "name": "從複合圖形中辨別平面圖形",
+          "mode": "space",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "index.html 現有 mkSVG/cell/gap"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-06",
+      "order": 6,
+      "semester": "上",
+      "name": "10 以內的加法",
+      "skills": [
+        {
+          "skillId": "G1-06-01",
+          "name": "加法的基本概念",
+          "mode": "reverse",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-06-02",
+          "name": "10 以內各數的合 — 加法",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-06-03",
+          "name": "10 以內的加法",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-06-04",
+          "name": "10 以內的加法應用題",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-07",
+      "order": 7,
+      "semester": "上",
+      "name": "10 以內的減法",
+      "skills": [
+        {
+          "skillId": "G1-07-01",
+          "name": "減法的基本概念",
+          "mode": "reverse",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-07-02",
+          "name": "10 以內各數的分 — 減法",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-07-03",
+          "name": "減法應用題",
+          "mode": "story",
+          "difficulty": 3,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-08",
+      "order": 8,
+      "semester": "上",
+      "name": "30 以內的數",
+      "skills": [
+        {
+          "skillId": "G1-08-01",
+          "name": "20 以內的數 — 數數",
+          "mode": "jump",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-08-02",
+          "name": "20 以內的數 — 讀數",
+          "mode": "jump",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-08-03",
+          "name": "比較 20 以內、不多於 4 個數字的大小",
+          "mode": "jump",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-08-04",
+          "name": "運用順數，求更大的數字",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-08-05",
+          "name": "運用倒數，求更小的數字",
+          "mode": "jump",
+          "difficulty": 3,
+          "note": "她的舊弱點：-2、-5 逆向跳數，見 apple-mistakes.md",
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-09",
+      "order": 9,
+      "semester": "上",
+      "name": "時間",
+      "skills": [
+        {
+          "skillId": "G1-09-01",
+          "name": "認識「小時」",
+          "mode": "clock",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-09-02",
+          "name": "以「整點」報時",
+          "mode": "clock",
+          "difficulty": 1,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-09-03",
+          "name": "以「幾點半」報時",
+          "mode": "clock",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-09-04",
+          "name": "認識一天中不同時刻事件的適當性",
+          "mode": "clock",
+          "difficulty": 2,
+          "figure": "asset"
+        },
+        {
+          "skillId": "G1-09-05",
+          "name": "以「上午」、「下午」報時",
+          "mode": "clock",
+          "difficulty": 2,
+          "note": "台灣小一不教 a.m./p.m. 英文縮寫，已移除",
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-09-06",
+          "name": "認識一天的時刻",
+          "mode": "clock",
+          "difficulty": 2,
+          "figure": "param"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-10",
+      "order": 10,
+      "semester": "下",
+      "name": "20 以內的加法",
+      "skills": [
+        {
+          "skillId": "G1-10-01",
+          "name": "18 以內的加法（一）不進位",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-10-02",
+          "name": "18 以內的加法（二）進位、湊十",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-10-03",
+          "name": "交換位置相加",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-11",
+      "order": 11,
+      "semester": "下",
+      "name": "長度",
+      "skills": [
+        {
+          "skillId": "G1-11-01",
+          "name": "選擇適合的個別單位量度長度",
+          "mode": "length",
+          "difficulty": 2,
+          "note": "台灣課綱用語為「個別單位」，非「自訂單位」",
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-11-02",
+          "name": "選擇適合的個別單位比較長度",
+          "mode": "length",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-11-03",
+          "name": "以個別單位比較物件間的距離",
+          "mode": "length",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-11-04",
+          "name": "長度排序 — 長短、寬窄",
+          "mode": "length",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-11-05",
+          "name": "長度排序 — 高矮、厚薄",
+          "mode": "length",
+          "difficulty": 2,
+          "figure": "param"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-12",
+      "order": 12,
+      "semester": "下",
+      "name": "20 以內的減法",
+      "skills": [
+        {
+          "skillId": "G1-12-01",
+          "name": "11 至 14 各數的分與合",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-12-02",
+          "name": "15 至 18 各數的分與合",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-12-03",
+          "name": "18 以內的減法（一）不退位",
+          "mode": "reverse",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-12-04",
+          "name": "18 以內的減法（二）退位",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "param"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-13",
+      "order": 13,
+      "semester": "下",
+      "name": "100 以內的數",
+      "skills": [
+        {
+          "skillId": "G1-13-01",
+          "name": "21 至 50 的認識",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-13-02",
+          "name": "51 至 100 的認識",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-13-03",
+          "name": "順數和倒數",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-13-04",
+          "name": "每 2 個、5 個、10 個一數",
+          "mode": "jump",
+          "difficulty": 3,
+          "note": "她的舊弱點：跳數規律（+3、雙數），見 apple-mistakes.md 9.32.03",
+          "figure": "param",
+          "figureSource": "Bobo math_diagram_kit: number_line"
+        },
+        {
+          "skillId": "G1-13-05",
+          "name": "估計物件的數量",
+          "mode": "jump",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-13-06",
+          "name": "個位和十位 — 數字不大於 50",
+          "mode": "jump",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-13-07",
+          "name": "個位和十位 — 數字不大於 100",
+          "mode": "jump",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-13-08",
+          "name": "比較 2 個 40 以內的數",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-13-09",
+          "name": "比較兩個數",
+          "mode": "jump",
+          "difficulty": 2,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-13-10",
+          "name": "比較三個數或以上",
+          "mode": "jump",
+          "difficulty": 4,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-14",
+      "order": 14,
+      "semester": "下",
+      "name": "形狀與形體",
+      "skills": [
+        {
+          "skillId": "G1-14-01",
+          "name": "圖形的拼砌",
+          "mode": "space",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "index.html 現有 mkSVG/cell/gap"
+        },
+        {
+          "skillId": "G1-14-02",
+          "name": "圖形的分割",
+          "mode": "space",
+          "difficulty": 3,
+          "figure": "grid",
+          "figureSource": "index.html 現有 mkSVG/cell/gap"
+        },
+        {
+          "skillId": "G1-14-03",
+          "name": "分割成指定的圖形",
+          "mode": "space",
+          "difficulty": 4,
+          "figure": "grid",
+          "figureSource": "index.html 現有 mkSVG/cell/gap"
+        },
+        {
+          "skillId": "G1-14-04",
+          "name": "利用七巧板拼砌平面圖形",
+          "mode": "space",
+          "difficulty": 4,
+          "figure": "grid"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-15",
+      "order": 15,
+      "semester": "下",
+      "name": "幾月幾日星期幾",
+      "skills": [
+        {
+          "skillId": "G1-15-01",
+          "name": "認識星期",
+          "mode": "clock",
+          "difficulty": 2,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-15-02",
+          "name": "認識月曆",
+          "mode": "clock",
+          "difficulty": 3,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-15-03",
+          "name": "時間和日期的綜合運用",
+          "mode": "clock",
+          "difficulty": 4,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-15-04",
+          "name": "生活中日期的運用",
+          "mode": "story",
+          "difficulty": 4,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-16",
+      "order": 16,
+      "semester": "下",
+      "name": "兩位數的加減法",
+      "skills": [
+        {
+          "skillId": "G1-16-01",
+          "name": "不進位加法 — 兩位數加一位數",
+          "mode": "reverse",
+          "difficulty": 3,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-16-02",
+          "name": "進位加法",
+          "mode": "reverse",
+          "difficulty": 4,
+          "figure": "param"
+        },
+        {
+          "skillId": "G1-16-03",
+          "name": "三個數的加法 — 兩位數和一位數相加",
+          "mode": "reverse",
+          "difficulty": 4,
+          "figure": "none"
+        },
+        {
+          "skillId": "G1-16-04",
+          "name": "20 以內的加法應用題",
+          "mode": "story",
+          "difficulty": 4,
+          "figure": "none"
+        }
+      ]
+    },
+    {
+      "chapterId": "G1-17",
+      "order": 17,
+      "semester": "下",
+      "name": "分類整理",
+      "skills": [
+        {
+          "skillId": "G1-17-01",
+          "name": "閱讀直式圖畫記錄（縱向象形圖）",
+          "mode": "chart",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "Bobo math_diagram_kit: bar"
+        },
+        {
+          "skillId": "G1-17-02",
+          "name": "閱讀橫式圖畫記錄（橫向象形圖）",
+          "mode": "chart",
+          "difficulty": 3,
+          "figure": "param",
+          "figureSource": "Bobo math_diagram_kit: bar（橫向）"
+        }
+      ]
+    }
+  ]
+}

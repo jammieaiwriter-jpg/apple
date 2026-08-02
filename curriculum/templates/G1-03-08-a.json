@@ -1,0 +1,36 @@
+{
+  "templateId": "G1-03-08-a",
+  "skillId": "G1-03-08",
+  "mode": "story",
+  "difficulty": 3,
+  "stem": "一排玩具車一共有{n}輛，從左邊數來，前面{leftCountRed}輛是紅色，紅色車後面接著的那一輛是藍色，藍色車是從左邊數來第幾輛？",
+  "params": {
+    "n": { "type": "int_range", "min": 6, "max": 9 },
+    "leftCountRed": { "type": "int_range", "min": 1, "max": 6 }
+  },
+  "reject": ["leftCountRed > n - 2"],
+  "derived": {
+    "bluePos": "leftCountRed + 1",
+    "afterBlue": "n - leftCountRed - 1"
+  },
+  "answer": { "formula": "bluePos", "unit": "輛" },
+  "distractors": [
+    { "formula": "leftCountRed", "why": "把紅色車的數量當成藍色車的位置，忘記還要再往後一格" },
+    { "formula": "leftCountRed + 2", "why": "多加了一格，位置往後算過頭了" },
+    { "formula": "n", "why": "把全部的車輛數當成藍色車的位置" }
+  ],
+  "hints": [
+    "藍色車排在紅色車的正後面，是接在紅色車隊伍後面的第一輛。",
+    "偷偷告訴妳一個方法：前面有{leftCountRed}輛紅色車，藍色車就排在它們後面一個位置。",
+    "紅色車有{leftCountRed}輛，藍色車排在第{leftCountRed}輛的後面，也就是第{answer}輛。"
+  ],
+  "figureSpec": {
+    "type": "count_group",
+    "groups": [
+      { "color": "#ef4444", "count": "leftCountRed", "label": "紅色" },
+      { "color": "#3b82f6", "count": 1, "label": "藍色" },
+      { "color": "#9ca3af", "count": "afterBlue" }
+    ]
+  },
+  "verify": "(answer - leftCountRed == 1) and (answer <= n)"
+}

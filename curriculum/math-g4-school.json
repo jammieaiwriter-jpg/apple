@@ -1,0 +1,330 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "math",
+    "grade": "G4",
+    "curriculum": "教育部 108 課綱 小四",
+    "created": "2026-08-01",
+    "totalChapters": 18,
+    "totalSkills": 148,
+    "reference": "章節與技能顆粒度參考 KooBits「臺灣數學課程(符合教育部108課綱) 小4」的公開課程樹（該課程樹小4共148項正課技能，不含🔥進階挑戰鏡像章）。原始資料由外部先行爬取提供，本檔僅做結構化與台灣用語校對，技能名稱已依台灣用語調整，難度為本系統自訂。",
+    "publisherOrder": "pending",
+    "publisherNote": "各版(康軒/翰林/南一)小四內容差異小，僅單元順序不同。開學拿到課本後只需調整 chapter.order 與 semester，skills 不動。上/下學期切分為推測（依 148 技能數量對半估算：上學期 G4-01~G4-10 共 75 技能，下學期 G4-11~G4-18 共 73 技能），非官方版本確認。原始爬取清單中第 1、4、6、11 章各有一組技能重複出現同名（KooBits 網頁虛擬捲動列表擷取瑕疵），已依內容合理推斷（多為「數字範圍/情境從小到大」的兩個不同技能）拆解為不同名稱，技能總數維持與原始清單一致，未增刪。第 17 章（時間的計算）原始清單中「應用題(五)-開始時刻」與「應用題(六)-開始時刻」文字完全相同但編號不同，判斷也是同一模式的瑕疵，已比照處理拆成「情境一/情境二（進階）」。另將原文「閲讀」（異體字/簡轉繁殘留）統一修正為「閱讀」。",
+    "newInG4": "相對 G1/G2/G3，本檔新增一個模式 fraction 🍕，服務分數（一）+分數（二）共 12 個技能（含真分數/假分數/帶分數、異分母加減、分數與小數互換）——分數的表徵方式（部分/全體塗色、分子分母、帶分數）跟其他模式完全不同，量體達到當初開 multiply 模式的判斷標準，故獨立成模式。此外首次出現：角度（量角器實測，併入 measure；概念辨識併入 space）、公里（併入 measure，延伸長度單位）、周長與面積公式化計算（併入 measure，延伸 G2/G3 的 measure 範圍）、體積直觀比較（併入 measure）、統計圖表擴充至長條圖/複合長條圖/折線圖（延伸 G1 的象形圖）。除法延續 G2/G3 的除法啟蒙先例併入 multiply 模式。",
+    "modes": {
+      "jump": "🐸 數數、順逆數、位值、大小比較（延伸至億以內、概數估算）",
+      "reverse": "🧠 分合、加減計算（延伸至多位數四則混合、兩位小數加減）",
+      "story": "🍬 生活情境應用題",
+      "clock": "⏰ 時間、日期、月曆（延伸至時分秒換算、12/24 小時報時制、時間間隔）",
+      "space": "📦 平面/立體圖形、方位、垂直線／平行線、三角形與四邊形的分類與繪製、角的概念辨識",
+      "length": "📏 長度比較與測量（本檔無獨立指派技能，公里相關技能改歸 measure）",
+      "chart": "📊 分類整理與圖表（延伸至長條圖、複合長條圖、折線圖）",
+      "multiply": "✖️ 乘法、除法、心算技巧（延伸至多位數乘除、小數乘法、四則混合中的乘除應用題）",
+      "measure": "📐 公式化量測（延伸至角度量角器實測、公里、周長面積公式、體積直觀比較；概念沿用 G2/G3 的 measure，但新增工具實測與公式應用）",
+      "fraction": "🍕 分數概念、真分數假分數帶分數、異分母加減、分數與小數互換（新增，延伸 G3 的同分母分數）"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值）",
+    "numberRangeNote": "整數延伸至億以內（最高處理到千萬位/七至八位數）；乘法涵蓋兩三位數乘兩位數，含乘以整十/整百/整千的規律計算；除法為兩三位數除以兩位數（含整十數除數），不做長除法直式以外的變化；分數涵蓋真分數/假分數/帶分數的認識與互換，加減限同分母或簡單異分母（不需要通分到複雜公倍數）；小數至二位小數的加減，以及小數乘以一/二位整數、10、100、整十、整百；角度用量角器實測 0-180 度，區分銳角鈍角；周長面積為公式化計算，含簡單與複雜複合圖形（分割法/填補法）；時間換算含時分秒互換、12/24 小時報時制、時間間隔與起訖時刻；體積為直觀比較與立方公分堆疊計數，尚未教長寬高公式。",
+    "figureLoad": {
+      "none": 49,
+      "param": 26,
+      "grid": 70,
+      "asset": 3,
+      "note": "grid 佔比明顯高於 G1/G2，主因本檔新增的三大內容領域（分數、角度/量角器、四邊形三角形繪製與分類、統計圖表折線圖、周長面積複合圖形）全部沒有現成元件，只能先標 grid 待補。確定的新元件缺口：fraction_model（分數表徵，服務分數一/二共 12+ 技能）、protractor（量角器，服務角度章 2 技能）、angle_diagram（角的辨識圖示，服務角度章 3 技能）、bar_chart（長條圖/複合長條圖，服務統計圖表 5 技能，可參考 Bobo bar 型別）、line_chart（折線圖，服務統計圖表 3 技能，Bobo Python 版有 line_chart，需移植 JS）、polygon_construction（三角形/四邊形辨識與繪製，服務三角形章 3 技能＋四邊形章 11 技能）、parallel_lines（平行線，可能與既有 TODO_JS 的 perpendicular 共用繪圖邏輯）、shape_dimension（標註邊長的矩形/正方形圖，服務周長面積公式化計算約 12 技能）、composite_figure（複合圖形周長面積，服務周長面積章約 7 技能）、column_multiply（直式乘法，含小數點對齊版本，服務乘法章與小數二章共約 5 技能）、column_divide（直式除法，服務除法章 2 技能）、decimal_grid（小數方格著色，服務小數一章 1 技能，可能與 fraction_model 共用邏輯）、volume_compare（體積比較/堆疊，服務體積章 2 技能）。此外 place_value_board、column_arithmetic 兩個既有元件都需要擴充（前者加萬位以上與小數位，後者加小數點對齊）才能服務本檔的 param 等級技能。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "G4-01",
+      "order": 1,
+      "semester": "上",
+      "name": "一億以內的數",
+      "skills": [
+        { "skillId": "G4-01-01", "name": "順數和倒數 — 萬以內的數（複習）", "mode": "jump", "difficulty": 1, "figure": "none" },
+        { "skillId": "G4-01-02", "name": "認識五位數", "mode": "jump", "difficulty": 2, "figure": "param", "figureSource": "place_value_board 需擴充支援萬位（現僅到百位）" },
+        { "skillId": "G4-01-03", "name": "認識萬位的概念", "mode": "jump", "difficulty": 2, "figure": "param", "figureSource": "place_value_board 需擴充支援萬位" },
+        { "skillId": "G4-01-04", "name": "比較大小", "mode": "jump", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-01-05", "name": "用數字組成多位數", "mode": "jump", "difficulty": 3, "figure": "param", "figureSource": "place_value_board 需擴充支援萬位" },
+        { "skillId": "G4-01-06", "name": "順數和倒數 — 千萬以內的數（大數延伸）", "mode": "jump", "difficulty": 3, "note": "原始資料此技能與 G4-01-01 同名「順數和倒數」，判斷為 KooBits 課程樹擷取瑕疵（虛擬捲動漏抓差異描述）。依課程進度（先萬以內複習，後面才教到千萬位）拆分為不同數字範圍的兩個技能。", "figure": "none" },
+        { "skillId": "G4-01-07", "name": "多位數的寫法和讀法", "mode": "jump", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-01-08", "name": "認識千萬位的數值和位值", "mode": "jump", "difficulty": 4, "figure": "param", "figureSource": "place_value_board 需擴充支援萬/百萬/千萬位" },
+        { "skillId": "G4-01-09", "name": "用加法等式表達多位數（展開式）", "mode": "jump", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-01-10", "name": "比較大小 — 不大於六位數", "mode": "jump", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-01-11", "name": "比較大小 — 不大於七位數", "mode": "jump", "difficulty": 4, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G4-02",
+      "order": 2,
+      "semester": "上",
+      "name": "乘法",
+      "skills": [
+        { "skillId": "G4-02-01", "name": "兩位數乘兩位數", "mode": "multiply", "difficulty": 3, "figure": "grid", "figureSource": "新元件 column_multiply（直式乘法，待建）" },
+        { "skillId": "G4-02-02", "name": "三位數乘兩位數", "mode": "multiply", "difficulty": 4, "figure": "grid", "figureSource": "新元件 column_multiply（直式乘法，待建）" },
+        { "skillId": "G4-02-03", "name": "快捷的乘法計算", "mode": "multiply", "difficulty": 3, "note": "心算技巧：分配律／結合律的應用", "figure": "none" },
+        { "skillId": "G4-02-04", "name": "乘以整十數", "mode": "multiply", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-02-05", "name": "乘以整百數", "mode": "multiply", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-02-06", "name": "乘以整千數", "mode": "multiply", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-02-07", "name": "乘法應用題（一）", "mode": "story", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-02-08", "name": "乘法應用題（二）", "mode": "story", "difficulty": 4, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G4-03",
+      "order": 3,
+      "semester": "上",
+      "name": "角度",
+      "skills": [
+        { "skillId": "G4-03-01", "name": "利用量角器量度角", "mode": "measure", "difficulty": 3, "figure": "grid", "figureSource": "新元件 protractor（量角器，待建）" },
+        { "skillId": "G4-03-02", "name": "認識角和度", "mode": "space", "difficulty": 2, "figure": "grid", "figureSource": "新元件 angle_diagram（角的圖示，待建，可與 protractor 共用繪圖邏輯）" },
+        { "skillId": "G4-03-03", "name": "銳角和鈍角", "mode": "space", "difficulty": 2, "figure": "grid", "figureSource": "angle_diagram（同上）" },
+        { "skillId": "G4-03-04", "name": "估計給定角度", "mode": "space", "difficulty": 3, "figure": "grid", "figureSource": "angle_diagram（同上）" },
+        { "skillId": "G4-03-05", "name": "量度和比較角的大小", "mode": "measure", "difficulty": 3, "figure": "grid", "figureSource": "protractor（同上）" }
+      ]
+    },
+    {
+      "chapterId": "G4-04",
+      "order": 4,
+      "semester": "上",
+      "name": "公里",
+      "skills": [
+        { "skillId": "G4-04-01", "name": "選擇合適的量度單位及量度工具 — 公分和公尺", "mode": "measure", "difficulty": 2, "note": "原始資料此技能與 G4-04-02 同名，判斷為擷取瑕疵，依「先複習較小單位、再教公里」的課程邏輯拆分為公分/公尺與公尺/公里兩個情境。", "figure": "asset", "figureSource": "重用 life_scene（G1 已列缺口元件，待建）" },
+        { "skillId": "G4-04-02", "name": "選擇合適的量度單位及量度工具 — 公尺和公里", "mode": "measure", "difficulty": 3, "figure": "asset", "figureSource": "重用 life_scene（待建）" },
+        { "skillId": "G4-04-03", "name": "將公里轉換為公尺", "mode": "measure", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-04-04", "name": "將公尺轉換為公里", "mode": "measure", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-04-05", "name": "以公里為單位比較長度", "mode": "measure", "difficulty": 3, "figure": "param", "figureSource": "segment_compare（重用，比較公里距離）" }
+      ]
+    },
+    {
+      "chapterId": "G4-05",
+      "order": 5,
+      "semester": "上",
+      "name": "除法",
+      "skills": [
+        { "skillId": "G4-05-01", "name": "兩位數除以整十數", "mode": "multiply", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-05-02", "name": "兩位數和兩位數相除", "mode": "multiply", "difficulty": 3, "figure": "grid", "figureSource": "新元件 column_divide（直式除法，待建）" },
+        { "skillId": "G4-05-03", "name": "三位數和兩位數相除", "mode": "multiply", "difficulty": 4, "figure": "grid", "figureSource": "column_divide（同上）" },
+        { "skillId": "G4-05-04", "name": "除法應用題", "mode": "story", "difficulty": 3, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G4-06",
+      "order": 6,
+      "semester": "上",
+      "name": "四則運算",
+      "skills": [
+        { "skillId": "G4-06-01", "name": "加減混合計算 — 兩位數", "mode": "reverse", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-06-02", "name": "加減混合計算 — 三位數", "mode": "reverse", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-06-03", "name": "加減混合計算 — 不包含圓括號", "mode": "reverse", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-06-04", "name": "三個數的除法", "mode": "multiply", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-06-05", "name": "加減應用題（二）", "mode": "story", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-06-06", "name": "加減應用題（一）", "mode": "story", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-06-07", "name": "加減混合計算應用題（一）— 兩位數情境", "mode": "story", "difficulty": 3, "note": "原始清單「加減混合計算應用題(一)」與「加減混合計算應用題(二)」各出現兩次，判斷為擷取瑕疵，依數字範圍拆為「兩位數情境」與「三位數情境（進階）」兩組，技能總數維持不變。", "figure": "none" },
+        { "skillId": "G4-06-08", "name": "加減混合計算應用題（二）— 兩位數情境", "mode": "story", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-06-09", "name": "加減混合計算應用題（二）— 三位數情境（進階）", "mode": "story", "difficulty": 4, "figure": "none" },
+        { "skillId": "G4-06-10", "name": "加減混合計算應用題（一）— 三位數情境（進階）", "mode": "story", "difficulty": 4, "figure": "none" },
+        { "skillId": "G4-06-11", "name": "乘加應用題", "mode": "multiply", "difficulty": 4, "figure": "none" },
+        { "skillId": "G4-06-12", "name": "乘減應用題", "mode": "multiply", "difficulty": 4, "figure": "none" },
+        { "skillId": "G4-06-13", "name": "加減混合計算 — 包含圓括號", "mode": "reverse", "difficulty": 4, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G4-07",
+      "order": 7,
+      "semester": "上",
+      "name": "三角形",
+      "skills": [
+        { "skillId": "G4-07-01", "name": "分辨直角、銳角和鈍角三角形", "mode": "space", "difficulty": 2, "figure": "grid", "figureSource": "新元件 polygon_construction（三角形辨識，待建）" },
+        { "skillId": "G4-07-02", "name": "辨別直角三角形、等腰三角形、等邊三角形和等腰直角三角形", "mode": "space", "difficulty": 3, "figure": "grid", "figureSource": "polygon_construction（同上）" },
+        { "skillId": "G4-07-03", "name": "繪畫和製作三角形", "mode": "space", "difficulty": 4, "figure": "grid", "figureSource": "polygon_construction 需支援繪製功能" }
+      ]
+    },
+    {
+      "chapterId": "G4-08",
+      "order": 8,
+      "semester": "上",
+      "name": "分數（一）",
+      "skills": [
+        { "skillId": "G4-08-01", "name": "認識真分數、假分數和帶分數", "mode": "fraction", "difficulty": 2, "figure": "grid", "figureSource": "fraction_model" },
+        { "skillId": "G4-08-02", "name": "假分數與整數或帶分數的互換", "mode": "fraction", "difficulty": 3, "figure": "grid", "figureSource": "fraction_model" },
+        { "skillId": "G4-08-03", "name": "比較大小 — 帶分數和假分數", "mode": "fraction", "difficulty": 3, "figure": "grid", "figureSource": "fraction_model" },
+        { "skillId": "G4-08-04", "name": "同分母分數加法（和不超過 1）", "mode": "fraction", "difficulty": 2, "note": "原文「分數加法-不進位」，改寫為更明確的台灣用語：兩分數相加結果仍是真分數，不需轉換為帶分數。", "figure": "grid", "figureSource": "fraction_model" },
+        { "skillId": "G4-08-05", "name": "整數減分數", "mode": "fraction", "difficulty": 3, "figure": "grid", "figureSource": "fraction_model（需支援整數借位為分數）" },
+        { "skillId": "G4-08-06", "name": "真分數和整數相乘", "mode": "fraction", "difficulty": 3, "figure": "grid", "figureSource": "fraction_model" },
+        { "skillId": "G4-08-07", "name": "同分母分數的加減應用題", "mode": "fraction", "difficulty": 4, "figure": "grid", "figureSource": "fraction_model" }
+      ]
+    },
+    {
+      "chapterId": "G4-09",
+      "order": 9,
+      "semester": "上",
+      "name": "小數（一）",
+      "skills": [
+        { "skillId": "G4-09-01", "name": "利用著色圖認識二位小數", "mode": "jump", "difficulty": 2, "figure": "grid", "figureSource": "fraction_model（shape=\"grid\", denominator=100）" },
+        { "skillId": "G4-09-02", "name": "二位小數的數值", "mode": "jump", "difficulty": 2, "figure": "param", "figureSource": "place_value_board 需擴充支援小數位" },
+        { "skillId": "G4-09-03", "name": "加法直式計算前補 0", "mode": "reverse", "difficulty": 3, "figure": "param", "figureSource": "column_arithmetic（已支援小數點對齊）" },
+        { "skillId": "G4-09-04", "name": "兩位小數加法（不進位）", "mode": "reverse", "difficulty": 2, "figure": "param", "figureSource": "column_arithmetic（已支援小數點對齊）" },
+        { "skillId": "G4-09-05", "name": "兩位小數加法（進位）", "mode": "reverse", "difficulty": 3, "figure": "param", "figureSource": "column_arithmetic（已支援小數點對齊）" },
+        { "skillId": "G4-09-06", "name": "減法直式計算前補 0", "mode": "reverse", "difficulty": 3, "figure": "param", "figureSource": "column_arithmetic（已支援小數點對齊）" },
+        { "skillId": "G4-09-07", "name": "兩位小數減法（不退位）", "mode": "reverse", "difficulty": 2, "figure": "param", "figureSource": "column_arithmetic（已支援小數點對齊）" },
+        { "skillId": "G4-09-08", "name": "兩位小數減法（退位）", "mode": "reverse", "difficulty": 3, "figure": "param", "figureSource": "column_arithmetic（已支援小數點對齊）" },
+        { "skillId": "G4-09-09", "name": "小數加減應用題", "mode": "story", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-09-10", "name": "小數加減混合應用題", "mode": "story", "difficulty": 4, "figure": "none" },
+        { "skillId": "G4-09-11", "name": "小數加減應用題涉及貨幣", "mode": "story", "difficulty": 4, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G4-10",
+      "order": 10,
+      "semester": "上",
+      "name": "統計圖表",
+      "skills": [
+        { "skillId": "G4-10-01", "name": "閱讀縱向長條圖", "mode": "chart", "difficulty": 2, "note": "原文「閲讀」已修正為「閱讀」（異體字/簡轉繁殘留）。", "figure": "grid", "figureSource": "新元件 bar_chart（長條圖，待建；可參考 Bobo bar 型別）" },
+        { "skillId": "G4-10-02", "name": "閱讀橫向長條圖", "mode": "chart", "difficulty": 2, "figure": "grid", "figureSource": "bar_chart（同上）" },
+        { "skillId": "G4-10-03", "name": "閱讀數據較大的長條圖", "mode": "chart", "difficulty": 3, "figure": "grid", "figureSource": "bar_chart（同上）" },
+        { "skillId": "G4-10-04", "name": "閱讀數據較小的複合長條圖", "mode": "chart", "difficulty": 3, "figure": "grid", "figureSource": "bar_chart 需支援多系列複合長條圖" },
+        { "skillId": "G4-10-05", "name": "閱讀數據較大的複合長條圖", "mode": "chart", "difficulty": 4, "figure": "grid", "figureSource": "bar_chart（複合，同上）" },
+        { "skillId": "G4-10-06", "name": "閱讀折線圖", "mode": "chart", "difficulty": 3, "figure": "grid", "figureSource": "新元件 line_chart（折線圖，待建；Bobo Python 版有，需移植 JS）" },
+        { "skillId": "G4-10-07", "name": "閱讀單一折線圖並運算", "mode": "chart", "difficulty": 4, "figure": "grid", "figureSource": "line_chart（同上）" },
+        { "skillId": "G4-10-08", "name": "閱讀雙線折線圖並運算", "mode": "chart", "difficulty": 5, "figure": "grid", "figureSource": "line_chart 需支援雙數列" }
+      ]
+    },
+    {
+      "chapterId": "G4-11",
+      "order": 11,
+      "semester": "下",
+      "name": "概數",
+      "skills": [
+        { "skillId": "G4-11-01", "name": "兩位數取近似值至十位", "mode": "jump", "difficulty": 2, "figure": "param", "figureSource": "number_line（重用）" },
+        { "skillId": "G4-11-02", "name": "三位數取近似值至十位", "mode": "jump", "difficulty": 2, "figure": "param", "figureSource": "number_line（重用）" },
+        { "skillId": "G4-11-03", "name": "根據近似值找出最大或最小的數字", "mode": "jump", "difficulty": 4, "figure": "none" },
+        { "skillId": "G4-11-04", "name": "三位數取近似值至百位", "mode": "jump", "difficulty": 3, "figure": "param", "figureSource": "number_line（重用）" },
+        { "skillId": "G4-11-05", "name": "四位數取近似值至百位", "mode": "jump", "difficulty": 3, "figure": "param", "figureSource": "number_line（重用）" },
+        { "skillId": "G4-11-06", "name": "多位數的近似值", "mode": "jump", "difficulty": 4, "figure": "param", "figureSource": "number_line（重用）" },
+        { "skillId": "G4-11-07", "name": "估計計算結果 — 加減法情境", "mode": "jump", "difficulty": 3, "note": "原始清單「估計計算結果」出現兩次，判斷為擷取瑕疵，依運算類型拆為加減法情境（較易）與乘除法情境（進階）。", "figure": "none" },
+        { "skillId": "G4-11-08", "name": "估計計算結果 — 乘除法情境（進階）", "mode": "jump", "difficulty": 4, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G4-12",
+      "order": 12,
+      "semester": "下",
+      "name": "四邊形",
+      "skills": [
+        { "skillId": "G4-12-01", "name": "垂直線（二）", "mode": "space", "difficulty": 3, "figure": "grid", "figureSource": "line_relation（relation=\"perpendicular\"，延續 G2-17-02）" },
+        { "skillId": "G4-12-02", "name": "認識平行線", "mode": "space", "difficulty": 2, "figure": "grid", "figureSource": "line_relation（relation=\"parallel\"）" },
+        { "skillId": "G4-12-03", "name": "認識正方形和長方形", "mode": "space", "difficulty": 2, "figure": "grid", "figureSource": "新元件 polygon_construction（四邊形辨識，待建）" },
+        { "skillId": "G4-12-04", "name": "特殊平行四邊形 — 長方形和正方形", "mode": "space", "difficulty": 3, "figure": "grid", "figureSource": "polygon_construction（同上）" },
+        { "skillId": "G4-12-05", "name": "認識平行四邊形", "mode": "space", "difficulty": 2, "figure": "grid", "figureSource": "polygon_construction（同上）" },
+        { "skillId": "G4-12-06", "name": "認識菱形", "mode": "space", "difficulty": 2, "figure": "grid", "figureSource": "polygon_construction（同上）" },
+        { "skillId": "G4-12-07", "name": "認識梯形", "mode": "space", "difficulty": 2, "figure": "grid", "figureSource": "polygon_construction（同上）" },
+        { "skillId": "G4-12-08", "name": "認識不同種類四邊形之間的關係", "mode": "space", "difficulty": 4, "figure": "grid", "figureSource": "polygon_construction 需支援分類關係圖（類文氏圖）" },
+        { "skillId": "G4-12-09", "name": "四邊形的邊和角", "mode": "space", "difficulty": 3, "figure": "grid", "figureSource": "polygon_construction（同上）" },
+        { "skillId": "G4-12-10", "name": "拼砌成指定的圖形", "mode": "space", "difficulty": 4, "figure": "grid", "figureSource": "index.html 現有 mkSVG/cell/gap（延續 G1 拼砌題）" },
+        { "skillId": "G4-12-11", "name": "繪畫和製作正方形和長方形", "mode": "space", "difficulty": 3, "figure": "grid", "figureSource": "polygon_construction 需支援繪製功能" },
+        { "skillId": "G4-12-12", "name": "繪畫和製作平行四邊形和梯形", "mode": "space", "difficulty": 4, "figure": "grid", "figureSource": "polygon_construction（繪製功能）" },
+        { "skillId": "G4-12-13", "name": "繪畫和製作菱形", "mode": "space", "difficulty": 4, "figure": "grid", "figureSource": "polygon_construction（繪製功能）" }
+      ]
+    },
+    {
+      "chapterId": "G4-13",
+      "order": 13,
+      "semester": "下",
+      "name": "周長與面積",
+      "skills": [
+        { "skillId": "G4-13-01", "name": "運用周長公式求正方形的周長", "mode": "measure", "difficulty": 2, "figure": "grid", "figureSource": "shape_dimension（標註邊長的矩形/正方形圖）" },
+        { "skillId": "G4-13-02", "name": "運用周長公式求長方形的周長", "mode": "measure", "difficulty": 2, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-03", "name": "運用面積公式求長方形、正方形的面積", "mode": "measure", "difficulty": 2, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-04", "name": "運用面積公式求正方形的邊長和周長（反推）", "mode": "measure", "difficulty": 4, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-05", "name": "正方形面積應用題", "mode": "story", "difficulty": 3, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-06", "name": "平方公分和平方公尺（單位換算）", "mode": "measure", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-13-07", "name": "選用適合的面積單位", "mode": "measure", "difficulty": 2, "figure": "asset", "figureSource": "重用 life_scene（待建）" },
+        { "skillId": "G4-13-08", "name": "運用周長公式求長方形的邊長（反推）", "mode": "measure", "difficulty": 4, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-09", "name": "運用周長公式求正方形的邊長（反推）", "mode": "measure", "difficulty": 3, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-10", "name": "運用面積公式求長方形的邊長（反推）", "mode": "measure", "difficulty": 4, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-11", "name": "求簡單複合圖形的周長", "mode": "measure", "difficulty": 4, "figure": "grid", "figureSource": "新元件 composite_figure（複合圖形周長面積，待建）" },
+        { "skillId": "G4-13-12", "name": "求複雜複合圖形的周長", "mode": "measure", "difficulty": 5, "figure": "grid", "figureSource": "composite_figure（同上）" },
+        { "skillId": "G4-13-13", "name": "長方形周長應用題", "mode": "story", "difficulty": 3, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-14", "name": "正方形周長應用題", "mode": "story", "difficulty": 3, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-15", "name": "求簡單複合圖形的面積", "mode": "measure", "difficulty": 4, "figure": "grid", "figureSource": "composite_figure（同上）" },
+        { "skillId": "G4-13-16", "name": "求複雜複合圖形的面積 — 分割法", "mode": "measure", "difficulty": 5, "figure": "grid", "figureSource": "composite_figure 需支援分割輔助線" },
+        { "skillId": "G4-13-17", "name": "求複雜複合圖形的面積 — 填補法", "mode": "measure", "difficulty": 5, "figure": "grid", "figureSource": "composite_figure 需支援填補輔助線" },
+        { "skillId": "G4-13-18", "name": "長方形面積應用題", "mode": "story", "difficulty": 3, "figure": "grid", "figureSource": "shape_dimension（同上）" },
+        { "skillId": "G4-13-19", "name": "長方形、正方形小徑面積應用題", "mode": "story", "difficulty": 5, "figure": "grid", "figureSource": "composite_figure（框型複合圖形，小徑問題）" }
+      ]
+    },
+    {
+      "chapterId": "G4-14",
+      "order": 14,
+      "semester": "下",
+      "name": "分數（二）",
+      "skills": [
+        { "skillId": "G4-14-01", "name": "等值分數", "mode": "fraction", "difficulty": 2, "figure": "grid", "figureSource": "fraction_model（重用）" },
+        { "skillId": "G4-14-02", "name": "擴分", "mode": "fraction", "difficulty": 2, "figure": "grid", "figureSource": "fraction_model（重用）" },
+        { "skillId": "G4-14-03", "name": "比較大小 — 同分子分數", "mode": "fraction", "difficulty": 3, "figure": "grid", "figureSource": "fraction_model（重用）" },
+        { "skillId": "G4-14-04", "name": "簡單異分母帶分數加法", "mode": "fraction", "difficulty": 4, "figure": "grid", "figureSource": "fraction_model（重用）" },
+        { "skillId": "G4-14-05", "name": "簡單異分母分數減法", "mode": "fraction", "difficulty": 4, "figure": "grid", "figureSource": "fraction_model（重用）" }
+      ]
+    },
+    {
+      "chapterId": "G4-15",
+      "order": 15,
+      "semester": "下",
+      "name": "簡化運算",
+      "skills": [
+        { "skillId": "G4-15-01", "name": "快捷計算", "mode": "multiply", "difficulty": 3, "note": "乘法心算技巧的綜合應用（結合律／分配律／湊整），歸入 multiply 模式。", "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G4-16",
+      "order": 16,
+      "semester": "下",
+      "name": "小數（二）",
+      "skills": [
+        { "skillId": "G4-16-01", "name": "一位小數與一位整數相乘", "mode": "multiply", "difficulty": 3, "figure": "grid", "figureSource": "新元件 column_multiply（需支援小數點對齊，待建）" },
+        { "skillId": "G4-16-02", "name": "兩位小數與一位整數相乘", "mode": "multiply", "difficulty": 3, "figure": "grid", "figureSource": "column_multiply（同上）" },
+        { "skillId": "G4-16-03", "name": "兩位小數與兩位整數相乘", "mode": "multiply", "difficulty": 4, "figure": "grid", "figureSource": "column_multiply（同上）" },
+        { "skillId": "G4-16-04", "name": "小數乘以 10", "mode": "multiply", "difficulty": 2, "note": "規律：小數點右移一位", "figure": "none" },
+        { "skillId": "G4-16-05", "name": "小數乘以 100", "mode": "multiply", "difficulty": 2, "note": "規律：小數點右移兩位", "figure": "none" },
+        { "skillId": "G4-16-06", "name": "小數乘以整十數", "mode": "multiply", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-16-07", "name": "小數乘以整百數", "mode": "multiply", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-16-08", "name": "一位小數與帶分數的互換", "mode": "fraction", "difficulty": 3, "note": "內容本質是小數與分數表徵互換，雖屬小數(二)章，但依表徵性質判斷歸入 fraction 模式而非 reverse/multiply。", "figure": "grid", "figureSource": "fraction_model（numerator/denominator 可直接對應帶分數，如 12/10 自動拆成 1 個全滿 + 2/10 部分格；小數本身由題幹文字負責）" },
+        { "skillId": "G4-16-09", "name": "分母為 100 的分數與二位小數的互換", "mode": "fraction", "difficulty": 3, "note": "同 G4-16-08，依表徵性質歸入 fraction 模式。", "figure": "grid", "figureSource": "fraction_model（numerator/denominator 可直接對應帶分數，如 12/10 自動拆成 1 個全滿 + 2/10 部分格；小數本身由題幹文字負責）" },
+        { "skillId": "G4-16-10", "name": "小數乘法與加減混合應用題", "mode": "story", "difficulty": 5, "figure": "none" },
+        { "skillId": "G4-16-11", "name": "小數乘法與加減混合應用題涉及貨幣", "mode": "story", "difficulty": 5, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G4-17",
+      "order": 17,
+      "semester": "下",
+      "name": "時間的計算",
+      "skills": [
+        { "skillId": "G4-17-01", "name": "將小時化為分鐘（整數）", "mode": "clock", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-17-02", "name": "將分鐘化為小時", "mode": "clock", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-17-03", "name": "將分鐘化為秒（整數）", "mode": "clock", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-17-04", "name": "過了多少秒", "mode": "clock", "difficulty": 2, "figure": "none" },
+        { "skillId": "G4-17-05", "name": "以分鐘為單位跨越整時求結束時刻", "mode": "clock", "difficulty": 3, "figure": "param", "figureSource": "clock_face（重用）" },
+        { "skillId": "G4-17-06", "name": "兩段時間間隔相加", "mode": "clock", "difficulty": 3, "figure": "none" },
+        { "skillId": "G4-17-07", "name": "以分鐘為單位跨越整時求時間間隔", "mode": "clock", "difficulty": 3, "figure": "param", "figureSource": "clock_face（重用）" },
+        { "skillId": "G4-17-08", "name": "應用題 — 12 小時報時制單一時間間隔", "mode": "clock", "difficulty": 3, "figure": "param", "figureSource": "clock_face（重用）" },
+        { "skillId": "G4-17-09", "name": "應用題 — 24 小時報時制兩段式時間間隔", "mode": "clock", "difficulty": 5, "figure": "param", "figureSource": "digital_clock（重用）" },
+        { "skillId": "G4-17-10", "name": "應用題 — 開始時刻（情境一）", "mode": "clock", "difficulty": 3, "note": "原始清單「應用題(五)-開始時刻」與「應用題(六)-開始時刻」文字完全相同、僅編號不同，判斷為擷取瑕疵，拆為情境一（較易）與情境二（進階）兩個技能，總數維持不變。", "figure": "param", "figureSource": "clock_face（重用）" },
+        { "skillId": "G4-17-11", "name": "應用題 — 開始時刻（情境二，進階）", "mode": "clock", "difficulty": 4, "figure": "param", "figureSource": "clock_face（重用）" },
+        { "skillId": "G4-17-12", "name": "應用題 — 時間快了慢了", "mode": "clock", "difficulty": 4, "figure": "param", "figureSource": "clock_face（重用）" },
+        { "skillId": "G4-17-13", "name": "應用題 — 結束時刻（24 小時報時制）", "mode": "clock", "difficulty": 4, "figure": "param", "figureSource": "digital_clock（重用）" },
+        { "skillId": "G4-17-14", "name": "應用題 — 結束時刻（12 小時報時制）", "mode": "clock", "difficulty": 3, "figure": "param", "figureSource": "clock_face（重用）" }
+      ]
+    },
+    {
+      "chapterId": "G4-18",
+      "order": 18,
+      "semester": "下",
+      "name": "體積",
+      "skills": [
+        { "skillId": "G4-18-01", "name": "直觀比較物體的體積", "mode": "measure", "difficulty": 2, "figure": "grid", "figureSource": "新元件 volume_compare（體積比較/堆疊，待建，可參考 Bobo solid_shape 延伸）" },
+        { "skillId": "G4-18-02", "name": "以立方公分為單位量度體積", "mode": "measure", "difficulty": 3, "figure": "grid", "figureSource": "volume_compare 需支援立方公分堆疊計數" }
+      ]
+    }
+  ]
+}

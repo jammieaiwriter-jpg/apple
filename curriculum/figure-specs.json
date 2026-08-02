@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "purpose": "figureSpec 的單一真相來源。模板端與 figures.js 都以此為準，任何一邊要改都必須先改這裡。",
+    "created": "2026-07-31",
+    "why": "2026-07-31 第一次平行開發時，模板端與元件端各自發明參數名，導致 count_group 出現 4 種簽章、segment_compare 出現 6 種，189 個帶圖題目只有 30 個畫得出來。加這個檔＋validate_figures.mjs 防止再發生。",
+    "rule": "required 的 key 必須全部出現；optional 可有可無；不可出現未列出的 key。"
+  },
+  "specs": {
+    "clock_face": {
+      "required": ["hour", "minute"],
+      "optional": ["size"],
+      "note": "hour 傳 0-23，元件內部對 12 取餘數算角度。"
+    },
+    "digital_clock": {
+      "required": ["hour", "minute"],
+      "optional": ["period"],
+      "note": "hour 傳 0-23。給了 period（\"上午\"/\"下午\"）就顯示 12 小時制。"
+    },
+    "calendar": {
+      "required": ["year", "month"],
+      "optional": ["highlight"],
+      "note": "month 是 1-12。highlight 是日期數字陣列。"
+    },
+    "ten_frame": {
+      "required": ["filled"],
+      "optional": ["extra"],
+      "note": "分與合題請用 filled=已知那部分、extra=剩下那部分。不要用 total/known。"
+    },
+    "place_value_board": {
+      "required": ["tens", "ones"],
+      "optional": ["hundreds"]
+    },
+    "column_arithmetic": {
+      "required": ["a", "b", "op"],
+      "optional": ["showAnswer"],
+      "note": "op 只接受 \"+\" 或 \"-\"。**已於 2026-08-01 修復小數點靜默算錯的問題**：a/b 現在允許浮點數，元件內部偵測有沒有小數點（`decimalPlacesOf`，用 JS 最短往返字串判斷，不受浮點雜訊影響），自動切換到小數版面——多插入一欄窄的小數點欄位，並用「整數化再做加減、算完再依小數位數拆回整數/小數位」的方式避免浮點誤差，小數位數不足的運算元自動補 0 對齊（例如 5 + 3.4 的 5 會畫成 5.0）。**沒有新增參數**，也沒有更動整數輸入時的版面：a/b 皆為整數時走的是修復前逐字元相同的原始演算法（獨立函式 `renderColumnArithmeticInt`），已用回歸測試驗證多組整數輸入輸出逐字元不變。受影響技能：G3 一位小數加減 4 個（G3-16-05~08）、G4 兩位小數加減多個（G4-09 章）現在都可以開始寫模板了。"
+    },
+    "count_group": {
+      "required": ["groups"],
+      "optional": ["layout", "seed"],
+      "note": "groups 是 [{color, count, label?, asset?}]。asset 可傳內嵌 SVG data URI，讓數數題使用蘋果、動物、氣球等一致素材；沒有 asset 時才使用圓形籌碼。單色數數也要包成一個 group。layout 是 \"rows\"（分組排列）、\"sequence\"（同一排從左到右，適合問第幾個）或 \"scatter\"（散佈，需給 seed）。不要把 count/icon/row/total 放在 spec 根層。"
+    },
+    "unit_ruler": {
+      "required": ["objectLength", "unitLength"],
+      "optional": ["unitLabel", "objectLabel"]
+    },
+    "pictogram": {
+      "required": ["categories", "orientation"],
+      "optional": ["icon"],
+      "note": "categories 是 [{label, count}]，orientation 是 \"vertical\" 或 \"horizontal\"。"
+    },
+    "segment_compare": {
+      "required": ["rows"],
+      "optional": ["orientation", "ask", "unit"],
+      "note": "rows 是 [{label, length}]，row 內可選 shape（\"line\"｜\"curve\"｜\"point\"）標示畫法。orientation 預設 \"horizontal\"；\"distance\" 會讓所有線段從同一個起點出發，專門表示遠近。"
+    },
+    "thickness_compare": {
+      "required": ["rows"],
+      "optional": [],
+      "note": "把物件畫成橫放的書本堆疊，以層數表示厚薄；不要用垂直長條代替厚度。rows 是 [{label, length}]。"
+    },
+    "number_line": {
+      "required": ["min", "max"],
+      "optional": ["highlight", "step", "marks"],
+      "note": "highlight 是要標記的數值。"
+    },
+    "space_relations": {
+      "required": ["mode", "total"],
+      "optional": ["targetPos", "ask", "labels", "marks"],
+      "note": "mode: \"row_count\"（一排數量與位置）或 \"row_order\"（前後左右之間）。targetPos 從 1 起算。"
+    },
+    "array_model": {
+      "required": ["rows", "cols"],
+      "optional": ["mode", "icon", "color", "groupLabels", "unknownGroup"],
+      "note": "乘法陣列圖，服務 G2 乘法（含除法啟蒙）16 個技能。rows=幾組/幾列，cols=每組/每列幾個。mode 預設 \"grid\"（純陣列，乘法表用）；\"addition\"（陣列加上底下的加法算式 cols+cols+…，服務「用加法算乘法」）；\"commutative\"（同時畫 rows×cols 與 cols×rows 兩個陣列並排，服務交換律）；\"grouping\"（陣列改成一堆一堆有邊框區隔的樣子，服務除法啟蒙的分堆視覺）。icon 只接受 \"dot\"｜\"star\"｜\"square\"（沿用 pictogram 的圖示詞彙，不做逐一食物繪圖）。groupLabels 長度需等於 rows，給應用題情境標籤（如「第1籃」）用，不給就不顯示標籤。unknownGroup 是 0-起算的組別索引，只在 mode=\"grouping\" 時生效，把該組畫成「?」，給除法應用題標示未知量用；不給就整組都正常顯示（多數乘法陣列題不需要）。"
+    },
+    "line_relation": {
+      "required": ["relation"],
+      "optional": ["showMark", "labels"],
+      "note": "服務 G2-17-02／G4-12-01（垂直線）與 G4-12-02（平行線）共 3 個技能。relation 只接受 \"perpendicular\"｜\"parallel\"。原本 G2/G4 課綱各自寫成 \"perpendicular\" 與 \"parallel_lines\" 兩個名字，2026-08-01 統一成一個元件、用 relation 參數區分，因為兩者本質都是「兩條線段的相對關係」，畫法只差在夾角。showMark 預設 true，perpendicular 時畫直角記號、parallel 時畫方向箭頭對；不需要點對點距離那種進階構圖（Bobo Python 版的 perpendicular 是點到直線距離，那是國中內容，小二/小四只需要「兩線相交/平行」的視覺辨識，不要照搬 Bobo 版設計）。labels 是可選的兩個線段名稱（如 [\"甲\",\"乙\"]）。"
+    },
+    "fraction_model": {
+      "required": ["numerator", "denominator"],
+      "optional": ["shape", "color", "compare", "showLabel"],
+      "note": "2026-08-01 新增、已實作。服務 G3/G4 分數與部分小數表徵共 24 個技能，是目前影響技能數最大的缺口。shape 只接受 \"circle\"（圓形切片，預設，G3 分數啟蒙用）｜\"bar\"（長條分割，比較大小/加減用，方便左右對齊比較）｜\"grid\"（10 或 10×10 方格著色，只用在小數對應情境：denominator=10 畫一排 10 格、denominator=100 畫 10×10 方格）。**numerator 可以大於 denominator（假分數/帶分數）**，這種情況元件內部要自動拆成「floor(numerator/denominator) 個全滿圖形 ＋ 1 個畫 numerator%denominator 的部分圖形」並排顯示，呼叫端不用自己算要畫幾個圖形（若餘數剛好是 0，例如 8/4，就只畫 2 個全滿圖形，不會多畫一個空的部分圖形）。compare 是可選陣列 `[{numerator, denominator}]`，用來畫多組分數並排比較或求等值分數（如比較 1/2 與 2/4、或異分母加減前先並排看分母不同）；本體的 numerator/denominator 當作第一組，一起排列，不用另外複製一份到 compare 裡；同一種 shape 下每組「一個完整圖形」的大小固定不變（半徑/長度/格子大小一致），才能讓孩子從面積直接看出分數大小。showLabel 預設 true，圖形下方顯示分數數字（用堆疊的分子/分母排版，不要用斜線 3/4 文字），標的是呼叫端傳入的原始 numerator/denominator（不做約分、不轉帶分數）。color 預設用元件既有色票；有給的話所有組別統一用該色，不給則每組自動輪替色票以利區分。"
+    },
+    "shape_dimension": {
+      "required": ["width", "height"],
+      "optional": ["unit", "showArea", "showPerimeter"],
+      "note": "2026-08-01 新增，服務 G4 周長與面積章公式化計算約 11 個技能。畫一個標了邊長數字的矩形。**沒有 shape 參數區分正方形/矩形**——正方形時呼叫端自己傳 width=height 相同值即可，元件不用特殊處理。showArea/showPerimeter 各自預設 false；開啟時要顯示的是**計算式本身**（如「面積 = 6 × 4」），不是只顯示數字答案，讓孩子看到怎麼算，不是直接告訴她答案。unit 預設「公分」。"
+    },
+    "capacity_container": {
+      "required": ["capacity", "filled"],
+      "optional": ["unit", "maxScale"],
+      "note": "2026-08-01 新增，服務 G3 公升和毫升章刻度讀數共 4 個技能。畫一個量杯/容器，滿刻度＝maxScale（不給就自動取 capacity 往上取整的下一個整數刻度，例如 capacity=350 時 maxScale 自動抓 400），液面畫在 filled 對應的刻度高度。跟 unit_ruler／segment_compare 不同：這是「讀刻度」不是「排單位比長短」。unit 預設「毫升」。"
+    },
+    "grid_tiling": {
+      "required": ["cols", "rows", "filled"],
+      "optional": ["color", "showGrid"],
+      "note": "小一拼砌／分割格板。cols、rows 為格數；filled 是從左到右、由上而下著色的格數。"
+    },
+    "solid_shape": {
+      "required": ["shape"],
+      "optional": ["color"],
+      "note": "立體圖形辨識：shape 接受 cube、cylinder、triangular_prism。"
+    },
+    "life_scene": {
+      "required": ["scene"],
+      "optional": ["focusShape", "highlight"],
+      "note": "離線、純 SVG 的生活情境卡。scene 接受 house、window、pizza、clock、breakfast、school、lunch、sleep；前四者可用 focusShape（triangle｜circle｜square｜rectangle）與 highlight 標示題目要觀察的平面圖形。"
+    },
+    "balance_scale": {
+      "required": ["leftWeight", "rightWeight"],
+      "optional": ["leftLabel", "rightLabel", "unit"],
+      "note": "2026-08-01 新增，服務 G3 公斤和公克章重量比較共 4 個技能。畫天平兩端，**元件自己依 leftWeight/rightWeight 大小判斷畫平衡／左傾／右傾**，呼叫端不用先算好方向再傳角度之類的參數。leftLabel/rightLabel 是可選文字（如「蘋果」「梨子」），標在對應那端的托盤上；不給就只顯示重量數字。unit 預設「克」。"
+    }
+  }
+}

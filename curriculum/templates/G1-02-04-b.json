@@ -1,0 +1,31 @@
+{
+  "templateId": "G1-02-04-b",
+  "skillId": "G1-02-04",
+  "mode": "length",
+  "difficulty": 1,
+  "stem": "甲和乙兩本書，哪一本比較厚？",
+  "params": {
+    "thA": { "type": "int_range", "min": 2, "max": 8 },
+    "thB": { "type": "int_range", "min": 2, "max": 8 }
+  },
+  "reject": ["thA == thB"],
+  "answer": { "formula": "'甲' if thA > thB else '乙'" },
+  "distractors": [
+    { "formula": "'乙' if thA > thB else '甲'", "why": "把比較薄的說成比較厚，請看書頁疊起來的厚度" },
+    { "formula": "'一樣厚'", "why": "沒有仔細比較兩本書的書頁堆疊" },
+    { "formula": "'看不出來'", "why": "還沒有從書的側面比較厚薄" }
+  ],
+  "hints": [
+    "厚薄要看書頁疊起來有多厚，不是看哪一本站得比較高。",
+    "想像從書的側面看，書頁堆得比較寬的那一本比較厚。",
+    "甲有{thA}層，乙有{thB}層，層數比較多的那一本比較厚，所以答案是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "thickness_compare",
+    "rows": [
+      { "label": "甲", "length": "thA" },
+      { "label": "乙", "length": "thB" }
+    ]
+  },
+  "verify": "(answer == '甲' and thA > thB) or (answer == '乙' and thB > thA)"
+}

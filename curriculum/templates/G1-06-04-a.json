@@ -1,0 +1,17 @@
+{
+  "templateId": "G1-06-04-a",
+  "skillId": "G1-06-04",
+  "mode": "story",
+  "difficulty": 3,
+  "stem": "Apple有{a}顆{item}，媽媽又給她{b}顆，現在一共有幾顆{item}？",
+  "params": {"a": {"type": "int_range", "min": 1, "max": 8}, "b": {"type": "int_range", "min": 1, "max": 8}, "item": {"type": "choice", "values": ["草莓", "糖果", "積木", "葡萄"]}},
+  "reject": ["a + b > 10"],
+  "answer": {"formula": "a + b", "unit": "顆"},
+  "distractors": [
+    {"formula": "answer + 1", "why": "把媽媽給的數量往後多數了一顆"},
+    {"formula": "answer - 1", "why": "合起來數的時候漏數了一顆"},
+    {"formula": "abs(a - b)", "why": "把「又給」誤解成兩堆相差多少"}
+  ],
+  "hints": ["注意「又給」和「一共」這兩個小線索，它們說的是數量變多。", "先有{a}顆，再把新來的{b}顆接著數進去。", "原來的{a}顆加新來的{b}顆是{answer}顆；現在妳自己說說看。"],
+  "verify": "answer - a == b and answer - b == a"
+}

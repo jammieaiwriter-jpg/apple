@@ -1,0 +1,32 @@
+{
+  "templateId": "G1-03-05-a",
+  "skillId": "G1-03-05",
+  "mode": "space",
+  "difficulty": 1,
+  "stem": "積木疊成一排，小明的積木在第{posA}層，小華的積木在第{posB}層，小明的積木在小華的上面還是下面？",
+  "params": {
+    "n": { "type": "int_range", "min": 6, "max": 8 },
+    "posA": { "type": "int_range", "min": 1, "max": 6 },
+    "posB": { "type": "int_range", "min": 1, "max": 6 }
+  },
+  "reject": ["posA == posB"],
+  "answer": { "formula": "'上面' if posA < posB else '下面'" },
+  "distractors": [
+    { "formula": "'下面' if posA < posB else '上面'", "why": "上下方向弄反了，把在上面的說成在下面" },
+    { "formula": "'一樣高'", "why": "沒有比較兩個積木的位置，覺得一樣高" },
+    { "formula": "'中間'", "why": "誤把「之間」的位置當成答案，其實題目問的是上下關係" }
+  ],
+  "hints": [
+    "從最上面開始數起，數字越小代表越靠近上面喔。",
+    "偷偷告訴妳一個方法：小明在第{posA}層，小華在第{posB}層，比比看誰的數字比較小。",
+    "數字比較小的在上面，所以小明在小華的{answer}。"
+  ],
+  "figureSpec": {
+    "type": "space_relations",
+    "mode": "row_order",
+    "total": "n",
+    "marks": ["posA", "posB"],
+    "labels": ["小明", "小華"]
+  },
+  "verify": "(answer == '上面' and posA < posB) or (answer == '下面' and posB < posA)"
+}

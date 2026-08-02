@@ -1,0 +1,18 @@
+{
+  "templateId": "G1-07-02-a",
+  "skillId": "G1-07-02",
+  "mode": "reverse",
+  "difficulty": 2,
+  "stem": "{total}分成兩部分，其中一部分是{part}，另一部分是多少？",
+  "params": {"total": {"type": "int_range", "min": 3, "max": 10}, "part": {"type": "int_range", "min": 1, "max": 8}},
+  "reject": ["part >= total"],
+  "answer": {"formula": "total - part"},
+  "distractors": [
+    {"formula": "answer + 1", "why": "從總數倒數時多留了一個"},
+    {"formula": "answer - 1", "why": "從總數倒數時少留了一個"},
+    {"formula": "part", "why": "把已知的那一部分重複當成另一部分"},
+    {"formula": "total", "why": "沒有把已知部分從總數分出去"}
+  ],
+  "hints": ["總數已經分成兩份了，妳要找的是還沒說出的那一份。", "想想：已知部分加上未知部分，要回到{total}。", "用{total}扣掉已知的{part}，另一部分是{answer}；答案請妳自己說。"],
+  "verify": "answer + part == total and total - answer == part"
+}

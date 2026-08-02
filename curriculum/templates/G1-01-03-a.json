@@ -1,0 +1,31 @@
+{
+  "templateId": "G1-01-03-a",
+  "skillId": "G1-01-03",
+  "mode": "jump",
+  "difficulty": 2,
+  "stem": "甲有{a}個，乙有{b}個，哪一個數字比較大？",
+  "params": {
+    "a": { "type": "int_range", "min": 1, "max": 10 },
+    "b": { "type": "int_range", "min": 1, "max": 10 }
+  },
+  "reject": ["a == b"],
+  "answer": { "formula": "max(a, b)" },
+  "distractors": [
+    { "formula": "min(a, b)", "why": "比大小的方向弄反了，選了比較小的那個數字" },
+    { "formula": "a + b", "why": "把比大小看成合起來，兩個數字加在一起了" },
+    { "formula": "abs(a - b)", "why": "算出了兩個數字差多少，不是在比誰比較大" }
+  ],
+  "hints": [
+    "兩個數字，妳要找的是比較大的那一個。",
+    "偷偷告訴妳一個方法：把{a}和{b}排在一起比一比，哪一個排得比較靠後面（比較大）？",
+    "{a}和{b}比起來，比較大的是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "count_group",
+    "groups": [
+      { "label": "甲", "count": "a" },
+      { "label": "乙", "count": "b" }
+    ]
+  },
+  "verify": "(answer == a or answer == b) and answer >= a and answer >= b"
+}

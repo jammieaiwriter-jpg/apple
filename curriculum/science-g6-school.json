@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "science",
+    "grade": "G6",
+    "curriculum": "無教育部108課綱科學對照版本；本檔採 KooBits「Cambridge International Science Curriculum (0097-aligned)」小6 章節與技能顆粒度為骨架",
+    "created": "2026-08-01",
+    "totalChapters": 3,
+    "totalSkills": 21,
+    "reference": "同 G1-G5。本檔取 Cambridge 軌小6章節與技能作骨架（該課程樹小6實測共21項技能、3章，是G1-G6中章節數與技能數都最少的一級，代表小6是這套課程的收尾年，把前幾年分散的系統知識做統整）。技能原文為英文，已翻譯為繁體中文並依台灣國小自然科用語調整。難度、模式(mode)、圖形等級(figure)為本系統自訂。本次為盤點記錄，暫不進入實作階段（見規劃文件§5建議1）。",
+    "publisherOrder": "pending",
+    "publisherNote": "台灣國小六年級自然課本通常涵蓋人體循環/呼吸系統、生殖、食物網與生態、力與電路等統整性主題，與本檔方向吻合。",
+    "newInG6": "本級只有3章，是整條課程樹的統整/收尾：『人體』章把G1-G5分散的呼吸(G3)/消化(G3,G5)/循環(G6新增)/生殖(G5植物,G6人類)整合起來，並要求跨系統比較(比較植物運輸系統與人體循環系統、比較人類與開花植物的有性生殖)；『食物鏈與食物網』把G4的食物鏈角色(單一鏈)擴充為食物網(多鏈交織)與族群數量的因果推理；『力與電』只剩2項技能(重量與重力的關係、串併聯電路比較)，是全部6個年級中電路概念的最終進階版(G1無電路、G2簡單電路元件、G4通路斷路與亮度變因、G6串並聯比較)。",
+    "modes": {
+      "concept": "🧪 概念辨識 — 是非/選擇型概念題，測知識點記憶與理解",
+      "classify": "🗂 分類歸類 — 依特徵將物品/生物分組",
+      "compare": "🔍 比較觀察 — 比較兩個以上對象的特徵、強弱、程度",
+      "match": "🔗 配對連結 — 功能配對、部位配對、感官配對",
+      "diagram": "🩻 圖表標示 — 人體/植物/器材構造標示、讀圖",
+      "process": "🔄 歷程與因果 — 生命週期、能量轉換、狀態變化等歷程推理",
+      "experiment": "⚡ 實驗推理 — 力、磁、光、電的因果推理與簡單變因控制"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值）",
+    "figureLoad": {
+      "none": 10,
+      "param": 11,
+      "grid": 0,
+      "asset": 0,
+      "note": "G6 是唯一 asset 掛零的一級——21個技能全部是可參數化示意圖(人體系統圖、食物網圖、電路圖)或純概念題，不需要任何寫實素材。呼應G3起『可圖解化』知識佔比持續上升的走勢(G1:19% asset → G2:29% → G3:3% → G4:10% → G5:15% → G6:0%)，越高年級的科學越像數學骨架熟悉的參數化圖形模式。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "SCI-G6-01",
+      "order": 1,
+      "semester": "上",
+      "name": "人體",
+      "koobitsName": "The human body",
+      "skills": [
+        { "skillId": "SCI-G6-01-01", "name": "描述人體循環的過程", "mode": "diagram", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G6-01-02", "name": "認識人類心臟的功能", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G6-01-03", "name": "依功能比較人體循環系統的器官", "mode": "diagram", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G6-01-04", "name": "比較植物運輸系統與人體循環系統", "mode": "compare", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G6-01-05", "name": "依功能比較人體呼吸系統的器官", "mode": "diagram", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G6-01-06", "name": "描述人體呼吸的過程", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G6-01-07", "name": "描述生物與周遭環境進行氣體交換的方式", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G6-01-08", "name": "比較植物、動物與人類與環境進行氣體交換的方式", "mode": "compare", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G6-01-09", "name": "區分人體不同的器官系統", "mode": "classify", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G6-01-10", "name": "描述人體消化、呼吸、循環系統如何協同運作", "mode": "process", "difficulty": 4, "figure": "param" },
+        { "skillId": "SCI-G6-01-11", "name": "描述不同體能活動如何影響心跳與呼吸速率", "mode": "experiment", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G6-01-12", "name": "依功能比較人類生殖部位", "mode": "diagram", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G6-01-13", "name": "描述人類有性生殖受精的過程", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G6-01-14", "name": "認識人類受精後發生的變化", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G6-01-15", "name": "比較人類與開花植物的有性生殖", "mode": "compare", "difficulty": 3, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G6-02",
+      "order": 2,
+      "semester": "下",
+      "name": "食物鏈與食物網",
+      "koobitsName": "Food chains and food webs",
+      "skills": [
+        { "skillId": "SCI-G6-02-01", "name": "認識食物網", "mode": "concept", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G6-02-02", "name": "描述食物網中不同生物的角色", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G6-02-03", "name": "探討食物網中生物間的關係如何影響族群數量", "mode": "experiment", "difficulty": 4, "figure": "none" },
+        { "skillId": "SCI-G6-02-04", "name": "探討食物鏈中生物間的關係如何影響族群數量", "mode": "experiment", "difficulty": 4, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G6-03",
+      "order": 3,
+      "semester": "下",
+      "name": "力與電",
+      "koobitsName": "Forces and electricity",
+      "skills": [
+        { "skillId": "SCI-G6-03-01", "name": "連結物體的重量與其質量、所受重力的關係", "mode": "process", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G6-03-02", "name": "比較串聯電路與並聯電路", "mode": "compare", "difficulty": 3, "figure": "param" }
+      ]
+    }
+  ]
+}

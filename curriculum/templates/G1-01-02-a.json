@@ -1,0 +1,23 @@
+{
+  "templateId": "G1-01-02-a",
+  "skillId": "G1-01-02",
+  "mode": "jump",
+  "difficulty": 1,
+  "stem": "{a} 的下一個數是多少？",
+  "params": {
+    "a": { "type": "int_range", "min": 1, "max": 9 }
+  },
+  "answer": { "formula": "a + 1" },
+  "distractors": [
+    { "formula": "a", "why": "沒有往前進，還停在原本的數字上" },
+    { "formula": "a + 2", "why": "跳太快了，一次多數了一個" },
+    { "formula": "a - 1", "why": "數的方向弄反了，變成往回數" }
+  ],
+  "hints": [
+    "順數的時候，數字是越數越大、還是越數越小呢？",
+    "偷偷告訴妳一個方法：從{a}開始，伸出一根手指，再往前數一個。",
+    "{a}的下一個，就是{a}加1，也就是{answer}。"
+  ],
+  "figureSpec": { "type": "number_line", "min": 0, "max": 10, "highlight": "a" },
+  "verify": "answer - 1 == a"
+}

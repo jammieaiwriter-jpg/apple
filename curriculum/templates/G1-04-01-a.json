@@ -1,0 +1,22 @@
+{
+  "templateId": "G1-04-01-a",
+  "skillId": "G1-04-01",
+  "mode": "reverse",
+  "difficulty": 1,
+  "stem": "小明原本有{a}顆糖果，一顆都沒吃，還剩幾顆？",
+  "params": {
+    "a": { "type": "int_range", "min": 1, "max": 10 }
+  },
+  "answer": { "formula": "a", "unit": "顆" },
+  "distractors": [
+    { "formula": "0", "why": "誤以為「一顆都沒吃」表示什麼都不剩，把「不變」看成「歸零」" },
+    { "formula": "a - 1", "why": "以為還是吃掉了一顆，忽略了「一顆都沒吃」這個條件" },
+    { "formula": "a + 1", "why": "多加了一顆，可能跟別的題目搞混了" }
+  ],
+  "hints": [
+    "小明有沒有真的吃掉糖果呢？題目說「一顆都沒吃」喔。",
+    "偷偷告訴妳一個小秘密：吃掉0顆，糖果的數量會不會改變？",
+    "0顆表示完全沒有變化，所以還是{answer}顆。"
+  ],
+  "verify": "sum(1 for _ in range(a)) == answer"
+}

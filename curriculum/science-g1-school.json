@@ -1,0 +1,130 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "science",
+    "grade": "G1",
+    "curriculum": "無教育部108課綱科學對照版本；本檔採 KooBits「Cambridge International Science Curriculum (0097-aligned)」小1 章節與技能顆粒度為骨架",
+    "created": "2026-08-01",
+    "totalChapters": 6,
+    "totalSkills": 43,
+    "reference": "KooBits 科學沒有『臺灣課綱』軌，只有 Cambridge International Science Curriculum（0097-aligned，Premium/Plus）與 Science Open-Ended Questions（Enrichment，小3起）兩軌。本檔取 Cambridge 軌小1章節與技能作骨架（該課程樹小1實測共43項技能，6章，無🔥鏡像章、無延伸特訓，比數學軌單純）。技能原文為英文，已翻譯為繁體中文並依台灣國小自然科用語調整。難度、模式(mode)、圖形等級(figure)為本系統自訂，非 KooBits 原值。",
+    "publisherOrder": "pending",
+    "publisherNote": "台灣國小三年級才有正式『自然科學』課，一二年級歸在『生活課程』內，內容以生活化探索為主、無固定課本章節。本檔沿用 Cambridge 軌的章節切分是為了取得可操作的技能顆粒度，非official 台灣課綱章節；開學後如需對齊『生活課程』教材，只需調整 chapter.order 與命名，skills 不動。",
+    "modes": {
+      "concept": "🧪 概念辨識 — 是非/選擇型概念題，測知識點記憶與理解",
+      "classify": "🗂 分類歸類 — 依特徵將物品/生物分組",
+      "compare": "🔍 比較觀察 — 比較兩個以上對象的特徵、強弱、程度",
+      "match": "🔗 配對連結 — 功能配對、部位配對、感官配對",
+      "diagram": "🩻 圖表標示 — 人體/植物/器材構造標示、讀圖",
+      "process": "🔄 歷程與因果 — 生命週期、能量轉換、狀態變化等歷程推理",
+      "experiment": "⚡ 實驗推理 — 力、磁、光、電的因果推理與簡單變因控制"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值。KooBits 原本用5級辣椒，本系統不採用其配置，因其配置未公開演算法）",
+    "figureLoad": {
+      "none": 24,
+      "param": 11,
+      "grid": 0,
+      "asset": 8,
+      "note": "科學科的圖形負擔跟數學科質地不同：數學多是可參數化的幾何/數線圖(param佔多數)，科學則有不少題目需要『看起來像真實世界』的寫實圖或照片等級素材(asset)，例如常見材料辨識(木頭/金屬/玻璃)、動植物、岩石種類——這類圖如果畫成簡筆SVG會失真，教學上意義不大。asset 8 個分佈在『生物與非生物』(1，辨識植物)、『生活中的材料』(2)、『地球』(3)、『人體』(1，外表比較)、『力』(1，磁鐵形狀)。這是科學軌跟數學軌最大的架構差異，繪圖策略需另外規劃(可能是委外插畫或授權圖庫，而非自製SVG元件)。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "SCI-G1-01",
+      "order": 1,
+      "semester": "上",
+      "name": "生物與非生物",
+      "koobitsName": "Living things",
+      "skills": [
+        { "skillId": "SCI-G1-01-01", "name": "認識生物的主要特徵", "mode": "concept", "difficulty": 1, "figure": "param" },
+        { "skillId": "SCI-G1-01-02", "name": "認識動物是生物", "mode": "classify", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-01-03", "name": "認識植物是生物", "mode": "classify", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-01-04", "name": "認識非生物的主要特徵", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-01-05", "name": "依特徵分辨生活周遭的生物與非生物", "mode": "classify", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G1-01-06", "name": "辨識植物", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G1-01-07", "name": "認識開花植物的主要構造名稱（根／莖／葉／花）", "mode": "diagram", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G1-01-08", "name": "認識植物生存所需的條件", "mode": "concept", "difficulty": 2, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G1-02",
+      "order": 2,
+      "semester": "上",
+      "name": "聲音",
+      "koobitsName": "Sound",
+      "skills": [
+        { "skillId": "SCI-G1-02-01", "name": "辨識不同的聲音來源", "mode": "classify", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-02-02", "name": "認識聲音傳播時的變化", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G1-02-03", "name": "認識音量大小對環境的影響", "mode": "concept", "difficulty": 2, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G1-03",
+      "order": 3,
+      "semester": "上",
+      "name": "生活中的材料",
+      "koobitsName": "Materials in my world",
+      "skills": [
+        { "skillId": "SCI-G1-03-01", "name": "辨識並說出常見材料名稱", "mode": "classify", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G1-03-02", "name": "依材料種類將物品分類", "mode": "classify", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G1-03-03", "name": "認識木頭的特性", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-03-04", "name": "認識金屬的特性", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-03-05", "name": "認識玻璃的特性", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-03-06", "name": "認識紙的特性", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-03-07", "name": "認識石頭的特性", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-03-08", "name": "認識布料的特性", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-03-09", "name": "認識塑膠的特性", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-03-10", "name": "綜合比較常見材料的特性", "mode": "compare", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G1-03-11", "name": "認識拉／壓／彎／扭等物理動作對材料的影響", "mode": "process", "difficulty": 2, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G1-04",
+      "order": 4,
+      "semester": "下",
+      "name": "地球",
+      "koobitsName": "The Earth",
+      "skills": [
+        { "skillId": "SCI-G1-04-01", "name": "認識地球的特徵", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G1-04-02", "name": "認識太陽的特徵", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G1-04-03", "name": "認識太陽會發出熱和光", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G1-04-04", "name": "比較不同岩石的特徵", "mode": "compare", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G1-04-05", "name": "認識岩石從地球中被開採的不同方式", "mode": "concept", "difficulty": 3, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G1-05",
+      "order": 5,
+      "semester": "下",
+      "name": "人體",
+      "koobitsName": "Humans",
+      "skills": [
+        { "skillId": "SCI-G1-05-01", "name": "認識並說出人體主要部位名稱", "mode": "diagram", "difficulty": 1, "figure": "param" },
+        { "skillId": "SCI-G1-05-02", "name": "認識五官及其偵測的感覺", "mode": "match", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G1-05-03", "name": "認識眼睛的功能", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-05-04", "name": "認識鼻子的功能", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-05-05", "name": "認識耳朵的功能", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-05-06", "name": "認識舌頭的功能", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-05-07", "name": "認識皮膚的功能", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G1-05-08", "name": "將五感對應到不同的身體部位", "mode": "match", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G1-05-09", "name": "描述人與人之間外表的異同", "mode": "compare", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G1-05-10", "name": "認識生物生存所需的條件", "mode": "concept", "difficulty": 2, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G1-06",
+      "order": 6,
+      "semester": "下",
+      "name": "力",
+      "koobitsName": "Forces",
+      "skills": [
+        { "skillId": "SCI-G1-06-01", "name": "認識推力與拉力都是力", "mode": "classify", "difficulty": 1, "figure": "param" },
+        { "skillId": "SCI-G1-06-02", "name": "連結施力大小與移動距離的關係", "mode": "process", "difficulty": 3, "figure": "param" },
+        { "skillId": "SCI-G1-06-03", "name": "認識物體放入水中會發生的現象（浮／沉）", "mode": "experiment", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G1-06-04", "name": "認識不同種類的磁鐵", "mode": "classify", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G1-06-05", "name": "認識磁鐵與磁性／非磁性材料的交互作用", "mode": "experiment", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G1-06-06", "name": "認識條形磁鐵之間的交互作用（吸引／排斥）", "mode": "experiment", "difficulty": 3, "figure": "param" }
+      ]
+    }
+  ]
+}

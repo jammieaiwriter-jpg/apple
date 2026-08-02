@@ -1,0 +1,27 @@
+{
+  "templateId": "G1-09-01-a",
+  "skillId": "G1-09-01",
+  "mode": "clock",
+  "difficulty": 1,
+  "stem": "長針指著12，短針指著{hour}，現在是幾點？",
+  "params": {
+    "hour": { "type": "int_range", "min": 3, "max": 9 }
+  },
+  "answer": { "formula": "hour", "unit": "點" },
+  "distractors": [
+    { "formula": "hour - 1", "why": "把短針指向的數字看成前一個數字" },
+    { "formula": "hour + 1", "why": "把短針指向的數字看成後一個數字" },
+    { "formula": "12", "why": "只看見長針指著12，就把長針的數字當成時間" }
+  ],
+  "hints": [
+    "長針指著12，就是整點；這時要看短針指著哪一個數字。",
+    "短針指著{hour}，所以現在是{hour}點。",
+    "長針指12、短針指{hour}，讀作{answer}點。"
+  ],
+  "figureSpec": {
+    "type": "clock_face",
+    "hour": "hour",
+    "minute": 0
+  },
+  "verify": "answer == hour and 1 <= answer <= 12"
+}

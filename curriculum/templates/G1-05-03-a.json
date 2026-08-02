@@ -1,0 +1,30 @@
+{
+  "templateId": "G1-05-03-a",
+  "skillId": "G1-05-03",
+  "mode": "space",
+  "difficulty": 2,
+  "stem": "生活物件中用粉紅框圈起來的部分，是哪一種平面圖形？",
+  "params": {
+    "scene": {"type": "choice", "values": ["house", "window", "pizza", "clock"]},
+    "highlight": {"type": "choice", "values": ["#e11d48", "#7c3aed", "#0891b2"]}
+  },
+  "derived": {
+    "focusShape": "{'house':'triangle', 'window':'square', 'pizza':'circle', 'clock':'circle'}[scene]",
+    "shapeName": "{'triangle':'三角形', 'circle':'圓形', 'square':'正方形', 'rectangle':'長方形'}[focusShape]"
+  },
+  "answer": {"formula": "shapeName"},
+  "distractors": [
+    {"formula": "'三角形'", "why": "只注意到物件的尖角部分，沒有看圈起來的位置"},
+    {"formula": "'圓形'", "why": "把整個物件的外框都看成圓形"},
+    {"formula": "'正方形'", "why": "把長和寬不同的部分誤認成正方形"},
+    {"formula": "'長方形'", "why": "只看見直直的邊，沒有確認四邊是否一樣長"},
+    {"formula": "'菱形'", "why": "沒有依照圈起來部分的邊和角來判斷"}
+  ],
+  "hints": [
+    "先只看粉紅框裡的部分，其他地方先當作小秘密不管它。",
+    "數一數圈起來的邊和角，再看看它像圓圓的、尖尖的，還是四四方方的。",
+    "圈起來的部分是{answer}；現在換妳自己說出圖形名稱。"
+  ],
+  "figureSpec": {"type": "life_scene", "scene": "scene", "focusShape": "focusShape", "highlight": "highlight"},
+  "verify": "answer == {'house':'三角形', 'window':'正方形', 'pizza':'圓形', 'clock':'圓形'}[scene] and focusShape in ['triangle', 'circle', 'square']"
+}

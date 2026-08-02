@@ -1,0 +1,33 @@
+{
+  "templateId": "G1-02-06-a",
+  "skillId": "G1-02-06",
+  "mode": "length",
+  "difficulty": 2,
+  "stem": "甲、乙兩段距離，哪一段比較遠？",
+  "params": {
+    "dA": { "type": "int_range", "min": 2, "max": 10 },
+    "dB": { "type": "int_range", "min": 2, "max": 10 }
+  },
+  "reject": ["dA == dB"],
+  "answer": { "formula": "'甲' if dA > dB else '乙'" },
+  "distractors": [
+    { "formula": "'乙' if dA > dB else '甲'", "why": "比較方向看反了，把比較近的說成比較遠" },
+    { "formula": "'一樣遠'", "why": "沒有仔細比較，覺得兩段距離一樣遠" },
+    { "formula": "'看不出來'", "why": "不敢下判斷，逃避比較這個步驟" }
+  ],
+  "hints": [
+    "距離就是兩個點中間隔了多遠，仔細看看哪一段中間空得比較多。",
+    "偷偷告訴妳一個方法：想像妳從一點走到另一點，哪一段要走比較多步？",
+    "甲是{dA}，乙是{dB}，數字比較大的那一段比較遠，所以答案是{answer}。"
+  ],
+  "figureSpec": {
+    "type": "segment_compare",
+    "orientation": "distance",
+    "ask": "遠近",
+    "rows": [
+      { "label": "甲", "length": "dA" },
+      { "label": "乙", "length": "dB" }
+    ]
+  },
+  "verify": "(answer == '甲' and dA > dB) or (answer == '乙' and dB > dA)"
+}

@@ -1,0 +1,252 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "math",
+    "grade": "G2",
+    "curriculum": "教育部 108 課綱 小二",
+    "created": "2026-07-31",
+    "totalChapters": 17,
+    "totalSkills": 79,
+    "reference": "章節與技能顆粒度參考 KooBits「臺灣數學課程(符合教育部108課綱) 小2」的公開課程樹（該課程樹小2共145項技能，含🔥進階挑戰鏡像章與延伸特訓；本檔只取正課79項，與小一規模巧合相同）。技能名稱已依台灣用語調整，部分原文用語疑似簡體轉繁體或掃描誤植（如「永備尺」疑為「量尺」之誤），已修正。難度為本系統自訂。",
+    "publisherOrder": "pending",
+    "publisherNote": "各版(康軒/翰林/南一)小二內容差異小，僅單元順序不同。開學拿到課本後只需調整 chapter.order 與 semester，skills 不動。上/下學期切分為推測（依 KooBits 顯示順序對半估算），非官方版本確認。",
+    "newInG2": "相對小一新增三塊：(1) 乘法 16 技能，新模式 multiply；(2) 容量/面積比較 5 技能，新模式 measure；(3) 除法啟蒙 1 技能（併入 multiply）；(4) 垂直線概念（併入 space）。",
+    "modes": {
+      "jump": "🐸 數數、順逆數、位值、大小比較（延伸至千位）",
+      "reverse": "🧠 分合、加減計算（延伸至三位數進退位）",
+      "story": "🍬 生活情境應用題",
+      "clock": "⏰ 時間、日期、月曆",
+      "space": "📦 平面/立體圖形、方位、垂直線",
+      "length": "📏 長度比較與測量（延伸至公尺）",
+      "chart": "📊 分類整理與圖表",
+      "multiply": "✖️ 乘法概念、九九乘法表、除法啟蒙（新增）",
+      "measure": "📐 容量／面積比較（新增，比較邏輯同 length 但量的維度不同）"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值）",
+    "numberRangeNote": "小二加減延伸至 1000 以內（含進退位）；乘法涵蓋 0–10 的乘法表（九九乘法表至小二下完成）；除法只做基本等分除/包含除，不做長除法；長度延伸至公尺（1 公尺=100 公分）；容量/面積只做直接與個別單位比較，不引入公升/平方公分等標準單位。",
+    "figureLoad": {
+      "none": 12,
+      "param": 47,
+      "grid": 19,
+      "asset": 1,
+      "note": "grid 從 G1 的 6 跳到 19，主因是 multiply 模式 16 技能全部要「幾個幾」陣列圖，目前沒有現成元件。三個新元件待建：array_model（乘法陣列/除法分堆，服務 17 技能）、area_compare（面積比較，1 技能）、perpendicular（垂直線，需從 Bobo Python 版移植，1 技能）。量度曲線(G2-13-02)與正方體長方體(G2-17-03)沿用 G1 已知缺口（asset 類仍待素材或移植 Bobo solid_shape）。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "G2-01",
+      "order": 1,
+      "semester": "上",
+      "name": "二位數的加減法",
+      "skills": [
+        { "skillId": "G2-01-01", "name": "不進位加法（二）— 兩位數加兩位數", "mode": "reverse", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-01-02", "name": "進位加法（二）— 兩位數加兩位數", "mode": "reverse", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-01-03", "name": "二位數以內的不退位減法 — 二位數減一位數", "mode": "reverse", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-01-04", "name": "二位數以內的不退位減法 — 二位數減 10 的倍數", "mode": "reverse", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-01-05", "name": "二位數以內的不退位減法 — 二位數減二位數", "mode": "reverse", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-01-06", "name": "兩位數以內的退位減法", "mode": "reverse", "difficulty": 4, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "G2-02",
+      "order": 2,
+      "semester": "上",
+      "name": "認識公分",
+      "skills": [
+        { "skillId": "G2-02-01", "name": "用尺量度長度和距離", "mode": "length", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-02-02", "name": "選用合適的量尺進行量度", "mode": "length", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-02-03", "name": "以「公分」爲單位量度和排序", "mode": "length", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-02-04", "name": "以「公分」爲單位比較長度 — 相同起點", "mode": "length", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-02-05", "name": "以「公分」爲單位比較長度 — 不同起點", "mode": "length", "difficulty": 3, "note": "不同起點是易錯點：孩子容易誤把尺上的讀數當長度，忽略起點不是 0。", "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "G2-03",
+      "order": 3,
+      "semester": "上",
+      "name": "加減應用",
+      "skills": [
+        { "skillId": "G2-03-01", "name": "加法和減法的關係", "mode": "reverse", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-03-02", "name": "減法應用題（一）", "mode": "story", "difficulty": 2, "figure": "none" },
+        { "skillId": "G2-03-03", "name": "加法應用題（一）", "mode": "story", "difficulty": 2, "figure": "none" },
+        { "skillId": "G2-03-04", "name": "加減應用題 — 驗算", "mode": "story", "difficulty": 3, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G2-04",
+      "order": 4,
+      "semester": "上",
+      "name": "容量",
+      "skills": [
+        { "skillId": "G2-04-01", "name": "直接比較容量", "mode": "measure", "difficulty": 1, "figure": "param", "figureSource": "重用 segment_compare（垂直長條表示水位高低）" },
+        { "skillId": "G2-04-02", "name": "間接比較 2 個容器的容量", "mode": "measure", "difficulty": 2, "figure": "param", "figureSource": "重用 segment_compare" },
+        { "skillId": "G2-04-03", "name": "間接比較 3 個容器的容量", "mode": "measure", "difficulty": 3, "figure": "param", "figureSource": "重用 segment_compare" },
+        { "skillId": "G2-04-04", "name": "選擇合適的個別單位比較容量", "mode": "measure", "difficulty": 3, "figure": "param", "figureSource": "重用 unit_ruler 概念（單位重複排列，改為容量情境）" }
+      ]
+    },
+    {
+      "chapterId": "G2-05",
+      "order": 5,
+      "semester": "上",
+      "name": "加減兩步驟",
+      "skills": [
+        { "skillId": "G2-05-01", "name": "加法應用題（二）— 兩步驟", "mode": "story", "difficulty": 3, "figure": "none" },
+        { "skillId": "G2-05-02", "name": "減法應用題（二）— 兩步驟", "mode": "story", "difficulty": 3, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G2-06",
+      "order": 6,
+      "semester": "上",
+      "name": "乘法（一）",
+      "skills": [
+        { "skillId": "G2-06-01", "name": "乘法概念（一）— 幾個幾", "mode": "multiply", "difficulty": 2, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-06-02", "name": "乘法概念（二）— 用加法算乘法", "mode": "multiply", "difficulty": 2, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-06-03", "name": "2 的乘法", "mode": "multiply", "difficulty": 2, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-06-04", "name": "5 的乘法", "mode": "multiply", "difficulty": 2, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-06-05", "name": "4 的乘法", "mode": "multiply", "difficulty": 2, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-06-06", "name": "8 的乘法", "mode": "multiply", "difficulty": 3, "figure": "grid", "figureSource": "array_model" }
+      ]
+    },
+    {
+      "chapterId": "G2-07",
+      "order": 7,
+      "semester": "上",
+      "name": "時間",
+      "skills": [
+        { "skillId": "G2-07-01", "name": "認識時鐘", "mode": "clock", "difficulty": 1, "figure": "param" },
+        { "skillId": "G2-07-02", "name": "以「時」和「分」報時（一）", "mode": "clock", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-07-03", "name": "以「時」和「分」報時（二）", "mode": "clock", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-07-04", "name": "以「小時」為單位，求時間間隔", "mode": "clock", "difficulty": 4, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "G2-08",
+      "order": 8,
+      "semester": "上",
+      "name": "乘法（二）",
+      "skills": [
+        { "skillId": "G2-08-01", "name": "3 的乘法", "mode": "multiply", "difficulty": 2, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-08-02", "name": "6 的乘法", "mode": "multiply", "difficulty": 3, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-08-03", "name": "7 的乘法", "mode": "multiply", "difficulty": 3, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-08-04", "name": "9 的乘法", "mode": "multiply", "difficulty": 3, "figure": "grid", "figureSource": "array_model" }
+      ]
+    },
+    {
+      "chapterId": "G2-09",
+      "order": 9,
+      "semester": "上",
+      "name": "面的大小比較",
+      "skills": [
+        { "skillId": "G2-09-01", "name": "直接比較面積", "mode": "measure", "difficulty": 2, "figure": "grid", "figureSource": "新元件 area_compare" }
+      ]
+    },
+    {
+      "chapterId": "G2-10",
+      "order": 10,
+      "semester": "下",
+      "name": "乘法（三）",
+      "skills": [
+        { "skillId": "G2-10-01", "name": "1 的乘法", "mode": "multiply", "difficulty": 1, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-10-02", "name": "10 的乘法", "mode": "multiply", "difficulty": 1, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-10-03", "name": "0 的乘法", "mode": "multiply", "difficulty": 2, "note": "0 的乘法是概念關卡，不是數字大小問題——任何數乘 0 都是 0，孩子常誤以為要用原數字。", "figure": "none" },
+        { "skillId": "G2-10-04", "name": "乘法應用題（一）", "mode": "story", "difficulty": 3, "figure": "grid", "figureSource": "array_model" },
+        { "skillId": "G2-10-05", "name": "乘法應用題（二）", "mode": "story", "difficulty": 3, "figure": "grid", "figureSource": "array_model" }
+      ]
+    },
+    {
+      "chapterId": "G2-11",
+      "order": 11,
+      "semester": "下",
+      "name": "1000 以內的數",
+      "skills": [
+        { "skillId": "G2-11-01", "name": "順數和倒數", "mode": "jump", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-11-02", "name": "認識三位數", "mode": "jump", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-11-03", "name": "認識百位的概念", "mode": "jump", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-11-04", "name": "每 20 個、25 個、50 個、100 個一數", "mode": "jump", "difficulty": 4, "figure": "param" },
+        { "skillId": "G2-11-05", "name": "估計物件的數量", "mode": "jump", "difficulty": 4, "figure": "param" },
+        { "skillId": "G2-11-06", "name": "比較大小 — 百位數字相同", "mode": "jump", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-11-07", "name": "比較大小 — 百位數字不同", "mode": "jump", "difficulty": 2, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "G2-12",
+      "order": 12,
+      "semester": "下",
+      "name": "1000 以內的加減",
+      "skills": [
+        { "skillId": "G2-12-01", "name": "不進位加法（一）— 一位數加三位數", "mode": "reverse", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-12-02", "name": "不進位加法（二）— 兩位數加三位數", "mode": "reverse", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-12-03", "name": "不進位加法（三）— 三位數加三位數", "mode": "reverse", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-12-04", "name": "三位數以內的進位加法", "mode": "reverse", "difficulty": 4, "figure": "param" },
+        { "skillId": "G2-12-05", "name": "不退位減法（一）— 三位數減一位數", "mode": "reverse", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-12-06", "name": "不退位減法（二）— 三位數減兩位數", "mode": "reverse", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-12-07", "name": "不退位減法（三）— 三位數減三位數", "mode": "reverse", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-12-08", "name": "退位減法（一）— 三位數減一位數", "mode": "reverse", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-12-09", "name": "退位減法（二）— 三位數減兩位數", "mode": "reverse", "difficulty": 4, "figure": "param" },
+        { "skillId": "G2-12-10", "name": "退位減法（三）— 三位數減三位數", "mode": "reverse", "difficulty": 4, "figure": "param" },
+        { "skillId": "G2-12-11", "name": "加法應用題（一）", "mode": "story", "difficulty": 3, "figure": "none" },
+        { "skillId": "G2-12-12", "name": "加法應用題（二）", "mode": "story", "difficulty": 3, "figure": "none" },
+        { "skillId": "G2-12-13", "name": "減法應用題（一）", "mode": "story", "difficulty": 3, "figure": "none" },
+        { "skillId": "G2-12-14", "name": "減法應用題（二）", "mode": "story", "difficulty": 4, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "G2-13",
+      "order": 13,
+      "semester": "下",
+      "name": "公尺和公分",
+      "skills": [
+        { "skillId": "G2-13-01", "name": "選用合適的量尺進行量度（公尺）", "mode": "length", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-13-02", "name": "量度曲線的方法", "mode": "length", "difficulty": 3, "figure": "grid", "note": "曲線長度量測需要「軟尺沿曲線貼合」的視覺，跟直線量測用同一元件呈現會誤導，需另外設計。" },
+        { "skillId": "G2-13-03", "name": "用公尺量度長度和距離", "mode": "length", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-13-04", "name": "將「公尺」轉換為「公分」", "mode": "length", "difficulty": 3, "figure": "none" },
+        { "skillId": "G2-13-05", "name": "將「公分」轉換為「公尺」", "mode": "length", "difficulty": 3, "figure": "none" },
+        { "skillId": "G2-13-06", "name": "以「公尺」為單位比較長度", "mode": "length", "difficulty": 2, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "G2-14",
+      "order": 14,
+      "semester": "下",
+      "name": "乘法（四）",
+      "skills": [
+        { "skillId": "G2-14-01", "name": "兩個數交換位置相乘", "mode": "multiply", "difficulty": 2, "note": "交換律：3×4 和 4×3 答案相同，是乘法表能減半記憶量的關鍵概念。", "figure": "grid", "figureSource": "array_model" }
+      ]
+    },
+    {
+      "chapterId": "G2-15",
+      "order": 15,
+      "semester": "下",
+      "name": "幾月幾日星期幾",
+      "skills": [
+        { "skillId": "G2-15-01", "name": "認識一年的 12 個月", "mode": "clock", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-15-02", "name": "「平年」及「閏年」", "mode": "clock", "difficulty": 4, "note": "小二只需知道 2 月有時 28 天、有時 29 天，不需要教判斷規則（4的倍數等），規則留到高年級。", "figure": "param" },
+        { "skillId": "G2-15-03", "name": "每月的日數", "mode": "clock", "difficulty": 3, "figure": "param" },
+        { "skillId": "G2-15-04", "name": "日期應用題 — 求結束日期", "mode": "story", "difficulty": 4, "figure": "param" },
+        { "skillId": "G2-15-05", "name": "日期應用題 — 求所用日數", "mode": "story", "difficulty": 4, "figure": "param" },
+        { "skillId": "G2-15-06", "name": "日期應用題 — 求開始日期", "mode": "story", "difficulty": 4, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "G2-16",
+      "order": 16,
+      "semester": "下",
+      "name": "分裝與平分",
+      "skills": [
+        { "skillId": "G2-16-01", "name": "進行基本除法運算", "mode": "multiply", "difficulty": 3, "note": "除法啟蒙只做「平分」與「分裝」兩種情境的具體操作，不出現除號直式，數字限乘法表範圍內（0-10 的乘法表對應的除法）。", "figure": "grid", "figureSource": "array_model" }
+      ]
+    },
+    {
+      "chapterId": "G2-17",
+      "order": 17,
+      "semester": "下",
+      "name": "平面圖形與立體形體",
+      "skills": [
+        { "skillId": "G2-17-01", "name": "認識平面圖形的基本概念", "mode": "space", "difficulty": 2, "figure": "param" },
+        { "skillId": "G2-17-02", "name": "垂直線（一）", "mode": "space", "difficulty": 3, "figure": "grid", "figureSource": "line_relation（relation=\"perpendicular\"）" },
+        { "skillId": "G2-17-03", "name": "正方體和長方體", "mode": "space", "difficulty": 2, "figure": "asset", "figureSource": "Bobo math_diagram_kit: solid_shape（需移植 JS，G1 亦同缺口）" }
+      ]
+    }
+  ]
+}

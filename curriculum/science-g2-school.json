@@ -1,0 +1,133 @@
+{
+  "_meta": {
+    "track": "school",
+    "subject": "science",
+    "grade": "G2",
+    "curriculum": "無教育部108課綱科學對照版本；本檔採 KooBits「Cambridge International Science Curriculum (0097-aligned)」小2 章節與技能顆粒度為骨架",
+    "created": "2026-08-01",
+    "totalChapters": 6,
+    "totalSkills": 45,
+    "reference": "同 G1，KooBits 科學無臺灣課綱軌，本檔取 Cambridge 軌小2章節與技能作骨架（該課程樹小2實測共45項技能，6章）。技能原文為英文，已翻譯為繁體中文並依台灣國小自然科用語調整。難度、模式(mode)、圖形等級(figure)為本系統自訂。",
+    "publisherOrder": "pending",
+    "publisherNote": "台灣國小二年級仍屬『生活課程』，尚無獨立自然科課本。本檔章節切分沿用 Cambridge 軌，非official 台灣課綱章節。開學後如需對齊，只調整 chapter.order 與命名，skills 不動。",
+    "newInG2": "相對小一新增棲地與生態(Environments and habitats)、動物身體構造與人體發育(Humans and animals grow 擴大至14技能，含牙齒)、簡單電路啟蒙(Electricity)。小一的『生物與非生物』基礎不再重複出現，直接進到棲地與生態層次。",
+    "modes": {
+      "concept": "🧪 概念辨識 — 是非/選擇型概念題，測知識點記憶與理解",
+      "classify": "🗂 分類歸類 — 依特徵將物品/生物分組",
+      "compare": "🔍 比較觀察 — 比較兩個以上對象的特徵、強弱、程度",
+      "match": "🔗 配對連結 — 功能配對、部位配對、感官配對",
+      "diagram": "🩻 圖表標示 — 人體/植物/器材構造標示、讀圖",
+      "process": "🔄 歷程與因果 — 生命週期、能量轉換、狀態變化等歷程推理",
+      "experiment": "⚡ 實驗推理 — 力、磁、光、電的因果推理與簡單變因控制"
+    },
+    "difficultyScale": "1=最易 … 5=最難（本系統自訂，非 KooBits 原值）",
+    "figureLoad": {
+      "none": 25,
+      "param": 7,
+      "grid": 0,
+      "asset": 13,
+      "note": "asset 比重（13/45）比 G1（8/43）更高，主因是新增的『棲地』(5個棲地情境圖)與『動物身體構造』(動物體表/幼體照片)都需要寫實場景/生物圖，很難用參數化SVG表現。electricity 電路圖是本檔第一次出現的 param 圖形需求，之後G3/G4 會持續累積。"
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "SCI-G2-01",
+      "order": 1,
+      "semester": "上",
+      "name": "環境與棲地",
+      "koobitsName": "Environments and habitats",
+      "skills": [
+        { "skillId": "SCI-G2-01-01", "name": "認識熱帶雨林棲地的特徵", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-01-02", "name": "認識草原棲地的特徵", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-01-03", "name": "認識極地棲地的特徵", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-01-04", "name": "認識沙漠棲地的特徵", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-01-05", "name": "認識水域棲地的特徵", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-01-06", "name": "比較不同棲地的特徵", "mode": "compare", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G2-01-07", "name": "連結生物與其棲地的關係", "mode": "process", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-01-08", "name": "認識人類改變環境的方式", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-01-09", "name": "認識人類活動對環境的正面影響", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-01-10", "name": "認識人類活動對環境的負面影響", "mode": "concept", "difficulty": 2, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G2-02",
+      "order": 2,
+      "semester": "上",
+      "name": "力與運動",
+      "koobitsName": "Forces and movements",
+      "skills": [
+        { "skillId": "SCI-G2-02-01", "name": "認識力的方向", "mode": "concept", "difficulty": 1, "figure": "param" },
+        { "skillId": "SCI-G2-02-02", "name": "認識力能使物體開始或停止運動", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G2-02-03", "name": "認識力能改變物體的形狀", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-02-04", "name": "認識力能改變物體的速度", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-02-05", "name": "認識力能改變物體的方向", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-02-06", "name": "綜合認識力對物體運動的影響", "mode": "compare", "difficulty": 3, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G2-03",
+      "order": 3,
+      "semester": "上",
+      "name": "選對材料",
+      "koobitsName": "Getting materials right",
+      "skills": [
+        { "skillId": "SCI-G2-03-01", "name": "認識天然材料與人造材料", "mode": "classify", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-03-02", "name": "認識材料可同時具有多種特性", "mode": "concept", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-03-03", "name": "認識材料在水中會浮或沉", "mode": "experiment", "difficulty": 1, "figure": "param" },
+        { "skillId": "SCI-G2-03-04", "name": "依特性比較材料是否適合特定用途", "mode": "compare", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G2-03-05", "name": "比較常見材料的強度", "mode": "compare", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-03-06", "name": "比較常見材料的柔軟度", "mode": "compare", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-03-07", "name": "比較常見材料是否透光", "mode": "compare", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-03-08", "name": "比較常見材料的硬度", "mode": "compare", "difficulty": 2, "figure": "none" },
+        { "skillId": "SCI-G2-03-09", "name": "比較常見材料的防水性", "mode": "compare", "difficulty": 2, "figure": "none" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G2-04",
+      "order": 4,
+      "semester": "下",
+      "name": "人與動物的成長",
+      "koobitsName": "Humans and animals grow",
+      "skills": [
+        { "skillId": "SCI-G2-04-01", "name": "認識動物身體部位如何幫助牠們生活", "mode": "concept", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G2-04-02", "name": "辨識動物的體表（毛/羽毛/鱗片等）", "mode": "classify", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-04-03", "name": "比較不同動物的體表", "mode": "compare", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G2-04-04", "name": "認識幼小動物成長時的變化", "mode": "process", "difficulty": 2, "figure": "asset" },
+        { "skillId": "SCI-G2-04-05", "name": "認識動物親代如何將特徵遺傳給幼代", "mode": "concept", "difficulty": 3, "figure": "none" },
+        { "skillId": "SCI-G2-04-06", "name": "認識健康的一餐", "mode": "classify", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-04-07", "name": "認識均衡飲食的重要性", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G2-04-08", "name": "認識維持良好衛生習慣的方法", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G2-04-09", "name": "描述照顧身體的方法", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G2-04-10", "name": "認識牙齒隨成長的變化（乳牙換恆牙）", "mode": "process", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G2-04-11", "name": "認識人類恆牙的種類", "mode": "concept", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G2-04-12", "name": "認識牙齒的功能", "mode": "match", "difficulty": 2, "figure": "param" },
+        { "skillId": "SCI-G2-04-13", "name": "描述照顧牙齒的方法", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G2-04-14", "name": "辨識人體常見的生病徵兆", "mode": "concept", "difficulty": 2, "figure": "asset" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G2-05",
+      "order": 5,
+      "semester": "下",
+      "name": "光",
+      "koobitsName": "Light",
+      "skills": [
+        { "skillId": "SCI-G2-05-01", "name": "辨識光源（含太陽）", "mode": "concept", "difficulty": 1, "figure": "asset" },
+        { "skillId": "SCI-G2-05-02", "name": "連結太陽在天空中移動的現象與地球自轉", "mode": "process", "difficulty": 3, "figure": "param" }
+      ]
+    },
+    {
+      "chapterId": "SCI-G2-06",
+      "order": 6,
+      "semester": "下",
+      "name": "電",
+      "koobitsName": "Electricity",
+      "skills": [
+        { "skillId": "SCI-G2-06-01", "name": "認識電的用途", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G2-06-02", "name": "認識節約用電的方法", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G2-06-03", "name": "認識安全用電的方法", "mode": "concept", "difficulty": 1, "figure": "none" },
+        { "skillId": "SCI-G2-06-04", "name": "辨識簡單電路的組成元件", "mode": "diagram", "difficulty": 2, "figure": "param" }
+      ]
+    }
+  ]
+}

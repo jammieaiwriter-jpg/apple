@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  var VERSION = 'v9-single-flow-telegram-20260808';
+  var VERSION = 'v10-phonics-slots-20260808';
   if (window.__joyReviewFixVersion === VERSION) return;
   window.__joyReviewFixVersion = VERSION;
 
@@ -146,10 +146,9 @@
   }
 
   function slotCue(graph,idx){
-    // Two-letter words need a visible direction (u _ / _ s). For longer
-    // words, reveal position only so the remaining spelling does not solve it.
-    if(graph.length===2) return graph.map(function(gp,i){ return i===idx ? '＿' : gp.g; }).join(' ');
-    return '第 '+(idx+1)+' 格　'+graph.map(function(_,i){ return i===idx ? '＿' : '□'; }).join(' ');
+    // Show the actual spelling with one blank. A child can answer from the
+    // visible word shape without needing to count positions or read a label.
+    return graph.map(function(gp,i){ return i===idx ? '＿' : gp.g; }).join(' ');
   }
   function reviewGraph(ex){
     var graph=(typeof window.graphForReview==='function' ? window.graphForReview(ex) : []).filter(function(gp){ return gp.p; });
@@ -344,7 +343,10 @@
     injectStyle();
     removeTalkGame();
     if(window.CH && typeof window.Challenge==='function'){
-      if(typeof window.phExamples==='function') new window.Challenge('phonics','phonics-test', function(){ return window.phExamples().map(function(x){ return window.qPhonics(x); }); });
+      if(typeof window.phExamples==='function') new window.Challenge('phonics','phonics-test', function(){
+        var examples=window.phExamples();
+        return window.shuffle(examples).slice(0,Math.min(6,examples.length)).map(function(x){ return window.qPhonics(x); });
+      });
       if(window.grammar && window.grammar.quiz) new window.Challenge('grammar','grammar-test', function(){ return window.grammar.quiz.map(function(_,i){ return window.qGrammar(i); }); });
     }
     try{ if(typeof window.buildDialog==='function') window.buildDialog(); }catch(_){ }

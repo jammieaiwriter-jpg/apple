@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  var VERSION = 'v10-phonics-slots-20260808';
+  var VERSION = 'v11-unique-phonics-options-20260808';
   if (window.__joyReviewFixVersion === VERSION) return;
   window.__joyReviewFixVersion = VERSION;
 
@@ -166,7 +166,9 @@
     window.phExamples().forEach(function(x){
       reviewGraph(x.e).forEach(function(gp){
         if(!gp.p) return;
-        var k=gp.g+'|'+gp.p;
+        // The child sees only the grapheme, not its IPA metadata. Never turn
+        // one visible letter into two contradictory answer buttons.
+        var k=String(gp.g).toLowerCase();
         if(!seen[k]){ seen[k]=1; pool.push(gp); }
       });
     });
@@ -178,7 +180,8 @@
     if(!graph.length) graph=[{g:target.e.w,p:target.e.w}];
     var idx=Math.floor(Math.random()*graph.length);
     var answer=graph[idx];
-    var opts=window.shuffle([answer].concat(window.shuffle(uniqueTiles().filter(function(gp){return gp.g!==answer.g || gp.p!==answer.p;})).slice(0,3))).slice(0,4);
+    var answerKey=String(answer.g).toLowerCase();
+    var opts=window.shuffle([answer].concat(window.shuffle(uniqueTiles().filter(function(gp){ return String(gp.g).toLowerCase()!==answerKey; })).slice(0,3))).slice(0,4);
     qEl.innerHTML='<div class="en">聽單字，選空格裡的字母</div>'
       +'<div class="sound-target">'+slotCue(graph,idx)+'</div>'
       +'<div class="mini-note">先聽清楚，再選空格裡的字母。</div>'
@@ -188,7 +191,7 @@
     var box=document.getElementById('ph-opts');
     box.onclick=function(e){
       var btn=e.target.closest('button[data-i]'); if(!btn||btn.disabled) return;
-      var ok=(btn.dataset.g===answer.g && btn.dataset.p===answer.p);
+      var ok=(String(btn.dataset.g).toLowerCase()===answerKey);
       if(ok){
         outEl.textContent='答對了！這個音是 '+answer.g+'。';
         window.disableAll(box); window.speak(target.e.w,'together'); settle(firstTry);

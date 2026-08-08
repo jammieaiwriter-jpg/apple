@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  var VERSION = 'v5-review-fixes-20260808';
+  var VERSION = 'v7-review-tolerance-20260808';
   if (window.__joyReviewFixVersion === VERSION) return;
   window.__joyReviewFixVersion = VERSION;
 
@@ -31,9 +31,48 @@
     there:'there', their:'there', theyre:'there'
   };
   function canonWord(w){ return HOMO[w] || w; }
+  function soundCode(word){
+    var s=String(word||'').toUpperCase().replace(/[^A-Z]/g,'');
+    if(!s) return '';
+    var map={B:'1',F:'1',P:'1',V:'1',C:'2',G:'2',J:'2',K:'2',Q:'2',S:'2',X:'2',Z:'2',D:'3',T:'3',L:'4',M:'5',N:'5',R:'6'};
+    var out=s.charAt(0), last=map[out]||'';
+    for(var i=1;i<s.length && out.length<4;i++){
+      var code=map[s.charAt(i)]||'';
+      if(code && code!==last) out+=code;
+      last=code;
+    }
+    return (out+'000').slice(0,4);
+  }
+  function editDistance(a,b){
+    var row=[], i, j;
+    for(i=0;i<=b.length;i++) row[i]=i;
+    for(i=1;i<=a.length;i++){
+      var prev=row[0]; row[0]=i;
+      for(j=1;j<=b.length;j++){
+        var old=row[j];
+        row[j]=Math.min(row[j]+1,row[j-1]+1,prev+(a.charAt(i-1)===b.charAt(j-1)?0:1));
+        prev=old;
+      }
+    }
+    return row[b.length];
+  }
+  function isNearSingleWord(expected,heard){
+    if(soundCode(expected)!==soundCode(heard)) return false;
+    var distance=editDistance(expected,heard);
+    if(distance<=Math.max(2,Math.floor(Math.max(expected.length,heard.length)/2))) return true;
+    // ASR often hears a final /g/ as /k/ and also changes the vowel spelling:
+    // wig -> week, big -> beak. Accept that narrow one-word failure mode.
+    return /g$/.test(expected) && /k$/.test(heard) && distance<=3;
+  }
   window.scoreSpeech = function(expected, heard){
-    var e=window.normalizeSpeech(expected).split(' ').filter(Boolean).map(canonWord);
-    var h=window.normalizeSpeech(heard).split(' ').filter(Boolean).map(canonWord);
+    var rawE=window.normalizeSpeech(expected).split(' ').filter(Boolean);
+    var rawH=window.normalizeSpeech(heard).split(' ').filter(Boolean);
+    // A child is reading the displayed single word. When Apple/Google ASR picks
+    // a near-homophone such as wig -> week, do not turn a good attempt into a
+    // one-star result. Sentences keep the stricter word-by-word score below.
+    if(rawE.length===1 && rawH.length===1 && isNearSingleWord(rawE[0],rawH[0])) return {stars:5};
+    var e=rawE.map(canonWord);
+    var h=rawH.map(canonWord);
     if(!h.length) return {stars:0};
     var cur=0, matched=0;
     for(var i=0;i<e.length;i++){ var at=h.indexOf(e[i],cur); if(at!==-1){matched++;cur=at+1;} }
@@ -106,11 +145,11 @@
     }
   }
 
-  function posLabel(i,len){
-    if(len<=1) return '這個音';
-    if(i===0) return '第一個音';
-    if(i===len-1) return '最後一個音';
-    return '第 '+(i+1)+' 個音';
+  function slotCue(graph,idx){
+    // Two-letter words need a visible direction (u _ / _ s). For longer
+    // words, reveal position only so the remaining spelling does not solve it.
+    if(graph.length===2) return graph.map(function(gp,i){ return i===idx ? '＿' : gp.g; }).join(' ');
+    return '第 '+(idx+1)+' 格　'+graph.map(function(_,i){ return i===idx ? '＿' : '□'; }).join(' ');
   }
   function reviewGraph(ex){
     var graph=(typeof window.graphForReview==='function' ? window.graphForReview(ex) : []).filter(function(gp){ return gp.p; });
@@ -141,9 +180,9 @@
     var idx=Math.floor(Math.random()*graph.length);
     var answer=graph[idx];
     var opts=window.shuffle([answer].concat(window.shuffle(uniqueTiles().filter(function(gp){return gp.g!==answer.g || gp.p!==answer.p;})).slice(0,3))).slice(0,4);
-    qEl.innerHTML='<div class="en">聽單字，選「'+posLabel(idx,graph.length)+'」</div>'
-      +'<div class="sound-target">'+posLabel(idx,graph.length)+'</div>'
-      +'<div class="mini-note">不先顯示拼法，請真的用耳朵聽。</div>'
+    qEl.innerHTML='<div class="en">聽單字，選空格裡的字母</div>'
+      +'<div class="sound-target">'+slotCue(graph,idx)+'</div>'
+      +'<div class="mini-note">先聽清楚，再選空格裡的字母。</div>'
       +'<div class="row" style="justify-content:center"><button class="act listen" id="ph-listen">🔊 再聽一次</button></div>'
       +'<div id="ph-opts" class="game-grid">'+opts.map(function(gp,i){ return '<button class="opt" data-i="'+i+'" data-g="'+gp.g+'" data-p="'+gp.p+'">'+gp.g+'</button>'; }).join('')+'</div>';
     document.getElementById('ph-listen').onclick=function(){ window.speak(target.e.w,'together'); };
@@ -156,7 +195,7 @@
         window.disableAll(box); window.speak(target.e.w,'together'); settle(firstTry);
       }else{
         firstTry=false;
-        outEl.textContent='再聽一次，這題問的是「'+posLabel(idx,graph.length)+'」。';
+        outEl.textContent='再聽一次，選空格裡的字母。';
         window.speak(target.e.w,'together');
       }
     };
@@ -187,7 +226,7 @@
       +'<div class="bpmf">'+bopomofo(zh)+'</div>'
       +'<div class="row" style="justify-content:center;margin-bottom:10px"><button class="act listen" id="gr-listen">🔊 聽題目說明</button></div>'
       +'<div class="row" id="gr-opts" style="justify-content:center">'+window.beOptions.map(function(opt){ return '<button class="opt" data-opt="'+opt+'">'+opt+'</button>'; }).join('')+'</div>';
-    document.getElementById('gr-listen').onclick=function(){ speakZh(zh, function(){ window.speak(p.replace(/___/g,'blank'),'abby'); }); };
+    document.getElementById('gr-listen').onclick=function(){ speakZh(zh); };
     var box=document.getElementById('gr-opts');
     box.onclick=function(e){
       var btn=e.target.closest('button[data-opt]'); if(!btn||btn.disabled) return;

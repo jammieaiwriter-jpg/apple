@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  var VERSION = 'v7-review-tolerance-20260808';
+  var VERSION = 'v9-single-flow-telegram-20260808';
   if (window.__joyReviewFixVersion === VERSION) return;
   window.__joyReviewFixVersion = VERSION;
 
@@ -12,7 +12,7 @@
     if(document.getElementById('joy-review-fix-style')) return;
     var st=document.createElement('style');
     st.id='joy-review-fix-style';
-    st.textContent='.bpmf{font-size:18px;line-height:1.7;color:#145a51;font-weight:800;margin:4px 0 10px}.sound-target{font-size:clamp(30px,8vw,48px);font-weight:950;color:#145a51;margin:10px 0}.mini-note{font-size:14px;color:#667085;margin-top:4px}';
+    st.textContent='.bpmf{font-size:18px;line-height:1.7;color:#145a51;font-weight:800;margin:4px 0 10px}.sound-target{font-size:clamp(30px,8vw,48px);font-weight:950;color:#145a51;margin:10px 0}.mini-note{font-size:14px;color:#667085;margin-top:4px}.tabs{display:none!important}.joy-section-title{margin:32px 0 10px;padding-top:16px;border-top:2px solid #e7e0d2;color:#145a51;font-size:24px;font-weight:950}.joy-section-title:first-child{border-top:0;margin-top:8px}.joy-section-finish{margin:8px 0 24px;text-align:center}.joy-flow-note{color:#667085;font-size:14px;margin:-2px 0 12px}.joy-parent-card{border:2px solid #207f71;background:#f1fbf7;border-radius:12px;padding:18px;text-align:center;margin:30px 0 16px}.joy-parent-card .big{margin:0 0 8px}.joy-parent-card .next{width:100%;max-width:320px}.joy-report-status{min-height:24px;color:#145a51;font-weight:800;margin-top:10px}';
     document.head.appendChild(st);
   }
 
@@ -241,6 +241,105 @@
     };
   }}; };
 
+  /* ===== 一頁式完成流程與家長通知 ===== */
+  // The public page only knows the notification proxy URL. Keep the Telegram
+  // bot token and chat id in the proxy's server-side secrets.
+  var JOY_NOTIFY_ENDPOINT=window.JOY_NOTIFY_ENDPOINT||'https://bobo-math-notify.bobo-math-grader.workers.dev';
+  var completed={dialog:false,vocab:false,phonics:false,grammar:false,wordgame:false};
+  var speechAttempts={dialog:0,vocab:0};
+  function unitLabel(){
+    var h=document.querySelector('h1');
+    return (h&&h.textContent.match(/Joy Unit\s+\d+/i)||['Joy Unit'])[0];
+  }
+  function addHeading(panelId,title,note){
+    var panel=document.getElementById(panelId);
+    if(!panel) return;
+    panel.classList.remove('hide');
+    if(document.getElementById('joy-heading-'+panelId)) return;
+    var h=document.createElement('h2');
+    h.id='joy-heading-'+panelId; h.className='joy-section-title'; h.textContent=title;
+    panel.parentNode.insertBefore(h,panel);
+    if(note){ var p=document.createElement('div'); p.className='joy-flow-note'; p.textContent=note; panel.parentNode.insertBefore(p,panel); }
+  }
+  function markComplete(key){
+    completed[key]=true;
+    var button=document.getElementById('joy-finish-'+key);
+    if(button){ button.disabled=true; button.textContent='這一區已完成'; }
+    renderParentCard();
+  }
+  function addManualFinish(key,panelId){
+    var panel=document.getElementById(panelId);
+    if(!panel || document.getElementById('joy-finish-'+key)) return;
+    var wrap=document.createElement('div'); wrap.className='joy-section-finish';
+    wrap.innerHTML='<button class="next" type="button" id="joy-finish-'+key+'">我已練習完這一區</button>';
+    panel.appendChild(wrap);
+    document.getElementById('joy-finish-'+key).onclick=function(){ markComplete(key); };
+  }
+  function reportText(){
+    var sections=Object.keys(completed).filter(function(k){return completed[k];}).length;
+    var dialogStars=(window.scores||[]).reduce(function(a,n){return a+(n||0);},0);
+    var vocabStars=(window.vScores||[]).reduce(function(a,n){return a+(n||0);},0);
+    return unitLabel()+' 複習完成，請家長確認。\n'
+      +'已完成 '+sections+' / 5 區：對話、單字、發音、文法、單字遊戲。\n'
+      +'口說嘗試：對話 '+speechAttempts.dialog+' 次、單字 '+speechAttempts.vocab+' 次。\n'
+      +'星星紀錄：對話 '+dialogStars+' 顆、單字 '+vocabStars+' 顆。\n'
+      +'孩子已主動按下「請家長確認」。';
+  }
+  function sendTelegram(button,status){
+    if(!JOY_NOTIFY_ENDPOINT){ status.textContent='通知服務準備中，請家長稍後確認。'; return; }
+    button.disabled=true; status.textContent='通知傳送中…';
+    fetch(JOY_NOTIFY_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:reportText()})})
+      .then(function(r){ if(!r.ok) throw new Error('send failed'); return r.json(); })
+      .then(function(){ status.textContent='已傳送給家長。'; button.textContent='已傳送完成通知'; })
+      .catch(function(){ status.textContent='暫時無法傳送，請再按一次。'; button.disabled=false; });
+  }
+  function renderParentCard(){
+    var old=document.getElementById('joy-parent-card');
+    var done=Object.keys(completed).filter(function(k){return completed[k];}).length;
+    if(done<5){ if(old) old.remove(); return; }
+    if(old) return;
+    var card=document.createElement('section');
+    card.id='joy-parent-card'; card.className='joy-parent-card';
+    card.innerHTML='<div class="big">全部完成！</div><div class="zh">不需要每一題都是五顆星，完成練習就可以請家長確認。</div><button class="next" type="button" id="joy-send-report">請家長確認，傳送完成通知</button><div class="joy-report-status" id="joy-report-status"></div>';
+    document.querySelector('.wrap').appendChild(card);
+    document.getElementById('joy-send-report').onclick=function(){ sendTelegram(this,document.getElementById('joy-report-status')); };
+  }
+  function wrapSpeechAttempts(){
+    if(typeof window.recLine==='function' && !window.recLine.__joyTracked){
+      var oldLine=window.recLine;
+      window.recLine=function(i){ speechAttempts.dialog++; return oldLine(i); };
+      window.recLine.__joyTracked=true;
+    }
+    if(typeof window.recVocab==='function' && !window.recVocab.__joyTracked){
+      var oldVocab=window.recVocab;
+      window.recVocab=function(i){ speechAttempts.vocab++; return oldVocab(i); };
+      window.recVocab.__joyTracked=true;
+    }
+  }
+  function enableSinglePageFlow(){
+    var tabs=document.querySelector('.tabs'); if(tabs) tabs.remove();
+    addHeading('panel-dialog','對話','先聽、再開口念；星星只作為鼓勵。');
+    addHeading('panel-vocab','單字','認識單字，再念一次。');
+    addHeading('panel-phonics','發音','完成聽音挑戰。');
+    addHeading('panel-grammar','文法','完成文法挑戰。');
+    addHeading('panel-wordgame','單字遊戲','完成聽字挑戰。');
+    addManualFinish('dialog','panel-dialog');
+    addManualFinish('vocab','panel-vocab');
+    wrapSpeechAttempts();
+    if(window.CH && CH.phonics) CH.phonics.start();
+    if(window.CH && CH.grammar) CH.grammar.start();
+    if(typeof window.wgStart==='function') window.wgStart();
+  }
+  function trackChallengeCompletion(){
+    if(!window.Challenge || window.Challenge.prototype.congrats.__joyTracked) return;
+    var oldCongrats=window.Challenge.prototype.congrats;
+    window.Challenge.prototype.congrats=function(){
+      oldCongrats.call(this);
+      if(completed.hasOwnProperty(this.key)) markComplete(this.key);
+    };
+    window.Challenge.prototype.congrats.__joyTracked=true;
+  }
+
   ready(function(){
     injectStyle();
     removeTalkGame();
@@ -253,5 +352,7 @@
     try{ if(typeof window.buildPhonics==='function') window.buildPhonics(); }catch(_){ }
     try{ if(typeof window.buildGrammar==='function') window.buildGrammar(); }catch(_){ }
     try{ if(typeof window.updateProgress==='function') window.updateProgress(); }catch(_){ }
+    trackChallengeCompletion();
+    enableSinglePageFlow();
   });
 })();

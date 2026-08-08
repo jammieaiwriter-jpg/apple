@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  var VERSION = 'v11-unique-phonics-options-20260808';
+  var VERSION = 'v12-letter-spelling-slots-20260808';
   if (window.__joyReviewFixVersion === VERSION) return;
   window.__joyReviewFixVersion = VERSION;
 
@@ -151,14 +151,10 @@
     return graph.map(function(gp,i){ return i===idx ? '＿' : gp.g; }).join(' ');
   }
   function reviewGraph(ex){
-    var graph=(typeof window.graphForReview==='function' ? window.graphForReview(ex) : []).filter(function(gp){ return gp.p; });
-    if(graph.length) return graph;
-    // Unit 1 predates seg/graph and stores pronounceable blend tokens instead.
-    // Keep the visible choice as a letter while using those tokens only as the
-    // internal sound marker.
+    // This review activity is spelling practice: every visible slot must map
+    // to one written letter, even when IPA groups several letters together.
     var letters=String(ex.w||'').replace(/[^A-Za-z]/g,'').split('');
-    var blend=Array.isArray(ex.blend) ? ex.blend : [];
-    return letters.map(function(letter,i){ return {g:letter, p:blend[i] || letter}; });
+    return letters.map(function(letter){ return {g:letter, p:letter}; });
   }
   function uniqueTiles(){
     var pool=[], seen={};

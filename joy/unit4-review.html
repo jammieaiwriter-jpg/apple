@@ -152,6 +152,10 @@ var vocab = [
     "zh": "心"
   }
 ];
+/* Phonics： */
+// phon = 字母的「拼讀音」近似拼法（給 TTS 唸，不是字母名稱）；
+// 每個例字 blend = 拆成一個一個音（拼讀），最後會自動再唸整個字。
+// name = 字母名稱發音替身(避免唸成 capital A)；phon = 拼讀音；blend = 例字逐音拆解
 var phonics = [
   {
     "letter": "Jj",
@@ -232,6 +236,7 @@ var phonics = [
     ]
   }
 ];
+/* 文法：be 動詞 am/is/are */
 var grammar = {
   "rule": "想表達「我想要」時，用 I want 加上想要的東西。",
   "quiz": [
@@ -266,11 +271,44 @@ var beOptions = [
 
 /* ===== 評分（內嵌自 unit1.mjs） ===== */
 var contractions = {"i'm":"i am","im":"i am","what's":"what is","whats":"what is","don't":"do not","dont":"do not","let's":"let us","lets":"let us"};
-function normalizeSpeech(v){
-  var s=String(v||"").toLowerCase();
-  for(var k in contractions){ s=s.split(k).join(contractions[k]); }
-  return s.replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();
+var HOMO={to:'two',too:'two',two:'two',for:'four',fore:'four',four:'four',ate:'eight',eight:'eight',won:'one',one:'one',our:'our',hour:'our',no:'no',know:'no',new:'new',knew:'new',there:'there',their:'there',theyre:'there',here:'here',hear:'here',your:'your',youre:'your',by:'by',buy:'by',bye:'by',see:'see',sea:'see',be:'be',bee:'be',right:'right',write:'right',son:'son',sun:'son',meat:'meat',meet:'meat',week:'week',weak:'week',wait:'wait',weight:'wait',pair:'pair',pear:'pair',plane:'plane',plain:'plain',road:'road',rode:'road',sale:'sale',sail:'sale',tail:'tail',tale:'tale',threw:'threw',through:'threw',wood:'wood',would:'wood',flour:'flour',flower:'flour',blue:'blue',blew:'blue',night:'night',knight:'night',hi:'hi',high:'hi',mail:'mail',male:'mail',eye:'i',i:'i',red:'red',read:'red'};
+var CN1={zero:0,oh:0,o:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9};
+var CN2={ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+var CN3={twenty:20,thirty:30,forty:40,fourty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+/* 同音字 + 數字收斂：to/two/too 在語音上是同一個音，辨識器選哪個是它的猜測、不是孩子唸錯，
+   不收斂就會無辜扣分（實際遇過只給 1 星）。數字則解決「Taipei 101」被聽成「one o one」。
+   連續個位數只在 3 位以上才合併，否則 "two to" 會被誤併成 22。 */
+function canonSeq(str){
+  var words=String(str||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+  words=words.map(function(w){return HOMO[w]!==undefined?HOMO[w]:w;});
+  var out=[],i=0;
+  while(i<words.length){
+    var w=words[i],v=null;
+    if(/^\d+$/.test(w)){out.push(w);i++;continue}
+    if(CN3[w]!==undefined){v=CN3[w];if(CN1[words[i+1]]>0){v+=CN1[words[i+1]];i++}}
+    else if(CN2[w]!==undefined)v=CN2[w];
+    else if(CN1[w]!==undefined)v=CN1[w];
+    if(v===null){out.push(w);i++;continue}
+    while(words[i+1]==='hundred'||words[i+1]==='thousand'){
+      v=v*(words[i+1]==='hundred'?100:1000);i++;
+      if(words[i+1]==='and')i++;
+      var nx=words[i+1],add=null;
+      if(nx!==undefined){
+        if(CN3[nx]!==undefined){add=CN3[nx];if(CN1[words[i+2]]>0){add+=CN1[words[i+2]];i++}}
+        else if(CN2[nx]!==undefined)add=CN2[nx];
+        else if(CN1[nx]>0)add=CN1[nx];
+        if(add!==null){v+=add;i++}
+      }
+    }
+    out.push(String(v));i++;
+  }
+  var m=[],run=[];
+  function flush(){ if(run.length>=3) m.push(run.join('')); else m=m.concat(run); run=[]; }
+  out.forEach(function(t){ if(/^\d$/.test(t)) run.push(t); else { flush(); m.push(t); } });
+  flush();
+  return m;
 }
+function normalizeSpeech(v){var s=String(v||"").toLowerCase();for(var k in contractions){s=s.split(k).join(contractions[k]);}return canonSeq(s).join(" ");}
 function scoreSpeech(expected, heard){
   var e=normalizeSpeech(expected).split(" ").filter(Boolean);
   var h=normalizeSpeech(heard).split(" ").filter(Boolean);

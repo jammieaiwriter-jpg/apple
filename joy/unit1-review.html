@@ -74,69 +74,315 @@
 <script>
 /* ===== Unit 1 內容（內嵌，不用模組） ===== */
 var dialogueLines = [
-  {speaker:"Nick", text:"Ahh...", role:"nick", zh:"啊...", scored:false},
-  {speaker:"Abby", text:"Ouch!", role:"abby", zh:"哎呀！", scored:false},
-  {speaker:"Nick", text:"Are you okay?", role:"nick", zh:"你還好嗎？"},
-  {speaker:"Abby", text:"Yes, I am. Thank you.", role:"abby", zh:"我還好，謝謝。"},
-  {speaker:"Nick", text:"Hi, I'm Nick. What's your name?", role:"nick", zh:"嗨，我是 Nick。你叫什麼名字？"},
-  {speaker:"Abby", text:"Hello, Nick. I'm Abby.", role:"abby", zh:"你好 Nick，我是 Abby。"},
-  {speaker:"Fifi", text:"Hello, Nick. Hello, Abby. I'm Fifi.", role:"fifi", zh:"你們好，我是 Fifi。"},
-  {speaker:"Nick + Abby", text:"Hi, Fifi!", role:"together", zh:"嗨，Fifi！"},
-  {speaker:"Nick", text:"Where are we?", role:"nick", zh:"我們在哪裡？"},
-  {speaker:"Abby", text:"I don't know.", role:"abby", zh:"我不知道。"},
-  {speaker:"Nick", text:"Look, a door.", role:"nick", zh:"看，一扇門。"},
-  {speaker:"Abby", text:"Let's go!", role:"abby", zh:"我們走吧！"},
+  {
+    "speaker": "Nick",
+    "text": "Ahh...",
+    "role": "nick",
+    "zh": "啊...",
+    "scored": false
+  },
+  {
+    "speaker": "Abby",
+    "text": "Ouch!",
+    "role": "abby",
+    "zh": "哎呀！",
+    "scored": false
+  },
+  {
+    "speaker": "Nick",
+    "text": "Are you okay?",
+    "role": "nick",
+    "zh": "你還好嗎？"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Yes, I am. Thank you.",
+    "role": "abby",
+    "zh": "我還好，謝謝。"
+  },
+  {
+    "speaker": "Nick",
+    "text": "Hi, I'm Nick. What's your name?",
+    "role": "nick",
+    "zh": "嗨，我是 Nick。你叫什麼名字？"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Hello, Nick. I'm Abby.",
+    "role": "abby",
+    "zh": "你好 Nick，我是 Abby。"
+  },
+  {
+    "speaker": "Fifi",
+    "text": "Hello, Nick. Hello, Abby. I'm Fifi.",
+    "role": "fifi",
+    "zh": "你們好，我是 Fifi。"
+  },
+  {
+    "speaker": "Nick + Abby",
+    "text": "Hi, Fifi!",
+    "role": "together",
+    "zh": "嗨，Fifi！"
+  },
+  {
+    "speaker": "Nick",
+    "text": "Where are we?",
+    "role": "nick",
+    "zh": "我們在哪裡？"
+  },
+  {
+    "speaker": "Abby",
+    "text": "I don't know.",
+    "role": "abby",
+    "zh": "我不知道。"
+  },
+  {
+    "speaker": "Nick",
+    "text": "Look, a door.",
+    "role": "nick",
+    "zh": "看，一扇門。"
+  },
+  {
+    "speaker": "Abby",
+    "text": "Let's go!",
+    "role": "abby",
+    "zh": "我們走吧！"
+  }
 ];
 var vocab = [
-  {word:"hi", kk:"[haɪ]", zh:"嗨"},
-  {word:"hello", kk:"[hɛˈlo]", zh:"哈囉"},
-  {word:"I", kk:"[aɪ]", zh:"我", say:"eye"},
-  {word:"you", kk:"[ju]", zh:"你"},
-  {word:"your", kk:"[jʊr]", zh:"你的"},
-  {word:"am", kk:"[æm]", zh:"是（配 I）"},
-  {word:"is", kk:"[ɪz]", zh:"是（配 he/she）"},
-  {word:"are", kk:"[ɑr]", zh:"是（配 you）"},
-  {word:"name", kk:"[nem]", zh:"名字"},
-  {word:"what", kk:"[(h)wɑt]", zh:"什麼"},
-  {word:"ouch", kk:"[aʊtʃ]", zh:"哎喲"},
-  {word:"Nick", kk:"[nɪk]", zh:"尼克"},
-  {word:"Abby", kk:"[ˈæbɪ]", zh:"艾比"},
+  {
+    "word": "hi",
+    "kk": "[haɪ]",
+    "zh": "嗨"
+  },
+  {
+    "word": "hello",
+    "kk": "[hɛˈlo]",
+    "zh": "哈囉"
+  },
+  {
+    "word": "I",
+    "kk": "[aɪ]",
+    "zh": "我",
+    "say": "eye"
+  },
+  {
+    "word": "you",
+    "kk": "[ju]",
+    "zh": "你"
+  },
+  {
+    "word": "your",
+    "kk": "[jʊr]",
+    "zh": "你的"
+  },
+  {
+    "word": "am",
+    "kk": "[æm]",
+    "zh": "是（配 I）"
+  },
+  {
+    "word": "is",
+    "kk": "[ɪz]",
+    "zh": "是（配 he/she）"
+  },
+  {
+    "word": "are",
+    "kk": "[ɑr]",
+    "zh": "是（配 you）"
+  },
+  {
+    "word": "name",
+    "kk": "[nem]",
+    "zh": "名字"
+  },
+  {
+    "word": "what",
+    "kk": "[(h)wɑt]",
+    "zh": "什麼"
+  },
+  {
+    "word": "ouch",
+    "kk": "[aʊtʃ]",
+    "zh": "哎喲"
+  },
+  {
+    "word": "Nick",
+    "kk": "[nɪk]",
+    "zh": "尼克"
+  },
+  {
+    "word": "Abby",
+    "kk": "[ˈæbɪ]",
+    "zh": "艾比"
+  }
 ];
 /* Phonics：Unit 1 = Aa–Cc */
 // phon = 字母的「拼讀音」近似拼法（給 TTS 唸，不是字母名稱）；
 // 每個例字 blend = 拆成一個一個音（拼讀），最後會自動再唸整個字。
 // name = 字母名稱發音替身(避免唸成 capital A)；phon = 拼讀音；blend = 例字逐音拆解
 var phonics = [
-  {letter:"Aa", name:"ay", sound:"/æ/", phon:"ah", examples:[
-    {w:"ant", zh:"螞蟻", blend:["ah","nn","tuh"]},
-    {w:"mad", zh:"生氣的", blend:["mm","ah","duh"]}]},
-  {letter:"Bb", name:"bee", sound:"/b/", phon:"buh", examples:[
-    {w:"bag", zh:"袋子", blend:["buh","ah","guh"]},
-    {w:"big", zh:"大的", blend:["buh","ih","guh"]}]},
-  {letter:"Cc", name:"see", sound:"/k/", phon:"kuh", examples:[
-    {w:"cat", zh:"貓", blend:["kuh","ah","tuh"]},
-    {w:"cute", zh:"可愛的", blend:["kuh","yoo","tuh"]}]},
+  {
+    "letter": "Aa",
+    "name": "ay",
+    "sound": "/æ/",
+    "phon": "ah",
+    "examples": [
+      {
+        "w": "ant",
+        "zh": "螞蟻",
+        "blend": [
+          "ah",
+          "nn",
+          "tuh"
+        ]
+      },
+      {
+        "w": "mad",
+        "zh": "生氣的",
+        "blend": [
+          "mm",
+          "ah",
+          "duh"
+        ]
+      }
+    ]
+  },
+  {
+    "letter": "Bb",
+    "name": "bee",
+    "sound": "/b/",
+    "phon": "buh",
+    "examples": [
+      {
+        "w": "bag",
+        "zh": "袋子",
+        "blend": [
+          "buh",
+          "ah",
+          "guh"
+        ]
+      },
+      {
+        "w": "big",
+        "zh": "大的",
+        "blend": [
+          "buh",
+          "ih",
+          "guh"
+        ]
+      }
+    ]
+  },
+  {
+    "letter": "Cc",
+    "name": "see",
+    "sound": "/k/",
+    "phon": "kuh",
+    "examples": [
+      {
+        "w": "cat",
+        "zh": "貓",
+        "blend": [
+          "kuh",
+          "ah",
+          "tuh"
+        ]
+      },
+      {
+        "w": "cute",
+        "zh": "可愛的",
+        "blend": [
+          "kuh",
+          "yoo",
+          "tuh"
+        ]
+      }
+    ]
+  }
 ];
 /* 文法：be 動詞 am/is/are */
 var grammar = {
-  rule:"I 配 am；you 配 are；he / she / it 配 is。",
-  quiz:[
-    {subject:"I", answer:"am", full:"I am Nick.", zh:"我是 Nick。"},
-    {subject:"You", answer:"are", full:"You are Abby.", zh:"你是 Abby。"},
-    {subject:"She", answer:"is", full:"She is Fifi.", zh:"她是 Fifi。"},
-    {subject:"I", answer:"am", full:"I am happy.", zh:"我很開心。"},
-    {subject:"You", answer:"are", full:"You are good.", zh:"你很棒。"},
-  ],
+  "rule": "I 配 am；you 配 are；he / she / it 配 is。",
+  "quiz": [
+    {
+      "subject": "I",
+      "answer": "am",
+      "full": "I am Nick.",
+      "zh": "我是 Nick。"
+    },
+    {
+      "subject": "You",
+      "answer": "are",
+      "full": "You are Abby.",
+      "zh": "你是 Abby。"
+    },
+    {
+      "subject": "She",
+      "answer": "is",
+      "full": "She is Fifi.",
+      "zh": "她是 Fifi。"
+    },
+    {
+      "subject": "I",
+      "answer": "am",
+      "full": "I am happy.",
+      "zh": "我很開心。"
+    },
+    {
+      "subject": "You",
+      "answer": "are",
+      "full": "You are good.",
+      "zh": "你很棒。"
+    }
+  ]
 };
-var beOptions = ["am","is","are"];
+var beOptions = [
+  "am",
+  "is",
+  "are"
+];
 
 /* ===== 評分（內嵌自 unit1.mjs） ===== */
 var contractions = {"i'm":"i am","im":"i am","what's":"what is","whats":"what is","don't":"do not","dont":"do not","let's":"let us","lets":"let us"};
-function normalizeSpeech(v){
-  var s=String(v||"").toLowerCase();
-  for(var k in contractions){ s=s.split(k).join(contractions[k]); }
-  return s.replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();
+var HOMO={to:'two',too:'two',two:'two',for:'four',fore:'four',four:'four',ate:'eight',eight:'eight',won:'one',one:'one',our:'our',hour:'our',no:'no',know:'no',new:'new',knew:'new',there:'there',their:'there',theyre:'there',here:'here',hear:'here',your:'your',youre:'your',by:'by',buy:'by',bye:'by',see:'see',sea:'see',be:'be',bee:'be',right:'right',write:'right',son:'son',sun:'son',meat:'meat',meet:'meat',week:'week',weak:'week',wait:'wait',weight:'wait',pair:'pair',pear:'pair',plane:'plane',plain:'plain',road:'road',rode:'road',sale:'sale',sail:'sale',tail:'tail',tale:'tale',threw:'threw',through:'threw',wood:'wood',would:'wood',flour:'flour',flower:'flour',blue:'blue',blew:'blue',night:'night',knight:'night',hi:'hi',high:'hi',mail:'mail',male:'mail',eye:'i',i:'i',red:'red',read:'red'};
+var CN1={zero:0,oh:0,o:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9};
+var CN2={ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+var CN3={twenty:20,thirty:30,forty:40,fourty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+/* 同音字 + 數字收斂：to/two/too 在語音上是同一個音，辨識器選哪個是它的猜測、不是孩子唸錯，
+   不收斂就會無辜扣分（實際遇過只給 1 星）。數字則解決「Taipei 101」被聽成「one o one」。
+   連續個位數只在 3 位以上才合併，否則 "two to" 會被誤併成 22。 */
+function canonSeq(str){
+  var words=String(str||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+  words=words.map(function(w){return HOMO[w]!==undefined?HOMO[w]:w;});
+  var out=[],i=0;
+  while(i<words.length){
+    var w=words[i],v=null;
+    if(/^\d+$/.test(w)){out.push(w);i++;continue}
+    if(CN3[w]!==undefined){v=CN3[w];if(CN1[words[i+1]]>0){v+=CN1[words[i+1]];i++}}
+    else if(CN2[w]!==undefined)v=CN2[w];
+    else if(CN1[w]!==undefined)v=CN1[w];
+    if(v===null){out.push(w);i++;continue}
+    while(words[i+1]==='hundred'||words[i+1]==='thousand'){
+      v=v*(words[i+1]==='hundred'?100:1000);i++;
+      if(words[i+1]==='and')i++;
+      var nx=words[i+1],add=null;
+      if(nx!==undefined){
+        if(CN3[nx]!==undefined){add=CN3[nx];if(CN1[words[i+2]]>0){add+=CN1[words[i+2]];i++}}
+        else if(CN2[nx]!==undefined)add=CN2[nx];
+        else if(CN1[nx]>0)add=CN1[nx];
+        if(add!==null){v+=add;i++}
+      }
+    }
+    out.push(String(v));i++;
+  }
+  var m=[],run=[];
+  function flush(){ if(run.length>=3) m.push(run.join('')); else m=m.concat(run); run=[]; }
+  out.forEach(function(t){ if(/^\d$/.test(t)) run.push(t); else { flush(); m.push(t); } });
+  flush();
+  return m;
 }
+function normalizeSpeech(v){var s=String(v||"").toLowerCase();for(var k in contractions){s=s.split(k).join(contractions[k]);}return canonSeq(s).join(" ");}
 function scoreSpeech(expected, heard){
   var e=normalizeSpeech(expected).split(" ").filter(Boolean);
   var h=normalizeSpeech(heard).split(" ").filter(Boolean);
@@ -394,10 +640,38 @@ function wgStart(){ CH.wordgame.start(); }
 
 /* ===== 對話遊戲：念一句，選對的回答 ===== */
 var talkPairs=[
-  {q:"Are you okay?", a:"Yes, I am. Thank you.", d:["Let's go!","I don't know."]},
-  {q:"Hi, I'm Nick. What's your name?", a:"Hello, Nick. I'm Abby.", d:["Hi, Fifi!","Look, a door."]},
-  {q:"Where are we?", a:"I don't know.", d:["Yes, I am. Thank you.","Hello, Nick. I'm Abby."]},
-  {q:"Look, a door.", a:"Let's go!", d:["Ouch!","I don't know."]},
+  {
+    "q": "Are you okay?",
+    "a": "Yes, I am. Thank you.",
+    "d": [
+      "Let's go!",
+      "I don't know."
+    ]
+  },
+  {
+    "q": "Hi, I'm Nick. What's your name?",
+    "a": "Hello, Nick. I'm Abby.",
+    "d": [
+      "Hi, Fifi!",
+      "Look, a door."
+    ]
+  },
+  {
+    "q": "Where are we?",
+    "a": "I don't know.",
+    "d": [
+      "Yes, I am. Thank you.",
+      "Hello, Nick. I'm Abby."
+    ]
+  },
+  {
+    "q": "Look, a door.",
+    "a": "Let's go!",
+    "d": [
+      "Ouch!",
+      "I don't know."
+    ]
+  }
 ];
 function qTalk(pi){ var pair=talkPairs[pi]; return { mount:function(qEl,outEl,phase,settle){
   var firstTry=true;

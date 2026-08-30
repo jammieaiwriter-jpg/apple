@@ -58,7 +58,7 @@
   <p class="hint">用平板的 Chrome 分頁開。一關一關闖：先按「🔊 聽」，再按「🎤 開始念」，念完按「⏹ 念好了」就打星。遊戲關不用麥克風。</p>
   <div class="progress-bar"><div class="dots" id="dots"></div></div>
   <div id="stages"></div>
-  <div class="banner" id="banner"><div class="big">🎉 全部闖關成功！</div><div class="zh">第一冊 Lesson 11 7 關全破關 ✨</div></div>
+  <div class="banner" id="banner"><div class="big">🎉 全部闖關成功！</div><div class="zh">第一冊 Lesson 11 7 關全破關 ✨</div><button class="next" type="button" id="send-report">📨 請家長確認，傳送完成通知</button><div class="zh" id="report-status"></div></div>
 </div>
 <script>
 var dialogueLines = [
@@ -261,7 +261,44 @@ var stemWords = [
   }
 ];
 var contractions={"i'm":"i am","im":"i am","what's":"what is","whats":"what is","don't":"do not","dont":"do not","let's":"let us","lets":"let us"};
-function normalizeSpeech(v){var s=String(v||"").toLowerCase();for(var k in contractions){s=s.split(k).join(contractions[k]);}return s.replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();}
+var HOMO={to:'two',too:'two',two:'two',for:'four',fore:'four',four:'four',ate:'eight',eight:'eight',won:'one',one:'one',our:'our',hour:'our',no:'no',know:'no',new:'new',knew:'new',there:'there',their:'there',theyre:'there',here:'here',hear:'here',your:'your',youre:'your',by:'by',buy:'by',bye:'by',see:'see',sea:'see',be:'be',bee:'be',right:'right',write:'right',son:'son',sun:'son',meat:'meat',meet:'meat',week:'week',weak:'week',wait:'wait',weight:'wait',pair:'pair',pear:'pair',plane:'plane',plain:'plain',road:'road',rode:'road',sale:'sale',sail:'sale',tail:'tail',tale:'tale',threw:'threw',through:'threw',wood:'wood',would:'wood',flour:'flour',flower:'flour',blue:'blue',blew:'blue',night:'night',knight:'night',hi:'hi',high:'hi',mail:'mail',male:'mail',eye:'i',i:'i',red:'red',read:'red'};
+var CN1={zero:0,oh:0,o:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9};
+var CN2={ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+var CN3={twenty:20,thirty:30,forty:40,fourty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+/* 同音字 + 數字收斂：to/two/too 在語音上是同一個音，辨識器選哪個是它的猜測、不是孩子唸錯，
+   不收斂就會無辜扣分（實際遇過只給 1 星）。數字則解決「Taipei 101」被聽成「one o one」。
+   連續個位數只在 3 位以上才合併，否則 "two to" 會被誤併成 22。 */
+function canonSeq(str){
+  var words=String(str||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/s+/g,' ').trim().split(' ').filter(Boolean);
+  words=words.map(function(w){return HOMO[w]!==undefined?HOMO[w]:w;});
+  var out=[],i=0;
+  while(i<words.length){
+    var w=words[i],v=null;
+    if(/^d+$/.test(w)){out.push(w);i++;continue}
+    if(CN3[w]!==undefined){v=CN3[w];if(CN1[words[i+1]]>0){v+=CN1[words[i+1]];i++}}
+    else if(CN2[w]!==undefined)v=CN2[w];
+    else if(CN1[w]!==undefined)v=CN1[w];
+    if(v===null){out.push(w);i++;continue}
+    while(words[i+1]==='hundred'||words[i+1]==='thousand'){
+      v=v*(words[i+1]==='hundred'?100:1000);i++;
+      if(words[i+1]==='and')i++;
+      var nx=words[i+1],add=null;
+      if(nx!==undefined){
+        if(CN3[nx]!==undefined){add=CN3[nx];if(CN1[words[i+2]]>0){add+=CN1[words[i+2]];i++}}
+        else if(CN2[nx]!==undefined)add=CN2[nx];
+        else if(CN1[nx]>0)add=CN1[nx];
+        if(add!==null){v+=add;i++}
+      }
+    }
+    out.push(String(v));i++;
+  }
+  var m=[],run=[];
+  function flush(){ if(run.length>=3) m.push(run.join('')); else m=m.concat(run); run=[]; }
+  out.forEach(function(t){ if(/^d$/.test(t)) run.push(t); else { flush(); m.push(t); } });
+  flush();
+  return m;
+}
+function normalizeSpeech(v){var s=String(v||"").toLowerCase();for(var k in contractions){s=s.split(k).join(contractions[k]);}return canonSeq(s).join(" ");}
 function scoreSpeech(expected,heard){var e=normalizeSpeech(expected).split(" ").filter(Boolean);var h=normalizeSpeech(heard).split(" ").filter(Boolean);if(!h.length)return{stars:0};var cur=0,matched=0;for(var i=0;i<e.length;i++){var at=h.indexOf(e[i],cur);if(at!==-1){matched++;cur=at+1;}}var coverage=matched/Math.max(e.length,1);var penalty=Math.max(h.length-e.length-2,0)*.04;var pct=Math.max(0,Math.min(1,coverage-penalty));var stars=Math.ceil(pct*5+.25);if(matched===e.length)stars=5;if(matched===0)stars=1;if(stars===0&&h.length)stars=1;return{stars:stars};}
 var scores=[],vScores=[],cleared={};
 var BAD_VOICE=/Fred|Albert|Zarvox|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed|Rishi/i;
@@ -274,12 +311,32 @@ function rec(id,cb){var C=SR(),out=document.getElementById(id+'-out'),start=docu
 var STAGES=[{key:"dialog",icon:"💬",title:"對話跟讀",sub:"聽一句，跟著唸一句"},{key:"vocab",icon:"🔤",title:"單字跟讀",sub:"每個重點字念念看"},{key:"spell",icon:"✏️",title:"單字填空",sub:"聽單字，把字母填進空格"},{key:"match",icon:"🎯",title:"聽音選字",sub:"聽英文，點對的字"},{key:"talk",icon:"🗣️",title:"對話配對",sub:"聽問句，選回答"},{key:"check",icon:"✅",title:"對錯偵探",sub:"句子對的圈、錯的叉"},{key:"stem",icon:"🔬",title:"STEM 闖關",sub:"聽英文解釋，選意思"}];
 function starStr(n){var s='';for(var i=0;i<5;i++)s+=i<n?'⭐':'☆';return s;} function js(x){return JSON.stringify(x).replace(/"/g,'&quot;');} function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function markCleared(key){if(cleared[key])return;cleared[key]=true;renderDots();markStageUI(key);checkAllDone();} function markStageUI(key){var st=document.getElementById('stage-'+key);if(!st)return;st.classList.toggle('cleared',!!cleared[key]);var b=document.getElementById('badge-'+key);if(b)b.textContent=cleared[key]?'✅ 過關':'';} function checkAllDone(){var all=STAGES.every(function(s){return cleared[s.key];});document.getElementById('banner').classList.toggle('show',all);}
+/* ===== 家長回報（比照 joy：全破關後由孩子主動按鈕，經 Cloudflare proxy 送 Telegram，token 不落地） ===== */
+var NOTIFY_ENDPOINT='https://bobo-math-notify.bobo-math-grader.workers.dev';
+var speechAttempts={dialog:0,vocab:0};
+function reportText(){
+  var dialogStars=scores.reduce(function(a,n){return a+(n||0);},0);
+  var vocabStars=vScores.reduce(function(a,n){return a+(n||0);},0);
+  return '💎 貝兒美語 第一冊 Lesson 11 複習完成，請家長確認。\n'
+    +'7 關全部過關：'+STAGES.map(function(s){return s.title;}).join('、')+'。\n'
+    +'口說嘗試：對話 '+speechAttempts.dialog+' 次、單字 '+speechAttempts.vocab+' 次。\n'
+    +'星星紀錄：對話 '+dialogStars+' / '+(dialogueLines.length*5)+' 顆、單字 '+vocabStars+' / '+(vocab.length*5)+' 顆。\n'
+    +'孩子已主動按下「請家長確認」。';
+}
+function sendReport(){
+  var btn=document.getElementById('send-report'),st=document.getElementById('report-status');
+  btn.disabled=true;st.textContent='通知傳送中…';
+  fetch(NOTIFY_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:reportText(),target:'diamond'})})
+    .then(function(r){if(!r.ok)throw new Error('send failed');return r.json();})
+    .then(function(){st.textContent='已傳送給媽媽 📨';btn.textContent='已傳送完成通知';})
+    .catch(function(){st.textContent='暫時無法傳送，請再按一次。';btn.disabled=false;});
+}
 function renderDots(){document.getElementById('dots').innerHTML=STAGES.map(function(s){return '<div class="dot'+(cleared[s.key]?' done':'')+'" onclick="goStage(\''+s.key+'\')"><div class="bubble">'+(cleared[s.key]?'✓':s.icon)+'</div><div class="lbl">'+s.title+'</div></div>';}).join('');} function goStage(key){var e=document.getElementById('stage-'+key);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});}
 function buildShell(){document.getElementById('stages').innerHTML=STAGES.map(function(s){return '<section class="stage'+(cleared[s.key]?' cleared':'')+'" id="stage-'+s.key+'"><div class="stage-head"><span class="stage-icon">'+s.icon+'</span><span class="stage-title">'+s.title+'</span><span class="stage-badge" id="badge-'+s.key+'">'+(cleared[s.key]?'✅ 過關':'')+'</span></div><p class="stage-sub">'+s.sub+'</p><div id="body-'+s.key+'"></div></section>';}).join('');}
 function buildDialog(){var html='';dialogueLines.forEach(function(l,i){var id='d'+i;html+='<div class="card"><div class="who">'+l.speaker+'</div><div class="en">'+l.text+'</div><div class="zh">'+l.zh+'</div><div class="row"><button class="act listen" onclick="speak('+js(l.text)+',\''+l.role+'\')">🔊 聽</button><button class="act start" id="'+id+'-start" onclick="recLine('+i+')">🎤 開始念</button><button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button></div><div class="out" id="'+id+'-out"></div><div class="stars" id="'+id+'-stars">'+starStr(scores[i]||0)+'</div></div>';});document.getElementById('body-dialog').innerHTML=html;}
-function recLine(i){rec('d'+i,function(heard){if(!heard)return;var s=scoreSpeech(dialogueLines[i].text,heard).stars;scores[i]=Math.max(scores[i]||0,s);document.getElementById('d'+i+'-stars').textContent=starStr(s);document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';if(dialogueLines.every(function(_,k){return(scores[k]||0)>=3;}))markCleared('dialog');});}
+function recLine(i){speechAttempts.dialog++;rec('d'+i,function(heard){if(!heard)return;var s=scoreSpeech(dialogueLines[i].text,heard).stars;scores[i]=Math.max(scores[i]||0,s);document.getElementById('d'+i+'-stars').textContent=starStr(s);document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';if(dialogueLines.every(function(_,k){return(scores[k]||0)>=1;/* 門檻對齊 joy：念過就過關，星星只當回饋，不擋關 */}))markCleared('dialog');});}
 function buildVocab(){var html='';vocab.forEach(function(w,i){var id='v'+i;html+='<div class="card"><div class="en">'+w.emo+' '+w.word+' <span class="kk">'+w.kk+'</span></div><div class="zh">'+w.zh+'</div><div class="row"><button class="act listen" onclick="speak('+js(w.word)+',\'together\')">🔊 聽</button><button class="act start" id="'+id+'-start" onclick="recVocab('+i+')">🎤 開始念</button><button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button></div><div class="out" id="'+id+'-out"></div><div class="stars" id="'+id+'-stars">'+starStr(vScores[i]||0)+'</div></div>';});document.getElementById('body-vocab').innerHTML=html;}
-function recVocab(i){rec('v'+i,function(heard){if(!heard)return;var s=scoreSpeech(vocab[i].word,heard).stars;vScores[i]=Math.max(vScores[i]||0,s);document.getElementById('v'+i+'-stars').textContent=starStr(s);document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';if(vocab.every(function(_,k){return(vScores[k]||0)>=3;}))markCleared('vocab');});}
+function recVocab(i){speechAttempts.vocab++;rec('v'+i,function(heard){if(!heard)return;var s=scoreSpeech(vocab[i].word,heard).stars;vScores[i]=Math.max(vScores[i]||0,s);document.getElementById('v'+i+'-stars').textContent=starStr(s);document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';if(vocab.every(function(_,k){return(vScores[k]||0)>=1;/* 門檻對齊 joy：念過就過關，星星只當回饋，不擋關 */}))markCleared('vocab');});}
 function disableAll(box){[].forEach.call(box.querySelectorAll('button'),function(x){x.disabled=true;});} function ckEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');} function ckHL(text,tok,cls){var i=text.indexOf(tok);if(i<0)return ckEsc(text);return ckEsc(text.slice(0,i))+'<span class="'+cls+'">'+ckEsc(tok)+'</span>'+ckEsc(text.slice(i+tok.length));}
 function ckTokens(text){return String(text).match(/[A-Za-z0-9']+|[^\sA-Za-z0-9']/g)||[];}
 var CH={}; function Challenge(key,bodyId,build){this.key=key;this.bodyId=bodyId;this.build=build;CH[key]=this;} Challenge.prototype.start=function(){this.qs=this.build();this.order=shuffle(this.qs.map(function(_,i){return i;}));this.phase='answer';this.pos=0;this.correct=0;this.total=this.qs.length;this.wrong=[];this._render();}; Challenge.prototype._render=function(){var self=this,b=document.getElementById(this.bodyId);if(this.phase==='answer'){if(this.pos>=this.order.length){if(this.wrong.length===0){this._congrats();return;}b.innerHTML='<div class="card" style="text-align:center"><div class="big">✅ 作答已完成！</div><div class="zh">答對 '+this.correct+' / '+this.total+'　還有 '+this.wrong.length+' 題要再練習一次</div><button class="next" id="ch-retry">開始錯題挑戰 →</button></div>';b.querySelector('#ch-retry').onclick=function(){self.phase='retry';self.pos=0;self._render();};return;}this._ask(this.qs[this.order[this.pos]],'answer');return;}if(this.wrong.length===0){this._congrats();return;}if(this.pos>=this.wrong.length)this.pos=0;this._ask(this.wrong[this.pos],'retry');}; Challenge.prototype._ask=function(q,phase){var self=this,b=document.getElementById(this.bodyId);var head=(phase==='answer')?'<div class="zh">第 '+(this.pos+1)+' / '+this.total+' 題　答對 '+this.correct+'</div>':'<div class="zh">🔁 錯題挑戰　還有 '+this.wrong.length+' 題</div>';b.innerHTML='<div class="card" style="text-align:center">'+head+'<div class="ch-q"></div><div class="out ch-out"></div><div class="ch-foot"></div></div>';var settled=false;q.mount(b.querySelector('.ch-q'),b.querySelector('.ch-out'),phase,function(firstTryCorrect){if(settled)return;settled=true;if(phase==='answer'){if(firstTryCorrect)self.correct++;else self.wrong.push(q);}else{var w=self.wrong.indexOf(q);if(w>=0)self.wrong.splice(w,1);}var foot=b.querySelector('.ch-foot');foot.innerHTML='<button class="next">下一題 →</button>';foot.querySelector('button').onclick=function(){if(phase==='answer')self.pos++;self._render();};});}; Challenge.prototype._congrats=function(){document.getElementById(this.bodyId).innerHTML='<div class="card" style="text-align:center"><div class="big">🎉 恭喜完成！</div><div class="zh">這一關全部過關啦 ✨</div><div class="row" style="justify-content:center"><button class="act start" onclick="CH[\''+this.key+'\'].start()">再玩一次</button></div></div>';markCleared(this.key);};
@@ -290,6 +347,7 @@ function qTalk(pi){var pair=talkPairs[pi];return{mount:function(qEl,outEl,phase,
 function qCheck(ci){var it=checkItems[ci];return{mount:function(qEl,outEl,phase,settle){var firstTry=true;qEl.innerHTML='<div class="en">「'+ckEsc(it.text)+'」</div><div class="zh">這句寫得對嗎？</div><div class="row" id="c-row" style="justify-content:center;margin-top:6px"><button class="opt" data-v="1">⭕ 對</button><button class="opt gem" data-v="0">❌ 錯</button></div><div class="reveal" id="c-reveal"></div>';var reveal=document.getElementById('c-reveal');function showFix(){reveal.innerHTML='<div style="color:var(--green);font-weight:900;font-size:18px">✅ 找到了！</div><div class="reveal">錯在紅色的地方<br><span class="sent">'+ckHL(it.text,it.bad,'err')+'</span><br>✏️ 正確要寫成：<br><span class="sent">'+ckHL(it.correct,it.fixTok,'fixh')+'</span><br><small style="color:var(--muted)">'+it.fix+'</small></div>';}function startDrill(intro){var toks=ckTokens(it.text),badIdx=-1;for(var i=0;i<toks.length;i++){if(toks[i]===it.bad){badIdx=i;break;}}if(badIdx<0){showFix();settle(firstTry);return;}reveal.innerHTML='<div class="zh" style="font-weight:900">'+intro+'</div><div class="zh">點一下你覺得寫錯的地方（每個字和標點都看一看）</div><div class="game-grid" id="c-toks">'+toks.map(function(t,k){return '<button class="opt gem" data-ti="'+k+'">'+ckEsc(t)+'</button>';}).join('')+'</div>';var grid=document.getElementById('c-toks');grid.onclick=function(e){var btn=e.target.closest('button[data-ti]');if(!btn||btn.disabled)return;var k=+btn.dataset.ti;if(k===badIdx){disableAll(grid);showFix();settle(firstTry);}else{firstTry=false;btn.disabled=true;btn.style.opacity=.35;outEl.textContent='🔍 不是這個，再找找看';}};}var row=document.getElementById('c-row');row.onclick=function(e){var btn=e.target.closest('button[data-v]');if(!btn||btn.disabled)return;var saysOk=(btn.dataset.v==='1');if(it.ok){if(saysOk){disableAll(row);reveal.innerHTML='<div style="color:var(--green);font-weight:900;font-size:18px">✅ 答對了！</div><div class="reveal">這句寫得<b>對</b><br><span class="sent">'+ckEsc(it.text)+'</span></div>';settle(true);}else{if(phase==='retry'){outEl.textContent='❌ 再想想看，這句其實沒問題';return;}disableAll(row);reveal.innerHTML='<div style="color:#e11d48;font-weight:900;font-size:18px">❌ 其實這句是對的喔</div><div class="reveal"><span class="sent">'+ckEsc(it.text)+'</span></div>';settle(false);}}else{if(saysOk){if(phase==='retry'){outEl.textContent='❌ 再想想，這句其實有地方寫錯囉';return;}disableAll(row);firstTry=false;startDrill('這句其實有地方寫錯囉，一起來找找看！');}else{disableAll(row);startDrill('沒錯！這句怪怪的～那…錯在哪裡？');}}};}};}
 function qStemWord(t){return{mount:function(qEl,outEl,phase,settle){var firstTry=true;qEl.innerHTML='<div class="en" style="font-size:19px;line-height:1.4">"'+stemWords[t].en+'"</div><div class="row" style="justify-content:center"><button class="act listen" id="s-listen">🔊 再聽一次</button></div><div class="zh">這句話在說哪個字？👇</div><div class="game-grid" id="s-grid">'+shuffle(stemWords.map(function(_,i){return i;})).map(function(i){return '<button class="opt gem" data-i="'+i+'">'+stemWords[i].word+'</button>';}).join('')+'</div>';document.getElementById('s-listen').onclick=function(){speak(stemWords[t].en,'together');};var grid=document.getElementById('s-grid');grid.onclick=function(e){var btn=e.target.closest('button[data-i]');if(!btn||btn.disabled)return;var i=+btn.dataset.i;if(i===t){outEl.textContent='✅ 答對了！'+stemWords[t].word+' = '+stemWords[t].zh;disableAll(grid);speak(stemWords[t].word,'together');settle(firstTry);}else{firstTry=false;outEl.textContent='❌ 你選的是「'+stemWords[i].word+'」。中文提示：'+stemWords[t].desc;speak(stemWords[t].en,'together');}};setTimeout(function(){autoSpeak(stemWords[t].en,'together');},250);}};}
 new Challenge('spell','body-spell',function(){return vocab.map(function(_,i){return qSpell(i);});}); new Challenge('match','body-match',function(){return vocab.map(function(_,i){return qMatch(i);});}); new Challenge('talk','body-talk',function(){return talkPairs.map(function(_,i){return qTalk(i);});}); new Challenge('check','body-check',function(){return checkItems.map(function(_,i){return qCheck(i);});}); new Challenge('stem','body-stem',function(){return stemWords.map(function(_,i){return qStemWord(i);});});
+document.getElementById('send-report').onclick=sendReport;
 buildShell();buildDialog();buildVocab();CH.spell.start();CH.match.start();CH.talk.start();CH.check.start();CH.stem.start();renderDots();STAGES.forEach(function(s){markStageUI(s.key);});checkAllDone();if(window.speechSynthesis)speechSynthesis.getVoices();document.addEventListener('pointerdown',primeVoice,true);document.addEventListener('touchstart',primeVoice,true);
 </script>
 </body>

@@ -361,15 +361,20 @@ function buildDialog(){
   });
   document.getElementById('body-dialog').innerHTML=html;
 }
+/* 過關門檻（Emma 2026-09-03 收緊）：每句/每字要拿滿 5 顆星，不然至少開口念滿 5 遍（只算有收到聲音的那幾遍） */
+var dAtt=[],vAtt=[];
+function itemPassed(best,att){return best===5||att>=5;}
+function passHint(best,att){return itemPassed(best,att)?'　✅ 過關':'　（拿到 5 星就過，不然要念滿 5 遍，這是第 '+att+' 遍）';}
 function recLine(i){
   speechAttempts.dialog++;
   rec('d'+i,function(heard){
     if(!heard)return;
+    dAtt[i]=(dAtt[i]||0)+1;
     var s=scoreSpeech(dialogueLines[i].text,heard).stars;
     scores[i]=Math.max(scores[i]||0,s);
-    document.getElementById('d'+i+'-stars').textContent=starStr(s);
-    document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
-    if(dialogueLines.every(function(_,k){return (scores[k]||0)>=1;})) markCleared('dialog','💬 對話跟讀全部念完，過關！');
+    document.getElementById('d'+i+'-stars').textContent=starStr(scores[i]);
+    document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星'+passHint(scores[i],dAtt[i]);
+    if(dialogueLines.every(function(_,k){return itemPassed(scores[k]||0,dAtt[k]||0);})) markCleared('dialog','💬 對話跟讀全部念完，過關！');
   });
 }
 
@@ -391,11 +396,12 @@ function recVocab(i){
   speechAttempts.vocab++;
   rec('v'+i,function(heard){
     if(!heard)return;
+    vAtt[i]=(vAtt[i]||0)+1;
     var s=scoreSpeech(vocab[i].word,heard).stars;
     vScores[i]=Math.max(vScores[i]||0,s);
-    document.getElementById('v'+i+'-stars').textContent=starStr(s);
-    document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
-    if(vocab.every(function(_,k){return (vScores[k]||0)>=1;})) markCleared('vocab','🔤 10 個招呼語跟讀全部念完，過關！');
+    document.getElementById('v'+i+'-stars').textContent=starStr(vScores[i]);
+    document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星'+passHint(vScores[i],vAtt[i]);
+    if(vocab.every(function(_,k){return itemPassed(vScores[k]||0,vAtt[k]||0);})) markCleared('vocab','🔤 10 個招呼語跟讀全部念完，過關！');
   });
 }
 

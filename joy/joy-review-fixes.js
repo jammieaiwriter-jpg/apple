@@ -265,15 +265,53 @@
     if(button){ button.disabled=true; button.textContent='這一區已完成'; }
     renderParentCard();
   }
-  function addManualFinish(key,panelId){
-    var panel=document.getElementById(panelId);
-    if(!panel || document.getElementById('joy-finish-'+key)) return;
-    var wrap=document.createElement('div'); wrap.className='joy-section-finish';
-    wrap.innerHTML='<button class="next" type="button" id="joy-finish-'+key+'">我已練習完這一區</button>';
-    panel.appendChild(wrap);
-    document.getElementById('joy-finish-'+key).onclick=function(){ markComplete(key); };
+  /* 口說過關門檻（Emma 2026-09-03，比照小鑽石）：每句/每字要拿滿 5 顆星，
+     或念滿 5 遍（只算真的有收到聲音、進到評分的那幾遍）。取代原本的「我已練習完這一區」自我申報按鈕。 */
+  var joyBest={dialog:[],vocab:[]},joyAtt={dialog:[],vocab:[]},lastRec=null;
+  function itemPassed(best,att){ return best===5||att>=5; }
+  function speechList(key){ return key==='dialog'?(window.dialogueLines||[]):(window.vocab||[]); }
+  function speechText(key,item){ return key==='dialog'?item.text:item.word; }
+  function remainCount(key){
+    var list=speechList(key),n=0;
+    for(var i=0;i<list.length;i++){ if(!itemPassed(joyBest[key][i]||0,joyAtt[key][i]||0)) n++; }
+    return n;
   }
-  function reportText(){
+  function addAutoStatus(key,panelId){
+    var panel=document.getElementById(panelId);
+    if(!panel || document.getElementById('joy-status-'+key)) return;
+    var d=document.createElement('div'); d.className='joy-flow-note'; d.id='joy-status-'+key;
+    panel.appendChild(d); refreshStatus(key);
+  }
+  function refreshStatus(key){
+    var d=document.getElementById('joy-status-'+key); if(!d) return;
+    var n=remainCount(key);
+    if(n===0){ d.textContent='✅ 這一區達標，自動過關！'; if(!completed[key]) markComplete(key); }
+    else d.textContent='還有 '+n+' 個沒達標（每個要拿 5 顆星，或念滿 5 遍）。';
+  }
+  function trackSpeechScores(){
+    if(typeof window.scoreSpeech!=='function' || window.scoreSpeech.__joyThreshold) return;
+    var old=window.scoreSpeech;
+    window.scoreSpeech=function(expected,heard){
+      var r=old(expected,heard);
+      var key=null,idx=-1;
+      if(lastRec && speechList(lastRec.key)[lastRec.idx] && speechText(lastRec.key,speechList(lastRec.key)[lastRec.idx])===expected){
+        key=lastRec.key; idx=lastRec.idx;
+      }else{
+        ['dialog','vocab'].some(function(k){
+          var list=speechList(k);
+          for(var i=0;i<list.length;i++){ if(speechText(k,list[i])===expected){ key=k; idx=i; return true; } }
+          return false;
+        });
+      }
+      if(key!==null){
+        joyAtt[key][idx]=(joyAtt[key][idx]||0)+1;
+        joyBest[key][idx]=Math.max(joyBest[key][idx]||0,(r&&r.stars)||0);
+        refreshStatus(key);
+      }
+      return r;
+    };
+    window.scoreSpeech.__joyThreshold=true;
+  }  function reportText(){
     var sections=Object.keys(completed).filter(function(k){return completed[k];}).length;
     var dialogStars=(window.scores||[]).reduce(function(a,n){return a+(n||0);},0);
     var vocabStars=(window.vScores||[]).reduce(function(a,n){return a+(n||0);},0);
@@ -298,32 +336,80 @@
     if(old) return;
     var card=document.createElement('section');
     card.id='joy-parent-card'; card.className='joy-parent-card';
-    card.innerHTML='<div class="big">全部完成！</div><div class="zh">不需要每一題都是五顆星，完成練習就可以請家長確認。</div><button class="next" type="button" id="joy-send-report">請家長確認，傳送完成通知</button><div class="joy-report-status" id="joy-report-status"></div>';
+    card.innerHTML='<div class="big">全部完成！</div><div class="zh">五區都達標了，按下按鈕請家長確認。</div><button class="next" type="button" id="joy-send-report">請家長確認，傳送完成通知</button><div class="joy-report-status" id="joy-report-status"></div>';
     document.querySelector('.wrap').appendChild(card);
     document.getElementById('joy-send-report').onclick=function(){ sendTelegram(this,document.getElementById('joy-report-status')); };
   }
   function wrapSpeechAttempts(){
     if(typeof window.recLine==='function' && !window.recLine.__joyTracked){
       var oldLine=window.recLine;
-      window.recLine=function(i){ speechAttempts.dialog++; return oldLine(i); };
+      window.recLine=function(i){ speechAttempts.dialog++; lastRec={key:'dialog',idx:i}; return oldLine(i); };
       window.recLine.__joyTracked=true;
     }
     if(typeof window.recVocab==='function' && !window.recVocab.__joyTracked){
       var oldVocab=window.recVocab;
-      window.recVocab=function(i){ speechAttempts.vocab++; return oldVocab(i); };
+      window.recVocab=function(i){ speechAttempts.vocab++; lastRec={key:'vocab',idx:i}; return oldVocab(i); };
       window.recVocab.__joyTracked=true;
     }
   }
+  /* ===== 從預習頁搬過來的內容（2026-09-03）：整段連播、文法聽跟念、字母單音 ===== */
+  var playAllStop=false;
+  function addPlayAll(){
+    var panel=document.getElementById('panel-dialog');
+    if(!panel || document.getElementById('joy-playall') || typeof window.speak!=='function') return;
+    var bar=document.createElement('div'); bar.className='joy-section-finish';
+    bar.innerHTML='<button class="next" type="button" id="joy-playall">▶️ 聽整段對話</button> <button class="next" type="button" id="joy-playall-stop" style="display:none">⏹ 停止</button>';
+    panel.insertBefore(bar,panel.firstChild);
+    var btn=document.getElementById('joy-playall'),stop=document.getElementById('joy-playall-stop');
+    function done(){ playAllStop=true; btn.style.display=''; stop.style.display='none'; }
+    function playFrom(i){
+      var dl=window.dialogueLines||[];
+      if(playAllStop || i>=dl.length){ done(); return; }
+      var startBtn=document.getElementById('d'+i+'-start');
+      var card=startBtn&&startBtn.closest?startBtn.closest('.card'):null;
+      if(card&&card.scrollIntoView) card.scrollIntoView({behavior:'smooth',block:'center'});
+      window.speak(dl[i].text, dl[i].role, function(){ setTimeout(function(){ playFrom(i+1); },450); });
+    }
+    btn.onclick=function(){ playAllStop=false; btn.style.display='none'; stop.style.display=''; playFrom(0); };
+    stop.onclick=function(){ done(); try{window.speechSynthesis.cancel();}catch(e){} };
+  }
+  function addGrammarListen(){
+    var panel=document.getElementById('panel-grammar');
+    var g=window.grammar;
+    if(!panel || !g || !g.quiz || document.getElementById('joy-gram-listen') || typeof window.speak!=='function') return;
+    var box=document.createElement('div'); box.id='joy-gram-listen'; box.className='card';
+    var html='<div class="zh">先聽、跟著念一遍，再做下面的測驗。</div>';
+    g.quiz.forEach(function(q,i){
+      html+='<div class="row" style="margin-top:8px"><button class="act listen" onclick="speak('+JSON.stringify(q.full).replace(/"/g,'&quot;')+',\'together\')">🔊 '+q.full+'</button><span class="zh">'+(q.zh||'')+'</span></div>';
+    });
+    box.innerHTML=html;
+    var test=document.getElementById('grammar-test');
+    if(test) panel.insertBefore(box,test); else panel.appendChild(box);
+  }
+  function addLetterSounds(){
+    var panel=document.getElementById('panel-phonics');
+    var ph=window.phonics;
+    if(!panel || !ph || !ph.length || panel.querySelector('.joy-letter-sound') || typeof window.speak!=='function') return;
+    var rows=panel.querySelectorAll('.card .row');
+    ph.forEach(function(p,i){
+      var row=rows[i]; if(!row || !p.phon) return;
+      row.insertAdjacentHTML('afterbegin','<button class="act listen joy-letter-sound" onclick="speak('+JSON.stringify(p.phon).replace(/"/g,'&quot;')+',\'together\')">🔡 '+p.letter+' 的音 '+(p.sound||'')+'</button>');
+    });
+  }
   function enableSinglePageFlow(){
     var tabs=document.querySelector('.tabs'); if(tabs) tabs.remove();
-    addHeading('panel-dialog','對話','先聽、再開口念；星星只作為鼓勵。');
-    addHeading('panel-vocab','單字','認識單字，再念一次。');
+    addHeading('panel-dialog','對話','先聽、再開口念；每句要拿 5 顆星，或念滿 5 遍才過關。');
+    addHeading('panel-vocab','單字','每個單字要拿 5 顆星，或念滿 5 遍才過關。');
     addHeading('panel-phonics','發音','完成聽音挑戰。');
     addHeading('panel-grammar','文法','完成文法挑戰。');
     addHeading('panel-wordgame','單字遊戲','完成聽字挑戰。');
-    addManualFinish('dialog','panel-dialog');
-    addManualFinish('vocab','panel-vocab');
+    addAutoStatus('dialog','panel-dialog');
+    addAutoStatus('vocab','panel-vocab');
+    addPlayAll();
+    addGrammarListen();
+    addLetterSounds();
     wrapSpeechAttempts();
+    trackSpeechScores();
     if(window.CH && CH.phonics) CH.phonics.start();
     if(window.CH && CH.grammar) CH.grammar.start();
     if(typeof window.wgStart==='function') window.wgStart();

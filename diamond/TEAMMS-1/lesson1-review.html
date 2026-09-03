@@ -279,10 +279,18 @@ function pickVoice(role){
   var en=vs.filter(function(v){return /en[-_](US|GB|AU)/i.test(v.lang);});
   if(!en.length) return null;
   var good=en.filter(function(v){return !BAD_VOICE.test(v.name);}); if(!good.length) good=en;
-  function best(list){ return list.find(function(v){return /enhanced|premium|siri/i.test(v.name+'|'+(v.voiceURI||''));})||list[0]; }
+  /* 兩輪選聲（2026-09-03）：第一輪只挑名單中有增強/Siri 版的名字，避免被排更前面的內建普通音擋住 */
+  var ENH=/enhanced|premium|siri/i;
+  function isEnh(v){ return ENH.test(v.name+'|'+(v.voiceURI||'')); }
   var pref = role==="sam"?["Aaron","Tom","Nathan","Arthur","Daniel","Alex"]:["Samantha","Allison","Ava","Karen","Aaron"];
-  for(var i=0;i<pref.length;i++){ var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;}); if(hits.length) return best(hits); }
-  return best(good);
+  for(var pass=0;pass<2;pass++){
+    for(var i=0;i<pref.length;i++){
+      var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;});
+      if(pass===0) hits=hits.filter(isEnh);
+      if(hits.length) return hits.find(isEnh)||hits[0];
+    }
+  }
+  return good.find(isEnh)||good[0];
 }
 /* 第一次點任何地方就「喚醒」語音引擎（Android/iOS 需要使用者手勢才肯出聲）。
    喚醒前不自動播放，否則會被瀏覽器擋下、甚至把引擎卡住變成整頁沒聲音。 */

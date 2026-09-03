@@ -418,7 +418,35 @@
       row.insertAdjacentHTML('afterbegin','<button class="act listen joy-letter-sound" onclick="speak('+JSON.stringify(p.phon).replace(/"/g,'&quot;')+',\'together\')">🔡 '+p.letter+' 的音 '+(p.sound||'')+'</button>');
     });
   }
+  /* 選聲升級（2026-09-03）：兩輪選聲——第一輪只挑「偏好名單中有增強/Siri 版」的名字，
+     沒有才照原順序退回。家長下載任何名單內的增強音（如 Allison/Tom 增強）就會自動被用到，
+     不會被名單更前面的內建普通音（Samantha/Aaron compact）擋住。 */
+  function upgradePickVoice(){
+    if(typeof window.pickVoice!=='function' || window.pickVoice.__joyEnh) return;
+    var ENH=/enhanced|premium|siri/i;
+    window.pickVoice=function(role){
+      var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];
+      var en=vs.filter(function(v){return /en[-_](US|GB|AU)/i.test(v.lang);});
+      if(!en.length) return null;
+      var bad=window.BAD_VOICE||/Fred|Albert|Zarvox/i;
+      var good=en.filter(function(v){return !bad.test(v.name);}); if(!good.length) good=en;
+      function isEnh(v){return ENH.test(v.name+'|'+(v.voiceURI||''));}
+      var pref=role==='nick'?['Aaron','Tom','Nathan','Arthur','Daniel','Alex']
+        :role==='fifi'?['Karen','Tessa','Moira','Samantha','Allison']
+        :['Samantha','Allison','Ava','Karen','Aaron'];
+      for(var pass=0;pass<2;pass++){
+        for(var i=0;i<pref.length;i++){
+          var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;});
+          if(pass===0) hits=hits.filter(isEnh);
+          if(hits.length) return hits.find(isEnh)||hits[0];
+        }
+      }
+      return good.find(isEnh)||good[0];
+    };
+    window.pickVoice.__joyEnh=true;
+  }
   function enableSinglePageFlow(){
+    upgradePickVoice();
     var tabs=document.querySelector('.tabs'); if(tabs) tabs.remove();
     addHeading('panel-dialog','對話','先聽、再開口念；每句要拿 5 顆星，或念滿 5 遍才過關。');
     addHeading('panel-vocab','單字','每個單字要拿 5 顆星，或念滿 5 遍才過關。');

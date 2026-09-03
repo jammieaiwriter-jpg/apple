@@ -431,9 +431,9 @@
       var bad=window.BAD_VOICE||/Fred|Albert|Zarvox/i;
       var good=en.filter(function(v){return !bad.test(v.name);}); if(!good.length) good=en;
       function isEnh(v){return ENH.test(v.name+'|'+(v.voiceURI||''));}
-      var pref=role==='nick'?['Aaron','Tom','Nathan','Arthur','Daniel','Alex']
-        :role==='fifi'?['Karen','Tessa','Moira','Samantha','Allison']
-        :['Samantha','Allison','Ava','Karen','Aaron'];
+      var pref=role==='nick'?['Tom','Nathan','Aaron','Arthur','Daniel','Alex']
+        :role==='fifi'?['Joelle','Karen','Tessa','Moira','Samantha','Allison']
+        :['Allison','Samantha','Ava','Joelle','Karen'];
       for(var pass=0;pass<2;pass++){
         for(var i=0;i<pref.length;i++){
           var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;});

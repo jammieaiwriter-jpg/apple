@@ -282,7 +282,7 @@ function pickVoice(role){
   /* 兩輪選聲（2026-09-03）：第一輪只挑名單中有增強/Siri 版的名字，避免被排更前面的內建普通音擋住 */
   var ENH=/enhanced|premium|siri/i;
   function isEnh(v){ return ENH.test(v.name+'|'+(v.voiceURI||'')); }
-  var pref = role==="sam"?["Aaron","Tom","Nathan","Arthur","Daniel","Alex"]:["Samantha","Allison","Ava","Karen","Aaron"];
+  var pref = role==="sam"?["Tom","Nathan","Aaron","Arthur","Daniel","Alex"]:["Allison","Joelle","Samantha","Ava","Karen"];
   for(var pass=0;pass<2;pass++){
     for(var i=0;i<pref.length;i++){
       var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;});

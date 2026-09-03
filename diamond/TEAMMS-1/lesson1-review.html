@@ -245,7 +245,33 @@ function sendReport(){
     .catch(function(){st.textContent='暫時無法傳送，請再按一次。';btn.disabled=false;});
 }
 
-/* ===== 語音（只用 speechSynthesis） ===== */
+/* ===== 聽整段對話（Azure 真人聲，2026-09-03）=====
+   Azure 只給這個純聽功能用；跟讀卡片旁邊就是麥克風，示範一律 speechSynthesis。
+   開始收音前必須 stopPlayAll()（rec() 會呼叫），否則 iPad 上音訊通道會打架。載入失敗自動退回 speak()。 */
+var TTS_BASE='https://apple-bedtime-story.onrender.com';
+var AZ_VOICE={sam:'en-US-GuyNeural',ann:'en-US-JennyNeural',together:'en-US-AriaNeural'};
+var azCache={},azActive=null,playAllStop=false;
+function azStop(){ if(azActive){ azActive.onended=null; try{azActive.pause();}catch(e){} azActive=null; } }
+function azSpeak(text,role,onEnd){
+  var voice=AZ_VOICE[role]||AZ_VOICE.together,key=voice+'|'+text;
+  function run(url){ var a=new Audio(url); azActive=a; a.onended=function(){ if(azActive===a)azActive=null; if(onEnd)onEnd(); }; a.play().catch(function(){ if(azActive===a)azActive=null; speak(text,role,onEnd); }); }
+  if(azCache[key]){ run(azCache[key]); return; }
+  fetch(TTS_BASE+'/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text,voice:voice})})
+    .then(function(r){ if(!r.ok) throw new Error('tts'); return r.blob(); })
+    .then(function(b){ var u=URL.createObjectURL(b); azCache[key]=u; run(u); })
+    .catch(function(){ speak(text,role,onEnd); });
+}
+function stopPlayAll(){ playAllStop=true; azStop(); var b=document.getElementById('playall'),s=document.getElementById('playall-stop'); if(b)b.style.display=''; if(s)s.style.display='none'; try{window.speechSynthesis.cancel();}catch(e){} }
+function playAllFrom(i){
+  if(playAllStop||i>=dialogueLines.length){ stopPlayAll(); return; }
+  var out=document.getElementById('d'+i+'-out');
+  var card=out&&out.closest?out.closest('.card'):null;
+  if(card&&card.scrollIntoView) card.scrollIntoView({behavior:'smooth',block:'center'});
+  azSpeak(dialogueLines[i].text,dialogueLines[i].role,function(){ setTimeout(function(){ if(!playAllStop) playAllFrom(i+1); },450); });
+}
+function startPlayAll(){ playAllStop=false; document.getElementById('playall').style.display='none'; document.getElementById('playall-stop').style.display=''; playAllFrom(0); try{ fetch(TTS_BASE+'/api/tts/status',{cache:'no-store'}).catch(function(){}); }catch(e){} }
+
+/* ===== 語音（示範用，只用 speechSynthesis） ===== */
 var BAD_VOICE=/Fred|Albert|Zarvox|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed|Rishi/i;
 var speakSeq=0;
 function pickVoice(role){
@@ -300,6 +326,7 @@ function rec(id,cb){
   r.onend=function(){ if(!stopped){ setTimeout(function(){ try{r.start();}catch(_){}} ,120); return; } if(start)start.disabled=false; if(stop)stop.disabled=true; if(!gotAny&&out)out.textContent='⏹ 沒收到字，再按一次「開始念」。'; cb(text.trim()); };
   if(start)start.disabled=true;
   if(stop){ stop.disabled=false; stop.onclick=function(){ stopped=true; try{r.stop();}catch(_){} setTimeout(function(){ try{r.abort();}catch(_){}} ,1200); }; }
+  try{stopPlayAll();}catch(_){}
   try{ window.speechSynthesis.cancel(); }catch(_){}
   if(out)out.textContent='🎙 啟動中…';
   setTimeout(function(){ try{ r.start(); }catch(e){ if(start)start.disabled=false; if(stop)stop.disabled=true; if(out)out.textContent='請再按一次「開始念」。'; } },350);
@@ -349,7 +376,7 @@ function buildShell(){
 
 /* ===== 關卡 1：對話跟讀 ===== */
 function buildDialog(){
-  var html='';
+  var html='<div class="row" style="margin-bottom:12px"><button class="act listen" id="playall" onclick="startPlayAll()">▶️ 聽整段對話（真人聲）</button><button class="act stop" id="playall-stop" style="display:none" onclick="stopPlayAll()">⏹ 停止</button></div>';
   dialogueLines.forEach(function(l,i){
     var id='d'+i;
     html+='<div class="card"><div class="who">'+l.speaker+'</div><div class="en">'+l.text+'</div><div class="zh">'+l.zh+'</div>'

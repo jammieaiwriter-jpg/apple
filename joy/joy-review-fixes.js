@@ -343,17 +343,37 @@
   function wrapSpeechAttempts(){
     if(typeof window.recLine==='function' && !window.recLine.__joyTracked){
       var oldLine=window.recLine;
-      window.recLine=function(i){ speechAttempts.dialog++; lastRec={key:'dialog',idx:i}; return oldLine(i); };
+      window.recLine=function(i){ stopPlayAll(); speechAttempts.dialog++; lastRec={key:'dialog',idx:i}; return oldLine(i); };
       window.recLine.__joyTracked=true;
     }
     if(typeof window.recVocab==='function' && !window.recVocab.__joyTracked){
       var oldVocab=window.recVocab;
-      window.recVocab=function(i){ speechAttempts.vocab++; lastRec={key:'vocab',idx:i}; return oldVocab(i); };
+      window.recVocab=function(i){ stopPlayAll(); speechAttempts.vocab++; lastRec={key:'vocab',idx:i}; return oldVocab(i); };
       window.recVocab.__joyTracked=true;
     }
   }
   /* ===== 從預習頁搬過來的內容（2026-09-03）：整段連播、文法聽跟念、字母單音 ===== */
-  var playAllStop=false;
+  /* Azure 真人聲只給「聽整段對話」這種純聽功能用；跟讀卡片旁邊就是麥克風，示範一律 speechSynthesis。
+     開始收音前必須 azStop()，否則 iPad 上音訊通道會打架。載入失敗自動退回 window.speak。 */
+  var TTS_BASE='https://apple-bedtime-story.onrender.com';
+  var AZ_VOICE={nick:'en-US-GuyNeural',abby:'en-US-JennyNeural',fifi:'en-US-AnaNeural',sam:'en-US-GuyNeural',ann:'en-US-JennyNeural',together:'en-US-AriaNeural'};
+  var azCache={},azActive=null;
+  function azStop(){ if(azActive){ azActive.onended=null; try{azActive.pause();}catch(e){} azActive=null; } }
+  function azWarm(){ try{ fetch(TTS_BASE+'/api/tts/status',{cache:'no-store'}).catch(function(){}); }catch(e){} }
+  function azSpeak(text,role,onEnd){
+    var voice=AZ_VOICE[role]||AZ_VOICE.together,key=voice+'|'+text;
+    function run(url){
+      var a=new Audio(url); azActive=a;
+      a.onended=function(){ if(azActive===a)azActive=null; if(onEnd)onEnd(); };
+      a.play().catch(function(){ if(azActive===a)azActive=null; window.speak(text,role,onEnd); });
+    }
+    if(azCache[key]){ run(azCache[key]); return; }
+    fetch(TTS_BASE+'/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text,voice:voice})})
+      .then(function(r){ if(!r.ok) throw new Error('tts'); return r.blob(); })
+      .then(function(b){ var u=URL.createObjectURL(b); azCache[key]=u; run(u); })
+      .catch(function(){ window.speak(text,role,onEnd); });
+  }
+  var playAllStop=false,stopPlayAll=function(){};
   function addPlayAll(){
     var panel=document.getElementById('panel-dialog');
     if(!panel || document.getElementById('joy-playall') || typeof window.speak!=='function') return;
@@ -362,16 +382,18 @@
     panel.insertBefore(bar,panel.firstChild);
     var btn=document.getElementById('joy-playall'),stop=document.getElementById('joy-playall-stop');
     function done(){ playAllStop=true; btn.style.display=''; stop.style.display='none'; }
+    stopPlayAll=function(){ done(); azStop(); try{window.speechSynthesis.cancel();}catch(e){} };
     function playFrom(i){
       var dl=window.dialogueLines||[];
       if(playAllStop || i>=dl.length){ done(); return; }
       var startBtn=document.getElementById('d'+i+'-start');
       var card=startBtn&&startBtn.closest?startBtn.closest('.card'):null;
       if(card&&card.scrollIntoView) card.scrollIntoView({behavior:'smooth',block:'center'});
-      window.speak(dl[i].text, dl[i].role, function(){ setTimeout(function(){ playFrom(i+1); },450); });
+      azSpeak(dl[i].text, dl[i].role, function(){ setTimeout(function(){ if(!playAllStop) playFrom(i+1); },450); });
     }
     btn.onclick=function(){ playAllStop=false; btn.style.display='none'; stop.style.display=''; playFrom(0); };
-    stop.onclick=function(){ done(); try{window.speechSynthesis.cancel();}catch(e){} };
+    stop.onclick=function(){ stopPlayAll(); };
+    azWarm();
   }
   function addGrammarListen(){
     var panel=document.getElementById('panel-grammar');

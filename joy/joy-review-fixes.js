@@ -263,7 +263,49 @@
     completed[key]=true;
     var button=document.getElementById('joy-finish-'+key);
     if(button){ button.disabled=true; button.textContent='這一區已完成'; }
+    renderLights();
     renderParentCard();
+  }
+  /* 五區紅綠燈（2026-09-05）：頁面頂端固定總覽＋每區標題旁的 🔴/🟢，一眼看出哪一區還沒過。
+     總覽的燈可以點，直接捲到那一區。 */
+  var LIGHT_NAMES={dialog:'對話',vocab:'單字',phonics:'發音',grammar:'文法',wordgame:'單字遊戲'};
+  function ensureLightCss(){
+    if(document.getElementById('joy-lights-css')) return;
+    var s=document.createElement('style'); s.id='joy-lights-css';
+    s.textContent='#joy-lights{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.95);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);padding:10px 4px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px dashed #e7e0d2;margin-bottom:10px}'
+      +'.joy-light{border:1px solid #e7e0d2;background:#fff;border-radius:999px;padding:8px 12px;font-weight:900;font-size:14px;min-height:40px;cursor:pointer}'
+      +'.joy-light.done{background:#e6f7ee;border-color:#9fd8c0}'
+      +'.joy-light-badge{margin-left:8px;font-size:15px;font-weight:900}'
+      +'.joy-light-badge.todo{color:#c0392b}.joy-light-badge.done{color:#145a51}';
+    document.head.appendChild(s);
+  }
+  function renderLights(){
+    ensureLightCss();
+    var bar=document.getElementById('joy-lights');
+    if(!bar){
+      bar=document.createElement('div'); bar.id='joy-lights';
+      var wrap=document.querySelector('.wrap')||document.body;
+      wrap.insertBefore(bar,wrap.firstChild);
+    }
+    bar.innerHTML='';
+    Object.keys(LIGHT_NAMES).forEach(function(k){
+      var done=!!completed[k];
+      var b=document.createElement('button'); b.type='button';
+      b.className='joy-light'+(done?' done':'');
+      b.textContent=(done?'🟢 ':'🔴 ')+LIGHT_NAMES[k];
+      b.onclick=function(){
+        var el=document.getElementById('joy-heading-panel-'+k)||document.getElementById('panel-'+k);
+        if(el&&el.scrollIntoView) el.scrollIntoView({behavior:'smooth',block:'start'});
+      };
+      bar.appendChild(b);
+    });
+    Object.keys(LIGHT_NAMES).forEach(function(k){
+      var h=document.getElementById('joy-heading-panel-'+k); if(!h) return;
+      var badge=h.querySelector('.joy-light-badge');
+      if(!badge){ badge=document.createElement('span'); badge.className='joy-light-badge'; h.appendChild(badge); }
+      badge.textContent=completed[k]?'🟢 完成':'🔴 未完成';
+      badge.className='joy-light-badge '+(completed[k]?'done':'todo');
+    });
   }
   /* 口說過關門檻（Emma 2026-09-03，比照小鑽石）：每句/每字要拿滿 5 顆星，
      或念滿 5 遍（只算真的有收到聲音、進到評分的那幾遍）。取代原本的「我已練習完這一區」自我申報按鈕。 */
@@ -458,6 +500,7 @@
     addPlayAll();
     addGrammarListen();
     addLetterSounds();
+    renderLights();
     wrapSpeechAttempts();
     trackSpeechScores();
     if(window.CH && CH.phonics) CH.phonics.start();

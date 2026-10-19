@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joy 2 Unit 12 課後複習</title>
+  <style>
+    :root{
+      --ink:#27313f; --muted:#667085; --paper:#fffdf8; --line:#e7e0d2;
+      --accent:#207f71; --accent-dark:#145a51; --sky:#dff0ff; --rose:#ffe4ec; --sun:#ffe9a8; --mint:#dff5e7;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0; min-height:100vh; color:var(--ink); padding:18px;
+      font-family:ui-rounded,"SF Pro Rounded","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+      background:linear-gradient(180deg,#fffdf8,#f4f9ff);
+    }
+    .wrap{max-width:760px;margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    h1{font-size:clamp(24px,5vw,38px);margin:0;}
+    .progress{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-weight:800;color:var(--accent-dark);}
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+    .tabs button{flex:1 1 40%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:12px;font-weight:800;font-size:17px;min-height:48px;cursor:pointer;}
+    .game-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0;}
+    button.opt{border:2px solid var(--accent);background:#fff;color:var(--accent-dark);border-radius:12px;padding:14px 18px;font-weight:900;font-size:20px;min-height:54px;cursor:pointer;}
+    button.opt:active{background:var(--mint);}
+    button.opt.wide{display:block;width:100%;margin:8px 0;font-size:19px;text-align:center;}
+    .tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+    .card{
+      border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px 16px 14px;margin-bottom:14px;
+    }
+    .card .who{font-weight:900;color:var(--accent-dark);font-size:14px;letter-spacing:.04em;}
+    .card .en{font-size:clamp(24px,5.5vw,34px);font-weight:900;line-height:1.15;margin:4px 0 2px;}
+    .card .zh{color:var(--muted);font-size:15px;margin-bottom:10px;}
+    .kk{color:var(--accent-dark);font-weight:700;font-size:16px;}
+    .row{display:flex;flex-wrap:wrap;gap:8px;}
+    button.act{border:0;border-radius:10px;padding:12px 16px;min-height:50px;font-weight:900;font-size:16px;cursor:pointer;}
+    .listen{background:#fff;color:var(--accent-dark);border:2px solid var(--accent);}
+    .start{background:var(--accent);color:#fff;}
+    .stop{background:#b54708;color:#fff;}
+    button:disabled{opacity:.5;cursor:not-allowed;}
+    .next{border:0;border-radius:10px;padding:13px 18px;min-height:50px;font-weight:900;font-size:17px;cursor:pointer;background:var(--accent);color:#fff;margin-top:12px;}
+    .big{font-size:clamp(28px,7vw,42px);font-weight:950;color:var(--accent-dark);margin:8px 0;}
+    .out{margin-top:10px;font-size:16px;min-height:24px;color:var(--muted);}
+    .stars{font-size:26px;letter-spacing:2px;margin-top:6px;}
+    .hide{display:none;}
+    .hint{color:var(--muted);font-size:13px;margin:6px 0 14px;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Joy 2 Unit 12 複習 🎤</h1>
+    <div class="progress" id="progress">0 / 0</div>
+  </header>
+  <p class="hint">用 Safari 分頁開。先按「🔊 聽」聽一次，再按「🎤 開始念」，念完按「⏹ 念好了」就會打星。</p>
+
+  <div class="tabs">
+    <button id="tab-dialog" class="active" onclick="switchTab('dialog')">對話</button>
+    <button id="tab-vocab" onclick="switchTab('vocab')">單字</button>
+    <button id="tab-phonics" onclick="switchTab('phonics')">發音</button>
+    <button id="tab-grammar" onclick="switchTab('grammar')">文法</button>
+    <button id="tab-wordgame" onclick="switchTab('wordgame')">單字遊戲</button>
+    <button id="tab-talkgame" onclick="switchTab('talkgame')">對話遊戲</button>
+  </div>
+
+  <div id="panel-dialog"></div>
+  <div id="panel-vocab" class="hide"></div>
+  <div id="panel-phonics" class="hide"></div>
+  <div id="panel-grammar" class="hide"></div>
+  <div id="panel-wordgame" class="hide"></div>
+  <div id="panel-talkgame" class="hide"></div>
+</div>
+<script>
+/* ===== Unit 12 內容（內嵌，不用模組） ===== */
+var dialogueLines = [
+  {
+    "speaker": "Fifi",
+    "text": "Cool!",
+    "role": "fifi",
+    "zh": "好酷喔！"
+  },
+  {
+    "speaker": "Abby",
+    "text": "What's that, Bobo?",
+    "role": "abby",
+    "zh": "波波，那是什麼？"
+  },
+  {
+    "speaker": "Bobo",
+    "text": "It's a ball. Let's play!",
+    "role": "bobo",
+    "zh": "是一顆球。我們來玩吧！"
+  },
+  {
+    "speaker": "Nick + Abby",
+    "text": "Yippee! Hahaha...",
+    "role": "together",
+    "zh": "耶！哈哈哈…"
+  },
+  {
+    "speaker": "Bobo",
+    "text": "What time is it?",
+    "role": "bobo",
+    "zh": "幾點了？"
+  },
+  {
+    "speaker": "Bobo's mom",
+    "text": "It's six o'clock. Time to go home.",
+    "role": "lady",
+    "zh": "六點了。該回家囉。"
+  },
+  {
+    "speaker": "Bobo",
+    "text": "Come, Abby! Come, Nick!",
+    "role": "bobo",
+    "zh": "艾比，來吧！尼克，來吧！"
+  },
+  {
+    "speaker": "Nick + Abby",
+    "text": "OK. Let's go!",
+    "role": "together",
+    "zh": "好。我們走吧！"
+  },
+  {
+    "speaker": "Fifi",
+    "text": "Yay!",
+    "role": "fifi",
+    "zh": "耶！",
+    "scored": false
+  }
+];
+var vocab = [
+  {
+    "word": "ball",
+    "kk": "[bɔl]",
+    "zh": "球"
+  },
+  {
+    "word": "play",
+    "kk": "[ple]",
+    "zh": "玩"
+  },
+  {
+    "word": "yippee",
+    "kk": "[ˋjɪpi]",
+    "zh": "耶（表示開心、快樂）"
+  },
+  {
+    "word": "go home",
+    "kk": "[ˏgo ˋhom]",
+    "zh": "回家"
+  },
+  {
+    "word": "yo-yo",
+    "kk": "[ˋjoˏjo]",
+    "zh": "溜溜球"
+  },
+  {
+    "word": "kite",
+    "kk": "[kaɪt]",
+    "zh": "風箏"
+  },
+  {
+    "word": "bike",
+    "kk": "[baɪk]",
+    "zh": "腳踏車"
+  }
+];
+/* Phonics：Rr 有字首和字尾兩種讀音 */
+// phon = 字母的「拼讀音」近似拼法（給 TTS 唸，不是字母名稱）；
+// 每個例字 blend = 拆成一個一個音（拼讀），最後會自動再唸整個字。
+// name = 字母名稱發音替身(避免唸成 capital A)；phon = 拼讀音；blend = 例字逐音拆解
+var phonics = [
+  {
+    "letter": "Qq",
+    "sound": "/kw/",
+    "phon": "kwuh",
+    "examples": [
+      {
+        "w": "queen",
+        "zh": "皇后"
+      },
+      {
+        "w": "quiz",
+        "zh": "測驗"
+      }
+    ]
+  },
+  {
+    "letter": "Rr",
+    "sound": "/r/",
+    "phon": "rrr",
+    "examples": [
+      {
+        "w": "hair",
+        "zh": "頭髮"
+      },
+      {
+        "w": "air",
+        "zh": "空氣"
+      }
+    ]
+  }
+];
+/* 文法：be 動詞 am/is/are */
+var grammar = {
+  "rule": "問遠處的東西用 What is that?，回答 It is a...",
+  "quiz": [
+    {
+      "prompt": "It is a ___.（球）",
+      "answer": "ball",
+      "full": "It is a ball.",
+      "zh": "它是球。"
+    },
+    {
+      "prompt": "It is a ___.（風箏）",
+      "answer": "kite",
+      "full": "It is a kite.",
+      "zh": "它是風箏。"
+    },
+    {
+      "prompt": "It is a ___.（腳踏車）",
+      "answer": "bike",
+      "full": "It is a bike.",
+      "zh": "它是腳踏車。"
+    },
+    {
+      "prompt": "It is a ___.（溜溜球）",
+      "answer": "yo-yo",
+      "full": "It is a yo-yo.",
+      "zh": "是溜溜球。"
+    }
+  ]
+};
+var beOptions = [
+  "ball",
+  "yo-yo",
+  "kite",
+  "bike"
+];
+
+/* ===== 評分（內嵌自 unit1.mjs） ===== */
+var contractions = {"i'm":"i am","im":"i am","what's":"what is","whats":"what is","don't":"do not","dont":"do not","let's":"let us","lets":"let us","she's":"she is","he's":"he is","it's":"it is","who's":"who is","that's":"that is","where's":"where is"};
+var HOMO={okay:'ok',to:'two',too:'two',two:'two',for:'four',fore:'four',four:'four',ate:'eight',eight:'eight',won:'one',one:'one',our:'our',hour:'our',no:'no',know:'no',new:'new',knew:'new',there:'there',their:'there',theyre:'there',here:'here',hear:'here',your:'your',youre:'your',by:'by',buy:'by',bye:'by',see:'see',sea:'see',be:'be',bee:'be',right:'right',write:'right',son:'son',sun:'son',meat:'meat',meet:'meat',week:'week',weak:'week',wait:'wait',weight:'wait',pair:'pair',pear:'pair',plane:'plane',plain:'plain',road:'road',rode:'road',sale:'sale',sail:'sale',tail:'tail',tale:'tale',threw:'threw',through:'threw',wood:'wood',would:'wood',flour:'flour',flower:'flour',blue:'blue',blew:'blue',night:'night',knight:'night',hi:'hi',high:'hi',mail:'mail',male:'mail',eye:'i',i:'i',red:'red',read:'red'};
+var CN1={zero:0,oh:0,o:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9};
+var CN2={ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+var CN3={twenty:20,thirty:30,forty:40,fourty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+/* 同音字 + 數字收斂：to/two/too 在語音上是同一個音，辨識器選哪個是它的猜測、不是孩子唸錯，
+   不收斂就會無辜扣分（實際遇過只給 1 星）。數字則解決「Taipei 101」被聽成「one o one」。
+   連續個位數只在 3 位以上才合併，否則 "two to" 會被誤併成 22。 */
+function canonSeq(str){
+  var words=String(str||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+  words=words.map(function(w){return HOMO[w]!==undefined?HOMO[w]:w;});
+  var out=[],i=0;
+  while(i<words.length){
+    var w=words[i],v=null;
+    if(/^\d+$/.test(w)){out.push(w);i++;continue}
+    if(CN3[w]!==undefined){v=CN3[w];if(CN1[words[i+1]]>0){v+=CN1[words[i+1]];i++}}
+    else if(CN2[w]!==undefined)v=CN2[w];
+    else if(CN1[w]!==undefined)v=CN1[w];
+    if(v===null){out.push(w);i++;continue}
+    while(words[i+1]==='hundred'||words[i+1]==='thousand'){
+      v=v*(words[i+1]==='hundred'?100:1000);i++;
+      if(words[i+1]==='and')i++;
+      var nx=words[i+1],add=null;
+      if(nx!==undefined){
+        if(CN3[nx]!==undefined){add=CN3[nx];if(CN1[words[i+2]]>0){add+=CN1[words[i+2]];i++}}
+        else if(CN2[nx]!==undefined)add=CN2[nx];
+        else if(CN1[nx]>0)add=CN1[nx];
+        if(add!==null){v+=add;i++}
+      }
+    }
+    out.push(String(v));i++;
+  }
+  var m=[],run=[];
+  function flush(){ if(run.length>=3) m.push(run.join('')); else m=m.concat(run); run=[]; }
+  out.forEach(function(t){ if(/^\d$/.test(t)) run.push(t); else { flush(); m.push(t); } });
+  flush();
+  return m;
+}
+function normalizeSpeech(v){var s=String(v||"").toLowerCase();for(var k in contractions){s=s.split(k).join(contractions[k]);}return canonSeq(s).join(" ");}
+function scoreSpeech(expected, heard){
+  var e=normalizeSpeech(expected).split(" ").filter(Boolean);
+  var h=normalizeSpeech(heard).split(" ").filter(Boolean);
+  if(!h.length) return {stars:0};
+  var cur=0, matched=0;
+  for(var i=0;i<e.length;i++){ var at=h.indexOf(e[i],cur); if(at!==-1){matched++;cur=at+1;} }
+  var coverage=matched/Math.max(e.length,1);
+  var penalty=Math.max(h.length-e.length-2,0)*0.04;
+  var pct=Math.max(0,Math.min(1,coverage-penalty));
+  var stars=Math.ceil(pct*5+0.25);
+  if(matched===e.length) stars=5;
+  if(matched===0) stars=1;
+  if(stars===0&&h.length) stars=1;
+  return {stars:stars};
+}
+
+/* ===== 星星儲存 ===== */
+var SCORE_KEY="joy2-unit12-scores";
+function loadScores(){ try{ var a=JSON.parse(localStorage.getItem(SCORE_KEY)||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function saveScores(a){ try{ localStorage.setItem(SCORE_KEY, JSON.stringify(a)); }catch(e){} }
+// 每次打開都重新作答；舊 localStorage 星星不再帶入，避免孩子靠上一輪 5 顆星直接 pass。
+var scores = [];
+var VOCAB_KEY="joy2-unit12-vocab";
+function loadVocab(){ try{ var a=JSON.parse(localStorage.getItem(VOCAB_KEY)||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function saveVocab(a){ try{ localStorage.setItem(VOCAB_KEY, JSON.stringify(a)); }catch(e){} }
+var vScores = [];
+
+/* ===== 示範語音：只用 speechSynthesis（不用任何 HTML5 Audio） ===== */
+var BAD_VOICE=/Fred|Albert|Zarvox|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Grandma|Grandpa|Rocko|Shelley|Sandy|Flo|Eddy|Reed|Rishi/i;
+var speakSeq=0;
+function pickVoice(role){
+  var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];
+  var en=vs.filter(function(v){return /en[-_](US|GB|AU)/i.test(v.lang);});
+  if(!en.length) return null;
+  var good=en.filter(function(v){return !BAD_VOICE.test(v.name);});
+  if(!good.length) good=en;
+  // 同名若有「增強/進階/Siri」版優先（音質好很多）
+  function best(list){ return list.find(function(v){return /enhanced|premium|siri/i.test(v.name+'|'+(v.voiceURI||''));}) || list[0]; }
+  var pref = role==="nick"?["Aaron","Tom","Nathan","Arthur","Daniel","Alex"]
+    : role==="fifi"?["Karen","Tessa","Moira","Samantha","Allison"]
+    : ["Samantha","Allison","Ava","Karen","Aaron"];
+  for(var i=0;i<pref.length;i++){
+    var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;});
+    if(hits.length) return best(hits);
+  }
+  return best(good);
+}
+function speak(text, role, onEnd){
+  var seq=++speakSeq, done=false;
+  function finish(){ if(done || seq!==speakSeq) return; done=true; if(onEnd) onEnd(); }
+  try{
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(text);
+    u.lang="en-US"; u.rate=0.82; u.volume=1;
+    u.pitch = role==="nick"?0.85 : role==="bobo"?0.7 : (role==="fifi"||role==="girl")?1.15 : 1; // Nick 壓低一點當男孩、Fifi 高一點
+    var v=pickVoice(role); if(v) u.voice=v;
+    if(onEnd){ u.onend=finish; u.onerror=finish; }   // 念完才做下一步，避免長句被打斷
+    window.speechSynthesis.speak(u);
+  }catch(e){ finish(); }
+}
+
+/* ===== 語音辨識：1:1 照搬已驗證可用的 mic-test.html rec() ===== */
+function SR(){ return window.SpeechRecognition||window.webkitSpeechRecognition; }
+var srSupported = !!SR();
+function rec(id, cb){
+  var C=SR(),
+      out=document.getElementById(id+'-out'),
+      start=document.getElementById(id+'-start'),
+      stop=document.getElementById(id+'-stop');
+  if(!C){ if(out) out.textContent='此瀏覽器不支援語音辨識。'; return; }
+  var text='', stopped=false, gotAny=false;
+  var r=new C();
+  r.lang='en-US'; r.continuous=true; r.interimResults=false;
+  r.onaudiostart=function(){ if(out) out.textContent='🎙 收音中…請大聲念'; };
+  r.onresult=function(e){
+    for(var i=e.resultIndex;i<e.results.length;i++){ if(e.results[i].isFinal) text+=e.results[i][0].transcript+' '; }
+    gotAny=true; if(out) out.textContent='👂 聽到：'+(text.trim()||'(空)');
+  };
+  r.onerror=function(e){ if(out) out.textContent='🔴 辨識問題：'+(e.error||'未知'); };
+  r.onend=function(){
+    if(!stopped){ setTimeout(function(){ try{r.start();}catch(_){}} ,120); return; }
+    if(start) start.disabled=false;
+    if(stop) stop.disabled=true;
+    if(!gotAny && out) out.textContent='⏹ 沒收到字，再按一次「開始念」。';
+    cb(text.trim());
+  };
+  if(start) start.disabled=true;
+  if(stop){ stop.disabled=false; stop.onclick=function(){ stopped=true; try{r.stop();}catch(_){} setTimeout(function(){ try{r.abort();}catch(_){}} ,1200); }; }
+  // iOS：語音合成(聽)和辨識(念)共用音訊子系統。先取消合成、留一點時間讓音訊通道從「播放」釋放成「錄音」，再啟動辨識，
+  // 否則先按過「聽」就會收音中卻收不到字。
+  try{ window.speechSynthesis.cancel(); }catch(_){}
+  if(out) out.textContent='🎙 啟動中…';
+  setTimeout(function(){ try{ r.start(); }catch(e){ if(start) start.disabled=false; if(stop) stop.disabled=true; if(out) out.textContent='請再按一次「開始念」。'; } }, 350);
+}
+
+/* ===== 畫面 ===== */
+function starStr(n){ var s=''; for(var i=0;i<5;i++) s+= i<n?'⭐':'☆'; return s; }
+
+function scoredDialogIndexes(){
+  var arr=[]; dialogueLines.forEach(function(l,i){ if(l.scored!==false) arr.push(i); }); return arr;
+}
+function updateProgress(){
+  var idxs=scoredDialogIndexes();
+  var done=idxs.filter(function(i){ return (scores[i]||0)>=3; }).length;
+  document.getElementById('progress').textContent=done+' / '+idxs.length+' 句';
+}
+
+function buildDialog(){
+  var html='';
+  dialogueLines.forEach(function(l,i){
+    var scorable=(l.scored!==false);
+    var id='d'+i;
+    html+='<div class="card">';
+    html+='<div class="who">'+l.speaker+'</div>';
+    html+='<div class="en">'+l.text+'</div>';
+    html+='<div class="zh">'+l.zh+'</div>';
+    html+='<div class="row">';
+    html+='<button class="act listen" onclick="speak('+JSON.stringify(l.text).replace(/"/g,'&quot;')+',\''+l.role+'\')">🔊 聽</button>';
+    if(scorable){
+      html+='<button class="act start" id="'+id+'-start" onclick="recLine('+i+')">🎤 開始念</button>';
+      html+='<button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button>';
+    }
+    html+='</div>';
+    if(scorable){
+      html+='<div class="out" id="'+id+'-out"></div>';
+      html+='<div class="stars" id="'+id+'-stars">'+starStr(scores[i]||0)+'</div>';
+    }
+    html+='</div>';
+  });
+  document.getElementById('panel-dialog').innerHTML=html;
+}
+function recLine(i){
+  rec('d'+i, function(heard){
+    if(!heard) return;
+    var s=scoreSpeech(dialogueLines[i].text, heard).stars;
+    scores[i]=Math.max(scores[i]||0, s);
+    document.getElementById('d'+i+'-stars').textContent=starStr(s);
+    document.getElementById('d'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
+    updateProgress();
+  });
+}
+
+function buildVocab(){
+  var html='';
+  vocab.forEach(function(w,i){
+    var id='v'+i;
+    html+='<div class="card">';
+    html+='<div class="en">'+w.word+' <span class="kk">'+w.kk+'</span></div>';
+    html+='<div class="zh">'+w.zh+'</div>';
+    html+='<div class="row">';
+    html+='<button class="act listen" onclick="speak('+JSON.stringify(w.say||w.word).replace(/"/g,'&quot;')+',\'together\')">🔊 聽</button>';
+    html+='<button class="act start" id="'+id+'-start" onclick="recVocab('+i+')">🎤 開始念</button>';
+    html+='<button class="act stop" id="'+id+'-stop" disabled>⏹ 念好了</button>';
+    html+='</div>';
+    html+='<div class="out" id="'+id+'-out"></div>';
+    html+='<div class="stars" id="'+id+'-stars">'+starStr(vScores[i]||0)+'</div>';
+    html+='</div>';
+  });
+  document.getElementById('panel-vocab').innerHTML=html;
+}
+function recVocab(i){
+  rec('v'+i, function(heard){
+    if(!heard) return;
+    var s=scoreSpeech(vocab[i].word, heard).stars;
+    vScores[i]=Math.max(vScores[i]||0, s);
+    document.getElementById('v'+i+'-stars').textContent=starStr(s);
+    document.getElementById('v'+i+'-out').textContent='👂 '+heard+'　→　'+s+' 顆星';
+  });
+}
+
+/* ===== 小遊戲共用 ===== */
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+function disableAll(box){ [].forEach.call(box.querySelectorAll('button'), function(b){ b.disabled=true; }); }
+
+/* ===== 通用錯題闖關：作答一輪 → 開始錯題挑戰 → 全清才恭喜完成 ===== */
+var CH={};
+function Challenge(key, panelId, build){
+  this.key=key; this.panelId=panelId; this.build=build; CH[key]=this;
+}
+Challenge.prototype.start=function(){
+  this.qs=this.build();
+  this.order=shuffle(this.qs.map(function(_,i){return i;}));
+  this.phase='answer'; this.pos=0; this.correct=0; this.total=this.qs.length; this.wrong=[];
+  this.render();
+};
+Challenge.prototype.render=function(){
+  var self=this, p=document.getElementById(this.panelId);
+  if(this.phase==='answer' && this.pos>=this.order.length){
+    if(!this.wrong.length){ this.congrats(); return; }
+    p.innerHTML='<div class="card" style="text-align:center"><div class="big">✅ 作答已完成！</div>'
+      +'<div class="zh">答對 '+this.correct+' / '+this.total+'，還有 '+this.wrong.length+' 題要再練一次。</div>'
+      +'<button class="next" id="'+this.key+'-retry">開始錯題挑戰 →</button></div>';
+    document.getElementById(this.key+'-retry').onclick=function(){ self.phase='retry'; self.pos=0; self.render(); };
+    return;
+  }
+  if(this.phase==='retry'){
+    if(!this.wrong.length){ this.congrats(); return; }
+    if(this.pos>=this.wrong.length) this.pos=0;
+    this.ask(this.wrong[this.pos], 'retry');
+    return;
+  }
+  this.ask(this.qs[this.order[this.pos]], 'answer');
+};
+Challenge.prototype.ask=function(q, phase){
+  var self=this, p=document.getElementById(this.panelId);
+  var head = phase==='answer'
+    ? '<div class="zh">第 '+(this.pos+1)+' / '+this.total+' 題　答對 '+this.correct+'</div>'
+    : '<div class="zh">🔁 錯題挑戰　還有 '+this.wrong.length+' 題</div>';
+  p.innerHTML='<div class="card" style="text-align:center">'+head+'<div class="ch-q"></div><div class="out ch-out"></div><div class="ch-foot"></div></div>';
+  var settled=false;
+  q.mount(p.querySelector('.ch-q'), p.querySelector('.ch-out'), phase, function(firstTryCorrect){
+    if(settled) return; settled=true;
+    if(phase==='answer'){
+      if(firstTryCorrect) self.correct++;
+      else self.wrong.push(q);
+    }else{
+      var w=self.wrong.indexOf(q); if(w>=0) self.wrong.splice(w,1);
+    }
+    var foot=p.querySelector('.ch-foot');
+    foot.innerHTML='<button class="next">下一題 →</button>';
+    foot.querySelector('button').onclick=function(){ if(phase==='answer') self.pos++; self.render(); };
+  });
+};
+Challenge.prototype.congrats=function(){
+  document.getElementById(this.panelId).innerHTML='<div class="card" style="text-align:center"><div class="big">🎉 恭喜完成！</div><div class="zh">這一關錯題也都過關了。</div><div class="row" style="justify-content:center"><button class="act start" onclick="CH[\''+this.key+'\'].start()">再玩一次</button></div></div>';
+};
+
+/* ===== 單字遊戲：念一個字，點對那個字 ===== */
+function qWord(target){ return { mount:function(qEl,outEl,phase,settle){
+  var firstTry=true;
+  qEl.innerHTML='<div class="en">聽一聽，點出那個字 👂</div>'
+    +'<div class="row" style="justify-content:center"><button class="act listen" id="wg-listen">🔊 再聽一次</button></div>'
+    +'<div id="wg-grid" class="game-grid">'+vocab.map(function(w,i){ return '<button class="opt" data-i="'+i+'">'+w.word+'</button>'; }).join('')+'</div>';
+  document.getElementById('wg-listen').onclick=function(){ speak(vocab[target].say||vocab[target].word,'together'); };
+  var grid=document.getElementById('wg-grid');
+  grid.onclick=function(e){
+    var btn=e.target.closest('button[data-i]'); if(!btn||btn.disabled) return;
+    var i=+btn.dataset.i;
+    if(i===target){
+      outEl.textContent='✅ 答對了！'+vocab[target].word;
+      disableAll(grid);
+      speak(vocab[target].say||vocab[target].word,'together');
+      settle(firstTry);
+    }else{
+      firstTry=false;
+      outEl.textContent='❌ 答錯了，你點的是「'+vocab[i].word+'」，再試試看 🙂';
+      speak(vocab[i].say||vocab[i].word,'together', function(){ speak(vocab[target].say||vocab[target].word,'together'); });
+    }
+  };
+  setTimeout(function(){ speak(vocab[target].say||vocab[target].word,'together'); }, 250);
+}}; }
+
+new Challenge('wordgame','panel-wordgame', function(){ return vocab.map(function(_,i){ return qWord(i); }); });
+function wgStart(){ CH.wordgame.start(); }
+
+/* ===== 對話遊戲：念一句，選對的回答 ===== */
+var talkPairs=[
+  {
+    "q": "What's that, Bobo?",
+    "a": "It's a ball. Let's play!",
+    "d": [
+      "Yay!"
+    ]
+  },
+  {
+    "q": "What time is it?",
+    "a": "It's six o'clock. Time to go home.",
+    "d": [
+      "Yippee!"
+    ]
+  }
+];
+function qTalk(pi){ var pair=talkPairs[pi]; return { mount:function(qEl,outEl,phase,settle){
+  var firstTry=true;
+  var opts=shuffle([pair.a].concat(pair.d));
+  qEl.innerHTML='<div class="en">'+pair.q+'</div>'
+    +'<div class="row" style="justify-content:center"><button class="act listen" id="tg-listen">🔊 再聽一次</button></div>'
+    +'<div class="zh" style="text-align:center;margin:8px 0">該怎麼回答？👇</div>'
+    +'<div id="tg-opts">'+opts.map(function(o,k){ return '<button class="opt wide" data-k="'+k+'">'+o+'</button>'; }).join('')+'</div>';
+  document.getElementById('tg-listen').onclick=function(){ speak(pair.q,'nick'); };
+  var box=document.getElementById('tg-opts');
+  box.onclick=function(e){
+    var btn=e.target.closest('button[data-k]'); if(!btn||btn.disabled) return;
+    var picked=opts[+btn.dataset.k];
+    if(picked===pair.a){
+      outEl.textContent='✅ 答對了！';
+      disableAll(box);
+      speak(pair.a,'abby');
+      settle(firstTry);
+    }else{
+      firstTry=false;
+      outEl.textContent='❌ 答錯了，你選的是「'+picked+'」，再試試看 🙂';
+      speak(picked,'abby', function(){ speak(pair.q,'nick'); });
+    }
+  };
+  setTimeout(function(){ speak(pair.q,'nick'); }, 250);
+}}; }
+new Challenge('talkgame','panel-talkgame', function(){ return talkPairs.map(function(_,i){ return qTalk(i); }); });
+function tgStart(){ CH.talkgame.start(); }
+
+/* ===== 發音（聽，不用麥克風） ===== */
+function jatt(x){ return JSON.stringify(x).replace(/"/g,'&quot;'); } // 給 onclick 屬性用的安全字串
+function phExamples(){
+  var arr=[];
+  phonics.forEach(function(p,pi){ (p.examples||[]).forEach(function(e,ei){ arr.push({p:p,pi:pi,e:e,ei:ei}); }); });
+  return arr;
+}
+function graphForReview(ex){
+  if(ex.graph && ex.graph.length) return ex.graph;
+  var seg=Array.isArray(ex.seg)?ex.seg:[];
+  var letters=String(ex.w||'').replace(/[^A-Za-z]/g,'').split('');
+  if(!letters.length) return seg.map(function(p){ return {g:p,p:p}; });
+  if(seg.length===letters.length) return letters.map(function(g,i){ return {g:g,p:seg[i]||''}; });
+  if(seg.length===1) return [{g:ex.w,p:seg[0]}];
+  return letters.map(function(g,i){ return {g:g,p:seg[i]||''}; });
+}
+function phTilePool(){
+  var pool=[];
+  phExamples().forEach(function(x){ graphForReview(x.e).forEach(function(gp){ if(gp.p) pool.push(gp); }); });
+  var seen={};
+  return pool.filter(function(gp){ var k=gp.g+'|'+gp.p; if(seen[k]) return false; seen[k]=1; return true; });
+}
+function qPhonics(target){ return { mount:function(qEl,outEl,phase,settle){
+  var firstTry=true;
+  var graph=graphForReview(target.e).filter(function(gp){return gp.p;});
+  var blank=graph[Math.floor(Math.random()*graph.length)];
+  var opts=shuffle([blank].concat(shuffle(phTilePool().filter(function(gp){return gp.g!==blank.g || gp.p!==blank.p;})).slice(0,3))).slice(0,4);
+  qEl.innerHTML='<div class="en">聽 '+target.e.w+'，選缺少的音塊</div>'
+    +'<div class="big">'+graphForReview(target.e).map(function(gp){ return (gp.g===blank.g && gp.p===blank.p) ? '_' : gp.g; }).join(' ')+'</div>'
+    +'<div class="row" style="justify-content:center"><button class="act listen" id="ph-listen">🔊 再聽一次</button></div>'
+    +'<div id="ph-opts" class="game-grid">'+opts.map(function(gp,i){ return '<button class="opt" data-i="'+i+'" data-g="'+gp.g+'" data-p="'+gp.p+'">'+gp.g+'</button>'; }).join('')+'</div>';
+  document.getElementById('ph-listen').onclick=function(){ speak(target.e.w,'together'); };
+  var box=document.getElementById('ph-opts');
+  box.onclick=function(e){
+    var btn=e.target.closest('button[data-i]'); if(!btn||btn.disabled) return;
+    var ok=(btn.dataset.g===blank.g && btn.dataset.p===blank.p);
+    if(ok){
+      outEl.textContent='✅ 答對了！'+target.e.w+' 缺的是 '+blank.g+'。';
+      disableAll(box); speak(target.e.w,'together'); settle(firstTry);
+    }else{
+      firstTry=false;
+      outEl.textContent='❌ 你選的是「'+btn.dataset.g+'」，再聽一次 '+target.e.w+'。';
+      speak(target.e.w,'together');
+    }
+  };
+  setTimeout(function(){ speak(target.e.w,'together'); },250);
+}}; }
+new Challenge('phonics','phonics-test', function(){ return phExamples().map(function(x){ return qPhonics(x); }); });
+
+// 複習頁發音＝先檢視例字，再做聽音測驗；仍只用 speechSynthesis，不碰 Azure/Audio
+function buildPhonics(){
+  var html='<div class="card"><div class="zh">先檢視發音與例字，再完成下面的聽音測驗。答錯的題目會進錯題挑戰。</div></div>';
+  phonics.forEach(function(p){
+    html+='<div class="card">';
+    html+='<div class="en">'+p.letter+' <span class="kk">'+p.sound+'</span></div>';
+    html+='<div class="row" style="margin-top:8px">';
+    p.examples.forEach(function(e){
+      html+='<button class="act listen" onclick="speak('+jatt(e.w)+',\'together\')">🔊 '+e.w+'（'+e.zh+'）</button>';
+    });
+    html+='</div></div>';
+  });
+  html+='<div id="phonics-test"></div>';
+  document.getElementById('panel-phonics').innerHTML=html;
+}
+
+/* ===== 文法 be 動詞（選詞填空，不用麥克風） ===== */
+function promptForGrammar(q){
+  if(q.prompt) return q.prompt;
+  return q.subject+' ___ '+q.full.replace(q.subject+' '+q.answer+' ','').replace(/\.$/,'')+'.';
+}
+function qGrammar(i){ var q=grammar.quiz[i]; return { mount:function(qEl,outEl,phase,settle){
+  var firstTry=true;
+  qEl.innerHTML='<div class="en">'+promptForGrammar(q)+'</div><div class="zh">'+q.zh+'</div>'
+    +'<div class="row" id="gr-opts" style="justify-content:center">'+beOptions.map(function(opt){ return '<button class="opt" data-opt="'+opt+'">'+opt+'</button>'; }).join('')+'</div>';
+  var box=document.getElementById('gr-opts');
+  box.onclick=function(e){
+    var btn=e.target.closest('button[data-opt]'); if(!btn||btn.disabled) return;
+    var opt=btn.dataset.opt;
+    if(opt===q.answer){
+      outEl.textContent='✅ 答對了！'+q.full;
+      disableAll(box); speak(q.full,'abby'); settle(firstTry);
+    }else{
+      firstTry=false;
+      outEl.textContent='❌ 再想想看，這題要選哪一個？';
+    }
+  };
+}}; }
+new Challenge('grammar','grammar-test', function(){ return grammar.quiz.map(function(_,i){ return qGrammar(i); }); });
+
+function buildGrammar(){
+  var html='<div class="card"><div class="zh">'+grammar.rule+'</div></div><div id="grammar-test"></div>';
+  document.getElementById('panel-grammar').innerHTML=html;
+}
+
+function switchTab(t){
+  ['dialog','vocab','phonics','grammar','wordgame','talkgame'].forEach(function(name){
+    document.getElementById('tab-'+name).classList.toggle('active', t===name);
+    document.getElementById('panel-'+name).classList.toggle('hide', t!==name);
+  });
+  if(t==='phonics') CH.phonics.start();
+  if(t==='grammar') CH.grammar.start();
+  if(t==='wordgame') wgStart();
+  if(t==='talkgame') tgStart();
+}
+
+buildDialog();
+buildVocab();
+buildPhonics();
+buildGrammar();
+updateProgress();
+// 預先載入語音清單（iOS 有時要先觸發一次）
+if(window.speechSynthesis) speechSynthesis.getVoices();
+</script>
+<script src="./joy-review-fixes.js?v=v17-books-20261019"></script>
+</body>
+</html>

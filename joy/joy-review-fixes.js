@@ -247,7 +247,7 @@
   var speechAttempts={dialog:0,vocab:0};
   function unitLabel(){
     var h=document.querySelector('h1');
-    return (h&&h.textContent.match(/Joy Unit\s+\d+/i)||['Joy Unit'])[0];
+    return (h&&h.textContent.match(/Joy\s+(?:\d+\s+)?Unit\s+\d+/i)||['Joy Unit'])[0];
   }
   function addHeading(panelId,title,note){
     var panel=document.getElementById(panelId);
@@ -398,7 +398,8 @@
   /* Azure 真人聲只給「聽整段對話」這種純聽功能用；跟讀卡片旁邊就是麥克風，示範一律 speechSynthesis。
      開始收音前必須 azStop()，否則 iPad 上音訊通道會打架。載入失敗自動退回 window.speak。 */
   var TTS_BASE='https://apple-bedtime-story.onrender.com';
-  var AZ_VOICE={nick:'en-US-GuyNeural',abby:'en-US-JennyNeural',fifi:'en-US-AnaNeural',sam:'en-US-GuyNeural',ann:'en-US-JennyNeural',together:'en-US-AriaNeural'};
+  var AZ_VOICE={nick:'en-US-GuyNeural',abby:'en-US-JennyNeural',fifi:'en-US-AnaNeural',sam:'en-US-GuyNeural',ann:'en-US-JennyNeural',together:'en-US-AriaNeural',
+    bobo:'en-US-BrandonNeural',lady:'en-US-NancyNeural',girl:'en-US-AnaNeural'}; // 第 2 冊角色
   var azCache={},azActive=null;
   function azStop(){ if(azActive){ azActive.onended=null; try{azActive.pause();}catch(e){} azActive=null; } }
   function azWarm(){ try{ fetch(TTS_BASE+'/api/tts/status',{cache:'no-store'}).catch(function(){}); }catch(e){} }
@@ -473,8 +474,8 @@
       var bad=window.BAD_VOICE||/Fred|Albert|Zarvox/i;
       var good=en.filter(function(v){return !bad.test(v.name);}); if(!good.length) good=en;
       function isEnh(v){return ENH.test(v.name+'|'+(v.voiceURI||''));}
-      var pref=role==='nick'?['Tom','Nathan','Aaron','Arthur','Daniel','Alex']
-        :role==='fifi'?['Joelle','Karen','Tessa','Moira','Samantha','Allison']
+      var pref=(role==='nick'||role==='bobo')?['Tom','Nathan','Aaron','Arthur','Daniel','Alex']
+        :(role==='fifi'||role==='girl')?['Joelle','Karen','Tessa','Moira','Samantha','Allison']
         :['Allison','Samantha','Ava','Joelle','Karen'];
       for(var pass=0;pass<2;pass++){
         for(var i=0;i<pref.length;i++){

@@ -1,0 +1,4558 @@
+[
+  {
+    "unit": 1,
+    "title": "Joy 2 Unit 1 課後複習",
+    "topic": "描述昆蟲顏色 / It is a...",
+    "dialogueLines": [
+      {
+        "speaker": "Fifi",
+        "text": "Oh, wow!",
+        "role": "fifi",
+        "zh": "喔，哇！",
+        "scored": false
+      },
+      {
+        "speaker": "Nick",
+        "text": "Look!",
+        "role": "nick",
+        "zh": "看啊！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "It's a bug.",
+        "role": "abby",
+        "zh": "是一隻蟲。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "It's so pretty!",
+        "role": "fifi",
+        "zh": "牠真漂亮！"
+      },
+      {
+        "speaker": "Nick",
+        "text": "It's red, orange, yellow, green, blue, black, and white.",
+        "role": "nick",
+        "zh": "牠身上有紅色、橘色、黃色、綠色、藍色、黑色和白色。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "It's so cool!",
+        "role": "abby",
+        "zh": "牠真酷！"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Hey bug, what's your name?",
+        "role": "nick",
+        "zh": "嘿，蟲蟲，你的名字叫什麼？"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Hey pretty bug, what's your name?",
+        "role": "fifi",
+        "zh": "嘿，漂亮的蟲蟲，你的名字叫什麼呀？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Hey, cool bug, come back!",
+        "role": "nick",
+        "zh": "嘿，酷酷的蟲蟲，回來呀！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Let's go!",
+        "role": "abby",
+        "zh": "我們去看看吧！"
+      },
+      {
+        "speaker": "Nick + Fifi",
+        "text": "Go, go, go!",
+        "role": "together",
+        "zh": "走走走！"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "bug",
+        "kk": "[bʌg]",
+        "zh": "蟲子"
+      },
+      {
+        "word": "cool",
+        "kk": "[kul]",
+        "zh": "酷的"
+      },
+      {
+        "word": "ant",
+        "kk": "[ænt]",
+        "zh": "螞蟻"
+      },
+      {
+        "word": "bee",
+        "kk": "[bi]",
+        "zh": "蜜蜂"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Aa",
+        "sound": "/æ/",
+        "phon": "ah",
+        "examples": [
+          {
+            "w": "ant",
+            "zh": "螞蟻"
+          },
+          {
+            "w": "mad",
+            "zh": "生氣的"
+          }
+        ]
+      },
+      {
+        "letter": "Bb",
+        "sound": "/b/",
+        "phon": "buh",
+        "examples": [
+          {
+            "w": "bug",
+            "zh": "蟲子"
+          },
+          {
+            "w": "big",
+            "zh": "大的"
+          },
+          {
+            "w": "bat",
+            "zh": "蝙蝠"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "一個東西用 It is a...；開頭是 a、e、i、o、u 母音的字要用 an（an ant、an apple）。",
+      "quiz": [
+        {
+          "prompt": "It is ___ ant.",
+          "answer": "an",
+          "full": "It is an ant.",
+          "zh": "牠是一隻螞蟻。"
+        },
+        {
+          "prompt": "It is ___ bug.",
+          "answer": "a",
+          "full": "It is a bug.",
+          "zh": "牠是一隻蟲。"
+        },
+        {
+          "prompt": "It is ___ bee.",
+          "answer": "a",
+          "full": "It is a bee.",
+          "zh": "牠是一隻蜜蜂。"
+        },
+        {
+          "prompt": "It is ___ bat.",
+          "answer": "a",
+          "full": "It is a bat.",
+          "zh": "牠是一隻蝙蝠。"
+        }
+      ]
+    },
+    "beOptions": [
+      "a",
+      "an"
+    ],
+    "talkPairs": [
+      {
+        "q": "Hey bug, what's your name?",
+        "a": "Hey, cool bug, come back!",
+        "d": [
+          "Go, go, go!"
+        ]
+      },
+      {
+        "q": "Let's go!",
+        "a": "Go, go, go!",
+        "d": [
+          "It's a bug."
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 2,
+    "title": "Joy 2 Unit 2 課後複習",
+    "topic": "Is it...? / I don't know.",
+    "dialogueLines": [
+      {
+        "speaker": "Abby",
+        "text": "Look! It's there!",
+        "role": "abby",
+        "zh": "看啊！牠在那裡！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Let's go!",
+        "role": "fifi",
+        "zh": "我們走吧！"
+      },
+      {
+        "speaker": "Nick",
+        "text": "What's that?",
+        "role": "nick",
+        "zh": "那是什麼？"
+      },
+      {
+        "speaker": "Abby",
+        "text": "I don't know.",
+        "role": "abby",
+        "zh": "不知道耶。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Is it a house?",
+        "role": "nick",
+        "zh": "是房子嗎？"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Is it a house?",
+        "role": "fifi",
+        "zh": "是房子嗎？"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Yes, it is.",
+        "role": "abby",
+        "zh": "是，它是。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Look! Chocolate!",
+        "role": "nick",
+        "zh": "看啊！是巧克力耶！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Yummy! Yummy!",
+        "role": "fifi",
+        "zh": "看起來好好吃喔！"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "I don't know.",
+        "kk": "[aɪ dont ˋno]",
+        "zh": "我不知道。"
+      },
+      {
+        "word": "house",
+        "kk": "[haʊs]",
+        "zh": "房子"
+      },
+      {
+        "word": "yes",
+        "kk": "[jɛs]",
+        "zh": "是"
+      },
+      {
+        "word": "window",
+        "kk": "[ˋwɪndo]",
+        "zh": "窗戶"
+      },
+      {
+        "word": "door",
+        "kk": "[dɔr]",
+        "zh": "門"
+      },
+      {
+        "word": "not",
+        "kk": "[nɑt]",
+        "zh": "不是"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Cc",
+        "sound": "/k/",
+        "phon": "kuh",
+        "examples": [
+          {
+            "w": "cute",
+            "zh": "可愛的"
+          },
+          {
+            "w": "cap",
+            "zh": "（無邊的）帽子"
+          }
+        ]
+      },
+      {
+        "letter": "Dd",
+        "sound": "/d/",
+        "phon": "duh",
+        "examples": [
+          {
+            "w": "sad",
+            "zh": "傷心的"
+          },
+          {
+            "w": "doll",
+            "zh": "洋娃娃"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問「是…嗎？」用 Is it a...?；是就答 Yes, it is.，不是就答 No, it is not.",
+      "quiz": [
+        {
+          "prompt": "Is it a house?（是房子）",
+          "answer": "Yes, it is.",
+          "full": "Is it a house? Yes, it is.",
+          "zh": "是房子嗎？——是，它是。"
+        },
+        {
+          "prompt": "Is it a window?（不是窗戶）",
+          "answer": "No, it is not.",
+          "full": "Is it a window? No, it is not.",
+          "zh": "是窗戶嗎？——不，它不是。"
+        },
+        {
+          "prompt": "Is it a door?（是門）",
+          "answer": "Yes, it is.",
+          "full": "Is it a door? Yes, it is.",
+          "zh": "是門嗎？——是，它是。"
+        },
+        {
+          "prompt": "Is it a house?（不是房子）",
+          "answer": "No, it is not.",
+          "full": "Is it a house? No, it is not.",
+          "zh": "是房子嗎？——不，它不是。"
+        }
+      ]
+    },
+    "beOptions": [
+      "Yes, it is.",
+      "No, it is not."
+    ],
+    "talkPairs": [
+      {
+        "q": "Is it a house?",
+        "a": "Yes, it is.",
+        "d": [
+          "Let's go!",
+          "Yummy! Yummy!"
+        ]
+      },
+      {
+        "q": "What's that?",
+        "a": "I don't know.",
+        "d": [
+          "Yes, it is."
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 3,
+    "title": "Joy 2 Unit 3 課後複習",
+    "topic": "形狀與顏色 / It is a blue star.",
+    "dialogueLines": [
+      {
+        "speaker": "Fifi",
+        "text": "It's a party! Yummy! Yummy!",
+        "role": "fifi",
+        "zh": "是派對耶！看起來好好吃喔！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "It's a chocolate house!",
+        "role": "abby",
+        "zh": "它是間巧克力屋耶！"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Chocolate. Yummy! Yummy!",
+        "role": "nick",
+        "zh": "巧克力。好吃的巧克力！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Look at this window. It's a star.",
+        "role": "abby",
+        "zh": "看看這扇窗戶。它是星星形狀的。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "It's a yellow star. Yummy!",
+        "role": "nick",
+        "zh": "它是黃色的星星。看起來好好吃！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Yummy! Yummy!",
+        "role": "fifi",
+        "zh": "好吃！好吃！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Look at that door. It's a heart.",
+        "role": "abby",
+        "zh": "看看那扇門。它是愛心形狀的。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "It's a red heart. Yummy!",
+        "role": "nick",
+        "zh": "它是紅色的愛心。看起來好好吃！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Yummy! Yummy!",
+        "role": "fifi",
+        "zh": "好吃！好吃！"
+      },
+      {
+        "speaker": "All",
+        "text": "Hahahaha...",
+        "role": "together",
+        "zh": "哈哈哈哈…",
+        "scored": false
+      }
+    ],
+    "vocab": [
+      {
+        "word": "chocolate",
+        "kk": "[ˋtʃɑkəlɪt]",
+        "zh": "巧克力"
+      },
+      {
+        "word": "yummy",
+        "kk": "[ˋjʌmɪ]",
+        "zh": "好吃的；美味的"
+      },
+      {
+        "word": "at",
+        "kk": "[æt]",
+        "zh": "向；朝；對著"
+      },
+      {
+        "word": "star",
+        "kk": "[stɑr]",
+        "zh": "星形；星星"
+      },
+      {
+        "word": "yellow",
+        "kk": "[ˋjɛlo]",
+        "zh": "黃色（的）"
+      },
+      {
+        "word": "heart",
+        "kk": "[hɑrt]",
+        "zh": "心形；心"
+      },
+      {
+        "word": "red",
+        "kk": "[rɛd]",
+        "zh": "紅色（的）"
+      },
+      {
+        "word": "blue",
+        "kk": "[blu]",
+        "zh": "藍色（的）"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Ee",
+        "sound": "/ɛ/",
+        "phon": "eh",
+        "examples": [
+          {
+            "w": "elf",
+            "zh": "小精靈"
+          },
+          {
+            "w": "red",
+            "zh": "紅色"
+          }
+        ]
+      },
+      {
+        "letter": "Ff",
+        "sound": "/f/",
+        "phon": "fff",
+        "examples": [
+          {
+            "w": "fat",
+            "zh": "胖胖的"
+          },
+          {
+            "w": "five",
+            "zh": "五"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "顏色放在形狀前面：It is a + 顏色 + 形狀.（It is a blue star.）",
+      "quiz": [
+        {
+          "prompt": "It is a ___ star.（藍色的星星）",
+          "answer": "blue",
+          "full": "It is a blue star.",
+          "zh": "它是藍色的星星。"
+        },
+        {
+          "prompt": "It is a ___ heart.（黃色的愛心）",
+          "answer": "yellow",
+          "full": "It is a yellow heart.",
+          "zh": "它是黃色的愛心。"
+        },
+        {
+          "prompt": "It is a ___ heart.（紅色的愛心）",
+          "answer": "red",
+          "full": "It is a red heart.",
+          "zh": "它是紅色的愛心。"
+        },
+        {
+          "prompt": "It is a ___ star.（黃色的星星）",
+          "answer": "yellow",
+          "full": "It is a yellow star.",
+          "zh": "它是黃色的星星。"
+        }
+      ]
+    },
+    "beOptions": [
+      "red",
+      "blue",
+      "yellow"
+    ],
+    "talkPairs": [
+      {
+        "q": "Look at this window. It's a star.",
+        "a": "It's a yellow star. Yummy!",
+        "d": [
+          "Hahahaha..."
+        ]
+      },
+      {
+        "q": "Look at that door. It's a heart.",
+        "a": "It's a red heart. Yummy!",
+        "d": [
+          "It's a party!"
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 4,
+    "title": "Joy 2 Unit 4 課後複習",
+    "topic": "感覺 / Are you...? / Me too.",
+    "dialogueLines": [
+      {
+        "speaker": "Abby",
+        "text": "Are you hungry?",
+        "role": "abby",
+        "zh": "你肚子餓了嗎？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Yes, I am.",
+        "role": "nick",
+        "zh": "對，我餓了。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Me, too!",
+        "role": "fifi",
+        "zh": "我也是！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Me too. Let's eat!",
+        "role": "abby",
+        "zh": "我也是。我們來吃吧！"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Yummy!",
+        "role": "nick",
+        "zh": "好吃！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Yummy! Yummy!",
+        "role": "fifi",
+        "zh": "好吃！好吃！"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Stop, please!",
+        "role": "lady",
+        "zh": "請住手啊！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Oh no!",
+        "role": "fifi",
+        "zh": "糟糕！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Oops! Sorry.",
+        "role": "abby",
+        "zh": "哎喲！對不起。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Sorry!",
+        "role": "nick",
+        "zh": "對不起！"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Oh, it's OK.",
+        "role": "lady",
+        "zh": "喔，沒關係。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "hungry",
+        "kk": "[ˋhʌŋgrɪ]",
+        "zh": "飢餓的"
+      },
+      {
+        "word": "eat",
+        "kk": "[it]",
+        "zh": "吃"
+      },
+      {
+        "word": "please",
+        "kk": "[pliz]",
+        "zh": "請"
+      },
+      {
+        "word": "happy",
+        "kk": "[ˋhæpɪ]",
+        "zh": "開心的"
+      },
+      {
+        "word": "sad",
+        "kk": "[sæd]",
+        "zh": "傷心的"
+      },
+      {
+        "word": "OK",
+        "kk": "[ˋoˋke]",
+        "zh": "好的；可以的"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Gg",
+        "sound": "/g/",
+        "phon": "guh",
+        "examples": [
+          {
+            "w": "gold",
+            "zh": "金色的"
+          },
+          {
+            "w": "goat",
+            "zh": "山羊"
+          }
+        ]
+      },
+      {
+        "letter": "Hh",
+        "sound": "/h/",
+        "phon": "huh",
+        "examples": [
+          {
+            "w": "hot",
+            "zh": "熱的"
+          },
+          {
+            "w": "happy",
+            "zh": "開心的"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問別人的感覺用 Are you...?；是就答 Yes, I am.，不是就答 No, I am not.",
+      "quiz": [
+        {
+          "prompt": "Are you hungry?（我餓了）",
+          "answer": "Yes, I am.",
+          "full": "Are you hungry? Yes, I am.",
+          "zh": "你肚子餓了嗎？——對，我餓了。"
+        },
+        {
+          "prompt": "Are you happy?（我不快樂）",
+          "answer": "No, I am not.",
+          "full": "Are you happy? No, I am not.",
+          "zh": "你快樂嗎？——不，我不快樂。"
+        },
+        {
+          "prompt": "Are you sad?（我很難過）",
+          "answer": "Yes, I am.",
+          "full": "Are you sad? Yes, I am.",
+          "zh": "你難過嗎？——對，我很難過。"
+        },
+        {
+          "prompt": "Are you OK?（我不好）",
+          "answer": "No, I am not.",
+          "full": "Are you OK? No, I am not.",
+          "zh": "你還好嗎？——不，我不好。"
+        }
+      ]
+    },
+    "beOptions": [
+      "Yes, I am.",
+      "No, I am not."
+    ],
+    "talkPairs": [
+      {
+        "q": "Are you hungry?",
+        "a": "Yes, I am.",
+        "d": [
+          "Stop, please!",
+          "Oh, it's OK."
+        ]
+      },
+      {
+        "q": "Oops! Sorry.",
+        "a": "Oh, it's OK.",
+        "d": [
+          "Yummy!",
+          "Me, too!"
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 5,
+    "title": "Joy 2 Unit 5 課後複習",
+    "topic": "萬聖節 / Sight Words: yes, no, not / Be tidy.",
+    "dialogueLines": [
+      {
+        "speaker": "All",
+        "text": "Trick or treat!",
+        "role": "together",
+        "zh": "不給糖就搗蛋！"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Happy Halloween!",
+        "role": "lady",
+        "zh": "萬聖節快樂！"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Is it a house?",
+        "role": "nick",
+        "zh": "是房子嗎？"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Yes, it is.",
+        "role": "abby",
+        "zh": "是，它是。"
+      },
+      {
+        "speaker": "Woman",
+        "text": "Is it a house?",
+        "role": "lady",
+        "zh": "它是房子嗎？"
+      },
+      {
+        "speaker": "Man",
+        "text": "No, it is not.",
+        "role": "nick",
+        "zh": "不，它不是。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Are you hungry?",
+        "role": "abby",
+        "zh": "你肚子餓了嗎？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Yes, I am.",
+        "role": "nick",
+        "zh": "對，我餓了。"
+      },
+      {
+        "speaker": "Woman",
+        "text": "Are you happy?",
+        "role": "lady",
+        "zh": "你快樂嗎？"
+      },
+      {
+        "speaker": "Man",
+        "text": "No, I am not.",
+        "role": "nick",
+        "zh": "不，我不快樂。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Wash your hands.",
+        "role": "together",
+        "zh": "洗洗手。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Clean up, please.",
+        "role": "together",
+        "zh": "請收拾乾淨。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Be tidy.",
+        "role": "together",
+        "zh": "要整潔。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "witch",
+        "kk": "[wɪtʃ]",
+        "zh": "巫婆"
+      },
+      {
+        "word": "ghost",
+        "kk": "[gost]",
+        "zh": "鬼；幽靈"
+      },
+      {
+        "word": "candy",
+        "kk": "[ˋkændɪ]",
+        "zh": "糖果"
+      },
+      {
+        "word": "trick or treat",
+        "kk": "[ˋtrɪk ɔr ˋtrit]",
+        "zh": "不給糖就搗蛋"
+      },
+      {
+        "word": "Halloween",
+        "kk": "[ˏhæloˋin]",
+        "zh": "萬聖節前夕"
+      },
+      {
+        "word": "wash",
+        "kk": "[wɑʃ]",
+        "zh": "洗"
+      },
+      {
+        "word": "hand",
+        "kk": "[hænd]",
+        "zh": "手"
+      },
+      {
+        "word": "drink",
+        "kk": "[drɪŋk]",
+        "zh": "喝"
+      },
+      {
+        "word": "clean up",
+        "kk": "[ˋklin ˋʌp]",
+        "zh": "收拾；清理"
+      },
+      {
+        "word": "tidy",
+        "kk": "[ˋtaɪdɪ]",
+        "zh": "整潔的"
+      },
+      {
+        "word": "yes",
+        "kk": "[jɛs]",
+        "zh": "是（常見字）"
+      },
+      {
+        "word": "no",
+        "kk": "[no]",
+        "zh": "不（常見字）"
+      },
+      {
+        "word": "not",
+        "kk": "[nɑt]",
+        "zh": "不是（常見字）"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Aa",
+        "sound": "/æ/",
+        "phon": "ah",
+        "examples": [
+          {
+            "w": "ant",
+            "zh": "螞蟻"
+          }
+        ]
+      },
+      {
+        "letter": "Bb",
+        "sound": "/b/",
+        "phon": "buh",
+        "examples": [
+          {
+            "w": "bug",
+            "zh": "蟲子"
+          }
+        ]
+      },
+      {
+        "letter": "Cc",
+        "sound": "/k/",
+        "phon": "kuh",
+        "examples": [
+          {
+            "w": "cap",
+            "zh": "帽子"
+          }
+        ]
+      },
+      {
+        "letter": "Dd",
+        "sound": "/d/",
+        "phon": "duh",
+        "examples": [
+          {
+            "w": "doll",
+            "zh": "洋娃娃"
+          }
+        ]
+      },
+      {
+        "letter": "Ee",
+        "sound": "/ɛ/",
+        "phon": "eh",
+        "examples": [
+          {
+            "w": "elf",
+            "zh": "小精靈"
+          }
+        ]
+      },
+      {
+        "letter": "Ff",
+        "sound": "/f/",
+        "phon": "fff",
+        "examples": [
+          {
+            "w": "five",
+            "zh": "五"
+          }
+        ]
+      },
+      {
+        "letter": "Gg",
+        "sound": "/g/",
+        "phon": "guh",
+        "examples": [
+          {
+            "w": "goat",
+            "zh": "山羊"
+          }
+        ]
+      },
+      {
+        "letter": "Hh",
+        "sound": "/h/",
+        "phon": "huh",
+        "examples": [
+          {
+            "w": "hot",
+            "zh": "熱的"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "常見字 yes、no、not：是就說 Yes，不是就說 No，「不是」用 not。句子開頭的字母要大寫。",
+      "quiz": [
+        {
+          "prompt": "Is it a house?　___, it is.（是）",
+          "answer": "Yes",
+          "full": "Is it a house? Yes, it is.",
+          "zh": "是房子嗎？——是，它是。"
+        },
+        {
+          "prompt": "Is it a door?　___, it is not.（不是）",
+          "answer": "No",
+          "full": "Is it a door? No, it is not.",
+          "zh": "是門嗎？——不，它不是。"
+        },
+        {
+          "prompt": "No, it is ___.",
+          "answer": "not",
+          "full": "No, it is not.",
+          "zh": "不，它不是。"
+        },
+        {
+          "prompt": "Are you sad?　___, I am not.（不難過）",
+          "answer": "No",
+          "full": "Are you sad? No, I am not.",
+          "zh": "你難過嗎？——不，我不難過。"
+        },
+        {
+          "prompt": "Are you hungry?　___, I am.（餓了）",
+          "answer": "Yes",
+          "full": "Are you hungry? Yes, I am.",
+          "zh": "你餓了嗎？——對，我餓了。"
+        }
+      ]
+    },
+    "beOptions": [
+      "Yes",
+      "No",
+      "not"
+    ],
+    "talkPairs": [
+      {
+        "q": "Trick or treat!",
+        "a": "Happy Halloween!",
+        "d": [
+          "Be tidy."
+        ]
+      },
+      {
+        "q": "Is it a house?",
+        "a": "Yes, it is.",
+        "d": [
+          "Wash your hands."
+        ]
+      }
+    ],
+    "phonicsNote": "複習 Aa–Hh"
+  },
+  {
+    "unit": 6,
+    "title": "Joy 2 Unit 6 課後複習",
+    "topic": "Is this...? / 近處家具文具 / Thank you.",
+    "dialogueLines": [
+      {
+        "speaker": "Nick + Abby",
+        "text": "I'm sorry.",
+        "role": "together",
+        "zh": "對不起。"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "It's OK. Come in! What's your name?",
+        "role": "lady",
+        "zh": "沒關係。請進！你的名字叫什麼？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "My name is Nick. This is Abby.",
+        "role": "nick",
+        "zh": "我的名字叫做尼克。這位是艾比。"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Oh, hi, Nick. Hi, Abby. How are you?",
+        "role": "lady",
+        "zh": "喔，嗨，尼克。嗨，艾比。你們好嗎？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "I'm fine. Thank you.",
+        "role": "nick",
+        "zh": "我很好。謝謝妳。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "I'm great. Thank you. And you?",
+        "role": "abby",
+        "zh": "我很棒。謝謝妳。那妳呢？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Oh, I'm great. Thank you.",
+        "role": "lady",
+        "zh": "喔，我很棒。謝謝你。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Hahaha...",
+        "role": "fifi",
+        "zh": "哈哈哈…",
+        "scored": false
+      },
+      {
+        "speaker": "Mouse",
+        "text": "Hahaha...",
+        "role": "together",
+        "zh": "哈哈哈…",
+        "scored": false
+      },
+      {
+        "speaker": "Abby",
+        "text": "Wow, a cool house!",
+        "role": "abby",
+        "zh": "哇，好酷的房子喔！"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Thank you.",
+        "role": "lady",
+        "zh": "謝謝妳。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Wow, a pretty house!",
+        "role": "nick",
+        "zh": "哇，好漂亮的房子喔！"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Thank you.",
+        "role": "lady",
+        "zh": "謝謝你。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Wow, a great house!",
+        "role": "fifi",
+        "zh": "哇，好棒的房子喔！"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Thank you.",
+        "role": "lady",
+        "zh": "謝謝妳。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Is this a chair?",
+        "role": "nick",
+        "zh": "這是椅子嗎？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Yes, it is. It's a smart chair.",
+        "role": "lady",
+        "zh": "是，它是。它是一張聰明的椅子。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Wow. Cool!",
+        "role": "abby",
+        "zh": "哇。真酷！"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "wow",
+        "kk": "[waʊ]",
+        "zh": "哇（表示驚訝、愉快等）"
+      },
+      {
+        "word": "chair",
+        "kk": "[tʃɛr]",
+        "zh": "椅子"
+      },
+      {
+        "word": "smart",
+        "kk": "[smɑrt]",
+        "zh": "聰明的"
+      },
+      {
+        "word": "pencil",
+        "kk": "[ˋpɛnsḷ]",
+        "zh": "鉛筆"
+      },
+      {
+        "word": "book",
+        "kk": "[bʊk]",
+        "zh": "書"
+      },
+      {
+        "word": "desk",
+        "kk": "[dɛsk]",
+        "zh": "書桌"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Ii",
+        "sound": "/ɪ/",
+        "phon": "ih",
+        "examples": [
+          {
+            "w": "inky",
+            "zh": "漆黑的"
+          },
+          {
+            "w": "king",
+            "zh": "國王"
+          }
+        ]
+      },
+      {
+        "letter": "Jj",
+        "sound": "/dʒ/",
+        "phon": "juh",
+        "examples": [
+          {
+            "w": "jar",
+            "zh": "（寬口的）瓶；罐"
+          },
+          {
+            "w": "jam",
+            "zh": "果醬"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問近處的東西用 Is this a...?（這是…嗎？）",
+      "quiz": [
+        {
+          "prompt": "Is this a ___?（這是書嗎？）",
+          "answer": "book",
+          "full": "Is this a book?",
+          "zh": "這是書嗎？"
+        },
+        {
+          "prompt": "Is this a ___?（這是書桌嗎？）",
+          "answer": "desk",
+          "full": "Is this a desk?",
+          "zh": "這是書桌嗎？"
+        },
+        {
+          "prompt": "Is this a ___?（這是椅子嗎？）",
+          "answer": "chair",
+          "full": "Is this a chair?",
+          "zh": "這是椅子嗎？"
+        },
+        {
+          "prompt": "Is this a ___?（這是鉛筆嗎？）",
+          "answer": "pencil",
+          "full": "Is this a pencil?",
+          "zh": "這是鉛筆嗎？"
+        }
+      ]
+    },
+    "beOptions": [
+      "chair",
+      "desk",
+      "pencil",
+      "book"
+    ],
+    "talkPairs": [
+      {
+        "q": "Is this a chair?",
+        "a": "Yes, it is. It's a smart chair.",
+        "d": [
+          "Wow, a cool house!"
+        ]
+      },
+      {
+        "q": "Wow, a pretty house!",
+        "a": "Thank you.",
+        "d": [
+          "I'm sorry."
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 7,
+    "title": "Joy 2 Unit 7 課後複習",
+    "topic": "Is that...? / 遠處家具文具",
+    "dialogueLines": [
+      {
+        "speaker": "Nick",
+        "text": "Is that a TV?",
+        "role": "nick",
+        "zh": "那是電視機嗎？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Yes, it is. It's a happy TV.",
+        "role": "lady",
+        "zh": "是，它是。它是一台開心的電視機。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Wow. A cool TV.",
+        "role": "abby",
+        "zh": "哇。好酷的電視機。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Wow. A great TV.",
+        "role": "fifi",
+        "zh": "哇。好棒的電視機。"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Thank you.",
+        "role": "lady",
+        "zh": "謝謝妳。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Is that a clock?",
+        "role": "abby",
+        "zh": "那是時鐘嗎？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Yes, it is. It's a shy clock.",
+        "role": "lady",
+        "zh": "是，它是。它是個害羞的時鐘。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Wow. A cool clock.",
+        "role": "nick",
+        "zh": "哇。好酷的時鐘。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Wow. A great clock.",
+        "role": "fifi",
+        "zh": "哇。好棒的時鐘。"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Thank you.",
+        "role": "lady",
+        "zh": "謝謝妳。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "AHHHH...",
+        "role": "nick",
+        "zh": "啊…",
+        "scored": false
+      }
+    ],
+    "vocab": [
+      {
+        "word": "TV",
+        "kk": "[ˋtiˋvi]",
+        "zh": "電視"
+      },
+      {
+        "word": "clock",
+        "kk": "[klɑk]",
+        "zh": "時鐘"
+      },
+      {
+        "word": "shy",
+        "kk": "[ʃaɪ]",
+        "zh": "害羞的"
+      },
+      {
+        "word": "ah",
+        "kk": "[ɑ]",
+        "zh": "啊（表示痛苦、驚訝等）"
+      },
+      {
+        "word": "marker",
+        "kk": "[ˋmɑrkɚ]",
+        "zh": "彩色筆；麥克筆"
+      },
+      {
+        "word": "ruler",
+        "kk": "[ˋrulɚ]",
+        "zh": "尺"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Kk",
+        "sound": "/k/",
+        "phon": "kuh",
+        "examples": [
+          {
+            "w": "keg",
+            "zh": "橡木桶"
+          },
+          {
+            "w": "kite",
+            "zh": "風箏"
+          }
+        ]
+      },
+      {
+        "letter": "Ll",
+        "sound": "/l/",
+        "phon": "lll",
+        "examples": [
+          {
+            "w": "leg",
+            "zh": "腿"
+          },
+          {
+            "w": "lab",
+            "zh": "實驗室"
+          },
+          {
+            "w": "bell",
+            "zh": "門鈴"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "近的用 this（這個），遠的用 that（那個）。",
+      "quiz": [
+        {
+          "prompt": "Is ___ a TV?（那是電視嗎？）",
+          "answer": "that",
+          "full": "Is that a TV?",
+          "zh": "那是電視嗎？"
+        },
+        {
+          "prompt": "Is ___ a chair?（這是椅子嗎？）",
+          "answer": "this",
+          "full": "Is this a chair?",
+          "zh": "這是椅子嗎？"
+        },
+        {
+          "prompt": "Is ___ a clock?（那是時鐘嗎？）",
+          "answer": "that",
+          "full": "Is that a clock?",
+          "zh": "那是時鐘嗎？"
+        },
+        {
+          "prompt": "Is ___ a ruler?（那是尺嗎？）",
+          "answer": "that",
+          "full": "Is that a ruler?",
+          "zh": "那是尺嗎？"
+        },
+        {
+          "prompt": "Is ___ a pencil?（這是鉛筆嗎？）",
+          "answer": "this",
+          "full": "Is this a pencil?",
+          "zh": "這是鉛筆嗎？"
+        }
+      ]
+    },
+    "beOptions": [
+      "this",
+      "that"
+    ],
+    "talkPairs": [
+      {
+        "q": "Is that a TV?",
+        "a": "Yes, it is. It's a happy TV.",
+        "d": [
+          "AHHHH..."
+        ]
+      },
+      {
+        "q": "Is that a clock?",
+        "a": "Yes, it is. It's a shy clock.",
+        "d": [
+          "Thank you."
+        ]
+      }
+    ],
+    "phonicsNote": "Ll 有字首（leg）和字尾（bell）兩種讀音"
+  },
+  {
+    "unit": 8,
+    "title": "Joy 2 Unit 8 課後複習",
+    "topic": "What is this? / 動物與顏色",
+    "dialogueLines": [
+      {
+        "speaker": "Nick",
+        "text": "Ouch!",
+        "role": "nick",
+        "zh": "哎喲！",
+        "scored": false
+      },
+      {
+        "speaker": "Abby",
+        "text": "Are you OK, Nick?",
+        "role": "abby",
+        "zh": "尼克，你還好嗎？"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Are you OK, Nick?",
+        "role": "fifi",
+        "zh": "尼克，你還好嗎？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Yes, I am. What's this?",
+        "role": "nick",
+        "zh": "是的，我還好。這是什麼？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "It's my cat, Mimi.",
+        "role": "lady",
+        "zh": "是我的貓，咪咪。"
+      },
+      {
+        "speaker": "Cat",
+        "text": "Meow!",
+        "role": "together",
+        "zh": "喵！",
+        "scored": false
+      },
+      {
+        "speaker": "All",
+        "text": "Hahaha...",
+        "role": "together",
+        "zh": "哈哈哈…",
+        "scored": false
+      },
+      {
+        "speaker": "Dog",
+        "text": "Woof! Woof!",
+        "role": "together",
+        "zh": "汪！汪！",
+        "scored": false
+      },
+      {
+        "speaker": "Cat",
+        "text": "Meow! Meow!",
+        "role": "together",
+        "zh": "喵！喵！",
+        "scored": false
+      },
+      {
+        "speaker": "All",
+        "text": "Oh no!",
+        "role": "together",
+        "zh": "喔不！"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "And this is my dog, Toto.",
+        "role": "lady",
+        "zh": "還有這隻是我的狗，托托。"
+      },
+      {
+        "speaker": "All",
+        "text": "Oh no!",
+        "role": "together",
+        "zh": "喔不！"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "cat",
+        "kk": "[kæt]",
+        "zh": "貓"
+      },
+      {
+        "word": "Mimi",
+        "kk": "[ˋmɪmɪ]",
+        "zh": "咪咪（寵物名）"
+      },
+      {
+        "word": "meow",
+        "kk": "[mɪˋaʊ]",
+        "zh": "貓叫聲"
+      },
+      {
+        "word": "woof",
+        "kk": "[wuf]",
+        "zh": "狗叫聲"
+      },
+      {
+        "word": "dog",
+        "kk": "[dɔg]",
+        "zh": "狗"
+      },
+      {
+        "word": "Toto",
+        "kk": "[ˋtoto]",
+        "zh": "托托（寵物名）"
+      },
+      {
+        "word": "black",
+        "kk": "[blæk]",
+        "zh": "黑色（的）"
+      },
+      {
+        "word": "white",
+        "kk": "[hwaɪt]",
+        "zh": "白色（的）"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Mm",
+        "sound": "/m/",
+        "phon": "mmm",
+        "examples": [
+          {
+            "w": "man",
+            "zh": "男人"
+          },
+          {
+            "w": "gum",
+            "zh": "口香糖"
+          },
+          {
+            "w": "mom",
+            "zh": "媽媽"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問「這是什麼？」用 What is this?，回答 It is...",
+      "quiz": [
+        {
+          "prompt": "It is a ___ cat.（黑貓）",
+          "answer": "black",
+          "full": "It is a black cat.",
+          "zh": "牠是一隻黑貓。"
+        },
+        {
+          "prompt": "It is a white ___.（白狗）",
+          "answer": "dog",
+          "full": "It is a white dog.",
+          "zh": "牠是一隻白狗。"
+        },
+        {
+          "prompt": "It is my ___.（我的貓）",
+          "answer": "cat",
+          "full": "It is my cat.",
+          "zh": "牠是我的貓。"
+        },
+        {
+          "prompt": "It is a ___ dog.（白狗）",
+          "answer": "white",
+          "full": "It is a white dog.",
+          "zh": "牠是一隻白狗。"
+        }
+      ]
+    },
+    "beOptions": [
+      "black",
+      "white",
+      "cat",
+      "dog"
+    ],
+    "talkPairs": [
+      {
+        "q": "What's this?",
+        "a": "It's my cat, Mimi.",
+        "d": [
+          "Oh no!"
+        ]
+      },
+      {
+        "q": "Are you OK, Nick?",
+        "a": "Yes, I am. What's this?",
+        "d": [
+          "Woof! Woof!"
+        ]
+      }
+    ],
+    "phonicsNote": "Mm 有字首（man）和字尾（gum）兩種讀音"
+  },
+  {
+    "unit": 9,
+    "title": "Joy 2 Unit 9 課後複習",
+    "topic": "What time is it? / 數字 1–4",
+    "dialogueLines": [
+      {
+        "speaker": "Cat",
+        "text": "Meow. Meow.",
+        "role": "together",
+        "zh": "喵。喵。",
+        "scored": false
+      },
+      {
+        "speaker": "Dog",
+        "text": "Woof. Woof.",
+        "role": "together",
+        "zh": "汪。汪。",
+        "scored": false
+      },
+      {
+        "speaker": "Bird",
+        "text": "Coo-coo, coo-coo...",
+        "role": "together",
+        "zh": "咕咕，咕咕…",
+        "scored": false
+      },
+      {
+        "speaker": "Abby",
+        "text": "What time is it?",
+        "role": "abby",
+        "zh": "幾點了？"
+      },
+      {
+        "speaker": "Bird",
+        "text": "Coo-coo, coo-coo...",
+        "role": "together",
+        "zh": "咕咕，咕咕…",
+        "scored": false
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "It's 12 o'clock. Time to eat.",
+        "role": "lady",
+        "zh": "十二點了。該吃飯了。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Yummy!",
+        "role": "nick",
+        "zh": "好吃！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Yummy!",
+        "role": "abby",
+        "zh": "好吃！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Yummy!",
+        "role": "fifi",
+        "zh": "好吃！"
+      },
+      {
+        "speaker": "Bird",
+        "text": "Coo-coo, coo-coo... RUN!",
+        "role": "together",
+        "zh": "咕咕，咕咕…快跑呀！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Oh no!",
+        "role": "fifi",
+        "zh": "喔不！"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "coo-coo",
+        "kk": "[ˋkuku]",
+        "zh": "咕咕叫聲"
+      },
+      {
+        "word": "time",
+        "kk": "[taɪm]",
+        "zh": "時間"
+      },
+      {
+        "word": "o'clock",
+        "kk": "[əˋklɑk]",
+        "zh": "…點鐘"
+      },
+      {
+        "word": "one",
+        "kk": "[wʌn]",
+        "zh": "一"
+      },
+      {
+        "word": "two",
+        "kk": "[tu]",
+        "zh": "二"
+      },
+      {
+        "word": "three",
+        "kk": "[θri]",
+        "zh": "三"
+      },
+      {
+        "word": "four",
+        "kk": "[for]",
+        "zh": "四"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Nn",
+        "sound": "/n/",
+        "phon": "nnn",
+        "examples": [
+          {
+            "w": "nut",
+            "zh": "核桃；堅果"
+          },
+          {
+            "w": "nap",
+            "zh": "小睡"
+          },
+          {
+            "w": "bin",
+            "zh": "箱子"
+          },
+          {
+            "w": "pan",
+            "zh": "平底鍋"
+          },
+          {
+            "w": "den",
+            "zh": "獸穴"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問時間用 What time is it?，回答 It is ... o'clock.",
+      "quiz": [
+        {
+          "prompt": "It is ___ o'clock.（三點）",
+          "answer": "three",
+          "full": "It is three o'clock.",
+          "zh": "三點了。"
+        },
+        {
+          "prompt": "It is ___ o'clock.（一點）",
+          "answer": "one",
+          "full": "It is one o'clock.",
+          "zh": "一點了。"
+        },
+        {
+          "prompt": "It is ___ o'clock.（兩點）",
+          "answer": "two",
+          "full": "It is two o'clock.",
+          "zh": "兩點了。"
+        },
+        {
+          "prompt": "It is ___ o'clock.（四點）",
+          "answer": "four",
+          "full": "It is four o'clock.",
+          "zh": "四點了。"
+        }
+      ]
+    },
+    "beOptions": [
+      "one",
+      "two",
+      "three",
+      "four"
+    ],
+    "talkPairs": [
+      {
+        "q": "What time is it?",
+        "a": "It's 12 o'clock. Time to eat.",
+        "d": [
+          "Oh no!"
+        ]
+      },
+      {
+        "q": "It's 12 o'clock. Time to eat.",
+        "a": "Yummy!",
+        "d": [
+          "Coo-coo, coo-coo..."
+        ]
+      }
+    ],
+    "phonicsNote": "Nn 有字首（nut）和字尾（bin）兩種讀音"
+  },
+  {
+    "unit": 10,
+    "title": "Joy 2 Unit 10 課後複習",
+    "topic": "複習 U1–U4、U6–U9 / Sight Words: this, that, time / Pay attention.",
+    "dialogueLines": [
+      {
+        "speaker": "Nick",
+        "text": "Is this a chair?",
+        "role": "nick",
+        "zh": "這是椅子嗎？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Yes, it is. It's a smart chair.",
+        "role": "lady",
+        "zh": "是，它是。它是一張聰明的椅子。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Is that a clock?",
+        "role": "abby",
+        "zh": "那是時鐘嗎？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "Yes, it is. It's a shy clock.",
+        "role": "lady",
+        "zh": "是，它是。它是個害羞的時鐘。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "What's this?",
+        "role": "nick",
+        "zh": "這是什麼？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "It's my cat, Mimi.",
+        "role": "lady",
+        "zh": "是我的貓，咪咪。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "What time is it?",
+        "role": "abby",
+        "zh": "幾點了？"
+      },
+      {
+        "speaker": "Old Lady",
+        "text": "It's 12 o'clock. Time to eat.",
+        "role": "lady",
+        "zh": "十二點了。該吃飯了。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Take out your book.",
+        "role": "together",
+        "zh": "拿出你的書。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Open the door.",
+        "role": "together",
+        "zh": "打開門。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Close the window.",
+        "role": "together",
+        "zh": "關上窗戶。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Put away your pencil.",
+        "role": "together",
+        "zh": "把鉛筆收起來。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Pay attention.",
+        "role": "together",
+        "zh": "要專心。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "take out",
+        "kk": "[ˏtek ˋaʊt]",
+        "zh": "拿出；取出"
+      },
+      {
+        "word": "open",
+        "kk": "[ˋopən]",
+        "zh": "打開"
+      },
+      {
+        "word": "close",
+        "kk": "[kloz]",
+        "zh": "關上"
+      },
+      {
+        "word": "put away",
+        "kk": "[ˏpʊt əˋwe]",
+        "zh": "收起來；收好"
+      },
+      {
+        "word": "pay attention",
+        "kk": "[ˏpe əˋtɛnʃən]",
+        "zh": "專心；注意"
+      },
+      {
+        "word": "this",
+        "kk": "[ðɪs]",
+        "zh": "這個（常見字）"
+      },
+      {
+        "word": "that",
+        "kk": "[ðæt]",
+        "zh": "那個（常見字）"
+      },
+      {
+        "word": "time",
+        "kk": "[taɪm]",
+        "zh": "時間（常見字）"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Ii",
+        "sound": "/ɪ/",
+        "phon": "ih",
+        "examples": [
+          {
+            "w": "king",
+            "zh": "國王"
+          }
+        ]
+      },
+      {
+        "letter": "Jj",
+        "sound": "/dʒ/",
+        "phon": "juh",
+        "examples": [
+          {
+            "w": "jam",
+            "zh": "果醬"
+          }
+        ]
+      },
+      {
+        "letter": "Kk",
+        "sound": "/k/",
+        "phon": "kuh",
+        "examples": [
+          {
+            "w": "kite",
+            "zh": "風箏"
+          }
+        ]
+      },
+      {
+        "letter": "Ll",
+        "sound": "/l/",
+        "phon": "lll",
+        "examples": [
+          {
+            "w": "leg",
+            "zh": "腿"
+          }
+        ]
+      },
+      {
+        "letter": "Mm",
+        "sound": "/m/",
+        "phon": "mmm",
+        "examples": [
+          {
+            "w": "mom",
+            "zh": "媽媽"
+          }
+        ]
+      },
+      {
+        "letter": "Nn",
+        "sound": "/n/",
+        "phon": "nnn",
+        "examples": [
+          {
+            "w": "nut",
+            "zh": "核桃"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "常見字 this（這個，近的）、that（那個，遠的）、time（時間）。",
+      "quiz": [
+        {
+          "prompt": "What ___ is it?",
+          "answer": "time",
+          "full": "What time is it?",
+          "zh": "幾點了？"
+        },
+        {
+          "prompt": "Is ___ a TV?（那是電視嗎？）",
+          "answer": "that",
+          "full": "Is that a TV?",
+          "zh": "那是電視嗎？"
+        },
+        {
+          "prompt": "Is ___ a chair?（這是椅子嗎？）",
+          "answer": "this",
+          "full": "Is this a chair?",
+          "zh": "這是椅子嗎？"
+        },
+        {
+          "prompt": "What is ___?（這是什麼？）",
+          "answer": "this",
+          "full": "What is this?",
+          "zh": "這是什麼？"
+        }
+      ]
+    },
+    "beOptions": [
+      "this",
+      "that",
+      "time"
+    ],
+    "talkPairs": [
+      {
+        "q": "Is this a chair?",
+        "a": "Yes, it is. It's a smart chair.",
+        "d": [
+          "Pay attention."
+        ]
+      },
+      {
+        "q": "What time is it?",
+        "a": "It's 12 o'clock. Time to eat.",
+        "d": [
+          "Open the door."
+        ]
+      }
+    ],
+    "phonicsNote": "複習 Ii–Nn"
+  },
+  {
+    "unit": 11,
+    "title": "Joy 2 Unit 11 課後複習",
+    "topic": "Who is he/she? / 爸爸媽媽",
+    "dialogueLines": [
+      {
+        "speaker": "Abby",
+        "text": "Look! Who's that?",
+        "role": "abby",
+        "zh": "看啊！那是誰呀？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "I don't know.",
+        "role": "nick",
+        "zh": "不知道耶。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Let's go.",
+        "role": "fifi",
+        "zh": "我們去看看吧。"
+      },
+      {
+        "speaker": "Nick + Abby",
+        "text": "OK.",
+        "role": "together",
+        "zh": "好。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Good evening. I'm Abby. This is Nick.",
+        "role": "abby",
+        "zh": "晚安。我是艾比。這位是尼克。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Good evening. I'm Bobo.",
+        "role": "bobo",
+        "zh": "晚安。我是波波。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Hi, I'm Fifi.",
+        "role": "fifi",
+        "zh": "嗨，我是菲菲。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Hello, Fifi.",
+        "role": "bobo",
+        "zh": "哈囉，菲菲。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "How are you, Bobo?",
+        "role": "nick",
+        "zh": "波波，你好嗎？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "I'm fine. Thank you. And you?",
+        "role": "bobo",
+        "zh": "我很好。謝謝你。那你呢？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "I'm great. Thank you.",
+        "role": "nick",
+        "zh": "我很棒。謝謝你。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Who's she?",
+        "role": "nick",
+        "zh": "她是誰？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "She's my mom.",
+        "role": "bobo",
+        "zh": "她是我媽媽。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Who's he?",
+        "role": "abby",
+        "zh": "他是誰？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "He's my dad.",
+        "role": "bobo",
+        "zh": "他是我爸爸。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "Bobo",
+        "kk": "[ˋbobo]",
+        "zh": "波波（人名）"
+      },
+      {
+        "word": "who",
+        "kk": "[hu]",
+        "zh": "誰"
+      },
+      {
+        "word": "mother",
+        "kk": "[ˋmʌðɚ]",
+        "zh": "媽媽（=mom、mommy）"
+      },
+      {
+        "word": "father",
+        "kk": "[ˋfɑðɚ]",
+        "zh": "爸爸（=dad、daddy）"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Oo",
+        "sound": "/ɑ/",
+        "phon": "ah",
+        "examples": [
+          {
+            "w": "on",
+            "zh": "在…上面"
+          },
+          {
+            "w": "box",
+            "zh": "箱子"
+          },
+          {
+            "w": "pond",
+            "zh": "池塘"
+          }
+        ]
+      },
+      {
+        "letter": "Pp",
+        "sound": "/p/",
+        "phon": "puh",
+        "examples": [
+          {
+            "w": "pen",
+            "zh": "筆"
+          },
+          {
+            "w": "pond",
+            "zh": "池塘"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問「他/她是誰？」用 Who is he/she?；男生用 he，女生用 she。",
+      "quiz": [
+        {
+          "prompt": "___ is my mom.",
+          "answer": "She",
+          "full": "She is my mom.",
+          "zh": "她是我媽媽。"
+        },
+        {
+          "prompt": "___ is my dad.",
+          "answer": "He",
+          "full": "He is my dad.",
+          "zh": "他是我爸爸。"
+        },
+        {
+          "prompt": "She is my ___.（媽媽）",
+          "answer": "mother",
+          "full": "She is my mother.",
+          "zh": "她是我媽媽。"
+        },
+        {
+          "prompt": "He is my ___.（爸爸）",
+          "answer": "father",
+          "full": "He is my father.",
+          "zh": "他是我爸爸。"
+        }
+      ]
+    },
+    "beOptions": [
+      "He",
+      "She",
+      "mother",
+      "father"
+    ],
+    "talkPairs": [
+      {
+        "q": "Who's she?",
+        "a": "She's my mom.",
+        "d": [
+          "He's my dad."
+        ]
+      },
+      {
+        "q": "Who's he?",
+        "a": "He's my dad.",
+        "d": [
+          "She's my mom."
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 12,
+    "title": "Joy 2 Unit 12 課後複習",
+    "topic": "What is that? / 玩具 / Time to go home.",
+    "dialogueLines": [
+      {
+        "speaker": "Fifi",
+        "text": "Cool!",
+        "role": "fifi",
+        "zh": "好酷喔！"
+      },
+      {
+        "speaker": "Abby",
+        "text": "What's that, Bobo?",
+        "role": "abby",
+        "zh": "波波，那是什麼？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "It's a ball. Let's play!",
+        "role": "bobo",
+        "zh": "是一顆球。我們來玩吧！"
+      },
+      {
+        "speaker": "Nick + Abby",
+        "text": "Yippee! Hahaha...",
+        "role": "together",
+        "zh": "耶！哈哈哈…"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "What time is it?",
+        "role": "bobo",
+        "zh": "幾點了？"
+      },
+      {
+        "speaker": "Bobo's mom",
+        "text": "It's six o'clock. Time to go home.",
+        "role": "lady",
+        "zh": "六點了。該回家囉。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Come, Abby! Come, Nick!",
+        "role": "bobo",
+        "zh": "艾比，來吧！尼克，來吧！"
+      },
+      {
+        "speaker": "Nick + Abby",
+        "text": "OK. Let's go!",
+        "role": "together",
+        "zh": "好。我們走吧！"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Yay!",
+        "role": "fifi",
+        "zh": "耶！",
+        "scored": false
+      }
+    ],
+    "vocab": [
+      {
+        "word": "ball",
+        "kk": "[bɔl]",
+        "zh": "球"
+      },
+      {
+        "word": "play",
+        "kk": "[ple]",
+        "zh": "玩"
+      },
+      {
+        "word": "yippee",
+        "kk": "[ˋjɪpi]",
+        "zh": "耶（表示開心、快樂）"
+      },
+      {
+        "word": "go home",
+        "kk": "[ˏgo ˋhom]",
+        "zh": "回家"
+      },
+      {
+        "word": "yo-yo",
+        "kk": "[ˋjoˏjo]",
+        "zh": "溜溜球"
+      },
+      {
+        "word": "kite",
+        "kk": "[kaɪt]",
+        "zh": "風箏"
+      },
+      {
+        "word": "bike",
+        "kk": "[baɪk]",
+        "zh": "腳踏車"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Qq",
+        "sound": "/kw/",
+        "phon": "kwuh",
+        "examples": [
+          {
+            "w": "queen",
+            "zh": "皇后"
+          },
+          {
+            "w": "quiz",
+            "zh": "測驗"
+          }
+        ]
+      },
+      {
+        "letter": "Rr",
+        "sound": "/r/",
+        "phon": "rrr",
+        "examples": [
+          {
+            "w": "hair",
+            "zh": "頭髮"
+          },
+          {
+            "w": "air",
+            "zh": "空氣"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問遠處的東西用 What is that?，回答 It is a...",
+      "quiz": [
+        {
+          "prompt": "It is a ___.（球）",
+          "answer": "ball",
+          "full": "It is a ball.",
+          "zh": "它是球。"
+        },
+        {
+          "prompt": "It is a ___.（風箏）",
+          "answer": "kite",
+          "full": "It is a kite.",
+          "zh": "它是風箏。"
+        },
+        {
+          "prompt": "It is a ___.（腳踏車）",
+          "answer": "bike",
+          "full": "It is a bike.",
+          "zh": "它是腳踏車。"
+        },
+        {
+          "prompt": "It is a ___.（溜溜球）",
+          "answer": "yo-yo",
+          "full": "It is a yo-yo.",
+          "zh": "是溜溜球。"
+        }
+      ]
+    },
+    "beOptions": [
+      "ball",
+      "yo-yo",
+      "kite",
+      "bike"
+    ],
+    "talkPairs": [
+      {
+        "q": "What's that, Bobo?",
+        "a": "It's a ball. Let's play!",
+        "d": [
+          "Yay!"
+        ]
+      },
+      {
+        "q": "What time is it?",
+        "a": "It's six o'clock. Time to go home.",
+        "d": [
+          "Yippee!"
+        ]
+      }
+    ],
+    "phonicsNote": "Rr 有字首和字尾兩種讀音"
+  },
+  {
+    "unit": 13,
+    "title": "Joy 2 Unit 13 課後複習",
+    "topic": "哥哥姊姊弟弟妹妹 / He/She is my...",
+    "dialogueLines": [
+      {
+        "speaker": "Nick",
+        "text": "Wow! A cool house.",
+        "role": "nick",
+        "zh": "哇！好酷的房子。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Wow! A pretty house.",
+        "role": "abby",
+        "zh": "哇！好漂亮的房子。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Wow! A great house.",
+        "role": "fifi",
+        "zh": "哇！好棒的房子。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Thank you.",
+        "role": "bobo",
+        "zh": "謝謝你。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Who's he?",
+        "role": "abby",
+        "zh": "他是誰？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "He's my big brother.",
+        "role": "bobo",
+        "zh": "他是我哥哥。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Wow, he's big.",
+        "role": "abby",
+        "zh": "哇，他長得好大。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Who's she?",
+        "role": "nick",
+        "zh": "她是誰？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "She's my little sister.",
+        "role": "bobo",
+        "zh": "她是我妹妹。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Wow. She's cute.",
+        "role": "nick",
+        "zh": "哇。她長得好可愛。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "big",
+        "kk": "[bɪg]",
+        "zh": "（年紀）大的"
+      },
+      {
+        "word": "brother",
+        "kk": "[ˋbrʌðɚ]",
+        "zh": "哥哥；弟弟"
+      },
+      {
+        "word": "little",
+        "kk": "[ˋlɪtḷ]",
+        "zh": "（年紀）小的"
+      },
+      {
+        "word": "sister",
+        "kk": "[ˋsɪstɚ]",
+        "zh": "姊姊；妹妹"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Ss",
+        "sound": "/s/",
+        "phon": "sss",
+        "examples": [
+          {
+            "w": "seal",
+            "zh": "海豹"
+          },
+          {
+            "w": "six",
+            "zh": "六"
+          }
+        ]
+      },
+      {
+        "letter": "Tt",
+        "sound": "/t/",
+        "phon": "tuh",
+        "examples": [
+          {
+            "w": "toad",
+            "zh": "蟾蜍"
+          },
+          {
+            "w": "tub",
+            "zh": "浴缸"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "哥哥＝big brother、弟弟＝little brother、姊姊＝big sister、妹妹＝little sister。",
+      "quiz": [
+        {
+          "prompt": "He is my ___ brother.（哥哥）",
+          "answer": "big",
+          "full": "He is my big brother.",
+          "zh": "他是我哥哥。"
+        },
+        {
+          "prompt": "She is my ___ sister.（妹妹）",
+          "answer": "little",
+          "full": "She is my little sister.",
+          "zh": "她是我妹妹。"
+        },
+        {
+          "prompt": "She is my big ___.（姊姊）",
+          "answer": "sister",
+          "full": "She is my big sister.",
+          "zh": "她是我姊姊。"
+        },
+        {
+          "prompt": "He is my little ___.（弟弟）",
+          "answer": "brother",
+          "full": "He is my little brother.",
+          "zh": "他是我弟弟。"
+        }
+      ]
+    },
+    "beOptions": [
+      "big",
+      "little",
+      "brother",
+      "sister"
+    ],
+    "talkPairs": [
+      {
+        "q": "Who's he?",
+        "a": "He's my big brother.",
+        "d": [
+          "She's cute."
+        ]
+      },
+      {
+        "q": "Who's she?",
+        "a": "She's my little sister.",
+        "d": [
+          "Thank you."
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 14,
+    "title": "Joy 2 Unit 14 課後複習",
+    "topic": "How old are you? / 數字 5–8 / 大小",
+    "dialogueLines": [
+      {
+        "speaker": "Nick",
+        "text": "Wow! A cool house.",
+        "role": "nick",
+        "zh": "哇！好酷的房子。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Wow! A pretty house.",
+        "role": "abby",
+        "zh": "哇！好漂亮的房子。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Thank you.",
+        "role": "bobo",
+        "zh": "謝謝你。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "How old are you, Bobo?",
+        "role": "nick",
+        "zh": "波波，你幾歲？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "I'm seven years old.",
+        "role": "bobo",
+        "zh": "我七歲。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Me too.",
+        "role": "abby",
+        "zh": "我也是。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Me too! I'm seven years old.",
+        "role": "nick",
+        "zh": "我也是！我七歲。"
+      },
+      {
+        "speaker": "Girl",
+        "text": "This is big!",
+        "role": "girl",
+        "zh": "這椅子好大！"
+      },
+      {
+        "speaker": "Girl",
+        "text": "This is small!",
+        "role": "girl",
+        "zh": "這椅子好小！"
+      },
+      {
+        "speaker": "Girl",
+        "text": "This is just right!",
+        "role": "girl",
+        "zh": "這椅子剛剛好！"
+      },
+      {
+        "speaker": "Girl",
+        "text": "Ouch!",
+        "role": "girl",
+        "zh": "哎喲！",
+        "scored": false
+      },
+      {
+        "speaker": "Woman",
+        "text": "The chair is broken.",
+        "role": "lady",
+        "zh": "椅子壞掉了。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "How old...?",
+        "kk": "[ˏhaʊ ˋold]",
+        "zh": "…幾歲？",
+        "say": "How old"
+      },
+      {
+        "word": "seven",
+        "kk": "[ˋsɛvn̩]",
+        "zh": "七"
+      },
+      {
+        "word": "years old",
+        "kk": "[ˋjɪr(z) ˏold]",
+        "zh": "…歲"
+      },
+      {
+        "word": "big",
+        "kk": "[bɪg]",
+        "zh": "大的"
+      },
+      {
+        "word": "small",
+        "kk": "[smɔl]",
+        "zh": "小的"
+      },
+      {
+        "word": "just",
+        "kk": "[dʒʌst]",
+        "zh": "恰好"
+      },
+      {
+        "word": "five",
+        "kk": "[faɪv]",
+        "zh": "五"
+      },
+      {
+        "word": "six",
+        "kk": "[sɪks]",
+        "zh": "六"
+      },
+      {
+        "word": "eight",
+        "kk": "[et]",
+        "zh": "八"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Uu",
+        "sound": "/ʌ/",
+        "phon": "uh",
+        "examples": [
+          {
+            "w": "us",
+            "zh": "我們"
+          },
+          {
+            "w": "under",
+            "zh": "在…下面"
+          }
+        ]
+      },
+      {
+        "letter": "Vv",
+        "sound": "/v/",
+        "phon": "vvv",
+        "examples": [
+          {
+            "w": "drive",
+            "zh": "駕駛"
+          },
+          {
+            "w": "vest",
+            "zh": "背心"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問年紀用 How old are you?，回答 I am ... years old.",
+      "quiz": [
+        {
+          "prompt": "I am ___ years old.（五歲）",
+          "answer": "five",
+          "full": "I am five years old.",
+          "zh": "我五歲。"
+        },
+        {
+          "prompt": "I am ___ years old.（六歲）",
+          "answer": "six",
+          "full": "I am six years old.",
+          "zh": "我六歲。"
+        },
+        {
+          "prompt": "I am ___ years old.（七歲）",
+          "answer": "seven",
+          "full": "I am seven years old.",
+          "zh": "我七歲。"
+        },
+        {
+          "prompt": "I am ___ years old.（八歲）",
+          "answer": "eight",
+          "full": "I am eight years old.",
+          "zh": "我八歲。"
+        }
+      ]
+    },
+    "beOptions": [
+      "five",
+      "six",
+      "seven",
+      "eight"
+    ],
+    "talkPairs": [
+      {
+        "q": "How old are you, Bobo?",
+        "a": "I'm seven years old.",
+        "d": [
+          "This is big!"
+        ]
+      },
+      {
+        "q": "I'm seven years old.",
+        "a": "Me too.",
+        "d": [
+          "Ouch!"
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 15,
+    "title": "Joy 2 Unit 15 課後複習",
+    "topic": "母親節 / Sight Words: who, how, old / Be careful.",
+    "dialogueLines": [
+      {
+        "speaker": "All",
+        "text": "Happy Mother's Day!",
+        "role": "together",
+        "zh": "母親節快樂！"
+      },
+      {
+        "speaker": "Bobo's mom",
+        "text": "Thank you very much.",
+        "role": "lady",
+        "zh": "非常謝謝你們。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Who's he?",
+        "role": "abby",
+        "zh": "他是誰？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "He's my big brother.",
+        "role": "bobo",
+        "zh": "他是我哥哥。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Who's she?",
+        "role": "nick",
+        "zh": "她是誰？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "She's my mom.",
+        "role": "bobo",
+        "zh": "她是我媽媽。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "How old are you, Bobo?",
+        "role": "nick",
+        "zh": "波波，你幾歲？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "I'm seven years old.",
+        "role": "bobo",
+        "zh": "我七歲。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Roll the ball.",
+        "role": "together",
+        "zh": "滾球。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Throw the ball.",
+        "role": "together",
+        "zh": "丟球。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Catch the ball.",
+        "role": "together",
+        "zh": "接球。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Kick the ball.",
+        "role": "together",
+        "zh": "踢球。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Watch out!",
+        "role": "together",
+        "zh": "小心！"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Be careful.",
+        "role": "together",
+        "zh": "要小心。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "card",
+        "kk": "[kɑrd]",
+        "zh": "卡片"
+      },
+      {
+        "word": "cake",
+        "kk": "[kek]",
+        "zh": "蛋糕"
+      },
+      {
+        "word": "gift",
+        "kk": "[gɪft]",
+        "zh": "禮物"
+      },
+      {
+        "word": "flower",
+        "kk": "[ˋflaʊɚ]",
+        "zh": "花"
+      },
+      {
+        "word": "Mother's Day",
+        "kk": "[ˋmʌðɚz ˏde]",
+        "zh": "母親節"
+      },
+      {
+        "word": "very much",
+        "kk": "[ˏvɛrɪ ˋmʌtʃ]",
+        "zh": "非常；很多"
+      },
+      {
+        "word": "so",
+        "kk": "[so]",
+        "zh": "如此地；非常地"
+      },
+      {
+        "word": "roll",
+        "kk": "[rol]",
+        "zh": "滾"
+      },
+      {
+        "word": "the",
+        "kk": "[ðə]",
+        "zh": "這；那"
+      },
+      {
+        "word": "throw",
+        "kk": "[θro]",
+        "zh": "丟"
+      },
+      {
+        "word": "catch",
+        "kk": "[kætʃ]",
+        "zh": "接"
+      },
+      {
+        "word": "kick",
+        "kk": "[kɪk]",
+        "zh": "踢"
+      },
+      {
+        "word": "Watch out!",
+        "kk": "[ˋwɑtʃ ˋaʊt]",
+        "zh": "小心！"
+      },
+      {
+        "word": "careful",
+        "kk": "[ˋkɛrfəl]",
+        "zh": "小心的"
+      },
+      {
+        "word": "who",
+        "kk": "[hu]",
+        "zh": "誰（常見字）"
+      },
+      {
+        "word": "how",
+        "kk": "[haʊ]",
+        "zh": "如何（常見字）"
+      },
+      {
+        "word": "old",
+        "kk": "[old]",
+        "zh": "…歲的（常見字）"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Oo",
+        "sound": "/ɑ/",
+        "phon": "ah",
+        "examples": [
+          {
+            "w": "box",
+            "zh": "箱子"
+          }
+        ]
+      },
+      {
+        "letter": "Pp",
+        "sound": "/p/",
+        "phon": "puh",
+        "examples": [
+          {
+            "w": "pen",
+            "zh": "筆"
+          }
+        ]
+      },
+      {
+        "letter": "Qq",
+        "sound": "/kw/",
+        "phon": "kwuh",
+        "examples": [
+          {
+            "w": "queen",
+            "zh": "皇后"
+          }
+        ]
+      },
+      {
+        "letter": "Rr",
+        "sound": "/r/",
+        "phon": "rrr",
+        "examples": [
+          {
+            "w": "hair",
+            "zh": "頭髮"
+          }
+        ]
+      },
+      {
+        "letter": "Ss",
+        "sound": "/s/",
+        "phon": "sss",
+        "examples": [
+          {
+            "w": "seal",
+            "zh": "海豹"
+          }
+        ]
+      },
+      {
+        "letter": "Tt",
+        "sound": "/t/",
+        "phon": "tuh",
+        "examples": [
+          {
+            "w": "tub",
+            "zh": "浴缸"
+          }
+        ]
+      },
+      {
+        "letter": "Uu",
+        "sound": "/ʌ/",
+        "phon": "uh",
+        "examples": [
+          {
+            "w": "us",
+            "zh": "我們"
+          }
+        ]
+      },
+      {
+        "letter": "Vv",
+        "sound": "/v/",
+        "phon": "vvv",
+        "examples": [
+          {
+            "w": "vest",
+            "zh": "背心"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "常見字 who（誰）、how（怎麼樣）、old（…歲）。How old are you? 就是「你幾歲？」",
+      "quiz": [
+        {
+          "prompt": "___ is he?（他是誰？）",
+          "answer": "Who",
+          "full": "Who is he?",
+          "zh": "他是誰？"
+        },
+        {
+          "prompt": "___ old are you?（你幾歲？）",
+          "answer": "How",
+          "full": "How old are you?",
+          "zh": "你幾歲？"
+        },
+        {
+          "prompt": "How ___ are you?（你幾歲？）",
+          "answer": "old",
+          "full": "How old are you?",
+          "zh": "你幾歲？"
+        },
+        {
+          "prompt": "___ is she?（她是誰？）",
+          "answer": "Who",
+          "full": "Who is she?",
+          "zh": "她是誰？"
+        },
+        {
+          "prompt": "___ are you, Bobo?（你好嗎？）",
+          "answer": "How",
+          "full": "How are you, Bobo?",
+          "zh": "波波，你好嗎？"
+        }
+      ]
+    },
+    "beOptions": [
+      "Who",
+      "How",
+      "old"
+    ],
+    "talkPairs": [
+      {
+        "q": "Happy Mother's Day!",
+        "a": "Thank you very much.",
+        "d": [
+          "Watch out!"
+        ]
+      },
+      {
+        "q": "How old are you, Bobo?",
+        "a": "I'm seven years old.",
+        "d": [
+          "Be careful."
+        ]
+      }
+    ],
+    "phonicsNote": "複習 Oo–Vv"
+  },
+  {
+    "unit": 16,
+    "title": "Joy 2 Unit 16 課後複習",
+    "topic": "Where is my...? / 冷熱 / 食物",
+    "dialogueLines": [
+      {
+        "speaker": "Girl",
+        "text": "I'm hungry.",
+        "role": "girl",
+        "zh": "我肚子餓了。"
+      },
+      {
+        "speaker": "Girl",
+        "text": "Oh soup! Yummy, yummy!",
+        "role": "girl",
+        "zh": "喔！有湯！看起來好好喝！"
+      },
+      {
+        "speaker": "Girl",
+        "text": "This is hot!",
+        "role": "girl",
+        "zh": "這湯好燙！"
+      },
+      {
+        "speaker": "Girl",
+        "text": "This is cold!",
+        "role": "girl",
+        "zh": "這湯好涼！"
+      },
+      {
+        "speaker": "Girl",
+        "text": "This is just right!",
+        "role": "girl",
+        "zh": "這湯剛剛好！"
+      },
+      {
+        "speaker": "Girl",
+        "text": "Yum!",
+        "role": "girl",
+        "zh": "好喝！"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "I'm hungry. Where's my soup, Mom?",
+        "role": "bobo",
+        "zh": "我肚子餓了。媽媽，我的湯在哪裡？"
+      },
+      {
+        "speaker": "Bobo's mom",
+        "text": "There.",
+        "role": "lady",
+        "zh": "在那裡。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "hot",
+        "kk": "[hɑt]",
+        "zh": "熱的；燙的"
+      },
+      {
+        "word": "cold",
+        "kk": "[kold]",
+        "zh": "冷的"
+      },
+      {
+        "word": "yum",
+        "kk": "[jʌm]",
+        "zh": "好吃"
+      },
+      {
+        "word": "where",
+        "kk": "[hwɛr]",
+        "zh": "哪裡"
+      },
+      {
+        "word": "soup",
+        "kk": "[sup]",
+        "zh": "湯"
+      },
+      {
+        "word": "there",
+        "kk": "[ðɛr]",
+        "zh": "在那裡"
+      },
+      {
+        "word": "milk",
+        "kk": "[mɪlk]",
+        "zh": "牛奶"
+      },
+      {
+        "word": "apple",
+        "kk": "[ˋæpḷ]",
+        "zh": "蘋果"
+      },
+      {
+        "word": "banana",
+        "kk": "[bəˋnænə]",
+        "zh": "香蕉"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Ww",
+        "sound": "/w/",
+        "phon": "wuh",
+        "examples": [
+          {
+            "w": "wear",
+            "zh": "穿著；配戴"
+          },
+          {
+            "w": "web",
+            "zh": "蜘蛛網"
+          }
+        ]
+      },
+      {
+        "letter": "Xx",
+        "sound": "/ks/",
+        "phon": "ks",
+        "examples": [
+          {
+            "w": "box",
+            "zh": "箱子"
+          },
+          {
+            "w": "six",
+            "zh": "六"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問東西在哪裡用 Where is my...?；在這裡說 Here.，在那裡說 There.",
+      "quiz": [
+        {
+          "prompt": "Where is my ___?（我的湯）",
+          "answer": "soup",
+          "full": "Where is my soup?",
+          "zh": "我的湯在哪裡？"
+        },
+        {
+          "prompt": "Where is my ___?（我的蘋果）",
+          "answer": "apple",
+          "full": "Where is my apple?",
+          "zh": "我的蘋果在哪裡？"
+        },
+        {
+          "prompt": "Where is my ___?（我的牛奶）",
+          "answer": "milk",
+          "full": "Where is my milk?",
+          "zh": "我的牛奶在哪裡？"
+        },
+        {
+          "prompt": "Where is my banana?　___（在這裡）",
+          "answer": "Here.",
+          "full": "Where is my banana? Here.",
+          "zh": "我的香蕉在哪裡？——在這裡。"
+        },
+        {
+          "prompt": "Where is my soup?　___（在那裡）",
+          "answer": "There.",
+          "full": "Where is my soup? There.",
+          "zh": "我的湯在哪裡？——在那裡。"
+        }
+      ]
+    },
+    "beOptions": [
+      "soup",
+      "milk",
+      "apple",
+      "banana",
+      "Here.",
+      "There."
+    ],
+    "talkPairs": [
+      {
+        "q": "Where's my soup, Mom?",
+        "a": "There.",
+        "d": [
+          "This is hot!"
+        ]
+      },
+      {
+        "q": "Where is my apple, Dad?",
+        "a": "Here.",
+        "d": [
+          "Yum!"
+        ]
+      }
+    ],
+    "phonicsNote": "Xx 的音在字尾（box、six）"
+  },
+  {
+    "unit": 17,
+    "title": "Joy 2 Unit 17 課後複習",
+    "topic": "my brother's... / 大小冷熱 / It is...",
+    "dialogueLines": [
+      {
+        "speaker": "Nick",
+        "text": "Wow! A cool house.",
+        "role": "nick",
+        "zh": "哇！好酷的房子。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Wow! A pretty house.",
+        "role": "abby",
+        "zh": "哇！好漂亮的房子。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Thank you. This is my brother's chair.",
+        "role": "bobo",
+        "zh": "謝謝妳。這是我哥哥的椅子。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "It's big.",
+        "role": "abby",
+        "zh": "它好大。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "It's cool.",
+        "role": "nick",
+        "zh": "它真酷。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "This is my sister's chair.",
+        "role": "bobo",
+        "zh": "這是我妹妹的椅子。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "It's small.",
+        "role": "nick",
+        "zh": "它好小。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "It's cute.",
+        "role": "abby",
+        "zh": "它好可愛。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "This is my... CHAIR!",
+        "role": "bobo",
+        "zh": "這是我的…椅子！"
+      },
+      {
+        "speaker": "Nick + Abby",
+        "text": "Oh no!",
+        "role": "together",
+        "zh": "喔不！"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "It's broken.",
+        "role": "bobo",
+        "zh": "它壞掉了。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "big",
+        "kk": "[bɪg]",
+        "zh": "大的"
+      },
+      {
+        "word": "small",
+        "kk": "[smɔl]",
+        "zh": "小的"
+      },
+      {
+        "word": "hot",
+        "kk": "[hɑt]",
+        "zh": "熱的；燙的"
+      },
+      {
+        "word": "cold",
+        "kk": "[kold]",
+        "zh": "冷的"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Yy",
+        "sound": "/j/",
+        "phon": "yuh",
+        "examples": [
+          {
+            "w": "yell",
+            "zh": "喊叫"
+          },
+          {
+            "w": "yum",
+            "zh": "好吃"
+          }
+        ]
+      },
+      {
+        "letter": "Zz",
+        "sound": "/z/",
+        "phon": "zzz",
+        "examples": [
+          {
+            "w": "zipper",
+            "zh": "拉鍊"
+          },
+          {
+            "w": "zoo",
+            "zh": "動物園"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "描述東西用 It is + 形容詞：big 大、small 小、hot 熱、cold 冷。",
+      "quiz": [
+        {
+          "prompt": "It is ___.（它好大）",
+          "answer": "big",
+          "full": "It is big.",
+          "zh": "它好大。"
+        },
+        {
+          "prompt": "It is ___.（它好小）",
+          "answer": "small",
+          "full": "It is small.",
+          "zh": "它好小。"
+        },
+        {
+          "prompt": "It is ___.（它好熱）",
+          "answer": "hot",
+          "full": "It is hot.",
+          "zh": "它好熱。"
+        },
+        {
+          "prompt": "It is ___.（它好冷）",
+          "answer": "cold",
+          "full": "It is cold.",
+          "zh": "它好冷。"
+        }
+      ]
+    },
+    "beOptions": [
+      "big",
+      "small",
+      "hot",
+      "cold"
+    ],
+    "talkPairs": [
+      {
+        "q": "This is my brother's chair.",
+        "a": "It's big.",
+        "d": [
+          "Oh no!"
+        ]
+      },
+      {
+        "q": "This is my sister's chair.",
+        "a": "It's small.",
+        "d": [
+          "It's broken."
+        ]
+      }
+    ],
+    "phonicsNote": ""
+  },
+  {
+    "unit": 18,
+    "title": "Joy 2 Unit 18 課後複習",
+    "topic": "Is it tall? / 高矮胖瘦",
+    "dialogueLines": [
+      {
+        "speaker": "Bobo",
+        "text": "A monster?! Is it fat?",
+        "role": "bobo",
+        "zh": "有怪獸？！牠很胖嗎？"
+      },
+      {
+        "speaker": "Nick + Abby",
+        "text": "I don't know.",
+        "role": "together",
+        "zh": "不知道耶。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Is it tall?",
+        "role": "abby",
+        "zh": "牠很高嗎？"
+      },
+      {
+        "speaker": "Bobo + Nick",
+        "text": "I don't know.",
+        "role": "together",
+        "zh": "不知道耶。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Is it short?",
+        "role": "nick",
+        "zh": "牠很矮嗎？"
+      },
+      {
+        "speaker": "Bobo + Abby",
+        "text": "I don't know.",
+        "role": "together",
+        "zh": "不知道耶。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Is it thin?",
+        "role": "bobo",
+        "zh": "牠很瘦嗎？"
+      },
+      {
+        "speaker": "Nick + Abby",
+        "text": "I don't know.",
+        "role": "together",
+        "zh": "不知道耶。"
+      },
+      {
+        "speaker": "Fifi",
+        "text": "Is it big?",
+        "role": "fifi",
+        "zh": "牠很大嗎？"
+      },
+      {
+        "speaker": "Bobo + Abby",
+        "text": "I don't know.",
+        "role": "together",
+        "zh": "不知道耶。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "monster",
+        "kk": "[ˋmɑnstɚ]",
+        "zh": "怪獸"
+      },
+      {
+        "word": "fat",
+        "kk": "[fæt]",
+        "zh": "胖胖的"
+      },
+      {
+        "word": "tall",
+        "kk": "[tɔl]",
+        "zh": "高高的"
+      },
+      {
+        "word": "short",
+        "kk": "[ʃɔrt]",
+        "zh": "矮矮的"
+      },
+      {
+        "word": "thin",
+        "kk": "[θɪn]",
+        "zh": "瘦瘦的"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Aa",
+        "sound": "/æ/",
+        "phon": "ah",
+        "examples": [
+          {
+            "w": "ant",
+            "zh": "螞蟻"
+          }
+        ]
+      },
+      {
+        "letter": "Bb",
+        "sound": "/b/",
+        "phon": "buh",
+        "examples": [
+          {
+            "w": "bat",
+            "zh": "蝙蝠"
+          }
+        ]
+      },
+      {
+        "letter": "Cc",
+        "sound": "/k/",
+        "phon": "kuh",
+        "examples": [
+          {
+            "w": "cute",
+            "zh": "可愛的"
+          }
+        ]
+      },
+      {
+        "letter": "Dd",
+        "sound": "/d/",
+        "phon": "duh",
+        "examples": [
+          {
+            "w": "doll",
+            "zh": "洋娃娃"
+          }
+        ]
+      },
+      {
+        "letter": "Ee",
+        "sound": "/ɛ/",
+        "phon": "eh",
+        "examples": [
+          {
+            "w": "elf",
+            "zh": "小精靈"
+          }
+        ]
+      },
+      {
+        "letter": "Ff",
+        "sound": "/f/",
+        "phon": "fff",
+        "examples": [
+          {
+            "w": "fat",
+            "zh": "胖胖的"
+          }
+        ]
+      },
+      {
+        "letter": "Gg",
+        "sound": "/g/",
+        "phon": "guh",
+        "examples": [
+          {
+            "w": "gold",
+            "zh": "金色的"
+          }
+        ]
+      },
+      {
+        "letter": "Hh",
+        "sound": "/h/",
+        "phon": "huh",
+        "examples": [
+          {
+            "w": "hot",
+            "zh": "熱的"
+          }
+        ]
+      },
+      {
+        "letter": "Ii",
+        "sound": "/ɪ/",
+        "phon": "ih",
+        "examples": [
+          {
+            "w": "inky",
+            "zh": "漆黑的"
+          }
+        ]
+      },
+      {
+        "letter": "Jj",
+        "sound": "/dʒ/",
+        "phon": "juh",
+        "examples": [
+          {
+            "w": "jar",
+            "zh": "罐子"
+          }
+        ]
+      },
+      {
+        "letter": "Kk",
+        "sound": "/k/",
+        "phon": "kuh",
+        "examples": [
+          {
+            "w": "keg",
+            "zh": "橡木桶"
+          }
+        ]
+      },
+      {
+        "letter": "Ll",
+        "sound": "/l/",
+        "phon": "lll",
+        "examples": [
+          {
+            "w": "lab",
+            "zh": "實驗室"
+          }
+        ]
+      },
+      {
+        "letter": "Mm",
+        "sound": "/m/",
+        "phon": "mmm",
+        "examples": [
+          {
+            "w": "man",
+            "zh": "男人"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "問外表用 Is he/she/it + tall/short/fat/thin?",
+      "quiz": [
+        {
+          "prompt": "Is she ___?（她高高的嗎？）",
+          "answer": "tall",
+          "full": "Is she tall?",
+          "zh": "她高高的嗎？"
+        },
+        {
+          "prompt": "Is he ___?（他矮矮的嗎？）",
+          "answer": "short",
+          "full": "Is he short?",
+          "zh": "他矮矮的嗎？"
+        },
+        {
+          "prompt": "Is she ___?（她胖胖的嗎？）",
+          "answer": "fat",
+          "full": "Is she fat?",
+          "zh": "她胖胖的嗎？"
+        },
+        {
+          "prompt": "Is he ___?（他瘦瘦的嗎？）",
+          "answer": "thin",
+          "full": "Is he thin?",
+          "zh": "他瘦瘦的嗎？"
+        },
+        {
+          "prompt": "No, she is not. She is ___.（她瘦瘦的）",
+          "answer": "thin",
+          "full": "No, she is not. She is thin.",
+          "zh": "不，她不胖。她瘦瘦的。"
+        }
+      ]
+    },
+    "beOptions": [
+      "tall",
+      "short",
+      "fat",
+      "thin"
+    ],
+    "talkPairs": [
+      {
+        "q": "A monster?! Is it fat?",
+        "a": "I don't know.",
+        "d": [
+          "Is it big?"
+        ]
+      },
+      {
+        "q": "Is it tall?",
+        "a": "I don't know.",
+        "d": [
+          "Is it thin?"
+        ]
+      }
+    ],
+    "phonicsNote": "複習 Aa–Mm"
+  },
+  {
+    "unit": 19,
+    "title": "Joy 2 Unit 19 課後複習",
+    "topic": "Is it in/on/under...? / HELP!!",
+    "dialogueLines": [
+      {
+        "speaker": "Bobo",
+        "text": "Where's the monster?",
+        "role": "bobo",
+        "zh": "怪獸在哪裡？"
+      },
+      {
+        "speaker": "Nick + Fifi",
+        "text": "I don't know.",
+        "role": "together",
+        "zh": "不知道耶。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Is it in the box?",
+        "role": "abby",
+        "zh": "牠在箱子裡嗎？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "No, it's not.",
+        "role": "nick",
+        "zh": "不，牠不是。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Is it under the desk?",
+        "role": "abby",
+        "zh": "牠在書桌下面嗎？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "No, it's not.",
+        "role": "nick",
+        "zh": "不，牠不是。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Is it under the chair?",
+        "role": "bobo",
+        "zh": "牠在椅子下面嗎？"
+      },
+      {
+        "speaker": "Abby",
+        "text": "No, it's not.",
+        "role": "abby",
+        "zh": "不，牠不是。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Is it under the TV?",
+        "role": "nick",
+        "zh": "牠在電視下面嗎？"
+      },
+      {
+        "speaker": "Abby",
+        "text": "No, it's not.",
+        "role": "abby",
+        "zh": "不，牠不是。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "Where's the monster?",
+        "role": "nick",
+        "zh": "怪獸在哪裡？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Look! It's not a monster. It's a girl. And she's on my bed.",
+        "role": "bobo",
+        "zh": "看啊！牠不是怪獸。是一個女生。而且她還睡在我的床上。"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "Hi.",
+        "role": "bobo",
+        "zh": "嗨。"
+      },
+      {
+        "speaker": "Nick + Abby",
+        "text": "Hello.",
+        "role": "together",
+        "zh": "哈囉。"
+      },
+      {
+        "speaker": "Girl",
+        "text": "Ahhh! HELP!!",
+        "role": "girl",
+        "zh": "啊！救命啊！！"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "in",
+        "kk": "[ɪn]",
+        "zh": "在…裡面"
+      },
+      {
+        "word": "under",
+        "kk": "[ˋʌndɚ]",
+        "zh": "在…下面"
+      },
+      {
+        "word": "girl",
+        "kk": "[gɝl]",
+        "zh": "女孩"
+      },
+      {
+        "word": "on",
+        "kk": "[ɑn]",
+        "zh": "在…上面"
+      },
+      {
+        "word": "bed",
+        "kk": "[bɛd]",
+        "zh": "床"
+      },
+      {
+        "word": "help",
+        "kk": "[hɛlp]",
+        "zh": "救命"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Nn",
+        "sound": "/n/",
+        "phon": "nnn",
+        "examples": [
+          {
+            "w": "nap",
+            "zh": "小睡"
+          }
+        ]
+      },
+      {
+        "letter": "Oo",
+        "sound": "/ɑ/",
+        "phon": "ah",
+        "examples": [
+          {
+            "w": "pond",
+            "zh": "池塘"
+          }
+        ]
+      },
+      {
+        "letter": "Pp",
+        "sound": "/p/",
+        "phon": "puh",
+        "examples": [
+          {
+            "w": "pan",
+            "zh": "平底鍋"
+          }
+        ]
+      },
+      {
+        "letter": "Qq",
+        "sound": "/kw/",
+        "phon": "kwuh",
+        "examples": [
+          {
+            "w": "quiz",
+            "zh": "測驗"
+          }
+        ]
+      },
+      {
+        "letter": "Rr",
+        "sound": "/r/",
+        "phon": "rrr",
+        "examples": [
+          {
+            "w": "air",
+            "zh": "空氣"
+          }
+        ]
+      },
+      {
+        "letter": "Ss",
+        "sound": "/s/",
+        "phon": "sss",
+        "examples": [
+          {
+            "w": "six",
+            "zh": "六"
+          }
+        ]
+      },
+      {
+        "letter": "Tt",
+        "sound": "/t/",
+        "phon": "tuh",
+        "examples": [
+          {
+            "w": "toad",
+            "zh": "蟾蜍"
+          }
+        ]
+      },
+      {
+        "letter": "Uu",
+        "sound": "/ʌ/",
+        "phon": "uh",
+        "examples": [
+          {
+            "w": "under",
+            "zh": "在…下面"
+          }
+        ]
+      },
+      {
+        "letter": "Vv",
+        "sound": "/v/",
+        "phon": "vvv",
+        "examples": [
+          {
+            "w": "drive",
+            "zh": "駕駛"
+          }
+        ]
+      },
+      {
+        "letter": "Ww",
+        "sound": "/w/",
+        "phon": "wuh",
+        "examples": [
+          {
+            "w": "web",
+            "zh": "蜘蛛網"
+          }
+        ]
+      },
+      {
+        "letter": "Xx",
+        "sound": "/ks/",
+        "phon": "ks",
+        "examples": [
+          {
+            "w": "box",
+            "zh": "箱子"
+          }
+        ]
+      },
+      {
+        "letter": "Yy",
+        "sound": "/j/",
+        "phon": "yuh",
+        "examples": [
+          {
+            "w": "yell",
+            "zh": "喊叫"
+          }
+        ]
+      },
+      {
+        "letter": "Zz",
+        "sound": "/z/",
+        "phon": "zzz",
+        "examples": [
+          {
+            "w": "zoo",
+            "zh": "動物園"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "位置：in 在…裡面、on 在…上面、under 在…下面。",
+      "quiz": [
+        {
+          "prompt": "Is it ___ the box?（在箱子裡面）",
+          "answer": "in",
+          "full": "Is it in the box?",
+          "zh": "牠在箱子裡嗎？"
+        },
+        {
+          "prompt": "Is it ___ the desk?（在書桌下面）",
+          "answer": "under",
+          "full": "Is it under the desk?",
+          "zh": "牠在書桌下面嗎？"
+        },
+        {
+          "prompt": "Is it ___ the TV?（在電視上面）",
+          "answer": "on",
+          "full": "Is it on the TV?",
+          "zh": "牠在電視上嗎？"
+        },
+        {
+          "prompt": "She is ___ my bed.（在床上）",
+          "answer": "on",
+          "full": "She is on my bed.",
+          "zh": "她在我的床上。"
+        },
+        {
+          "prompt": "Is it ___ the chair?（在椅子下面）",
+          "answer": "under",
+          "full": "Is it under the chair?",
+          "zh": "牠在椅子下面嗎？"
+        }
+      ]
+    },
+    "beOptions": [
+      "in",
+      "on",
+      "under"
+    ],
+    "talkPairs": [
+      {
+        "q": "Is it in the box?",
+        "a": "No, it's not.",
+        "d": [
+          "Ahhh! HELP!!"
+        ]
+      },
+      {
+        "q": "Where's the monster?",
+        "a": "I don't know.",
+        "d": [
+          "Hello."
+        ]
+      }
+    ],
+    "phonicsNote": "複習 Nn–Zz"
+  },
+  {
+    "unit": 20,
+    "title": "Joy 2 Unit 20 課後複習",
+    "topic": "複習 U11–U14、U16–U19 / Sight Words: where, here, there / Be polite.",
+    "dialogueLines": [
+      {
+        "speaker": "Bobo",
+        "text": "Where's my soup, Mom?",
+        "role": "bobo",
+        "zh": "媽媽，我的湯在哪裡？"
+      },
+      {
+        "speaker": "Bobo's mom",
+        "text": "There.",
+        "role": "lady",
+        "zh": "在那裡。"
+      },
+      {
+        "speaker": "Lucy",
+        "text": "Where is my apple, Dad?",
+        "role": "abby",
+        "zh": "爸爸，我的蘋果在哪裡？"
+      },
+      {
+        "speaker": "Dad",
+        "text": "Here.",
+        "role": "nick",
+        "zh": "在這裡。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Who's he?",
+        "role": "abby",
+        "zh": "他是誰？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "He's my big brother.",
+        "role": "bobo",
+        "zh": "他是我哥哥。"
+      },
+      {
+        "speaker": "Nick",
+        "text": "How old are you, Bobo?",
+        "role": "nick",
+        "zh": "波波，你幾歲？"
+      },
+      {
+        "speaker": "Bobo",
+        "text": "I'm seven years old.",
+        "role": "bobo",
+        "zh": "我七歲。"
+      },
+      {
+        "speaker": "Abby",
+        "text": "Is it in the box?",
+        "role": "abby",
+        "zh": "牠在箱子裡嗎？"
+      },
+      {
+        "speaker": "Nick",
+        "text": "No, it's not.",
+        "role": "nick",
+        "zh": "不，牠不是。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Let's play a game.",
+        "role": "together",
+        "zh": "我們來玩遊戲吧。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Make a circle.",
+        "role": "together",
+        "zh": "圍成一個圓圈。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Line up, please.",
+        "role": "together",
+        "zh": "請排隊。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Wait for your turn.",
+        "role": "together",
+        "zh": "等輪到你。"
+      },
+      {
+        "speaker": "常用語",
+        "text": "Be polite.",
+        "role": "together",
+        "zh": "要有禮貌。"
+      }
+    ],
+    "vocab": [
+      {
+        "word": "make",
+        "kk": "[mek]",
+        "zh": "製造；做出"
+      },
+      {
+        "word": "circle",
+        "kk": "[ˋsɝkḷ]",
+        "zh": "圓圈"
+      },
+      {
+        "word": "game",
+        "kk": "[gem]",
+        "zh": "遊戲；比賽"
+      },
+      {
+        "word": "line up",
+        "kk": "[ˋlaɪn ˋʌp]",
+        "zh": "排隊"
+      },
+      {
+        "word": "wait",
+        "kk": "[wet]",
+        "zh": "等待"
+      },
+      {
+        "word": "turn",
+        "kk": "[tɝn]",
+        "zh": "順次；輪到的機會"
+      },
+      {
+        "word": "polite",
+        "kk": "[pəˋlaɪt]",
+        "zh": "有禮貌的"
+      },
+      {
+        "word": "where",
+        "kk": "[hwɛr]",
+        "zh": "哪裡（常見字）"
+      },
+      {
+        "word": "here",
+        "kk": "[hɪr]",
+        "zh": "這裡（常見字）"
+      },
+      {
+        "word": "there",
+        "kk": "[ðɛr]",
+        "zh": "那裡（常見字）"
+      }
+    ],
+    "phonics": [
+      {
+        "letter": "Aa",
+        "sound": "/æ/",
+        "phon": "ah",
+        "examples": [
+          {
+            "w": "mad",
+            "zh": "生氣的"
+          }
+        ]
+      },
+      {
+        "letter": "Cc",
+        "sound": "/k/",
+        "phon": "kuh",
+        "examples": [
+          {
+            "w": "cap",
+            "zh": "帽子"
+          }
+        ]
+      },
+      {
+        "letter": "Ee",
+        "sound": "/ɛ/",
+        "phon": "eh",
+        "examples": [
+          {
+            "w": "elf",
+            "zh": "小精靈"
+          }
+        ]
+      },
+      {
+        "letter": "Gg",
+        "sound": "/g/",
+        "phon": "guh",
+        "examples": [
+          {
+            "w": "gum",
+            "zh": "口香糖"
+          }
+        ]
+      },
+      {
+        "letter": "Ii",
+        "sound": "/ɪ/",
+        "phon": "ih",
+        "examples": [
+          {
+            "w": "king",
+            "zh": "國王"
+          }
+        ]
+      },
+      {
+        "letter": "Kk",
+        "sound": "/k/",
+        "phon": "kuh",
+        "examples": [
+          {
+            "w": "kite",
+            "zh": "風箏"
+          }
+        ]
+      },
+      {
+        "letter": "Mm",
+        "sound": "/m/",
+        "phon": "mmm",
+        "examples": [
+          {
+            "w": "mom",
+            "zh": "媽媽"
+          }
+        ]
+      },
+      {
+        "letter": "Oo",
+        "sound": "/ɑ/",
+        "phon": "ah",
+        "examples": [
+          {
+            "w": "on",
+            "zh": "在…上面"
+          }
+        ]
+      },
+      {
+        "letter": "Qq",
+        "sound": "/kw/",
+        "phon": "kwuh",
+        "examples": [
+          {
+            "w": "queen",
+            "zh": "皇后"
+          }
+        ]
+      },
+      {
+        "letter": "Ss",
+        "sound": "/s/",
+        "phon": "sss",
+        "examples": [
+          {
+            "w": "sad",
+            "zh": "傷心的"
+          }
+        ]
+      },
+      {
+        "letter": "Uu",
+        "sound": "/ʌ/",
+        "phon": "uh",
+        "examples": [
+          {
+            "w": "tub",
+            "zh": "浴缸"
+          }
+        ]
+      },
+      {
+        "letter": "Ww",
+        "sound": "/w/",
+        "phon": "wuh",
+        "examples": [
+          {
+            "w": "wear",
+            "zh": "穿著"
+          }
+        ]
+      },
+      {
+        "letter": "Yy",
+        "sound": "/j/",
+        "phon": "yuh",
+        "examples": [
+          {
+            "w": "yum",
+            "zh": "好吃"
+          }
+        ]
+      }
+    ],
+    "grammar": {
+      "rule": "常見字 where（哪裡）、here（這裡）、there（那裡）。",
+      "quiz": [
+        {
+          "prompt": "___ is my soup?（我的湯在哪裡？）",
+          "answer": "Where",
+          "full": "Where is my soup?",
+          "zh": "我的湯在哪裡？"
+        },
+        {
+          "prompt": "Where is my apple?　___.（在這裡）",
+          "answer": "Here",
+          "full": "Where is my apple? Here.",
+          "zh": "我的蘋果在哪裡？——在這裡。"
+        },
+        {
+          "prompt": "Where is my milk?　___.（在那裡）",
+          "answer": "There",
+          "full": "Where is my milk? There.",
+          "zh": "我的牛奶在哪裡？——在那裡。"
+        },
+        {
+          "prompt": "___'s the monster?（怪獸在哪裡？）",
+          "answer": "Where",
+          "full": "Where's the monster?",
+          "zh": "怪獸在哪裡？"
+        }
+      ]
+    },
+    "beOptions": [
+      "Where",
+      "Here",
+      "There"
+    ],
+    "talkPairs": [
+      {
+        "q": "Where's my soup, Mom?",
+        "a": "There.",
+        "d": [
+          "Be polite."
+        ]
+      },
+      {
+        "q": "Is it in the box?",
+        "a": "No, it's not.",
+        "d": [
+          "Line up, please."
+        ]
+      }
+    ],
+    "phonicsNote": "複習 Aa–Zz（挑 13 個字母）"
+  }
+]

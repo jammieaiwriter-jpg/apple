@@ -75,91 +75,55 @@
 /* ===== Unit 20 內容（內嵌，不用模組） ===== */
 var dialogueLines = [
   {
-    "speaker": "Bobo",
-    "text": "Where's my soup, Mom?",
-    "role": "bobo",
-    "zh": "媽媽，我的湯在哪裡？"
+    "speaker": "Girl",
+    "text": "Where is my eraser?",
+    "role": "girl",
+    "zh": "我的橡皮擦在哪裡？"
   },
   {
-    "speaker": "Bobo's mom",
+    "speaker": "Mom",
     "text": "There.",
     "role": "lady",
     "zh": "在那裡。"
   },
   {
-    "speaker": "Lucy",
-    "text": "Where is my apple, Dad?",
-    "role": "abby",
-    "zh": "爸爸，我的蘋果在哪裡？"
+    "speaker": "Girl",
+    "text": "Where is my bag?",
+    "role": "girl",
+    "zh": "我的書包在哪裡？"
   },
   {
-    "speaker": "Dad",
+    "speaker": "Mom",
     "text": "Here.",
-    "role": "nick",
+    "role": "lady",
     "zh": "在這裡。"
   },
   {
-    "speaker": "Abby",
-    "text": "Who's he?",
-    "role": "abby",
-    "zh": "他是誰？"
-  },
-  {
-    "speaker": "Bobo",
-    "text": "He's my big brother.",
-    "role": "bobo",
-    "zh": "他是我哥哥。"
-  },
-  {
-    "speaker": "Nick",
-    "text": "How old are you, Bobo?",
-    "role": "nick",
-    "zh": "波波，你幾歲？"
-  },
-  {
-    "speaker": "Bobo",
-    "text": "I'm seven years old.",
-    "role": "bobo",
-    "zh": "我七歲。"
-  },
-  {
-    "speaker": "Abby",
-    "text": "Is it in the box?",
-    "role": "abby",
-    "zh": "牠在箱子裡嗎？"
-  },
-  {
-    "speaker": "Nick",
-    "text": "No, it's not.",
-    "role": "nick",
-    "zh": "不，牠不是。"
-  },
-  {
-    "speaker": "常用語",
-    "text": "Let's play a game.",
-    "role": "together",
-    "zh": "我們來玩遊戲吧。"
-  },
-  {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Make a circle.",
     "role": "together",
     "zh": "圍成一個圓圈。"
   },
   {
-    "speaker": "常用語",
-    "text": "Line up, please.",
+    "speaker": "跟著做",
+    "text": "Play a game.",
     "role": "together",
-    "zh": "請排隊。"
+    "zh": "玩遊戲。"
   },
   {
-    "speaker": "常用語",
-    "text": "Wait for your turn.",
+    "speaker": "跟著做",
+    "text": "Line up.",
+    "role": "together",
+    "zh": "排隊。"
+  },
+  {
+    "speaker": "跟著做",
+    "text": "Wait your turn.",
     "role": "together",
     "zh": "等輪到你。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Be polite.",
     "role": "together",
     "zh": "要有禮貌。"
@@ -371,28 +335,28 @@ var grammar = {
   "rule": "常見字 where（哪裡）、here（這裡）、there（那裡）。",
   "quiz": [
     {
-      "prompt": "___ is my soup?（我的湯在哪裡？）",
+      "prompt": "___ is my eraser?（我的橡皮擦在哪裡？）",
       "answer": "Where",
-      "full": "Where is my soup?",
-      "zh": "我的湯在哪裡？"
+      "full": "Where is my eraser?",
+      "zh": "我的橡皮擦在哪裡？"
     },
     {
-      "prompt": "Where is my apple?　___.（在這裡）",
+      "prompt": "Where is my bag?　___.（在這裡）",
       "answer": "Here",
-      "full": "Where is my apple? Here.",
-      "zh": "我的蘋果在哪裡？——在這裡。"
+      "full": "Where is my bag? Here.",
+      "zh": "我的書包在哪裡？——在這裡。"
     },
     {
-      "prompt": "Where is my milk?　___.（在那裡）",
+      "prompt": "Where is my eraser?　___.（在那裡）",
       "answer": "There",
-      "full": "Where is my milk? There.",
-      "zh": "我的牛奶在哪裡？——在那裡。"
+      "full": "Where is my eraser? There.",
+      "zh": "我的橡皮擦在哪裡？——在那裡。"
     },
     {
-      "prompt": "___'s the monster?（怪獸在哪裡？）",
+      "prompt": "___'s the dog?（狗在哪裡？）",
       "answer": "Where",
-      "full": "Where's the monster?",
-      "zh": "怪獸在哪裡？"
+      "full": "Where's the dog?",
+      "zh": "狗在哪裡？"
     }
   ]
 };
@@ -700,17 +664,17 @@ function wgStart(){ CH.wordgame.start(); }
 /* ===== 對話遊戲：念一句，選對的回答 ===== */
 var talkPairs=[
   {
-    "q": "Where's my soup, Mom?",
+    "q": "Where is my eraser?",
     "a": "There.",
     "d": [
       "Be polite."
     ]
   },
   {
-    "q": "Is it in the box?",
-    "a": "No, it's not.",
+    "q": "Where is my bag?",
+    "a": "Here.",
     "d": [
-      "Line up, please."
+      "Line up."
     ]
   }
 ];

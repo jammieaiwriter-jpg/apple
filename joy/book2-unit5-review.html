@@ -75,85 +75,90 @@
 /* ===== Unit 5 內容（內嵌，不用模組） ===== */
 var dialogueLines = [
   {
-    "speaker": "All",
+    "speaker": "Kids",
     "text": "Trick or treat!",
     "role": "together",
     "zh": "不給糖就搗蛋！"
   },
   {
-    "speaker": "Old Lady",
+    "speaker": "Man",
+    "text": "This is for you.",
+    "role": "nick",
+    "zh": "這是給你們的。"
+  },
+  {
+    "speaker": "Kids",
+    "text": "Thank you!",
+    "role": "together",
+    "zh": "謝謝！"
+  },
+  {
+    "speaker": "All",
     "text": "Happy Halloween!",
-    "role": "lady",
+    "role": "together",
     "zh": "萬聖節快樂！"
   },
   {
-    "speaker": "Nick",
-    "text": "Is it a house?",
-    "role": "nick",
-    "zh": "是房子嗎？"
+    "speaker": "Cat",
+    "text": "Are you sad?",
+    "role": "fifi",
+    "zh": "你難過嗎？"
   },
   {
-    "speaker": "Abby",
-    "text": "Yes, it is.",
-    "role": "abby",
-    "zh": "是，它是。"
+    "speaker": "Dog",
+    "text": "No, I'm not.",
+    "role": "bobo",
+    "zh": "不，我不難過。"
   },
   {
-    "speaker": "Woman",
-    "text": "Is it a house?",
-    "role": "lady",
-    "zh": "它是房子嗎？"
-  },
-  {
-    "speaker": "Man",
-    "text": "No, it is not.",
-    "role": "nick",
-    "zh": "不，它不是。"
-  },
-  {
-    "speaker": "Abby",
-    "text": "Are you hungry?",
-    "role": "abby",
-    "zh": "你肚子餓了嗎？"
-  },
-  {
-    "speaker": "Nick",
-    "text": "Yes, I am.",
-    "role": "nick",
-    "zh": "對，我餓了。"
-  },
-  {
-    "speaker": "Woman",
+    "speaker": "Cat",
     "text": "Are you happy?",
-    "role": "lady",
-    "zh": "你快樂嗎？"
+    "role": "fifi",
+    "zh": "你開心嗎？"
   },
   {
-    "speaker": "Man",
-    "text": "No, I am not.",
-    "role": "nick",
-    "zh": "不，我不快樂。"
+    "speaker": "Dog",
+    "text": "Yes, I am.",
+    "role": "bobo",
+    "zh": "對，我很開心。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Wash your hands.",
     "role": "together",
-    "zh": "洗洗手。"
+    "zh": "洗手。"
   },
   {
-    "speaker": "常用語",
-    "text": "Clean up, please.",
+    "speaker": "跟著做",
+    "text": "Eat.",
     "role": "together",
-    "zh": "請收拾乾淨。"
+    "zh": "吃飯。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
+    "text": "Drink.",
+    "role": "together",
+    "zh": "喝水。"
+  },
+  {
+    "speaker": "跟著做",
+    "text": "Clean up.",
+    "role": "together",
+    "zh": "收拾乾淨。"
+  },
+  {
+    "speaker": "跟著做",
     "text": "Be tidy.",
     "role": "together",
     "zh": "要整潔。"
   }
 ];
 var vocab = [
+  {
+    "word": "bat",
+    "kk": "[bæt]",
+    "zh": "蝙蝠"
+  },
   {
     "word": "witch",
     "kk": "[wɪtʃ]",
@@ -655,14 +660,14 @@ function wgStart(){ CH.wordgame.start(); }
 var talkPairs=[
   {
     "q": "Trick or treat!",
-    "a": "Happy Halloween!",
+    "a": "This is for you.",
     "d": [
       "Be tidy."
     ]
   },
   {
-    "q": "Is it a house?",
-    "a": "Yes, it is.",
+    "q": "Are you sad?",
+    "a": "No, I'm not.",
     "d": [
       "Wash your hands."
     ]

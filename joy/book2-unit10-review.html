@@ -75,79 +75,61 @@
 /* ===== Unit 10 內容（內嵌，不用模組） ===== */
 var dialogueLines = [
   {
-    "speaker": "Nick",
-    "text": "Is this a chair?",
+    "speaker": "Girl",
+    "text": "Is that a bug?",
+    "role": "girl",
+    "zh": "那是蟲嗎？"
+  },
+  {
+    "speaker": "Boy",
+    "text": "No, it's not.",
     "role": "nick",
-    "zh": "這是椅子嗎？"
+    "zh": "不，它不是。"
   },
   {
-    "speaker": "Old Lady",
-    "text": "Yes, it is. It's a smart chair.",
-    "role": "lady",
-    "zh": "是，它是。它是一張聰明的椅子。"
-  },
-  {
-    "speaker": "Abby",
-    "text": "Is that a clock?",
-    "role": "abby",
-    "zh": "那是時鐘嗎？"
-  },
-  {
-    "speaker": "Old Lady",
-    "text": "Yes, it is. It's a shy clock.",
-    "role": "lady",
-    "zh": "是，它是。它是個害羞的時鐘。"
-  },
-  {
-    "speaker": "Nick",
-    "text": "What's this?",
+    "speaker": "Boy",
+    "text": "This is a clock.",
     "role": "nick",
-    "zh": "這是什麼？"
+    "zh": "這是一個時鐘。"
   },
   {
-    "speaker": "Old Lady",
-    "text": "It's my cat, Mimi.",
-    "role": "lady",
-    "zh": "是我的貓，咪咪。"
-  },
-  {
-    "speaker": "Abby",
+    "speaker": "Girl",
     "text": "What time is it?",
-    "role": "abby",
+    "role": "girl",
     "zh": "幾點了？"
   },
   {
-    "speaker": "Old Lady",
-    "text": "It's 12 o'clock. Time to eat.",
-    "role": "lady",
-    "zh": "十二點了。該吃飯了。"
+    "speaker": "Boy",
+    "text": "It's four o'clock.",
+    "role": "nick",
+    "zh": "四點了。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Take out your book.",
     "role": "together",
     "zh": "拿出你的書。"
   },
   {
-    "speaker": "常用語",
-    "text": "Open the door.",
+    "speaker": "跟著做",
+    "text": "Open your book.",
     "role": "together",
-    "zh": "打開門。"
+    "zh": "打開你的書。"
   },
   {
-    "speaker": "常用語",
-    "text": "Close the window.",
+    "speaker": "跟著做",
+    "text": "Close your book.",
     "role": "together",
-    "zh": "關上窗戶。"
+    "zh": "闔上你的書。"
   },
   {
-    "speaker": "常用語",
-    "text": "Put away your pencil.",
+    "speaker": "跟著做",
+    "text": "Put away your book.",
     "role": "together",
-    "zh": "把鉛筆收起來。"
+    "zh": "把你的書收起來。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Pay attention.",
     "role": "together",
     "zh": "要專心。"
@@ -278,10 +260,10 @@ var grammar = {
       "zh": "幾點了？"
     },
     {
-      "prompt": "Is ___ a TV?（那是電視嗎？）",
+      "prompt": "Is ___ a bug?（那是蟲嗎？）",
       "answer": "that",
-      "full": "Is that a TV?",
-      "zh": "那是電視嗎？"
+      "full": "Is that a bug?",
+      "zh": "那是蟲嗎？"
     },
     {
       "prompt": "Is ___ a chair?（這是椅子嗎？）",
@@ -601,17 +583,17 @@ function wgStart(){ CH.wordgame.start(); }
 /* ===== 對話遊戲：念一句，選對的回答 ===== */
 var talkPairs=[
   {
-    "q": "Is this a chair?",
-    "a": "Yes, it is. It's a smart chair.",
+    "q": "Is that a bug?",
+    "a": "No, it's not.",
     "d": [
       "Pay attention."
     ]
   },
   {
     "q": "What time is it?",
-    "a": "It's 12 o'clock. Time to eat.",
+    "a": "It's four o'clock.",
     "d": [
-      "Open the door."
+      "Open your book."
     ]
   }
 ];

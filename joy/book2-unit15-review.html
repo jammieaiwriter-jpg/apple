@@ -75,85 +75,79 @@
 /* ===== Unit 15 內容（內嵌，不用模組） ===== */
 var dialogueLines = [
   {
-    "speaker": "All",
+    "speaker": "Kids",
     "text": "Happy Mother's Day!",
     "role": "together",
     "zh": "母親節快樂！"
   },
   {
-    "speaker": "Bobo's mom",
-    "text": "Thank you very much.",
-    "role": "lady",
-    "zh": "非常謝謝你們。"
+    "speaker": "Kids",
+    "text": "This is for you, Mom!",
+    "role": "together",
+    "zh": "媽媽，這是給妳的！"
   },
   {
-    "speaker": "Abby",
-    "text": "Who's he?",
-    "role": "abby",
+    "speaker": "Mom",
+    "text": "Thank you very much! I'm so happy.",
+    "role": "lady",
+    "zh": "非常謝謝你們！我好開心。"
+  },
+  {
+    "speaker": "Rabbit",
+    "text": "Who is he?",
+    "role": "fifi",
     "zh": "他是誰？"
   },
   {
-    "speaker": "Bobo",
-    "text": "He's my big brother.",
+    "speaker": "Elephant",
+    "text": "He's my little brother.",
     "role": "bobo",
-    "zh": "他是我哥哥。"
+    "zh": "他是我弟弟。"
   },
   {
-    "speaker": "Nick",
-    "text": "Who's she?",
-    "role": "nick",
-    "zh": "她是誰？"
+    "speaker": "Rabbit",
+    "text": "How old is he?",
+    "role": "fifi",
+    "zh": "他幾歲？"
   },
   {
-    "speaker": "Bobo",
-    "text": "She's my mom.",
+    "speaker": "Elephant",
+    "text": "He's one year old.",
     "role": "bobo",
-    "zh": "她是我媽媽。"
+    "zh": "他一歲。"
   },
   {
-    "speaker": "Nick",
-    "text": "How old are you, Bobo?",
-    "role": "nick",
-    "zh": "波波，你幾歲？"
-  },
-  {
-    "speaker": "Bobo",
-    "text": "I'm seven years old.",
-    "role": "bobo",
-    "zh": "我七歲。"
-  },
-  {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Roll the ball.",
     "role": "together",
     "zh": "滾球。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Throw the ball.",
     "role": "together",
     "zh": "丟球。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Catch the ball.",
     "role": "together",
     "zh": "接球。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Kick the ball.",
     "role": "together",
     "zh": "踢球。"
   },
   {
-    "speaker": "常用語",
+    "speaker": "Boy",
     "text": "Watch out!",
-    "role": "together",
+    "role": "nick",
     "zh": "小心！"
   },
   {
-    "speaker": "常用語",
+    "speaker": "跟著做",
     "text": "Be careful.",
     "role": "together",
     "zh": "要小心。"
@@ -369,10 +363,10 @@ var grammar = {
       "zh": "她是誰？"
     },
     {
-      "prompt": "___ are you, Bobo?（你好嗎？）",
+      "prompt": "___ old is he?（他幾歲？）",
       "answer": "How",
-      "full": "How are you, Bobo?",
-      "zh": "波波，你好嗎？"
+      "full": "How old is he?",
+      "zh": "他幾歲？"
     }
   ]
 };
@@ -680,15 +674,15 @@ function wgStart(){ CH.wordgame.start(); }
 /* ===== 對話遊戲：念一句，選對的回答 ===== */
 var talkPairs=[
   {
-    "q": "Happy Mother's Day!",
-    "a": "Thank you very much.",
+    "q": "This is for you, Mom!",
+    "a": "Thank you very much! I'm so happy.",
     "d": [
       "Watch out!"
     ]
   },
   {
-    "q": "How old are you, Bobo?",
-    "a": "I'm seven years old.",
+    "q": "How old is he?",
+    "a": "He's one year old.",
     "d": [
       "Be careful."
     ]

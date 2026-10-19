@@ -745,85 +745,90 @@
     "topic": "萬聖節 / Sight Words: yes, no, not / Be tidy.",
     "dialogueLines": [
       {
-        "speaker": "All",
+        "speaker": "Kids",
         "text": "Trick or treat!",
         "role": "together",
         "zh": "不給糖就搗蛋！"
       },
       {
-        "speaker": "Old Lady",
+        "speaker": "Man",
+        "text": "This is for you.",
+        "role": "nick",
+        "zh": "這是給你們的。"
+      },
+      {
+        "speaker": "Kids",
+        "text": "Thank you!",
+        "role": "together",
+        "zh": "謝謝！"
+      },
+      {
+        "speaker": "All",
         "text": "Happy Halloween!",
-        "role": "lady",
+        "role": "together",
         "zh": "萬聖節快樂！"
       },
       {
-        "speaker": "Nick",
-        "text": "Is it a house?",
-        "role": "nick",
-        "zh": "是房子嗎？"
+        "speaker": "Cat",
+        "text": "Are you sad?",
+        "role": "fifi",
+        "zh": "你難過嗎？"
       },
       {
-        "speaker": "Abby",
-        "text": "Yes, it is.",
-        "role": "abby",
-        "zh": "是，它是。"
+        "speaker": "Dog",
+        "text": "No, I'm not.",
+        "role": "bobo",
+        "zh": "不，我不難過。"
       },
       {
-        "speaker": "Woman",
-        "text": "Is it a house?",
-        "role": "lady",
-        "zh": "它是房子嗎？"
-      },
-      {
-        "speaker": "Man",
-        "text": "No, it is not.",
-        "role": "nick",
-        "zh": "不，它不是。"
-      },
-      {
-        "speaker": "Abby",
-        "text": "Are you hungry?",
-        "role": "abby",
-        "zh": "你肚子餓了嗎？"
-      },
-      {
-        "speaker": "Nick",
-        "text": "Yes, I am.",
-        "role": "nick",
-        "zh": "對，我餓了。"
-      },
-      {
-        "speaker": "Woman",
+        "speaker": "Cat",
         "text": "Are you happy?",
-        "role": "lady",
-        "zh": "你快樂嗎？"
+        "role": "fifi",
+        "zh": "你開心嗎？"
       },
       {
-        "speaker": "Man",
-        "text": "No, I am not.",
-        "role": "nick",
-        "zh": "不，我不快樂。"
+        "speaker": "Dog",
+        "text": "Yes, I am.",
+        "role": "bobo",
+        "zh": "對，我很開心。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Wash your hands.",
         "role": "together",
-        "zh": "洗洗手。"
+        "zh": "洗手。"
       },
       {
-        "speaker": "常用語",
-        "text": "Clean up, please.",
+        "speaker": "跟著做",
+        "text": "Eat.",
         "role": "together",
-        "zh": "請收拾乾淨。"
+        "zh": "吃飯。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
+        "text": "Drink.",
+        "role": "together",
+        "zh": "喝水。"
+      },
+      {
+        "speaker": "跟著做",
+        "text": "Clean up.",
+        "role": "together",
+        "zh": "收拾乾淨。"
+      },
+      {
+        "speaker": "跟著做",
         "text": "Be tidy.",
         "role": "together",
         "zh": "要整潔。"
       }
     ],
     "vocab": [
+      {
+        "word": "bat",
+        "kk": "[bæt]",
+        "zh": "蝙蝠"
+      },
       {
         "word": "witch",
         "kk": "[wɪtʃ]",
@@ -1023,14 +1028,14 @@
     "talkPairs": [
       {
         "q": "Trick or treat!",
-        "a": "Happy Halloween!",
+        "a": "This is for you.",
         "d": [
           "Be tidy."
         ]
       },
       {
-        "q": "Is it a house?",
-        "a": "Yes, it is.",
+        "q": "Are you sad?",
+        "a": "No, I'm not.",
         "d": [
           "Wash your hands."
         ]
@@ -1508,7 +1513,7 @@
       {
         "speaker": "Cat",
         "text": "Meow!",
-        "role": "together",
+        "role": "fifi",
         "zh": "喵！",
         "scored": false
       },
@@ -1522,14 +1527,14 @@
       {
         "speaker": "Dog",
         "text": "Woof! Woof!",
-        "role": "together",
+        "role": "bobo",
         "zh": "汪！汪！",
         "scored": false
       },
       {
         "speaker": "Cat",
         "text": "Meow! Meow!",
-        "role": "together",
+        "role": "fifi",
         "zh": "喵！喵！",
         "scored": false
       },
@@ -1676,14 +1681,14 @@
       {
         "speaker": "Cat",
         "text": "Meow. Meow.",
-        "role": "together",
+        "role": "fifi",
         "zh": "喵。喵。",
         "scored": false
       },
       {
         "speaker": "Dog",
         "text": "Woof. Woof.",
-        "role": "together",
+        "role": "bobo",
         "zh": "汪。汪。",
         "scored": false
       },
@@ -1869,79 +1874,61 @@
     "topic": "複習 U1–U4、U6–U9 / Sight Words: this, that, time / Pay attention.",
     "dialogueLines": [
       {
-        "speaker": "Nick",
-        "text": "Is this a chair?",
+        "speaker": "Girl",
+        "text": "Is that a bug?",
+        "role": "girl",
+        "zh": "那是蟲嗎？"
+      },
+      {
+        "speaker": "Boy",
+        "text": "No, it's not.",
         "role": "nick",
-        "zh": "這是椅子嗎？"
+        "zh": "不，它不是。"
       },
       {
-        "speaker": "Old Lady",
-        "text": "Yes, it is. It's a smart chair.",
-        "role": "lady",
-        "zh": "是，它是。它是一張聰明的椅子。"
-      },
-      {
-        "speaker": "Abby",
-        "text": "Is that a clock?",
-        "role": "abby",
-        "zh": "那是時鐘嗎？"
-      },
-      {
-        "speaker": "Old Lady",
-        "text": "Yes, it is. It's a shy clock.",
-        "role": "lady",
-        "zh": "是，它是。它是個害羞的時鐘。"
-      },
-      {
-        "speaker": "Nick",
-        "text": "What's this?",
+        "speaker": "Boy",
+        "text": "This is a clock.",
         "role": "nick",
-        "zh": "這是什麼？"
+        "zh": "這是一個時鐘。"
       },
       {
-        "speaker": "Old Lady",
-        "text": "It's my cat, Mimi.",
-        "role": "lady",
-        "zh": "是我的貓，咪咪。"
-      },
-      {
-        "speaker": "Abby",
+        "speaker": "Girl",
         "text": "What time is it?",
-        "role": "abby",
+        "role": "girl",
         "zh": "幾點了？"
       },
       {
-        "speaker": "Old Lady",
-        "text": "It's 12 o'clock. Time to eat.",
-        "role": "lady",
-        "zh": "十二點了。該吃飯了。"
+        "speaker": "Boy",
+        "text": "It's four o'clock.",
+        "role": "nick",
+        "zh": "四點了。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Take out your book.",
         "role": "together",
         "zh": "拿出你的書。"
       },
       {
-        "speaker": "常用語",
-        "text": "Open the door.",
+        "speaker": "跟著做",
+        "text": "Open your book.",
         "role": "together",
-        "zh": "打開門。"
+        "zh": "打開你的書。"
       },
       {
-        "speaker": "常用語",
-        "text": "Close the window.",
+        "speaker": "跟著做",
+        "text": "Close your book.",
         "role": "together",
-        "zh": "關上窗戶。"
+        "zh": "闔上你的書。"
       },
       {
-        "speaker": "常用語",
-        "text": "Put away your pencil.",
+        "speaker": "跟著做",
+        "text": "Put away your book.",
         "role": "together",
-        "zh": "把鉛筆收起來。"
+        "zh": "把你的書收起來。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Pay attention.",
         "role": "together",
         "zh": "要專心。"
@@ -2067,10 +2054,10 @@
           "zh": "幾點了？"
         },
         {
-          "prompt": "Is ___ a TV?（那是電視嗎？）",
+          "prompt": "Is ___ a bug?（那是蟲嗎？）",
           "answer": "that",
-          "full": "Is that a TV?",
-          "zh": "那是電視嗎？"
+          "full": "Is that a bug?",
+          "zh": "那是蟲嗎？"
         },
         {
           "prompt": "Is ___ a chair?（這是椅子嗎？）",
@@ -2093,17 +2080,17 @@
     ],
     "talkPairs": [
       {
-        "q": "Is this a chair?",
-        "a": "Yes, it is. It's a smart chair.",
+        "q": "Is that a bug?",
+        "a": "No, it's not.",
         "d": [
           "Pay attention."
         ]
       },
       {
         "q": "What time is it?",
-        "a": "It's 12 o'clock. Time to eat.",
+        "a": "It's four o'clock.",
         "d": [
-          "Open the door."
+          "Open your book."
         ]
       }
     ],
@@ -2890,85 +2877,79 @@
     "topic": "母親節 / Sight Words: who, how, old / Be careful.",
     "dialogueLines": [
       {
-        "speaker": "All",
+        "speaker": "Kids",
         "text": "Happy Mother's Day!",
         "role": "together",
         "zh": "母親節快樂！"
       },
       {
-        "speaker": "Bobo's mom",
-        "text": "Thank you very much.",
-        "role": "lady",
-        "zh": "非常謝謝你們。"
+        "speaker": "Kids",
+        "text": "This is for you, Mom!",
+        "role": "together",
+        "zh": "媽媽，這是給妳的！"
       },
       {
-        "speaker": "Abby",
-        "text": "Who's he?",
-        "role": "abby",
+        "speaker": "Mom",
+        "text": "Thank you very much! I'm so happy.",
+        "role": "lady",
+        "zh": "非常謝謝你們！我好開心。"
+      },
+      {
+        "speaker": "Rabbit",
+        "text": "Who is he?",
+        "role": "fifi",
         "zh": "他是誰？"
       },
       {
-        "speaker": "Bobo",
-        "text": "He's my big brother.",
+        "speaker": "Elephant",
+        "text": "He's my little brother.",
         "role": "bobo",
-        "zh": "他是我哥哥。"
+        "zh": "他是我弟弟。"
       },
       {
-        "speaker": "Nick",
-        "text": "Who's she?",
-        "role": "nick",
-        "zh": "她是誰？"
+        "speaker": "Rabbit",
+        "text": "How old is he?",
+        "role": "fifi",
+        "zh": "他幾歲？"
       },
       {
-        "speaker": "Bobo",
-        "text": "She's my mom.",
+        "speaker": "Elephant",
+        "text": "He's one year old.",
         "role": "bobo",
-        "zh": "她是我媽媽。"
+        "zh": "他一歲。"
       },
       {
-        "speaker": "Nick",
-        "text": "How old are you, Bobo?",
-        "role": "nick",
-        "zh": "波波，你幾歲？"
-      },
-      {
-        "speaker": "Bobo",
-        "text": "I'm seven years old.",
-        "role": "bobo",
-        "zh": "我七歲。"
-      },
-      {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Roll the ball.",
         "role": "together",
         "zh": "滾球。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Throw the ball.",
         "role": "together",
         "zh": "丟球。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Catch the ball.",
         "role": "together",
         "zh": "接球。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Kick the ball.",
         "role": "together",
         "zh": "踢球。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "Boy",
         "text": "Watch out!",
-        "role": "together",
+        "role": "nick",
         "zh": "小心！"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Be careful.",
         "role": "together",
         "zh": "要小心。"
@@ -3179,10 +3160,10 @@
           "zh": "她是誰？"
         },
         {
-          "prompt": "___ are you, Bobo?（你好嗎？）",
+          "prompt": "___ old is he?（他幾歲？）",
           "answer": "How",
-          "full": "How are you, Bobo?",
-          "zh": "波波，你好嗎？"
+          "full": "How old is he?",
+          "zh": "他幾歲？"
         }
       ]
     },
@@ -3193,15 +3174,15 @@
     ],
     "talkPairs": [
       {
-        "q": "Happy Mother's Day!",
-        "a": "Thank you very much.",
+        "q": "This is for you, Mom!",
+        "a": "Thank you very much! I'm so happy.",
         "d": [
           "Watch out!"
         ]
       },
       {
-        "q": "How old are you, Bobo?",
-        "a": "I'm seven years old.",
+        "q": "How old is he?",
+        "a": "He's one year old.",
         "d": [
           "Be careful."
         ]
@@ -4216,91 +4197,55 @@
     "topic": "複習 U11–U14、U16–U19 / Sight Words: where, here, there / Be polite.",
     "dialogueLines": [
       {
-        "speaker": "Bobo",
-        "text": "Where's my soup, Mom?",
-        "role": "bobo",
-        "zh": "媽媽，我的湯在哪裡？"
+        "speaker": "Girl",
+        "text": "Where is my eraser?",
+        "role": "girl",
+        "zh": "我的橡皮擦在哪裡？"
       },
       {
-        "speaker": "Bobo's mom",
+        "speaker": "Mom",
         "text": "There.",
         "role": "lady",
         "zh": "在那裡。"
       },
       {
-        "speaker": "Lucy",
-        "text": "Where is my apple, Dad?",
-        "role": "abby",
-        "zh": "爸爸，我的蘋果在哪裡？"
+        "speaker": "Girl",
+        "text": "Where is my bag?",
+        "role": "girl",
+        "zh": "我的書包在哪裡？"
       },
       {
-        "speaker": "Dad",
+        "speaker": "Mom",
         "text": "Here.",
-        "role": "nick",
+        "role": "lady",
         "zh": "在這裡。"
       },
       {
-        "speaker": "Abby",
-        "text": "Who's he?",
-        "role": "abby",
-        "zh": "他是誰？"
-      },
-      {
-        "speaker": "Bobo",
-        "text": "He's my big brother.",
-        "role": "bobo",
-        "zh": "他是我哥哥。"
-      },
-      {
-        "speaker": "Nick",
-        "text": "How old are you, Bobo?",
-        "role": "nick",
-        "zh": "波波，你幾歲？"
-      },
-      {
-        "speaker": "Bobo",
-        "text": "I'm seven years old.",
-        "role": "bobo",
-        "zh": "我七歲。"
-      },
-      {
-        "speaker": "Abby",
-        "text": "Is it in the box?",
-        "role": "abby",
-        "zh": "牠在箱子裡嗎？"
-      },
-      {
-        "speaker": "Nick",
-        "text": "No, it's not.",
-        "role": "nick",
-        "zh": "不，牠不是。"
-      },
-      {
-        "speaker": "常用語",
-        "text": "Let's play a game.",
-        "role": "together",
-        "zh": "我們來玩遊戲吧。"
-      },
-      {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Make a circle.",
         "role": "together",
         "zh": "圍成一個圓圈。"
       },
       {
-        "speaker": "常用語",
-        "text": "Line up, please.",
+        "speaker": "跟著做",
+        "text": "Play a game.",
         "role": "together",
-        "zh": "請排隊。"
+        "zh": "玩遊戲。"
       },
       {
-        "speaker": "常用語",
-        "text": "Wait for your turn.",
+        "speaker": "跟著做",
+        "text": "Line up.",
+        "role": "together",
+        "zh": "排隊。"
+      },
+      {
+        "speaker": "跟著做",
+        "text": "Wait your turn.",
         "role": "together",
         "zh": "等輪到你。"
       },
       {
-        "speaker": "常用語",
+        "speaker": "跟著做",
         "text": "Be polite.",
         "role": "together",
         "zh": "要有禮貌。"
@@ -4507,28 +4452,28 @@
       "rule": "常見字 where（哪裡）、here（這裡）、there（那裡）。",
       "quiz": [
         {
-          "prompt": "___ is my soup?（我的湯在哪裡？）",
+          "prompt": "___ is my eraser?（我的橡皮擦在哪裡？）",
           "answer": "Where",
-          "full": "Where is my soup?",
-          "zh": "我的湯在哪裡？"
+          "full": "Where is my eraser?",
+          "zh": "我的橡皮擦在哪裡？"
         },
         {
-          "prompt": "Where is my apple?　___.（在這裡）",
+          "prompt": "Where is my bag?　___.（在這裡）",
           "answer": "Here",
-          "full": "Where is my apple? Here.",
-          "zh": "我的蘋果在哪裡？——在這裡。"
+          "full": "Where is my bag? Here.",
+          "zh": "我的書包在哪裡？——在這裡。"
         },
         {
-          "prompt": "Where is my milk?　___.（在那裡）",
+          "prompt": "Where is my eraser?　___.（在那裡）",
           "answer": "There",
-          "full": "Where is my milk? There.",
-          "zh": "我的牛奶在哪裡？——在那裡。"
+          "full": "Where is my eraser? There.",
+          "zh": "我的橡皮擦在哪裡？——在那裡。"
         },
         {
-          "prompt": "___'s the monster?（怪獸在哪裡？）",
+          "prompt": "___'s the dog?（狗在哪裡？）",
           "answer": "Where",
-          "full": "Where's the monster?",
-          "zh": "怪獸在哪裡？"
+          "full": "Where's the dog?",
+          "zh": "狗在哪裡？"
         }
       ]
     },
@@ -4539,17 +4484,17 @@
     ],
     "talkPairs": [
       {
-        "q": "Where's my soup, Mom?",
+        "q": "Where is my eraser?",
         "a": "There.",
         "d": [
           "Be polite."
         ]
       },
       {
-        "q": "Is it in the box?",
-        "a": "No, it's not.",
+        "q": "Where is my bag?",
+        "a": "Here.",
         "d": [
-          "Line up, please."
+          "Line up."
         ]
       }
     ],

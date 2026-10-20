@@ -315,7 +315,11 @@
   function speechText(key,item){ return key==='dialog'?item.text:item.word; }
   function remainCount(key){
     var list=speechList(key),n=0;
-    for(var i=0;i<list.length;i++){ if(!itemPassed(joyBest[key][i]||0,joyAtt[key][i]||0)) n++; }
+    for(var i=0;i<list.length;i++){
+      // 純聽的句子（scored:false，如 Hahaha…、Meow!）畫面上沒有錄音鍵，不能算進過關門檻，否則永遠過不了。
+      if(list[i] && list[i].scored===false) continue;
+      if(!itemPassed(joyBest[key][i]||0,joyAtt[key][i]||0)) n++;
+    }
     return n;
   }
   function addAutoStatus(key,panelId){

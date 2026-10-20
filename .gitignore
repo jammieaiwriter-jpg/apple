@@ -18,3 +18,6 @@ source_materials/tcool_lang_g1_g4_康軒_翰林/**/*.pdf
 source_materials/tcool_lang_g1_g4_康軒_翰林/**/manifest.part-*.json
 # TCOOL OCR／裁圖／文字擷取中間產物：皆可由本機 PDF 與批次工具重建。
 source_materials/tcool_math_g1_g4_康軒_翰林/_analysis/
+
+# Joy 原始課本只保留本機。
+source_materials/joy/**/*.pdf

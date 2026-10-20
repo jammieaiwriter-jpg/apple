@@ -21,3 +21,7 @@
 
 - 這裡是 Apple 的單一本尊，Codex/Claude 指到這個資料夾工作時，看到的就是完整、最新的內容（含未 push 的本機修改）。
 - 光哥/小鑽石的 TEAMMS 專案部署時會 clone 這個 repo，把建置好的檔案放進 `diamond/` 資料夾再 push——所以不要隨意更動 repo 結構或刪除看起來「用不到」的資料夾。
+
+## 2026-10-20 Joy 教材整合
+
+第一、二冊單一教材來源：`source_materials/joy/book1/lessons.json`、`book2/lessons.json`。合併單字索引：`source_materials/joy/vocabulary-index.json`。原始PDF亦收在各冊，只保留本機。`tools/joy/library.json` 是建置入口；舊 JSON/PDF 路徑以符號連結相容。正式網頁仍用 `joy/`，勿以 `英文/` 舊版覆蓋。

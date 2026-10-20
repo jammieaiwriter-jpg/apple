@@ -1,0 +1,3035 @@
+{
+  "derivedFrom": [
+    "book1/lessons.json",
+    "book2/lessons.json"
+  ],
+  "books": [
+    {
+      "book": 1,
+      "units": 20,
+      "entries": 154,
+      "uniqueWords": 136
+    },
+    {
+      "book": 2,
+      "units": 20,
+      "entries": 148,
+      "uniqueWords": 137
+    }
+  ],
+  "uniqueEntries": 240,
+  "words": [
+    {
+      "word": "hi",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "嗨",
+          "kk": "[haɪ]"
+        }
+      ]
+    },
+    {
+      "word": "hello",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "哈囉",
+          "kk": "[hɛˈlo]"
+        }
+      ]
+    },
+    {
+      "word": "I",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "我",
+          "kk": "[aɪ]"
+        },
+        {
+          "book": 1,
+          "unit": 5,
+          "zh": "我",
+          "kk": "[aɪ]"
+        }
+      ]
+    },
+    {
+      "word": "you",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "你",
+          "kk": "[ju]"
+        },
+        {
+          "book": 1,
+          "unit": 5,
+          "zh": "你",
+          "kk": "[ju]"
+        }
+      ]
+    },
+    {
+      "word": "your",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "你的",
+          "kk": "[jʊr]"
+        }
+      ]
+    },
+    {
+      "word": "am",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "是（配 I）",
+          "kk": "[æm]"
+        },
+        {
+          "book": 1,
+          "unit": 5,
+          "zh": "是（配 I）",
+          "kk": "[æm]"
+        }
+      ]
+    },
+    {
+      "word": "is",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "是（配 he/she）",
+          "kk": "[ɪz]"
+        },
+        {
+          "book": 1,
+          "unit": 10,
+          "zh": "是",
+          "kk": "[ɪz]"
+        }
+      ]
+    },
+    {
+      "word": "are",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "是（配 you）",
+          "kk": "[ɑr]"
+        },
+        {
+          "book": 1,
+          "unit": 5,
+          "zh": "是（配 you）",
+          "kk": "[ɑr]"
+        }
+      ]
+    },
+    {
+      "word": "name",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "名字",
+          "kk": "[nem]"
+        }
+      ]
+    },
+    {
+      "word": "what",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "什麼",
+          "kk": "[(h)wɑt]"
+        },
+        {
+          "book": 1,
+          "unit": 20,
+          "zh": "什麼",
+          "kk": "[(h)wɑt]"
+        }
+      ]
+    },
+    {
+      "word": "ouch",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "哎喲",
+          "kk": "[aʊtʃ]"
+        }
+      ]
+    },
+    {
+      "word": "Nick",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "尼克",
+          "kk": "[nɪk]"
+        }
+      ]
+    },
+    {
+      "word": "Abby",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 1,
+          "zh": "艾比",
+          "kk": "[ˈæbɪ]"
+        }
+      ]
+    },
+    {
+      "word": "look",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "看；注視",
+          "kk": "[lʊk]"
+        }
+      ]
+    },
+    {
+      "word": "he",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "他",
+          "kk": "[hi]"
+        },
+        {
+          "book": 1,
+          "unit": 10,
+          "zh": "他",
+          "kk": "[hi]"
+        }
+      ]
+    },
+    {
+      "word": "she",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "她",
+          "kk": "[ʃi]"
+        },
+        {
+          "book": 1,
+          "unit": 10,
+          "zh": "她",
+          "kk": "[ʃi]"
+        }
+      ]
+    },
+    {
+      "word": "Oz",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "歐茲王（人名）",
+          "kk": "[ɑz]"
+        }
+      ]
+    },
+    {
+      "word": "Fifi",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "菲菲（人名）",
+          "kk": "[ˈfɪfɪ]"
+        }
+      ]
+    },
+    {
+      "word": "can",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "可以；能；會",
+          "kk": "[kæn]"
+        }
+      ]
+    },
+    {
+      "word": "help",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "幫忙",
+          "kk": "[hɛlp]"
+        },
+        {
+          "book": 2,
+          "unit": 19,
+          "zh": "救命",
+          "kk": "[hɛlp]"
+        }
+      ]
+    },
+    {
+      "word": "let's",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "讓我們",
+          "kk": "[lɛts]"
+        }
+      ]
+    },
+    {
+      "word": "go",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 2,
+          "zh": "去",
+          "kk": "[go]"
+        }
+      ]
+    },
+    {
+      "word": "listen",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 3,
+          "zh": "聽",
+          "kk": "[ˈlɪsən]"
+        }
+      ]
+    },
+    {
+      "word": "good",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 3,
+          "zh": "好的",
+          "kk": "[gʊd]"
+        }
+      ]
+    },
+    {
+      "word": "morning",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 3,
+          "zh": "早上",
+          "kk": "[ˈmɔrnɪŋ]"
+        }
+      ]
+    },
+    {
+      "word": "afternoon",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 3,
+          "zh": "下午",
+          "kk": "[ˌæftɚˈnun]"
+        }
+      ]
+    },
+    {
+      "word": "evening",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 3,
+          "zh": "傍晚；晚上",
+          "kk": "[ˈivnɪŋ]"
+        }
+      ]
+    },
+    {
+      "word": "this",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 3,
+          "zh": "這個",
+          "kk": "[ðɪs]"
+        },
+        {
+          "book": 2,
+          "unit": 10,
+          "zh": "這個（常見字）",
+          "kk": "[ðɪs]"
+        }
+      ]
+    },
+    {
+      "word": "boohoo",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 3,
+          "zh": "哭聲",
+          "kk": "[buˈhu]"
+        }
+      ]
+    },
+    {
+      "word": "Scarecrow",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 3,
+          "zh": "稻草人",
+          "kk": "[ˈskɛrˌkro]"
+        }
+      ]
+    },
+    {
+      "word": "great",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 4,
+          "zh": "棒的",
+          "kk": "[gret]"
+        }
+      ]
+    },
+    {
+      "word": "want",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 4,
+          "zh": "想要",
+          "kk": "[wɑnt]"
+        }
+      ]
+    },
+    {
+      "word": "a",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 4,
+          "zh": "一個",
+          "kk": "[ə]"
+        },
+        {
+          "book": 1,
+          "unit": 20,
+          "zh": "一個",
+          "kk": "[ə]"
+        }
+      ]
+    },
+    {
+      "word": "brain",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 4,
+          "zh": "頭腦",
+          "kk": "[bren]"
+        }
+      ]
+    },
+    {
+      "word": "heart",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 4,
+          "zh": "心",
+          "kk": "[hɑrt]"
+        },
+        {
+          "book": 2,
+          "unit": 3,
+          "zh": "心形；心",
+          "kk": "[hɑrt]"
+        }
+      ]
+    },
+    {
+      "word": "draw",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 5,
+          "zh": "畫",
+          "kk": "[drɔ]"
+        }
+      ]
+    },
+    {
+      "word": "color",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 5,
+          "zh": "著色",
+          "kk": "[ˈkʌlɚ]"
+        }
+      ]
+    },
+    {
+      "word": "Be good.",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 5,
+          "zh": "要乖；要做好",
+          "kk": "[bi gʊd]"
+        }
+      ]
+    },
+    {
+      "word": "squeak",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 6,
+          "zh": "吱吱聲",
+          "kk": "[skwik]"
+        }
+      ]
+    },
+    {
+      "word": "thank",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 6,
+          "zh": "謝謝",
+          "kk": "[θæŋk]"
+        }
+      ]
+    },
+    {
+      "word": "Tin Man",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 6,
+          "zh": "錫人",
+          "kk": "[ˈtɪn ˈmæn]"
+        }
+      ]
+    },
+    {
+      "word": "oops",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 6,
+          "zh": "哎呀",
+          "kk": "[ups]"
+        }
+      ]
+    },
+    {
+      "word": "sorry",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 6,
+          "zh": "抱歉的",
+          "kk": "[ˈsɑrɪ]"
+        }
+      ]
+    },
+    {
+      "word": "it",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 6,
+          "zh": "它",
+          "kk": "[ɪt]"
+        },
+        {
+          "book": 1,
+          "unit": 20,
+          "zh": "它",
+          "kk": "[ɪt]"
+        }
+      ]
+    },
+    {
+      "word": "OK",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 6,
+          "zh": "好的；可以的",
+          "kk": "[ˌoˈke]"
+        },
+        {
+          "book": 2,
+          "unit": 4,
+          "zh": "好的；可以的",
+          "kk": "[ˋoˋke]"
+        }
+      ]
+    },
+    {
+      "word": "how",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 7,
+          "zh": "如何",
+          "kk": "[haʊ]"
+        },
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "如何（常見字）",
+          "kk": "[haʊ]"
+        }
+      ]
+    },
+    {
+      "word": "write",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 7,
+          "zh": "寫",
+          "kk": "[raɪt]"
+        }
+      ]
+    },
+    {
+      "word": "be",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 7,
+          "zh": "是；be 動詞原形",
+          "kk": "[bi]"
+        }
+      ]
+    },
+    {
+      "word": "fine",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 7,
+          "zh": "好的",
+          "kk": "[faɪn]"
+        }
+      ]
+    },
+    {
+      "word": "and",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 7,
+          "zh": "和；而",
+          "kk": "[ænd]"
+        }
+      ]
+    },
+    {
+      "word": "so-so",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 7,
+          "zh": "普普通通",
+          "kk": "[ˈsoˌso]"
+        }
+      ]
+    },
+    {
+      "word": "roar",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "吼叫聲",
+          "kk": "[rɔr]"
+        }
+      ]
+    },
+    {
+      "word": "hey",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "嘿",
+          "kk": "[he]"
+        }
+      ]
+    },
+    {
+      "word": "Lion",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "獅子；膽小獅",
+          "kk": "[ˈlaɪən]"
+        }
+      ]
+    },
+    {
+      "word": "up",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "向上",
+          "kk": "[ʌp]"
+        }
+      ]
+    },
+    {
+      "word": "wake up",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "醒來",
+          "kk": "[wek ʌp]"
+        }
+      ]
+    },
+    {
+      "word": "us",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "我們",
+          "kk": "[ʌs]"
+        }
+      ]
+    },
+    {
+      "word": "van",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "箱型車",
+          "kk": "[væn]"
+        }
+      ]
+    },
+    {
+      "word": "drive",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "駕駛",
+          "kk": "[draɪv]"
+        }
+      ]
+    },
+    {
+      "word": "wig",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "假髮",
+          "kk": "[wɪg]"
+        }
+      ]
+    },
+    {
+      "word": "wear",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 8,
+          "zh": "穿戴",
+          "kk": "[wɛr]"
+        }
+      ]
+    },
+    {
+      "word": "scared",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "害怕的",
+          "kk": "[skɛrd]"
+        }
+      ]
+    },
+    {
+      "word": "courage",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "勇氣",
+          "kk": "[ˈkɝɪdʒ]"
+        }
+      ]
+    },
+    {
+      "word": "stop",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "停止",
+          "kk": "[stɑp]"
+        }
+      ]
+    },
+    {
+      "word": "sing",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "唱歌",
+          "kk": "[sɪŋ]"
+        }
+      ]
+    },
+    {
+      "word": "dance",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "跳舞",
+          "kk": "[dæns]"
+        }
+      ]
+    },
+    {
+      "word": "fox",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "狐狸",
+          "kk": "[fɑks]"
+        }
+      ]
+    },
+    {
+      "word": "fax",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "傳真",
+          "kk": "[fæks]"
+        }
+      ]
+    },
+    {
+      "word": "to",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "到；向",
+          "kk": "[tu]"
+        }
+      ]
+    },
+    {
+      "word": "yak",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "犛牛",
+          "kk": "[jæk]"
+        }
+      ]
+    },
+    {
+      "word": "yell",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "喊叫",
+          "kk": "[jɛl]"
+        }
+      ]
+    },
+    {
+      "word": "at",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "在；對著",
+          "kk": "[æt]"
+        },
+        {
+          "book": 2,
+          "unit": 3,
+          "zh": "向；朝；對著",
+          "kk": "[æt]"
+        }
+      ]
+    },
+    {
+      "word": "zip",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "拉上",
+          "kk": "[zɪp]"
+        }
+      ]
+    },
+    {
+      "word": "zipper",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 9,
+          "zh": "拉鍊",
+          "kk": "[ˈzɪpɚ]"
+        }
+      ]
+    },
+    {
+      "word": "hurry up",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 10,
+          "zh": "快一點",
+          "kk": "[ˈhɝɪ ʌp]"
+        }
+      ]
+    },
+    {
+      "word": "run",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 10,
+          "zh": "跑",
+          "kk": "[rʌn]"
+        }
+      ]
+    },
+    {
+      "word": "walk",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 10,
+          "zh": "走",
+          "kk": "[wɔk]"
+        }
+      ]
+    },
+    {
+      "word": "on time",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 10,
+          "zh": "準時",
+          "kk": "[ɑn ˈtaɪm]"
+        }
+      ]
+    },
+    {
+      "word": "Be on time.",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 10,
+          "zh": "要準時",
+          "kk": "[bi ɑn ˈtaɪm]"
+        }
+      ]
+    },
+    {
+      "word": "heigh-ho",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "嗨喲",
+          "kk": "[haɪ ho]"
+        }
+      ]
+    },
+    {
+      "word": "my",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "我的",
+          "kk": "[maɪ]"
+        }
+      ]
+    },
+    {
+      "word": "Smart",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "聰明",
+          "kk": "[smɑrt]"
+        },
+        {
+          "book": 2,
+          "unit": 6,
+          "zh": "聰明的",
+          "kk": "[smɑrt]"
+        }
+      ]
+    },
+    {
+      "word": "Mad",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "生氣",
+          "kk": "[mæd]"
+        }
+      ]
+    },
+    {
+      "word": "Happy",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "開心",
+          "kk": "[ˈhæpɪ]"
+        },
+        {
+          "book": 2,
+          "unit": 4,
+          "zh": "開心的",
+          "kk": "[ˋhæpɪ]"
+        }
+      ]
+    },
+    {
+      "word": "Tired",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "累",
+          "kk": "[taɪrd]"
+        }
+      ]
+    },
+    {
+      "word": "one",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "一",
+          "kk": "[wʌn]"
+        },
+        {
+          "book": 2,
+          "unit": 9,
+          "zh": "一",
+          "kk": "[wʌn]"
+        }
+      ]
+    },
+    {
+      "word": "two",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "二",
+          "kk": "[tu]"
+        },
+        {
+          "book": 2,
+          "unit": 9,
+          "zh": "二",
+          "kk": "[tu]"
+        }
+      ]
+    },
+    {
+      "word": "three",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "三",
+          "kk": "[θri]"
+        },
+        {
+          "book": 2,
+          "unit": 9,
+          "zh": "三",
+          "kk": "[θri]"
+        }
+      ]
+    },
+    {
+      "word": "four",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "四",
+          "kk": "[fɔr]"
+        },
+        {
+          "book": 2,
+          "unit": 9,
+          "zh": "四",
+          "kk": "[for]"
+        }
+      ]
+    },
+    {
+      "word": "five",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "五",
+          "kk": "[faɪv]"
+        },
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "五",
+          "kk": "[faɪv]"
+        }
+      ]
+    },
+    {
+      "word": "six",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 11,
+          "zh": "六",
+          "kk": "[sɪks]"
+        },
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "六",
+          "kk": "[sɪks]"
+        }
+      ]
+    },
+    {
+      "word": "Shy",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "害羞",
+          "kk": "[ʃaɪ]"
+        },
+        {
+          "book": 2,
+          "unit": 7,
+          "zh": "害羞的",
+          "kk": "[ʃaɪ]"
+        }
+      ]
+    },
+    {
+      "word": "Achoo",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "哈啾",
+          "kk": "[əˈtʃu]"
+        }
+      ]
+    },
+    {
+      "word": "Dum-dum",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "笨笨",
+          "kk": "[dʌm dʌm]"
+        }
+      ]
+    },
+    {
+      "word": "too",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "也",
+          "kk": "[tu]"
+        }
+      ]
+    },
+    {
+      "word": "seven",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "七",
+          "kk": "[ˈsɛvən]"
+        },
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "七",
+          "kk": "[ˋsɛvn̩]"
+        }
+      ]
+    },
+    {
+      "word": "eight",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "八",
+          "kk": "[et]"
+        },
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "八",
+          "kk": "[et]"
+        }
+      ]
+    },
+    {
+      "word": "nine",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "九",
+          "kk": "[naɪn]"
+        }
+      ]
+    },
+    {
+      "word": "ten",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "十",
+          "kk": "[tɛn]"
+        }
+      ]
+    },
+    {
+      "word": "eleven",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "十一",
+          "kk": "[ɪˈlɛvən]"
+        }
+      ]
+    },
+    {
+      "word": "twelve",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 12,
+          "zh": "十二",
+          "kk": "[twɛlv]"
+        }
+      ]
+    },
+    {
+      "word": "hat",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 13,
+          "zh": "帽子",
+          "kk": "[hæt]"
+        }
+      ]
+    },
+    {
+      "word": "blue",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 13,
+          "zh": "藍色的",
+          "kk": "[blu]"
+        },
+        {
+          "book": 1,
+          "unit": 19,
+          "zh": "藍色的",
+          "kk": "[blu]"
+        },
+        {
+          "book": 2,
+          "unit": 3,
+          "zh": "藍色（的）",
+          "kk": "[blu]"
+        }
+      ]
+    },
+    {
+      "word": "green",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 13,
+          "zh": "綠色的",
+          "kk": "[grin]"
+        },
+        {
+          "book": 1,
+          "unit": 19,
+          "zh": "綠色的",
+          "kk": "[grin]"
+        }
+      ]
+    },
+    {
+      "word": "red",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 13,
+          "zh": "紅色的",
+          "kk": "[rɛd]"
+        },
+        {
+          "book": 2,
+          "unit": 3,
+          "zh": "紅色（的）",
+          "kk": "[rɛd]"
+        }
+      ]
+    },
+    {
+      "word": "yellow",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 13,
+          "zh": "黃色的",
+          "kk": "[ˈjɛlo]"
+        },
+        {
+          "book": 1,
+          "unit": 19,
+          "zh": "黃色的",
+          "kk": "[ˈjɛlo]"
+        },
+        {
+          "book": 2,
+          "unit": 3,
+          "zh": "黃色（的）",
+          "kk": "[ˋjɛlo]"
+        }
+      ]
+    },
+    {
+      "word": "white",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 14,
+          "zh": "白色的",
+          "kk": "[(h)waɪt]"
+        },
+        {
+          "book": 2,
+          "unit": 8,
+          "zh": "白色（的）",
+          "kk": "[hwaɪt]"
+        }
+      ]
+    },
+    {
+      "word": "black",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 14,
+          "zh": "黑色的",
+          "kk": "[blæk]"
+        },
+        {
+          "book": 2,
+          "unit": 8,
+          "zh": "黑色（的）",
+          "kk": "[blæk]"
+        }
+      ]
+    },
+    {
+      "word": "orange",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 14,
+          "zh": "橘色的",
+          "kk": "[ˈɔrɪndʒ]"
+        },
+        {
+          "book": 1,
+          "unit": 18,
+          "zh": "柳橙",
+          "kk": "[ˈɔrɪndʒ]"
+        },
+        {
+          "book": 1,
+          "unit": 19,
+          "zh": "柳橙",
+          "kk": "[ˈɔrɪndʒ]"
+        }
+      ]
+    },
+    {
+      "word": "right",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 14,
+          "zh": "對的",
+          "kk": "[raɪt]"
+        }
+      ]
+    },
+    {
+      "word": "point to",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 15,
+          "zh": "指向",
+          "kk": "[pɔɪnt tu]"
+        }
+      ]
+    },
+    {
+      "word": "circle",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 15,
+          "zh": "圈出",
+          "kk": "[ˈsɝkəl]"
+        },
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "圓圈",
+          "kk": "[ˋsɝkḷ]"
+        }
+      ]
+    },
+    {
+      "word": "show",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 15,
+          "zh": "給……看",
+          "kk": "[ʃo]"
+        }
+      ]
+    },
+    {
+      "word": "me",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 15,
+          "zh": "我",
+          "kk": "[mi]"
+        }
+      ]
+    },
+    {
+      "word": "touch",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 15,
+          "zh": "摸；碰",
+          "kk": "[tʌtʃ]"
+        }
+      ]
+    },
+    {
+      "word": "try",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 15,
+          "zh": "嘗試",
+          "kk": "[traɪ]"
+        }
+      ]
+    },
+    {
+      "word": "again",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 15,
+          "zh": "再次",
+          "kk": "[əˈgɛn]"
+        }
+      ]
+    },
+    {
+      "word": "come",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 16,
+          "zh": "來",
+          "kk": "[kʌm]"
+        }
+      ]
+    },
+    {
+      "word": "in",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 16,
+          "zh": "在……裡面",
+          "kk": "[ɪn]"
+        },
+        {
+          "book": 2,
+          "unit": 19,
+          "zh": "在…裡面",
+          "kk": "[ɪn]"
+        }
+      ]
+    },
+    {
+      "word": "that",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 16,
+          "zh": "那個",
+          "kk": "[ðæt]"
+        },
+        {
+          "book": 2,
+          "unit": 10,
+          "zh": "那個（常見字）",
+          "kk": "[ðæt]"
+        }
+      ]
+    },
+    {
+      "word": "book",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 16,
+          "zh": "書",
+          "kk": "[bʊk]"
+        },
+        {
+          "book": 2,
+          "unit": 6,
+          "zh": "書",
+          "kk": "[bʊk]"
+        }
+      ]
+    },
+    {
+      "word": "marker",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 16,
+          "zh": "麥克筆",
+          "kk": "[ˈmɑrkɚ]"
+        },
+        {
+          "book": 2,
+          "unit": 7,
+          "zh": "彩色筆；麥克筆",
+          "kk": "[ˋmɑrkɚ]"
+        }
+      ]
+    },
+    {
+      "word": "bag",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 16,
+          "zh": "袋子",
+          "kk": "[bæg]"
+        }
+      ]
+    },
+    {
+      "word": "eraser",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 17,
+          "zh": "橡皮擦",
+          "kk": "[ɪˈresɚ]"
+        }
+      ]
+    },
+    {
+      "word": "ruler",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 17,
+          "zh": "尺",
+          "kk": "[ˈrulɚ]"
+        },
+        {
+          "book": 2,
+          "unit": 7,
+          "zh": "尺",
+          "kk": "[ˋrulɚ]"
+        }
+      ]
+    },
+    {
+      "word": "pencil",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 17,
+          "zh": "鉛筆",
+          "kk": "[ˈpɛnsəl]"
+        },
+        {
+          "book": 2,
+          "unit": 6,
+          "zh": "鉛筆",
+          "kk": "[ˋpɛnsḷ]"
+        }
+      ]
+    },
+    {
+      "word": "for",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 18,
+          "zh": "給",
+          "kk": "[fɔr]"
+        }
+      ]
+    },
+    {
+      "word": "an",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 18,
+          "zh": "一個",
+          "kk": "[ən]"
+        },
+        {
+          "book": 1,
+          "unit": 20,
+          "zh": "一個",
+          "kk": "[ən]"
+        }
+      ]
+    },
+    {
+      "word": "apple",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 18,
+          "zh": "蘋果",
+          "kk": "[ˈæpəl]"
+        },
+        {
+          "book": 1,
+          "unit": 19,
+          "zh": "蘋果",
+          "kk": "[ˈæpəl]"
+        },
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "蘋果",
+          "kk": "[ˋæpḷ]"
+        }
+      ]
+    },
+    {
+      "word": "banana",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 18,
+          "zh": "香蕉",
+          "kk": "[bəˈnænə]"
+        },
+        {
+          "book": 1,
+          "unit": 19,
+          "zh": "香蕉",
+          "kk": "[bəˈnænə]"
+        },
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "香蕉",
+          "kk": "[bəˋnænə]"
+        }
+      ]
+    },
+    {
+      "word": "oh",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 19,
+          "zh": "喔",
+          "kk": "[o]"
+        }
+      ]
+    },
+    {
+      "word": "no",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 19,
+          "zh": "不",
+          "kk": "[no]"
+        },
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "不（常見字）",
+          "kk": "[no]"
+        }
+      ]
+    },
+    {
+      "word": "stand up",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 20,
+          "zh": "起立",
+          "kk": "[stænd ʌp]"
+        }
+      ]
+    },
+    {
+      "word": "sit down",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 20,
+          "zh": "坐下",
+          "kk": "[sɪt daʊn]"
+        }
+      ]
+    },
+    {
+      "word": "here",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 20,
+          "zh": "這裡",
+          "kk": "[hɪr]"
+        },
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "這裡（常見字）",
+          "kk": "[hɪr]"
+        }
+      ]
+    },
+    {
+      "word": "back",
+      "occurrences": [
+        {
+          "book": 1,
+          "unit": 20,
+          "zh": "回來",
+          "kk": "[bæk]"
+        }
+      ]
+    },
+    {
+      "word": "bug",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 1,
+          "zh": "蟲子",
+          "kk": "[bʌg]"
+        }
+      ]
+    },
+    {
+      "word": "cool",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 1,
+          "zh": "酷的",
+          "kk": "[kul]"
+        }
+      ]
+    },
+    {
+      "word": "ant",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 1,
+          "zh": "螞蟻",
+          "kk": "[ænt]"
+        }
+      ]
+    },
+    {
+      "word": "bee",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 1,
+          "zh": "蜜蜂",
+          "kk": "[bi]"
+        }
+      ]
+    },
+    {
+      "word": "I don't know.",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 2,
+          "zh": "我不知道。",
+          "kk": "[aɪ dont ˋno]"
+        }
+      ]
+    },
+    {
+      "word": "house",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 2,
+          "zh": "房子",
+          "kk": "[haʊs]"
+        }
+      ]
+    },
+    {
+      "word": "yes",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 2,
+          "zh": "是",
+          "kk": "[jɛs]"
+        },
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "是（常見字）",
+          "kk": "[jɛs]"
+        }
+      ]
+    },
+    {
+      "word": "window",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 2,
+          "zh": "窗戶",
+          "kk": "[ˋwɪndo]"
+        }
+      ]
+    },
+    {
+      "word": "door",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 2,
+          "zh": "門",
+          "kk": "[dɔr]"
+        }
+      ]
+    },
+    {
+      "word": "not",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 2,
+          "zh": "不是",
+          "kk": "[nɑt]"
+        },
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "不是（常見字）",
+          "kk": "[nɑt]"
+        }
+      ]
+    },
+    {
+      "word": "chocolate",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 3,
+          "zh": "巧克力",
+          "kk": "[ˋtʃɑkəlɪt]"
+        }
+      ]
+    },
+    {
+      "word": "yummy",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 3,
+          "zh": "好吃的；美味的",
+          "kk": "[ˋjʌmɪ]"
+        }
+      ]
+    },
+    {
+      "word": "star",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 3,
+          "zh": "星形；星星",
+          "kk": "[stɑr]"
+        }
+      ]
+    },
+    {
+      "word": "hungry",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 4,
+          "zh": "飢餓的",
+          "kk": "[ˋhʌŋgrɪ]"
+        }
+      ]
+    },
+    {
+      "word": "eat",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 4,
+          "zh": "吃",
+          "kk": "[it]"
+        }
+      ]
+    },
+    {
+      "word": "please",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 4,
+          "zh": "請",
+          "kk": "[pliz]"
+        }
+      ]
+    },
+    {
+      "word": "sad",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 4,
+          "zh": "傷心的",
+          "kk": "[sæd]"
+        }
+      ]
+    },
+    {
+      "word": "bat",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "蝙蝠",
+          "kk": "[bæt]"
+        }
+      ]
+    },
+    {
+      "word": "witch",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "巫婆",
+          "kk": "[wɪtʃ]"
+        }
+      ]
+    },
+    {
+      "word": "ghost",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "鬼；幽靈",
+          "kk": "[gost]"
+        }
+      ]
+    },
+    {
+      "word": "candy",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "糖果",
+          "kk": "[ˋkændɪ]"
+        }
+      ]
+    },
+    {
+      "word": "trick or treat",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "不給糖就搗蛋",
+          "kk": "[ˋtrɪk ɔr ˋtrit]"
+        }
+      ]
+    },
+    {
+      "word": "Halloween",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "萬聖節前夕",
+          "kk": "[ˏhæloˋin]"
+        }
+      ]
+    },
+    {
+      "word": "wash",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "洗",
+          "kk": "[wɑʃ]"
+        }
+      ]
+    },
+    {
+      "word": "hand",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "手",
+          "kk": "[hænd]"
+        }
+      ]
+    },
+    {
+      "word": "drink",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "喝",
+          "kk": "[drɪŋk]"
+        }
+      ]
+    },
+    {
+      "word": "clean up",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "收拾；清理",
+          "kk": "[ˋklin ˋʌp]"
+        }
+      ]
+    },
+    {
+      "word": "tidy",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 5,
+          "zh": "整潔的",
+          "kk": "[ˋtaɪdɪ]"
+        }
+      ]
+    },
+    {
+      "word": "wow",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 6,
+          "zh": "哇（表示驚訝、愉快等）",
+          "kk": "[waʊ]"
+        }
+      ]
+    },
+    {
+      "word": "chair",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 6,
+          "zh": "椅子",
+          "kk": "[tʃɛr]"
+        }
+      ]
+    },
+    {
+      "word": "desk",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 6,
+          "zh": "書桌",
+          "kk": "[dɛsk]"
+        }
+      ]
+    },
+    {
+      "word": "TV",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 7,
+          "zh": "電視",
+          "kk": "[ˋtiˋvi]"
+        }
+      ]
+    },
+    {
+      "word": "clock",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 7,
+          "zh": "時鐘",
+          "kk": "[klɑk]"
+        }
+      ]
+    },
+    {
+      "word": "ah",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 7,
+          "zh": "啊（表示痛苦、驚訝等）",
+          "kk": "[ɑ]"
+        }
+      ]
+    },
+    {
+      "word": "cat",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 8,
+          "zh": "貓",
+          "kk": "[kæt]"
+        }
+      ]
+    },
+    {
+      "word": "Mimi",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 8,
+          "zh": "咪咪（寵物名）",
+          "kk": "[ˋmɪmɪ]"
+        }
+      ]
+    },
+    {
+      "word": "meow",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 8,
+          "zh": "貓叫聲",
+          "kk": "[mɪˋaʊ]"
+        }
+      ]
+    },
+    {
+      "word": "woof",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 8,
+          "zh": "狗叫聲",
+          "kk": "[wuf]"
+        }
+      ]
+    },
+    {
+      "word": "dog",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 8,
+          "zh": "狗",
+          "kk": "[dɔg]"
+        }
+      ]
+    },
+    {
+      "word": "Toto",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 8,
+          "zh": "托托（寵物名）",
+          "kk": "[ˋtoto]"
+        }
+      ]
+    },
+    {
+      "word": "coo-coo",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 9,
+          "zh": "咕咕叫聲",
+          "kk": "[ˋkuku]"
+        }
+      ]
+    },
+    {
+      "word": "time",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 9,
+          "zh": "時間",
+          "kk": "[taɪm]"
+        },
+        {
+          "book": 2,
+          "unit": 10,
+          "zh": "時間（常見字）",
+          "kk": "[taɪm]"
+        }
+      ]
+    },
+    {
+      "word": "o'clock",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 9,
+          "zh": "…點鐘",
+          "kk": "[əˋklɑk]"
+        }
+      ]
+    },
+    {
+      "word": "take out",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 10,
+          "zh": "拿出；取出",
+          "kk": "[ˏtek ˋaʊt]"
+        }
+      ]
+    },
+    {
+      "word": "open",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 10,
+          "zh": "打開",
+          "kk": "[ˋopən]"
+        }
+      ]
+    },
+    {
+      "word": "close",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 10,
+          "zh": "關上",
+          "kk": "[kloz]"
+        }
+      ]
+    },
+    {
+      "word": "put away",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 10,
+          "zh": "收起來；收好",
+          "kk": "[ˏpʊt əˋwe]"
+        }
+      ]
+    },
+    {
+      "word": "pay attention",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 10,
+          "zh": "專心；注意",
+          "kk": "[ˏpe əˋtɛnʃən]"
+        }
+      ]
+    },
+    {
+      "word": "Bobo",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 11,
+          "zh": "波波（人名）",
+          "kk": "[ˋbobo]"
+        }
+      ]
+    },
+    {
+      "word": "who",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 11,
+          "zh": "誰",
+          "kk": "[hu]"
+        },
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "誰（常見字）",
+          "kk": "[hu]"
+        }
+      ]
+    },
+    {
+      "word": "mother",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 11,
+          "zh": "媽媽（=mom、mommy）",
+          "kk": "[ˋmʌðɚ]"
+        }
+      ]
+    },
+    {
+      "word": "father",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 11,
+          "zh": "爸爸（=dad、daddy）",
+          "kk": "[ˋfɑðɚ]"
+        }
+      ]
+    },
+    {
+      "word": "ball",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 12,
+          "zh": "球",
+          "kk": "[bɔl]"
+        }
+      ]
+    },
+    {
+      "word": "play",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 12,
+          "zh": "玩",
+          "kk": "[ple]"
+        }
+      ]
+    },
+    {
+      "word": "yippee",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 12,
+          "zh": "耶（表示開心、快樂）",
+          "kk": "[ˋjɪpi]"
+        }
+      ]
+    },
+    {
+      "word": "go home",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 12,
+          "zh": "回家",
+          "kk": "[ˏgo ˋhom]"
+        }
+      ]
+    },
+    {
+      "word": "yo-yo",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 12,
+          "zh": "溜溜球",
+          "kk": "[ˋjoˏjo]"
+        }
+      ]
+    },
+    {
+      "word": "kite",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 12,
+          "zh": "風箏",
+          "kk": "[kaɪt]"
+        }
+      ]
+    },
+    {
+      "word": "bike",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 12,
+          "zh": "腳踏車",
+          "kk": "[baɪk]"
+        }
+      ]
+    },
+    {
+      "word": "big",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 13,
+          "zh": "（年紀）大的",
+          "kk": "[bɪg]"
+        },
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "大的",
+          "kk": "[bɪg]"
+        },
+        {
+          "book": 2,
+          "unit": 17,
+          "zh": "大的",
+          "kk": "[bɪg]"
+        }
+      ]
+    },
+    {
+      "word": "brother",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 13,
+          "zh": "哥哥；弟弟",
+          "kk": "[ˋbrʌðɚ]"
+        }
+      ]
+    },
+    {
+      "word": "little",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 13,
+          "zh": "（年紀）小的",
+          "kk": "[ˋlɪtḷ]"
+        }
+      ]
+    },
+    {
+      "word": "sister",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 13,
+          "zh": "姊姊；妹妹",
+          "kk": "[ˋsɪstɚ]"
+        }
+      ]
+    },
+    {
+      "word": "How old...?",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "…幾歲？",
+          "kk": "[ˏhaʊ ˋold]"
+        }
+      ]
+    },
+    {
+      "word": "years old",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "…歲",
+          "kk": "[ˋjɪr(z) ˏold]"
+        }
+      ]
+    },
+    {
+      "word": "small",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "小的",
+          "kk": "[smɔl]"
+        },
+        {
+          "book": 2,
+          "unit": 17,
+          "zh": "小的",
+          "kk": "[smɔl]"
+        }
+      ]
+    },
+    {
+      "word": "just",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 14,
+          "zh": "恰好",
+          "kk": "[dʒʌst]"
+        }
+      ]
+    },
+    {
+      "word": "card",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "卡片",
+          "kk": "[kɑrd]"
+        }
+      ]
+    },
+    {
+      "word": "cake",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "蛋糕",
+          "kk": "[kek]"
+        }
+      ]
+    },
+    {
+      "word": "gift",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "禮物",
+          "kk": "[gɪft]"
+        }
+      ]
+    },
+    {
+      "word": "flower",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "花",
+          "kk": "[ˋflaʊɚ]"
+        }
+      ]
+    },
+    {
+      "word": "Mother's Day",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "母親節",
+          "kk": "[ˋmʌðɚz ˏde]"
+        }
+      ]
+    },
+    {
+      "word": "very much",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "非常；很多",
+          "kk": "[ˏvɛrɪ ˋmʌtʃ]"
+        }
+      ]
+    },
+    {
+      "word": "so",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "如此地；非常地",
+          "kk": "[so]"
+        }
+      ]
+    },
+    {
+      "word": "roll",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "滾",
+          "kk": "[rol]"
+        }
+      ]
+    },
+    {
+      "word": "the",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "這；那",
+          "kk": "[ðə]"
+        }
+      ]
+    },
+    {
+      "word": "throw",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "丟",
+          "kk": "[θro]"
+        }
+      ]
+    },
+    {
+      "word": "catch",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "接",
+          "kk": "[kætʃ]"
+        }
+      ]
+    },
+    {
+      "word": "kick",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "踢",
+          "kk": "[kɪk]"
+        }
+      ]
+    },
+    {
+      "word": "Watch out!",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "小心！",
+          "kk": "[ˋwɑtʃ ˋaʊt]"
+        }
+      ]
+    },
+    {
+      "word": "careful",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "小心的",
+          "kk": "[ˋkɛrfəl]"
+        }
+      ]
+    },
+    {
+      "word": "old",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 15,
+          "zh": "…歲的（常見字）",
+          "kk": "[old]"
+        }
+      ]
+    },
+    {
+      "word": "hot",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "熱的；燙的",
+          "kk": "[hɑt]"
+        },
+        {
+          "book": 2,
+          "unit": 17,
+          "zh": "熱的；燙的",
+          "kk": "[hɑt]"
+        }
+      ]
+    },
+    {
+      "word": "cold",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "冷的",
+          "kk": "[kold]"
+        },
+        {
+          "book": 2,
+          "unit": 17,
+          "zh": "冷的",
+          "kk": "[kold]"
+        }
+      ]
+    },
+    {
+      "word": "yum",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "好吃",
+          "kk": "[jʌm]"
+        }
+      ]
+    },
+    {
+      "word": "where",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "哪裡",
+          "kk": "[hwɛr]"
+        },
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "哪裡（常見字）",
+          "kk": "[hwɛr]"
+        }
+      ]
+    },
+    {
+      "word": "soup",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "湯",
+          "kk": "[sup]"
+        }
+      ]
+    },
+    {
+      "word": "there",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "在那裡",
+          "kk": "[ðɛr]"
+        },
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "那裡（常見字）",
+          "kk": "[ðɛr]"
+        }
+      ]
+    },
+    {
+      "word": "milk",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 16,
+          "zh": "牛奶",
+          "kk": "[mɪlk]"
+        }
+      ]
+    },
+    {
+      "word": "monster",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 18,
+          "zh": "怪獸",
+          "kk": "[ˋmɑnstɚ]"
+        }
+      ]
+    },
+    {
+      "word": "fat",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 18,
+          "zh": "胖胖的",
+          "kk": "[fæt]"
+        }
+      ]
+    },
+    {
+      "word": "tall",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 18,
+          "zh": "高高的",
+          "kk": "[tɔl]"
+        }
+      ]
+    },
+    {
+      "word": "short",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 18,
+          "zh": "矮矮的",
+          "kk": "[ʃɔrt]"
+        }
+      ]
+    },
+    {
+      "word": "thin",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 18,
+          "zh": "瘦瘦的",
+          "kk": "[θɪn]"
+        }
+      ]
+    },
+    {
+      "word": "under",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 19,
+          "zh": "在…下面",
+          "kk": "[ˋʌndɚ]"
+        }
+      ]
+    },
+    {
+      "word": "girl",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 19,
+          "zh": "女孩",
+          "kk": "[gɝl]"
+        }
+      ]
+    },
+    {
+      "word": "on",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 19,
+          "zh": "在…上面",
+          "kk": "[ɑn]"
+        }
+      ]
+    },
+    {
+      "word": "bed",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 19,
+          "zh": "床",
+          "kk": "[bɛd]"
+        }
+      ]
+    },
+    {
+      "word": "make",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "製造；做出",
+          "kk": "[mek]"
+        }
+      ]
+    },
+    {
+      "word": "game",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "遊戲；比賽",
+          "kk": "[gem]"
+        }
+      ]
+    },
+    {
+      "word": "line up",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "排隊",
+          "kk": "[ˋlaɪn ˋʌp]"
+        }
+      ]
+    },
+    {
+      "word": "wait",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "等待",
+          "kk": "[wet]"
+        }
+      ]
+    },
+    {
+      "word": "turn",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "順次；輪到的機會",
+          "kk": "[tɝn]"
+        }
+      ]
+    },
+    {
+      "word": "polite",
+      "occurrences": [
+        {
+          "book": 2,
+          "unit": 20,
+          "zh": "有禮貌的",
+          "kk": "[pəˋlaɪt]"
+        }
+      ]
+    }
+  ]
+}

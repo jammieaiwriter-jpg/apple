@@ -16,7 +16,10 @@ const BOOKS={
 const cfg=BOOKS[book];
 if(!cfg) throw new Error(`不認得的冊別：${book}`);
 const tpl=fs.readFileSync(`${DIR}/review_template.html`,'utf8');
-const units=JSON.parse(fs.readFileSync(`${DIR}/${cfg.data}`,'utf8'));
+const library=JSON.parse(fs.readFileSync(`${DIR}/library.json`,'utf8'));
+const source=library.books.find(x=>x.book===book);
+if(!source) throw new Error(`教材庫缺少第 ${book} 冊`);
+const units=JSON.parse(fs.readFileSync(`${DIR}/${source.source}`,'utf8'));
 const j=v=>JSON.stringify(v,null,2);
 let n=0;
 for(const u of units){

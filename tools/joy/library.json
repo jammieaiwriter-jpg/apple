@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "books": [
+    {
+      "book": 1,
+      "label": "Joy 第1冊",
+      "source": "../../source_materials/joy/book1/lessons.json",
+      "webPrefix": ""
+    },
+    {
+      "book": 2,
+      "label": "Joy 第2冊",
+      "source": "../../source_materials/joy/book2/lessons.json",
+      "webPrefix": "book2-"
+    }
+  ]
+}

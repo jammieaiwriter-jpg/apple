@@ -2,7 +2,7 @@
 // 抽取後必須用回填比對驗證無損（見 verify_joy_pages.mjs）。
 import fs from 'fs'; import vm from 'vm'; import path from 'path';
 const JOY = '/Users/emma/02_小孩教育/Apple/joy';
-const OUT = '/Users/emma/02_小孩教育/Apple/tools/joy/joy_lessons_data.json';
+const OUT = '/Users/emma/02_小孩教育/Apple/source_materials/joy/book1/lessons.json';
 const KEYS = ['dialogueLines','vocab','phonics','grammar','beOptions','talkPairs'];
 
 const units = [], problems = [];

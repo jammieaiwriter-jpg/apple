@@ -1,0 +1,19 @@
+# Joy 單字小花園（獨立頁）
+
+網址：https://jammieaiwriter-jpg.github.io/apple/joy/words/
+
+第一、二冊各20課，使用 `source_materials/joy/book1/lessons.json` 與 `book2/lessons.json`，保留302筆課次詞條，不改原課文複習頁。
+
+- 每個冊別／課次每日固定最多3字，同日重開不換批。
+- 認識 → 聽懂（適用字選圖，其餘可朗讀中文選項）→ 補一字母。
+- 同字補字在兩個不同日子無提示答對後，自動改為點字母拼整字；家長可手動選補字或整字。
+- 人名、片語、句子不強迫整字拼寫；英文使用原資料 say 發音替身，中文使用 zh-TW。
+- 圖片先用內建圖示，只將意思明確的具體字或顏色用於選圖測驗。未配圖詞條仍可練中文意思與拼寫。
+- 先完成當輪，再開始獨立錯題挑戰。錯兩次或點提示可輔助完成，紀錄不算無提示掌握。
+- 花朵與通關只看當輪，不用儲存成績直接跳過；學習歷程獨立儲存在 joy-independent-words-v1，可匯出／匯入。
+- 頁面不用麥克風，不用HTML5 Audio；中文與英文皆純 speechSynthesis，需要裝置有相應語音。
+- 完成所有錯題後，只有按「媽媽確認完成，通知 Emma」才走既有安全代理送Telegram，不自動發送。
+
+建置：`python3 tools/joy-word-garden/build.py`
+測試：`node tools/joy-word-garden/test.cjs`
+原始課本、單元預複習頁與進度不變。實際iPad中文／英文語音仍需在孩子裝置確認。

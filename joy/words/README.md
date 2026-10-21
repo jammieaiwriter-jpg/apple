@@ -17,3 +17,7 @@
 建置：`python3 tools/joy-word-garden/build.py`
 測試：`node tools/joy-word-garden/test.cjs`
 原始課本、單元預複習頁與進度不變。實際iPad中文／英文語音仍需在孩子裝置確認。
+
+
+## 2026-10-21 自己拼字
+新版預設自己輸入完整英文，不提供字母選項；保留補字、排字母與漸進模式可選。舊設定只在首次升級改成自己拼字，之後保留媽媽選擇。第一、二冊共用相同引擎，已學紀錄與備份鍵不變。自己輸入的跨日紀錄使用 typeDays，與舊排字母 spellDays 分開。錯題統一交給 Challenge；完成後仍需媽媽確認才發Telegram。

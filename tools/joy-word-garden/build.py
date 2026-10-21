@@ -13,7 +13,7 @@ for b in [1,2]:
   for i,v in enumerate(u.get('vocab',[])):
    word=v['word'];zh=v.get('zh','');key=word.lower();color=key in colors and ('色' in zh or key!='orange')
    proper=word[:1].isupper() and word not in ['I']
-   can_spell=bool(re.fullmatch('[A-Za-z]{2,10}',word)) and not proper
+   can_spell=bool(re.fullmatch('[A-Za-z]{1,20}',word)) and not proper
    emoji=visuals.get(word,visuals.get(key,''));picture=word in picture_words or key in picture_words
    if key in ['eraser','desk','wig','yak']:emoji=''
    if key=='orange' and '色' in zh:emoji='';picture=False

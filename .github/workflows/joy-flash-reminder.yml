@@ -1,0 +1,22 @@
+name: Joy flash reminder
+
+# Telegram reminder for Apple's daily sight-word practice (joy/flash/).
+# Taiwan is UTC+8: 21:00 Mon-Fri = 13:00 UTC, 09:00 Sat/Sun = 01:00 UTC.
+# GitHub may start scheduled runs a few minutes late.
+on:
+  schedule:
+    - cron: '0 13 * * 1-5'
+    - cron: '0 1 * * 6,0'
+  workflow_dispatch:
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram reminder
+        env:
+          ENDPOINT: https://bobo-math-notify.bobo-math-grader.workers.dev
+        run: |
+          curl -fsS -m 30 -X POST "$ENDPOINT" \
+            -H 'Content-Type: application/json' \
+            -d '{"text":"⏰ Apple 認字閃卡時間到囉！今天 20 個字，約 10 分鐘。\n👉 https://jammieaiwriter-jpg.github.io/apple/joy/flash/"}'

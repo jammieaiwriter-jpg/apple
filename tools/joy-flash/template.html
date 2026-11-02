@@ -1,0 +1,353 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff4e0"><meta name="description" content="Joy 認字閃卡：每天 20 個字，看字念、聽音選字、看字選意思、詞性分類小遊戲。"><title>Joy 認字閃卡</title><style>
+:root{--ink:#2b3a42;--bg:#fff4e0;--card:#fff;--line:#ecd9b8;--muted:#6f7c82;--ok:#2f9e6f;--bad:#d6483f;--main:#e0703a;--purple:#6359a7;--n:#3b82c4;--v:#e0703a;--adj:#2f9e6f;--pron:#8a63c9;--int:#d6587c;--other:#5f7f8f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-rounded,'Arial Rounded MT Bold','PingFang TC',system-ui,sans-serif;line-height:1.5;-webkit-tap-highlight-color:transparent}
+button,input,textarea{font:inherit}button{cursor:pointer;color:inherit;touch-action:manipulation;min-height:56px;border:0}button:disabled{cursor:default;opacity:.5}
+button:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+ruby{ruby-position:over}rt{font-size:max(.45em,11px);font-weight:700;color:var(--muted);letter-spacing:0}
+.shell{max-width:760px;margin:0 auto;padding:14px 16px 40px;padding-top:max(14px,env(safe-area-inset-top))}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.brand{font-weight:900;font-size:22px;display:flex;gap:8px;align-items:center}
+.quiet{background:#fff;border:2px solid var(--line);border-radius:999px;padding:6px 18px;font-size:18px;font-weight:800}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:28px;padding:22px 20px;text-align:center;box-shadow:0 6px 0 var(--line)}
+.panel h1{margin:6px 0 4px;font-size:30px;line-height:1.9}
+.big{display:block;width:100%;border-radius:20px;font-weight:900;font-size:24px;padding:12px 18px;margin-top:12px}
+.primary{background:var(--main);color:#fff;box-shadow:0 5px 0 #b24f1f}
+.secondary{background:#fff;border:3px solid var(--line);box-shadow:0 4px 0 var(--line)}
+.row{display:flex;gap:12px}.row>*{flex:1}
+.bar{height:16px;background:#f3e6cc;border-radius:99px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .3s}
+.meta{color:var(--muted);font-weight:800;font-size:17px}
+.stat{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:10px 0;font-weight:800;font-size:18px}
+.bucket rt,.chip rt{color:rgba(255,255,255,.92)}
+.stage{display:inline-block;background:#ffe9c4;color:#8a4d00;border-radius:99px;padding:2px 16px;font-weight:900;font-size:18px}
+.word{font-size:76px;font-weight:900;line-height:1.2;margin:14px 0 6px;word-break:break-word}
+.word.long{font-size:52px}
+.hear{background:#e9f4ff;border:3px solid #b9d8f5;border-radius:999px;min-width:64px;font-size:28px;padding:6px 20px;font-weight:900}
+.hear.small{min-height:44px;min-width:48px;font-size:20px;padding:2px 12px;flex:none}
+.chip{display:inline-block;color:#fff;border-radius:99px;padding:2px 16px;font-weight:900;font-size:19px;line-height:1.9}
+.chip small{font-size:14px;opacity:.9;margin-left:6px}
+.mean{font-size:42px;font-weight:900;margin:14px 0 4px;line-height:1.8}
+.kk{color:var(--muted);font-size:22px;font-weight:700}
+.sent{background:#fff8ec;border-radius:18px;padding:10px 14px;margin:12px 0;text-align:left}
+.sent b{font-size:22px;display:block}.sent span{font-size:19px;line-height:1.9}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.opt{background:#fff;border:3px solid var(--line);border-radius:20px;font-size:32px;font-weight:900;padding:10px;box-shadow:0 4px 0 var(--line);min-height:84px}
+.opts.stack{grid-template-columns:1fr}
+.opts.stack .optrow{display:flex;gap:8px;align-items:stretch}.opts.stack .opt{flex:1;font-size:28px;line-height:1.9}
+.opt.right{background:#d8f5e5;border-color:var(--ok)}.opt.wrong{background:#ffe0dc;border-color:var(--bad);animation:shake .35s}
+.opt:disabled{opacity:1}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.buckets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+.bucket{color:#fff;border-radius:20px;font-size:22px;font-weight:900;padding:8px 4px;line-height:1.9;min-height:110px;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.bucket small{display:block;font-size:14px;font-weight:700;opacity:.95;line-height:1.5}
+.fb{min-height:64px;font-size:21px;font-weight:800;margin-top:10px;line-height:1.9}
+.fb.good{color:var(--ok)}.fb.oops{color:var(--bad)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#2b3a42;color:#fff;border-radius:16px;padding:10px 18px;font-weight:700;max-width:90vw;z-index:5}
+.lock{opacity:.6}
+.tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0}.tags span{background:#fff0d8;border-radius:99px;padding:2px 14px;font-weight:800;font-size:20px}
+.parent{text-align:left;font-size:17px}.parent h2{font-size:20px;margin:18px 0 6px}.parent table{width:100%;border-collapse:collapse}.parent td,.parent th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+.parent textarea{width:100%;min-height:90px;border:2px solid var(--line);border-radius:12px;padding:8px;font-size:13px}
+.parent .btn{background:#fff;border:2px solid var(--line);border-radius:12px;padding:6px 14px;font-weight:800;min-height:44px;margin:4px 6px 4px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:9;padding:20px}.modal[hidden]{display:none}
+.modal .panel{max-width:420px}
+@media (max-width:520px){.word{font-size:60px}.mean{font-size:34px}.bucket{font-size:19px}.opt{font-size:26px}}
+</style></head><body><div class="shell"><header><div class="brand"><span>🃏</span><span id="brand"></span></div><button class="quiet" id="home" hidden></button></header><main id="app"></main></div><div id="toast" class="toast" hidden></div><div id="modal" class="modal" hidden></div>
+<script>
+'use strict';
+const DATA=__FLASH_DATA__,RUBY=__RUBY__;
+const STORAGE='joy-flash-v1',ENDPOINT='https://bobo-math-notify.bobo-math-grader.workers.dev',PAGE_URL='https://jammieaiwriter-jpg.github.io/apple/joy/flash/';
+// 每天 20 個字：複習最多 12 個，其餘補新字。間隔天數依序為答對 1~5 次後的下次複習。
+const DAILY=20,DUE_CAP=12,INTERVALS=[1,3,7,14,30],FAMILIAR_BOX=3,GRADUATE=.9,SORT_ROUNDS=8,SORT_UNLOCK=3;
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const zy=s=>RUBY[s]||esc(s);
+const pad=n=>String(n).padStart(2,'0'),fmt=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const today=()=>fmt(new Date());
+const addDays=(date,n)=>{const [y,m,d]=date.split('-').map(Number),x=new Date(y,m-1,d+n);return fmt(x);};
+const shuffle=a=>{const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;};
+
+const WORDS=DATA.words.filter(w=>DATA.books.includes(w.book)),BY=Object.fromEntries(WORDS.map(w=>[w.key,w]));
+const POS={
+ n:{kid:zy('名稱字'),term:zy('名詞')+' n.',color:'var(--n)',hint:zy('人、東西的名字')},
+ v:{kid:zy('動作字'),term:zy('動詞')+' v.',color:'var(--v)',hint:zy('可以做的事')},
+ adj:{kid:zy('樣子字'),term:zy('形容詞')+' adj.',color:'var(--adj)',hint:zy('說樣子、感覺')},
+ pron:{kid:zy('代替字'),term:zy('代名詞')+' pron.',color:'var(--pron)'},
+ int:{kid:zy('叫喊字'),term:zy('感嘆詞')+' int.',color:'var(--int)'},
+ prep:{kid:zy('位置字'),term:zy('介系詞')+' prep.',color:'var(--other)'},
+ conj:{kid:zy('連接字'),term:zy('連接詞')+' conj.',color:'var(--other)'},
+ art:{kid:zy('數量字'),term:zy('冠詞')+' art.',color:'var(--other)'},
+ adv:{kid:zy('幫手字'),term:zy('副詞')+' adv.',color:'var(--other)'},
+ num:{kid:zy('數字'),term:zy('數詞')+' num.',color:'var(--other)'},
+ phr:{kid:zy('片語'),term:'phr.',color:'var(--other)'}
+};
+const posChip=w=>`<span class="chip" style="background:${POS[w.pos].color}">${POS[w.pos].kid}<small>${POS[w.pos].term}</small></span>`;
+
+// ---- storage ----
+let profile={version:1,name:'Apple',records:{},plans:{},days:{},flags:{},sort:{games:0,right:0,total:0}},storageOK=true;
+try{const saved=JSON.parse(localStorage.getItem(STORAGE)||'null');if(saved&&saved.version===1&&saved.records&&typeof saved.records==='object')profile={...profile,...saved};}catch(e){storageOK=false;}
+function persist(){try{localStorage.setItem(STORAGE,JSON.stringify(profile));storageOK=true;return true;}catch(e){storageOK=false;toast('這台裝置暫時無法保存紀錄');return false;}}
+const rec=key=>profile.records[key]||(profile.records[key]={box:0,due:'',seen:0,right:0,wrong:0,last:'',hist:[]});
+const familiar=key=>(profile.records[key]?.box||0)>=FAMILIAR_BOX;
+const familiarCount=()=>WORDS.filter(w=>familiar(w.key)).length;
+
+// ---- speech (speechSynthesis only; no Audio elements) ----
+let speechToken=0;
+function toast(text){const t=$('#toast');t.textContent=text;t.hidden=false;clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.hidden=true,3600);}
+function stopSpeech(){speechToken++;if('speechSynthesis'in window)speechSynthesis.cancel();}
+function speakSequence(parts){
+ if(!('speechSynthesis'in window)){toast('這個瀏覽器不能朗讀');return;}
+ stopSpeech();const token=speechToken;
+ const run=i=>{if(token!==speechToken||i>=parts.length)return;
+  const [text,lang]=parts[i],u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=lang==='en-US'?.8:.9;
+  const voices=speechSynthesis.getVoices();u.voice=voices.find(v=>v.lang===lang)||voices.find(v=>v.lang.startsWith(lang.slice(0,2)))||null;
+  u.onend=()=>run(i+1);u.onerror=()=>{if(token===speechToken)toast('目前無法朗讀，請確認裝置有英文和中文語音');};
+  speechSynthesis.speak(u);};
+ run(0);
+}
+const sayEn=w=>speakSequence([[w.say||w.word,'en-US']]),sayZh=t=>speakSequence([[t,'zh-TW']]);
+
+// ---- plan, spaced review ----
+function planFor(date){
+ const saved=profile.plans[date];
+ if(Array.isArray(saved)){const ws=saved.map(k=>BY[k]).filter(Boolean);if(ws.length)return ws;}
+ const dueSort=(a,b)=>rec(a.key).due.localeCompare(rec(b.key).due)||rec(a.key).box-rec(b.key).box||rec(b.key).wrong-rec(a.key).wrong;
+ const learned=WORDS.filter(w=>rec(w.key).box>0),due=learned.filter(w=>rec(w.key).due<=date).sort(dueSort);
+ let chosen=due.slice(0,DUE_CAP);
+ const fresh=WORDS.filter(w=>rec(w.key).seen===0&&rec(w.key).box===0);
+ chosen=chosen.concat(fresh.slice(0,DAILY-chosen.length));
+ if(chosen.length<DAILY)chosen=chosen.concat(due.slice(DUE_CAP).slice(0,DAILY-chosen.length));
+ if(chosen.length<DAILY){const taken=new Set(chosen.map(w=>w.key));chosen=chosen.concat(learned.filter(w=>!taken.has(w.key)).sort(dueSort).slice(0,DAILY-chosen.length));}
+ profile.plans[date]=chosen.map(w=>w.key);
+ for(const d of Object.keys(profile.plans))if(d<addDays(date,-30))delete profile.plans[d];
+ persist();return chosen;
+}
+function applyResults(res,date){
+ for(const key of Object.keys(res)){
+  const r=rec(key),ok=res[key].s2===true&&res[key].s3===true;
+  r.seen++;r.last=date;r.hist=(r.hist||[]).concat(ok?1:0).slice(-6);
+  if(ok){r.right++;r.box=Math.min(INTERVALS.length,Math.max(r.box,0)+1);}else{r.wrong++;r.box=1;}
+  r.due=addDays(date,INTERVALS[r.box-1]);
+ }
+}
+function streak(){let n=0,d=today();if(!profile.days[d]?.done)d=addDays(d,-1);while(profile.days[d]?.done){n++;d=addDays(d,-1);}return n;}
+
+// ---- look-alike and meaning options ----
+const HOMO=new Map();for(const g of DATA.homophones)for(const w of g)HOMO.set(w,g);
+const sameSound=(a,b)=>a===b||(HOMO.get(a)||[]).includes(b);
+function lev(a,b){const m=a.length,n=b.length,d=Array.from({length:m+1},(_,i)=>[i]);for(let j=1;j<=n;j++)d[0][j]=j;
+ for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
+const SPELL_POOL=[...new Set(WORDS.filter(w=>!/[\s-]/.test(w.word)).map(w=>w.word.toLowerCase()).concat(DATA.foils))];
+function lookAlikes(w,n=3){
+ const me=w.word.toLowerCase(),score=c=>lev(me,c)-(c[0]===me[0]?.8:0)-(Math.abs(c.length-me.length)<=1?.4:0)+Math.random()*.6;
+ const pool=SPELL_POOL.filter(c=>!sameSound(me,c)&&!sameSound((w.say||'').toLowerCase(),c)).sort((a,b)=>score(a)-score(b)).slice(0,6);
+ return shuffle(pool).slice(0,n).map(c=>c==='i'?'I':c);
+}
+function clash(a,b){return a===b||a.includes(b)||b.includes(a);}
+function meaningOptions(w,n=3){
+ const wrong=shuffle(WORDS.filter(o=>o.key!==w.key&&!clash(o.zh,w.zh)));
+ const out=[];for(const o of wrong){if(out.length>=n)break;if(out.every(x=>!clash(x.zh,o.zh)))out.push(o);}
+ return out;
+}
+
+// ---- session ----
+let S=null;
+const needsLong=w=>w.word.length>8?' long':'';
+function newSession(){
+ const date=today(),plan=planFor(date),wasDone=!!profile.days[date]?.done;
+ const fresh=plan.filter(w=>rec(w.key).seen===0).length;
+ S={date,plan,counts:!wasDone,fresh,stage:'flash',res:Object.fromEntries(plan.map(w=>[w.key,{s2:null,s3:null,unsure:false}])),
+    queue:shuffle(plan.map(w=>w.key)),flip:false,q:null,done:0,retried:new Set(),sort:null,report:''};
+ render();
+}
+const goHome=()=>{stopSpeech();S=null;render();};
+function render(){
+ $('#brand').innerHTML=zy('認字閃卡');
+ const home=$('#home');home.hidden=!S;home.innerHTML=zy('休息一下');
+ if(!S)return renderHome();
+ ({flash:renderFlash,listen:renderQuiz,mean:renderQuiz,sort:renderSort,done:renderDone})[S.stage]();
+}
+function progress(n,total){return `<div class="bar"><i style="width:${Math.round(n/total*100)}%"></i></div>`;}
+
+function renderHome(){
+ const date=today(),d=profile.days[date],f=familiarCount(),total=WORDS.length,sn=sortStatus(),n=streak();
+ const preview=planFor(date),fresh=preview.filter(w=>rec(w.key).seen===0).length;
+ $('#app').innerHTML=`<section class="panel"><span class="stage">${zy('今天')}</span><h1>${esc(profile.name)}，${zy('今天要認')} ${preview.length} ${zy('個字')}</h1>
+  <p class="meta">${zy('新字')} ${fresh} ${zy('個')}・${zy('複習')} ${preview.length-fresh} ${zy('個')}</p>
+  <button class="big primary" id="start">${d?.done?zy('再練一次'):zy('開始練習')}</button>
+  ${d?.done?`<p class="meta">${zy('今天練完了')} 🎉</p>`:''}
+  <div class="stat"><span>🔥 ${zy('連續')} ${n} ${zy('天')}</span><span>⭐ ${zy('很熟的字')} ${f} / ${total}</span></div>${progress(f,total)}
+  <div class="row"><button class="big secondary ${sn.ok?'':'lock'}" id="sortBtn">${sn.ok?'🧺 '+zy('分類遊戲'):'🔒 '+zy('分類遊戲')}</button><button class="big secondary" id="parentBtn">👩 ${zy('媽媽')}</button></div>
+  ${sn.ok?'':`<p class="meta">${zy('再學幾個字就能玩分類遊戲')}</p>`}
+  ${profile.flags.book1Graduated?`<p class="meta">🎉 ${zy('第一冊都很熟了')}</p>`:''}</section>`;
+ $('#start').onclick=newSession;
+ $('#sortBtn').onclick=()=>{if(!sn.ok){toast('再多學幾個名稱字、動作字、樣子字就會解鎖');return;}S={date:today(),plan:[],counts:false,fresh:0,stage:'sort',res:{},queue:[],q:null,sort:null,report:'',solo:true,retried:new Set(),done:0};startSort();};
+ $('#parentBtn').onclick=renderParent;
+}
+
+// -- stage 1: flash cards --
+function renderFlash(){
+ const key=S.queue[0],w=BY[key],total=S.plan.length,n=total-new Set(S.queue).size;
+ const front=`<div class="word${needsLong(w)}">${esc(w.word)}</div><p class="meta">${zy('先自己念念看')}</p><button class="hear" id="hear" aria-label="listen">🔊</button><button class="big primary" id="flip">${zy('翻過來看答案')}</button>`;
+ const sent=w.sent?`<div class="sent"><b>${esc(w.sent.en)} <button class="hear small" id="hearSent">🔊</button></b><span>${w.sent.zh?zy(w.sent.zh):''}</span></div>`:'';
+ const back=`<div class="word${needsLong(w)}" style="font-size:52px;margin:6px 0">${esc(w.word)}</div><div class="kk">${esc(w.kk)}</div>${posChip(w)}
+  <div class="mean">${zy(w.zh)} <button class="hear small" id="hearZh">🔊</button></div>${sent}
+  <div class="row"><button class="big secondary" id="again">${zy('還不熟')}</button><button class="big primary" id="know">${zy('我會了')} ✓</button></div>`;
+ $('#app').innerHTML=`<section class="panel"><span class="stage">${zy('閃卡')} ${n+1} / ${total}</span>${progress(n,total)}${S.flip?back:front}</section>`;
+ if(!S.flip){$('#hear').onclick=()=>sayEn(w);$('#flip').onclick=()=>{S.flip=true;render();};return;}
+ speakSequence([[w.say||w.word,'en-US']]);
+ $('#hearZh').onclick=()=>sayZh(w.zh);if(w.sent)$('#hearSent').onclick=()=>speakSequence([[w.sent.en,'en-US']]);
+ const next=unsure=>{S.queue.shift();if(unsure){S.res[key].unsure=true;if(!S.retried.has(key)){S.retried.add(key);S.queue.splice(Math.min(4,S.queue.length),0,key);}}
+  S.flip=false;if(!S.queue.length)startQuiz('listen');else render();};
+ $('#know').onclick=()=>next(false);$('#again').onclick=()=>next(true);
+}
+
+// -- stages 2 and 3: listen & choose word / read & choose meaning --
+function startQuiz(kind){S.stage=kind;S.queue=shuffle(S.plan.map(w=>w.key));S.done=0;S.retried=new Set();nextQuestion();}
+function nextQuestion(){
+ if(!S.queue.length){if(S.stage==='listen')startQuiz('mean');else afterQuiz();return;}
+ const w=BY[S.queue.shift()];
+ const opts=S.stage==='listen'?shuffle([w.word,...lookAlikes(w)].map(t=>({t,ok:t.toLowerCase()===w.word.toLowerCase()}))):shuffle([w,...meaningOptions(w)].map(o=>({t:o.zh,ok:o.key===w.key,w:o})));
+ S.q={key:w.key,opts,locked:false,tries:0};render();
+ if(S.stage==='listen')setTimeout(()=>sayEn(w),250);
+}
+function renderQuiz(){
+ const w=BY[S.q.key],total=S.plan.length,listen=S.stage==='listen',q=S.q;
+ const head=`<span class="stage">${listen?zy('聽音選字'):zy('看字選意思')} ${S.done+1} / ${total}</span>${progress(S.done,total)}`;
+ const mark=i=>q.shown&&q.shown.includes(i)?(q.opts[i].ok?' right':' wrong'):'';
+ let body;
+ if(listen)body=`<p class="meta">${zy('聽聽看，是哪一個字？')}</p><button class="hear" id="hear">🔊</button><div class="opts">${q.opts.map((o,i)=>`<button class="opt${mark(i)}" data-i="${i}" ${q.locked?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>`;
+ else body=`<div class="word${needsLong(w)}">${esc(w.word)}</div><button class="hear" id="hear">🔊</button><p class="meta">${zy('這個字是什麼意思？')}</p><div class="opts stack">${q.opts.map((o,i)=>`<div class="optrow"><button class="opt${mark(i)}" data-i="${i}" ${q.locked?'disabled':''}>${zy(o.t)}</button><button class="hear small" data-z="${i}" aria-label="listen">🔊</button></div>`).join('')}</div>`;
+ $('#app').innerHTML=`<section class="panel">${head}${body}<div class="fb ${q.fb?.cls||''}" id="fb">${q.fb?.html||''}</div></section>`;
+ $('#hear').onclick=()=>sayEn(w);
+ document.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>choose(Number(b.dataset.i)));
+ document.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>sayZh(q.opts[Number(b.dataset.z)].t));
+}
+function choose(i){
+ const q=S.q,w=BY[q.key],o=q.opts[i],slot=S.stage==='listen'?'s2':'s3';
+ if(q.locked)return;q.shown=q.shown||[];q.shown.push(i);q.tries++;
+ if(o.ok){
+  if(S.res[q.key][slot]===null)S.res[q.key][slot]=true;q.locked=true;q.fb={cls:'good',html:`${zy('答對了')} 👍`};
+  if(S.stage==='listen')sayEn(w);else speakSequence([[w.say||w.word,'en-US'],[w.zh,'zh-TW']]);
+  S.done++;render();setTimeout(nextQuestion,1100);return;
+ }
+ S.res[q.key][slot]=false;q.locked=true;q.shown.push(q.opts.findIndex(x=>x.ok));
+ q.fb={cls:'oops',html:`${zy('再記一次')}：<b>${esc(w.word)}</b> ${zy(w.zh)}`};
+ if(S.stage==='listen')speakSequence([[BY[o.t.toLowerCase()]?.say||o.t,'en-US'],[w.say||w.word,'en-US']]);else speakSequence([[w.say||w.word,'en-US'],[w.zh,'zh-TW']]);
+ if(!S.retried.has(q.key)){S.retried.add(q.key);S.queue.push(q.key);}else S.done++;
+ render();setTimeout(nextQuestion,2300);
+}
+function afterQuiz(){
+ if(S.counts){applyResults(S.res,S.date);persist();}
+ if(sortStatus().ok)startSort();else finish();
+}
+
+// -- stage 4: noun / verb / adjective sorting --
+function sortStatus(){
+ const seen=WORDS.filter(w=>w.sort&&rec(w.key).seen>0),by=p=>seen.filter(w=>w.pos===p).length;
+ return {ok:['n','v','adj'].every(p=>by(p)>=SORT_UNLOCK),pool:seen};
+}
+function startSort(){
+ const pool=sortStatus().pool,pick=[];
+ for(const p of ['n','v','adj'])pick.push(...shuffle(pool.filter(w=>w.pos===p)).slice(0,2));
+ const rest=shuffle(pool.filter(w=>!pick.includes(w))).slice(0,SORT_ROUNDS-pick.length);
+ S.stage='sort';S.sort={cards:shuffle(pick.concat(rest)),i:0,right:0,first:true,fb:null,locked:false};render();
+ speakCurrentSort();
+}
+function speakCurrentSort(){const w=S.sort.cards[S.sort.i];if(w)setTimeout(()=>sayEn(w),250);}
+function renderSort(){
+ const g=S.sort,w=g.cards[g.i],total=g.cards.length;
+ const b=p=>`<button class="bucket" data-p="${p}" style="background:${POS[p].color}" ${g.locked?'disabled':''}>${POS[p].kid}<small>${POS[p].term}</small><small>${POS[p].hint}</small></button>`;
+ $('#app').innerHTML=`<section class="panel"><span class="stage">${zy('分類遊戲')} ${g.i+1} / ${total}</span>${progress(g.i,total)}
+  <p class="meta">${zy('這個字是哪一種字？')}</p><div class="word${needsLong(w)}">${esc(w.word)}</div><button class="hear" id="hear">🔊</button><div class="mean" style="font-size:32px">${zy(w.zh)}</div>
+  <div class="buckets">${['v','n','adj'].map(b).join('')}</div><div class="fb ${g.fb?.cls||''}">${g.fb?.html||''}</div></section>`;
+ $('#hear').onclick=()=>sayEn(w);
+ document.querySelectorAll('[data-p]').forEach(el=>el.onclick=()=>chooseBucket(el.dataset.p));
+}
+function chooseBucket(p){
+ const g=S.sort,w=g.cards[g.i];if(g.locked)return;
+ if(p===w.pos){
+  if(g.first)g.right++;g.locked=true;g.fb={cls:'good',html:`${zy('答對了')} 👍 ${esc(w.word)} ${zy('是')}${POS[w.pos].kid}`};render();
+  setTimeout(()=>{g.i++;g.first=true;g.fb=null;g.locked=false;if(g.i>=g.cards.length){finishSort();return;}render();speakCurrentSort();},1400);
+ }else{
+  g.first=false;g.fb={cls:'oops',html:`${esc(w.word)} ${zy('的意思是')} ${zy(w.zh)}，${zy('所以它是')}${POS[w.pos].kid}`};render();
+ }
+}
+function finishSort(){
+ const g=S.sort;if(S.counts||S.solo){profile.sort.games++;profile.sort.right+=g.right;profile.sort.total+=g.cards.length;persist();}
+ S.sortScore={right:g.right,total:g.cards.length};
+ if(S.solo){S=null;toast(`分類遊戲：${g.right} / ${g.cards.length}`);render();return;}
+ finish();
+}
+
+// -- finish, report --
+const score=slot=>S.plan.filter(w=>S.res[w.key][slot]===true).length;
+function weakWords(){return S.plan.filter(w=>!(S.res[w.key].s2===true&&S.res[w.key].s3===true)).map(w=>w.word);}
+function reportText(){
+ const weak=weakWords(),total=S.plan.length,f=familiarCount(),pct=Math.round(f/WORDS.length*100);
+ return [`📚 ${profile.name} 認字閃卡 ${S.date}`,
+  `今天 ${total} 個字（新字 ${S.fresh}）：聽音選字 ${score('s2')}/${total}，看字選意思 ${score('s3')}/${total}`+(S.sortScore?`，分類遊戲 ${S.sortScore.right}/${S.sortScore.total}`:''),
+  weak.length?`要加強：${weak.join('、')}`:'全部一次答對 🎉',
+  `很熟的字：${f}/${WORDS.length}（${pct}%），連續練習 ${streak()} 天`].join('\n');
+}
+async function sendTelegram(text){
+ const abort=new AbortController(),timer=setTimeout(()=>abort.abort(),15000);
+ try{const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text}),signal:abort.signal});const j=await r.json();return r.ok&&j.ok===true;}
+ catch(e){return false;}finally{clearTimeout(timer);}
+}
+function finish(){
+ S.stage='done';
+ if(S.counts){profile.days[S.date]={done:true,s2:score('s2'),s3:score('s3'),total:S.plan.length,fresh:S.fresh,sort:S.sortScore||null,sent:false};persist();}
+ render();
+ if(S.counts)deliverReport();
+}
+async function deliverReport(){
+ const s=S;s.report='sending';render();
+ let ok=await sendTelegram(reportText());
+ if(ok){profile.days[s.date].sent=true;
+  if(!profile.flags.book1Graduated&&familiarCount()/WORDS.length>=GRADUATE){
+   profile.flags.book1Graduated=s.date;
+   await sendTelegram(`🎉 ${profile.name} 的第一冊認字已經很熟了（${familiarCount()}/${WORDS.length}）！可以加入第二冊了，請跟 Claude 說「加入第二冊」。`);
+  }
+  persist();}
+ s.report=ok?'ok':'fail';if(S===s&&s.stage==='done')render();
+}
+function renderDone(){
+ const total=S.plan.length,weak=weakWords();
+ const status={sending:zy('正在告訴媽媽…'),ok:zy('已經告訴媽媽囉')+' 💌',fail:zy('還沒傳成功')}[S.report]||'';
+ $('#app').innerHTML=`<section class="panel"><span class="stage">${zy('完成')}</span><h1>🎉 ${zy('今天練完了')}</h1>
+  <div class="stat"><span>🔊 ${zy('聽音選字')} ${score('s2')}/${total}</span><span>📖 ${zy('看字選意思')} ${score('s3')}/${total}</span>${S.sortScore?`<span>🧺 ${zy('分類')} ${S.sortScore.right}/${S.sortScore.total}</span>`:''}</div>
+  ${weak.length?`<p class="meta">${zy('明天再看一次這些字')}</p><div class="tags">${weak.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:`<p class="meta">${zy('全部一次就對了，好厲害！')}</p>`}
+  <p class="meta">${status}</p>${S.report==='fail'?`<button class="big secondary" id="retry">${zy('再傳一次')}</button>`:''}
+  ${S.counts?'':`<p class="meta">${zy('再練一次不會改變紀錄')}</p>`}
+  <button class="big primary" id="back">${zy('回首頁')}</button></section>`;
+ $('#back').onclick=goHome;if($('#retry'))$('#retry').onclick=()=>S.counts&&deliverReport();
+}
+
+// -- parent corner (Emma) --
+function renderParent(){
+ const f=familiarCount(),boxes=[0,1,2,3,4,5].map(b=>WORDS.filter(w=>rec(w.key).box===b).length);
+ const weak=WORDS.filter(w=>rec(w.key).wrong>0).sort((a,b)=>rec(b.key).wrong-rec(a.key).wrong).slice(0,12);
+ const days=Object.keys(profile.days).sort().slice(-7).reverse();
+ $('#app').innerHTML=`<section class="panel parent"><h1 style="font-size:24px;line-height:1.4">家長專區</h1>
+  <p>很熟的字（連續 ${FAMILIAR_BOX} 次不同天答對）：<b>${f} / ${WORDS.length}</b>（${Math.round(f/WORDS.length*100)}%）。達到 ${GRADUATE*100}% 會自動傳 Telegram 提醒加入第二冊。${profile.flags.book1Graduated?`<br>已於 ${profile.flags.book1Graduated} 提醒。`:''}</p>
+  <h2>各階段字數</h2><p>未學 ${boxes[0]}，第1階 ${boxes[1]}，第2階 ${boxes[2]}，第3階 ${boxes[3]}，第4階 ${boxes[4]}，第5階 ${boxes[5]}</p>
+  <h2>常答錯的字</h2>${weak.length?`<table>${weak.map(w=>`<tr><td>${esc(w.word)}</td><td>${esc(w.zh)}</td><td>錯 ${rec(w.key).wrong} / 對 ${rec(w.key).right}</td></tr>`).join('')}</table>`:'<p>還沒有紀錄</p>'}
+  <h2>最近練習</h2>${days.length?`<table>${days.map(d=>`<tr><td>${d}</td><td>聽音 ${profile.days[d].s2}/${profile.days[d].total}</td><td>意思 ${profile.days[d].s3}/${profile.days[d].total}</td><td>${profile.days[d].sent?'已通知':'未通知'}</td></tr>`).join('')}</table>`:'<p>還沒有紀錄</p>'}
+  <h2>分類遊戲</h2><p>${profile.sort.games} 次，答對 ${profile.sort.right} / ${profile.sort.total}（第一次就答對的題數）</p>
+  <h2>備份</h2><button class="btn" id="exp">匯出</button><button class="btn" id="imp">匯入</button><button class="btn" id="tg">傳測試訊息</button><button class="btn" id="reset">清除紀錄</button>
+  <textarea id="box" placeholder="匯出的內容會顯示在這裡；要匯入時貼上後按匯入"></textarea>
+  <button class="big secondary" id="back">回首頁</button></section>`;
+ $('#back').onclick=goHome;
+ $('#exp').onclick=()=>{$('#box').value=JSON.stringify(profile);$('#box').select();};
+ $('#imp').onclick=()=>{try{const x=JSON.parse($('#box').value);if(x.version!==1||!x.records)throw Error();profile={...profile,...x};persist();toast('已匯入');renderParent();}catch(e){toast('格式不對，沒有匯入');}};
+ $('#tg').onclick=async()=>toast(await sendTelegram(`✅ ${profile.name} 認字閃卡測試訊息`)?'已傳送到 Telegram':'傳送失敗');
+ $('#reset').onclick=()=>{if(confirm('確定清除所有認字閃卡紀錄？')){profile={version:1,name:'Apple',records:{},plans:{},days:{},flags:{},sort:{games:0,right:0,total:0}};persist();goHome();}};
+}
+
+// ---- leave-early dialog ----
+$('#home').onclick=()=>{
+ const m=$('#modal');m.hidden=false;
+ m.innerHTML=`<div class="panel"><h1 style="font-size:26px">${zy('要先休息嗎？')}</h1><p class="meta">${zy('現在離開，今天的練習不會算喔')}</p><div class="row"><button class="big secondary" id="stay">${zy('繼續練習')}</button><button class="big primary" id="leave">${zy('休息')}</button></div></div>`;
+ $('#stay').onclick=()=>{m.hidden=true;};$('#leave').onclick=()=>{m.hidden=true;goHome();};
+};
+render();
+</script></body></html>

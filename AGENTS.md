@@ -6,7 +6,7 @@
 
 - `tutor-skill/apple-math-tutor/` — 數學助教 skill，分析錯題截圖（`錯題/`）與遊戲錯題（`game-mistakes.json`），對照幼兒園大班數學課綱出題
 - `questions.json`、`apple-mistakes.md` — 錯題記錄與弱點追蹤
-- `joy/` — 佳音美語正式網頁（唯一位置；舊 `英文/` 已併入並移除）。建置說明在 `docs/joy/`，OiKID LV1 PDF 在 `source_materials/oikid-lv1/`，搭配全域 skill `joy-unit-builder` 使用
+- `joy/` — 佳音美語正式網頁（唯一位置；舊 `英文/` 已併入並移除）。`joy/flash/` 認字閃卡、`joy/words/` 單字小花園，建置工具在 `tools/joy-flash/`、`tools/joy-word-garden/`。建置說明在 `docs/joy/`，OiKID LV1 PDF 在 `source_materials/oikid-lv1/`，搭配全域 skill `joy-unit-builder` 使用
 - `piano/` — 鋼琴練習
 - `bedtime/` — 晚安故事（跟光哥、阿築共用同一套生成邏輯，見 `.codex/skills/bedtime-story-publisher`）
 - `joy/`、`docs/`、`tests/` — 佳音教材建置相關

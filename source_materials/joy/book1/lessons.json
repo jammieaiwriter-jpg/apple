@@ -82,68 +82,95 @@
       {
         "word": "hi",
         "kk": "[haɪ]",
-        "zh": "嗨"
+        "zh": "嗨",
+        "pos": "int",
+        "kid": "嗨"
       },
       {
         "word": "hello",
         "kk": "[hɛˈlo]",
-        "zh": "哈囉"
+        "zh": "哈囉",
+        "pos": "int",
+        "kid": "哈囉"
       },
       {
         "word": "I",
         "kk": "[aɪ]",
         "zh": "我",
-        "say": "eye"
+        "say": "eye",
+        "pos": "pron",
+        "kid": "我"
       },
       {
         "word": "you",
         "kk": "[ju]",
-        "zh": "你"
+        "zh": "你",
+        "pos": "pron",
+        "kid": "你"
       },
       {
         "word": "your",
         "kk": "[jʊr]",
-        "zh": "你的"
+        "zh": "你的",
+        "pos": "pron",
+        "kid": "你的"
       },
       {
         "word": "am",
         "kk": "[æm]",
-        "zh": "是（配 I）"
+        "zh": "是（配 I）",
+        "pos": "v",
+        "kid": "是",
+        "sort": false
       },
       {
         "word": "is",
         "kk": "[ɪz]",
-        "zh": "是（配 he/she）"
+        "zh": "是（配 he/she）",
+        "pos": "v",
+        "kid": "是",
+        "sort": false
       },
       {
         "word": "are",
         "kk": "[ɑr]",
-        "zh": "是（配 you）"
+        "zh": "是（配 you）",
+        "pos": "v",
+        "kid": "是",
+        "sort": false
       },
       {
         "word": "name",
         "kk": "[nem]",
-        "zh": "名字"
+        "zh": "名字",
+        "pos": "n",
+        "kid": "名字"
       },
       {
         "word": "what",
         "kk": "[(h)wɑt]",
-        "zh": "什麼"
+        "zh": "什麼",
+        "pos": "pron",
+        "kid": "什麼"
       },
       {
         "word": "ouch",
         "kk": "[aʊtʃ]",
-        "zh": "哎喲"
+        "zh": "哎喲",
+        "pos": "int",
+        "kid": "哎喲"
       },
       {
         "word": "Nick",
         "kk": "[nɪk]",
-        "zh": "尼克"
+        "zh": "尼克",
+        "flash": false
       },
       {
         "word": "Abby",
         "kk": "[ˈæbɪ]",
-        "zh": "艾比"
+        "zh": "艾比",
+        "flash": false
       }
     ],
     "phonics": [
@@ -365,47 +392,65 @@
       {
         "word": "look",
         "kk": "[lʊk]",
-        "zh": "看；注視"
+        "zh": "看；注視",
+        "pos": "v",
+        "kid": "看"
       },
       {
         "word": "he",
         "kk": "[hi]",
-        "zh": "他"
+        "zh": "他",
+        "pos": "pron",
+        "kid": "他"
       },
       {
         "word": "she",
         "kk": "[ʃi]",
-        "zh": "她"
+        "zh": "她",
+        "pos": "pron",
+        "kid": "她"
       },
       {
         "word": "Oz",
         "kk": "[ɑz]",
-        "zh": "歐茲王（人名）"
+        "zh": "歐茲王（人名）",
+        "flash": false
       },
       {
         "word": "Fifi",
         "kk": "[ˈfɪfɪ]",
-        "zh": "菲菲（人名）"
+        "zh": "菲菲（人名）",
+        "flash": false
       },
       {
         "word": "can",
         "kk": "[kæn]",
-        "zh": "可以；能；會"
+        "zh": "可以；能；會",
+        "pos": "v",
+        "kid": "會；可以",
+        "sort": false
       },
       {
         "word": "help",
         "kk": "[hɛlp]",
-        "zh": "幫忙"
+        "zh": "幫忙",
+        "pos": "v",
+        "kid": "幫忙"
       },
       {
         "word": "let's",
         "kk": "[lɛts]",
-        "zh": "讓我們"
+        "zh": "讓我們",
+        "pos": "v",
+        "kid": "讓我們",
+        "sort": false
       },
       {
         "word": "go",
         "kk": "[go]",
-        "zh": "去"
+        "zh": "去",
+        "pos": "v",
+        "kid": "去"
       }
     ],
     "phonics": [
@@ -615,42 +660,57 @@
       {
         "word": "listen",
         "kk": "[ˈlɪsən]",
-        "zh": "聽"
+        "zh": "聽",
+        "pos": "v",
+        "kid": "聽"
       },
       {
         "word": "good",
         "kk": "[gʊd]",
-        "zh": "好的"
+        "zh": "好的",
+        "pos": "adj",
+        "kid": "好"
       },
       {
         "word": "morning",
         "kk": "[ˈmɔrnɪŋ]",
-        "zh": "早上"
+        "zh": "早上",
+        "pos": "n",
+        "kid": "早上"
       },
       {
         "word": "afternoon",
         "kk": "[ˌæftɚˈnun]",
-        "zh": "下午"
+        "zh": "下午",
+        "pos": "n",
+        "kid": "下午"
       },
       {
         "word": "evening",
         "kk": "[ˈivnɪŋ]",
-        "zh": "傍晚；晚上"
+        "zh": "傍晚；晚上",
+        "pos": "n",
+        "kid": "晚上"
       },
       {
         "word": "this",
         "kk": "[ðɪs]",
-        "zh": "這個"
+        "zh": "這個",
+        "pos": "pron",
+        "kid": "這個"
       },
       {
         "word": "boohoo",
         "kk": "[buˈhu]",
-        "zh": "哭聲"
+        "zh": "哭聲",
+        "flash": false
       },
       {
         "word": "Scarecrow",
         "kk": "[ˈskɛrˌkro]",
-        "zh": "稻草人"
+        "zh": "稻草人",
+        "pos": "n",
+        "kid": "稻草人"
       }
     ],
     "phonics": [
@@ -856,28 +916,38 @@
       {
         "word": "great",
         "kk": "[gret]",
-        "zh": "棒的"
+        "zh": "棒的",
+        "pos": "adj",
+        "kid": "很棒"
       },
       {
         "word": "want",
         "kk": "[wɑnt]",
-        "zh": "想要"
+        "zh": "想要",
+        "pos": "v",
+        "kid": "想要"
       },
       {
         "word": "a",
         "kk": "[ə]",
         "zh": "一個",
-        "say": "uh"
+        "say": "uh",
+        "pos": "art",
+        "kid": "一個"
       },
       {
         "word": "brain",
         "kk": "[bren]",
-        "zh": "頭腦"
+        "zh": "頭腦",
+        "pos": "n",
+        "kid": "頭腦"
       },
       {
         "word": "heart",
         "kk": "[hɑrt]",
-        "zh": "心"
+        "zh": "心",
+        "pos": "n",
+        "kid": "心"
       }
     ],
     "phonics": [
@@ -1072,39 +1142,56 @@
       {
         "word": "draw",
         "kk": "[drɔ]",
-        "zh": "畫"
+        "zh": "畫",
+        "pos": "v",
+        "kid": "畫"
       },
       {
         "word": "color",
         "kk": "[ˈkʌlɚ]",
-        "zh": "著色"
+        "zh": "著色",
+        "pos": "v",
+        "kid": "塗顏色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "I",
         "kk": "[aɪ]",
         "zh": "我",
-        "say": "eye"
+        "say": "eye",
+        "pos": "pron",
+        "kid": "我"
       },
       {
         "word": "am",
         "kk": "[æm]",
-        "zh": "是（配 I）"
+        "zh": "是（配 I）",
+        "pos": "v",
+        "kid": "是",
+        "sort": false
       },
       {
         "word": "you",
         "kk": "[ju]",
-        "zh": "你"
+        "zh": "你",
+        "pos": "pron",
+        "kid": "你"
       },
       {
         "word": "are",
         "kk": "[ɑr]",
-        "zh": "是（配 you）"
+        "zh": "是（配 you）",
+        "pos": "v",
+        "kid": "是",
+        "sort": false
       },
       {
         "word": "Be good.",
         "kk": "[bi gʊd]",
         "zh": "要乖；要做好",
-        "say": "be good"
+        "say": "be good",
+        "flash": false
       }
     ],
     "phonics": [
@@ -1500,37 +1587,52 @@
       {
         "word": "squeak",
         "kk": "[skwik]",
-        "zh": "吱吱聲"
+        "zh": "吱吱聲",
+        "flash": false
       },
       {
         "word": "thank",
         "kk": "[θæŋk]",
-        "zh": "謝謝"
+        "zh": "謝謝",
+        "pos": "v",
+        "kid": "謝謝",
+        "sort": false
       },
       {
         "word": "Tin Man",
         "kk": "[ˈtɪn ˈmæn]",
-        "zh": "錫人"
+        "zh": "錫人",
+        "flash": false
       },
       {
         "word": "oops",
         "kk": "[ups]",
-        "zh": "哎呀"
+        "zh": "哎呀",
+        "pos": "int",
+        "kid": "哎呀"
       },
       {
         "word": "sorry",
         "kk": "[ˈsɑrɪ]",
-        "zh": "抱歉的"
+        "zh": "抱歉的",
+        "pos": "adj",
+        "kid": "對不起",
+        "sort": false
       },
       {
         "word": "it",
         "kk": "[ɪt]",
-        "zh": "它"
+        "zh": "它",
+        "pos": "pron",
+        "kid": "它"
       },
       {
         "word": "OK",
         "kk": "[ˌoˈke]",
-        "zh": "好的；可以的"
+        "zh": "好的；可以的",
+        "pos": "adj",
+        "kid": "好",
+        "sort": false
       }
     ],
     "phonics": [
@@ -1773,32 +1875,46 @@
       {
         "word": "how",
         "kk": "[haʊ]",
-        "zh": "如何"
+        "zh": "如何",
+        "pos": "adv",
+        "kid": "怎麼樣"
       },
       {
         "word": "write",
         "kk": "[raɪt]",
-        "zh": "寫"
+        "zh": "寫",
+        "pos": "v",
+        "kid": "寫"
       },
       {
         "word": "be",
         "kk": "[bi]",
-        "zh": "是；be 動詞原形"
+        "zh": "是；be 動詞原形",
+        "pos": "v",
+        "kid": "是",
+        "sort": false
       },
       {
         "word": "fine",
         "kk": "[faɪn]",
-        "zh": "好的"
+        "zh": "好的",
+        "pos": "adj",
+        "kid": "很好"
       },
       {
         "word": "and",
         "kk": "[ænd]",
-        "zh": "和；而"
+        "zh": "和；而",
+        "pos": "conj",
+        "kid": "和"
       },
       {
         "word": "so-so",
         "kk": "[ˈsoˌso]",
-        "zh": "普普通通"
+        "zh": "普普通通",
+        "pos": "adj",
+        "kid": "普普通通",
+        "sort": false
       }
     ],
     "phonics": [
@@ -2059,52 +2175,71 @@
       {
         "word": "roar",
         "kk": "[rɔr]",
-        "zh": "吼叫聲"
+        "zh": "吼叫聲",
+        "flash": false
       },
       {
         "word": "hey",
         "kk": "[he]",
-        "zh": "嘿"
+        "zh": "嘿",
+        "pos": "int",
+        "kid": "嘿"
       },
       {
         "word": "Lion",
         "kk": "[ˈlaɪən]",
-        "zh": "獅子；膽小獅"
+        "zh": "獅子；膽小獅",
+        "pos": "n",
+        "kid": "獅子"
       },
       {
         "word": "up",
         "kk": "[ʌp]",
-        "zh": "向上"
+        "zh": "向上",
+        "pos": "adv",
+        "kid": "向上"
       },
       {
         "word": "wake up",
         "kk": "[wek ʌp]",
-        "zh": "醒來"
+        "zh": "醒來",
+        "pos": "phr",
+        "kid": "醒來"
       },
       {
         "word": "us",
         "kk": "[ʌs]",
-        "zh": "我們"
+        "zh": "我們",
+        "pos": "pron",
+        "kid": "我們"
       },
       {
         "word": "van",
         "kk": "[væn]",
-        "zh": "箱型車"
+        "zh": "箱型車",
+        "pos": "n",
+        "kid": "箱型車"
       },
       {
         "word": "drive",
         "kk": "[draɪv]",
-        "zh": "駕駛"
+        "zh": "駕駛",
+        "pos": "v",
+        "kid": "開車"
       },
       {
         "word": "wig",
         "kk": "[wɪg]",
-        "zh": "假髮"
+        "zh": "假髮",
+        "pos": "n",
+        "kid": "假髮"
       },
       {
         "word": "wear",
         "kk": "[wɛr]",
-        "zh": "穿戴"
+        "zh": "穿戴",
+        "pos": "v",
+        "kid": "穿；戴"
       }
     ],
     "phonics": [
@@ -2313,67 +2448,94 @@
       {
         "word": "scared",
         "kk": "[skɛrd]",
-        "zh": "害怕的"
+        "zh": "害怕的",
+        "pos": "adj",
+        "kid": "害怕"
       },
       {
         "word": "courage",
         "kk": "[ˈkɝɪdʒ]",
-        "zh": "勇氣"
+        "zh": "勇氣",
+        "pos": "n",
+        "kid": "勇氣"
       },
       {
         "word": "stop",
         "kk": "[stɑp]",
-        "zh": "停止"
+        "zh": "停止",
+        "pos": "v",
+        "kid": "停"
       },
       {
         "word": "sing",
         "kk": "[sɪŋ]",
-        "zh": "唱歌"
+        "zh": "唱歌",
+        "pos": "v",
+        "kid": "唱歌"
       },
       {
         "word": "dance",
         "kk": "[dæns]",
-        "zh": "跳舞"
+        "zh": "跳舞",
+        "pos": "v",
+        "kid": "跳舞"
       },
       {
         "word": "fox",
         "kk": "[fɑks]",
-        "zh": "狐狸"
+        "zh": "狐狸",
+        "pos": "n",
+        "kid": "狐狸"
       },
       {
         "word": "fax",
         "kk": "[fæks]",
-        "zh": "傳真"
+        "zh": "傳真",
+        "pos": "n",
+        "kid": "傳真"
       },
       {
         "word": "to",
         "kk": "[tu]",
-        "zh": "到；向"
+        "zh": "到；向",
+        "pos": "prep",
+        "kid": "到"
       },
       {
         "word": "yak",
         "kk": "[jæk]",
-        "zh": "犛牛"
+        "zh": "犛牛",
+        "pos": "n",
+        "kid": "犛牛"
       },
       {
         "word": "yell",
         "kk": "[jɛl]",
-        "zh": "喊叫"
+        "zh": "喊叫",
+        "pos": "v",
+        "kid": "大叫"
       },
       {
         "word": "at",
         "kk": "[æt]",
-        "zh": "在；對著"
+        "zh": "在；對著",
+        "pos": "prep",
+        "kid": "在"
       },
       {
         "word": "zip",
         "kk": "[zɪp]",
-        "zh": "拉上"
+        "zh": "拉上",
+        "pos": "v",
+        "kid": "拉上",
+        "sort": false
       },
       {
         "word": "zipper",
         "kk": "[ˈzɪpɚ]",
-        "zh": "拉鍊"
+        "zh": "拉鍊",
+        "pos": "n",
+        "kid": "拉鍊"
       }
     ],
     "phonics": [
@@ -2591,43 +2753,59 @@
       {
         "word": "hurry up",
         "kk": "[ˈhɝɪ ʌp]",
-        "zh": "快一點"
+        "zh": "快一點",
+        "pos": "phr",
+        "kid": "快一點"
       },
       {
         "word": "run",
         "kk": "[rʌn]",
-        "zh": "跑"
+        "zh": "跑",
+        "pos": "v",
+        "kid": "跑"
       },
       {
         "word": "walk",
         "kk": "[wɔk]",
-        "zh": "走"
+        "zh": "走",
+        "pos": "v",
+        "kid": "走路"
       },
       {
         "word": "on time",
         "kk": "[ɑn ˈtaɪm]",
-        "zh": "準時"
+        "zh": "準時",
+        "pos": "phr",
+        "kid": "準時"
       },
       {
         "word": "he",
         "kk": "[hi]",
-        "zh": "他"
+        "zh": "他",
+        "pos": "pron",
+        "kid": "他"
       },
       {
         "word": "she",
         "kk": "[ʃi]",
-        "zh": "她"
+        "zh": "她",
+        "pos": "pron",
+        "kid": "她"
       },
       {
         "word": "is",
         "kk": "[ɪz]",
-        "zh": "是"
+        "zh": "是",
+        "pos": "v",
+        "kid": "是",
+        "sort": false
       },
       {
         "word": "Be on time.",
         "kk": "[bi ɑn ˈtaɪm]",
         "zh": "要準時",
-        "say": "be on time"
+        "say": "be on time",
+        "flash": false
       }
     ],
     "phonics": [
@@ -3169,66 +3347,89 @@
       {
         "word": "heigh-ho",
         "kk": "[haɪ ho]",
-        "zh": "嗨喲"
+        "zh": "嗨喲",
+        "flash": false
       },
       {
         "word": "my",
         "kk": "[maɪ]",
-        "zh": "我的"
+        "zh": "我的",
+        "pos": "pron",
+        "kid": "我的"
       },
       {
         "word": "Smart",
         "kk": "[smɑrt]",
         "zh": "聰明",
-        "say": "smart"
+        "say": "smart",
+        "pos": "adj",
+        "kid": "聰明"
       },
       {
         "word": "Mad",
         "kk": "[mæd]",
         "zh": "生氣",
-        "say": "mad"
+        "say": "mad",
+        "pos": "adj",
+        "kid": "生氣"
       },
       {
         "word": "Happy",
         "kk": "[ˈhæpɪ]",
         "zh": "開心",
-        "say": "happy"
+        "say": "happy",
+        "pos": "adj",
+        "kid": "開心"
       },
       {
         "word": "Tired",
         "kk": "[taɪrd]",
         "zh": "累",
-        "say": "tired"
+        "say": "tired",
+        "pos": "adj",
+        "kid": "累"
       },
       {
         "word": "one",
         "kk": "[wʌn]",
-        "zh": "一"
+        "zh": "一",
+        "pos": "num",
+        "kid": "一"
       },
       {
         "word": "two",
         "kk": "[tu]",
-        "zh": "二"
+        "zh": "二",
+        "pos": "num",
+        "kid": "二"
       },
       {
         "word": "three",
         "kk": "[θri]",
-        "zh": "三"
+        "zh": "三",
+        "pos": "num",
+        "kid": "三"
       },
       {
         "word": "four",
         "kk": "[fɔr]",
-        "zh": "四"
+        "zh": "四",
+        "pos": "num",
+        "kid": "四"
       },
       {
         "word": "five",
         "kk": "[faɪv]",
-        "zh": "五"
+        "zh": "五",
+        "pos": "num",
+        "kid": "五"
       },
       {
         "word": "six",
         "kk": "[sɪks]",
-        "zh": "六"
+        "zh": "六",
+        "pos": "num",
+        "kid": "六"
       }
     ],
     "phonics": [
@@ -3446,54 +3647,72 @@
         "word": "Shy",
         "kk": "[ʃaɪ]",
         "zh": "害羞",
-        "say": "shy"
+        "say": "shy",
+        "pos": "adj",
+        "kid": "害羞"
       },
       {
         "word": "Achoo",
         "kk": "[əˈtʃu]",
         "zh": "哈啾",
-        "say": "achoo"
+        "say": "achoo",
+        "flash": false
       },
       {
         "word": "Dum-dum",
         "kk": "[dʌm dʌm]",
         "zh": "笨笨",
-        "say": "dum dum"
+        "say": "dum dum",
+        "flash": false
       },
       {
         "word": "too",
         "kk": "[tu]",
-        "zh": "也"
+        "zh": "也",
+        "pos": "adv",
+        "kid": "也"
       },
       {
         "word": "seven",
         "kk": "[ˈsɛvən]",
-        "zh": "七"
+        "zh": "七",
+        "pos": "num",
+        "kid": "七"
       },
       {
         "word": "eight",
         "kk": "[et]",
-        "zh": "八"
+        "zh": "八",
+        "pos": "num",
+        "kid": "八"
       },
       {
         "word": "nine",
         "kk": "[naɪn]",
-        "zh": "九"
+        "zh": "九",
+        "pos": "num",
+        "kid": "九"
       },
       {
         "word": "ten",
         "kk": "[tɛn]",
-        "zh": "十"
+        "zh": "十",
+        "pos": "num",
+        "kid": "十"
       },
       {
         "word": "eleven",
         "kk": "[ɪˈlɛvən]",
-        "zh": "十一"
+        "zh": "十一",
+        "pos": "num",
+        "kid": "十一"
       },
       {
         "word": "twelve",
         "kk": "[twɛlv]",
-        "zh": "十二"
+        "zh": "十二",
+        "pos": "num",
+        "kid": "十二"
       }
     ],
     "phonics": [
@@ -3709,27 +3928,45 @@
       {
         "word": "hat",
         "kk": "[hæt]",
-        "zh": "帽子"
+        "zh": "帽子",
+        "pos": "n",
+        "kid": "帽子"
       },
       {
         "word": "blue",
         "kk": "[blu]",
-        "zh": "藍色的"
+        "zh": "藍色的",
+        "pos": "adj",
+        "kid": "藍色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "green",
         "kk": "[grin]",
-        "zh": "綠色的"
+        "zh": "綠色的",
+        "pos": "adj",
+        "kid": "綠色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "red",
         "kk": "[rɛd]",
-        "zh": "紅色的"
+        "zh": "紅色的",
+        "pos": "adj",
+        "kid": "紅色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "yellow",
         "kk": "[ˈjɛlo]",
-        "zh": "黃色的"
+        "zh": "黃色的",
+        "pos": "adj",
+        "kid": "黃色",
+        "alt": "n",
+        "sort": false
       }
     ],
     "phonics": [
@@ -3939,22 +4176,36 @@
       {
         "word": "white",
         "kk": "[(h)waɪt]",
-        "zh": "白色的"
+        "zh": "白色的",
+        "pos": "adj",
+        "kid": "白色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "black",
         "kk": "[blæk]",
-        "zh": "黑色的"
+        "zh": "黑色的",
+        "pos": "adj",
+        "kid": "黑色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "orange",
         "kk": "[ˈɔrɪndʒ]",
-        "zh": "橘色的"
+        "zh": "橘色的",
+        "pos": "adj",
+        "kid": "橘色",
+        "sort": false
       },
       {
         "word": "right",
         "kk": "[raɪt]",
-        "zh": "對的"
+        "zh": "對的",
+        "pos": "adj",
+        "kid": "對",
+        "sort": false
       }
     ],
     "phonics": [
@@ -4171,37 +4422,53 @@
       {
         "word": "point to",
         "kk": "[pɔɪnt tu]",
-        "zh": "指向"
+        "zh": "指向",
+        "pos": "phr",
+        "kid": "指向"
       },
       {
         "word": "circle",
         "kk": "[ˈsɝkəl]",
-        "zh": "圈出"
+        "zh": "圈出",
+        "pos": "v",
+        "kid": "圈起來",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "show",
         "kk": "[ʃo]",
-        "zh": "給……看"
+        "zh": "給……看",
+        "pos": "v",
+        "kid": "給你看"
       },
       {
         "word": "me",
         "kk": "[mi]",
-        "zh": "我"
+        "zh": "我",
+        "pos": "pron",
+        "kid": "我"
       },
       {
         "word": "touch",
         "kk": "[tʌtʃ]",
-        "zh": "摸；碰"
+        "zh": "摸；碰",
+        "pos": "v",
+        "kid": "摸"
       },
       {
         "word": "try",
         "kk": "[traɪ]",
-        "zh": "嘗試"
+        "zh": "嘗試",
+        "pos": "v",
+        "kid": "試試看"
       },
       {
         "word": "again",
         "kk": "[əˈgɛn]",
-        "zh": "再次"
+        "zh": "再次",
+        "pos": "adv",
+        "kid": "再一次"
       }
     ],
     "phonics": [
@@ -4430,32 +4697,44 @@
       {
         "word": "come",
         "kk": "[kʌm]",
-        "zh": "來"
+        "zh": "來",
+        "pos": "v",
+        "kid": "來"
       },
       {
         "word": "in",
         "kk": "[ɪn]",
-        "zh": "在……裡面"
+        "zh": "在……裡面",
+        "pos": "prep",
+        "kid": "在裡面"
       },
       {
         "word": "that",
         "kk": "[ðæt]",
-        "zh": "那個"
+        "zh": "那個",
+        "pos": "pron",
+        "kid": "那個"
       },
       {
         "word": "book",
         "kk": "[bʊk]",
-        "zh": "書"
+        "zh": "書",
+        "pos": "n",
+        "kid": "書"
       },
       {
         "word": "marker",
         "kk": "[ˈmɑrkɚ]",
-        "zh": "麥克筆"
+        "zh": "麥克筆",
+        "pos": "n",
+        "kid": "彩色筆"
       },
       {
         "word": "bag",
         "kk": "[bæg]",
-        "zh": "袋子"
+        "zh": "袋子",
+        "pos": "n",
+        "kid": "袋子"
       }
     ],
     "phonics": [
@@ -4668,17 +4947,23 @@
       {
         "word": "eraser",
         "kk": "[ɪˈresɚ]",
-        "zh": "橡皮擦"
+        "zh": "橡皮擦",
+        "pos": "n",
+        "kid": "橡皮擦"
       },
       {
         "word": "ruler",
         "kk": "[ˈrulɚ]",
-        "zh": "尺"
+        "zh": "尺",
+        "pos": "n",
+        "kid": "尺"
       },
       {
         "word": "pencil",
         "kk": "[ˈpɛnsəl]",
-        "zh": "鉛筆"
+        "zh": "鉛筆",
+        "pos": "n",
+        "kid": "鉛筆"
       }
     ],
     "phonics": [
@@ -4903,27 +5188,38 @@
       {
         "word": "for",
         "kk": "[fɔr]",
-        "zh": "給"
+        "zh": "給",
+        "pos": "prep",
+        "kid": "給"
       },
       {
         "word": "an",
         "kk": "[ən]",
-        "zh": "一個"
+        "zh": "一個",
+        "pos": "art",
+        "kid": "一個"
       },
       {
         "word": "apple",
         "kk": "[ˈæpəl]",
-        "zh": "蘋果"
+        "zh": "蘋果",
+        "pos": "n",
+        "kid": "蘋果"
       },
       {
         "word": "orange",
         "kk": "[ˈɔrɪndʒ]",
-        "zh": "柳橙"
+        "zh": "柳橙",
+        "pos": "n",
+        "kid": "柳橙",
+        "sort": false
       },
       {
         "word": "banana",
         "kk": "[bəˈnænə]",
-        "zh": "香蕉"
+        "zh": "香蕉",
+        "pos": "n",
+        "kid": "香蕉"
       }
     ],
     "phonics": [
@@ -5150,42 +5446,65 @@
       {
         "word": "oh",
         "kk": "[o]",
-        "zh": "喔"
+        "zh": "喔",
+        "pos": "int",
+        "kid": "喔"
       },
       {
         "word": "no",
         "kk": "[no]",
-        "zh": "不"
+        "zh": "不",
+        "pos": "int",
+        "kid": "不"
       },
       {
         "word": "blue",
         "kk": "[blu]",
-        "zh": "藍色的"
+        "zh": "藍色的",
+        "pos": "adj",
+        "kid": "藍色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "green",
         "kk": "[grin]",
-        "zh": "綠色的"
+        "zh": "綠色的",
+        "pos": "adj",
+        "kid": "綠色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "yellow",
         "kk": "[ˈjɛlo]",
-        "zh": "黃色的"
+        "zh": "黃色的",
+        "pos": "adj",
+        "kid": "黃色",
+        "alt": "n",
+        "sort": false
       },
       {
         "word": "apple",
         "kk": "[ˈæpəl]",
-        "zh": "蘋果"
+        "zh": "蘋果",
+        "pos": "n",
+        "kid": "蘋果"
       },
       {
         "word": "orange",
         "kk": "[ˈɔrɪndʒ]",
-        "zh": "柳橙"
+        "zh": "柳橙",
+        "pos": "n",
+        "kid": "柳橙",
+        "sort": false
       },
       {
         "word": "banana",
         "kk": "[bəˈnænə]",
-        "zh": "香蕉"
+        "zh": "香蕉",
+        "pos": "n",
+        "kid": "香蕉"
       }
     ],
     "phonics": [
@@ -5406,43 +5725,59 @@
       {
         "word": "stand up",
         "kk": "[stænd ʌp]",
-        "zh": "起立"
+        "zh": "起立",
+        "pos": "phr",
+        "kid": "起立"
       },
       {
         "word": "sit down",
         "kk": "[sɪt daʊn]",
-        "zh": "坐下"
+        "zh": "坐下",
+        "pos": "phr",
+        "kid": "坐下"
       },
       {
         "word": "here",
         "kk": "[hɪr]",
-        "zh": "這裡"
+        "zh": "這裡",
+        "pos": "adv",
+        "kid": "這裡"
       },
       {
         "word": "back",
         "kk": "[bæk]",
-        "zh": "回來"
+        "zh": "回來",
+        "pos": "adv",
+        "kid": "回來"
       },
       {
         "word": "what",
         "kk": "[(h)wɑt]",
-        "zh": "什麼"
+        "zh": "什麼",
+        "pos": "pron",
+        "kid": "什麼"
       },
       {
         "word": "it",
         "kk": "[ɪt]",
-        "zh": "它"
+        "zh": "它",
+        "pos": "pron",
+        "kid": "它"
       },
       {
         "word": "a",
         "kk": "[ə]",
         "zh": "一個",
-        "say": "uh"
+        "say": "uh",
+        "pos": "art",
+        "kid": "一個"
       },
       {
         "word": "an",
         "kk": "[ən]",
-        "zh": "一個"
+        "zh": "一個",
+        "pos": "art",
+        "kid": "一個"
       }
     ],
     "phonics": [

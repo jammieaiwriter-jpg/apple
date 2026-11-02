@@ -78,6 +78,13 @@ def chinese_strings(words, template):
     return sorted(s for s in out if re.search(r'[一-鿿]', s))
 
 
+def zhuyin_right(ch, z):
+    """Zhuyin placed to the right of the character, written vertically (tone mark beside the symbols)."""
+    tone = z[-1] if z and z[-1] in 'ˊˇˋ' else ''
+    syms = z[:-1] if tone else z
+    return f'<span class="zc">{ch}<span class="zz"><span class="zs">{syms}</span>' + (f'<span class="zt">{tone}</span>' if tone else '') + '</span></span>'
+
+
 def build():
     words = load_words()
     template = (here / 'template.html').read_text()
@@ -90,7 +97,7 @@ def build():
     for s in need:
         html = ''
         for ch, z in zy[s]:
-            html += f'<ruby>{ch}<rt>{z}</rt></ruby>' if z else ch
+            html += zhuyin_right(ch, z) if z else ch
         ruby[s] = html
     data = {'words': words, 'foils': FOILS, 'homophones': HOMOPHONES, 'books': BOOKS}
     j = lambda x: json.dumps(x, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')

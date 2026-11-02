@@ -247,7 +247,7 @@
   var speechAttempts={dialog:0,vocab:0};
   function unitLabel(){
     var h=document.querySelector('h1');
-    return (h&&h.textContent.match(/Joy Unit\s+\d+/i)||['Joy Unit'])[0];
+    return (h&&h.textContent.match(/Joy\s+(?:\d+\s+)?Unit\s+\d+/i)||['Joy Unit'])[0];
   }
   function addHeading(panelId,title,note){
     var panel=document.getElementById(panelId);
@@ -263,17 +263,101 @@
     completed[key]=true;
     var button=document.getElementById('joy-finish-'+key);
     if(button){ button.disabled=true; button.textContent='這一區已完成'; }
+    renderLights();
     renderParentCard();
   }
-  function addManualFinish(key,panelId){
-    var panel=document.getElementById(panelId);
-    if(!panel || document.getElementById('joy-finish-'+key)) return;
-    var wrap=document.createElement('div'); wrap.className='joy-section-finish';
-    wrap.innerHTML='<button class="next" type="button" id="joy-finish-'+key+'">我已練習完這一區</button>';
-    panel.appendChild(wrap);
-    document.getElementById('joy-finish-'+key).onclick=function(){ markComplete(key); };
+  /* 五區紅綠燈（2026-09-05）：頁面頂端固定總覽＋每區標題旁的 🔴/🟢，一眼看出哪一區還沒過。
+     總覽的燈可以點，直接捲到那一區。 */
+  var LIGHT_NAMES={dialog:'對話',vocab:'單字',phonics:'發音',grammar:'文法',wordgame:'單字遊戲'};
+  function ensureLightCss(){
+    if(document.getElementById('joy-lights-css')) return;
+    var s=document.createElement('style'); s.id='joy-lights-css';
+    s.textContent='#joy-lights{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.95);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);padding:10px 4px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px dashed #e7e0d2;margin-bottom:10px}'
+      +'.joy-light{border:1px solid #e7e0d2;background:#fff;border-radius:999px;padding:8px 12px;font-weight:900;font-size:14px;min-height:40px;cursor:pointer}'
+      +'.joy-light.done{background:#e6f7ee;border-color:#9fd8c0}'
+      +'.joy-light-badge{margin-left:8px;font-size:15px;font-weight:900}'
+      +'.joy-light-badge.todo{color:#c0392b}.joy-light-badge.done{color:#145a51}';
+    document.head.appendChild(s);
   }
-  function reportText(){
+  function renderLights(){
+    ensureLightCss();
+    var bar=document.getElementById('joy-lights');
+    if(!bar){
+      bar=document.createElement('div'); bar.id='joy-lights';
+      var wrap=document.querySelector('.wrap')||document.body;
+      wrap.insertBefore(bar,wrap.firstChild);
+    }
+    bar.innerHTML='';
+    Object.keys(LIGHT_NAMES).forEach(function(k){
+      var done=!!completed[k];
+      var b=document.createElement('button'); b.type='button';
+      b.className='joy-light'+(done?' done':'');
+      b.textContent=(done?'🟢 ':'🔴 ')+LIGHT_NAMES[k];
+      b.onclick=function(){
+        var el=document.getElementById('joy-heading-panel-'+k)||document.getElementById('panel-'+k);
+        if(el&&el.scrollIntoView) el.scrollIntoView({behavior:'smooth',block:'start'});
+      };
+      bar.appendChild(b);
+    });
+    Object.keys(LIGHT_NAMES).forEach(function(k){
+      var h=document.getElementById('joy-heading-panel-'+k); if(!h) return;
+      var badge=h.querySelector('.joy-light-badge');
+      if(!badge){ badge=document.createElement('span'); badge.className='joy-light-badge'; h.appendChild(badge); }
+      badge.textContent=completed[k]?'🟢 完成':'🔴 未完成';
+      badge.className='joy-light-badge '+(completed[k]?'done':'todo');
+    });
+  }
+  /* 口說過關門檻（Emma 2026-09-03，比照小鑽石）：每句/每字要拿滿 5 顆星，
+     或念滿 5 遍（只算真的有收到聲音、進到評分的那幾遍）。取代原本的「我已練習完這一區」自我申報按鈕。 */
+  var joyBest={dialog:[],vocab:[]},joyAtt={dialog:[],vocab:[]},lastRec=null;
+  function itemPassed(best,att){ return best===5||att>=5; }
+  function speechList(key){ return key==='dialog'?(window.dialogueLines||[]):(window.vocab||[]); }
+  function speechText(key,item){ return key==='dialog'?item.text:item.word; }
+  function remainCount(key){
+    var list=speechList(key),n=0;
+    for(var i=0;i<list.length;i++){
+      // 純聽的句子（scored:false，如 Hahaha…、Meow!）畫面上沒有錄音鍵，不能算進過關門檻，否則永遠過不了。
+      if(list[i] && list[i].scored===false) continue;
+      if(!itemPassed(joyBest[key][i]||0,joyAtt[key][i]||0)) n++;
+    }
+    return n;
+  }
+  function addAutoStatus(key,panelId){
+    var panel=document.getElementById(panelId);
+    if(!panel || document.getElementById('joy-status-'+key)) return;
+    var d=document.createElement('div'); d.className='joy-flow-note'; d.id='joy-status-'+key;
+    panel.appendChild(d); refreshStatus(key);
+  }
+  function refreshStatus(key){
+    var d=document.getElementById('joy-status-'+key); if(!d) return;
+    var n=remainCount(key);
+    if(n===0){ d.textContent='✅ 這一區達標，自動過關！'; if(!completed[key]) markComplete(key); }
+    else d.textContent='還有 '+n+' 個沒達標（每個要拿 5 顆星，或念滿 5 遍）。';
+  }
+  function trackSpeechScores(){
+    if(typeof window.scoreSpeech!=='function' || window.scoreSpeech.__joyThreshold) return;
+    var old=window.scoreSpeech;
+    window.scoreSpeech=function(expected,heard){
+      var r=old(expected,heard);
+      var key=null,idx=-1;
+      if(lastRec && speechList(lastRec.key)[lastRec.idx] && speechText(lastRec.key,speechList(lastRec.key)[lastRec.idx])===expected){
+        key=lastRec.key; idx=lastRec.idx;
+      }else{
+        ['dialog','vocab'].some(function(k){
+          var list=speechList(k);
+          for(var i=0;i<list.length;i++){ if(speechText(k,list[i])===expected){ key=k; idx=i; return true; } }
+          return false;
+        });
+      }
+      if(key!==null){
+        joyAtt[key][idx]=(joyAtt[key][idx]||0)+1;
+        joyBest[key][idx]=Math.max(joyBest[key][idx]||0,(r&&r.stars)||0);
+        refreshStatus(key);
+      }
+      return r;
+    };
+    window.scoreSpeech.__joyThreshold=true;
+  }  function reportText(){
     var sections=Object.keys(completed).filter(function(k){return completed[k];}).length;
     var dialogStars=(window.scores||[]).reduce(function(a,n){return a+(n||0);},0);
     var vocabStars=(window.vScores||[]).reduce(function(a,n){return a+(n||0);},0);
@@ -298,32 +382,132 @@
     if(old) return;
     var card=document.createElement('section');
     card.id='joy-parent-card'; card.className='joy-parent-card';
-    card.innerHTML='<div class="big">全部完成！</div><div class="zh">不需要每一題都是五顆星，完成練習就可以請家長確認。</div><button class="next" type="button" id="joy-send-report">請家長確認，傳送完成通知</button><div class="joy-report-status" id="joy-report-status"></div>';
+    card.innerHTML='<div class="big">全部完成！</div><div class="zh">五區都達標了，按下按鈕請家長確認。</div><button class="next" type="button" id="joy-send-report">請家長確認，傳送完成通知</button><div class="joy-report-status" id="joy-report-status"></div>';
     document.querySelector('.wrap').appendChild(card);
     document.getElementById('joy-send-report').onclick=function(){ sendTelegram(this,document.getElementById('joy-report-status')); };
   }
   function wrapSpeechAttempts(){
     if(typeof window.recLine==='function' && !window.recLine.__joyTracked){
       var oldLine=window.recLine;
-      window.recLine=function(i){ speechAttempts.dialog++; return oldLine(i); };
+      window.recLine=function(i){ stopPlayAll(); speechAttempts.dialog++; lastRec={key:'dialog',idx:i}; return oldLine(i); };
       window.recLine.__joyTracked=true;
     }
     if(typeof window.recVocab==='function' && !window.recVocab.__joyTracked){
       var oldVocab=window.recVocab;
-      window.recVocab=function(i){ speechAttempts.vocab++; return oldVocab(i); };
+      window.recVocab=function(i){ stopPlayAll(); speechAttempts.vocab++; lastRec={key:'vocab',idx:i}; return oldVocab(i); };
       window.recVocab.__joyTracked=true;
     }
   }
+  /* ===== 從預習頁搬過來的內容（2026-09-03）：整段連播、文法聽跟念、字母單音 ===== */
+  /* Azure 真人聲只給「聽整段對話」這種純聽功能用；跟讀卡片旁邊就是麥克風，示範一律 speechSynthesis。
+     開始收音前必須 azStop()，否則 iPad 上音訊通道會打架。載入失敗自動退回 window.speak。 */
+  var TTS_BASE='https://apple-bedtime-story.onrender.com';
+  var AZ_VOICE={nick:'en-US-GuyNeural',abby:'en-US-JennyNeural',fifi:'en-US-AnaNeural',sam:'en-US-GuyNeural',ann:'en-US-JennyNeural',together:'en-US-AriaNeural',
+    bobo:'en-US-BrandonNeural',lady:'en-US-NancyNeural',girl:'en-US-AnaNeural'}; // 第 2 冊角色
+  var azCache={},azActive=null;
+  function azStop(){ if(azActive){ azActive.onended=null; try{azActive.pause();}catch(e){} azActive=null; } }
+  function azWarm(){ try{ fetch(TTS_BASE+'/api/tts/status',{cache:'no-store'}).catch(function(){}); }catch(e){} }
+  function azSpeak(text,role,onEnd){
+    var voice=AZ_VOICE[role]||AZ_VOICE.together,key=voice+'|'+text;
+    function run(url){
+      var a=new Audio(url); azActive=a;
+      a.onended=function(){ if(azActive===a)azActive=null; if(onEnd)onEnd(); };
+      a.play().catch(function(){ if(azActive===a)azActive=null; window.speak(text,role,onEnd); });
+    }
+    if(azCache[key]){ run(azCache[key]); return; }
+    fetch(TTS_BASE+'/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text,voice:voice})})
+      .then(function(r){ if(!r.ok) throw new Error('tts'); return r.blob(); })
+      .then(function(b){ var u=URL.createObjectURL(b); azCache[key]=u; run(u); })
+      .catch(function(){ window.speak(text,role,onEnd); });
+  }
+  var playAllStop=false,stopPlayAll=function(){};
+  function addPlayAll(){
+    var panel=document.getElementById('panel-dialog');
+    if(!panel || document.getElementById('joy-playall') || typeof window.speak!=='function') return;
+    var bar=document.createElement('div'); bar.className='joy-section-finish';
+    bar.innerHTML='<button class="next" type="button" id="joy-playall">▶️ 聽整段對話</button> <button class="next" type="button" id="joy-playall-stop" style="display:none">⏹ 停止</button>';
+    panel.insertBefore(bar,panel.firstChild);
+    var btn=document.getElementById('joy-playall'),stop=document.getElementById('joy-playall-stop');
+    function done(){ playAllStop=true; btn.style.display=''; stop.style.display='none'; }
+    stopPlayAll=function(){ done(); azStop(); try{window.speechSynthesis.cancel();}catch(e){} };
+    function playFrom(i){
+      var dl=window.dialogueLines||[];
+      if(playAllStop || i>=dl.length){ done(); return; }
+      var startBtn=document.getElementById('d'+i+'-start');
+      var card=startBtn&&startBtn.closest?startBtn.closest('.card'):null;
+      if(card&&card.scrollIntoView) card.scrollIntoView({behavior:'smooth',block:'center'});
+      azSpeak(dl[i].text, dl[i].role, function(){ setTimeout(function(){ if(!playAllStop) playFrom(i+1); },450); });
+    }
+    btn.onclick=function(){ playAllStop=false; btn.style.display='none'; stop.style.display=''; playFrom(0); };
+    stop.onclick=function(){ stopPlayAll(); };
+    azWarm();
+  }
+  function addGrammarListen(){
+    var panel=document.getElementById('panel-grammar');
+    var g=window.grammar;
+    if(!panel || !g || !g.quiz || document.getElementById('joy-gram-listen') || typeof window.speak!=='function') return;
+    var box=document.createElement('div'); box.id='joy-gram-listen'; box.className='card';
+    var html='<div class="zh">先聽、跟著念一遍，再做下面的測驗。</div>';
+    g.quiz.forEach(function(q,i){
+      html+='<div class="row" style="margin-top:8px"><button class="act listen" onclick="speak('+JSON.stringify(q.full).replace(/"/g,'&quot;')+',\'together\')">🔊 '+q.full+'</button><span class="zh">'+(q.zh||'')+'</span></div>';
+    });
+    box.innerHTML=html;
+    var test=document.getElementById('grammar-test');
+    if(test) panel.insertBefore(box,test); else panel.appendChild(box);
+  }
+  function addLetterSounds(){
+    var panel=document.getElementById('panel-phonics');
+    var ph=window.phonics;
+    if(!panel || !ph || !ph.length || panel.querySelector('.joy-letter-sound') || typeof window.speak!=='function') return;
+    var rows=panel.querySelectorAll('.card .row');
+    ph.forEach(function(p,i){
+      var row=rows[i]; if(!row || !p.phon) return;
+      row.insertAdjacentHTML('afterbegin','<button class="act listen joy-letter-sound" onclick="speak('+JSON.stringify(p.phon).replace(/"/g,'&quot;')+',\'together\')">🔡 '+p.letter+' 的音 '+(p.sound||'')+'</button>');
+    });
+  }
+  /* 選聲升級（2026-09-03）：兩輪選聲——第一輪只挑「偏好名單中有增強/Siri 版」的名字，
+     沒有才照原順序退回。家長下載任何名單內的增強音（如 Allison/Tom 增強）就會自動被用到，
+     不會被名單更前面的內建普通音（Samantha/Aaron compact）擋住。 */
+  function upgradePickVoice(){
+    if(typeof window.pickVoice!=='function' || window.pickVoice.__joyEnh) return;
+    var ENH=/enhanced|premium|siri/i;
+    window.pickVoice=function(role){
+      var vs=(window.speechSynthesis&&speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];
+      var en=vs.filter(function(v){return /en[-_](US|GB|AU)/i.test(v.lang);});
+      if(!en.length) return null;
+      var bad=window.BAD_VOICE||/Fred|Albert|Zarvox/i;
+      var good=en.filter(function(v){return !bad.test(v.name);}); if(!good.length) good=en;
+      function isEnh(v){return ENH.test(v.name+'|'+(v.voiceURI||''));}
+      var pref=(role==='nick'||role==='bobo')?['Tom','Nathan','Aaron','Arthur','Daniel','Alex']
+        :(role==='fifi'||role==='girl')?['Joelle','Karen','Tessa','Moira','Samantha','Allison']
+        :['Allison','Samantha','Ava','Joelle','Karen'];
+      for(var pass=0;pass<2;pass++){
+        for(var i=0;i<pref.length;i++){
+          var hits=good.filter(function(v){return v.name.indexOf(pref[i])>=0;});
+          if(pass===0) hits=hits.filter(isEnh);
+          if(hits.length) return hits.find(isEnh)||hits[0];
+        }
+      }
+      return good.find(isEnh)||good[0];
+    };
+    window.pickVoice.__joyEnh=true;
+  }
   function enableSinglePageFlow(){
+    upgradePickVoice();
     var tabs=document.querySelector('.tabs'); if(tabs) tabs.remove();
-    addHeading('panel-dialog','對話','先聽、再開口念；星星只作為鼓勵。');
-    addHeading('panel-vocab','單字','認識單字，再念一次。');
+    addHeading('panel-dialog','對話','先聽、再開口念；每句要拿 5 顆星，或念滿 5 遍才過關。');
+    addHeading('panel-vocab','單字','每個單字要拿 5 顆星，或念滿 5 遍才過關。');
     addHeading('panel-phonics','發音','完成聽音挑戰。');
     addHeading('panel-grammar','文法','完成文法挑戰。');
     addHeading('panel-wordgame','單字遊戲','完成聽字挑戰。');
-    addManualFinish('dialog','panel-dialog');
-    addManualFinish('vocab','panel-vocab');
+    addAutoStatus('dialog','panel-dialog');
+    addAutoStatus('vocab','panel-vocab');
+    addPlayAll();
+    addGrammarListen();
+    addLetterSounds();
+    renderLights();
     wrapSpeechAttempts();
+    trackSpeechScores();
     if(window.CH && CH.phonics) CH.phonics.start();
     if(window.CH && CH.grammar) CH.grammar.start();
     if(typeof window.wgStart==='function') window.wgStart();

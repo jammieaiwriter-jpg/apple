@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store">
+<title>語音檢測</title>
+<style>
+body{font-family:"PingFang TC",system-ui,sans-serif;padding:20px;max-width:640px;margin:0 auto;background:#fffdf8;color:#27313f}
+h1{font-size:24px}
+.big{font-size:20px;font-weight:900;padding:12px;border-radius:12px;margin:10px 0}
+.ok{background:#e6f7ee;color:#145a51}.bad{background:#ffe9e9;color:#a33}
+button{font-size:18px;font-weight:900;padding:14px 18px;border-radius:12px;border:0;background:#207f71;color:#fff;margin:6px 4px;min-height:52px}
+button.alt{background:#fff;color:#145a51;border:2px solid #207f71}
+li{margin:4px 0;font-size:15px}
+.enh{color:#145a51;font-weight:900}
+.note{color:#667085;font-size:14px;line-height:1.6}
+#picked{font-size:18px}
+</style>
+</head>
+<body>
+<h1>🔍 語音檢測頁</h1>
+<p class="note">這頁會列出這台裝置的英文聲音，並顯示練習頁會挑到哪一個。先按一下下面的按鈕（iOS 要使用者點過才給清單）。</p>
+<button onclick="scan()">🔄 掃描聲音</button>
+<button class="alt" onclick="playPicked()">▶️ 用「挑中的聲音」念一句</button>
+<button class="alt" onclick="playDefault()">▶️ 用「系統預設」念一句（對照組）</button>
+<div id="picked"></div>
+<div id="summary"></div>
+<ul id="list"></ul>
+<script>
+var ENH=/enhanced|premium|siri/i, PREF=['Allison','Joelle','Samantha','Ava','Tom','Nathan','Aaron','Daniel','Karen'];
+function isEnh(v){return ENH.test(v.name+'|'+(v.voiceURI||''));}
+function envoices(){var vs=(speechSynthesis.getVoices&&speechSynthesis.getVoices())||[];return vs.filter(function(v){return /^en[-_](US|GB|AU)/i.test(v.lang||'');});}
+function pick(){var en=envoices();if(!en.length)return null;
+  for(var p=0;p<2;p++){for(var i=0;i<PREF.length;i++){var hits=en.filter(function(v){return v.name.indexOf(PREF[i])>=0;});if(p===0)hits=hits.filter(isEnh);if(hits.length)return hits.find(isEnh)||hits[0];}}
+  return en.find(isEnh)||en[0];}
+function scan(){
+  var en=envoices(),enh=en.filter(isEnh);
+  var v=pick();
+  document.getElementById('picked').innerHTML=v
+    ? '<div class="big '+(isEnh(v)?'ok':'bad')+'">頁面會挑到：<b>'+v.name+'</b>'+(isEnh(v)?'（增強版 ✅ 應該是好聽的）':'（普通版 ❌ 機械音——代表這台還看不到增強聲音）')+'</div>'
+    : '<div class="big bad">抓不到任何英文聲音</div>';
+  document.getElementById('summary').innerHTML='<div class="note">英文聲音共 '+en.length+' 個，其中增強/Siri 版 <b>'+enh.length+'</b> 個。'+(enh.length===0?'<br><b>增強版是 0 個</b>：表示下載還沒被瀏覽器抓到——請把 Chrome/Safari 完全關掉重開；還是 0 就把 iPad 重開機一次（iOS 已知需要）。':'')+'</div>';
+  document.getElementById('list').innerHTML=en.map(function(v){return '<li'+(isEnh(v)?' class="enh"':'')+'>'+v.name+' — '+v.lang+(isEnh(v)?'（增強 ✅）':'')+'</li>';}).join('');
+}
+function playPicked(){var u=new SpeechSynthesisUtterance('Hello! Nice to meet you. This is the selected voice.');u.lang='en-US';u.rate=.85;var v=pick();if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u);scan();}
+function playDefault(){var u=new SpeechSynthesisUtterance('Hello! Nice to meet you. This is the default voice.');u.lang='en-US';u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u);}
+if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=scan;
+setTimeout(scan,300);
+</script>
+</body>
+</html>

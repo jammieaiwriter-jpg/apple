@@ -19,4 +19,4 @@ jobs:
         run: |
           curl -fsS -m 30 -X POST "$ENDPOINT" \
             -H 'Content-Type: application/json' \
-            -d '{"text":"⏰ Apple 認字閃卡時間到囉！今天 20 個字，約 10 分鐘。\n👉 https://jammieaiwriter-jpg.github.io/apple/joy/flash/"}'
+            -d '{"text":"⏰ Apple 認字閃卡時間到囉！今天 10 個字，約 5 分鐘。\n👉 https://jammieaiwriter-jpg.github.io/apple/joy/flash/"}'

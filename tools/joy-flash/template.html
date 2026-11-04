@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff4e0"><meta name="description" content="Joy 認字閃卡：每天 20 個字，看字念、聽音選字、看字選意思、詞性分類小遊戲。"><title>Joy 認字閃卡</title><style>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff4e0"><meta name="description" content="Joy 認字閃卡：每天 10 個字，看字念、聽音選字、看字選意思、詞性分類小遊戲。"><title>Joy 認字閃卡</title><style>
 :root{--ink:#2b3a42;--bg:#fff4e0;--card:#fff;--line:#ecd9b8;--muted:#6f7c82;--ok:#2f9e6f;--bad:#d6483f;--main:#e0703a;--purple:#6359a7;--n:#3b82c4;--v:#e0703a;--adj:#2f9e6f;--pron:#8a63c9;--int:#d6587c;--other:#5f7f8f}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-rounded,'Arial Rounded MT Bold','PingFang TC',system-ui,sans-serif;line-height:1.5;-webkit-tap-highlight-color:transparent}
@@ -56,8 +56,8 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 'use strict';
 const DATA=__FLASH_DATA__,RUBY=__RUBY__;
 const STORAGE='joy-flash-v1',ENDPOINT='https://bobo-math-notify.bobo-math-grader.workers.dev',PAGE_URL='https://jammieaiwriter-jpg.github.io/apple/joy/flash/';
-// 每天 20 個字：複習最多 12 個，其餘補新字。間隔天數依序為答對 1~5 次後的下次複習。
-const DAILY=20,DUE_CAP=12,INTERVALS=[1,3,7,14,30],FAMILIAR_BOX=3,GRADUATE=.9,SORT_ROUNDS=8,SORT_UNLOCK=3;
+// 每天 10 個字：複習最多 6 個，其餘補新字。間隔天數依序為答對 1~5 次後的下次複習。
+const DAILY=10,DUE_CAP=6,INTERVALS=[1,3,7,14,30],FAMILIAR_BOX=3,GRADUATE=.9,SORT_ROUNDS=8,SORT_UNLOCK=3;
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const zy=s=>RUBY[s]||esc(s);
 const pad=n=>String(n).padStart(2,'0'),fmt=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;

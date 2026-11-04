@@ -18,12 +18,12 @@ assert(!A.WORDS.some(w=>['nick','abby','oz','fifi','boohoo'].includes(w.key)),'n
 for(const k of ['are','good','it','can','is','am','a'])assert(A.BY[k],`sight word ${k} is a card`);
 assert.deepEqual(A.WORDS.slice(0,3).map(w=>w.key),['i','you','am'],'sight words come first');
 
-// daily plan: 20 words, stable within a day, reviews capped, new words fill the rest
-fresh();let p=A.planFor('2026-11-02');assert.equal(p.length,20);assert.deepEqual(A.planFor('2026-11-02').map(w=>w.key),p.map(w=>w.key));
+// daily plan: 10 words, stable within a day, reviews capped, new words fill the rest
+fresh();let p=A.planFor('2026-11-02');assert.equal(p.length,10);assert.deepEqual(A.planFor('2026-11-02').map(w=>w.key),p.map(w=>w.key));
 const res=Object.fromEntries(p.map(w=>[w.key,{s2:true,s3:true}]));A.applyResults(res,'2026-11-02');
 assert(p.every(w=>A.rec(w.key).box===1&&A.rec(w.key).due==='2026-11-03'));
-let p2=A.planFor('2026-11-03');assert.equal(p2.length,20);assert.equal(p2.filter(w=>A.rec(w.key).seen>0).length,12,'12 reviews due, 8 new');
-assert.equal(p2.filter(w=>A.rec(w.key).seen===0).length,8);
+let p2=A.planFor('2026-11-03');assert.equal(p2.length,10);assert.equal(p2.filter(w=>A.rec(w.key).seen>0).length,6,'6 reviews due, 4 new');
+assert.equal(p2.filter(w=>A.rec(w.key).seen===0).length,4);
 
 // Leitner: pass moves up, fail drops back to box 1 and is due tomorrow, three passes on three days is familiar
 fresh();const w0=A.WORDS[0].key;let day='2026-11-02';
@@ -48,4 +48,4 @@ assert(A.sortStatus().pool.every(w=>['n','v','adj'].includes(w.pos)&&!w.alt));
 // page rules shared with the other Joy pages: speechSynthesis only, no Audio / network TTS
 assert(!html.includes('new Audio')&&!html.includes('<audio')&&!html.includes('/api/tts'));
 assert(html.includes('speechSynthesis'));
-console.log('PASS: card data, daily 20-word plan, spaced review, look-alike/homophone-safe options, sorting unlock.');
+console.log('PASS: card data, daily 10-word plan, spaced review, look-alike/homophone-safe options, sorting unlock.');
